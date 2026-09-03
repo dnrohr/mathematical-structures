@@ -42,9 +42,9 @@ the ontology has exactly one current definition.
 - [x] `npm install && npm run check` succeeds from a fresh clone (even if `check`
       does little yet).
 - [x] `graph/schema.yaml` v1 exists and is the only definition of every vocabulary.
-- [x] CI runs on every push/PR ~~and is required for merge to `main`~~ —
-      *marking CI as a required status check needs repo admin (Settings →
-      Branches → protect `main`); owner action.*
+- [x] CI runs on every push/PR and is required for merge to `main` (branch
+      protection enabled by the repo owner; first run green:
+      [run #1](https://github.com/dnrohr/mathematical-structures/actions/runs/33809464258)).
 
 **Tasks**
 
