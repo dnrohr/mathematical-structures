@@ -1,0 +1,16 @@
+# graph/edges.yaml — the typed edge list of the Structure Atlas.
+#
+# One entry per relationship claim; reviewable as a set (ARCHITECTURE.md §3.3).
+# Populated during M2 content extraction (ROADMAP.md). Entry shape:
+#
+#   - from: <slug>            # source node (concepts/<slug>.md)
+#     to: <slug>              # target node
+#     type: <edge type id>    # from graph/schema.yaml edge_types
+#     strength: <strength id> # from graph/schema.yaml strengths
+#     context: <free text>    # field or mathematical conditions (optional)
+#     directionality: symmetric   # only to override a directed default — rare
+#     status: <gap status id> # REQUIRED for POSSIBLE-MISSING-MIGRATION edges
+#     evidence: []            # reserved: citation keys (SPECIFICATION.md §8.2)
+#     notes: <free text>      # caveats keeping analogies honest (optional)
+
+[]

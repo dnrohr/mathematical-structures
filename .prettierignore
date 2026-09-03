@@ -1,0 +1,7 @@
+# Prose and data files are hand-formatted; prettier covers code only.
+*.md
+*.yaml
+*.yml
+package-lock.json
+node_modules/
+dist/

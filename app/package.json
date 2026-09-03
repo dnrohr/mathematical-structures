@@ -1,0 +1,9 @@
+{
+  "name": "@atlas/app",
+  "private": true,
+  "type": "module",
+  "description": "Structure Atlas SPA (scaffolding lands in M3; see ROADMAP.md)",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}

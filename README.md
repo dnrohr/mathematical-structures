@@ -105,7 +105,7 @@ Many powerful techniques can be understood as changing representation so that a 
 - What is the minimal vocabulary needed to recognize a problem in another field?
 # 7. Suggested working method
 
-For each candidate node, record: (1) what it is, (2) what kind of thing it is, (3) its direct mathematical connections, (4) canonical problems it solves or illuminates, (5) surprising reappearances across fields, and (6) one or two memorable examples. Do this for roughly 20–30 nodes before imposing a final hierarchy.
+Moved to [docs/working-method.md](docs/working-method.md).
 
 # 8. Field dialects, named special cases, and translation
 
@@ -362,15 +362,7 @@ At this stage the artifact is best thought of as a typed knowledge graph. Nodes 
 
 # 17. Emerging high-level views
 
-Rather than choosing one hierarchy, the eventual map may support several views over the same graph:
-
-- By mathematical object: matrices, graphs, fields, distributions, manifolds.
-- By reusable move: linearize, diagonalize, transform, nondimensionalize, condition, coarse-grain, optimize.
-- By canonical model: oscillator, random walk, diffusion, wave, feedback loop, branching process.
-- By principle: symmetry, conservation, invariance, locality, continuity, scaling, entropy.
-- By field dialect: control, statistics, physics, biology, networks, numerical analysis.
-- By problem symptom: too many parameters, coupled variables, hidden state, noisy observations, multiple scales, instability.
-- By research gap: mathematically plausible transfers that appear weakly developed in another field.
+Moved to [docs/views.md](docs/views.md); the v1 app views are defined in [SPECIFICATION.md](SPECIFICATION.md) §2–§3.
 # 18. Next nodes to develop
 
 The next expansion should stress-test different parts of the graph rather than simply following one branch.
@@ -716,17 +708,7 @@ A raw count of fields can be misleading. A concept used overwhelmingly in one fi
 - least action (mechanics) <-> variational formulation (applied math) <-> objective functional (optimization) <-> loss/cost functional (control/ML)
 # 35. Research-gap workflow
 
-Potential missing migrations should be treated as questions to investigate, not as claims of novelty. A disciplined workflow can prevent the map from manufacturing research gaps out of vocabulary differences.
-
-- 1. Identify a structural analogy, not merely a shared metaphor.
-- 2. Search the target field under both source-field terminology and likely local dialects.
-- 3. Determine whether the machinery is absent, renamed, technically inappropriate, or already standard.
-- 4. If rare, identify which assumptions fail in the target system: linearity, stationarity, observability, timescale separation, known model structure, etc.
-- 5. Ask whether a generalized version of the method survives those failures.
-- 6. Record the result as established transfer, renamed transfer, failed transfer with reason, or open candidate.
-## Example: phase/gain margins in biological networks
-
-The useful question is not simply whether papers use the terms phase margin and gain margin. First identify the biological loop, delays, operating point, linearization regime, input/output definition, and uncertainty model. Then ask whether classical loop margins are meaningful; if not, identify the biological or nonlinear-control quantity serving the same functional role. This transforms a terminology search into a structural comparison.
+Moved to [docs/research-gap-workflow.md](docs/research-gap-workflow.md); the workflow statuses are encoded as `gap_statuses` in [graph/schema.yaml](graph/schema.yaml).
 
 # 36. Near-term build plan
 

@@ -1,0 +1,410 @@
+# graph/schema.yaml — the controlled vocabularies for the Structure Atlas.
+#
+# This file is the SINGLE source of truth for every enumerated value used in
+# concepts/*.md, graph/edges.yaml, and graph/symptoms.yaml. The build validates
+# all content against it; changing the ontology means editing exactly this file
+# (see ARCHITECTURE.md §3.4). It consolidates and supersedes the drafts in the
+# original notebook (README §1, §10, §16, §27, §29 as of v0).
+#
+# Conventions:
+#   - node/strength/field/status ids: lowercase-kebab, permanent once used.
+#   - edge type ids: SCREAMING-KEBAB, matching the notebook's vocabulary.
+#   - "forward" reads source → target; "reverse" reads target → source;
+#     symmetric types use a single "phrase".
+
+schema_version: 1.0.0
+
+# ---------------------------------------------------------------------------
+# Node types (ontological classes; README §1 + §12 "moves" + §33 list)
+# color_token names the CSS custom property the app's semantic style module
+# must define for this class (ARCHITECTURE.md §5.3).
+# ---------------------------------------------------------------------------
+node_types:
+  - id: object
+    label: Object / structure
+    color_token: nt-object
+    description: >
+      Things mathematics talks about — vectors, matrices, graphs, fields,
+      probability distributions.
+  - id: operation
+    label: Operation / representation
+    color_token: nt-operation
+    description: >
+      Ways of rewriting or acting on objects — differentiation, transforms,
+      diagonalization, series expansion, coordinate changes.
+  - id: model
+    label: Canonical model
+    color_token: nt-model
+    description: >
+      Reusable simplified systems — harmonic oscillator, random walk,
+      diffusion, wave equation, exponential growth.
+  - id: principle
+    label: Principle
+    color_token: nt-principle
+    description: >
+      Organizing constraints that recur across many models — symmetry,
+      conservation, invariance, locality, continuity.
+  - id: phenomenon
+    label: Phenomenon
+    color_token: nt-phenomenon
+    description: >
+      Recurring behaviors systems exhibit — chaos, universality, critical
+      phenomena, concentration, emergence of regularity.
+  - id: move
+    label: Reusable move
+    color_token: nt-move
+    description: >
+      Standard transformations of a hard problem into a more recognizable one —
+      linearize it, nondimensionalize it, diagonalize it, condition on the
+      observation, coarse-grain it (README §12).
+  - id: theorem
+    label: Theorem
+    color_token: nt-theorem
+    description: >
+      Named results with precise hypotheses — Buckingham Pi, Noether's theorem,
+      the central limit theorem, the Fourier slice theorem.
+  - id: dialect
+    label: Field dialect
+    color_token: nt-dialect
+    description: >
+      A field's named formulation of shared structure, when the formulation
+      itself deserves a node (e.g. transfer functions, modal analysis). Most
+      dialect information belongs in a node's aliases; use this type only when
+      the field-specific formalism has enough content to stand alone.
+  - id: application
+    label: Application
+    color_token: nt-application
+    description: >
+      A domain problem that a structure illuminates or solves — tomography,
+      target tracking, network clustering, experimental scaling.
+
+# ---------------------------------------------------------------------------
+# Edge types (README §16 + §27 + §29, deduplicated against the §10 draft)
+# directionality: directed | symmetric
+# group: purely presentational bucketing for UI menus and docs.
+# ---------------------------------------------------------------------------
+edge_types:
+  # --- hierarchy -----------------------------------------------------------
+  - id: IS-A
+    label: Special case
+    group: hierarchy
+    directionality: directed
+    forward: is a special case of
+    reverse: generalizes
+    description: >
+      Strict containment of model classes; the narrower model inherits the
+      broader structure.
+    example: linear-Gaussian state-space model → state-space model
+
+  # --- equivalence and dialect ----------------------------------------------
+  - id: FIELD-DIALECT-OF
+    label: Field dialect
+    group: equivalence
+    directionality: symmetric
+    phrase: is a field dialect of
+    description: >
+      Essentially the same structure under different field vocabulary; the
+      strongest cross-field identification the map makes.
+    example: impulse response ↔ Green's function
+  - id: SAME-SKELETON
+    label: Same skeleton
+    group: equivalence
+    directionality: symmetric
+    phrase: shares its mathematical skeleton with
+    description: >
+      Closely related mathematical form without full identity; weaker than
+      FIELD-DIALECT-OF, stronger than analogy.
+    example: modal decay ↔ Markov relaxation
+  - id: ANALOGOUS-TO
+    label: Analogy
+    group: equivalence
+    directionality: symmetric
+    phrase: is analogous to
+    description: >
+      Parallel structure between different theories, typically valid in a
+      regime; the caveats live in the edge notes.
+    example: gravitoelectromagnetic weak-field equations ↔ Maxwell-like equations
+
+  # --- representation --------------------------------------------------------
+  - id: REPRESENTED-BY
+    label: Representation
+    group: representation
+    directionality: directed
+    forward: becomes tractable in
+    reverse: is the natural coordinates for
+    description: >
+      A change of representation in which the problem's important degrees of
+      freedom separate.
+    example: coupled dynamics → modal/eigenvector coordinates
+  - id: EXPOSES
+    label: Exposes
+    group: representation
+    directionality: directed
+    forward: exposes
+    reverse: is exposed by
+    description: >
+      A representation reveals a latent coordinate or structure.
+    example: Fourier transform → frequency modes
+  - id: SYMMETRY-SELECTS-REPRESENTATION
+    label: Symmetry selects representation
+    group: representation
+    directionality: directed
+    forward: selects the natural representation
+    reverse: is the representation selected by
+    description: >
+      A symmetry of the problem picks out the basis or coordinates in which it
+      simplifies (README §29).
+    example: translation symmetry → Fourier modes
+
+  # --- duality ----------------------------------------------------------------
+  - id: TRANSFORM-DUAL
+    label: Transform dual
+    group: duality
+    directionality: symmetric
+    phrase: is transform-dual to
+    description: >
+      Two operations exchanged by a transform relation.
+    example: convolution ↔ multiplication under the Fourier transform
+  - id: LOCAL-GLOBAL-DUAL
+    label: Local/global dual
+    group: duality
+    directionality: symmetric
+    phrase: is the local/global dual of
+    description: >
+      Differential and integral statements of one law, connected by an
+      integral theorem.
+    example: divergence ↔ boundary flux
+
+  # --- approximation and limits ----------------------------------------------
+  - id: APPROXIMATES
+    label: Approximates
+    group: approximation
+    directionality: directed
+    forward: approximates
+    reverse: is approximated by
+    description: >
+      The source is the simpler stand-in for the target under stated
+      conditions. (Orientation fixed relative to the notebook's ambiguous
+      example: the arrow points FROM the approximation TO the thing
+      approximated.)
+    example: quadratic potential → smooth potential near a stable equilibrium
+  - id: LIMIT-OF
+    label: Limit
+    group: approximation
+    directionality: directed
+    forward: is a limiting form of
+    reverse: tends to, in a limit,
+    description: >
+      The source emerges from the target in an asymptotic or large-parameter
+      limit.
+    example: Gaussian fluctuations → sums of many independent contributions
+  - id: CONTINUUM-LIMIT-OF
+    label: Continuum limit
+    group: approximation
+    directionality: directed
+    forward: is the continuum limit of
+    reverse: has as its continuum limit
+    description: >
+      A field or PDE description arising from many discrete events; the
+      specialized, most common case of LIMIT-OF.
+    example: diffusion equation → random walk
+
+  # --- algorithms and application ----------------------------------------------
+  - id: SOLVED-BY
+    label: Solved by
+    group: algorithmics
+    directionality: directed
+    forward: is solved exactly by
+    reverse: exactly solves
+    description: >
+      A named algorithm performs exact inference or solution for a model
+      class; approximate solvers should say so in the edge context.
+    example: linear-Gaussian filtering → Kalman filter
+  - id: APPLIED-IN
+    label: Applied in
+    group: algorithmics
+    directionality: directed
+    forward: is applied in
+    reverse: makes use of
+    description: >
+      A structure is materially used inside a domain application.
+    example: graph Laplacian → network clustering
+
+  # --- governance and diagnostics ------------------------------------------------
+  - id: GOVERNS
+    label: Governs
+    group: governance
+    directionality: directed
+    forward: governs
+    reverse: is governed by
+    description: >
+      A quantity controls a rate, threshold, or qualitative behavior.
+    example: spectral gap → mixing / relaxation rate
+  - id: MEASURES-DISTANCE-TO
+    label: Measures distance to
+    group: governance
+    directionality: directed
+    forward: measures distance to
+    reverse: is gauged by
+    description: >
+      A summary quantity expresses proximity to a qualitative transition.
+    example: phase margin → instability
+
+  # --- assumptions and breakdown ---------------------------------------------------
+  - id: ASSUMES
+    label: Assumes
+    group: assumptions
+    directionality: directed
+    forward: assumes
+    reverse: licenses
+    description: >
+      A technique requires a structural condition to be valid.
+    example: Taylor expansion → sufficient smoothness
+  - id: FAILS-WHEN
+    label: Fails when
+    group: assumptions
+    directionality: directed
+    forward: fails in the presence of
+    reverse: defeats
+    description: >
+      Characteristic breakdown condition of a technique; points at replacement
+      machinery via REPLACED-BY.
+    example: classical derivative → shock / discontinuity
+  - id: REPLACED-BY
+    label: Replaced by
+    group: assumptions
+    directionality: directed
+    forward: is replaced after breakdown by
+    reverse: replaces, after breakdown,
+    description: >
+      Machinery used once an assumption fails.
+    example: classical solution → weak solution
+
+  # --- migration and research gaps -----------------------------------------------
+  - id: MIGRATED-TO
+    label: Migrated to
+    group: migration
+    directionality: directed
+    forward: historically migrated into
+    reverse: imported
+    description: >
+      Established historical transfer of machinery between fields.
+    example: feedback / robustness concepts → systems biology
+  - id: POSSIBLE-MISSING-MIGRATION
+    label: Possible missing migration
+    group: migration
+    directionality: directed
+    forward: might transfer, unverified, to
+    reverse: might benefit, unverified, from
+    description: >
+      Hypothesis that machinery mature in one field is absent or renamed in a
+      structurally similar one. Always speculative-strength, always carries a
+      gap workflow status, never presented as a finding (SPECIFICATION.md §1).
+    example: classical stability margins → biological regulation
+
+# ---------------------------------------------------------------------------
+# Edge strengths (ordered strongest → weakest; rank 1 is strongest)
+# line: the visual grammar token — strength is never encoded by color
+# (SPECIFICATION.md §4). The app maps line+emphasis to stroke style/weight.
+# ---------------------------------------------------------------------------
+strengths:
+  - id: identity
+    rank: 1
+    line: solid
+    emphasis: strong
+    description: Mathematically the same object under renaming.
+  - id: theorem
+    rank: 2
+    line: solid
+    emphasis: strong
+    description: Holds by a proved theorem under stated hypotheses.
+  - id: special-case
+    rank: 3
+    line: solid
+    emphasis: medium
+    description: Strict containment or exact specialization.
+  - id: strong-analogy
+    rank: 4
+    line: dashed
+    emphasis: medium
+    description: Established correspondence with known scope and caveats.
+  - id: heuristic-analogy
+    rank: 5
+    line: dashed
+    emphasis: light
+    description: Family resemblance; useful for intuition, unsafe for transfer without checking.
+  - id: speculative
+    rank: 6
+    line: dotted
+    emphasis: light
+    description: Hypothesis awaiting the research-gap workflow (docs/research-gap-workflow.md).
+
+# ---------------------------------------------------------------------------
+# Fields (disciplines usable in front-matter `fields`, aliases, and symptoms)
+# Extend this list as content demands — the validator will name the missing id.
+# ---------------------------------------------------------------------------
+fields:
+  - { id: control, label: Control theory }
+  - { id: mechanics, label: Mechanics & vibration }
+  - { id: statistics, label: Statistics }
+  - { id: probability, label: Probability & stochastic processes }
+  - { id: quantum, label: Quantum mechanics }
+  - { id: pde, label: PDE & mathematical physics }
+  - { id: fluids, label: Fluid dynamics }
+  - { id: heat-transfer, label: Heat & mass transfer }
+  - { id: biology, label: Systems & mathematical biology }
+  - { id: networks, label: Networks & graph theory }
+  - { id: signal-processing, label: Signal processing }
+  - { id: optimization, label: Optimization }
+  - { id: thermodynamics, label: Thermodynamics & statistical mechanics }
+  - { id: information-theory, label: Information theory }
+  - { id: numerical-analysis, label: Numerical analysis }
+  - { id: ml, label: Machine learning }
+  - { id: economics, label: Economics & econometrics }
+  - { id: neuroscience, label: Neuroscience }
+
+# ---------------------------------------------------------------------------
+# Statuses
+# ---------------------------------------------------------------------------
+node_statuses:
+  - id: established
+    description: Settled mathematics with cross-field usage documented.
+  - id: analogy
+    description: The node itself is an analogy or correspondence, not a theorem.
+  - id: hypothesis
+    description: Candidate structure or connection; treat contents as unverified.
+  - id: stub
+    description: Placeholder awaiting a real write-up; visible as such in the app.
+
+# Workflow states for POSSIBLE-MISSING-MIGRATION edges (README §35;
+# docs/research-gap-workflow.md).
+gap_statuses:
+  - id: open-candidate
+    description: Structural analogy identified; no literature check yet.
+  - id: literature-checked
+    description: Target-field search done under source and local dialects; verdict pending.
+  - id: renamed-transfer
+    description: The machinery exists in the target field under another name.
+  - id: established-transfer
+    description: The migration exists and is documented; edge should become MIGRATED-TO.
+  - id: failed-transfer
+    description: Transfer inappropriate — an assumption fails; the notes say which.
+
+# ---------------------------------------------------------------------------
+# Per-status required front-matter (validator rule; ARCHITECTURE.md §4.2).
+# `all` applies to every node regardless of status; a status key adds to it.
+# ---------------------------------------------------------------------------
+node_requirements:
+  all: [canonical_name, node_type, status, summary]
+  established: [fields, canonical_examples]
+  analogy: [fields]
+  hypothesis: []
+  stub: []
+
+# ---------------------------------------------------------------------------
+# Analysis configuration (build stage 4; ARCHITECTURE.md §4.4)
+# Metrics run only on edges whose strength rank ≤ this id's rank, so
+# speculative analogies cannot manufacture centrality.
+# ---------------------------------------------------------------------------
+analysis:
+  trusted_min_strength: special-case

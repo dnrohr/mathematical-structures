@@ -1,0 +1,14 @@
+{
+  "name": "@atlas/build",
+  "private": true,
+  "type": "module",
+  "description": "atlas-build: compiler/validator for the Structure Atlas content layer",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "atlas": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "yaml": "^2.8.1"
+  }
+}

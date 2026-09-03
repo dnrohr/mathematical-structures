@@ -39,23 +39,27 @@ the ontology has exactly one current definition.
 
 **Exit criteria**
 
-- [ ] `npm install && npm run check` succeeds from a fresh clone (even if `check`
+- [x] `npm install && npm run check` succeeds from a fresh clone (even if `check`
       does little yet).
-- [ ] `graph/schema.yaml` v1 exists and is the only definition of every vocabulary.
-- [ ] CI runs on every push/PR and is required for merge to `main`.
+- [x] `graph/schema.yaml` v1 exists and is the only definition of every vocabulary.
+- [x] CI runs on every push/PR ~~and is required for merge to `main`~~ —
+      *marking CI as a required status check needs repo admin (Settings →
+      Branches → protect `main`); owner action.*
 
 **Tasks**
 
-- [ ] [infra] Create the directory layout from ARCHITECTURE.md §2 (`concepts/`,
+- [x] [infra] Create the directory layout from ARCHITECTURE.md §2 (`concepts/`,
       `graph/`, `paths/`, `docs/`, `build/`, `app/`); add `.gitignore` (`dist/`,
       `node_modules/`), `.editorconfig`, root `package.json` with npm workspaces
       for `build/` and `app/`.
-- [ ] [infra] Toolchain: TypeScript ≥ 5.5 strict, a single shared `tsconfig.base`,
+- [x] [infra] Toolchain: TypeScript ≥ 5.5 strict, a single shared `tsconfig.base`,
       vitest, prettier + eslint with minimal rules; pin Node ≥ 20 via `engines` and
       `.nvmrc`.
-- [ ] [infra] `ci.yml`: install → typecheck → lint → test → `atlas-build --check`
-      (stubbed until M1). Branch protection: CI required on `main`.
-- [ ] [data] Write `graph/schema.yaml` v1 by consolidating README §1, §10, §12,
+- [x] [infra] `ci.yml`: install → typecheck → lint → test → `atlas-build --check`
+      (stubbed until M1; the M0 stub already fully validates `schema.yaml` and the
+      shape of `edges.yaml`/`symptoms.yaml`). Branch protection: owner action, see
+      exit criteria.
+- [x] [data] Write `graph/schema.yaml` v1 by consolidating README §1, §10, §12,
       §16, §27 into single current lists:
       - `node_types` (object, operation, model, principle, phenomenon, move,
         theorem, dialect) with display names + color-token names;
@@ -74,10 +78,10 @@ the ontology has exactly one current definition.
       - `statuses` for nodes (established, analogy, hypothesis, stub) and for gap
         edges (open-candidate, literature-checked, renamed-transfer,
         established-transfer, failed-transfer).
-- [ ] [data] Move method prose out of the README into `docs/`: working method
+- [x] [data] Move method prose out of the README into `docs/`: working method
       (§7), research-gap workflow (§35), views catalogue (§17). Leave README
       content otherwise untouched until M2.
-- [ ] [infra] Add `CONTRIBUTING.md` stub: how content PRs work, "the validator is
+- [x] [infra] Add `CONTRIBUTING.md` stub: how content PRs work, "the validator is
       the review gate", slug rules.
 
 ---

@@ -1,0 +1,11 @@
+# graph/symptoms.yaml — the problem-recognition index (README §25 as data).
+#
+# Populated during M2 content extraction (ROADMAP.md). Entry shape:
+#
+#   - id: <kebab-id>
+#     symptom: <short phrase as shown on the landing page>
+#     moves: [<node slugs>]           # candidate machinery, most useful first
+#     mature_fields: [<field ids>]    # where this machinery is routine
+#     worked_example: <node slug>     # optional
+
+[]
