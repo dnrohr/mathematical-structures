@@ -9,12 +9,22 @@
  *   --root    content root (default: nearest ancestor with graph/schema.yaml)
  *   --out     artifact directory (default: <root>/dist/data)
  *
- * Stage 4 (analyze/metrics) lands in M5 (ROADMAP.md).
+ * A full run additionally analyzes (stage 4 metrics over the trusted
+ * subgraph) and emits graph.json, search-index.json, and the GraphML/CSV
+ * exports.
  */
 import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { exit } from 'node:process';
-import { buildGraphJson, buildSearchIndex, gitSha, writeArtifacts } from './emit.js';
+import { analyzeGraph } from './analyze.js';
+import {
+  buildGraphJson,
+  buildSearchIndex,
+  gitSha,
+  stableStringify,
+  writeArtifacts,
+} from './emit.js';
+import { buildEdgesCsv, buildGraphml, buildNodesCsv } from './export.js';
 import { countErrors, type Issue } from './model.js';
 import { runPipeline } from './pipeline.js';
 
@@ -90,11 +100,24 @@ function main(): void {
   if (args.check) exit(0);
 
   const outDir = args.out ?? join(args.root, 'dist', 'data');
-  const graphJson = buildGraphJson(result.schema!, g.nodes, g.edges, g.symptoms, gitSha(args.root));
+  const metrics = analyzeGraph(result.schema!, g.nodes, g.edges, g.candidates);
+  const graphJson = buildGraphJson(
+    result.schema!,
+    g.nodes,
+    g.edges,
+    g.symptoms,
+    metrics,
+    gitSha(args.root),
+  );
   const searchIndex = buildSearchIndex(g.nodes, g.symptoms);
-  for (const path of writeArtifacts(outDir, graphJson, searchIndex)) {
-    console.log(`wrote ${path}`);
-  }
+  const paths = writeArtifacts(outDir, {
+    'graph.json': stableStringify(graphJson),
+    'search-index.json': stableStringify(searchIndex),
+    'atlas.graphml': buildGraphml(g.nodes, g.edges, metrics),
+    'nodes.csv': buildNodesCsv(g.nodes, metrics),
+    'edges.csv': buildEdgesCsv(g.edges),
+  });
+  for (const path of paths) console.log(`wrote ${path}`);
   exit(0);
 }
 

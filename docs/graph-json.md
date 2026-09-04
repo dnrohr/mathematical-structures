@@ -31,7 +31,7 @@ citable. `generated_from` carries the git commit SHA of the content tree.
 
 ```jsonc
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "generated_from": "<git sha>",
   "schema": { /* the controlled vocabularies, verbatim from graph/schema.yaml */
     "node_types":   [ { "id", "label", "color_token", "description" } ],
@@ -45,7 +45,8 @@ citable. `generated_from` carries the git commit SHA of the content tree.
   },
   "nodes":    [ /* sorted by slug */ ],
   "edges":    [ /* sorted by (from, to, type) */ ],
-  "symptoms": [ /* sorted by id */ ]
+  "symptoms": [ /* sorted by id */ ],
+  "metrics":  { /* build-time analysis; added in 1.1.0 — see below */ }
 }
 ```
 
@@ -114,6 +115,66 @@ An edge's epistemic weight is `strength` — consumers must not present
 }
 ```
 
+### Metrics (added in 1.1.0)
+
+Build-time analysis (ARCHITECTURE.md §4.4). **Epistemic rule:** degree,
+betweenness, and communities are computed only over the *trusted subgraph* —
+edges whose strength is at or above `schema.analysis.trusted_min_strength`
+(`special-case` today) — so speculative analogies cannot manufacture
+centrality. Nodes reached only by analogy-strength or speculative edges have
+`degree` 0 and `community` null.
+
+```jsonc
+{
+  "trusted": {
+    "min_strength": "special-case",
+    "edge_count": 60,             // edges at or above the floor
+    "excluded_edge_count": 24,    // edges below it (unused by metrics)
+    "node_count": 34              // nodes touched by ≥1 trusted edge
+  },
+  "community_count": 5,
+  "nodes": {                      // one entry per node, keyed by slug
+    "eigenvalues": {
+      "degree": 11,               // incident trusted edges
+      "betweenness": 0.3983,      // Brandes, normalized to [0,1], 4 decimals
+      "community": 0,             // deterministic Louvain label, or null
+      "span_entropy": 2.807,      // bits: log2(field_count) until usage is weighted
+      "field_count": 7,
+      "dialect_count": 5          // distinct fields among aliases
+    }
+  },
+  "gaps": [                       // every POSSIBLE-MISSING-MIGRATION or
+    {                             // speculative edge, with workflow status
+      "from": "stability-margins",
+      "to": "biological-regulation",
+      "type": "POSSIBLE-MISSING-MIGRATION",
+      "strength": "speculative",
+      "status": "open-candidate"
+    }
+  ],
+  "candidate_edges": [            // wiki-linked pairs with no typed edge
+    { "a": "chaos", "b": "phase-space" }   // (the curation queue), a < b
+  ]
+}
+```
+
+## Exports: GraphML and CSV (added in 1.1.0)
+
+`atlas-build` writes three more artifacts next to `graph.json`, for
+network-analysis tools and spreadsheets:
+
+- **`atlas.graphml`** — nodes with `label`, `node_type`, `status`, `fields`
+  (semicolon-joined) and the per-node metrics; edges with `type`, `strength`,
+  `symmetric`, `gap_status`, `context`, `notes`. Every edge is emitted in its
+  stored direction with `symmetric` as an attribute (mixed-directedness
+  GraphML is rejected by common readers); symmetrize on load if your analysis
+  wants an undirected view.
+- **`nodes.csv` / `edges.csv`** — RFC 4180, one row per node/edge, metrics
+  included; multi-valued fields are semicolon-joined.
+
+The live app links all four files from its Metrics page ("Download the
+dataset").
+
 ## search-index.json
 
 A prebuilt [MiniSearch](https://github.com/lucaong/minisearch) index over
@@ -140,8 +201,10 @@ for e in atlas["edges"]:
 for e in atlas["edges"]:
     if e["type"] == "POSSIBLE-MISSING-MIGRATION":
         print(e["from"], "->", e["to"], f"[{e.get('status')}]")
-```
 
-Planned for M5: a `metrics` block (centrality, communities, span entropy —
-computed only over edges at or above `schema.analysis.trusted_min_strength`)
-and GraphML/CSV exports. Both will be additive (minor version).
+# the busiest bridges, from the precomputed trusted-subgraph metrics
+ranked = sorted(atlas["metrics"]["nodes"].items(),
+                key=lambda kv: -kv[1]["betweenness"])
+for slug, m in ranked[:5]:
+    print(slug, m["betweenness"], "community", m["community"])
+```
