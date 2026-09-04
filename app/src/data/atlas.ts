@@ -1,0 +1,229 @@
+/**
+ * data/ — loads and validates the build artifacts and exposes typed
+ * read-only accessors; the only module allowed to touch fetched JSON
+ * (ARCHITECTURE.md §5.3). Search runs here too (MiniSearch over the
+ * prebuilt index) so shell/views stay pure UI.
+ */
+import MiniSearch from 'minisearch';
+import { SUPPORTED_DATA_MAJOR } from '../config';
+import type {
+  EdgeType,
+  FieldDef,
+  GraphJson,
+  GraphNode,
+  GraphSymptom,
+  NodeType,
+  PublicSchema,
+  SearchArtifact,
+  StatusDef,
+  Strength,
+} from './types';
+
+export type AtlasError =
+  | { kind: 'network'; detail: string }
+  | { kind: 'corrupt'; detail: string }
+  | { kind: 'version'; found: string; supported: number };
+
+export type LoadResult = { ok: true; atlas: Atlas } | { ok: false; error: AtlasError };
+
+/** Mirrors build/src/model.ts SLUG (type-only imports keep build code out of the bundle). */
+export const SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+export function majorOf(version: unknown): number {
+  if (typeof version !== 'string') return NaN;
+  const m = /^(\d+)\.\d+\.\d+$/.exec(version.trim());
+  return m ? Number(m[1]) : NaN;
+}
+
+export interface SearchHit {
+  /** Node slug, or `symptom:<id>`. */
+  id: string;
+  kind: 'concept' | 'symptom';
+  name: string;
+  /** Set when the hit came in through an alias: the reverse-dialect framing. */
+  aliasMatch?: { name: string; field: string };
+}
+
+export class Atlas {
+  readonly data: GraphJson;
+  private readonly bySlug: Map<string, GraphNode>;
+  private readonly nodeTypesById: Map<string, NodeType>;
+  private readonly edgeTypesById: Map<string, EdgeType>;
+  private readonly strengthsById: Map<string, Strength>;
+  private readonly fieldsById: Map<string, FieldDef>;
+  private readonly nodeStatusesById: Map<string, StatusDef>;
+  private readonly gapStatusesById: Map<string, StatusDef>;
+  private readonly mini: MiniSearch;
+  private readonly boost: Record<string, number>;
+
+  constructor(data: GraphJson, search: SearchArtifact) {
+    this.data = data;
+    this.bySlug = new Map(data.nodes.map((n) => [n.slug, n]));
+    this.nodeTypesById = new Map(data.schema.node_types.map((t) => [t.id, t]));
+    this.edgeTypesById = new Map(data.schema.edge_types.map((t) => [t.id, t]));
+    this.strengthsById = new Map(data.schema.strengths.map((s) => [s.id, s]));
+    this.fieldsById = new Map(data.schema.fields.map((f) => [f.id, f]));
+    this.nodeStatusesById = new Map(data.schema.node_statuses.map((s) => [s.id, s]));
+    this.gapStatusesById = new Map(data.schema.gap_statuses.map((s) => [s.id, s]));
+    const { idField, fields, storeFields } = search.options;
+    this.mini = MiniSearch.loadJSON(JSON.stringify(search.index), {
+      idField,
+      fields,
+      storeFields,
+    });
+    this.boost = search.options.boost;
+  }
+
+  get schema(): PublicSchema {
+    return this.data.schema;
+  }
+  get nodes(): GraphNode[] {
+    return this.data.nodes;
+  }
+  get symptoms(): GraphSymptom[] {
+    return this.data.symptoms;
+  }
+  get generatedFrom(): string {
+    return this.data.generated_from;
+  }
+
+  node(slug: string): GraphNode | undefined {
+    return this.bySlug.get(slug);
+  }
+  isSlug(text: string): boolean {
+    return SLUG_RE.test(text) && this.bySlug.has(text);
+  }
+  nodesOfType(typeId: string): GraphNode[] {
+    return this.data.nodes.filter((n) => n.node_type === typeId);
+  }
+  symptom(id: string): GraphSymptom | undefined {
+    return this.data.symptoms.find((s) => s.id === id);
+  }
+  symptomsUsing(slug: string): GraphSymptom[] {
+    return this.data.symptoms.filter((s) => s.moves.includes(slug));
+  }
+
+  nodeType(id: string): NodeType | undefined {
+    return this.nodeTypesById.get(id);
+  }
+  edgeType(id: string): EdgeType | undefined {
+    return this.edgeTypesById.get(id);
+  }
+  strength(id: string): Strength | undefined {
+    return this.strengthsById.get(id);
+  }
+  fieldLabel(id: string): string {
+    return this.fieldsById.get(id)?.label ?? id;
+  }
+  nodeStatus(id: string): StatusDef | undefined {
+    return this.nodeStatusesById.get(id);
+  }
+  gapStatus(id: string): StatusDef | undefined {
+    return this.gapStatusesById.get(id);
+  }
+
+  search(query: string, limit = 8): SearchHit[] {
+    if (!query.trim()) return [];
+    const results = this.mini.search(query, {
+      prefix: true,
+      fuzzy: 0.15,
+      combineWith: 'AND',
+      boost: this.boost,
+    });
+    return results.slice(0, limit).map((r) => {
+      const kind: SearchHit['kind'] = r['kind'] === 'symptom' ? 'symptom' : 'concept';
+      const hit: SearchHit = { id: String(r.id), kind, name: String(r['name']) };
+      if (kind === 'concept') {
+        // Which terms matched via the aliases field? Frame the hit as a
+        // reverse-dialect lookup: `aka "poles / modes" in Control theory`.
+        const aliasTerms = Object.entries(r.match)
+          .filter(([, fields]) => fields.includes('aliases'))
+          .map(([term]) => term.toLowerCase());
+        if (aliasTerms.length > 0) {
+          const alias = this.node(hit.id)?.aliases.find((a) =>
+            aliasTerms.some((t) => a.name.toLowerCase().includes(t)),
+          );
+          if (alias) hit.aliasMatch = { name: alias.name, field: this.fieldLabel(alias.field) };
+        }
+      }
+      return hit;
+    });
+  }
+}
+
+function fail(kind: 'network' | 'corrupt', detail: string): LoadResult {
+  return { ok: false, error: { kind, detail } };
+}
+
+/**
+ * Version-gate and shape-check the two artifacts, then assemble the Atlas.
+ * Pure (no fetch) so the gate is unit-testable.
+ */
+export function assembleAtlas(graphRaw: unknown, searchRaw: unknown): LoadResult {
+  for (const [name, raw] of [
+    ['graph.json', graphRaw],
+    ['search-index.json', searchRaw],
+  ] as const) {
+    if (typeof raw !== 'object' || raw === null) {
+      return fail('corrupt', `${name}: not a JSON object`);
+    }
+    const version = (raw as { schema_version?: unknown }).schema_version;
+    const major = majorOf(version);
+    if (Number.isNaN(major)) {
+      return fail('corrupt', `${name}: missing or malformed schema_version`);
+    }
+    if (major !== SUPPORTED_DATA_MAJOR) {
+      return {
+        ok: false,
+        error: { kind: 'version', found: String(version), supported: SUPPORTED_DATA_MAJOR },
+      };
+    }
+  }
+  const graph = graphRaw as GraphJson;
+  const search = searchRaw as SearchArtifact;
+  if (!Array.isArray(graph.nodes) || !Array.isArray(graph.edges) || !Array.isArray(graph.symptoms))
+    return fail('corrupt', 'graph.json: nodes/edges/symptoms are not lists');
+  if (typeof graph.schema !== 'object' || graph.schema === null)
+    return fail('corrupt', 'graph.json: missing schema block');
+  if (typeof search.options !== 'object' || search.options === null || search.index === undefined)
+    return fail('corrupt', 'search-index.json: missing options/index');
+  try {
+    return { ok: true, atlas: new Atlas(graph, search) };
+  } catch (e) {
+    return fail('corrupt', `search index did not load: ${(e as Error).message}`);
+  }
+}
+
+async function fetchJson(
+  url: string,
+): Promise<{ ok: true; value: unknown } | { ok: false; error: AtlasError }> {
+  let res: Response;
+  try {
+    res = await fetch(url);
+  } catch (e) {
+    return { ok: false, error: { kind: 'network', detail: `${url}: ${(e as Error).message}` } };
+  }
+  if (!res.ok) {
+    return { ok: false, error: { kind: 'network', detail: `${url}: HTTP ${res.status}` } };
+  }
+  try {
+    return { ok: true, value: await res.json() };
+  } catch (e) {
+    return { ok: false, error: { kind: 'corrupt', detail: `${url}: ${(e as Error).message}` } };
+  }
+}
+
+/**
+ * Fetch both artifacts (relative to the page, so any base path works) and
+ * assemble. Never throws — every failure mode is a typed error the shell
+ * renders as a real screen.
+ */
+export async function loadAtlas(base = 'data/'): Promise<LoadResult> {
+  const [graph, search] = await Promise.all([
+    fetchJson(`${base}graph.json`),
+    fetchJson(`${base}search-index.json`),
+  ]);
+  if (!graph.ok) return graph;
+  if (!search.ok) return search;
+  return assembleAtlas(graph.value, search.value);
+}

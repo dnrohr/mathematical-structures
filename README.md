@@ -5,12 +5,20 @@ that recur across physics, engineering, biology, computation, and statistics
 — plain files, compiled and validated by one boring build. Why it exists,
 and what it refuses to be: [docs/mission.md](docs/mission.md).
 
-**Status:** the dataset and the `atlas-build` compiler/validator are live;
-the reader app is the next milestone ([ROADMAP.md](ROADMAP.md)).
+**Status:** the dataset, the `atlas-build` compiler/validator, and the
+reader app are live; the app deploys to GitHub Pages from `main`
+([ROADMAP.md](ROADMAP.md) — graph views and the interactive symptom front
+door are next).
 
 ## Using the atlas
 
-The data is usable today in two forms.
+The atlas is usable in three forms.
+
+**Read it in the app.** The reader at
+<https://dnrohr.github.io/mathematical-structures/> serves searchable
+concept pages with dialect tables and typed, strength-labeled connection
+sentences. Locally: `npm run build && npm run -w app preview`, or
+`npm run build:data && npm run dev` for a live dev server.
 
 **Read it as files.** Every concept is a Markdown page in
 [`concepts/`](concepts/): front-matter carries the machine-readable node
@@ -30,12 +38,9 @@ tools as much as for the app.
 ```sh
 # Node >= 20 (see .nvmrc)
 npm install
-npm run build    # writes dist/data/graph.json + search-index.json
+npm run build         # full site into dist/ (artifacts at dist/data/)
+npm run build:data    # just graph.json + search-index.json
 ```
-
-The interactive reader app specified in
-[SPECIFICATION.md](SPECIFICATION.md) is not built yet; `app/` is a stub
-until milestone M3.
 
 ## Repository layout
 
@@ -46,7 +51,7 @@ until milestone M3.
 | [`graph/edges.yaml`](graph/edges.yaml) | the typed edge list |
 | [`graph/symptoms.yaml`](graph/symptoms.yaml) | the problem-recognition index |
 | [`build/`](build/) | `atlas-build`, the compiler/validator (TypeScript, Node) |
-| [`app/`](app/) | the reader SPA (stub until M3) |
+| [`app/`](app/) | the reader SPA (Vite + vanilla TS; reads only the build artifacts) |
 | [`paths/`](paths/) | reserved for guided walks (post-v1) |
 | [`docs/`](docs/) | mission, method docs, artifact format, the original notebook |
 | `dist/` | build output (gitignored) |
@@ -60,7 +65,8 @@ content cannot merge.
 
 ```sh
 npm run check    # typecheck + lint + format + tests + content validation
-                 # — the exact gate CI runs on every push and PR
+                 # — the first gate CI runs on every push and PR; CI then
+                 # builds the site and runs the Playwright smoke suite
 ```
 
 The ground rules (slugs are permanent; every edge carries an honest

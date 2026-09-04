@@ -9,8 +9,11 @@ anything to fix.
 
 - Merge only when CI is green on the PR head. Use squash merge (matches the
   existing `main` history).
-- Before pushing, `npm run check` must pass locally — it is the same gate CI
-  runs (typecheck, lint, format, tests, `atlas-build --check`).
+- Before pushing, `npm run check` must pass locally — it is the first gate CI
+  runs (typecheck, lint, format, tests, `atlas-build --check`). CI additionally
+  builds the site and runs the Playwright smoke suite: `npm run build &&
+  npm run test:e2e` (Playwright needs a browser — `npx playwright install
+  chromium`, or point `ATLAS_CHROMIUM` at a preinstalled executable).
 - Content rules live in `graph/schema.yaml` and are enforced by the
   validator; `ARCHITECTURE.md` §4.2 documents them. The validator is the
   review gate for content changes.

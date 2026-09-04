@@ -207,35 +207,47 @@ and typed edge sentences, deployed on GitHub Pages.
 
 **Exit criteria**
 
-- [ ] Live Pages URL; page loads and first navigation feel instant.
-- [ ] Explorer journey passes: "eigenvalues" → dialect table visible → "spectral
-      gap governs mixing time in Markov chains" in ≤ 3 clicks (spec §11).
-- [ ] Every concept mentioned in prose is a working link; light and dark themes
-      both fully legible, math included.
+- [ ] Live Pages URL; page loads and first navigation feel instant. —
+      `deploy.yml` ships with M3; flips after the first green `main` deploy
+      (Pages enablement is attempted by the workflow, else one owner toggle:
+      Settings → Pages → Source: GitHub Actions).
+- [x] Explorer journey passes: "eigenvalues" → dialect table visible → "spectral
+      gap governs mixing time in Markov chains" in ≤ 3 clicks (spec §11) —
+      proven by the Playwright smoke suite in CI (search → concept → GOVERNS
+      edge: 2 clicks, dialect table asserted on the way).
+- [x] Every concept mentioned in prose is a working link (validator rule
+      `link/unknown-target` + smoke test); light and dark themes both fully
+      legible, math included (smoke suite exercises the toggle, persistence,
+      and KaTeX in dark).
 
 **Tasks**
 
-- [ ] [app] Scaffold Vite + vanilla TS app; hash router; typed `data/` loader
+- [x] [app] Scaffold Vite + vanilla TS app; hash router; typed `data/` loader
       validating `schema_version`; graceful "data too new/old" screen.
-- [ ] [app] `style/` semantic style module: CSS custom properties for node-type
+- [x] [app] `style/` semantic style module: CSS custom properties for node-type
       hues and strength line grammar keyed to schema.yaml tokens; light/dark
-      themes honoring `prefers-color-scheme` with manual override; compile-time
-      check that every schema token has a style token.
-- [ ] [app] Concept view per spec §3.1 (minus ego-network, M4): header + type
+      themes honoring `prefers-color-scheme` with manual override; the
+      schema↔style token check runs as a unit test inside `npm run check`
+      (`app/test/style-tokens.test.ts`), so an unstyled schema token still
+      fails the gate.
+- [x] [app] Concept view per spec §3.1 (minus ego-network, M4): header + type
       badge, summary, dialect table, assumptions with FAILS-WHEN/REPLACED-BY
       surfaced adjacent, edge sentences grouped by type with strength badges,
       examples, provenance link, backlinks ("mentioned by").
-- [ ] [app] Shared fragments: edge-sentence renderer, strength badge, dialect
-      table (reused by M4/M5 views).
-- [ ] [app] Search: MiniSearch over prebuilt index; `/` focuses; alias hits
-      show "aka 'poles' in control →" framing; simple A–Z index page as fallback.
-- [ ] [app] Landing v1: search + node-type index + symptom list as plain links
+- [x] [app] Shared fragments: edge-sentence renderer, strength badge, dialect
+      table (reused by M4/M5 views) — `app/src/views/common/`.
+- [x] [app] Search: MiniSearch over prebuilt index; `/` focuses; alias hits
+      show "aka 'poles' in control →" framing; simple A–Z index page as
+      fallback (`#/index`).
+- [x] [app] Landing v1: search + node-type index + symptom list as plain links
       (interactive symptom routing is M4).
-- [ ] [app] Moves index page (`#/moves`) — cheap now, high spec priority (§5.2).
-- [ ] [infra] `deploy.yml`: build → Pages on push to `main`; footer shows
+- [x] [app] Moves index page (`#/moves`) — cheap now, high spec priority (§5.2).
+- [x] [infra] `deploy.yml`: build → Pages on push to `main`; footer shows
       `generated_from` SHA.
-- [ ] [app] Playwright smoke test for the Explorer journey, run in CI against
-      built `dist/`.
+- [x] [app] Playwright smoke test for the Explorer journey, run in CI against
+      built `dist/` (nine tests: journey, reverse-dialect framing, prose
+      links, symptom links, moves, themes, `/` hotkey, 404 route, provenance
+      footer).
 
 ---
 
