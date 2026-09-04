@@ -46,6 +46,9 @@ export default defineConfig({
     target: 'es2022',
   },
   preview: {
+    // Explicit IPv4 loopback: 'localhost' can resolve to ::1 on CI runners,
+    // which would strand the Playwright webServer poll on 127.0.0.1.
+    host: '127.0.0.1',
     port: 4173,
     strictPort: true,
   },

@@ -28,9 +28,13 @@ export default defineConfig({
   ],
   webServer: {
     // vite preview serves build.outDir (../dist) — app assets + data together.
+    // The preview host is pinned to 127.0.0.1 in vite.config.ts so this URL
+    // and the server can't disagree about loopback flavor.
     command: 'npm run preview',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: !process.env['CI'],
-    timeout: 30_000,
+    timeout: 60_000,
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
 });
