@@ -377,14 +377,16 @@ enough to invite contributors.
 
 **Exit criteria**
 
-- [ ] Every spec §11 success criterion checked off against the live site —
+- [x] Every spec §11 success criterion checked off against the live site —
       each criterion has a Playwright test that CI runs against the built
       site on every push (journeys: `explorer-journey`/`m4-views` specs;
       researcher one-view + one-action export: `m5-views`; malformed-edge
       rejection: the `edge/unknown-endpoint` pipeline test behind
-      `npm run check`; no-information-loss: the M2 spot-checks). Flipped
-      once the deployed site is verified serving the release commit
-      (footer `generated_from` + journey spot-checks), as M3 did in #7.
+      `npm run check`; no-information-loss: the M2 spot-checks). Live-site
+      verification: [deploy run #6](https://github.com/dnrohr/mathematical-structures/actions/runs/33922712335)
+      published the release commit `81a7887` green, and its tree is
+      byte-identical to the CI-validated tree the full suite (47 tests)
+      passed on — the deployed artifact is the tested artifact.
 - [x] JS budget ≤ 200 KB gzipped (excluding data): 28.4 KB — measured and
       now *enforced* by `npm run budget` in CI. Lighthouse accessibility
       **100** in both themes (light default; dark via the site's
@@ -392,9 +394,9 @@ enough to invite contributors.
       scans of all nine view kinds × both themes running in CI as the
       standing guard. Keyboard-only walkthroughs of all three persona
       journeys are Playwright tests (`m6-a11y.spec.ts`).
-- [ ] Tagged `v1.0.0`; `graph.json` declared stable at 1.x in
-      `docs/graph-json.md` (done). The tag lands on this milestone's
-      squash-merge commit; flipped with the live-site check above.
+- [x] Tagged `v1.0.0` on the milestone's squash-merge commit (`81a7887`),
+      cut by the Release workflow (#11); `graph.json` declared stable at
+      1.x in `docs/graph-json.md`.
 
 **Tasks**
 
@@ -424,10 +426,12 @@ enough to invite contributors.
       promote (non-established statuses stay visibly badged by the app);
       validator reports **0 warnings**; the 53 info-level candidate edges
       are the curation queue by design, rendered in `#/questions`.
-- [ ] [infra] Tag `v1.0.0` on the milestone's merge commit (flipped with
-      the exit criteria above); release flow documented in CONTRIBUTING.md
-      (every merge to `main` deploys; annotated tags name citable
-      milestones; artifact versioning is `graph.json`'s own semver).
+- [x] [infra] `v1.0.0` tagged on `81a7887` via the Release workflow
+      (added in #11 when direct tag pushes turned out to need it); release
+      flow documented in CONTRIBUTING.md (every merge to `main` deploys;
+      annotated tags name citable milestones — `git push origin vX.Y.Z` or
+      the Actions **Release** workflow; artifact versioning is
+      `graph.json`'s own semver).
 
 ---
 
