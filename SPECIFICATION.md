@@ -2,8 +2,10 @@
 
 An interactive field guide to the mathematical structures that recur across science.
 
-This document specifies the application that turns the research notebook in `README.md`
-into a navigable, analyzable, and eventually collaborative tool. It is a design-guiding
+This document specifies the application that turns the founding research notebook —
+originally this repository's README, preserved intact at
+[docs/notebook-v0.md](docs/notebook-v0.md); "README §n" references throughout refer to
+its numbered sections — into a navigable, analyzable, and eventually collaborative tool. It is a design-guiding
 specification, not an implementation plan: it fixes intent, priorities, and architecture
 boundaries so that detailed design and implementation can proceed without re-litigating
 purpose.
@@ -12,7 +14,7 @@ purpose.
 
 ## 1. Purpose and product thesis
 
-The README establishes a claim: a small set of mathematical structures, canonical models,
+The notebook establishes a claim: a small set of mathematical structures, canonical models,
 and reusable moves recur across physics, engineering, biology, computation, and
 statistics, and recognizing the *abstract form* of a problem is a transferable skill.
 
@@ -21,7 +23,7 @@ The app exists to make that claim usable. Its product thesis:
 > **Knowledge about cross-disciplinary structure is graph-shaped, and it should be
 > stored, browsed, and analyzed as a typed graph — never as a linear document.**
 
-The current single-file README demonstrates the failure mode this app fixes: duplicated
+The original single-file README demonstrated the failure mode this app fixes: duplicated
 section numbers, concepts written up twice, schemas revised in place with no current
 version. The app is the correct container for this material.
 

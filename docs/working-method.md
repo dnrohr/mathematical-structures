@@ -1,7 +1,7 @@
 # Working method for concept nodes
 
-(Moved from the original notebook, §7; the notebook remains in `README.md`
-until the M2 content extraction, after which it lives at `docs/notebook-v0.md`.)
+(Moved from the original notebook, §7; the notebook is preserved intact at
+[notebook-v0.md](notebook-v0.md).)
 
 For each candidate node, record:
 

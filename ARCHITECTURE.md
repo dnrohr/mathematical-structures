@@ -42,7 +42,7 @@ Hard rules that define the layer boundaries:
 
 ```
 /
-├── README.md                  # purpose + navigation only (slim)
+├── README.md                  # front door: usage, contributing, navigation (slim)
 ├── SPECIFICATION.md           # product spec
 ├── ARCHITECTURE.md            # this file
 ├── concepts/                  # one file per node
