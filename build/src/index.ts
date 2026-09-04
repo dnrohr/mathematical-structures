@@ -1,22 +1,27 @@
 /**
- * atlas-build — compiler/validator CLI for the Structure Atlas.
+ * atlas-build — compiler/validator CLI for the Structure Atlas
+ * (ARCHITECTURE.md §4).
  *
- * M0 scope (ROADMAP.md): validate graph/schema.yaml and the structural shape
- * of graph/edges.yaml + graph/symptoms.yaml. The full pipeline
- * (parse → validate content → link → analyze → emit; ARCHITECTURE.md §4)
- * lands in M1/M5. `--check` is the CI gate.
+ * Usage: atlas [--check] [--root <dir>] [--out <dir>]
  *
- * Usage: atlas [--check] [--root <dir>]
+ *   --check   validate only (parse, content rules, link/render rules);
+ *             the CI gate. No files are written.
+ *   --root    content root (default: nearest ancestor with graph/schema.yaml)
+ *   --out     artifact directory (default: <root>/dist/data)
+ *
+ * Stage 4 (analyze/metrics) lands in M5 (ROADMAP.md).
  */
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { exit } from 'node:process';
-import { parse } from 'yaml';
-import { loadSchema, type Issue } from './schema.js';
+import { buildGraphJson, buildSearchIndex, gitSha, writeArtifacts } from './emit.js';
+import { countErrors, type Issue } from './model.js';
+import { runPipeline } from './pipeline.js';
 
 interface Args {
   check: boolean;
   root: string;
+  out?: string;
 }
 
 /**
@@ -40,13 +45,14 @@ function parseArgs(argv: string[]): Args {
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--check') args.check = true;
-    else if (a === '--root') {
+    else if (a === '--root' || a === '--out') {
       const v = argv[++i];
       if (!v) {
-        console.error('atlas-build: --root needs a directory argument');
+        console.error(`atlas-build: ${a} needs a directory argument`);
         exit(2);
       }
-      args.root = v;
+      if (a === '--root') args.root = v;
+      else args.out = v;
     } else {
       console.error(`atlas-build: unknown argument "${a}"`);
       exit(2);
@@ -55,73 +61,41 @@ function parseArgs(argv: string[]): Args {
   return args;
 }
 
-/** M0 shape check for the not-yet-populated data files: must be a YAML list. */
-function checkYamlList(path: string): Issue[] {
-  if (!existsSync(path)) {
-    return [
-      { severity: 'error', rule: 'content/missing-file', file: path, message: 'file is missing' },
-    ];
-  }
-  try {
-    const data = parse(readFileSync(path, 'utf8'));
-    if (data === null) return []; // comments-only file counts as empty
-    if (!Array.isArray(data)) {
-      return [
-        {
-          severity: 'error',
-          rule: 'content/shape',
-          file: path,
-          message: 'top level must be a YAML list',
-        },
-      ];
-    }
-  } catch (e) {
-    return [
-      {
-        severity: 'error',
-        rule: 'content/yaml',
-        file: path,
-        message: `YAML parse error: ${(e as Error).message}`,
-      },
-    ];
-  }
-  return [];
-}
-
 function printIssues(issues: Issue[]): void {
-  for (const issue of issues) {
+  const order = { error: 0, warn: 1, info: 2 } as const;
+  for (const issue of [...issues].sort((a, b) => order[a.severity] - order[b.severity])) {
     console.log(`[${issue.severity}] ${issue.rule} ${issue.file}: ${issue.message}`);
   }
 }
 
 function main(): void {
   const args = parseArgs(process.argv.slice(2));
-  const issues: Issue[] = [];
+  const result = runPipeline(args.root);
+  printIssues(result.issues);
 
-  const schemaPath = join(args.root, 'graph', 'schema.yaml');
-  const { schema, issues: schemaIssues } = loadSchema(schemaPath);
-  issues.push(...schemaIssues);
+  const errors = countErrors(result.issues);
+  const warns = result.issues.filter((i) => i.severity === 'warn').length;
+  const infos = result.issues.filter((i) => i.severity === 'info').length;
 
-  issues.push(...checkYamlList(join(args.root, 'graph', 'edges.yaml')));
-  issues.push(...checkYamlList(join(args.root, 'graph', 'symptoms.yaml')));
-
-  printIssues(issues);
-  const errors = issues.filter((i) => i.severity === 'error').length;
-
-  if (schema && errors === 0) {
-    console.log(
-      `schema OK: ${schema.node_types.length} node types, ` +
-        `${schema.edge_types.length} edge types, ${schema.strengths.length} strengths, ` +
-        `${schema.fields.length} fields`,
-    );
+  if (errors > 0) {
+    console.log(`atlas-build: FAILED — ${errors} error(s), ${warns} warn(s), ${infos} info(s)`);
+    exit(1);
   }
-  if (!args.check) {
-    console.log(
-      'note: compile stages (content validation, link, render, analyze, emit) arrive in M1+;',
-    );
-    console.log('      --check (schema + file shape) is the only functional mode today.');
+
+  const g = result.graph!;
+  console.log(
+    `content OK: ${g.nodes.length} nodes, ${g.edges.length} edges, ` +
+      `${g.symptoms.length} symptoms — ${warns} warn(s), ${infos} info(s)`,
+  );
+  if (args.check) exit(0);
+
+  const outDir = args.out ?? join(args.root, 'dist', 'data');
+  const graphJson = buildGraphJson(result.schema!, g.nodes, g.edges, g.symptoms, gitSha(args.root));
+  const searchIndex = buildSearchIndex(g.nodes, g.symptoms);
+  for (const path of writeArtifacts(outDir, graphJson, searchIndex)) {
+    console.log(`wrote ${path}`);
   }
-  exit(errors > 0 ? 1 : 0);
+  exit(0);
 }
 
 main();

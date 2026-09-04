@@ -1,0 +1,104 @@
+# Trimmed fixture schema for pipeline tests. Mirrors the real schema's shape;
+# must include the semantic ids the validator knows by name
+# (POSSIBLE-MISSING-MIGRATION, speculative, heuristic-analogy, stub).
+schema_version: 1.0.0
+
+node_types:
+  - id: object
+    label: Object
+    color_token: nt-object
+    description: Things mathematics talks about.
+  - id: model
+    label: Canonical model
+    color_token: nt-model
+    description: Reusable simplified systems.
+  - id: move
+    label: Reusable move
+    color_token: nt-move
+    description: Standard problem transformations.
+
+edge_types:
+  - id: IS-A
+    label: Special case
+    group: hierarchy
+    directionality: directed
+    forward: is a special case of
+    reverse: generalizes
+    description: Strict containment.
+  - id: FIELD-DIALECT-OF
+    label: Field dialect
+    group: equivalence
+    directionality: symmetric
+    phrase: is a field dialect of
+    description: Same structure, different vocabulary.
+  - id: GOVERNS
+    label: Governs
+    group: governance
+    directionality: directed
+    forward: governs
+    reverse: is governed by
+    description: Controls a rate or behavior.
+  - id: POSSIBLE-MISSING-MIGRATION
+    label: Possible missing migration
+    group: migration
+    directionality: directed
+    forward: might transfer, unverified, to
+    reverse: might benefit, unverified, from
+    description: Hypothesis of an untransferred technique.
+
+strengths:
+  - id: identity
+    rank: 1
+    line: solid
+    emphasis: strong
+    description: Same object.
+  - id: theorem
+    rank: 2
+    line: solid
+    emphasis: strong
+    description: Proved relation.
+  - id: special-case
+    rank: 3
+    line: solid
+    emphasis: medium
+    description: Exact specialization.
+  - id: strong-analogy
+    rank: 4
+    line: dashed
+    emphasis: medium
+    description: Established correspondence.
+  - id: heuristic-analogy
+    rank: 5
+    line: dashed
+    emphasis: light
+    description: Family resemblance.
+  - id: speculative
+    rank: 6
+    line: dotted
+    emphasis: light
+    description: Hypothesis awaiting checking.
+
+fields:
+  - { id: control, label: Control theory }
+  - { id: statistics, label: Statistics }
+  - { id: probability, label: Probability }
+
+node_statuses:
+  - id: established
+    description: Settled mathematics.
+  - id: stub
+    description: Placeholder.
+
+gap_statuses:
+  - id: open-candidate
+    description: Not yet checked.
+  - id: failed-transfer
+    description: An assumption fails.
+
+node_requirements:
+  all: [canonical_name, node_type, status, summary]
+  established: [fields, canonical_examples]
+  stub: []
+
+analysis:
+  trusted_min_strength: special-case
