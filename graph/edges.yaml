@@ -139,9 +139,9 @@
   type: FAILS-WHEN
   strength: theorem
   context: >-
-    Non-hyperbolic equilibria: eigenvalues on the imaginary axis silence
-    the linear verdict, and higher-order terms decide — exactly where
-    qualitative change happens.
+    Local bifurcations of equilibria: eigenvalues reaching the stability
+    boundary (imaginary axis in continuous time, unit circle for maps)
+    silence the linear verdict, and higher-order terms decide.
 
 - from: linearization
   to: phase-space
@@ -268,15 +268,17 @@
     The hidden layer is a Markov chain: given the present state, the future
     is independent of the past.
 
-- from: state-space-model
-  to: bayes-rule
-  type: SOLVED-BY
+- from: bayes-rule
+  to: state-space-model
+  type: APPLIED-IN
   strength: theorem
   context: >-
-    Recursive Bayesian filtering/smoothing is the exact solution in
-    principle; closed forms exist only in special cases (Kalman for
-    linear-Gaussian, forward–backward for discrete HMMs) — elsewhere the
-    integrals are approximated (EKF/UKF, particle methods).
+    Sequential inference alternates prediction through the dynamics with
+    Bayesian correction. The recursions are exact in principle, but the
+    integrals have closed form only in special model classes (Kalman for
+    linear-Gaussian, forward–backward for discrete HMMs) — elsewhere they
+    are approximated (EKF/UKF, particle methods), so exact SOLVED-BY edges
+    live on those special-case nodes, not here.
 
 - from: bayes-rule
   to: kalman-filter

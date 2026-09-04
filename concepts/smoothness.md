@@ -40,8 +40,12 @@ The ladder of regularity, each rung strictly stronger:
 - **analyticity** — the function is locally represented by its convergent
   power series, a much stronger property than smoothness (and the rigidity
   that powers [[complex-analysis]])
-- **Lipschitz conditions** — quantitative control of variation, often used
-  for uniqueness and stability of ODE solutions
+
+Alongside the ladder rather than on it: **Lipschitz conditions**, a
+quantitative bound on variation ($|f(x) - f(y)| \le L\,|x - y|$) that
+neither implies differentiability ($|x|$ is Lipschitz) nor follows from it
+(a derivative can exist yet be unbounded nearby). It is the hypothesis that
+buys uniqueness and stability of ODE solutions.
 
 ## Failure modes are informative
 

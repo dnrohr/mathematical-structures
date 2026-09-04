@@ -48,9 +48,10 @@ iterated).
 
 What transfers back, and when, is not a formality. The linearization
 classifies the nonlinear system's local behavior only at *hyperbolic*
-equilibria — no eigenvalues on the imaginary axis. Exactly at a
-[[bifurcation]] the leading eigenvalue crosses zero real part, the linear
+equilibria — no eigenvalues on the stability boundary (the imaginary axis
+in continuous time, the unit circle for maps). At a local [[bifurcation]]
+of the equilibrium the leading eigenvalue reaches that boundary, the linear
 term goes silent, and the verdict passes to higher-order terms: the move
-fails precisely where qualitative change happens, which is why bifurcation
-theory exists. Global phenomena — limit cycles far from equilibria,
-[[chaos]] — are invisible to any single linearization.
+fails precisely where local qualitative change happens, which is why
+bifurcation theory exists. Global phenomena — limit cycles far from
+equilibria, [[chaos]] — are invisible to any single linearization.

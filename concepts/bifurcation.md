@@ -42,12 +42,16 @@ reorganizes.
 
 ## Where linear tools hand over
 
-Exactly at a bifurcation the leading Jacobian eigenvalue sits on the
-imaginary axis, the equilibrium is non-hyperbolic, and [[linearization]]
-is silent — the verdict passes to higher-order terms and normal forms.
-This is not a technicality: it is *why* qualitative change is invisible to
-purely linear analysis, and why bifurcation theory exists as its own body
-of machinery.
+For local bifurcations of a continuous-time equilibrium, the bifurcation
+point is exactly where the leading Jacobian eigenvalue reaches the
+imaginary axis: the equilibrium turns non-hyperbolic and [[linearization]]
+goes silent — the verdict passes to higher-order terms and normal forms.
+(In discrete time the boundary is the unit circle rather than the imaginary
+axis, and global bifurcations — homoclinic and heteroclinic events —
+reorganize the portrait without any equilibrium losing hyperbolicity.)
+This is not a technicality: it is *why* local qualitative change is
+invisible to purely linear analysis, and why bifurcation theory exists as
+its own body of machinery.
 
 ## Distance to a bifurcation is a robustness currency
 
