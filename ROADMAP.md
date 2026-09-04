@@ -144,45 +144,59 @@ information loss, and the typed graph exists as data for the first time.
 
 **Exit criteria**
 
-- [ ] ~25–30 concept files, every one passing validation at `established` or
-      honestly marked `stub`/`hypothesis`.
-- [ ] ≥ 80 typed edges including every §34 translation chain and every §15/§29+
-      gap candidate, each with strength and (for gaps) workflow status.
-- [ ] The distinctions the README is most careful about survive as data: Kalman
+- [x] ~25–30 concept files, every one passing validation at `established` or
+      honestly marked `stub`/`hypothesis` — landed at 38 files, all
+      `established`; the overage is forced by the spot-checks below needing
+      standalone endpoints (inventory and merge decisions recorded in
+      [#3](https://github.com/dnrohr/mathematical-structures/issues/3)).
+- [x] ≥ 80 typed edges including every §34 translation chain and every §15/§29+
+      gap candidate, each with strength and (for gaps) workflow status —
+      84 edges; chain 2 (impulse response ↔ Green's function ↔ propagator) is
+      one object and is realized as dialect aliases on `greens-function`.
+- [x] The distinctions the README is most careful about survive as data: Kalman
       filter vs. HMM nomenclature (§8/§13), entropy false friends (§31),
       renormalization ≠ dimensional analysis (§14) — spot-checked by reading the
-      generated `graph.json`.
-- [ ] `README.md` reduced to purpose + navigation + pointers; the old notebook
+      generated `graph.json` (lgssm IS-A ssm/hmm + SOLVED-BY kalman with no
+      kalman↔hmm containment; entropy edges strong-analogy with caveat notes;
+      dimensional-analysis ↔ renormalization at heuristic-analogy).
+- [x] `README.md` reduced to purpose + navigation + pointers; the old notebook
       preserved intact at `docs/notebook-v0.md` for provenance.
 
 **Tasks**
 
-- [ ] [curation] Node inventory pass: walk README §2 candidate list + §26 hubs;
-      fix the v1 node set (~25–30) and slugs; record in a tracking issue. Bias:
+- [x] [curation] Node inventory pass: walk README §2 candidate list + §26 hubs;
+      fix the v1 node set (~25–30) and slugs; record in a tracking issue
+      ([#3](https://github.com/dnrohr/mathematical-structures/issues/3)). Bias:
       depth over breadth (spec §9) — prefer fewer, richer nodes.
-- [ ] [curation] Extract the five richest write-ups first — eigenvalues (§12),
+- [x] [curation] Extract the five richest write-ups first — eigenvalues (§12),
       probability/Bayes/Markov (§13), dimensional analysis (§11+§14 merged),
       integral transforms (§19), feedback (§21) — as the template-setting
       examples; merge the README's duplicate sections during extraction.
-- [ ] [curation] Extract remaining nodes: series/approximation (§3), vector
+- [x] [curation] Extract remaining nodes: series/approximation (§3), vector
       calculus/conservation (§20), phase space/bifurcation/chaos (§22), large
       numbers (§23), continuity/smoothness (§24), symmetry/Noether (§29),
-      optimization/variational (§30), entropy cluster (§31 — likely several
-      nodes), complex analysis (§32), plus the reusable moves (§12-moves) as
-      `node_type: move` nodes.
-- [ ] [curation] Edge pass: encode §5 cross-links, §8 nomenclature table, §9
+      optimization/variational (§30), entropy cluster (§31 — Shannon and
+      thermodynamic nodes, with KL/cross-entropy/K–S as dialects and edges),
+      complex analysis (§32), plus the reusable moves (§12-moves) as
+      `node_type: move` nodes (linearization, nondimensionalization,
+      change-of-representation; the remaining §12 moves live on the
+      change-of-representation page until they earn nodes).
+- [x] [curation] Edge pass: encode §5 cross-links, §8 nomenclature table, §9
       migrations, §34 translation chains, and dialect aliases into `edges.yaml` /
-      front-matter `aliases`, assigning honest strengths. This is the highest-
-      judgment task in the roadmap; expect it to force schema.yaml refinements.
-- [ ] [curation] Gap pass: §15 + scattered candidates → POSSIBLE-MISSING-MIGRATION
-      edges, all `open-candidate`, with the §35 workflow notes.
-- [ ] [data] `symptoms.yaml` from the §25 table (10 symptoms), each move
+      front-matter `aliases` (117 aliases across all 38 nodes), assigning honest
+      strengths. No schema.yaml changes turned out to be needed.
+- [x] [curation] Gap pass: §15 + scattered candidates → POSSIBLE-MISSING-MIGRATION
+      edges (5 edges covering all six §15 bullets; two loop-design candidates
+      share the feedback-control → biological-regulation pair), all
+      `open-candidate`, with the §35 workflow notes.
+- [x] [data] `symptoms.yaml` from the §25 table (10 symptoms), each move
       validated against real slugs.
-- [ ] [data] Slim the README; move the notebook to `docs/notebook-v0.md`; each
+- [x] [data] Slim the README; move the notebook to `docs/notebook-v0.md`; each
       concept file's `sections:` field points back into it.
 - [ ] [curation] Peer-review the edge set as a set (one PR review pass over
       `edges.yaml` reading every claim aloud — the format exists precisely to
-      allow this).
+      allow this). Owner review; tracked in
+      [#3](https://github.com/dnrohr/mathematical-structures/issues/3).
 
 ---
 

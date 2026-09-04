@@ -1,6 +1,7 @@
-# graph/symptoms.yaml — the problem-recognition index (README §25 as data).
+# graph/symptoms.yaml — the problem-recognition index (README §25 as data;
+# now preserved at docs/notebook-v0.md §25).
 #
-# Populated during M2 content extraction (ROADMAP.md). Entry shape:
+# Entry shape:
 #
 #   - id: <kebab-id>
 #     symptom: <short phrase as shown on the landing page>
@@ -8,4 +9,69 @@
 #     mature_fields: [<field ids>]    # where this machinery is routine
 #     worked_example: <node slug>     # optional
 
-[]
+- id: coupled-linear-variables
+  symptom: Many coupled linear variables
+  moves: [eigenvalues, change-of-representation, harmonic-oscillator]
+  mature_fields: [mechanics, control, quantum, statistics]
+  worked_example: eigenvalues
+
+- id: hidden-state-noisy-measurements
+  symptom: Hidden state behind noisy measurements
+  moves: [state-space-model, kalman-filter, bayes-rule]
+  mature_fields: [control, signal-processing, statistics]
+  worked_example: kalman-filter
+
+- id: measurements-are-projections
+  symptom: Measurements are projections of the object
+  moves: [radon-transform, integral-transforms]
+  mature_fields: [signal-processing, pde]
+  worked_example: radon-transform
+
+- id: too-many-parameters
+  symptom: Too many dimensional parameters
+  moves:
+    [
+      dimensional-analysis,
+      nondimensionalization,
+      eigenvalues,
+      series-expansion,
+      renormalization,
+    ]
+  mature_fields: [fluids, heat-transfer, mechanics]
+  worked_example: dimensional-analysis
+
+- id: small-or-large-parameter
+  symptom: One parameter is very small or very large
+  moves: [series-expansion, nondimensionalization]
+  mature_fields: [fluids, pde, mechanics]
+  worked_example: series-expansion
+
+- id: local-rules-large-system
+  symptom: Local rules, but a large collective system
+  moves: [large-number-limits, renormalization, diffusion]
+  mature_fields: [thermodynamics, probability, networks]
+  worked_example: diffusion
+
+- id: feedback-oscillation
+  symptom: Oscillation or instability in a feedback loop
+  moves: [feedback-control, eigenvalues, bifurcation, stability-margins]
+  mature_fields: [control, biology, mechanics]
+  worked_example: feedback-control
+
+- id: network-diffusion-mixing
+  symptom: Diffusion or mixing on a network
+  moves: [graph-laplacian, markov-chains, eigenvalues]
+  mature_fields: [networks, probability]
+  worked_example: graph-laplacian
+
+- id: boundary-measurements-hidden-interior
+  symptom: Boundary measurements, hidden interior
+  moves: [greens-function, radon-transform]
+  mature_fields: [pde, signal-processing]
+  worked_example: greens-function
+
+- id: sharp-transitions-nonsmooth
+  symptom: Sharp transitions or nonsmooth behavior
+  moves: [smoothness, bifurcation]
+  mature_fields: [pde, optimization, control]
+  worked_example: smoothness
