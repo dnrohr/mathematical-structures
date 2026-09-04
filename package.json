@@ -16,7 +16,12 @@
     "format:check": "prettier --check .",
     "test": "npm run test --workspaces --if-present",
     "atlas": "npm run -w build atlas --",
-    "build": "npm run -w build atlas",
+    "dev": "npm run -w app dev",
+    "build": "npm run clean && npm run build:data && npm run build:app",
+    "build:data": "npm run -w build atlas",
+    "build:app": "npm run -w app build",
+    "clean": "node -e \"fs.rmSync('dist', { recursive: true, force: true })\"",
+    "test:e2e": "npm run -w app test:e2e",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run test && npm run -w build atlas -- --check"
   },
   "devDependencies": {

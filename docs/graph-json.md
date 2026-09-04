@@ -9,7 +9,8 @@ Build it locally with:
 
 ```sh
 npm install
-npm run build        # writes dist/data/graph.json and dist/data/search-index.json
+npm run build:data   # writes dist/data/graph.json and dist/data/search-index.json
+                     # (npm run build additionally builds the app around them)
 ```
 
 ## Versioning policy

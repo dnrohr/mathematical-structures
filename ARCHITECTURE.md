@@ -65,13 +65,16 @@ Hard rules that define the layer boundaries:
 │   │   └── index.ts           # CLI entry: atlas-build [--check] [--out DIR]
 │   └── test/
 ├── app/                       # the SPA source
-│   ├── src/
-│   │   ├── shell/             # routing, search, theme, keyboard, layout
-│   │   ├── views/             # concept, symptom, dialect, lenses, metrics, questions
-│   │   ├── graph-render/      # the one shared graph component
-│   │   ├── style/             # semantic style module (the only color definitions)
-│   │   └── data/              # typed loaders for graph.json / search-index.json
-│   └── static/                # index.html, fonts, KaTeX assets
+│   ├── index.html             # Vite entry
+│   ├── vite.config.ts         # base './', outDir ../dist, dev middleware for /data
+│   ├── e2e/                   # Playwright smoke suite (spec §11 journeys)
+│   ├── test/                  # unit tests (data accessors, schema↔style token gate)
+│   └── src/
+│       ├── shell/             # routing, search, theme, keyboard, layout
+│       ├── views/             # one directory per route + views/common/ fragments
+│       ├── graph-render/      # the one shared graph component (lands in M4)
+│       ├── style/             # semantic style module (the only color definitions)
+│       └── data/              # typed loaders for graph.json / search-index.json
 ├── dist/                      # build output (gitignored; CI artifact)
 └── .github/workflows/
     ├── ci.yml                 # validate + test on every push/PR
@@ -301,9 +304,10 @@ matching the "can never rot" deployment goal.
 ### 5.2 Routing
 
 ```
-#/                      landing: symptom index + search
+#/                      landing: symptom index + search (?s=<id> highlights a symptom)
 #/c/<slug>              concept page
 #/moves                 index of node_type=move (spec §5.2)
+#/index                 A–Z index — the plain fallback when search isn't the tool
 #/dialects?q=...        reverse-dialect lookup
 #/lens?edge=...&type=...&field=...&strength=...   composed subgraph view
 #/path/<slugA>/<slugB>  translation-chain finder
