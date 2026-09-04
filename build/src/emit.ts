@@ -7,11 +7,14 @@ import { spawnSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import MiniSearch from 'minisearch';
-import type { GraphEdge, GraphNode, GraphSymptom } from './model.js';
+import type { GraphEdge, GraphMetrics, GraphNode, GraphSymptom } from './model.js';
 import type { AtlasSchema } from './schema.js';
 
-/** The public artifact version (docs/graph-json.md); semver, additive = minor. */
-export const GRAPH_SCHEMA_VERSION = '1.0.0';
+/**
+ * The public artifact version (docs/graph-json.md); semver, additive = minor.
+ * 1.1.0: added the `metrics` block (M5) — additive.
+ */
+export const GRAPH_SCHEMA_VERSION = '1.1.0';
 
 /** MiniSearch construction options — the app must load with the same ones. */
 export const SEARCH_OPTIONS: { idField: string; fields: string[]; storeFields: string[] } = {
@@ -51,6 +54,7 @@ export function buildGraphJson(
   nodes: GraphNode[],
   edges: GraphEdge[],
   symptoms: GraphSymptom[],
+  metrics: GraphMetrics,
   generatedFrom: string,
 ): Record<string, unknown> {
   return {
@@ -68,6 +72,7 @@ export function buildGraphJson(
     nodes,
     edges,
     symptoms,
+    metrics,
   };
 }
 
@@ -101,15 +106,14 @@ export function buildSearchIndex(
   };
 }
 
-export function writeArtifacts(
-  outDir: string,
-  graphJson: Record<string, unknown>,
-  searchIndex: Record<string, unknown>,
-): string[] {
+/** Write named artifacts (already-serialized text) into outDir; returns the paths. */
+export function writeArtifacts(outDir: string, artifacts: Record<string, string>): string[] {
   mkdirSync(outDir, { recursive: true });
-  const graphPath = join(outDir, 'graph.json');
-  const searchPath = join(outDir, 'search-index.json');
-  writeFileSync(graphPath, stableStringify(graphJson));
-  writeFileSync(searchPath, stableStringify(searchIndex));
-  return [graphPath, searchPath];
+  const paths: string[] = [];
+  for (const [name, text] of Object.entries(artifacts)) {
+    const path = join(outDir, name);
+    writeFileSync(path, text);
+    paths.push(path);
+  }
+  return paths;
 }

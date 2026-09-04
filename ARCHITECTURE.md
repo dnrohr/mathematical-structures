@@ -368,8 +368,9 @@ line style and a text badge always accompany it.
 
 `graph.json` is a **public, documented artifact** (spec §6): external consumers are
 expected. Breaking its shape is a major-version bump and a documented migration
-note; additive fields are minor. GraphML/CSV export (spec §8.7) will be additional
-emitters in stage 4.5, not app features.
+note; additive fields are minor. GraphML/CSV export (spec §8.7) is implemented as
+additional emitters in stage 4.5 (`atlas.graphml`, `nodes.csv`, `edges.csv`), not
+as app features.
 
 ## 7. CI/CD
 

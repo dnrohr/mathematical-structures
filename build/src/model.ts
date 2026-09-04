@@ -114,6 +114,57 @@ export interface GraphSymptom {
   worked_example?: string;
 }
 
+// ---------------------------------------------------------------------------
+// Stage-4 metric shapes: the `metrics` block of graph.json (ARCHITECTURE.md
+// §4.4; docs/graph-json.md). Everything here is computed at build time — the
+// app never runs graph algorithms beyond user-filtered subgraphs.
+// ---------------------------------------------------------------------------
+
+export interface NodeMetrics {
+  /** Incident trusted edges (parallel edges each count). */
+  degree: number;
+  /** Brandes betweenness on the trusted subgraph, normalized to [0, 1]. */
+  betweenness: number;
+  /** Trusted-subgraph community label, or null when no trusted edge touches the node. */
+  community: number | null;
+  /** Shannon entropy (bits) over the node's `fields` list — log2(field_count) until usage is weighted. */
+  span_entropy: number;
+  field_count: number;
+  /** Distinct fields represented in `aliases`. */
+  dialect_count: number;
+}
+
+/** A wiki-linked pair with no typed edge (the info-level curation queue), a < b. */
+export interface CandidatePair {
+  a: string;
+  b: string;
+}
+
+/** One research-gap edge, summarized for the Open Questions view and exports. */
+export interface GapSummary {
+  from: string;
+  to: string;
+  type: string;
+  strength: string;
+  status: string;
+}
+
+export interface GraphMetrics {
+  trusted: {
+    /** Strength floor (schema `analysis.trusted_min_strength`); metrics use only edges at or above it. */
+    min_strength: string;
+    edge_count: number;
+    excluded_edge_count: number;
+    /** Nodes touched by at least one trusted edge. */
+    node_count: number;
+  };
+  community_count: number;
+  /** Per-node metrics, keyed by slug (every node has an entry). */
+  nodes: Record<string, NodeMetrics>;
+  gaps: GapSummary[];
+  candidate_edges: CandidatePair[];
+}
+
 export function countErrors(issues: Issue[]): number {
   return issues.filter((i) => i.severity === 'error').length;
 }

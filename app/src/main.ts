@@ -15,8 +15,10 @@ import { dialectsView } from './views/dialects';
 import { dataErrorScreen, notFoundView } from './views/errors';
 import { landingView } from './views/landing';
 import { lensView } from './views/lens';
+import { metricsView } from './views/metrics';
 import { movesView } from './views/moves';
 import { pathView } from './views/path';
+import { questionsView } from './views/questions';
 import { symptomView } from './views/symptom';
 
 function viewFor(atlas: Atlas, route: Route): View {
@@ -34,9 +36,13 @@ function viewFor(atlas: Atlas, route: Route): View {
     case 'dialects':
       return dialectsView(atlas, route.query);
     case 'lens':
-      return lensView(atlas, route.filters);
+      return lensView(atlas, route.filters, route.communities);
     case 'path':
       return pathView(atlas, route);
+    case 'metrics':
+      return metricsView(atlas, route);
+    case 'questions':
+      return questionsView(atlas);
     case 'notfound':
       return notFoundView(route.path);
   }

@@ -42,8 +42,14 @@ The margins' own assumptions mark where the dialect thins out: a
 linearization regime, a defined input/output loop, and a
 frequency-response reading that is cleanest for single loops. Where
 nonlinearity or stochasticity dominates, the *question* survives even as
-these particular numbers lose meaning — which is precisely the framing of
-the map's research-gap edge toward [[biological-regulation]]: not "do
-biologists say 'phase margin'?" but "what plays the margins' functional
-role in a regulatory loop, and when is the classical number meaningful?"
-(docs/research-gap-workflow.md walks that question).
+these particular numbers lose meaning — which was precisely the framing
+of the map's research-gap candidate toward [[biological-regulation]]: not
+"do biologists say 'phase margin'?" but "what plays the margins'
+functional role in a regulatory loop, and when is the classical number
+meaningful?" Run through the workflow (docs/research-gap-workflow.md),
+that candidate resolved as an *established transfer*, not a missing one:
+control-theoretic systems biology applies margin-style loop analysis
+wherever its licensing assumptions are met, and hands the role to
+generalized machinery (secant-type criteria for cyclic feedback) where
+they are not — so the edge is now typed MIGRATED-TO, with the trail in
+its notes.

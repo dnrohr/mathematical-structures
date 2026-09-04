@@ -755,23 +755,37 @@
     biological regulation; graph concepts are now standard in systems
     biology.
 
+- from: stability-margins
+  to: biological-regulation
+  type: MIGRATED-TO
+  strength: strong-analogy
+  context: >-
+    Frequency-domain robustness analysis — loop gain, Bode/Nyquist
+    reasoning, margin-style budgets — applied to biological and synthetic
+    feedback circuits wherever a loop, operating point, and linearization
+    regime are identified.
+  notes: >-
+    Resolved from an open POSSIBLE-MISSING-MIGRATION candidate via the §35
+    workflow (M5 dogfood pass, worked from the app's Open Questions view).
+    Verdict: established transfer under the source vocabulary —
+    control-theoretic systems biology applies gain/phase-margin and
+    sensitivity analysis to identified loops (heat-shock response,
+    glycolytic-oscillation trade-offs, antithetic integral feedback;
+    textbook treatments: Del Vecchio & Murray, "Biomolecular Feedback
+    Systems"; Cosentino & Bates, "Feedback Control in Systems Biology").
+    Where the linearization or loop-breaking assumptions fail, margin-like
+    roles pass to generalized machinery such as the secant criterion for
+    cyclic feedback (workflow step 5). Scope caveat: routine within that
+    subcommunity, not yet across all of quantitative biology — hence
+    strong-analogy, not stronger.
+  evidence: []
+
 # ---------------------------------------------------------------------------
 # Research-gap layer (§15 + §9): candidate missing migrations, every one
 # speculative + open-candidate, framed per docs/research-gap-workflow.md.
+# The margins → biological-regulation candidate that used to lead this list
+# was run through the workflow in M5 and now lives above as MIGRATED-TO.
 # ---------------------------------------------------------------------------
-
-- from: stability-margins
-  to: biological-regulation
-  type: POSSIBLE-MISSING-MIGRATION
-  strength: speculative
-  status: open-candidate
-  notes: >-
-    Classical gain/phase margins for biological feedback networks.
-    Meaningful only where a linearization regime and an input/output loop
-    definition exist: first identify the loop, delays, operating point, and
-    uncertainty model, then ask whether classical margins apply or what
-    serves their functional role (workflow worked example).
-  evidence: []
 
 - from: feedback-control
   to: biological-regulation

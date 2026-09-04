@@ -8,6 +8,7 @@
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { runPipeline } from '../../build/src/pipeline.js';
+import { analyzeGraph } from '../../build/src/analyze.js';
 import { buildGraphJson, buildSearchIndex } from '../../build/src/emit.js';
 import { assembleAtlas, type Atlas } from '../src/data/atlas';
 import { egoNetwork, pathsBetween } from '../src/data/subgraph';
@@ -21,9 +22,10 @@ function realAtlas(): Atlas {
       `pipeline failed on the repo tree: ${JSON.stringify(result.issues.slice(0, 5))}`,
     );
   }
-  const { nodes, edges, symptoms } = result.graph;
+  const { nodes, edges, symptoms, candidates } = result.graph;
+  const metrics = analyzeGraph(result.schema, nodes, edges, candidates);
   const assembled = assembleAtlas(
-    buildGraphJson(result.schema, nodes, edges, symptoms, 'f'.repeat(40)),
+    buildGraphJson(result.schema, nodes, edges, symptoms, metrics, 'f'.repeat(40)),
     buildSearchIndex(nodes, symptoms),
   );
   if (!assembled.ok) throw new Error(`atlas refused: ${JSON.stringify(assembled.error)}`);
@@ -98,5 +100,35 @@ describe('M4 views over the real dataset', () => {
     const hits = atlas.aliasLookup('perfect adaptation');
     expect(hits[0]?.node.slug).toBe('feedback-control');
     expect(hits[0]?.alias?.field).toBe('biology');
+  });
+});
+
+describe('M5 metrics over the real dataset', () => {
+  it('metrics run on the trusted subgraph and cover every node', () => {
+    const m = atlas.metrics;
+    expect(m.trusted.min_strength).toBe(atlas.schema.analysis.trusted_min_strength);
+    expect(m.trusted.edge_count + m.trusted.excluded_edge_count).toBe(atlas.edges.length);
+    expect(Object.keys(m.nodes)).toHaveLength(atlas.nodes.length);
+    // A speculative-only neighborhood cannot buy membership: gap edges are
+    // excluded, so their target-side frontier stays outside the partition.
+    expect(m.community_count).toBeGreaterThanOrEqual(2);
+  });
+
+  it('the spectral hub tops the trusted rankings, as the notebook claims', () => {
+    const eigen = atlas.nodeMetrics('eigenvalues')!;
+    for (const node of atlas.nodes) {
+      expect(eigen.degree).toBeGreaterThanOrEqual(atlas.nodeMetrics(node.slug)!.degree);
+      expect(eigen.betweenness).toBeGreaterThanOrEqual(atlas.nodeMetrics(node.slug)!.betweenness);
+    }
+  });
+
+  it('every gap edge is listable with its workflow status (spec §11)', () => {
+    const gaps = atlas.gapEdges();
+    expect(gaps.length).toBeGreaterThan(0);
+    expect(atlas.metrics.gaps).toHaveLength(gaps.length);
+    for (const edge of gaps) {
+      expect(edge.status, `${edge.from} → ${edge.to}`).toBeTruthy();
+      expect(atlas.gapStatus(edge.status!)).toBeDefined();
+    }
   });
 });

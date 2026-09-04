@@ -8,6 +8,7 @@
  * are safe.
  */
 import {
+  type CandidatePair,
   type ConceptRecord,
   type EdgeRecord,
   type GraphEdge,
@@ -24,6 +25,8 @@ export interface LinkedGraph {
   nodes: GraphNode[];
   edges: GraphEdge[];
   symptoms: GraphSymptom[];
+  /** Wiki-linked pairs with no typed edge — the info-level curation queue. */
+  candidates: CandidatePair[];
   issues: Issue[];
 }
 
@@ -134,12 +137,15 @@ export function linkGraph(
     }
   }
   const candidatesSeen = new Set<string>();
+  const candidates: CandidatePair[] = [];
   for (const [from, targets] of outLinks) {
     for (const target of targets) {
       if (target === from) continue;
       const pair = [from, target].sort().join('|');
       if (pairHasEdge.has(pair) || candidatesSeen.has(pair)) continue;
       candidatesSeen.add(pair);
+      const [a, b] = pair.split('|') as [string, string];
+      candidates.push({ a, b });
       issues.push({
         severity: 'info',
         rule: 'link/candidate-edge',
@@ -148,6 +154,7 @@ export function linkGraph(
       });
     }
   }
+  candidates.sort((x, y) => x.a.localeCompare(y.a) || x.b.localeCompare(y.b));
 
   // Assemble nodes.
   const nodes: GraphNode[] = concepts
@@ -186,5 +193,5 @@ export function linkGraph(
     }))
     .sort((a, b) => a.id.localeCompare(b.id));
 
-  return { nodes, edges, symptoms, issues };
+  return { nodes, edges, symptoms, candidates, issues };
 }

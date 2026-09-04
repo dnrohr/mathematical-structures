@@ -321,31 +321,52 @@ views, and data export.
 
 **Exit criteria**
 
-- [ ] All speculative edges listable with workflow status in one view; dataset
-      exportable in one action (spec §11).
-- [ ] Metrics visibly computed on the trusted-strength subgraph only, and said so
-      in the UI.
-- [ ] First curation yield: at least one gap candidate moved through the §35
-      workflow using the tool itself.
+- [x] All speculative edges listable with workflow status in one view; dataset
+      exportable in one action (spec §11) — `#/questions` groups every gap edge
+      by §35 status (smoke-tested against the emitted edge list), and both
+      researcher views carry one-click "Download the dataset" links
+      (graph.json, GraphML, CSVs).
+- [x] Metrics visibly computed on the trusted-strength subgraph only, and said so
+      in the UI — stage 4 runs on `strength ≥ special-case` (decision log #7);
+      the metrics view leads with that statement and the counts (60 of 84
+      edges today), and a unit test proves a speculative edge buys no degree,
+      centrality, or community membership.
+- [x] First curation yield: at least one gap candidate moved through the §35
+      workflow using the tool itself — stability margins → biological
+      regulation, picked from `#/questions`, resolved as an established
+      transfer (control-theoretic systems biology) and converted to
+      MIGRATED-TO with the verdict trail in the edge notes.
 
 **Tasks**
 
-- [ ] [build] Stage 4 analyze: degree; Brandes betweenness; Louvain/Leiden
+- [x] [build] Stage 4 analyze: degree; Brandes betweenness; Louvain
       communities; span entropy; dialect count — computed over
       `strength ≥ special-case`; unit-tested on hand-checkable fixture graphs
-      (path, star, bridged cliques).
-- [ ] [build] Candidate-edge + gap summaries packaged into `graph.json.metrics`.
-- [ ] [app] Metrics view (`#/metrics`): sortable rankings (hubs, bridges, span,
-      dialect count); community coloring toggle in lens view ("does the graph
-      rediscover the disciplines?"); load `dataviz` conventions for any charting.
-- [ ] [app] Open questions view (`#/questions`): gap edges grouped by workflow
+      (path, star, bridged cliques — exact normalized betweenness values, the
+      cliques rediscovered as communities).
+- [x] [build] Candidate-edge + gap summaries packaged into `graph.json.metrics`
+      — graph.json is now 1.1.0 (additive minor), documented in
+      `docs/graph-json.md`.
+- [x] [app] Metrics view (`#/metrics`): sortable rankings (hubs, bridges, span,
+      dialect count) with sort state in the URL; community coloring toggle in
+      lens view (`communities=1` — "does the graph rediscover the
+      disciplines?" gets a legible yes: the five clusters track estimation,
+      stability, scaling, transforms, and mechanics); `dataviz` conventions
+      applied (CVD-validated fixed-order community palette per theme, labeled
+      chips so identity is never color-alone, meters only reinforce printed
+      values).
+- [x] [app] Open questions view (`#/questions`): gap edges grouped by workflow
       status, each with its notes and the §35 checklist rendered; "how to
-      investigate" links to `docs/research-gap-workflow.md`.
-- [ ] [build] Export emitters: GraphML + edges/nodes CSV alongside `graph.json`;
-      app "Download dataset" links.
-- [ ] [curation] Dogfood pass: pick one open candidate (e.g. stability margins →
+      investigate" links to `docs/research-gap-workflow.md`; the candidate-edge
+      queue (wiki-linked, unedged pairs) rendered from the metrics block.
+- [x] [build] Export emitters: GraphML + edges/nodes CSV alongside `graph.json`
+      (deterministic, byte-identical across builds); app "Download dataset"
+      links.
+- [x] [curation] Dogfood pass: pick one open candidate (e.g. stability margins →
       biological regulation), run the workflow, record the outcome as data —
-      proving the loop closes.
+      proving the loop closes. Done for exactly that candidate; the §35 trail
+      (verdict, scope caveat, literature pointers) lives in the converted
+      edge's notes for owner review.
 
 ---
 

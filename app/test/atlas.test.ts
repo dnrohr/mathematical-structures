@@ -85,6 +85,30 @@ function makeGraph(version = '1.0.0'): GraphJson {
         mature_fields: ['control'],
       },
     ],
+    metrics: {
+      trusted: { min_strength: 'theorem', edge_count: 1, excluded_edge_count: 0, node_count: 2 },
+      community_count: 1,
+      nodes: {
+        eigenvalues: {
+          degree: 1,
+          betweenness: 0,
+          community: 0,
+          span_entropy: 1,
+          field_count: 2,
+          dialect_count: 2,
+        },
+        'markov-chains': {
+          degree: 1,
+          betweenness: 0,
+          community: 0,
+          span_entropy: 0,
+          field_count: 0,
+          dialect_count: 0,
+        },
+      },
+      gaps: [],
+      candidate_edges: [{ a: 'eigenvalues', b: 'markov-chains' }],
+    },
   };
 }
 
@@ -167,6 +191,14 @@ describe('assembleAtlas version gate', () => {
     });
     const noNodes = { ...makeGraph(), nodes: 'not-a-list' };
     expect(assembleAtlas(noNodes, makeSearchArtifact())).toMatchObject({
+      ok: false,
+      error: { kind: 'corrupt' },
+    });
+  });
+  it('refuses pre-metrics data rather than rendering broken researcher views', () => {
+    const noMetrics = { ...makeGraph() } as Record<string, unknown>;
+    delete noMetrics['metrics'];
+    expect(assembleAtlas(noMetrics, makeSearchArtifact())).toMatchObject({
       ok: false,
       error: { kind: 'corrupt' },
     });

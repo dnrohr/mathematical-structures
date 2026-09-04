@@ -9,6 +9,7 @@
 import type { Atlas } from '../../data/atlas';
 import { hasLensFilter, lensSubgraph, type LensFilters } from '../../data/subgraph';
 import { replaceHash } from '../../shell/router';
+import { communityChip, communityToken } from '../common/badges';
 import { h } from '../common/dom';
 import { edgeClaim } from '../common/edge-claim';
 import { graphPanel } from '../common/graph-panel';
@@ -36,12 +37,13 @@ function sanitize(atlas: Atlas, filters: LensFilters): LensFilters {
   return out;
 }
 
-export function lensHash(filters: LensFilters): string {
+export function lensHash(filters: LensFilters, communities = false): string {
   const params = new URLSearchParams();
   if (filters.edge) params.set('edge', filters.edge);
   if (filters.type) params.set('type', filters.type);
   if (filters.field) params.set('field', filters.field);
   if (filters.strength) params.set('strength', filters.strength);
+  if (communities) params.set('communities', '1');
   const query = params.toString();
   return query ? `#/lens?${query}` : '#/lens';
 }
@@ -67,12 +69,36 @@ function filterSelect(
   );
 }
 
-export function lensView(atlas: Atlas, initial: LensFilters): View {
+export function lensView(atlas: Atlas, initial: LensFilters, communitiesInitial = false): View {
   const filters = sanitize(atlas, initial);
+  let communities = communitiesInitial;
   const results = h('div', { class: 'lens-results' });
 
+  /** Node coloring for the community lens: partition label, not type. */
+  const communityColor = (node: { slug: string }): string => {
+    const c = atlas.nodeMetrics(node.slug)?.community ?? null;
+    return c === null ? 'ink-faint' : communityToken(c);
+  };
+
+  const communityLegend = (): HTMLElement => {
+    const count = atlas.metrics.community_count;
+    const chips: (HTMLElement | string)[] = [];
+    for (let c = 0; c < count; c++) {
+      chips.push(communityChip(c), ' ');
+    }
+    return h(
+      'p',
+      { class: 'community-legend section-hint' },
+      'Nodes colored by trusted-subgraph community (see ',
+      h('a', { href: '#/metrics' }, 'metrics'),
+      ') instead of by type: ',
+      ...chips,
+      '— gray = outside the trusted subgraph.',
+    );
+  };
+
   const render = (): void => {
-    replaceHash(lensHash(filters));
+    replaceHash(lensHash(filters, communities));
     if (!hasLensFilter(filters)) {
       results.replaceChildren(
         h(
@@ -109,7 +135,12 @@ export function lensView(atlas: Atlas, initial: LensFilters): View {
             `${String(sub.nodes.length)} concepts match — too many to draw legibly, so this lens ` +
               'is shown as claims only. Narrow a filter to see the graph.',
           )
-        : graphPanel(atlas, sub, { preset: 'lens', label: 'Lens subgraph' }),
+        : graphPanel(atlas, sub, {
+            preset: 'lens',
+            label: 'Lens subgraph',
+            ...(communities ? { colorToken: communityColor } : {}),
+          }),
+      ...(!tooWide && communities ? [communityLegend()] : []),
       h(
         'section',
         { class: 'lens-claims' },
@@ -134,6 +165,16 @@ export function lensView(atlas: Atlas, initial: LensFilters): View {
     else filters[key] = value;
     render();
   };
+
+  const communityToggle = h('input', {
+    class: 'lens-communities',
+    type: 'checkbox',
+    ...(communities ? { checked: true } : {}),
+  });
+  communityToggle.addEventListener('change', () => {
+    communities = communityToggle.checked;
+    render();
+  });
 
   const controls = h(
     'div',
@@ -168,6 +209,12 @@ export function lensView(atlas: Atlas, initial: LensFilters): View {
       })),
       filters.strength,
       set('strength'),
+    ),
+    h(
+      'label',
+      { class: 'lens-filter lens-toggle' },
+      h('span', { class: 'lens-filter-label' }, 'Color by community'),
+      communityToggle,
     ),
     h('a', { class: 'lens-clear', href: '#/lens' }, 'Clear'),
   );

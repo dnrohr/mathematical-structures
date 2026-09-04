@@ -6,6 +6,7 @@
  */
 import type { Atlas } from '../../data/atlas';
 import type { Subgraph } from '../../data/subgraph';
+import type { GraphNode } from '../../data/types';
 import { renderGraph, type GraphPreset, type GraphViewEdge } from '../../graph-render';
 import { edgeSentenceText } from './edge-claim';
 import { GAP_EDGE_TYPE } from './edge-sentence';
@@ -13,9 +14,18 @@ import { GAP_EDGE_TYPE } from './edge-sentence';
 export function graphPanel(
   atlas: Atlas,
   subgraph: Subgraph,
-  opts: { preset: GraphPreset; label: string; focus?: string[] },
+  opts: {
+    preset: GraphPreset;
+    label: string;
+    focus?: string[];
+    /** Override node coloring (default: the node-type token). */
+    colorToken?: (node: GraphNode) => string;
+  },
 ): HTMLElement {
   const focus = opts.focus ?? [];
+  const colorToken =
+    opts.colorToken ??
+    ((node: GraphNode): string => atlas.nodeType(node.node_type)?.color_token ?? 'ink-muted');
   return renderGraph({
     preset: opts.preset,
     label: opts.label,
@@ -24,7 +34,7 @@ export function graphPanel(
       return {
         id: node.slug,
         label: node.canonical_name,
-        colorToken: atlas.nodeType(node.node_type)?.color_token ?? 'ink-muted',
+        colorToken: colorToken(node),
         href: `#/c/${node.slug}`,
         ...(rank >= 0 ? { focus: rank } : {}),
       };
