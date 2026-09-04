@@ -49,8 +49,9 @@ export function createSearchBox(
     input.value = '';
     close();
     input.blur();
+    // Symptom hits open the symptom detail page (M4's front door).
     window.location.hash =
-      hit.kind === 'symptom' ? `#/?s=${hit.id.slice('symptom:'.length)}` : `#/c/${hit.id}`;
+      hit.kind === 'symptom' ? `#/s/${hit.id.slice('symptom:'.length)}` : `#/c/${hit.id}`;
   }
 
   function paint(): void {

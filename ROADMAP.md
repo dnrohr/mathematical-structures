@@ -258,34 +258,59 @@ and typed edge sentences, deployed on GitHub Pages.
 
 **Exit criteria**
 
-- [ ] Symptom journey passes: "too many dimensional parameters" → Buckingham Π
-      with Reynolds example in ≤ 3 clicks (spec §11).
-- [ ] Ego-network on every concept page, legible in both themes, never rendering
-      the full graph; every graph-visible relationship also present as text.
-- [ ] Any lens/path view state is shareable by URL.
+- [x] Symptom journey passes: "too many dimensional parameters" → Buckingham Π
+      with Reynolds example in ≤ 3 clicks (spec §11) — proven by the Playwright
+      suite: landing card → symptom detail → dimensional-analysis is 2 clicks,
+      with Buckingham Π and the Reynolds example asserted on the target page.
+- [x] Ego-network on every concept page, legible in both themes, never rendering
+      the full graph; every graph-visible relationship also present as text —
+      edges touching the node are the page's Connections/Assumptions sections;
+      edges between neighbors get their own claim list under the graph; an
+      integration test asserts a non-empty ego for all 38 concepts, and the
+      smoke suite covers both themes and the node cap.
+- [x] Any lens/path view state is shareable by URL — filters and endpoints live
+      entirely in the URL; round-trips (URL → view and view → URL → reload)
+      are smoke-tested for both views.
 
 **Tasks**
 
-- [ ] [app] `graph-render/`: one d3-force SVG component; props = pre-filtered
+- [x] [app] `graph-render/`: one d3-force SVG component; props = pre-filtered
       nodes/edges + preset (ego | lens | path); node color by type token, edge
       line style by strength token; click → navigate, hover → edge sentence;
       keyboard focusable; no zoom/pan gymnastics in v1 — legibility by curation
-      of what's rendered, not by camera controls.
-- [ ] [app] Ego-network on concept pages: 1 hop default, "expand to 2 hops"
+      of what's rendered, not by camera controls. Layout runs synchronously
+      before paint (deterministic d3-force defaults, fit-to-canvas), so nothing
+      animates or moves under keyboard focus; edges are focusable and read
+      their sentence into a live caption; gap edges render in the warn style.
+- [x] [app] Ego-network on concept pages: 1 hop default, "expand to 2 hops"
       control, cap rendered nodes (~25) with an overflow "and N more" list.
-- [ ] [app] Landing v2: "What does your problem look like?" — symptom cards →
-      symptom detail (ranked moves with one-line whys, mature fields, worked
-      example link).
-- [ ] [app] Dialect lookup (`#/dialects`): search any alias → canonical node +
+      A sticky side panel on wide screens, a normal section on small ones.
+- [x] [app] Landing v2: "What does your problem look like?" — symptom cards →
+      symptom detail (`#/s/<id>`: ranked moves with one-line whys, mature
+      fields, worked example link); the cards keep their inline move links as
+      the 1-click shortcut, and search symptom hits open the detail page.
+- [x] [app] Dialect lookup (`#/dialects`): search any alias → canonical node +
       full dialect table; the reverse-translation framing ("'perfect adaptation'
-      is integral feedback in control language").
-- [ ] [app] Lens view (`#/lens`): filters for edge type / node type / field /
+      is what Systems & mathematical biology calls Feedback and loop
+      structure"). Exact-substring matching on purpose: a fuzzy hit would be a
+      wrong translation.
+- [x] [app] Lens view (`#/lens`): filters for edge type / node type / field /
       minimum strength; filter state entirely in URL; empty-state guidance.
-- [ ] [app] Path view (`#/path/a/b`): bounded-depth BFS in `data/` over
+      A lens wider than ~32 nodes falls back to the always-complete claim list
+      (the "no full-graph render" rule); node filters keep edges touching at
+      least one matching concept.
+- [x] [app] Path view (`#/path/a/b`): bounded-depth BFS in `data/` over
       strength-filtered edges; render chains as edge-sentence sequences plus the
-      graph preset; this supersedes the hand-written §34 chains (verify each §34
-      chain is findable — good integration test).
-- [ ] [app] Playwright: symptom journey + one lens/path URL-state round-trip.
+      graph preset; this supersedes the hand-written §34 chains — every §34
+      chain is verified findable by `app/test/chains.test.ts`, which runs the
+      build pipeline in-process over the real content tree (chain 2 is dialect
+      aliases on `greens-function`, asserted via the dialect lookup). The
+      default strength floor excludes speculative gap edges so a hypothesis is
+      never presented as a connection; loosening it is an explicit opt-in.
+- [x] [app] Playwright: symptom journey + one lens/path URL-state round-trip —
+      nine new smoke tests (journey, ego render/expand/cap, graph↔text parity,
+      themes, lens round-trip + empty state, path round-trip + swap, dialect
+      lookup, symptom search routing).
 
 ---
 

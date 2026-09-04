@@ -11,9 +11,13 @@ import { startRouter, type Route } from './shell/router';
 import { atozView } from './views/atoz';
 import type { View } from './views/common/view';
 import { conceptView } from './views/concept';
+import { dialectsView } from './views/dialects';
 import { dataErrorScreen, notFoundView } from './views/errors';
 import { landingView } from './views/landing';
+import { lensView } from './views/lens';
 import { movesView } from './views/moves';
+import { pathView } from './views/path';
+import { symptomView } from './views/symptom';
 
 function viewFor(atlas: Atlas, route: Route): View {
   switch (route.name) {
@@ -21,10 +25,18 @@ function viewFor(atlas: Atlas, route: Route): View {
       return landingView(atlas, { symptom: route.symptom });
     case 'concept':
       return conceptView(atlas, route.slug) ?? notFoundView(`/c/${route.slug}`);
+    case 'symptom':
+      return symptomView(atlas, route.id) ?? notFoundView(`/s/${route.id}`);
     case 'moves':
       return movesView(atlas);
     case 'atoz':
       return atozView(atlas);
+    case 'dialects':
+      return dialectsView(atlas, route.query);
+    case 'lens':
+      return lensView(atlas, route.filters);
+    case 'path':
+      return pathView(atlas, route);
     case 'notfound':
       return notFoundView(route.path);
   }

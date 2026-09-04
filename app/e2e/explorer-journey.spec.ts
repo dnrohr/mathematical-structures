@@ -82,13 +82,10 @@ test('landing symptoms are plain links into concepts', async ({ page }) => {
   await expect(page).toHaveURL(/#\/c\/dimensional-analysis$/);
 });
 
-test('a symptom search hit routes back to the landing card', async ({ page }) => {
-  await page.goto('/#/moves'); // start elsewhere to prove the round-trip
-  const input = page.locator('.site-header .search-input');
-  await input.fill('oscillation feedback');
-  await expect(page.locator('.search-hit').first()).toContainText('symptom');
-  await input.press('Enter');
-  await expect(page).toHaveURL(/#\/\?s=feedback-oscillation$/);
+test('an old ?s= symptom link still highlights its landing card', async ({ page }) => {
+  // Search now routes symptom hits to #/s/<id> (M4, covered in m4-views);
+  // pre-M4 shared links keep working.
+  await page.goto('/#/?s=feedback-oscillation');
   await expect(page.locator('#s-feedback-oscillation')).toHaveClass(/highlight/);
 });
 

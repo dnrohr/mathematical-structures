@@ -9,6 +9,8 @@ import { SUPPORTED_DATA_MAJOR } from '../config';
 import type {
   EdgeType,
   FieldDef,
+  GraphAlias,
+  GraphEdge,
   GraphJson,
   GraphNode,
   GraphSymptom,
@@ -42,6 +44,13 @@ export interface SearchHit {
   name: string;
   /** Set when the hit came in through an alias: the reverse-dialect framing. */
   aliasMatch?: { name: string; field: string };
+}
+
+/** A dialect-lookup match: via an alias (the point of the tool) or a name. */
+export interface AliasHit {
+  node: GraphNode;
+  /** Present when the query matched this alias; absent for name matches. */
+  alias?: GraphAlias;
 }
 
 export class Atlas {
@@ -83,6 +92,9 @@ export class Atlas {
   get symptoms(): GraphSymptom[] {
     return this.data.symptoms;
   }
+  get edges(): GraphEdge[] {
+    return this.data.edges;
+  }
   get generatedFrom(): string {
     return this.data.generated_from;
   }
@@ -120,6 +132,34 @@ export class Atlas {
   }
   gapStatus(id: string): StatusDef | undefined {
     return this.gapStatusesById.get(id);
+  }
+
+  /**
+   * The reverse-dialect lookup (spec §7.3 Dialect module): substring-match a
+   * field's term against every alias (and canonical name, as a courtesy).
+   * Deliberately exact-ish rather than fuzzy — the tool answers "I read this
+   * word in a paper", and a fuzzy hit would be a wrong translation.
+   */
+  aliasLookup(query: string, limit = 12): AliasHit[] {
+    const q = query.trim().toLowerCase();
+    if (q.length === 0) return [];
+    const position = (text: string): number => text.toLowerCase().indexOf(q);
+    const hits: (AliasHit & { pos: number })[] = [];
+    for (const node of this.data.nodes) {
+      for (const alias of node.aliases) {
+        const pos = position(alias.name);
+        if (pos >= 0) hits.push({ node, alias, pos });
+      }
+      const namePos = position(node.canonical_name);
+      if (namePos >= 0) hits.push({ node, pos: namePos });
+    }
+    hits.sort(
+      (a, b) =>
+        Number(a.alias === undefined) - Number(b.alias === undefined) ||
+        a.pos - b.pos ||
+        a.node.canonical_name.localeCompare(b.node.canonical_name),
+    );
+    return hits.slice(0, limit).map(({ node, alias }) => (alias ? { node, alias } : { node }));
   }
 
   search(query: string, limit = 8): SearchHit[] {
