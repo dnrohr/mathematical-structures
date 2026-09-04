@@ -13,8 +13,10 @@ export type Route =
   | { name: 'moves' }
   | { name: 'atoz' }
   | { name: 'dialects'; query: string }
-  | { name: 'lens'; filters: LensFilters }
+  | { name: 'lens'; filters: LensFilters; communities: boolean }
   | { name: 'path'; from?: string; to?: string; strength?: string }
+  | { name: 'metrics'; sort?: string; dir?: 'asc' | 'desc' }
+  | { name: 'questions' }
   | { name: 'notfound'; path: string };
 
 export function parseHash(hash: string): Route {
@@ -50,8 +52,18 @@ export function parseHash(hash: string): Route {
     if (type) filters.type = type;
     if (field) filters.field = field;
     if (strength) filters.strength = strength;
-    return { name: 'lens', filters };
+    return { name: 'lens', filters, communities: params.get('communities') === '1' };
   }
+  if (segs[0] === 'metrics' && segs.length === 1) {
+    const sort = params.get('sort');
+    const dir = params.get('dir');
+    return {
+      name: 'metrics',
+      ...(sort ? { sort } : {}),
+      ...(dir === 'asc' || dir === 'desc' ? { dir } : {}),
+    };
+  }
+  if (segs[0] === 'questions' && segs.length === 1) return { name: 'questions' };
   if (segs[0] === 'path' && segs.length <= 3) {
     const [, from, to] = segs;
     if ((from && !SLUG_RE.test(from)) || (to && !SLUG_RE.test(to))) {

@@ -66,3 +66,35 @@ export function gapStatusChip(atlas: Atlas, statusId: string): HTMLElement {
     pretty(statusId),
   );
 }
+
+/**
+ * Style token for a trusted-subgraph community. Eight fixed, validated hues
+ * in a fixed order; a ninth community would fold to neutral rather than
+ * cycle (color follows the entity, and the label always carries the id).
+ */
+export function communityToken(community: number): string {
+  return community < 8 ? `community-${String(community)}` : 'ink-faint';
+}
+
+/** Labeled marker for a trusted-subgraph community; null = outside it. */
+export function communityChip(community: number | null): HTMLElement {
+  if (community === null) {
+    return h(
+      'span',
+      {
+        class: 'chip community-chip community-none',
+        title: 'No trusted-strength edge touches this concept',
+      },
+      'outside',
+    );
+  }
+  return h(
+    'span',
+    {
+      class: 'chip community-chip',
+      style: `--accent: var(--${communityToken(community)})`,
+      title: `Trusted-subgraph community C${String(community)}`,
+    },
+    `C${String(community)}`,
+  );
+}

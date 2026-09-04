@@ -12,8 +12,10 @@ import type {
   GraphAlias,
   GraphEdge,
   GraphJson,
+  GraphMetrics,
   GraphNode,
   GraphSymptom,
+  NodeMetrics,
   NodeType,
   PublicSchema,
   SearchArtifact,
@@ -98,9 +100,25 @@ export class Atlas {
   get generatedFrom(): string {
     return this.data.generated_from;
   }
+  get metrics(): GraphMetrics {
+    return this.data.metrics;
+  }
 
   node(slug: string): GraphNode | undefined {
     return this.bySlug.get(slug);
+  }
+  nodeMetrics(slug: string): NodeMetrics | undefined {
+    return this.data.metrics.nodes[slug];
+  }
+  /**
+   * The research-gap layer for the Open Questions view (spec §11): every
+   * POSSIBLE-MISSING-MIGRATION or speculative-strength edge, in emitted
+   * order. Validation guarantees each carries a workflow status.
+   */
+  gapEdges(): GraphEdge[] {
+    return this.data.edges.filter(
+      (e) => e.type === 'POSSIBLE-MISSING-MIGRATION' || e.strength === 'speculative',
+    );
   }
   isSlug(text: string): boolean {
     return SLUG_RE.test(text) && this.bySlug.has(text);
@@ -225,6 +243,8 @@ export function assembleAtlas(graphRaw: unknown, searchRaw: unknown): LoadResult
     return fail('corrupt', 'graph.json: nodes/edges/symptoms are not lists');
   if (typeof graph.schema !== 'object' || graph.schema === null)
     return fail('corrupt', 'graph.json: missing schema block');
+  if (typeof graph.metrics !== 'object' || graph.metrics === null)
+    return fail('corrupt', 'graph.json: missing metrics block (needs data version ≥ 1.1)');
   if (typeof search.options !== 'object' || search.options === null || search.index === undefined)
     return fail('corrupt', 'search-index.json: missing options/index');
   try {

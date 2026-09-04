@@ -35,6 +35,17 @@
   --l-nt-theorem: #4b5aa8;
   --l-nt-dialect: #5c6f7f;
   --l-nt-application: #9a5b32;
+  /* Trusted-subgraph community palette (M5): eight categorical hues in a
+     FIXED order, CVD-validated per mode on this theme's raised surface.
+     Identity is never color-alone — the chip/label always carries the id. */
+  --l-community-0: #2a78d6;
+  --l-community-1: #eb6834;
+  --l-community-2: #1baf7a;
+  --l-community-3: #eda100;
+  --l-community-4: #e87ba4;
+  --l-community-5: #008300;
+  --l-community-6: #4a3aa7;
+  --l-community-7: #e34948;
 
   /* ---- palette: dark ---- */
   --d-bg: #15171a;
@@ -57,6 +68,15 @@
   --d-nt-theorem: #94a0dc;
   --d-nt-dialect: #9cafbe;
   --d-nt-application: #cd9a71;
+  /* Same eight community hues, stepped for the dark surface (not a flip). */
+  --d-community-0: #3987e5;
+  --d-community-1: #d95926;
+  --d-community-2: #199e70;
+  --d-community-3: #c98500;
+  --d-community-4: #d55181;
+  --d-community-5: #008300;
+  --d-community-6: #9085e9;
+  --d-community-7: #e66767;
 
   /* ---- active theme mapping: light (default) ---- */
   color-scheme: light;
@@ -80,6 +100,14 @@
   --nt-theorem: var(--l-nt-theorem);
   --nt-dialect: var(--l-nt-dialect);
   --nt-application: var(--l-nt-application);
+  --community-0: var(--l-community-0);
+  --community-1: var(--l-community-1);
+  --community-2: var(--l-community-2);
+  --community-3: var(--l-community-3);
+  --community-4: var(--l-community-4);
+  --community-5: var(--l-community-5);
+  --community-6: var(--l-community-6);
+  --community-7: var(--l-community-7);
 
   /* ---- non-color tokens ---- */
   --font-prose: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, Georgia, serif;
@@ -136,6 +164,14 @@
   --nt-theorem: var(--d-nt-theorem);
   --nt-dialect: var(--d-nt-dialect);
   --nt-application: var(--d-nt-application);
+  --community-0: var(--d-community-0);
+  --community-1: var(--d-community-1);
+  --community-2: var(--d-community-2);
+  --community-3: var(--d-community-3);
+  --community-4: var(--d-community-4);
+  --community-5: var(--d-community-5);
+  --community-6: var(--d-community-6);
+  --community-7: var(--d-community-7);
 }
 
 /* ======================================================================
@@ -1302,6 +1338,219 @@ main:focus {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+/* ======================================================================
+   Researcher views (M5): metrics rankings, communities, open questions,
+   dataset downloads. Inline meters only reinforce magnitude — the printed
+   number is always the encoding, in ink, never in a series color.
+   ====================================================================== */
+
+.metrics > section,
+.questions > section {
+  margin-top: 2.4rem;
+}
+
+.metrics section > h2,
+.questions section > h2 {
+  font: 700 0.85rem var(--font-ui);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.35rem;
+  margin: 0 0 0.6rem;
+}
+
+.trusted-note {
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--link);
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  font: 0.92rem/1.55 var(--font-ui);
+  color: var(--ink-muted);
+  margin: 1.2rem 0 0;
+}
+
+.trusted-note strong {
+  color: var(--ink);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.metrics-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.metrics-table th,
+.metrics-table td {
+  text-align: left;
+  padding: 0.35rem 0.9rem 0.35rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.metrics-table .metric-name {
+  white-space: normal;
+  min-width: 13rem;
+}
+
+.metrics-table thead th {
+  font: 600 0.75rem var(--font-ui);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.sort-button {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.sort-button:hover {
+  color: var(--link);
+}
+
+th[aria-sort='descending'] .sort-button::after {
+  content: ' ▾';
+}
+
+th[aria-sort='ascending'] .sort-button::after {
+  content: ' ▴';
+}
+
+.metrics-table .num {
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.meter {
+  display: inline-block;
+  width: 5.5rem;
+  height: 0.5em;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--rule) 55%, transparent);
+  margin-right: 0.55rem;
+  vertical-align: baseline;
+  overflow: hidden;
+}
+
+.meter-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--link) 75%, transparent);
+}
+
+.community-chip {
+  --accent: var(--ink-muted);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  font-weight: 600;
+}
+
+.community-none {
+  border-style: dashed;
+  color: var(--ink-faint);
+  background: none;
+  font-weight: 400;
+}
+
+.community-list {
+  list-style: none;
+  margin: 0.8rem 0 0;
+  padding: 0;
+}
+
+.community-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.75rem 1.1rem;
+  margin: 0.9rem 0;
+}
+
+.community-card h3 {
+  font: 600 0.95rem var(--font-ui);
+  margin: 0 0 0.35rem;
+}
+
+.community-card p {
+  margin: 0;
+  line-height: 1.9;
+  font-size: 0.95rem;
+}
+
+.community-legend {
+  margin-top: 0.6rem;
+}
+
+.lens-toggle .lens-communities {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0.45rem 0;
+  accent-color: var(--link);
+}
+
+.download-list {
+  list-style: none;
+  margin: 0.5rem 0 0.8rem;
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+.download-list li {
+  margin: 0.3rem 0;
+}
+
+.download-list a {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+}
+
+.dim {
+  color: var(--ink-faint);
+  font-weight: 400;
+  font-size: 0.9em;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.workflow-steps {
+  margin: 0.5rem 0;
+  padding-left: 1.4rem;
+}
+
+.workflow-steps li {
+  margin: 0.35rem 0;
+}
+
+.candidate-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  columns: 2 16rem;
+  column-gap: 2.5rem;
+  font-size: 0.92rem;
+}
+
+.candidate-list li {
+  margin: 0.3rem 0;
+  break-inside: avoid;
 }
 
 /* ======================================================================

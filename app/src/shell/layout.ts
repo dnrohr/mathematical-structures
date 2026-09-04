@@ -41,6 +41,8 @@ export function createShell(root: HTMLElement, atlas: Atlas): Shell {
         h('a', { href: '#/dialects' }, 'Dialects'),
         h('a', { href: '#/lens' }, 'Lens'),
         h('a', { href: '#/path' }, 'Path'),
+        h('a', { href: '#/metrics' }, 'Metrics'),
+        h('a', { href: '#/questions' }, 'Questions'),
       ),
       createSearchBox(atlas, { variant: 'header', placeholder: 'Search ( / )' }),
       createThemeToggle(),

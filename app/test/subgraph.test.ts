@@ -105,6 +105,19 @@ function makeAtlas(nodes: GraphNode[], edges: GraphEdge[]): Atlas {
     nodes,
     edges,
     symptoms: [],
+    // Subgraph computations never read metrics; an empty block satisfies the contract.
+    metrics: {
+      trusted: {
+        min_strength: 'special-case',
+        edge_count: 0,
+        excluded_edge_count: 0,
+        node_count: 0,
+      },
+      community_count: 0,
+      nodes: {},
+      gaps: [],
+      candidate_edges: [],
+    },
   };
   const options = {
     idField: 'id',
