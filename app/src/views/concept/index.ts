@@ -14,6 +14,7 @@ import { h, joinChildren } from '../common/dom';
 import { connectionItem, GAP_EDGE_TYPE } from '../common/edge-sentence';
 import { nodeLink } from '../common/node-link';
 import type { View } from '../common/view';
+import { egoSection } from './ego';
 
 /** Edge types that belong beside the assumptions block (spec §3.1 item 4). */
 const ASSUMPTION_ADJACENT = new Set(['ASSUMES', 'FAILS-WHEN', 'REPLACED-BY']);
@@ -138,10 +139,11 @@ export function conceptView(atlas: Atlas, slug: string): View | null {
   const dialects = dialectTable(atlas, node);
   const prose = h('article', { class: 'prose' });
   prose.innerHTML = node.html; // build-rendered, sanitized by construction
+  const ego = egoSection(atlas, node.slug);
 
   const el = h(
     'div',
-    { class: 'concept content' },
+    { class: `concept content${ego ? ' has-ego' : ''}` },
     h(
       'header',
       { class: 'concept-header' },
@@ -170,6 +172,7 @@ export function conceptView(atlas: Atlas, slug: string): View | null {
       ),
     assumptionsSection(atlas, node, adjacent),
     connectionsSection(atlas, grouped),
+    ego,
     node.canonical_examples.length > 0 &&
       h(
         'section',

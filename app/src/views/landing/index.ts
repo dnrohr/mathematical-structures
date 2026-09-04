@@ -1,8 +1,9 @@
 /**
- * Landing v1 (spec §3.4): leads with the Problem-Solver's question — the
- * symptom index — alongside plain search, then the node-type index for
- * browsing. Symptoms are plain links here; interactive symptom routing
- * is M4.
+ * Landing v2 (spec §3.4, ROADMAP M4): leads with the Problem-Solver's
+ * question — the symptom index — alongside plain search, then the
+ * node-type index for browsing. Each symptom card opens its detail page
+ * (ranked moves with one-line whys); the inline move links stay as the
+ * 1-click shortcut for readers who already see their answer.
  */
 import type { Atlas } from '../../data/atlas';
 import { createSearchBox } from '../../shell/search';
@@ -21,7 +22,7 @@ export function landingView(atlas: Atlas, opts: { symptom?: string } = {}): View
           class: `symptom-card${opts.symptom === s.id ? ' highlight' : ''}`,
           id: `s-${s.id}`,
         },
-        h('h3', {}, s.symptom),
+        h('h3', {}, h('a', { class: 'symptom-title', href: `#/s/${s.id}` }, s.symptom)),
         h(
           'p',
           { class: 'symptom-moves' },
