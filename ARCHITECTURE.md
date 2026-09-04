@@ -404,6 +404,7 @@ as app features.
 | LLM-assisted authoring | operates on `graph.json` + `schema.yaml`; output enters as ordinary PRs through the same validator (spec §8.4's hard rule) |
 | Forks / multiple atlases | `atlas-build --content DIR`; nothing hardcodes this repository's content |
 | 10× scale | per-node JSON split (§4.5 escape hatch), paginated lists, and the standing "no full-graph render" rule |
+| Applications as first-class content | `application` node type + APPLIED-IN edges already in `schema.yaml`; one new warn-level validator rule (§4.2); an index view reusing `views/common/` fragments |
 
 ## 10. Decision log
 
