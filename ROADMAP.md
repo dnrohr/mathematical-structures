@@ -93,36 +93,42 @@ the ontology has exactly one current definition.
 
 **Exit criteria**
 
-- [ ] A PR adding an edge with an unknown type/endpoint fails CI with a message
-      naming the file and the rule (spec §11).
-- [ ] Build twice → byte-identical artifacts.
-- [ ] `graph.json` documented well enough that an outsider could consume it
+- [x] A PR adding an edge with an unknown type/endpoint fails CI with a message
+      naming the file and the rule (spec §11) — covered by the
+      `edge/unknown-endpoint` pipeline test; CI runs the same `--check`.
+- [x] Build twice → byte-identical artifacts (unit test + verified on the repo
+      tree).
+- [x] `graph.json` documented well enough that an outsider could consume it
       (`docs/graph-json.md`).
 
 **Tasks**
 
-- [ ] [build] Stage 1 parse: front-matter + Markdown reader for `concepts/*.md`;
+- [x] [build] Stage 1 parse: front-matter + Markdown reader for `concepts/*.md`;
       YAML readers for `edges.yaml`, `symptoms.yaml`, `schema.yaml`; batch error
       collection (never die on first error); shared typed model in
       `build/src/model.ts` (imported later by the app).
-- [ ] [build] Stage 2 validate: implement the ARCHITECTURE.md §4.2 rule table —
+- [x] [build] Stage 2 validate: implement the ARCHITECTURE.md §4.2 rule table —
       each rule its own function with a rule ID, severity, file/line pointer, and
       a failing fixture test. Include the epistemic rules (speculative ⇒ workflow
       status; POSSIBLE-MISSING-MIGRATION ⇒ ≤ heuristic-analogy).
-- [ ] [build] Stage 3 link: `[[wiki-link]]` resolution (with `|display` form),
+- [x] [build] Stage 3 link: `[[wiki-link]]` resolution (with `|display` form),
       backlink harvesting, candidate-edge detection (linked-but-unedged, info
       level), edge grouping per node by type/direction using schema phrasings.
-- [ ] [build] Stage 3 render: Markdown → sanitized HTML (marked or markdown-it +
-      a strict sanitizer); KaTeX server-side rendering for `$…$` / `$$…$$`; TeX
-      errors are validation errors.
-- [ ] [build] Stage 5 emit: `graph.json` (`schema_version` 1.0.0,
+- [x] [build] Stage 3 render: Markdown → safe HTML (marked with raw HTML escaped
+      by construction and dangerous link schemes neutralized — stricter than
+      after-the-fact sanitization); KaTeX server-side rendering for `$…$` /
+      `$$…$$`; TeX errors are validation errors.
+- [x] [build] Stage 5 emit: `graph.json` (`schema_version` 1.0.0,
       `generated_from` git SHA, sorted keys, no timestamps); MiniSearch index
-      build with alias-weighted fields; `--check` mode (stages 1–2 only);
-      `--out DIR`; exit codes suitable for CI.
-- [ ] [build] Determinism test (double-build byte equality) and fixture content
-      trees: one minimal-valid, one exercising every validation rule.
-- [ ] [infra] Wire real `atlas-build --check` into `ci.yml`.
-- [ ] [build] `docs/graph-json.md`: the public shape, versioning policy
+      build with alias-weighted fields; `--check` mode (validation only, no
+      files written — includes link/render rules); `--out DIR`; exit codes
+      suitable for CI.
+- [x] [build] Determinism test (double-build byte equality) and fixture content
+      tree (minimal-valid), plus per-rule programmatic cases — every validation
+      rule has a triggering test (51 tests).
+- [x] [infra] Wire real `atlas-build --check` into `ci.yml` (`npm run check`
+      already invokes it; it now runs the full validation pipeline).
+- [x] [build] `docs/graph-json.md`: the public shape, versioning policy
       (semver; additive = minor), and a consumption example (a few lines of
       Python/notebook code).
 

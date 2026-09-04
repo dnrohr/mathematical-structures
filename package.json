@@ -16,6 +16,7 @@
     "format:check": "prettier --check .",
     "test": "npm run test --workspaces --if-present",
     "atlas": "npm run -w build atlas --",
+    "build": "npm run -w build atlas",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run test && npm run -w build atlas -- --check"
   },
   "devDependencies": {

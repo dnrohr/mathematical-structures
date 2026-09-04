@@ -1,0 +1,5 @@
+- id: coupled-variables
+  symptom: Many coupled linear variables
+  moves: [eigenvalues]
+  mature_fields: [control]
+  worked_example: markov-chains

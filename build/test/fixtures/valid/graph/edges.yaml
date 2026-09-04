@@ -1,0 +1,17 @@
+- from: kalman-filter
+  to: markov-chains
+  type: IS-A
+  strength: special-case
+  context: fixture claim, not mathematics
+
+- from: eigenvalues
+  to: markov-chains
+  type: FIELD-DIALECT-OF
+  strength: strong-analogy
+
+- from: eigenvalues
+  to: kalman-filter
+  type: POSSIBLE-MISSING-MIGRATION
+  strength: speculative
+  status: open-candidate
+  notes: fixture hypothesis
