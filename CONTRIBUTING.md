@@ -131,9 +131,11 @@ turns accepted proposals into content.
 - Every merge to `main` deploys the site to GitHub Pages (`deploy.yml`) and
   is, in that sense, a release; the site footer carries the exact commit.
 - Tags mark citable milestones: `vMAJOR.MINOR.PATCH` on `main`
-  (`git tag -a v1.x.y -m "…" && git push origin v1.x.y`). Tag when the
-  dataset or app reaches a state worth citing — a tag is a name for a
-  deploy that already happened, not a separate pipeline.
+  (`git tag -a v1.x.y -m "…" && git push origin v1.x.y`, or run the
+  **Release** workflow from the Actions tab, which creates the tag for
+  credentials that can't push tags directly). Tag when the dataset or app
+  reaches a state worth citing — a tag is a name for a deploy that already
+  happened, not a separate pipeline.
 - `graph.json` consumers version against its own `schema_version`
   (see [docs/graph-json.md](docs/graph-json.md)), which is independent of
   repository tags: the 1.x artifact shape is stable, additive changes bump
