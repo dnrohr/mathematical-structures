@@ -31,7 +31,13 @@ export function createSearchBox(
     'aria-controls': listId,
     'aria-autocomplete': 'list',
   });
-  const list = h('ul', { class: 'search-results', id: listId, role: 'listbox', hidden: true });
+  const list = h('ul', {
+    class: 'search-results',
+    id: listId,
+    role: 'listbox',
+    'aria-label': 'Search results',
+    hidden: true,
+  });
   const box = h('div', { class: `search search-${opts.variant}`, role: 'search' }, input, list);
 
   function close(): void {
@@ -140,7 +146,10 @@ export function installSearchHotkey(): void {
     const target = e.target as HTMLElement | null;
     if (
       target &&
-      (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)
+      (target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.tagName === 'SELECT' ||
+        target.isContentEditable)
     )
       return;
     e.preventDefault();

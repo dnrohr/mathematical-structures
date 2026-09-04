@@ -1,0 +1,44 @@
+name: Edge proposal
+description: Propose a typed relationship claim between two existing concepts.
+title: 'edge: <from> —TYPE→ <to>'
+labels: [content, edge-proposal]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        An edge is a claim, and it is reviewed as one — read it aloud with
+        its qualifiers. Strengths are the map's epistemic core: analogies
+        must say they are analogies.
+  - type: input
+    id: endpoints
+    attributes:
+      label: The claim, read aloud
+      description: e.g. "a linear-Gaussian SSM is a state-space model (theorem, exact)"
+    validations:
+      required: true
+  - type: input
+    id: type
+    attributes:
+      label: Edge type
+      description: From `graph/schema.yaml` edge_types (e.g. IS-A, GOVERNS, ANALOGOUS-TO).
+    validations:
+      required: true
+  - type: dropdown
+    id: strength
+    attributes:
+      label: Strength
+      options: [identity, theorem, special-case, strong-analogy, heuristic-analogy]
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and caveats
+      description: >
+        The conditions under which the claim holds, and anything that keeps
+        it honest (these become the edge's `context`/`notes`).
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: References or a sketch of the argument (textbook result, derivation, survey…).

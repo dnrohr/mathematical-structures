@@ -1,0 +1,39 @@
+name: Research-gap proposal
+description: Propose a candidate missing migration — mature machinery in one field with no located counterpart in another.
+title: 'gap: <source concept> → <target area>'
+labels: [content, gap-proposal]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Gap edges are hypotheses with a verification workflow
+        (docs/research-gap-workflow.md), never findings. Accepted proposals
+        become `POSSIBLE-MISSING-MIGRATION` edges at `open-candidate`.
+  - type: input
+    id: claim
+    attributes:
+      label: The hypothesis
+      description: e.g. "classical stability margins may be missing from biological regulation"
+    validations:
+      required: true
+  - type: textarea
+    id: structure
+    attributes:
+      label: The structural analogy
+      description: >
+        Why this is a shared structure (operators, loop shape, assumptions)
+        and not just a shared metaphor.
+    validations:
+      required: true
+  - type: textarea
+    id: dialect-check
+    attributes:
+      label: Dialect check already done
+      description: >
+        Which target-field vocabularies you already searched under (the
+        most common resolution is "it exists under another name").
+  - type: textarea
+    id: assumptions
+    attributes:
+      label: Assumptions that might fail
+      description: What the source machinery assumes, and which of those the target system may violate.

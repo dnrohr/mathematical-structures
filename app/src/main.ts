@@ -59,10 +59,16 @@ async function boot(): Promise<void> {
   }
 
   const shell = createShell(root, result.atlas);
+  let firstRoute = true;
   startRouter((route) => {
     const view = viewFor(result.atlas, route);
     shell.main.replaceChildren(view.el);
     shell.setTitle(view.title);
+    // In-app navigation moves focus to the new view (screen readers
+    // announce it; Tab starts at its top). Initial load keeps the
+    // browser's default focus.
+    if (firstRoute) firstRoute = false;
+    else shell.main.focus({ preventScroll: true });
     window.scrollTo(0, 0);
     view.onMount?.();
   });

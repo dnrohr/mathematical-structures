@@ -23,6 +23,11 @@ unrelated to the content vocabulary in `graph/schema.yaml`):
   **major** version and come with a migration note in this file.
 - Consumers should accept any artifact whose major version they understand.
 
+**Stability: as of the repository's `v1.0.0` tag, the 1.x shape documented
+here is declared stable.** Keys documented below will not be renamed,
+removed, or change meaning within 1.x; anything new arrives as an additive
+minor bump. Build tooling against it freely.
+
 Output is deterministic: the same content tree produces byte-identical
 artifacts (object keys sorted, no timestamps), so the file is diffable and
 citable. `generated_from` carries the git commit SHA of the content tree.
