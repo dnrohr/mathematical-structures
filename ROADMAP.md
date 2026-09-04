@@ -28,6 +28,12 @@ M0 foundations
                               │        ├── M4 graph views + symptom front door
                               │        └── M5 researcher tools (needs M1 metrics)
                               └──────────────► M6 v1 polish & launch
+
+M6 (v1 shipped)
+ └── M7 applications: the third front door
+      ├── M8 evidence & citations    (M7 creates the citation pressure)
+      ├── M9 learning paths          (M7 provides the spines)
+      └── M10 propose-an-edge form   (M7 proves the contribution pattern)
 ```
 
 ---
@@ -435,25 +441,182 @@ enough to invite contributors.
 
 ---
 
-## Post-v1 direction (unordered backlog; spec §8 owns the rationale)
+## M7 — Applications: the third front door
 
-- Propose-an-edge static form → prefilled GitHub issue/PR (§8.1).
-- `references.bib` + citation rendering; evidence keys start being filled (§8.2).
-- Learning paths: `paths/*.yaml` content type + guided-walk UI (§8.3).
+**Goal:** the dormant `application` node type earns its keep — a curated batch of
+domain problems, each showing several structures converging on one real system,
+discoverable from the landing page.
+
+**Exit criteria**
+
+- [ ] 4–6 new `application` nodes, every one `established` and connected to ≥ 2
+      distinct structure nodes by APPLIED-IN edges with honest strengths and
+      per-edge context (spec §8.8's bar; `biological-regulation` — v1's only
+      application node — is the template).
+- [ ] Application journey passes: search a domain name ("PageRank") → the
+      application page with its structure sentences → a connected structure page
+      ("eigenvalues") in ≤ 2 clicks, proven by a Playwright test like the M3/M4
+      journeys.
+- [ ] The ≥ 2-structures bar is a validator rule, not a convention: an
+      `application` node with fewer than two distinct structure neighbors over
+      APPLIED-IN / MIGRATED-TO edges warns (`biological-regulation` passes via
+      its three MIGRATED-TO edges, so the 0-warning state holds).
+
+**Tasks**
+
+- [ ] [curation] Application inventory pass (mirrors M2's): fix the batch and
+      slugs in a tracking issue before writing. Starting candidates, each
+      already hooked into the graph: SAR / computational imaging
+      (fourier-analysis, radon-transform, greens-function, complex-analysis —
+      the Fourier slice theorem is already radon-transform's centerpiece);
+      PageRank / search ranking (markov-chains, whose "random surfer / PageRank
+      dynamics" alias exists, eigenvalues, graph-laplacian); vascular branching
+      / allometry (dimensional-analysis via its "allometric scaling arguments"
+      alias, variational-principles via Murray's law, plus the open allometry
+      gap edge); profit maximization / resource allocation (optimization,
+      duality; the economics field id exists). Rejected candidates demote to
+      `canonical_examples` on the structure pages — the tomography precedent
+      from #3's merge log.
+- [ ] [curation] Write the nodes and APPLIED-IN edges. Strength discipline as
+      always: CT reconstruction _is_ inverse Radon (theorem); Murray's law is a
+      variational model of a messy system (strong-analogy at best). Where a
+      field names the problem itself differently, aliases carry it.
+- [ ] [data] Symptom pass: point a symptom's `worked_example` at an application
+      node where it is genuinely the best worked example; add a new symptom
+      only where an application exposes a recognition pattern the index lacks.
+      New `fields` ids only when the validator demands one.
+- [ ] [build] `application/underconnected` warn rule per the exit criterion,
+      with a failing fixture (§4.2 practice: every rule has a triggering test).
+- [ ] [app] `#/applications` index page (parallel to `#/moves`, reusing
+      `views/common/` fragments); the landing page gains applications as the
+      third entry point alongside symptoms and search.
+- [ ] [app] Playwright: the application journey + index render, both themes.
+- [ ] [curation] Metrics re-read after the batch: applications surfacing as
+      bridges in `#/metrics` is the thesis measured, but verify no overclaimed
+      strength manufactured it (theorem-grade APPLIED-IN edges join the trusted
+      subgraph); feed anything suspicious back into strengths or edge context.
+
+---
+
+## M8 — Evidence and citations
+
+**Goal:** the reserved `evidence` field becomes real — the map's checkable claims
+carry literature, starting where M7 created the pressure.
+
+**Exit criteria**
+
+- [ ] `graph/references.bib` exists; an `evidence` key that resolves to no entry
+      fails the build; citations render wherever the owning edge renders.
+- [ ] Every nontrivial M7 application claim carries ≥ 1 citation, and the M5
+      dogfood edge's literature trail (stability margins → biological
+      regulation) lives in `evidence` keys, not only in notes prose.
+- [ ] `graph.json` gains references additively (minor bump, documented in
+      `docs/graph-json.md`).
+
+**Tasks**
+
+- [ ] [build] Stage-1 reader for `graph/references.bib`; validation: unknown
+      `evidence` key = error, unused reference = info (a curation hint, like
+      candidate edges); deterministic emit of resolved references into
+      `graph.json`.
+- [ ] [app] Citation affordance on edge sentences (compact marker expanding to
+      the full reference) and a per-page "Sources" list aggregating the works
+      cited by the node's edges; `#/questions` shows the literature trail on
+      checked gap edges.
+- [ ] [curation] Backfill pass, strongest claims first: the M7 batch, the three
+      MIGRATED-TO edges, and the converted M5 gap edge.
+- [ ] [infra] CONTRIBUTING: how to add a reference and cite it from an edge;
+      the edge-proposal issue form gains an optional evidence field.
+
+---
+
+## M9 — Learning paths
+
+**Goal:** guided walks through the graph exist as validated content with a
+step-through UI; M7's applications are the natural spines.
+
+**Exit criteria**
+
+- [ ] `paths/*.yaml` is a compiled, validated content type: a step slug that
+      doesn't exist fails the build; consecutive steps with no typed edge
+      between them must carry a bridging note saying why the walk jumps.
+- [ ] ≥ 2 walks shipped — one spined on an M7 application ("the SAR tour"), one
+      on a structure ("the eigenvalue tour", spec §8.3's own example) — each
+      reachable from a walks index and from every member concept's page.
+- [ ] Walk position is shareable by URL and round-trips, Playwright-proven like
+      the M4 view states.
+
+**Tasks**
+
+- [ ] [data] Path file shape (`id`, `title`, `summary`, `steps: [{slug, note}]`)
+      recorded in ARCHITECTURE.md §3 alongside the other content types before
+      code exists — the reserved `paths/` directory finally gets its contract.
+- [ ] [build] Stage-1 reader + the validation rules above; walks emitted into
+      `graph.json` (additive minor, documented).
+- [ ] [app] Walk view (`#/walk/<id>`: current step, prev/next, position in the
+      URL) reusing the path graph preset for the chain; walks index (`#/walks`);
+      "appears in walks" backlinks on concept pages.
+- [ ] [curation] Author 2–3 walks: the SAR tour, the eigenvalue tour, "from
+      random walk to renormalization" (spec §8.3's examples plus one
+      application spine).
+- [ ] [app] Playwright: walk round-trip + concept-page backlink.
+
+---
+
+## M10 — Propose-an-edge: the contribution front door
+
+**Goal:** a reader can propose an edge without knowing the repository layout, and
+the validator remains the only gate.
+
+**Exit criteria**
+
+- [ ] From any concept page and from `#/questions`, "propose an edge" reaches a
+      prefilled GitHub issue carrying the claim in machine-usable form
+      (from/to/type/strength/context) — still no server, no accounts (spec §6).
+- [ ] One proposal has round-tripped end to end: filed through the form, landed
+      as an ordinary validated PR (a dogfood pass, like M5's).
+
+**Tasks**
+
+- [ ] [app] Proposal view (`#/propose?from=<slug>`): pickers constrained to the
+      schema vocabularies already embedded in `graph.json`, deep-linking to the
+      prefilled issue form (the ARCHITECTURE.md §9 mechanism).
+- [ ] [infra] Tighten the M6 edge-proposal issue form so the prefill
+      round-trips as a copy-pasteable `edges.yaml` block.
+- [ ] [app] Entry links: concept-page edge lists and `#/questions` candidate
+      edges get "propose this" affordances.
+- [ ] [curation] Dogfood: file one proposal through the form and land it.
+
+---
+
+## Later backlog (unscheduled; spec §8 owns the rationale)
+
 - LLM-assisted authoring experiments — drafting node files in house style,
   free-text symptom matching, dialect-aware gap literature search — always landing
   as ordinary validated PRs (§8.4).
 - `atlas-build --content DIR` hardening for forked atlases (§8.5).
 - Scale work (per-node JSON, pagination) when node count approaches ~100 (§8.6).
 - Additional export formats on demand (§8.7).
-- Content expansion beyond v1 set, guided by the metrics view: fill structural
-  holes (low-span hubs, missing dialect rows) rather than chasing coverage.
+- Content expansion beyond the v1 set, guided by the metrics view: fill
+  structural holes (low-span hubs, missing dialect rows) rather than chasing
+  coverage — standing work that runs alongside the milestones above, not after
+  them.
+
+## Standing curation (no milestone; tracked in #3)
+
+- Peer-review of `graph/edges.yaml` as a set — the one unchecked M2 task; owner
+  work, and worth doing before M7 grows the edge population.
+- Triage of the 53 info-level candidate edges into typed edges or deliberate
+  non-edges; M7's wiki-links will add to this queue by design.
+- Possible extraction of `wavelets` from `integral-transforms` once there is
+  enough content.
 
 ## Risks worth naming now
 
 | Risk | Mitigation baked into the plan |
 | --- | --- |
 | Edge curation quality drifts (analogies overclaimed) | strengths are schema-enforced; epistemic validator rules; M2's read-every-claim review; M5 dogfood pass |
+| Application nodes drift toward encyclopedia breadth (M7) | the ≥ 2-structures bar is a validator rule; rejects demote to canonical examples; the batch is fixed in a tracking issue before writing |
 | Content extraction stalls (it's the real work) | M2 runs beside M1; template-setting five nodes first; stubs are legal and visible |
 | Graph views balloon in scope | one shared renderer, three presets, "no full graph" rule, no camera controls in v1 |
 | Solo-maintainer bus factor | everything is plain files + one boring build; CONTRIBUTING and validator make drive-by PRs safe |

@@ -291,6 +291,17 @@ Decisions above are shaped so the following require no architectural rework:
    rendering costs bounded as the dataset grows 10×.
 7. **Export.** `graph.json` is already the export; add GraphML/CSV emitters in the
    build layer if network-analysis users ask.
+8. **Applications as first-class content.** The ontology reserves the
+   `application` node type and the APPLIED-IN edge type from v1; exercising them
+   means curated batches of domain problems — tomographic imaging, search
+   ranking, physiological scaling, resource allocation — where several
+   structures materially converge on one real system. The bar that keeps this
+   from drifting into an encyclopedia: an application earns a node only when at
+   least two structures meet in it and that convergence is the story; a
+   one-structure application remains a canonical example on the structure's
+   page. Applications complement the symptom index by running the demonstration
+   the other way — from a real system to the structures it lights up — and they
+   are the natural spines for learning paths (§8.3).
 
 ## 9. Non-goals for v1
 
