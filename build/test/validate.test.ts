@@ -163,14 +163,18 @@ describe('edge rules', () => {
     );
   });
 
-  it('edge/directionality override', () => {
+  it('edge/directionality: per-edge overrides are rejected outright', () => {
+    // Symmetry comes from the edge type; overrides had no valid display
+    // phrasing and made duplicate detection order-dependent (PR #2 review).
     expect(rulesFor(NODES_AB, [edge({ ...GOOD_EDGE, directionality: 'both' })])).toContain(
       'error:edge/directionality',
     );
-    expect(rulesFor(NODES_AB, [edge({ ...GOOD_EDGE, directionality: 'symmetric' })])).toEqual([]);
+    expect(rulesFor(NODES_AB, [edge({ ...GOOD_EDGE, directionality: 'symmetric' })])).toContain(
+      'error:edge/directionality',
+    );
     const sym = { from: 'a', to: 'b', type: 'FIELD-DIALECT-OF', strength: 'identity' };
     expect(rulesFor(NODES_AB, [edge({ ...sym, directionality: 'symmetric' })])).toContain(
-      'warn:edge/directionality',
+      'error:edge/directionality',
     );
   });
 

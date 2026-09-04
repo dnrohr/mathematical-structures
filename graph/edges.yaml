@@ -8,8 +8,9 @@
 #     type: <edge type id>    # from graph/schema.yaml edge_types
 #     strength: <strength id> # from graph/schema.yaml strengths
 #     context: <free text>    # field or mathematical conditions (optional)
-#     directionality: symmetric   # only to override a directed default — rare
 #     status: <gap status id> # REQUIRED for POSSIBLE-MISSING-MIGRATION edges
+#                             # (symmetry comes from the edge type; there is
+#                             # no per-edge directionality override)
 #     evidence: []            # reserved: citation keys (SPECIFICATION.md §8.2)
 #     notes: <free text>      # caveats keeping analogies honest (optional)
 

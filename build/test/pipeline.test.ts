@@ -84,6 +84,27 @@ describe('link-stage rules', () => {
   });
 });
 
+describe('batch error reporting', () => {
+  it('reports edge, TeX, and wiki-link errors together in one run', () => {
+    const dir = copyValidTree();
+    writeFileSync(
+      join(dir, 'concepts', 'kalman-filter.md'),
+      '---\ncanonical_name: Kalman filter\nnode_type: move\nstatus: stub\nsummary: x\n---\n' +
+        'Bad math $\\frac{$ and a bad link [[ghost]].\n',
+    );
+    const edgesPath = join(dir, 'graph', 'edges.yaml');
+    writeFileSync(
+      edgesPath,
+      readFileSync(edgesPath, 'utf8') +
+        '\n- from: eigenvalues\n  to: ghost-node\n  type: IS-A\n  strength: theorem\n',
+    );
+    const rules = runPipeline(dir).issues.map((i) => i.rule);
+    expect(rules).toContain('edge/unknown-endpoint');
+    expect(rules).toContain('render/tex');
+    expect(rules).toContain('link/unknown-target');
+  });
+});
+
 describe('parse-stage failures', () => {
   it('rejects a concept without front-matter and reports in batch', () => {
     const dir = copyValidTree();

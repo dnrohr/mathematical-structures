@@ -169,9 +169,8 @@ node files — a relationship claim belongs to both endpoints and to neither fil
 
 - from: impulse-response
   to: greens-function
-  type: FIELD-DIALECT-OF
-  strength: identity
-  directionality: symmetric     # default: directed
+  type: FIELD-DIALECT-OF      # a symmetric type; symmetry always comes
+  strength: identity          # from the edge type, never per-edge
 ```
 
 `type` must exist in `schema.yaml`; unknown types fail the build. Symmetric types

@@ -87,7 +87,7 @@ citable. `generated_from` carries the git commit SHA of the content tree.
   "to": "state-space-model",
   "type": "IS-A",                 // -> schema.edge_types
   "strength": "theorem",          // -> schema.strengths
-  "symmetric": false,             // effective symmetry (type or per-edge override)
+  "symmetric": false,             // from the edge type's directionality
   "context"?: "exact",
   "status"?: "open-candidate",    // gap workflow state; present on
                                   // POSSIBLE-MISSING-MIGRATION / speculative edges

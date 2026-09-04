@@ -231,6 +231,19 @@ function validateEdge(
     symmetric = v.edgeTypeSymmetric.get(type);
   }
 
+  // Symmetry comes from the edge type alone. A per-edge override was
+  // considered and rejected: a directed type has no symmetric display
+  // phrase (its forward phrasing would render on both endpoints) and
+  // overrides make reversed-duplicate detection order-dependent.
+  if (raw.directionality !== undefined) {
+    r.add(
+      'error',
+      'edge/directionality',
+      where,
+      'per-edge "directionality" is not supported; symmetry comes from the edge type — use a symmetric type instead',
+    );
+  }
+
   const strength = raw.strength;
   if (!isNonEmptyString(strength) || !v.strengthRank.has(strength)) {
     r.add(
@@ -239,22 +252,6 @@ function validateEdge(
       where,
       `strength "${String(strength)}" is not in schema.yaml`,
     );
-  }
-
-  // Directionality override: only "symmetric", only meaningful on directed types.
-  if (raw.directionality !== undefined) {
-    if (raw.directionality !== 'symmetric') {
-      r.add(
-        'error',
-        'edge/directionality',
-        where,
-        `directionality may only be "symmetric" (got "${String(raw.directionality)}")`,
-      );
-    } else if (symmetric === true) {
-      r.add('warn', 'edge/directionality', where, 'redundant "symmetric" on a symmetric type');
-    } else {
-      symmetric = true;
-    }
   }
 
   // Epistemic rules (ARCHITECTURE.md §4.2).

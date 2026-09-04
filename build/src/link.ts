@@ -17,7 +17,7 @@ import {
   type NodeConnection,
   type SymptomRecord,
 } from './model.js';
-import { createConceptRenderer } from './render.js';
+import type { RenderedBodies } from './render.js';
 import type { AtlasSchema, EdgeType } from './schema.js';
 
 export interface LinkedGraph {
@@ -40,24 +40,11 @@ export function linkGraph(
   concepts: ConceptRecord[],
   edgeRecords: EdgeRecord[],
   symptomRecords: SymptomRecord[],
+  rendered: RenderedBodies,
 ): LinkedGraph {
   const issues: Issue[] = [];
   const edgeTypesById = new Map<string, EdgeType>(schema.edge_types.map((t) => [t.id, t]));
-
-  const nodeNames = new Map<string, string>(
-    concepts.map((c) => [c.slug, String(c.front.canonical_name ?? c.slug)]),
-  );
-
-  // Render every body; harvest wiki-links.
-  const renderer = createConceptRenderer(nodeNames);
-  const htmlBySlug = new Map<string, string>();
-  const outLinks = new Map<string, string[]>();
-  for (const c of concepts) {
-    const { html, wikiLinks, issues: renderIssues } = renderer.render(c.body, c.file);
-    issues.push(...renderIssues);
-    htmlBySlug.set(c.slug, html);
-    outLinks.set(c.slug, wikiLinks);
-  }
+  const { htmlBySlug, outLinks } = rendered;
 
   // Backlinks: who links to me (unique, sorted).
   const backlinks = new Map<string, Set<string>>();
@@ -70,7 +57,7 @@ export function linkGraph(
     }
   }
 
-  // Edges: typed, with effective symmetry resolved.
+  // Edges: typed; symmetry comes from the edge type alone.
   const edges: GraphEdge[] = edgeRecords.map((e) => {
     const type = String(e.raw.type);
     const def = edgeTypesById.get(type)!;
@@ -79,7 +66,7 @@ export function linkGraph(
       to: String(e.raw.to),
       type,
       strength: String(e.raw.strength),
-      symmetric: def.directionality === 'symmetric' || e.raw.directionality === 'symmetric',
+      symmetric: def.directionality === 'symmetric',
       context: optionalString(e.raw.context),
       status: optionalString(e.raw.status),
       notes: optionalString(e.raw.notes),

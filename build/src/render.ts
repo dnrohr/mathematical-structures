@@ -10,7 +10,7 @@
  */
 import katex from 'katex';
 import { Marked, type Tokens } from 'marked';
-import type { Issue } from './model.js';
+import type { ConceptRecord, Issue } from './model.js';
 import { SLUG } from './model.js';
 
 export interface RenderResult {
@@ -149,4 +149,33 @@ export function createConceptRenderer(nodeNames: Map<string, string>) {
       return { html: html.trim(), wikiLinks, issues };
     },
   };
+}
+
+export interface RenderedBodies {
+  htmlBySlug: Map<string, string>;
+  /** Wiki-linked slugs per source slug, in order of appearance. */
+  outLinks: Map<string, string[]>;
+  issues: Issue[];
+}
+
+/**
+ * Render every concept body. Runs independently of edge/symptom validation
+ * so TeX and wiki-link errors are reported in the same batch as everything
+ * else (a validation failure elsewhere must not hide render errors).
+ */
+export function renderAllBodies(concepts: ConceptRecord[]): RenderedBodies {
+  const nodeNames = new Map<string, string>(
+    concepts.map((c) => [c.slug, String(c.front.canonical_name ?? c.slug)]),
+  );
+  const renderer = createConceptRenderer(nodeNames);
+  const htmlBySlug = new Map<string, string>();
+  const outLinks = new Map<string, string[]>();
+  const issues: Issue[] = [];
+  for (const c of concepts) {
+    const result = renderer.render(c.body, c.file);
+    issues.push(...result.issues);
+    htmlBySlug.set(c.slug, result.html);
+    outLinks.set(c.slug, result.wikiLinks);
+  }
+  return { htmlBySlug, outLinks, issues };
 }
