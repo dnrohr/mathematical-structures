@@ -1,7 +1,7 @@
 # graph/edges.yaml — the typed edge list of the Structure Atlas.
 #
 # One entry per relationship claim; reviewable as a set (ARCHITECTURE.md §3.3).
-# Populated during M2 content extraction (ROADMAP.md). Entry shape:
+# Entry shape:
 #
 #   - from: <slug>            # source node (concepts/<slug>.md)
 #     to: <slug>              # target node
@@ -13,5 +13,821 @@
 #                             # no per-edge directionality override)
 #     evidence: []            # reserved: citation keys (SPECIFICATION.md §8.2)
 #     notes: <free text>      # caveats keeping analogies honest (optional)
+#
+# Extracted from notebook v0 (docs/notebook-v0.md) during M2. The §34
+# translation chains are all present as edge paths, with one deliberate
+# exception: chain 2 (impulse response ↔ Green's function ↔ propagator) is
+# one mathematical object under three names, so it is modeled as dialect
+# aliases on the greens-function node rather than as edges between nodes.
 
-[]
+# ---------------------------------------------------------------------------
+# Spectral core: eigenvalues as the map's busiest hub (§12, §34 chain 1)
+# ---------------------------------------------------------------------------
+
+- from: harmonic-oscillator
+  to: eigenvalues
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    Coupled oscillator networks decouple into normal modes via the
+    generalized eigenproblem; each mode is an independent oscillator.
+
+- from: markov-chains
+  to: eigenvalues
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    Transition-matrix eigenstructure: the stationary mode sits at eigenvalue
+    1, subdominant eigenvalues are the slow modes.
+
+- from: state-space-model
+  to: eigenvalues
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    Modes of linear state dynamics; growth, decay, and oscillation read off
+    the state-matrix spectrum.
+
+- from: linearization
+  to: eigenvalues
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    The Jacobian's eigenstructure classifies local growth, decay, and
+    oscillation — the series expansion → linearization → Jacobian →
+    eigenvalues → stability chain (notebook §5).
+
+- from: graph-laplacian
+  to: eigenvalues
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    Spectral graph theory: zero-eigenvalue multiplicity counts components,
+    the Fiedler pair exposes partitions, the spectrum sets diffusion modes.
+
+- from: eigenvalues
+  to: stability
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    Local stability of linear(ized) dynamics is the sign pattern of the
+    eigenvalue real parts; imaginary parts add oscillation.
+
+- from: eigenvalues
+  to: markov-chains
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    The spectral gap of the transition matrix sets the mixing / relaxation
+    rate — how fast memory of the initial state disappears.
+
+- from: eigenvalues
+  to: complex-analysis
+  type: SAME-SKELETON
+  strength: strong-analogy
+  context: >-
+    Transfer-function poles play the role of state-matrix eigenvalues in
+    the complex-frequency picture.
+  notes: >-
+    The identification is exact only for minimal realizations: hidden
+    pole/zero cancellations break the pole–eigenvalue correspondence, so
+    the map records the assumption instead of silently identifying the two.
+
+- from: eigenvalues
+  to: change-of-representation
+  type: IS-A
+  strength: special-case
+  context: >-
+    Diagonalization is a change of basis chosen so a coupled linear action
+    becomes independent scalar actions.
+
+- from: fourier-analysis
+  to: eigenvalues
+  type: IS-A
+  strength: special-case
+  context: >-
+    Complex exponentials are eigenfunctions of translation and
+    differentiation; Fourier analysis is spectral decomposition for
+    translation-invariant operators.
+
+# ---------------------------------------------------------------------------
+# Approximation: series expansion, linearization, and their licenses (§3, §24)
+# ---------------------------------------------------------------------------
+
+- from: linearization
+  to: series-expansion
+  type: IS-A
+  strength: special-case
+  context: First-order truncation of the Taylor expansion used as a move.
+
+- from: series-expansion
+  to: smoothness
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    Existence of the derivatives kept in the expansion; analyticity for
+    convergence of the full series (asymptotic series may diverge usefully).
+
+- from: linearization
+  to: smoothness
+  type: ASSUMES
+  strength: theorem
+  context: Differentiability at the reference point.
+
+- from: linearization
+  to: bifurcation
+  type: FAILS-WHEN
+  strength: theorem
+  context: >-
+    Non-hyperbolic equilibria: eigenvalues on the imaginary axis silence
+    the linear verdict, and higher-order terms decide — exactly where
+    qualitative change happens.
+
+- from: linearization
+  to: phase-space
+  type: APPROXIMATES
+  strength: theorem
+  context: >-
+    The linearized flow reproduces the nonlinear local phase portrait at
+    hyperbolic fixed points (Hartman–Grobman).
+
+- from: harmonic-oscillator
+  to: phase-space
+  type: APPROXIMATES
+  strength: theorem
+  context: >-
+    Near a stable equilibrium of a smooth potential the leading nonconstant
+    term is quadratic, so the local dynamics are harmonic.
+  notes: >-
+    Valid for small displacements; anharmonic terms, mode coupling, and
+    amplitude-dependent frequency enter beyond the quadratic neighborhood.
+
+- from: complex-analysis
+  to: smoothness
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    Analyticity — local representation by a convergent power series — is
+    the strongest rung of the regularity ladder; the rigidity does the work.
+
+# ---------------------------------------------------------------------------
+# Scaling and similarity (§11, §14, §34 chain 5) — including the deliberate
+# non-identity between unit invariance and scale change
+# ---------------------------------------------------------------------------
+
+- from: nondimensionalization
+  to: dimensional-analysis
+  type: IS-A
+  strength: special-case
+  context: >-
+    The Buckingham-Pi reduction enacted as a rewriting move: rescale by
+    characteristic scales until only dimensionless groups remain.
+
+- from: nondimensionalization
+  to: change-of-representation
+  type: IS-A
+  strength: special-case
+  context: >-
+    Nothing about the system changes, only the coordinates — chosen so
+    small parameters and dominant balances become visible.
+
+- from: dimensional-analysis
+  to: renormalization
+  type: ANALOGOUS-TO
+  strength: heuristic-analogy
+  context: Both exploit invariance under a change of description scale.
+  notes: >-
+    Related through invariance but NOT identical (notebook §14): a unit
+    change alters the description without changing the physical scale;
+    renormalization changes the scale at which the system is represented.
+    Anomalous dimensions — exponents disagreeing with naive dimensional
+    counting — mark the difference.
+
+- from: large-number-limits
+  to: renormalization
+  type: ANALOGOUS-TO
+  strength: strong-analogy
+  context: >-
+    Aggregation as the simplest coarse-graining: the CLT forgets everything
+    about summands except mean and variance — universality in miniature.
+  notes: >-
+    The renormalization-group framework generalizes the pattern; not every
+    large-number limit has a useful RG description.
+
+# ---------------------------------------------------------------------------
+# Probability, inference, and the nomenclature cluster (§8, §13, §34 chain 3).
+# The §8 correction is load-bearing here: the MODEL containments are
+# lgssm ⊂ ssm and lgssm ⊂ (continuous-state) hmm, while the Kalman filter
+# hangs off the model class by SOLVED-BY — never by IS-A.
+# ---------------------------------------------------------------------------
+
+- from: linear-gaussian-ssm
+  to: state-space-model
+  type: IS-A
+  strength: special-case
+  context: Linear dynamics and observations with Gaussian noise; exact containment.
+
+- from: linear-gaussian-ssm
+  to: hidden-markov-model
+  type: IS-A
+  strength: special-case
+  context: Read as a continuous-state hidden Markov model.
+  notes: >-
+    The notebook §8 correction: a Kalman filter is NOT itself a subset of
+    an HMM. The model is the special case; the filter is that model's exact
+    inference algorithm (see the SOLVED-BY edge).
+
+- from: linear-gaussian-ssm
+  to: kalman-filter
+  type: SOLVED-BY
+  strength: theorem
+  context: >-
+    Exact recursive Bayesian filtering; Rauch–Tung–Striebel for smoothing.
+    Gaussians closed under linear maps and conditioning make the recursion
+    closed-form.
+
+- from: state-space-model
+  to: hidden-markov-model
+  type: FIELD-DIALECT-OF
+  strength: strong-analogy
+  context: >-
+    One generative skeleton — hidden Markov state plus conditionally
+    independent emissions — under control/estimation vocabulary on one side
+    and probabilistic-modeling vocabulary on the other (§34 chain 3, with
+    "latent dynamical model" as the statistics/ML alias).
+  notes: >-
+    Not identity: common narrow usage reserves "HMM" for discrete hidden
+    states, and the two literatures differ in emphasized state spaces and
+    noise models. The broad (continuous-state) reading coincides.
+
+- from: hidden-markov-model
+  to: markov-chains
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    The hidden layer is a Markov chain: given the present state, the future
+    is independent of the past.
+
+- from: state-space-model
+  to: bayes-rule
+  type: SOLVED-BY
+  strength: theorem
+  context: >-
+    Recursive Bayesian filtering/smoothing is the exact solution in
+    principle; closed forms exist only in special cases (Kalman for
+    linear-Gaussian, forward–backward for discrete HMMs) — elsewhere the
+    integrals are approximated (EKF/UKF, particle methods).
+
+- from: bayes-rule
+  to: kalman-filter
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The measurement update is Bayes' rule specialized to Gaussians; the
+    innovation weighs prior against measurement confidence.
+
+- from: markov-chains
+  to: bayes-rule
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    MCMC computes posteriors by engineering a chain whose stationary
+    distribution is the target.
+
+- from: shannon-entropy
+  to: bayes-rule
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Maximum-entropy methods choose the least-committed distribution under
+    constraints, then conditioning updates it as evidence arrives.
+  notes: >-
+    A modeling principle, not a physical law: state the constraints and
+    assumptions rather than invoking max-ent universally (notebook §31).
+
+- from: bayes-rule
+  to: optimization
+  type: REPRESENTED-BY
+  strength: strong-analogy
+  context: >-
+    MAP estimation and variational inference recast posterior computation
+    as optimization over parameters or distributions.
+
+# ---------------------------------------------------------------------------
+# Random walks, diffusion, and large-number limits (§23, §5)
+# ---------------------------------------------------------------------------
+
+- from: diffusion
+  to: markov-chains
+  type: CONTINUUM-LIMIT-OF
+  strength: theorem
+  context: >-
+    The symmetric random walk under diffusive scaling (many, small steps)
+    converges to the diffusion equation; Brownian motion is the limit
+    process.
+
+- from: diffusion
+  to: conservation-laws
+  type: IS-A
+  strength: special-case
+  context: >-
+    The continuity equation with gradient (Fickian) flux J = −D∇ρ.
+
+- from: diffusion
+  to: greens-function
+  type: SOLVED-BY
+  strength: theorem
+  context: >-
+    The heat kernel — diffusion's point-source response — assembles general
+    solutions by superposition; it is also Brownian motion's transition
+    density.
+
+- from: diffusion
+  to: fourier-analysis
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    Separation into spatial modes: each Fourier mode decays independently
+    at a rate proportional to its squared frequency.
+
+- from: graph-laplacian
+  to: diffusion
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    Laplacian eigenvalues set the rates of graph diffusion, consensus, and
+    synchronization; the spectral gap sets mixing.
+
+- from: graph-laplacian
+  to: vector-calculus
+  type: SAME-SKELETON
+  strength: strong-analogy
+  context: >-
+    The graph Laplacian is the discrete counterpart of the ∇² probe: both
+    compare a value with its neighborhood average.
+
+- from: markov-chains
+  to: graph-laplacian
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    A random walk on a graph has the (normalized) Laplacian as its
+    generator; the walk's mixing is the Laplacian's spectral story.
+
+- from: large-number-limits
+  to: markov-chains
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    Ergodic averages along a chain converge at law-of-large-numbers /
+    CLT rates — what effective sample size in MCMC measures.
+
+- from: fourier-analysis
+  to: large-number-limits
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Characteristic functions (Fourier transforms of distributions) give the
+    cleanest route to the central limit theorem.
+
+# ---------------------------------------------------------------------------
+# Transforms and representation changes (§4, §19)
+# ---------------------------------------------------------------------------
+
+- from: integral-transforms
+  to: change-of-representation
+  type: IS-A
+  strength: special-case
+  context: >-
+    Represent a function by kernel overlaps so the governing operation
+    becomes simple in the transformed coordinates.
+
+- from: phase-space
+  to: change-of-representation
+  type: IS-A
+  strength: special-case
+  context: >-
+    Dynamics re-represented as geometry: state as a point, evolution as a
+    trajectory.
+
+- from: fourier-analysis
+  to: integral-transforms
+  type: IS-A
+  strength: special-case
+  context: The kernel family is the complex exponentials.
+
+- from: radon-transform
+  to: integral-transforms
+  type: IS-A
+  strength: special-case
+  context: The kernel family is indicators of lines / hyperplanes.
+
+- from: radon-transform
+  to: fourier-analysis
+  type: TRANSFORM-DUAL
+  strength: theorem
+  context: >-
+    Fourier slice theorem: the 1-D Fourier transform of a projection equals
+    a radial slice of the object's multidimensional Fourier transform —
+    projecting and slicing are exchanged by the transform.
+
+- from: radon-transform
+  to: fourier-analysis
+  type: SOLVED-BY
+  strength: theorem
+  context: >-
+    Filtered back-projection inverts the Radon transform via the slice
+    theorem — exact in the full-angle, noiseless idealization; real
+    tomography adds regularization.
+
+- from: integral-transforms
+  to: eigenvalues
+  type: EXPOSES
+  strength: strong-analogy
+  context: >-
+    Transform variables index eigenfunctions of the operator being
+    simplified (frequency ↔ translation eigenfunctions; Laplace variable ↔
+    exponential modes): the transformed domain is where the problem is
+    diagonal.
+
+- from: greens-function
+  to: integral-transforms
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    The transfer function is the Laplace transform of the impulse response;
+    poles of the transform mark the system's modes.
+
+- from: complex-analysis
+  to: integral-transforms
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Inversion integrals are evaluated by contour deformation and residues;
+    pole locations encode decay and oscillation.
+
+- from: complex-analysis
+  to: greens-function
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Poles of Green's functions and propagators mark resonant and bound
+    modes; residues give the modal contributions.
+
+- from: complex-analysis
+  to: stability
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    The rightmost pole location sets growth versus decay; its distance from
+    the imaginary axis is a stability reserve.
+
+# ---------------------------------------------------------------------------
+# Symmetry, conservation, and variational structure (§20, §29, §30,
+# §34 chain 6)
+# ---------------------------------------------------------------------------
+
+- from: vector-calculus
+  to: conservation-laws
+  type: LOCAL-GLOBAL-DUAL
+  strength: theorem
+  context: >-
+    Divergence/Stokes theorems: local derivative statements ↔ flux and
+    circulation on the boundary; continuity equation ↔ integral budget.
+
+- from: symmetry
+  to: conservation-laws
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    Every differentiable continuous symmetry of the action yields a
+    conserved quantity (Noether); hypotheses live on the theorem node.
+
+- from: noethers-theorem
+  to: variational-principles
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    Dynamics must derive from an action principle, and the symmetry must be
+    continuous and differentiable — dissipative systems and discrete
+    symmetries fall outside the hypotheses.
+
+- from: noethers-theorem
+  to: symmetry
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    A differentiable continuous symmetry of the action is the theorem's
+    other hypothesis — the input that gets converted into a conserved
+    quantity.
+
+- from: symmetry
+  to: fourier-analysis
+  type: SYMMETRY-SELECTS-REPRESENTATION
+  strength: theorem
+  context: >-
+    Translation invariance selects Fourier modes; periodic (crystal)
+    translations select Bloch waves.
+
+- from: symmetry
+  to: eigenvalues
+  type: SYMMETRY-SELECTS-REPRESENTATION
+  strength: theorem
+  context: >-
+    Operators commuting with a symmetry share eigenspaces with it:
+    representation theory block-diagonalizes before any computation.
+
+- from: symmetry
+  to: bifurcation
+  type: GOVERNS
+  strength: strong-analogy
+  context: >-
+    Symmetric systems generically undergo symmetry-breaking bifurcations
+    (the pitchfork is the miniature); equivariant bifurcation theory
+    organizes which branches symmetry allows.
+
+- from: conservation-laws
+  to: phase-space
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    Invariants confine trajectories to level sets — energy shells — turning
+    conservation into phase-space geometry.
+
+- from: variational-principles
+  to: optimization
+  type: SAME-SKELETON
+  strength: strong-analogy
+  context: >-
+    Extremize a functional: least action ↔ variational formulation ↔
+    objective functional ↔ loss/cost functional (§34 chain 6).
+  notes: >-
+    Physics needs stationarity (saddle points allowed) and reads off
+    invariants; optimization seeks minima and algorithms. The shared
+    skeleton is the functional and its first-order conditions — "nature
+    minimizes effort" is the false-friend version.
+
+- from: variational-principles
+  to: phase-space
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    Legendre transform of the Lagrangian gives Hamiltonian dynamics —
+    variational structure as symplectic phase-space geometry.
+
+- from: variational-principles
+  to: thermodynamic-entropy
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Equilibrium as extremization: maximize entropy at fixed energy or
+    minimize free energy at fixed temperature (equilibrium ensembles).
+
+- from: optimization
+  to: smoothness
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    Scoped to gradient-based methods: differentiability of the objective;
+    subgradient and proximal machinery is the standing replacement where
+    kinks appear.
+
+- from: vector-calculus
+  to: optimization
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Gradients as ascent/descent directions; stationarity via ∇f = 0 —
+    the objective landscape read with field probes.
+
+# ---------------------------------------------------------------------------
+# Entropy: same word, typed relationships (§31). The false friends are
+# encoded as strengths + notes, never as identity.
+# ---------------------------------------------------------------------------
+
+- from: shannon-entropy
+  to: thermodynamic-entropy
+  type: SAME-SKELETON
+  strength: strong-analogy
+  context: >-
+    Gibbs ensemble entropy is Shannon's functional applied to ensemble
+    probabilities — the same formula up to Boltzmann's constant.
+  notes: >-
+    Identical mathematics is not identical concept: identifying the Gibbs
+    functional with the thermodynamic state function S is a physical claim
+    that holds under equilibrium/ensemble assumptions. The shared word
+    "entropy" does not by itself license transfer (notebook §31).
+
+- from: chaos
+  to: shannon-entropy
+  type: ANALOGOUS-TO
+  strength: heuristic-analogy
+  context: >-
+    Kolmogorov–Sinai entropy measures information production by
+    deterministic dynamics — bits per unit time about the system's own
+    future.
+  notes: >-
+    A measure-theoretic dynamical invariant, not the entropy of a source
+    distribution; the family resemblance is real but transfer runs through
+    ergodic theory, not through the shared word.
+
+- from: renormalization
+  to: thermodynamic-entropy
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Coarse-graining accounts of irreversibility: what averaging discards is
+    the information whose loss the entropy balance records.
+
+- from: thermodynamic-entropy
+  to: markov-chains
+  type: REPRESENTED-BY
+  strength: strong-analogy
+  context: >-
+    Detailed-balance Markov models are the tractable microscopic setting
+    where stationary ensembles, relaxation, and entropy production are all
+    computable (stochastic thermodynamics).
+
+# ---------------------------------------------------------------------------
+# Dynamics, feedback, and distance to instability (§21, §22, §34 chain 4)
+# ---------------------------------------------------------------------------
+
+- from: feedback-control
+  to: state-space-model
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    The internal view: A/B/C/D realizations expose modes, controllability,
+    and observability of the loop.
+
+- from: feedback-control
+  to: integral-transforms
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    The loop view: transfer functions in the Laplace domain expose
+    bandwidth, margins, and loop shaping.
+
+- from: feedback-control
+  to: stability
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    Loop gain and phase determine closed-loop stability (Nyquist); the
+    sensitivity conservation S + T = 1 prices what feedback can and cannot
+    suppress.
+
+- from: eigenvalues
+  to: feedback-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Closing a loop moves the eigenvalues; design is eigenvalue (pole)
+    placement, and margins summarize their distance from the boundary.
+
+- from: stability-margins
+  to: stability
+  type: MEASURES-DISTANCE-TO
+  strength: theorem
+  context: >-
+    Gain and phase margins are the distance of the Nyquist locus from the
+    critical point: how much gain change or added phase lag the loop
+    absorbs before instability.
+
+- from: stability-margins
+  to: linearization
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    Margins are defined on the frequency response of a linear(ized) loop
+    with a defined loop-breaking point; multivariable loops need care.
+
+- from: stability-margins
+  to: bifurcation
+  type: ANALOGOUS-TO
+  strength: strong-analogy
+  context: >-
+    Distance-to-instability ↔ proximity to qualitative change: §34 chain 4
+    runs from classical margins to eigenvalue robustness and bifurcation
+    distance.
+
+- from: bifurcation
+  to: chaos
+  type: GOVERNS
+  strength: strong-analogy
+  context: >-
+    Routes to chaos are organized bifurcation sequences — the
+    period-doubling cascade is the canonical example.
+
+- from: chaos
+  to: markov-chains
+  type: ANALOGOUS-TO
+  strength: heuristic-analogy
+  context: >-
+    Mixing chaotic dynamics make time averages behave like stochastic
+    samples — one honest route from determinism toward ensemble reasoning.
+  notes: >-
+    Rigorous only for systems with good ergodic properties; "looks random"
+    is not a theorem.
+
+# ---------------------------------------------------------------------------
+# Established migrations (§9)
+# ---------------------------------------------------------------------------
+
+- from: feedback-control
+  to: biological-regulation
+  type: MIGRATED-TO
+  strength: strong-analogy
+  context: >-
+    Robustness / feedback / sensitivity concepts transferred wholesale into
+    systems biology, which retains much of the control vocabulary
+    (homeostasis as disturbance rejection, integral feedback as perfect
+    adaptation).
+
+- from: graph-laplacian
+  to: biological-regulation
+  type: MIGRATED-TO
+  strength: strong-analogy
+  context: >-
+    Network theory moved from electrical/communication networks into
+    biological regulation; graph concepts are now standard in systems
+    biology.
+
+# ---------------------------------------------------------------------------
+# Research-gap layer (§15 + §9): candidate missing migrations, every one
+# speculative + open-candidate, framed per docs/research-gap-workflow.md.
+# ---------------------------------------------------------------------------
+
+- from: stability-margins
+  to: biological-regulation
+  type: POSSIBLE-MISSING-MIGRATION
+  strength: speculative
+  status: open-candidate
+  notes: >-
+    Classical gain/phase margins for biological feedback networks.
+    Meaningful only where a linearization regime and an input/output loop
+    definition exist: first identify the loop, delays, operating point, and
+    uncertainty model, then ask whether classical margins apply or what
+    serves their functional role (workflow worked example).
+  evidence: []
+
+- from: feedback-control
+  to: biological-regulation
+  type: POSSIBLE-MISSING-MIGRATION
+  strength: speculative
+  status: open-candidate
+  context: >-
+    Loop-shaping / sensitivity-function design; robust-control uncertainty
+    descriptions for biological parameter ensembles.
+  notes: >-
+    Two §15 candidates share this endpoint pair: (1) loop-shaping and
+    sensitivity functions for regulatory and signaling networks; (2)
+    structured-uncertainty descriptions for biological parameter ensembles.
+    Search target-field literature under local dialects (robustness
+    analysis, parameter sensitivity, sloppiness) before concluding absence.
+  evidence: []
+
+- from: state-space-model
+  to: biological-regulation
+  type: POSSIBLE-MISSING-MIGRATION
+  strength: speculative
+  status: open-candidate
+  context: >-
+    Observability and sensor-placement theory applied to experimental
+    design in cell biology.
+  notes: >-
+    Which readouts make a regulatory model identifiable, and where should
+    measurements go? Check the systems-biology identifiability literature
+    under both control-theoretic and statistical dialects before scoring
+    this absent.
+  evidence: []
+
+- from: eigenvalues
+  to: biological-regulation
+  type: POSSIBLE-MISSING-MIGRATION
+  strength: speculative
+  status: open-candidate
+  context: >-
+    Modal participation factors for targeting interventions in ecological
+    or gene-regulatory networks.
+  notes: >-
+    Participation factors quantify which state variables engage which
+    modes. Determine whether network-biology intervention analysis has an
+    equivalent under another name (sensitivity or centrality dialects)
+    before treating the migration as missing.
+  evidence: []
+
+- from: dimensional-analysis
+  to: biological-regulation
+  type: POSSIBLE-MISSING-MIGRATION
+  strength: speculative
+  status: open-candidate
+  context: >-
+    Dimensionless similarity groups for cross-organism / cross-scale
+    comparison of regulation.
+  notes: >-
+    Allometry uses power laws; the open question is whether similarity-group
+    reasoning — matched dimensionless regimes licensing comparison — is
+    used to structure cross-scale regulatory analysis anywhere. Distinguish
+    from generic scaling-law fitting.
+  evidence: []
