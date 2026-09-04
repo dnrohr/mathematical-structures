@@ -19,5 +19,8 @@ jobs:
       # M3: build the full site and run the Playwright smoke suite
       # (spec §11 journeys) against the built dist/.
       - run: npm run build
+      # M6: the JS budget (≤ 200 KB gzipped, excluding data) is enforced,
+      # not aspirational.
+      - run: npm run budget
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e

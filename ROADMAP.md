@@ -377,28 +377,57 @@ enough to invite contributors.
 
 **Exit criteria**
 
-- [ ] Every spec §11 success criterion checked off against the live site.
-- [ ] JS budget ≤ 200 KB gzipped (excluding data); Lighthouse a11y ≥ 95 both
-      themes; keyboard-only walkthrough of all three persona journeys.
-- [ ] Tagged `v1.0.0`; `graph.json` schema declared stable at 1.x.
+- [ ] Every spec §11 success criterion checked off against the live site —
+      each criterion has a Playwright test that CI runs against the built
+      site on every push (journeys: `explorer-journey`/`m4-views` specs;
+      researcher one-view + one-action export: `m5-views`; malformed-edge
+      rejection: the `edge/unknown-endpoint` pipeline test behind
+      `npm run check`; no-information-loss: the M2 spot-checks). Flipped
+      once the deployed site is verified serving the release commit
+      (footer `generated_from` + journey spot-checks), as M3 did in #7.
+- [x] JS budget ≤ 200 KB gzipped (excluding data): 28.4 KB — measured and
+      now *enforced* by `npm run budget` in CI. Lighthouse accessibility
+      **100** in both themes (light default; dark via the site's
+      `data-theme` palette), with the equivalent axe-core WCAG 2.1 A/AA
+      scans of all nine view kinds × both themes running in CI as the
+      standing guard. Keyboard-only walkthroughs of all three persona
+      journeys are Playwright tests (`m6-a11y.spec.ts`).
+- [ ] Tagged `v1.0.0`; `graph.json` declared stable at 1.x in
+      `docs/graph-json.md` (done). The tag lands on this milestone's
+      squash-merge commit; flipped with the live-site check above.
 
 **Tasks**
 
-- [ ] [app] Accessibility pass: focus order, aria labels on badges/graph, strength
-      never color-only (audit), reduced-motion respect.
-- [ ] [app] Keyboard polish: `/` search, arrow-hop along a page's edge list,
-      documented shortcuts panel (`?`).
-- [ ] [app] Performance pass against budgets; decide (measure first) whether the
-      per-node JSON split from ARCHITECTURE.md §4.5 is needed — expected: no.
-- [ ] [infra] Finish `CONTRIBUTING.md` (content-PR walkthrough: add a node, add
-      an edge, run `--check` locally); PR template with a "new edges reviewed as
-      claims" checklist item; issue templates for node/edge/gap proposals.
-- [ ] [data] README final form: what this is, live-site link, how to read the
-      graph legend, how to contribute.
-- [ ] [curation] Content QA sweep: every `stub` either promoted or visibly
-      badged; every warn-level validator finding triaged.
-- [ ] [infra] Tag `v1.0.0`; enable a documented release flow (tag → Pages deploy
-      already implied by `main`).
+- [x] [app] Accessibility pass: focus moves to the new view on navigation
+      (skip-link target reused); aria labels on the search listbox added to
+      the existing combobox/graph labeling; color-only audit fixed the real
+      finds — `ink-faint` text raised to ≥ 4.5:1 on every surface in both
+      palettes, community/type chips now carry ink text with the hue in
+      dot + border + tint, and the auto-dark (`prefers-color-scheme`) block
+      was missing all eight community-token remaps (the style-token gate
+      test now checks them). Motion audit: the only motion is opt-in smooth
+      scrolling already gated behind `prefers-reduced-motion`.
+- [x] [app] Keyboard polish: `/` search (M3) + ↑/↓ arrow-hop along any
+      page's claim list (roving focus, never steals scrolling) + a `?`
+      shortcuts panel (native `<dialog>`, also reachable from the footer).
+- [x] [app] Performance pass: 28.4 KB gzipped JS against the 200 KB budget
+      (14%), enforced in CI; graph.json is 375 KB raw / 73 KB gzipped at 38
+      nodes — the §4.5 per-node split is **not needed** (as expected; the
+      loader interface keeps the escape hatch open).
+- [x] [infra] `CONTRIBUTING.md` finished (add-a-node and add-an-edge
+      walkthroughs, local `--check` loop, release flow); PR template with
+      the "new edges reviewed as claims" checklist; issue forms for
+      node/edge/gap proposals.
+- [x] [data] README final form: what it is, live-site link, "how to read
+      the map" legend, how to contribute, dataset stability.
+- [x] [curation] Content QA sweep: 38/38 nodes `established` — no stubs to
+      promote (non-established statuses stay visibly badged by the app);
+      validator reports **0 warnings**; the 53 info-level candidate edges
+      are the curation queue by design, rendered in `#/questions`.
+- [ ] [infra] Tag `v1.0.0` on the milestone's merge commit (flipped with
+      the exit criteria above); release flow documented in CONTRIBUTING.md
+      (every merge to `main` deploys; annotated tags name citable
+      milestones; artifact versioning is `graph.json`'s own semver).
 
 ---
 

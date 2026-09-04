@@ -21,6 +21,7 @@
     "build:data": "npm run -w build atlas",
     "build:app": "npm run -w app build",
     "clean": "node -e \"fs.rmSync('dist', { recursive: true, force: true })\"",
+    "budget": "node app/scripts/check-budget.mjs",
     "test:e2e": "npm run -w app test:e2e",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm run test && npm run -w build atlas -- --check"
   },

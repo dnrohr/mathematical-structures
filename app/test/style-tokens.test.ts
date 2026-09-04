@@ -52,4 +52,18 @@ describe('semantic style module covers every schema token', () => {
       expect(count(`.emph-${s.emphasis}`), `emphasis for ${s.id}`).toBeGreaterThanOrEqual(1);
     }
   });
+
+  it('maps all eight community tokens in all three theme blocks', () => {
+    // Not schema vocabulary (communities are computed), but the same
+    // per-theme validation applies: each hue was checked against its own
+    // surface, so an unmapped token in any theme block shows the wrong
+    // palette (this caught auto-dark missing all eight in M6).
+    for (let c = 0; c < 8; c++) {
+      const token = `community-${String(c)}`;
+      expect(count(`--l-${token}:`), `light literal for ${token}`).toBe(1);
+      expect(count(`--d-${token}:`), `dark literal for ${token}`).toBe(1);
+      expect(count(`--${token}: var(--l-${token})`), `light mapping for ${token}`).toBe(1);
+      expect(count(`--${token}: var(--d-${token})`), `dark mappings for ${token}`).toBe(2);
+    }
+  });
 });

@@ -1,0 +1,52 @@
+name: Node proposal
+description: Propose a new concept for the atlas (no PR required).
+title: 'node: <proposed canonical name>'
+labels: [content, node-proposal]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        A node earns its place by how it connects (SPECIFICATION.md §9:
+        depth over breadth). The maintainer or a later PR turns accepted
+        proposals into `concepts/<slug>.md`.
+  - type: input
+    id: slug
+    attributes:
+      label: Proposed slug
+      description: lowercase-kebab, permanent once used (e.g. `state-space-model`).
+      placeholder: my-new-concept
+    validations:
+      required: true
+  - type: dropdown
+    id: node_type
+    attributes:
+      label: Node type
+      description: Ontological class, from `graph/schema.yaml` node_types.
+      options: [object, operation, model, principle, phenomenon, move, theorem, dialect, application]
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Structural summary
+      description: One paragraph — what question does this structure answer?
+    validations:
+      required: true
+  - type: textarea
+    id: dialects
+    attributes:
+      label: Dialect names
+      description: 'What do different fields call it? One per line: `field: name`.'
+      placeholder: |
+        control: poles / modes
+        statistics: principal components
+  - type: textarea
+    id: connections
+    attributes:
+      label: How it connects
+      description: >
+        The candidate edges, read as claims with a proposed strength —
+        "X is a special case of Y (theorem)". A node with no honest edges
+        is probably not ready.
+    validations:
+      required: true

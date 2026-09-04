@@ -6,6 +6,7 @@
 import { APP_TITLE, REPO_URL } from '../config';
 import type { Atlas } from '../data/atlas';
 import { h } from '../views/common/dom';
+import { installEdgeHop, installShortcutsPanel } from './keyboard';
 import { createSearchBox, installSearchHotkey } from './search';
 import { createThemeToggle } from './theme';
 
@@ -49,6 +50,15 @@ export function createShell(root: HTMLElement, atlas: Atlas): Shell {
     ),
   );
 
+  const openShortcuts = installShortcutsPanel();
+  const shortcutsButton = h(
+    'button',
+    { type: 'button', class: 'link-button', onclick: () => openShortcuts() },
+    'shortcuts (',
+    h('kbd', {}, '?'),
+    ')',
+  );
+
   const footer = h(
     'footer',
     { class: 'site-footer' },
@@ -63,11 +73,14 @@ export function createShell(root: HTMLElement, atlas: Atlas): Shell {
       h('a', { href: REPO_URL }, 'GitHub'),
       ' · ',
       h('a', { href: `${REPO_URL}/blob/main/docs/graph-json.md` }, 'use the dataset'),
+      ' · ',
+      shortcutsButton,
     ),
   );
 
   root.replaceChildren(skip, header, main, footer);
   installSearchHotkey();
+  installEdgeHop();
 
   return {
     main,

@@ -19,7 +19,9 @@
   --l-bg-raised: #ffffff;
   --l-ink: #24292e;
   --l-ink-muted: #5c6670;
-  --l-ink-faint: #8b939c;
+  /* Faint still reads: every text use of ink-faint clears WCAG AA 4.5:1 on
+     every surface it sits on (page, raised, gap tint) — M6 axe audit. */
+  --l-ink-faint: #676e78;
   --l-rule: #ddd8cd;
   --l-link: #2a5d8f;
   --l-warn: #8a6a1c;
@@ -52,7 +54,7 @@
   --d-bg-raised: #1d2025;
   --d-ink: #d8d6d1;
   --d-ink-muted: #a0a6ad;
-  --d-ink-faint: #767d85;
+  --d-ink-faint: #868e97;
   --d-rule: #34383e;
   --d-link: #82b1de;
   --d-warn: #d0b055;
@@ -139,6 +141,14 @@
     --nt-theorem: var(--d-nt-theorem);
     --nt-dialect: var(--d-nt-dialect);
     --nt-application: var(--d-nt-application);
+    --community-0: var(--d-community-0);
+    --community-1: var(--d-community-1);
+    --community-2: var(--d-community-2);
+    --community-3: var(--d-community-3);
+    --community-4: var(--d-community-4);
+    --community-5: var(--d-community-5);
+    --community-6: var(--d-community-6);
+    --community-7: var(--d-community-7);
   }
 }
 
@@ -348,6 +358,83 @@ main:focus {
   color: var(--ink-muted);
 }
 
+/* A button that reads as a link (the footer's shortcuts opener). */
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--ink-muted);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+}
+
+/* ======================================================================
+   Keyboard shortcuts panel (M6): a native <dialog> — focus trap, Esc, and
+   backdrop come from the platform, not from script.
+   ====================================================================== */
+
+dialog.shortcuts {
+  min-width: min(24rem, calc(100vw - 3rem));
+  max-width: calc(100vw - 3rem);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1rem 1.25rem 1.25rem;
+  background: var(--bg-raised);
+  color: var(--ink);
+  font: 0.9rem/1.5 var(--font-ui);
+  box-shadow: 0 8px 28px var(--shadow);
+}
+
+dialog.shortcuts::backdrop {
+  background: rgba(10, 12, 14, 0.45);
+}
+
+.shortcuts-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.shortcuts-head h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+}
+
+.dialog-close {
+  background: none;
+  border: none;
+  padding: 0 0.2rem;
+  font: 1.2rem/1 var(--font-ui);
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.shortcut-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.45rem 1rem;
+  margin: 0;
+}
+
+.shortcut-list dt {
+  white-space: nowrap;
+}
+
+.shortcut-list dd {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.shortcuts-note {
+  margin: 0.9rem 0 0;
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+}
+
 /* ======================================================================
    Search
    ====================================================================== */
@@ -454,9 +541,22 @@ main:focus {
 
 .type-badge {
   --accent: var(--ink-muted);
-  color: var(--accent);
+  /* Ink text, hue in the dot/border/tint: several type hues cannot carry
+     AA-contrast text on their own tint in light mode, and the class label
+     is the identity anyway (M6 axe audit; same pattern as .community-chip). */
+  color: var(--ink);
   border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
   background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.type-badge::before {
+  content: '';
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 0.35em;
 }
 
 .status-badge {
@@ -1457,10 +1557,23 @@ th[aria-sort='ascending'] .sort-button::after {
 
 .community-chip {
   --accent: var(--ink-muted);
-  color: var(--accent);
+  /* Ink text on the hue tint (AA on every theme); the hue itself lives in
+     the dot, border, and tint — identity always in the label, never
+     color-alone. */
+  color: var(--ink);
   border-color: color-mix(in srgb, var(--accent) 55%, transparent);
   background: color-mix(in srgb, var(--accent) 12%, transparent);
   font-weight: 600;
+}
+
+.community-chip::before {
+  content: '';
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 0.35em;
 }
 
 .community-none {
@@ -1468,6 +1581,10 @@ th[aria-sort='ascending'] .sort-button::after {
   color: var(--ink-faint);
   background: none;
   font-weight: 400;
+}
+
+.community-none::before {
+  content: none;
 }
 
 .community-list {
