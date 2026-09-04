@@ -1,0 +1,44 @@
+name: Release
+
+# Tag a commit on main as a release (CONTRIBUTING.md "Releases"). The tag
+# IS the release — Pages already deploys every push to main — so this
+# workflow only creates the annotated tag, after verifying the commit is
+# main history. Run from the Actions tab (workflow_dispatch); exists so
+# releases can be cut by automation and by maintainers whose credentials
+# can't push tags directly.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag name (vMAJOR.MINOR.PATCH)
+        required: true
+        type: string
+      sha:
+        description: 'Commit to tag (default: current main HEAD)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Create and push the annotated tag
+        env:
+          TAG: ${{ inputs.tag }}
+          SHA: ${{ inputs.sha }}
+        run: |
+          set -euo pipefail
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "tag must be vMAJOR.MINOR.PATCH"; exit 1; }
+          target="${SHA:-$(git rev-parse HEAD)}"
+          git merge-base --is-ancestor "$target" origin/main || { echo "commit $target is not on main"; exit 1; }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG" "$target" -m "Structure Atlas $TAG"
+          git push origin "refs/tags/$TAG"
