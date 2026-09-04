@@ -207,10 +207,11 @@ and typed edge sentences, deployed on GitHub Pages.
 
 **Exit criteria**
 
-- [ ] Live Pages URL; page loads and first navigation feel instant. —
-      `deploy.yml` ships with M3; flips after the first green `main` deploy
-      (Pages enablement is attempted by the workflow, else one owner toggle:
-      Settings → Pages → Source: GitHub Actions).
+- [x] Live Pages URL; page loads and first navigation feel instant —
+      <https://dnrohr.github.io/mathematical-structures/>. The first deploy
+      needed the one-time owner toggle (Settings → Pages → Source: GitHub
+      Actions; the workflow token cannot enable Pages itself); every later
+      push to `main` deploys automatically.
 - [x] Explorer journey passes: "eigenvalues" → dialect table visible → "spectral
       gap governs mixing time in Markov chains" in ≤ 3 clicks (spec §11) —
       proven by the Playwright smoke suite in CI (search → concept → GOVERNS
