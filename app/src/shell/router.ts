@@ -12,9 +12,11 @@ export type Route =
   | { name: 'symptom'; id: string }
   | { name: 'moves' }
   | { name: 'applications' }
-  | { name: 'atoz' }
+  | { name: 'atoz'; type?: string; field?: string; status?: string }
   | { name: 'dialects'; query: string }
   | { name: 'lens'; filters: LensFilters; communities: boolean }
+  | { name: 'atlas'; communities: boolean; focus?: string }
+  | { name: 'compare'; a?: string; b?: string }
   | { name: 'matrix'; filters: LensFilters; order?: string; focus?: string; a?: string; b?: string }
   | { name: 'map'; order?: string; field?: string; focus?: string }
   | { name: 'path'; from?: string; to?: string; strength?: string }
@@ -60,7 +62,33 @@ export function parseHash(hash: string): Route {
   }
   if (segs[0] === 'moves' && segs.length === 1) return { name: 'moves' };
   if (segs[0] === 'applications' && segs.length === 1) return { name: 'applications' };
-  if (segs[0] === 'index' && segs.length === 1) return { name: 'atoz' };
+  if (segs[0] === 'index' && segs.length === 1) {
+    // Facet chips (UI_REDESIGN.md §4.8, M14): AND-combining, state in URL.
+    const type = params.get('type');
+    const field = params.get('field');
+    const status = params.get('status');
+    return {
+      name: 'atoz',
+      ...(type ? { type } : {}),
+      ...(field ? { field } : {}),
+      ...(status ? { status } : {}),
+    };
+  }
+  if (segs[0] === 'atlas' && segs.length === 1) {
+    const focus = params.get('focus');
+    return {
+      name: 'atlas',
+      communities: params.get('communities') === '1',
+      ...(focus ? { focus } : {}),
+    };
+  }
+  if (segs[0] === 'compare' && segs.length <= 3) {
+    const [, a, b] = segs;
+    if ((a && !SLUG_RE.test(a)) || (b && !SLUG_RE.test(b))) {
+      return { name: 'notfound', path: raw };
+    }
+    return { name: 'compare', ...(a ? { a } : {}), ...(b ? { b } : {}) };
+  }
   if (segs[0] === 'dialects' && segs.length === 1) {
     return { name: 'dialects', query: params.get('q') ?? '' };
   }

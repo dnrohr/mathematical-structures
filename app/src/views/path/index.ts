@@ -26,7 +26,8 @@ export function pathHash(from?: string, to?: string, strength?: string): string 
   return strength && strength !== PATH_DEFAULT_STRENGTH ? `${path}?strength=${strength}` : path;
 }
 
-function endpointSelect(
+/** Concept picker for two-endpoint views (shared with compare, M14). */
+export function endpointSelect(
   atlas: Atlas,
   label: string,
   current: string | undefined,

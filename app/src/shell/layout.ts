@@ -45,6 +45,7 @@ export function createShell(root: HTMLElement, atlas: Atlas): Shell {
         h('a', { href: '#/lens' }, 'Lens'),
         h('a', { href: '#/matrix' }, 'Matrix'),
         h('a', { href: '#/map' }, 'Map'),
+        h('a', { href: '#/atlas' }, 'Atlas'),
         h('a', { href: '#/path' }, 'Path'),
         h('a', { href: '#/metrics' }, 'Metrics'),
         h('a', { href: '#/questions' }, 'Questions'),
@@ -64,6 +65,51 @@ export function createShell(root: HTMLElement, atlas: Atlas): Shell {
     ')',
   );
 
+  // Copy a citable link (UI_REDESIGN.md §5, M14): every view's state is
+  // already in the URL; the copied line adds the provenance the Researcher
+  // cites — which data the screen showed (`generated_from`).
+  const copyFeedback = h('span', { class: 'copy-feedback', role: 'status' });
+  const copyButton = h(
+    'button',
+    {
+      type: 'button',
+      class: 'link-button',
+      title: 'Copy this view’s URL with the data commit for citation',
+    },
+    'copy citable link',
+  );
+  copyButton.addEventListener('click', () => {
+    const citation = `${window.location.href} (${APP_TITLE}, data v${atlas.data.schema_version}, generated from ${shortSha})`;
+    const done = (ok: boolean): void => {
+      copyFeedback.textContent = ok ? ' copied ✓' : '';
+      if (!ok) {
+        // Clipboard unavailable (permissions, non-secure context): hand the
+        // text over for manual copy instead of failing silently.
+        const fallback = h('input', {
+          class: 'copy-fallback',
+          type: 'text',
+          readonly: true,
+          value: citation,
+          'aria-label': 'Citable link — copy manually',
+        });
+        fallback.value = citation;
+        copyButton.after(fallback);
+        fallback.select();
+      }
+      setTimeout(() => {
+        copyFeedback.textContent = '';
+      }, 2000);
+    };
+    navigator.clipboard.writeText(citation).then(
+      () => {
+        done(true);
+      },
+      () => {
+        done(false);
+      },
+    );
+  });
+
   const footer = h(
     'footer',
     { class: 'site-footer' },
@@ -78,6 +124,9 @@ export function createShell(root: HTMLElement, atlas: Atlas): Shell {
       h('a', { href: REPO_URL }, 'GitHub'),
       ' · ',
       h('a', { href: `${REPO_URL}/blob/main/docs/graph-json.md` }, 'use the dataset'),
+      ' · ',
+      copyButton,
+      copyFeedback,
       ' · ',
       shortcutsButton,
     ),

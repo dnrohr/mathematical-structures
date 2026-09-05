@@ -25,8 +25,10 @@ import type { AtlasSchema } from './schema.js';
  *        (M8) — additive.
  * 1.3.0: added the `walks` block (M9) — additive.
  * 1.4.0: added the `non_edges` block and `metrics.queue` (M11) — additive.
+ * 1.5.0: added `metrics.layout` — the build-time trusted-subgraph
+ *        constellation (M14) — additive.
  */
-export const GRAPH_SCHEMA_VERSION = '1.4.0';
+export const GRAPH_SCHEMA_VERSION = '1.5.0';
 
 /** MiniSearch construction options — the app must load with the same ones. */
 export const SEARCH_OPTIONS: { idField: string; fields: string[]; storeFields: string[] } = {

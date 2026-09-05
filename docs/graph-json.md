@@ -36,7 +36,7 @@ citable. `generated_from` carries the git commit SHA of the content tree.
 
 ```jsonc
 {
-  "schema_version": "1.4.0",
+  "schema_version": "1.5.0",
   "generated_from": "<git sha>",
   "schema": { /* the controlled vocabularies, verbatim from graph/schema.yaml */
     "node_types":   [ { "id", "label", "color_token", "description" } ],
@@ -226,7 +226,8 @@ centrality. Nodes reached only by analogy-strength or speculative edges have
   "candidate_edges": [            // wiki-linked pairs with no typed edge
     { "a": "chaos", "b": "phase-space" }   // (the curation queue), a < b
   ],
-  "queue": { /* the work-queue signals; added in 1.4.0 — see below */ }
+  "queue": { /* the work-queue signals; added in 1.4.0 — see below */ },
+  "layout": { /* the trusted-subgraph constellation; added in 1.5.0 — see below */ }
 }
 ```
 
@@ -267,6 +268,25 @@ under review.
   "thin_symptoms": [              // below the useful floor for the index
     { "id": "some-symptom", "move_count": 1, "has_worked_example": false }
   ]
+}
+```
+
+#### `metrics.layout` (added in 1.5.0)
+
+A deterministic, build-time force layout of the **trusted subgraph**
+(UI_REDESIGN.md §4.7): rounded `[x, y]` coordinates keyed by slug, in an
+arbitrary but fixed coordinate space (fit the bounding box to your canvas).
+Only nodes touched by at least one trusted edge have a position — the layout
+draws actual claims only, so a node connected purely by analogies or
+hypotheses is deliberately absent. Coordinates are identical across builds
+of the same tree (fixed input order, fixed tick count, rounded emit), so the
+constellation is stable, shareable, and citable; the app's `#/atlas`
+overview and concept-page minimaps render exactly this map.
+
+```jsonc
+{
+  "eigenvalues": [388.2, 260.9],  // [x, y], rounded to one decimal
+  "kalman-filter": [176.4, 305.0]
 }
 ```
 

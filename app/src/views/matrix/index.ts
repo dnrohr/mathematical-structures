@@ -23,6 +23,7 @@ import { h, joinChildren, type Child } from '../common/dom';
 import { edgeClaim, edgeSentenceText } from '../common/edge-claim';
 import { GAP_EDGE_TYPE } from '../common/edge-sentence';
 import { nodeLink } from '../common/node-link';
+import { downloadViewLine, edgesCsv, saveBlobButton } from '../common/save';
 import type { View } from '../common/view';
 import { pathHash } from '../path';
 import { proposeHash } from '../propose';
@@ -481,6 +482,17 @@ export function matrixView(atlas: Atlas, initial: MatrixState): View {
       ),
       scroll,
       caption,
+      // Download what you see (UI_REDESIGN.md §5, M14): the filled cells —
+      // the filtered claim list — as CSV, generated client-side.
+      downloadViewLine(
+        atlas,
+        saveBlobButton(
+          `Download the ${String(selection.edges.length)} claims shown (CSV)`,
+          'matrix-claims.csv',
+          'text/csv',
+          () => edgesCsv(selection.edges),
+        ),
+      ),
       ...(deficits.length > 0
         ? [
             h(

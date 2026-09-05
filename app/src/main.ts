@@ -9,7 +9,9 @@ import { loadAtlas, type Atlas } from './data/atlas';
 import { createShell } from './shell/layout';
 import { startRouter, type Route } from './shell/router';
 import { applicationsView } from './views/applications';
+import { atlasView } from './views/atlas';
 import { atozView } from './views/atoz';
+import { compareView } from './views/compare';
 import type { View } from './views/common/view';
 import { conceptView } from './views/concept';
 import { dialectsView } from './views/dialects';
@@ -41,11 +43,15 @@ function viewFor(atlas: Atlas, route: Route): View {
     case 'applications':
       return applicationsView(atlas);
     case 'atoz':
-      return atozView(atlas);
+      return atozView(atlas, route);
     case 'dialects':
       return dialectsView(atlas, route.query);
     case 'lens':
       return lensView(atlas, route.filters, route.communities);
+    case 'atlas':
+      return atlasView(atlas, route);
+    case 'compare':
+      return compareView(atlas, route);
     case 'matrix':
       return matrixView(atlas, route);
     case 'map':

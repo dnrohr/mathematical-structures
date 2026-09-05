@@ -14,6 +14,7 @@ import type { GraphNode } from '../../data/types';
 import { shortLabel } from '../../graph-render';
 import { typeBadge } from '../common/badges';
 import { h, type Child } from '../common/dom';
+import { csvOf, downloadViewLine, saveBlobButton } from '../common/save';
 import type { View } from '../common/view';
 import { lensHash } from '../lens';
 import { aliasIssueUrl } from '../queue';
@@ -287,6 +288,23 @@ export function mapView(atlas: Atlas, initial: MapState): View {
     h('a', { class: 'lens-clear', href: '#/map' }, 'Clear'),
   );
 
+  // Download what you see (UI_REDESIGN.md §5, M14): the incidence table as
+  // CSV — one row per structure, one column per field, cells carrying the
+  // local name, the present-unnamed marker, or nothing.
+  const mapCsv = (): string =>
+    csvOf([
+      ['slug', 'canonical_name', ...fields.map((f) => f.id)],
+      ...ordered.map((node) => [
+        node.slug,
+        node.canonical_name,
+        ...fields.map((f) => {
+          const names = node.aliases.filter((a) => a.field === f.id).map((a) => a.name);
+          if (names.length > 0) return names.join('; ');
+          return node.fields.includes(f.id) ? '(present, unnamed)' : '';
+        }),
+      ]),
+    ]);
+
   const el = h(
     'div',
     { class: 'map content wide' },
@@ -302,6 +320,10 @@ export function mapView(atlas: Atlas, initial: MapState): View {
     legend,
     scroll,
     caption,
+    downloadViewLine(
+      atlas,
+      saveBlobButton('Download this map (CSV)', 'migration-map.csv', 'text/csv', mapCsv),
+    ),
   );
 
   const onMount = (): void => {

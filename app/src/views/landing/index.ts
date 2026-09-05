@@ -11,6 +11,7 @@ import type { Atlas } from '../../data/atlas';
 import type { GraphNode } from '../../data/types';
 import { replaceHash } from '../../shell/router';
 import { createSearchBox } from '../../shell/search';
+import { atozHash } from '../atoz';
 import { h, joinChildren } from '../common/dom';
 import { nodeLink } from '../common/node-link';
 import type { View } from '../common/view';
@@ -155,6 +156,7 @@ function surveyStrip(): HTMLElement {
   const links: { href: string; label: string; phrase: string }[] = [
     { href: '#/matrix', label: 'Matrix', phrase: 'every pair, absence included' },
     { href: '#/map', label: 'Map', phrase: 'structures × fields, named or missing' },
+    { href: '#/atlas', label: 'Atlas', phrase: 'the whole trusted graph, one fixed constellation' },
     { href: '#/metrics', label: 'Metrics', phrase: 'hubs, bridges, spans' },
     { href: '#/questions', label: 'Questions', phrase: 'open research gaps, with status' },
     { href: '#/queue', label: 'Queue', phrase: 'what to grow next, on evidence' },
@@ -253,7 +255,17 @@ export function landingView(atlas: Atlas, opts: LandingState = {}): View {
               style: `--accent: var(--${group.def.color_token})`,
               'aria-hidden': 'true',
             }),
-            group.def.label,
+            // Pre-filtered index state (UI_REDESIGN.md §4.8, M14): the group
+            // heading opens the A–Z index faceted to this kind.
+            h(
+              'a',
+              {
+                class: 'type-group-link',
+                href: atozHash({ type: group.def.id }),
+                title: `Browse ${group.def.label} in the faceted index`,
+              },
+              group.def.label,
+            ),
             h('span', { class: 'count' }, ` ${group.nodes.length}`),
           ),
           h('p', { class: 'section-hint' }, group.def.description.trim()),

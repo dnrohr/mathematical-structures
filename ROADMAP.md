@@ -955,37 +955,76 @@ polish (UI_REDESIGN.md §4.5, §4.7, §4.8, §5).
 
 **Exit criteria**
 
-- [ ] `#/compare/<a>/<b>`: side-by-side headers, the merged dialect table
+- [x] `#/compare/<a>/<b>`: side-by-side headers, the merged dialect table
       (one row per field in the union, both nodes' aliases aligned), direct
       claims, shared neighbors grouped by type, shared assumptions, path-view
       link; entered from a "compare…" action on concept pages; legitimate
       empty case handled (no implied claims). URL round-trip; Playwright +
-      axe.
-- [ ] `metrics.layout` in `graph.json` (additive minor): a deterministic
+      axe — shared neighbors count only at the path view's floor (a
+      speculative hypothesis never manufactures shared ground); the entry
+      pins the current node (`#/compare/<slug>`) with the path view's
+      picker/swap ergonomics; the unrelated case says "no direct claims, no
+      shared neighbors" and offers the path finder and the composer.
+      `m14-orientation.spec.ts` (round-trip, swap, data-driven unrelated
+      pair) + the axe matrix in both themes.
+- [x] `metrics.layout` in `graph.json` (additive minor): a deterministic
       build-time layout of the trusted subgraph (double-build byte equality),
       consumed by `#/atlas` — a fixed constellation, linked from nav and
       survey strip, never the homepage — and by a concept-page minimap
       ("you are here"). The >~100-trusted-node community-aggregation
-      degradation is documented next to the view.
-- [ ] `#/index` facets: node type / field / status chips with counts,
+      degradation is documented next to the view — 1.5.0 (documented in
+      `docs/graph-json.md`); the layout rides the emit determinism test and
+      a real-tree rebuild came out byte-identical; 42 of 47 concepts hold
+      positions today and the analogy-only five are listed as text on
+      `#/atlas` (absence is information); the minimap renders only for
+      positioned nodes and deep-links `#/atlas?focus=<slug>`; the
+      degradation plan is stated in the view itself and in the module
+      comment.
+- [x] `#/index` facets: node type / field / status chips with counts,
       AND-combining, state in the URL; the landing type-groups link into
-      pre-filtered index states.
-- [ ] Actions polish shipped and documented in the `?` panel: copy-link with
+      pre-filtered index states — counts answer "what would this chip show?"
+      under the other active facets; zero-count combinations stay clickable
+      (an empty AND is a fact); in-place filtering via `replaceHash`
+      preserves focus, the M13 landing-chip pattern.
+- [x] Actions polish shipped and documented in the `?` panel: copy-link with
       the `generated_from` SHA, download-what-you-see CSV on matrix/map/lens,
       BibTeX export of a page's sources, walk resume and recently-visited
-      trail (localStorage conveniences, graceful when absent).
+      trail (localStorage conveniences, graceful when absent) — the footer's
+      "copy citable link" copies URL + data version + commit (with a
+      readonly-input fallback when the clipboard is unavailable); the CSVs
+      reuse the build's RFC 4180 emit shape; BibTeX reassembles the resolved
+      references on any page with a Sources list; resume/trail live behind
+      guarded localStorage helpers (`shell/local.ts`) and the app renders
+      identically with storage absent; the `?` panel gained a "Cross-view
+      actions" section.
 
 **Tasks**
 
-- [ ] [build] Stage 4 layout: deterministic force run over the trusted
+- [x] [build] Stage 4 layout: deterministic force run over the trusted
       subgraph, rounded coordinates keyed by slug; unit-tested for
-      determinism and emitted additively.
-- [ ] [app] Atlas view + minimap; communities toggle reusing `communities=1`.
-- [ ] [app] Compare view + concept-page entry; "atlas" joins the situating
-      links.
-- [ ] [app] Index facets.
-- [ ] [app] Actions polish (client-generated blobs only; still no server).
-- [ ] [app] Playwright + axe for every new/changed view.
+      determinism and emitted additively — `build/src/layout.ts`: the same
+      d3-force determinism contract as the app's synchronous use (fixed
+      input order, fixed tick count, seeded internals), uniform
+      fit-to-canvas, one-decimal rounding; only trusted-touched nodes get
+      positions (the epistemic rule, unit-tested: an analogy edge buys no
+      position).
+- [x] [app] Atlas view + minimap; communities toggle reusing `communities=1`
+      — dots colored by type (or community) and sized by trusted degree,
+      edges in the line grammar with arrowheads, hover/focus labels plus the
+      live caption, no zoom/pan/physics; every drawn claim is also readable
+      via the lens link at the trusted floor.
+- [x] [app] Compare view + concept-page entry; "atlas" joins the situating
+      links — the situate row also gained the compare entry, and the minimap
+      sits beside it as the visual form of the same deep link.
+- [x] [app] Index facets.
+- [x] [app] Actions polish (client-generated blobs only; still no server).
+- [x] [app] Playwright + axe for every new/changed view —
+      `m14-orientation.spec.ts` (17 tests: constellation counts against the
+      emitted layout, focus/communities round-trip, minimap presence and
+      honest absence, compare round-trip/swap/empty case/entry, facet AND +
+      counts + landing deep-link, citable copy, three CSV downloads with
+      content checks, BibTeX, walk resume, trail clear, `?` panel); atlas,
+      compare, and the faceted index joined the axe matrix in both themes.
 
 ---
 

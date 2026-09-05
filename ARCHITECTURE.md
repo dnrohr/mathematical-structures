@@ -371,6 +371,14 @@ Compute the README §33 derived metrics over the typed graph, entirely at build 
   string on ≥ 2 nodes; slug-valued strings are typed references, not
   signals), dialect gaps (a field in `fields` with no alias, on nodes with
   ≥ 2 dialects), and thin symptoms (< 2 moves or no worked example).
+- **Constellation layout** (`metrics.layout`, M14; UI_REDESIGN.md §4.7): a
+  deterministic d3-force run over the trusted subgraph — fixed input order,
+  fixed tick count, uniform fit-to-canvas, coordinates rounded and keyed by
+  slug — the same library and determinism contract as the app's synchronous
+  force use since M4. Only nodes touched by a trusted edge get a position;
+  the `#/atlas` overview and concept-page minimaps render exactly this map,
+  so the full-graph picture is fixed at build time and identical for every
+  visitor (never a client-side layout).
 
 ### 4.5 Emit
 
@@ -415,13 +423,19 @@ matching the "can never rot" deployment goal.
                         UI_REDESIGN §4.1)
 #/c/<slug>              concept page (?at=dialects lands at the dialect table — the map's row headers)
 #/moves                 index of node_type=move (spec §5.2)
-#/index                 A–Z index — the plain fallback when search isn't the tool
+#/index?type=…&field=…&status=…
+                        A–Z index — the plain fallback when search isn't the tool;
+                        facet chips AND-combine, counts shown (M14, UI_REDESIGN §4.8)
 #/dialects?q=...        reverse-dialect lookup
 #/lens?edge=...&type=...&field=...&strength=...   composed subgraph view
 #/matrix?order=…&edge=…&type=…&field=…&strength=…&focus=…&a=…&b=…
                         adjacency matrix: every pair incl. absence; focus = crosshair,
                         a/b = the open pair panel (M12, UI_REDESIGN §4.3)
 #/map?order=…&field=…&focus=…   structures × fields migration map (M12, UI_REDESIGN §4.4)
+#/atlas?communities=…&focus=…   the fixed constellation over metrics.layout; focus rings
+                        one concept — the situating/minimap deep link (M14, UI_REDESIGN §4.7)
+#/compare/<slugA>/<slugB>       two concepts side by side: merged dialect table, direct
+                        claims, shared ground (M14, UI_REDESIGN §4.5)
 #/path/<slugA>/<slugB>  translation-chain finder
 #/metrics               hubs, bridges, span/dialect rankings
 #/questions             open research-gap candidates

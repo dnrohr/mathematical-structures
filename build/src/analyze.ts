@@ -30,6 +30,7 @@ import {
   type RecurringAssumption,
   type ThinSymptom,
 } from './model.js';
+import { layoutTrustedSubgraph } from './layout.js';
 import type { AtlasSchema } from './schema.js';
 
 function round(x: number, places: number): number {
@@ -420,5 +421,6 @@ export function analyzeGraph(
     gaps,
     candidate_edges: candidates,
     queue: computeQueue(schema, nodes, edges, graph, community, symptoms, nonEdges),
+    layout: layoutTrustedSubgraph(slugs, trusted),
   };
 }

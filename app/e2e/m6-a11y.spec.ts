@@ -135,8 +135,9 @@ test('`?` opens the documented shortcuts panel; Esc and the footer opener work',
   await expect(dialog).toBeHidden();
   await page.keyboard.press('Escape');
 
-  // Pointer users get the footer opener and the close button.
-  await page.locator('.site-footer .link-button').click();
+  // Pointer users get the footer opener and the close button. (The footer
+  // carries two buttons since M14 — the copy-link action sits beside it.)
+  await page.getByRole('button', { name: 'shortcuts (?)' }).click();
   await expect(dialog).toBeVisible();
   await page.locator('.dialog-close').click();
   await expect(dialog).toBeHidden();
@@ -189,6 +190,12 @@ const AXE_ROUTES: { name: string; path: string }[] = [
     path: '/#/matrix?focus=eigenvalues&a=eigenvalues&b=markov-chains',
   },
   { name: 'migration map with highlights', path: '/#/map?field=biology&focus=eigenvalues' },
+  {
+    name: 'atlas constellation with communities and focus',
+    path: '/#/atlas?communities=1&focus=eigenvalues',
+  },
+  { name: 'compare view', path: '/#/compare/eigenvalues/markov-chains' },
+  { name: 'faceted index', path: '/#/index?type=move' },
   { name: 'path chains', path: '/#/path/harmonic-oscillator/markov-chains' },
   { name: 'metrics', path: '/#/metrics' },
   { name: 'questions', path: '/#/questions' },

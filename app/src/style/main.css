@@ -2391,3 +2391,223 @@ th[aria-sort='ascending'] .sort-button::after {
 #dialects {
   scroll-margin-top: 3.6rem;
 }
+
+/* ======================================================================
+   M14 — pairs and orientation (UI_REDESIGN §4.5, §4.7, §4.8, §5): the
+   atlas constellation and minimap, the compare view, index facets, and
+   the cross-view actions polish. All colors are the existing tokens.
+   ====================================================================== */
+
+/* ---- the atlas constellation (#/atlas) ---- */
+
+.atlas-svg {
+  max-height: 78vh;
+}
+
+/* Labels appear on hover/focus (and stay on the ringed focus node): 40+
+   permanent labels would be the hairball the view exists to avoid. The
+   name is still always in the accessible tree (the <text> itself). */
+.atlas-svg .atlas-label {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.atlas-svg .graph-node:hover .atlas-label,
+.atlas-svg .graph-node:focus-visible .atlas-label,
+.atlas-svg .graph-node.focus-node .atlas-label {
+  opacity: 1;
+}
+
+.atlas-svg .atlas-ring {
+  fill: none;
+  stroke: var(--focus);
+  stroke-width: 2.5;
+}
+
+.atlas-focus-note {
+  align-self: center;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+/* ---- the concept-page minimap ("you are here") ---- */
+
+.concept-minimap {
+  display: inline-block;
+  max-width: 240px;
+  margin: 0.6rem 0 0;
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--bg-raised);
+  padding: 0.35rem 0.45rem 0.25rem;
+}
+
+.concept-minimap:hover,
+.concept-minimap:focus-visible {
+  border-color: var(--link);
+}
+
+.minimap-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.minimap-svg .mini-dot {
+  fill: var(--ink-faint);
+  opacity: 0.55;
+}
+
+.minimap-svg .mini-neighbor {
+  fill: var(--ink-muted);
+}
+
+.minimap-svg .mini-here {
+  fill: var(--link);
+}
+
+.minimap-svg .mini-ring {
+  fill: none;
+  stroke: var(--link);
+  stroke-width: 3;
+}
+
+.minimap-caption {
+  display: block;
+  font: 0.72rem var(--font-ui);
+  color: var(--ink-muted);
+  text-align: center;
+  padding-top: 0.15rem;
+}
+
+.concept-minimap:hover .minimap-caption {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+/* ---- the recently-visited trail (localStorage convenience) ---- */
+
+.visit-trail {
+  margin: 0.5rem 0 0;
+  font: 0.82rem var(--font-ui);
+  color: var(--ink-muted);
+}
+
+/* ---- compare (#/compare/<a>/<b>) ---- */
+
+.compare-headers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0;
+}
+
+.compare-head {
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+}
+
+.compare-head h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
+}
+
+.compare-head .summary {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.compare-dialects th[scope='col'] {
+  min-width: 10rem;
+}
+
+.compare-noname {
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+.compare-neighbor-group {
+  margin: 0.9rem 0;
+}
+
+.compare-neighbor {
+  margin: 0.5rem 0 0.9rem;
+}
+
+.compare-neighbor-name {
+  margin: 0 0 0.15rem;
+  font-weight: 600;
+}
+
+.compare-path-link {
+  margin-top: 1rem;
+}
+
+/* ---- index facets (#/index?type=&field=&status=) ---- */
+
+.facet-rows {
+  margin: 0 0 1.2rem;
+}
+
+.facet-row {
+  margin: 0 0 0.45rem;
+  align-items: baseline;
+}
+
+.facet-label {
+  font: 600 0.78rem var(--font-ui);
+  color: var(--ink-muted);
+  margin-right: 0.15rem;
+}
+
+/* A zero-count chip stays clickable — an empty combination is a fact worth
+   being able to state — but reads quiet. */
+a.facet-chip.facet-zero {
+  color: var(--ink-faint);
+  border-style: dashed;
+}
+
+/* ---- actions polish ---- */
+
+.copy-feedback {
+  color: var(--ink-muted);
+}
+
+.copy-fallback {
+  font: 0.78rem var(--font-mono);
+  color: var(--ink);
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.3rem;
+  width: min(22rem, 60vw);
+}
+
+.download-view .save-view {
+  color: var(--link);
+}
+
+.walk-resume {
+  margin: 0.3rem 0 0.6rem;
+  font: 0.85rem var(--font-ui);
+}
+
+.shortcuts-subhead {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Action rows are sentences, not key chords: let them wrap. */
+.action-list dt {
+  white-space: normal;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.action-list dd {
+  font-size: 0.85rem;
+}

@@ -9,6 +9,7 @@
 import type { Atlas } from '../../data/atlas';
 import type { GraphNode, GraphReference } from '../../data/types';
 import { h, type Child } from './dom';
+import { saveBlobButton } from './save';
 
 /** BibTeX "Last, First and Last, First" → display "First Last, First Last". */
 export function formatAuthors(author: string): string {
@@ -91,6 +92,24 @@ export function citeDetails(atlas: Atlas, evidence: string[]): HTMLElement | nul
 }
 
 /**
+ * Reassemble strict BibTeX from resolved references (M14 actions polish):
+ * the reader's citation manager gets exactly what the page's Sources list
+ * shows. Values are plain display text (the build stripped TeX constructs),
+ * emitted brace-wrapped; fields in sorted order for a deterministic file.
+ */
+export function bibtexOf(refs: GraphReference[]): string {
+  return refs
+    .map((ref) => {
+      const fields = Object.keys(ref.fields)
+        .sort()
+        .map((name) => `  ${name} = {${ref.fields[name] ?? ''}},`)
+        .join('\n');
+      return `@${ref.entry_type}{${ref.key},\n${fields}\n}\n`;
+    })
+    .join('\n');
+}
+
+/**
  * The per-page bibliography: every work cited by the node's claims, in
  * either direction, each listed once. Null when nothing on the page cites.
  */
@@ -107,6 +126,17 @@ export function sourcesSection(atlas: Atlas, node: GraphNode): HTMLElement | nul
       'ul',
       { class: 'source-list' },
       refs.map((ref) => referenceItem(ref)),
+    ),
+    h(
+      'p',
+      { class: 'section-hint download-view' },
+      saveBlobButton(
+        `Download these ${String(refs.length)} source${refs.length === 1 ? '' : 's'} as BibTeX`,
+        `${node.slug}.bib`,
+        'application/x-bibtex',
+        () => bibtexOf(refs),
+      ),
+      h('span', { class: 'dim' }, ' — generated in your browser from the resolved references.'),
     ),
   );
 }
