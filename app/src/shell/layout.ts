@@ -39,6 +39,7 @@ export function createShell(root: HTMLElement, atlas: Atlas): Shell {
         { class: 'site-nav', 'aria-label': 'Site' },
         h('a', { href: '#/index' }, 'A–Z'),
         h('a', { href: '#/moves' }, 'Moves'),
+        h('a', { href: '#/applications' }, 'Applications'),
         h('a', { href: '#/dialects' }, 'Dialects'),
         h('a', { href: '#/lens' }, 'Lens'),
         h('a', { href: '#/path' }, 'Path'),

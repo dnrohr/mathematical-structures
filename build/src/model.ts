@@ -17,6 +17,9 @@ export const GAP_EDGE_TYPE = 'POSSIBLE-MISSING-MIGRATION';
 export const SPECULATIVE = 'speculative';
 export const HEURISTIC_ANALOGY = 'heuristic-analogy';
 export const STUB_STATUS = 'stub';
+export const APPLICATION_NODE_TYPE = 'application';
+/** Edge types that connect a structure into an application (spec §8.8). */
+export const APPLICATION_EDGE_TYPES = new Set(['APPLIED-IN', 'MIGRATED-TO']);
 
 export const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 

@@ -235,10 +235,12 @@ The dataset's test suite. Severity levels: **error** (build fails), **warn**
 | Orphan node (no edges, no incoming wiki-links) | warn |
 | Node with no aliases in a multi-field concept (`fields` ≥ 3) | warn |
 | Symptom referencing a `stub` node | warn |
+| `application` node with < 2 distinct structure neighbors over APPLIED-IN / MIGRATED-TO edges (spec §8.8's bar) | warn |
 | Wiki-linked pair with no edge (candidate edge) | info |
 
-The last three rules encode the spec's priorities (dialects, curation) as machine
-checks. New rules are added here, never as conventions in people's heads.
+The warn rules encode the spec's priorities (dialects, curation, the
+application bar) as machine checks. New rules are added here, never as
+conventions in people's heads.
 
 ### 4.3 Link
 

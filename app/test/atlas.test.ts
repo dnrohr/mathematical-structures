@@ -11,6 +11,12 @@ const schema: PublicSchema = {
   node_types: [
     { id: 'operation', label: 'Operation', color_token: 'nt-operation', description: 'ops' },
     { id: 'model', label: 'Canonical model', color_token: 'nt-model', description: 'models' },
+    {
+      id: 'application',
+      label: 'Application',
+      color_token: 'nt-application',
+      description: 'domain problems',
+    },
   ],
   edge_types: [
     {
@@ -22,8 +28,35 @@ const schema: PublicSchema = {
       reverse: 'is governed by',
       description: 'controls a rate or threshold',
     },
+    {
+      id: 'APPLIED-IN',
+      label: 'Applied in',
+      group: 'algorithmics',
+      directionality: 'directed',
+      forward: 'is applied in',
+      reverse: 'makes use of',
+      description: 'structure used inside an application',
+    },
+    {
+      id: 'MIGRATED-TO',
+      label: 'Migrated to',
+      group: 'migration',
+      directionality: 'directed',
+      forward: 'historically migrated into',
+      reverse: 'imported',
+      description: 'established transfer between fields',
+    },
   ],
-  strengths: [{ id: 'theorem', rank: 1, line: 'solid', emphasis: 'strong', description: 'proved' }],
+  strengths: [
+    { id: 'theorem', rank: 1, line: 'solid', emphasis: 'strong', description: 'proved' },
+    {
+      id: 'strong-analogy',
+      rank: 4,
+      line: 'dashed',
+      emphasis: 'medium',
+      description: 'established correspondence',
+    },
+  ],
   fields: [
     { id: 'control', label: 'Control theory' },
     { id: 'statistics', label: 'Statistics' },
@@ -61,12 +94,64 @@ const eigen = makeNode('eigenvalues', {
   ],
 });
 
+/**
+ * An application node with hand-written connections, exercising every
+ * branch of convergingStructures: duplicate neighbors (strongest claim
+ * kept), an app-to-app edge and an unrelated edge type (both ignored).
+ */
+const tomography = makeNode('tomography', {
+  canonical_name: 'Tomography',
+  node_type: 'application',
+  connections: [
+    {
+      other: 'eigenvalues',
+      type: 'APPLIED-IN',
+      direction: 'in',
+      phrase: 'makes use of',
+      strength: 'strong-analogy',
+    },
+    {
+      other: 'eigenvalues',
+      type: 'MIGRATED-TO',
+      direction: 'in',
+      phrase: 'imported',
+      strength: 'theorem',
+    },
+    {
+      other: 'markov-chains',
+      type: 'APPLIED-IN',
+      direction: 'in',
+      phrase: 'makes use of',
+      strength: 'theorem',
+    },
+    {
+      other: 'other-app',
+      type: 'APPLIED-IN',
+      direction: 'out',
+      phrase: 'is applied in',
+      strength: 'theorem',
+    },
+    {
+      other: 'markov-chains',
+      type: 'GOVERNS',
+      direction: 'in',
+      phrase: 'is governed by',
+      strength: 'theorem',
+    },
+  ],
+});
+
 function makeGraph(version = '1.0.0'): GraphJson {
   return {
     schema_version: version,
     generated_from: 'a'.repeat(40),
     schema,
-    nodes: [eigen, makeNode('markov-chains', { canonical_name: 'Markov chains' })],
+    nodes: [
+      eigen,
+      makeNode('markov-chains', { canonical_name: 'Markov chains' }),
+      tomography,
+      makeNode('other-app', { node_type: 'application' }),
+    ],
     edges: [
       {
         from: 'eigenvalues',
@@ -226,6 +311,16 @@ describe('Atlas accessors', () => {
     expect(atlas.nodesOfType('operation').map((n) => n.slug)).toEqual(['eigenvalues']);
     expect(atlas.symptomsUsing('eigenvalues').map((s) => s.id)).toEqual(['too-many-parameters']);
     expect(atlas.symptomsUsing('markov-chains')).toEqual([]);
+  });
+
+  it('convergingStructures: distinct structures, strongest claim first, apps and other types ignored', () => {
+    const structures = atlas.convergingStructures('tomography');
+    expect(structures.map((c) => c.other)).toEqual(['eigenvalues', 'markov-chains']);
+    // The duplicate eigenvalues neighbor kept its strongest claim.
+    expect(structures[0]).toMatchObject({ type: 'MIGRATED-TO', strength: 'theorem' });
+    // Non-applications have no converging structures; unknown slugs are empty.
+    expect(atlas.convergingStructures('eigenvalues')).toEqual([]);
+    expect(atlas.convergingStructures('nope')).toEqual([]);
   });
 });
 

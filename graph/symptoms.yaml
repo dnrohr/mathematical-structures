@@ -25,7 +25,7 @@
   symptom: Measurements are projections of the object
   moves: [radon-transform, integral-transforms]
   mature_fields: [signal-processing, pde]
-  worked_example: radon-transform
+  worked_example: computational-imaging
 
 - id: too-many-parameters
   symptom: Too many dimensional parameters
@@ -63,6 +63,14 @@
   moves: [graph-laplacian, markov-chains, eigenvalues]
   mature_fields: [networks, probability]
   worked_example: graph-laplacian
+
+# Added in M7: the PageRank application exposed a recognition pattern the
+# index lacked — importance queries on connection structure (issue #14).
+- id: ranking-network-importance
+  symptom: Ranking items by importance in a network
+  moves: [eigenvalues, markov-chains, graph-laplacian]
+  mature_fields: [networks, ml]
+  worked_example: pagerank
 
 - id: boundary-measurements-hidden-interior
   symptom: Boundary measurements, hidden interior

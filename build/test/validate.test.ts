@@ -191,6 +191,58 @@ describe('edge rules', () => {
   });
 });
 
+describe('application rules (spec §8.8; ROADMAP M7)', () => {
+  const app = (slug: string): ConceptRecord =>
+    concept(slug, { ...GOOD_NODE, canonical_name: 'Tomography', node_type: 'application' });
+  const applied = (from: string, to: string, index = 0): EdgeRecord =>
+    edge({ from, to, type: 'APPLIED-IN', strength: 'theorem' }, index);
+  const migrated = (from: string, to: string, index = 0): EdgeRecord =>
+    edge({ from, to, type: 'MIGRATED-TO', strength: 'strong-analogy' }, index);
+
+  it('application/underconnected warns below two distinct structure neighbors', () => {
+    // No connecting edges at all.
+    expect(rulesFor([app('tomography'), ...NODES_AB])).toContain('warn:application/underconnected');
+    // One structure.
+    expect(rulesFor([app('tomography'), ...NODES_AB], [applied('a', 'tomography')])).toContain(
+      'warn:application/underconnected',
+    );
+    // Two edges from the SAME structure still count as one neighbor.
+    expect(
+      rulesFor(
+        [app('tomography'), ...NODES_AB],
+        [applied('a', 'tomography', 0), migrated('a', 'tomography', 1)],
+      ),
+    ).toContain('warn:application/underconnected');
+  });
+
+  it('two distinct structure neighbors clear the bar; MIGRATED-TO counts like APPLIED-IN', () => {
+    expect(
+      rulesFor(
+        [app('tomography'), ...NODES_AB],
+        [applied('a', 'tomography', 0), migrated('b', 'tomography', 1)],
+      ),
+    ).toEqual([]);
+  });
+
+  it('neither another application nor an unrelated edge type counts toward the bar', () => {
+    const issues = rulesFor(
+      [app('tomography'), app('other-app'), ...NODES_AB],
+      [
+        applied('other-app', 'tomography', 0),
+        edge({ from: 'b', to: 'tomography', type: 'GOVERNS', strength: 'theorem' }, 1),
+        applied('a', 'tomography', 2),
+      ],
+    );
+    // 'tomography' has one structure neighbor (a) — the app-to-app edge and
+    // the GOVERNS edge bought nothing; 'other-app' has none.
+    expect(issues.filter((i) => i === 'warn:application/underconnected')).toHaveLength(2);
+  });
+
+  it('non-application nodes are never checked', () => {
+    expect(rulesFor(NODES_AB, [edge(GOOD_EDGE)])).toEqual([]);
+  });
+});
+
 describe('symptom rules', () => {
   const GOOD_SYMPTOM = { id: 's1', symptom: 'Coupled variables', moves: ['a'] };
 

@@ -781,6 +781,141 @@
   evidence: []
 
 # ---------------------------------------------------------------------------
+# Applications: the third front door (M7; spec §8.8). An application node
+# exists only where at least two structures materially converge on one real
+# system; each APPLIED-IN strength grades how settled that usage claim is,
+# never how important the application feels. Inventory, strength decisions,
+# and rejected candidates: issue #14.
+# ---------------------------------------------------------------------------
+
+- from: radon-transform
+  to: computational-imaging
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Classical projection tomography is the inverse problem whose forward
+    operator is the Radon transform: CT reconstruction by filtered
+    back-projection is the inverse transform — exact in the full-angle,
+    noiseless idealization, regularized in production.
+
+- from: fourier-analysis
+  to: computational-imaging
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The Fourier slice theorem turns each projection into a radial slice of
+    the object's transform; MRI acquires Fourier samples (k-space)
+    directly, making reconstruction (regularized) Fourier inversion.
+
+- from: greens-function
+  to: computational-imaging
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Under the linearized (Born) single-scattering model the received field
+    is the scene integrated against the propagation kernel, so SAR
+    focusing, backprojection, and seismic migration are matched filtering /
+    adjoint integration against the point-target response.
+  notes: >-
+    Theorem-grade inside the stated linear forward model: where multiple
+    scattering matters it is the linearization that fails, not the
+    reconstruction identity built on it.
+
+- from: complex-analysis
+  to: computational-imaging
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Scoped to the coherent-signal layer: the analytic signal (one-sided
+    spectrum as boundary value of a half-plane-analytic function) licenses
+    quadrature demodulation, and Paley–Wiener rigidity is why limited-angle
+    completion is formally determined yet violently ill-posed.
+
+- from: markov-chains
+  to: pagerank
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Rank is the stationary distribution of the teleporting random-surfer
+    chain; teleportation makes the chain irreducible and aperiodic, so
+    Perron–Frobenius guarantees a unique positive answer.
+
+- from: eigenvalues
+  to: pagerank
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The rank vector is the principal eigenvector of the Google matrix, and
+    damping bounds the subdominant eigenvalue (|λ₂| ≤ α), setting the
+    geometric convergence rate of power iteration.
+
+- from: graph-laplacian
+  to: pagerank
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Ranking runs on the transition matrix, not the Laplacian, but the
+    spectral story is shared: conductance and community structure govern
+    where rank concentrates, and personalized-PageRank sweeps find
+    low-conductance clusters with Cheeger-type guarantees.
+  notes: >-
+    Deliberately below theorem strength: the exact statements live on the
+    walk–generator correspondence (markov-chains ↔ graph-laplacian), not
+    on PageRank itself.
+
+- from: variational-principles
+  to: vascular-branching
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Murray's law: minimizing pumping power plus metabolic maintenance cost
+    predicts cube-law radii and branching angles at bifurcations.
+  notes: >-
+    A variational model of a messy evolved system — real vasculature
+    scatters around the optimum, so the optimality claim stays an
+    established analogy rather than a theorem about organisms.
+
+- from: dimensional-analysis
+  to: vascular-branching
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Allometric similarity arguments organize cross-organism comparison:
+    Kleiber's ~3/4 metabolic exponent from space-filling transport-network
+    models, and Reynolds/Womersley regimes deciding which flows are
+    comparable across body sizes.
+  notes: >-
+    Established correspondence with known scope: the network derivations
+    remain contested in detail and measured exponents vary across taxa.
+
+- from: conservation-laws
+  to: vascular-branching
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Volumetric flow conservation at every junction is the exact constraint
+    inside branching-optimality arguments and hemodynamic network models.
+
+- from: optimization
+  to: resource-allocation
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Production plans, diets, and portfolios are constrained programs: KKT
+    conditions characterize the optimum, and the dual variable on a binding
+    constraint is the shadow price — duality read as economics.
+
+- from: vector-calculus
+  to: resource-allocation
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Marginal analysis is gradient analysis: "marginal cost equals marginal
+    revenue" is a first-order condition read one coordinate at a time, and
+    the envelope theorem makes shadow prices well-defined derivatives of
+    the optimal value.
+
+# ---------------------------------------------------------------------------
 # Research-gap layer (§15 + §9): candidate missing migrations, every one
 # speculative + open-candidate, framed per docs/research-gap-workflow.md.
 # The margins → biological-regulation candidate that used to lead this list

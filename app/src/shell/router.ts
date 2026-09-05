@@ -11,6 +11,7 @@ export type Route =
   | { name: 'concept'; slug: string }
   | { name: 'symptom'; id: string }
   | { name: 'moves' }
+  | { name: 'applications' }
   | { name: 'atoz' }
   | { name: 'dialects'; query: string }
   | { name: 'lens'; filters: LensFilters; communities: boolean }
@@ -38,6 +39,7 @@ export function parseHash(hash: string): Route {
     return { name: 'symptom', id: segs[1]! };
   }
   if (segs[0] === 'moves' && segs.length === 1) return { name: 'moves' };
+  if (segs[0] === 'applications' && segs.length === 1) return { name: 'applications' };
   if (segs[0] === 'index' && segs.length === 1) return { name: 'atoz' };
   if (segs[0] === 'dialects' && segs.length === 1) {
     return { name: 'dialects', query: params.get('q') ?? '' };

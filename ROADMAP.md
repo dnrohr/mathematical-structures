@@ -449,22 +449,29 @@ discoverable from the landing page.
 
 **Exit criteria**
 
-- [ ] 4–6 new `application` nodes, every one `established` and connected to ≥ 2
+- [x] 4–6 new `application` nodes, every one `established` and connected to ≥ 2
       distinct structure nodes by APPLIED-IN edges with honest strengths and
       per-edge context (spec §8.8's bar; `biological-regulation` — v1's only
-      application node — is the template).
-- [ ] Application journey passes: search a domain name ("PageRank") → the
+      application node — is the template) — landed at 4
+      (`computational-imaging`, `pagerank`, `vascular-branching`,
+      `resource-allocation`; 12 APPLIED-IN edges), batch and strengths fixed in
+      [#14](https://github.com/dnrohr/mathematical-structures/issues/14)
+      before writing.
+- [x] Application journey passes: search a domain name ("PageRank") → the
       application page with its structure sentences → a connected structure page
       ("eigenvalues") in ≤ 2 clicks, proven by a Playwright test like the M3/M4
-      journeys.
-- [ ] The ≥ 2-structures bar is a validator rule, not a convention: an
+      journeys — `m7-applications.spec.ts`, click 1 search hit → `#/c/pagerank`,
+      click 2 "Makes use of" sentence → `#/c/eigenvalues`.
+- [x] The ≥ 2-structures bar is a validator rule, not a convention: an
       `application` node with fewer than two distinct structure neighbors over
       APPLIED-IN / MIGRATED-TO edges warns (`biological-regulation` passes via
-      its three MIGRATED-TO edges, so the 0-warning state holds).
+      its three MIGRATED-TO edges, so the 0-warning state holds) —
+      `application/underconnected`, with programmatic failing fixtures per
+      §4.2 practice; the full tree still validates at 0 warnings.
 
 **Tasks**
 
-- [ ] [curation] Application inventory pass (mirrors M2's): fix the batch and
+- [x] [curation] Application inventory pass (mirrors M2's): fix the batch and
       slugs in a tracking issue before writing. Starting candidates, each
       already hooked into the graph: SAR / computational imaging
       (fourier-analysis, radon-transform, greens-function, complex-analysis —
@@ -476,25 +483,44 @@ discoverable from the landing page.
       gap edge); profit maximization / resource allocation (optimization,
       duality; the economics field id exists). Rejected candidates demote to
       `canonical_examples` on the structure pages — the tomography precedent
-      from #3's merge log.
-- [ ] [curation] Write the nodes and APPLIED-IN edges. Strength discipline as
+      from #3's merge log. All four candidates accepted in
+      [#14](https://github.com/dnrohr/mathematical-structures/issues/14);
+      seismic/acoustic imaging folded into `computational-imaging` as
+      examples, Leontief input–output and econometric filtering recorded as
+      rejects there.
+- [x] [curation] Write the nodes and APPLIED-IN edges. Strength discipline as
       always: CT reconstruction _is_ inverse Radon (theorem); Murray's law is a
       variational model of a messy system (strong-analogy at best). Where a
-      field names the problem itself differently, aliases carry it.
-- [ ] [data] Symptom pass: point a symptom's `worked_example` at an application
-      node where it is genuinely the best worked example; add a new symptom
-      only where an application exposes a recognition pattern the index lacks.
-      New `fields` ids only when the validator demands one.
-- [ ] [build] `application/underconnected` warn rule per the exit criterion,
-      with a failing fixture (§4.2 practice: every rule has a triggering test).
-- [ ] [app] `#/applications` index page (parallel to `#/moves`, reusing
-      `views/common/` fragments); the landing page gains applications as the
-      third entry point alongside symptoms and search.
-- [ ] [app] Playwright: the application journey + index render, both themes.
-- [ ] [curation] Metrics re-read after the batch: applications surfacing as
+      field names the problem itself differently, aliases carry it — done;
+      graph-laplacian → pagerank also held below theorem on purpose (the
+      exact statements live on the walk–generator correspondence), and the
+      vascular gap edge stays an open §35 question, referenced not resolved.
+- [x] [data] Symptom pass: `measurements-are-projections.worked_example` →
+      `computational-imaging`; one new symptom (`ranking-network-importance`,
+      worked example `pagerank`) for the recognition pattern the index lacked.
+      No new `fields` ids — the validator never demanded one.
+- [x] [build] `application/underconnected` warn rule per the exit criterion,
+      with failing fixtures (§4.2 practice: every rule has a triggering test);
+      documented in the ARCHITECTURE.md §4.2 table.
+- [x] [app] `#/applications` index page (parallel to `#/moves`, reusing
+      `views/common/` fragments and a shared `convergingStructures` accessor
+      in `data/`); the landing page gains applications as the third entry
+      point alongside symptoms and search, and the site nav links the index.
+- [x] [app] Playwright: the application journey + index render, both themes —
+      four tests in `m7-applications.spec.ts`, and the applications index
+      joined the M6 axe matrix (WCAG 2.1 A/AA, light + dark).
+- [x] [curation] Metrics re-read after the batch: applications surfacing as
       bridges in `#/metrics` is the thesis measured, but verify no overclaimed
       strength manufactured it (theorem-grade APPLIED-IN edges join the trusted
       subgraph); feed anything suspicious back into strengths or edge context.
+      Verdict: `computational-imaging` is a real bridge (degree 4 trusted,
+      betweenness 0.010 — the only node connecting the transform cluster's
+      four members pairwise); `pagerank` and `resource-allocation` carry
+      trusted degree 2 but zero betweenness because their structures were
+      already directly connected (honest triangles, no manufactured
+      centrality); `vascular-branching`'s analogy-grade edges correctly buy
+      no metrics weight (trusted degree 1 via conservation-laws only).
+      Nothing needed feeding back.
 
 ---
 
@@ -606,8 +632,8 @@ the validator remains the only gate.
 
 - Peer-review of `graph/edges.yaml` as a set — the one unchecked M2 task; owner
   work, and worth doing before M7 grows the edge population.
-- Triage of the 53 info-level candidate edges into typed edges or deliberate
-  non-edges; M7's wiki-links will add to this queue by design.
+- Triage of the info-level candidate edges (57 after M7 — its wiki-links grew
+  the queue by design) into typed edges or deliberate non-edges.
 - Possible extraction of `wavelets` from `integral-transforms` once there is
   enough content.
 

@@ -4,6 +4,8 @@
  * rather than throwing so a run reports everything at once.
  */
 import {
+  APPLICATION_EDGE_TYPES,
+  APPLICATION_NODE_TYPE,
   GAP_EDGE_TYPE,
   HEURISTIC_ANALOGY,
   SPECULATIVE,
@@ -377,6 +379,56 @@ function validateSymptom(
 }
 
 // ---------------------------------------------------------------------------
+// Application rules (spec §8.8; ROADMAP M7)
+// ---------------------------------------------------------------------------
+
+/**
+ * The ≥ 2-structures bar as a machine check, not a convention: an
+ * application node earns its keep only where at least two distinct
+ * structure nodes converge on it over APPLIED-IN / MIGRATED-TO edges.
+ * Below that, the content belongs on the structure's page as a canonical
+ * example. Warn (not error): the batch under curation may legitimately
+ * pass through this state mid-review.
+ */
+function validateApplications(r: Rules, concepts: ConceptRecord[], edges: EdgeRecord[]): void {
+  const typeOf = new Map(concepts.map((c) => [c.slug, String(c.front.node_type ?? '')]));
+  const applications = concepts.filter((c) => typeOf.get(c.slug) === APPLICATION_NODE_TYPE);
+  if (applications.length === 0) return;
+
+  const structureNeighbors = new Map<string, Set<string>>(
+    applications.map((c) => [c.slug, new Set<string>()]),
+  );
+  for (const e of edges) {
+    const { from, to, type } = e.raw;
+    if (typeof type !== 'string' || !APPLICATION_EDGE_TYPES.has(type)) continue;
+    if (typeof from !== 'string' || typeof to !== 'string') continue;
+    for (const [app, other] of [
+      [from, to],
+      [to, from],
+    ] as const) {
+      const neighbors = structureNeighbors.get(app);
+      if (!neighbors) continue;
+      // Only structure nodes count toward the bar — a second application
+      // hanging off the first is not convergence (and an unknown slug is
+      // already an edge/unknown-endpoint error, never a neighbor).
+      const otherType = typeOf.get(other);
+      if (otherType !== undefined && otherType !== APPLICATION_NODE_TYPE) neighbors.add(other);
+    }
+  }
+  for (const c of applications) {
+    const count = structureNeighbors.get(c.slug)?.size ?? 0;
+    if (count < 2) {
+      r.add(
+        'warn',
+        'application/underconnected',
+        c.file,
+        `application has ${count} distinct structure neighbor(s) over APPLIED-IN/MIGRATED-TO edges — needs ≥ 2 (spec §8.8), else demote it to a canonical example`,
+      );
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Entry point
 // ---------------------------------------------------------------------------
 
@@ -395,6 +447,8 @@ export function validateContent(
 
   const seenEdges = new Set<string>();
   for (const e of edges) validateEdge(r, v, slugs, e, seenEdges);
+
+  validateApplications(r, concepts, edges);
 
   const seenSymptomIds = new Set<string>();
   for (const s of symptoms) validateSymptom(r, v, slugs, stubs, s, seenSymptomIds);

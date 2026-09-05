@@ -169,6 +169,7 @@ const AXE_ROUTES: { name: string; path: string }[] = [
   { name: 'concept page', path: '/#/c/eigenvalues' },
   { name: 'symptom detail', path: '/#/s/too-many-parameters' },
   { name: 'moves index', path: '/#/moves' },
+  { name: 'applications index', path: '/#/applications' },
   { name: 'dialect lookup', path: '/#/dialects?q=poles' },
   { name: 'lens with communities', path: '/#/lens?field=biology&communities=1' },
   { name: 'path chains', path: '/#/path/harmonic-oscillator/markov-chains' },
