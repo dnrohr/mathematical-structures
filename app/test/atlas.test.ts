@@ -175,6 +175,13 @@ function makeGraph(version = '1.0.0'): GraphJson {
         mature_fields: ['control'],
       },
     ],
+    non_edges: [
+      {
+        between: ['eigenvalues', 'other-app'],
+        reason: 'checked — false friends',
+        see: 'markov-chains',
+      },
+    ],
     references: [
       {
         key: 'kalman-1960',
@@ -222,6 +229,15 @@ function makeGraph(version = '1.0.0'): GraphJson {
       },
       gaps: [],
       candidate_edges: [{ a: 'eigenvalues', b: 'markov-chains' }],
+      queue: {
+        link_suggestions: [
+          { a: 'markov-chains', b: 'tomography', witnesses: ['eigenvalues', 'other-app'] },
+        ],
+        bridge_deficits: [],
+        recurring_assumptions: [],
+        dialect_gaps: [{ slug: 'eigenvalues', field: 'statistics' }],
+        thin_symptoms: [{ id: 'too-many-parameters', move_count: 1, has_worked_example: false }],
+      },
     },
   };
 }
@@ -333,6 +349,20 @@ describe('assembleAtlas version gate', () => {
       error: { kind: 'corrupt' },
     });
   });
+  it('refuses pre-queue data rather than rendering a broken work queue', () => {
+    const noLedger = { ...makeGraph() } as Record<string, unknown>;
+    delete noLedger['non_edges'];
+    expect(assembleAtlas(noLedger, makeSearchArtifact())).toMatchObject({
+      ok: false,
+      error: { kind: 'corrupt' },
+    });
+    const graph = makeGraph() as unknown as { metrics: Record<string, unknown> };
+    delete graph.metrics['queue'];
+    expect(assembleAtlas(graph, makeSearchArtifact())).toMatchObject({
+      ok: false,
+      error: { kind: 'corrupt' },
+    });
+  });
 });
 
 describe('Atlas accessors', () => {
@@ -381,6 +411,22 @@ describe('Atlas accessors', () => {
     });
     // The walk's flagged jump: no typed edge, which is the bridge-note case.
     expect(atlas.edgesBetween('markov-chains', 'tomography')).toEqual([]);
+  });
+
+  it('exposes the reject ledger and the queue signal blocks (M11)', () => {
+    expect(atlas.nonEdges).toEqual([
+      {
+        between: ['eigenvalues', 'other-app'],
+        reason: 'checked — false friends',
+        see: 'markov-chains',
+      },
+    ]);
+    expect(atlas.queue.link_suggestions[0]).toMatchObject({
+      a: 'markov-chains',
+      b: 'tomography',
+      witnesses: ['eigenvalues', 'other-app'],
+    });
+    expect(atlas.queue.thin_symptoms).toHaveLength(1);
   });
 
   it('convergingStructures: distinct structures, strongest claim first, apps and other types ignored', () => {

@@ -14,6 +14,7 @@ import type {
   GraphJson,
   GraphMetrics,
   GraphNode,
+  GraphNonEdge,
   GraphReference,
   GraphSymptom,
   GraphWalk,
@@ -21,6 +22,7 @@ import type {
   NodeMetrics,
   NodeType,
   PublicSchema,
+  QueueMetrics,
   SearchArtifact,
   StatusDef,
   Strength,
@@ -126,6 +128,14 @@ export class Atlas {
   }
   get metrics(): GraphMetrics {
     return this.data.metrics;
+  }
+  /** The reject ledger: reviewed non-connections, pairs normalized (1.4.0). */
+  get nonEdges(): GraphNonEdge[] {
+    return this.data.non_edges;
+  }
+  /** The work-queue signal blocks (1.4.0). */
+  get queue(): QueueMetrics {
+    return this.data.metrics.queue;
   }
 
   node(slug: string): GraphNode | undefined {
@@ -331,6 +341,8 @@ export function assembleAtlas(graphRaw: unknown, searchRaw: unknown): LoadResult
     return fail('corrupt', 'graph.json: missing references list (needs data version ≥ 1.2)');
   if (!Array.isArray(graph.walks))
     return fail('corrupt', 'graph.json: missing walks list (needs data version ≥ 1.3)');
+  if (!Array.isArray(graph.non_edges) || typeof graph.metrics.queue !== 'object')
+    return fail('corrupt', 'graph.json: missing non_edges/queue blocks (needs data version ≥ 1.4)');
   if (typeof search.options !== 'object' || search.options === null || search.index === undefined)
     return fail('corrupt', 'search-index.json: missing options/index');
   try {

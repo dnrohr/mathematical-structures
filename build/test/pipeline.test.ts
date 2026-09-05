@@ -207,6 +207,71 @@ describe('parse-stage failures', () => {
     expect(countErrors(bridged.issues)).toBe(0);
   });
 
+  it('fails when non-edges.yaml references an unknown endpoint (the M11 exit criterion)', () => {
+    const dir = copyValidTree();
+    writeFileSync(
+      join(dir, 'graph', 'non-edges.yaml'),
+      '- between: [eigenvalues, ghost-node]\n  reason: checked\n',
+    );
+    const result = runPipeline(dir);
+    const hit = result.issues.find((i) => i.rule === 'non-edge/unknown-endpoint')!;
+    expect(hit).toBeDefined();
+    expect(hit.message).toContain('ghost-node');
+    expect(hit.file).toContain('non-edges.yaml');
+    expect(countErrors(result.issues)).toBeGreaterThan(0);
+  });
+
+  it('fails when a non-edge contradicts an existing edge (the M11 exit criterion)', () => {
+    const dir = copyValidTree();
+    // kalman-filter → markov-chains carries the fixture IS-A edge; recording
+    // the same pair (either order) as a deliberate non-connection is a
+    // contradiction the build must reject.
+    writeFileSync(
+      join(dir, 'graph', 'non-edges.yaml'),
+      '- between: [markov-chains, kalman-filter]\n  reason: checked — false friends\n',
+    );
+    const result = runPipeline(dir);
+    const hit = result.issues.find((i) => i.rule === 'non-edge/contradiction')!;
+    expect(hit).toBeDefined();
+    expect(hit.message).toContain('IS-A');
+    expect(countErrors(result.issues)).toBeGreaterThan(0);
+  });
+
+  it('a ledger entry provably suppresses its candidate queue item (the M11 exit criterion)', () => {
+    // Without the ledger: a wiki-linked, unedged pair is a candidate edge.
+    const withCandidate = copyValidTree();
+    const newcomer =
+      '---\ncanonical_name: Newcomer\nnode_type: object\nstatus: stub\nsummary: x\n---\nSee [[eigenvalues]].\n';
+    writeFileSync(join(withCandidate, 'concepts', 'newcomer.md'), newcomer);
+    const before = runPipeline(withCandidate);
+    expect(before.issues.map((i) => `${i.severity}:${i.rule}`)).toContain(
+      'info:link/candidate-edge',
+    );
+    expect(before.graph!.candidates).toEqual([{ a: 'eigenvalues', b: 'newcomer' }]);
+
+    // With it: the pair is a reviewed decision, so the queue stays quiet —
+    // and the entry itself lands in the graph, pair normalized.
+    const withLedger = copyValidTree();
+    writeFileSync(join(withLedger, 'concepts', 'newcomer.md'), newcomer);
+    writeFileSync(
+      join(withLedger, 'graph', 'non-edges.yaml'),
+      '- between: [newcomer, eigenvalues]\n  reason: checked — false friends\n  see: markov-chains\n',
+    );
+    const after = runPipeline(withLedger);
+    expect(countErrors(after.issues)).toBe(0);
+    expect(after.issues.map((i) => `${i.severity}:${i.rule}`)).not.toContain(
+      'info:link/candidate-edge',
+    );
+    expect(after.graph!.candidates).toEqual([]);
+    expect(after.graph!.nonEdges).toEqual([
+      {
+        between: ['eigenvalues', 'newcomer'],
+        reason: 'checked — false friends',
+        see: 'markov-chains',
+      },
+    ]);
+  });
+
   it('fails when edges.yaml references an unknown endpoint (the CI exit criterion)', () => {
     const dir = copyValidTree();
     const edgesPath = join(dir, 'graph', 'edges.yaml');

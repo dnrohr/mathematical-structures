@@ -13,11 +13,13 @@ import {
   type EdgeRecord,
   type GraphEdge,
   type GraphNode,
+  type GraphNonEdge,
   type GraphReference,
   type GraphSymptom,
   type GraphWalk,
   type Issue,
   type NodeConnection,
+  type NonEdgeRecord,
   type ReferenceRecord,
   type SymptomRecord,
   type WalkRecord,
@@ -29,6 +31,8 @@ export interface LinkedGraph {
   nodes: GraphNode[];
   edges: GraphEdge[];
   symptoms: GraphSymptom[];
+  /** The reject ledger, normalized (pairs sorted) — deliberate non-connections. */
+  nonEdges: GraphNonEdge[];
   references: GraphReference[];
   walks: GraphWalk[];
   /** Wiki-linked pairs with no typed edge — the info-level curation queue. */
@@ -49,6 +53,7 @@ export function linkGraph(
   concepts: ConceptRecord[],
   edgeRecords: EdgeRecord[],
   symptomRecords: SymptomRecord[],
+  nonEdgeRecords: NonEdgeRecord[],
   referenceRecords: ReferenceRecord[],
   walkRecords: WalkRecord[],
   rendered: RenderedBodies,
@@ -145,13 +150,28 @@ export function linkGraph(
       });
     }
   }
+  // The reject ledger, normalized. A recorded non-connection suppresses the
+  // pair's candidate item below (and its link suggestion in stage 4): the
+  // queue stays idempotent — a reviewed "no" is never re-asked.
+  const nonEdges: GraphNonEdge[] = nonEdgeRecords
+    .map((n) => {
+      const between = (n.raw.between as [string, string]).slice().sort() as [string, string];
+      const see = optionalString(n.raw.see);
+      return { between, reason: String(n.raw.reason).trim(), ...(see ? { see } : {}) };
+    })
+    .sort(
+      (x, y) =>
+        x.between[0].localeCompare(y.between[0]) || x.between[1].localeCompare(y.between[1]),
+    );
+  const rejectedPairs = new Set(nonEdges.map((n) => n.between.join('|')));
+
   const candidatesSeen = new Set<string>();
   const candidates: CandidatePair[] = [];
   for (const [from, targets] of outLinks) {
     for (const target of targets) {
       if (target === from) continue;
       const pair = [from, target].sort().join('|');
-      if (pairHasEdge.has(pair) || candidatesSeen.has(pair)) continue;
+      if (pairHasEdge.has(pair) || rejectedPairs.has(pair) || candidatesSeen.has(pair)) continue;
       candidatesSeen.add(pair);
       const [a, b] = pair.split('|') as [string, string];
       candidates.push({ a, b });
@@ -218,5 +238,5 @@ export function linkGraph(
     }))
     .sort((a, b) => a.id.localeCompare(b.id));
 
-  return { nodes, edges, symptoms, references, walks, candidates, issues };
+  return { nodes, edges, symptoms, nonEdges, references, walks, candidates, issues };
 }

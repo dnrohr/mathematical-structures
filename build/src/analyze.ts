@@ -15,12 +15,20 @@
 import {
   GAP_EDGE_TYPE,
   SPECULATIVE,
+  type BridgeDeficit,
   type CandidatePair,
+  type DialectGap,
   type GapSummary,
   type GraphEdge,
   type GraphMetrics,
   type GraphNode,
+  type GraphNonEdge,
+  type GraphSymptom,
+  type LinkSuggestion,
   type NodeMetrics,
+  type QueueMetrics,
+  type RecurringAssumption,
+  type ThinSymptom,
 } from './model.js';
 import type { AtlasSchema } from './schema.js';
 
@@ -225,11 +233,142 @@ export function spanEntropy(fieldCount: number): number {
   return fieldCount > 0 ? round(Math.log2(fieldCount), 3) : 0;
 }
 
+/** Normalize free-text for identity comparison: lowercase, collapse whitespace. */
+function normalizeText(text: string): string {
+  return text.toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+/**
+ * The work-queue signals (UI_REDESIGN.md §4.6, ROADMAP M11) — deterministic,
+ * plain, explainable math only: shared-neighbor counting with the witnesses
+ * listed, edge counting between communities, exact string identity, set
+ * differences. A signal a reader can't verify by eye doesn't ship.
+ */
+function computeQueue(
+  schema: AtlasSchema,
+  nodes: GraphNode[],
+  edges: GraphEdge[],
+  graph: SimpleGraph,
+  community: (number | null)[],
+  symptoms: GraphSymptom[],
+  nonEdges: GraphNonEdge[],
+): QueueMetrics {
+  const slugs = graph.slugs;
+  const index = new Map(slugs.map((s, i) => [s, i]));
+  const pairKey = (a: string, b: string): string => [a, b].sort().join('|');
+  const edgedPairs = new Set(edges.map((e) => pairKey(e.from, e.to)));
+  const rejectedPairs = new Set(nonEdges.map((n) => n.between.join('|')));
+
+  // Link suggestions: unconnected pairs with ≥ 2 shared trusted neighbors.
+  // Existing edges of ANY strength and ledgered non-edges are excluded — a
+  // reviewed "no" is never re-asked, which keeps the queue idempotent.
+  const neighborSets = graph.adjacency.map((row) => new Set(row.map(([nb]) => nb)));
+  const link_suggestions: LinkSuggestion[] = [];
+  for (let i = 0; i < slugs.length; i++) {
+    for (let j = i + 1; j < slugs.length; j++) {
+      const a = slugs[i]!;
+      const b = slugs[j]!;
+      const key = `${a}|${b}`; // slugs are sorted, so i < j means a < b
+      if (edgedPairs.has(key) || rejectedPairs.has(key)) continue;
+      const witnesses = [...neighborSets[i]!]
+        .filter((nb) => neighborSets[j]!.has(nb))
+        .map((nb) => slugs[nb]!)
+        .sort();
+      if (witnesses.length >= 2) link_suggestions.push({ a, b, witnesses });
+    }
+  }
+  link_suggestions.sort(
+    (x, y) =>
+      y.witnesses.length - x.witnesses.length || x.a.localeCompare(y.a) || x.b.localeCompare(y.b),
+  );
+
+  // Bridge deficits: community pairs joined by ≤ 1 trusted edge. Only
+  // trusted edges assign communities, so both endpoints resolve; parallel
+  // trusted edges each count (each is its own claim).
+  const rank = new Map(schema.strengths.map((s) => [s.id, s.rank]));
+  const trustedRank = rank.get(schema.analysis.trusted_min_strength)!;
+  const crossing = new Map<string, BridgeDeficit['edges']>();
+  for (const e of edges) {
+    if ((rank.get(e.strength) ?? Infinity) > trustedRank) continue;
+    const ca = community[index.get(e.from)!] ?? null;
+    const cb = community[index.get(e.to)!] ?? null;
+    if (ca === null || cb === null || ca === cb) continue;
+    const key = [Math.min(ca, cb), Math.max(ca, cb)].join('|');
+    const list = crossing.get(key) ?? [];
+    list.push({ from: e.from, to: e.to, type: e.type, strength: e.strength });
+    crossing.set(key, list);
+  }
+  const communityCount = new Set(community.filter((c): c is number => c !== null)).size;
+  const bridge_deficits: BridgeDeficit[] = [];
+  for (let a = 0; a < communityCount; a++) {
+    for (let b = a + 1; b < communityCount; b++) {
+      const bridges = crossing.get(`${String(a)}|${String(b)}`) ?? [];
+      if (bridges.length <= 1) {
+        bridges.sort(
+          (x, y) =>
+            x.from.localeCompare(y.from) ||
+            x.to.localeCompare(y.to) ||
+            x.type.localeCompare(y.type),
+        );
+        bridge_deficits.push({ communities: [a, b], edges: bridges });
+      }
+    }
+  }
+
+  // Recurring assumptions: the identical normalized free-text string on
+  // ≥ 2 nodes. A string that IS a concept slug is a typed reference, not
+  // free text — it already has a home, so it never suggests a node.
+  const slugSet = new Set(slugs);
+  const byAssumption = new Map<string, Set<string>>();
+  for (const node of nodes) {
+    for (const raw of node.assumptions) {
+      const assumption = normalizeText(raw);
+      if (assumption.length === 0 || slugSet.has(assumption)) continue;
+      const set = byAssumption.get(assumption) ?? new Set();
+      set.add(node.slug);
+      byAssumption.set(assumption, set);
+    }
+  }
+  const recurring_assumptions: RecurringAssumption[] = [...byAssumption.entries()]
+    .filter(([, set]) => set.size >= 2)
+    .map(([assumption, set]) => ({ assumption, slugs: [...set].sort() }))
+    .sort((x, y) => x.assumption.localeCompare(y.assumption));
+
+  // Dialect gaps: a field the node claims membership in with no alias
+  // naming it there, on nodes that already show ≥ 2 dialects (so the gap is
+  // a hole in a real dialect table, not a missing table). Fields follow
+  // schema order — the order the M12 map will scan them in.
+  const fieldRank = new Map(schema.fields.map((f, i) => [f.id, i]));
+  const dialect_gaps: DialectGap[] = [];
+  for (const node of nodes) {
+    const aliasFields = new Set(node.aliases.map((a) => a.field));
+    if (aliasFields.size < 2) continue;
+    const missing = node.fields
+      .filter((f) => !aliasFields.has(f))
+      .sort((x, y) => (fieldRank.get(x) ?? 99) - (fieldRank.get(y) ?? 99));
+    for (const field of missing) dialect_gaps.push({ slug: node.slug, field });
+  }
+
+  // Thin symptoms: below the useful floor for the recognition index.
+  const thin_symptoms: ThinSymptom[] = symptoms
+    .filter((s) => s.moves.length < 2 || !s.worked_example)
+    .map((s) => ({
+      id: s.id,
+      move_count: s.moves.length,
+      has_worked_example: s.worked_example !== undefined,
+    }))
+    .sort((x, y) => x.id.localeCompare(y.id));
+
+  return { link_suggestions, bridge_deficits, recurring_assumptions, dialect_gaps, thin_symptoms };
+}
+
 export function analyzeGraph(
   schema: AtlasSchema,
   nodes: GraphNode[],
   edges: GraphEdge[],
   candidates: CandidatePair[],
+  symptoms: GraphSymptom[],
+  nonEdges: GraphNonEdge[],
 ): GraphMetrics {
   const rank = new Map(schema.strengths.map((s) => [s.id, s.rank]));
   const trustedRank = rank.get(schema.analysis.trusted_min_strength)!;
@@ -280,5 +419,6 @@ export function analyzeGraph(
     nodes: perNode,
     gaps,
     candidate_edges: candidates,
+    queue: computeQueue(schema, nodes, edges, graph, community, symptoms, nonEdges),
   };
 }

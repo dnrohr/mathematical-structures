@@ -21,6 +21,7 @@ import { movesView } from './views/moves';
 import { pathView } from './views/path';
 import { proposeView } from './views/propose';
 import { questionsView } from './views/questions';
+import { queueView } from './views/queue';
 import { symptomView } from './views/symptom';
 import { walkView } from './views/walk';
 import { walksView } from './views/walks';
@@ -49,6 +50,8 @@ function viewFor(atlas: Atlas, route: Route): View {
       return metricsView(atlas, route);
     case 'questions':
       return questionsView(atlas);
+    case 'queue':
+      return queueView(atlas);
     case 'propose':
       return proposeView(atlas, route);
     case 'walks':

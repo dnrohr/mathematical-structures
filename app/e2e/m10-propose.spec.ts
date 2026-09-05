@@ -61,10 +61,12 @@ test('concept page → composer → prefilled issue URL (the M10 exit criterion)
   );
 });
 
-test('questions candidate → composer with the pair filled in; state round-trips', async ({
+test('candidate-queue pair → composer with the pair filled in; state round-trips', async ({
   page,
 }) => {
-  await page.goto('/#/questions');
+  // The candidate-edge list moved from #/questions to its M11 sibling,
+  // #/queue (UI_REDESIGN.md §4.6); the propose entry point moved with it.
+  await page.goto('/#/queue');
   const candidate = page.locator('.candidate-list li', { hasText: 'Bayes' }).first();
   await expect(candidate).toContainText('Computational imaging');
   await candidate.getByRole('link', { name: 'propose' }).click();

@@ -36,7 +36,7 @@ citable. `generated_from` carries the git commit SHA of the content tree.
 
 ```jsonc
 {
-  "schema_version": "1.3.0",
+  "schema_version": "1.4.0",
   "generated_from": "<git sha>",
   "schema": { /* the controlled vocabularies, verbatim from graph/schema.yaml */
     "node_types":   [ { "id", "label", "color_token", "description" } ],
@@ -51,6 +51,7 @@ citable. `generated_from` carries the git commit SHA of the content tree.
   "nodes":      [ /* sorted by slug */ ],
   "edges":      [ /* sorted by (from, to, type) */ ],
   "symptoms":   [ /* sorted by id */ ],
+  "non_edges":  [ /* sorted by pair; added in 1.4.0 — see below */ ],
   "references": [ /* sorted by key; added in 1.2.0 — see below */ ],
   "walks":      [ /* sorted by id; added in 1.3.0 — see below */ ],
   "metrics":    { /* build-time analysis; added in 1.1.0 — see below */ }
@@ -122,6 +123,24 @@ An edge's epistemic weight is `strength` — consumers must not present
   "moves": ["dimensional-analysis"],      // node slugs, most useful first
   "mature_fields": ["fluids"],            // -> schema.fields
   "worked_example"?: "reynolds-number"    // node slug
+}
+```
+
+### Non-edge (added in 1.4.0)
+
+The reject ledger (`graph/non-edges.yaml`): pairs reviewed and deliberately
+NOT connected, each with its reason — "we checked, and these are false
+friends" is data here. Pairs are normalized to sorted order and the list is
+sorted by pair. The validator guarantees both slugs exist and that no typed
+edge contradicts an entry; the build suppresses a recorded pair from the
+candidate-edge and link-suggestion queues, so consumers can treat the
+ledger as authoritative "asked and answered".
+
+```jsonc
+{
+  "between": ["kalman-filter", "state-space-model"],  // sorted slugs
+  "reason": "the connection already runs through the special case ...",
+  "see"?: "linear-gaussian-ssm"   // a concept slug or an http(s) URL
 }
 ```
 
@@ -206,6 +225,47 @@ centrality. Nodes reached only by analogy-strength or speculative edges have
   ],
   "candidate_edges": [            // wiki-linked pairs with no typed edge
     { "a": "chaos", "b": "phase-space" }   // (the curation queue), a < b
+  ],
+  "queue": { /* the work-queue signals; added in 1.4.0 — see below */ }
+}
+```
+
+#### `metrics.queue` (added in 1.4.0)
+
+The work-queue signal blocks (UI_REDESIGN.md §4.6): deterministic curation
+signals, each item carrying the evidence that produced it — plain,
+explainable math only. Pairs recorded in `non_edges` never appear in
+`link_suggestions` (nor in `candidate_edges`), so the queue is idempotent
+under review.
+
+```jsonc
+{
+  "link_suggestions": [           // unconnected pairs (no edge of ANY
+    {                             // strength) sharing ≥ 2 trusted neighbors;
+      "a": "eigenvalues",         // a < b; sorted by witness count desc,
+      "b": "phase-space",         // then pair
+      "witnesses": ["change-of-representation", "harmonic-oscillator"]
+    }
+  ],
+  "bridge_deficits": [            // community pairs joined by ≤ 1 trusted
+    {                             // edge; labels ascending, all pairs listed
+      "communities": [0, 2],
+      "edges": [                  // the 0 or 1 bridging trusted edges
+        { "from": "...", "to": "...", "type": "...", "strength": "..." }
+      ]
+    }
+  ],
+  "recurring_assumptions": [      // the identical free-text `assumptions`
+    {                             // string (lowercased, whitespace-collapsed)
+      "assumption": "observations conditionally independent given the current state",
+      "slugs": ["hidden-markov-model", "state-space-model"]
+    }                             // strings that are concept slugs are
+  ],                              // typed references, never signals
+  "dialect_gaps": [               // field listed in `fields` with no alias
+    { "slug": "bayes-rule", "field": "probability" }
+  ],                              // (only on nodes with ≥ 2 dialects)
+  "thin_symptoms": [              // below the useful floor for the index
+    { "id": "some-symptom", "move_count": 1, "has_worked_example": false }
   ]
 }
 ```

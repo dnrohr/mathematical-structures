@@ -53,6 +53,7 @@ Hard rules that define the layer boundaries:
 │   ├── schema.yaml            # controlled vocabularies (single source of truth)
 │   ├── edges.yaml             # the typed edge list
 │   ├── symptoms.yaml          # the problem-recognition index
+│   ├── non-edges.yaml         # the reject ledger: reviewed non-connections (M11)
 │   └── references.bib         # the literature that edges cite (M8)
 ├── paths/                     # guided walks (spec §8.3), one YAML file per walk (M9)
 ├── docs/                      # working method, research-gap workflow, notes
@@ -265,6 +266,30 @@ the validator enforces this, so every hop is either a claim from
 `edges.yaml` or an explicit, honest bridge — never an implied connection
 the graph does not make (spec §1).
 
+### 3.8 Non-edges: `graph/non-edges.yaml`
+
+The reject ledger (UI_REDESIGN.md §4.6, M11): a reviewed decision **not** to
+connect a pair is data, so the decision is never re-litigated and the work
+queue never re-asks it. One flat, optional list:
+
+```yaml
+- between: [kalman-filter, hidden-markov-model]  # unordered; both must exist
+  reason: >-                                     # required: why the pair
+    The Kalman filter is an algorithm, not a     # stays unconnected
+    model class (notebook §8); the containment
+    runs through linear-gaussian-ssm.
+  see: linear-gaussian-ssm                       # optional: a concept slug or
+                                                 # an http(s) URL
+```
+
+The validator checks both endpoints exist, requires the reason, and —
+the epistemic rule — **errors when any typed edge connects a recorded
+pair**: the ledger and the edge list may never contradict each other. The
+build suppresses a recorded pair's candidate-edge and link-suggestion queue
+items, and emits the ledger into `graph.json` as `non_edges`, where the
+queue view renders it as "deliberate non-connections" — for this project,
+*"we checked, and these are false friends"* is content, not bookkeeping.
+
 ## 4. Build layer
 
 A single CLI (`atlas-build`) with deterministic output (same input → byte-identical
@@ -302,7 +327,10 @@ The dataset's test suite. Severity levels: **error** (build fails), **warn**
 | Consecutive walk steps with no typed edge between them and no bridging `note` on the later step | error |
 | Walk with a repeated step, or fewer than two steps | error |
 | Walk step on a `stub` node | warn |
-| Wiki-linked pair with no edge (candidate edge) | info |
+| Non-edge endpoint that is not an existing concept, self-pair, duplicate pair, or missing `reason` | error |
+| Non-edge contradicted by a typed edge between the same pair (either direction) | error |
+| Non-edge `see` pointer that is neither a concept slug nor an http(s) URL | error |
+| Wiki-linked pair with no edge (candidate edge; suppressed when the pair is in `non-edges.yaml`) | info |
 | Reference cited by no edge | info |
 
 The warn rules encode the spec's priorities (dialects, curation, the
@@ -334,6 +362,15 @@ Compute the README §33 derived metrics over the typed graph, entirely at build 
 - **Candidate-edge and gap summaries**: the info-level validator output, plus all
   `POSSIBLE-MISSING-MIGRATION` edges with their workflow status, packaged for the
   Open Questions view.
+- **Work-queue signals** (`metrics.queue`, M11; UI_REDESIGN.md §4.6) — plain,
+  explainable math only, every item carrying its evidence: link suggestions
+  (unconnected pairs with ≥ 2 shared trusted neighbors, witnesses listed;
+  existing edges and `non-edges.yaml` pairs excluded), bridge deficits
+  (community pairs joined by ≤ 1 trusted edge, the bridging edge named),
+  recurring assumptions (the identical normalized free-text `assumptions`
+  string on ≥ 2 nodes; slug-valued strings are typed references, not
+  signals), dialect gaps (a field in `fields` with no alias, on nodes with
+  ≥ 2 dialects), and thin symptoms (< 2 moves or no worked example).
 
 ### 4.5 Emit
 
@@ -382,6 +419,7 @@ matching the "can never rot" deployment goal.
 #/path/<slugA>/<slugB>  translation-chain finder
 #/metrics               hubs, bridges, span/dialect rankings
 #/questions             open research-gap candidates
+#/queue                 the work queue: mechanical curation signals + the reject ledger (M11)
 #/walks                 index of guided walks (spec §8.3)
 #/walk/<id>?step=<n>    one walk, stepped through; position in the URL
 #/propose?from=<slug>&to=<slug>&type=…&strength=…&context=…

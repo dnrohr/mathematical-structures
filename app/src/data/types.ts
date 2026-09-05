@@ -8,6 +8,7 @@ import type {
   GraphEdge,
   GraphMetrics,
   GraphNode,
+  GraphNonEdge,
   GraphReference,
   GraphSymptom,
   GraphWalk,
@@ -21,18 +22,25 @@ import type {
 } from '../../../build/src/schema.js';
 
 export type {
+  BridgeDeficit,
   CandidatePair,
+  DialectGap,
   GapSummary,
   GraphAlias,
   GraphEdge,
   GraphMetrics,
   GraphNode,
+  GraphNonEdge,
   GraphReference,
   GraphSymptom,
   GraphWalk,
   GraphWalkStep,
+  LinkSuggestion,
   NodeConnection,
   NodeMetrics,
+  QueueMetrics,
+  RecurringAssumption,
+  ThinSymptom,
 } from '../../../build/src/model.js';
 export type {
   EdgeType,
@@ -53,7 +61,7 @@ export interface PublicSchema {
   analysis: { trusted_min_strength: string };
 }
 
-/** Top-level shape of graph.json, version 1.3+ (docs/graph-json.md). */
+/** Top-level shape of graph.json, version 1.4+ (docs/graph-json.md). */
 export interface GraphJson {
   schema_version: string;
   generated_from: string;
@@ -61,6 +69,8 @@ export interface GraphJson {
   nodes: GraphNode[];
   edges: GraphEdge[];
   symptoms: GraphSymptom[];
+  /** The reject ledger — reviewed non-connections (added in 1.4.0). */
+  non_edges: GraphNonEdge[];
   /** Resolved literature references — what `evidence` keys point at (1.2.0). */
   references: GraphReference[];
   /** Guided walks compiled from paths/*.yaml (added in 1.3.0). */

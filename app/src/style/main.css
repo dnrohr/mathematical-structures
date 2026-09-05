@@ -1960,3 +1960,55 @@ th[aria-sort='ascending'] .sort-button::after {
     scroll-behavior: smooth;
   }
 }
+
+/* ======================================================================
+   Work queue (M11) — the mechanical curation signals. Row lists carry
+   witnesses/reasons/actions, so they read single-column (unlike the
+   compact candidate grid); deficits are cards because each item is a
+   claim list plus members plus actions.
+   ====================================================================== */
+
+.queue-signal {
+  margin: 2.2rem 0;
+}
+
+.queue-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  font-size: 0.92rem;
+}
+
+.queue-list li {
+  margin: 0.45rem 0;
+}
+
+.queue .propose-candidate {
+  font-family: var(--font-ui);
+  font-size: 0.85em;
+  color: var(--ink-muted);
+}
+
+.deficit-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.deficit-list > li {
+  margin: 1rem 0;
+  padding: 0.7rem 1rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.deficit-list p {
+  margin: 0.3rem 0;
+  font-size: 0.92rem;
+}
+
+.deficit-head,
+.deficit-actions {
+  font-family: var(--font-ui);
+}

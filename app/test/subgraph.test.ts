@@ -105,6 +105,7 @@ function makeAtlas(nodes: GraphNode[], edges: GraphEdge[]): Atlas {
     nodes,
     edges,
     symptoms: [],
+    non_edges: [],
     references: [],
     walks: [],
     // Subgraph computations never read metrics; an empty block satisfies the contract.
@@ -119,6 +120,13 @@ function makeAtlas(nodes: GraphNode[], edges: GraphEdge[]): Atlas {
       nodes: {},
       gaps: [],
       candidate_edges: [],
+      queue: {
+        link_suggestions: [],
+        bridge_deficits: [],
+        recurring_assumptions: [],
+        dialect_gaps: [],
+        thin_symptoms: [],
+      },
     },
   };
   const options = {

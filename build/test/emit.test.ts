@@ -16,12 +16,20 @@ afterAll(cleanupTrees);
 function buildOnce(outDir: string): string[] {
   const result = runPipeline(FIXTURE_VALID);
   const g = result.graph!;
-  const metrics = analyzeGraph(result.schema!, g.nodes, g.edges, g.candidates);
+  const metrics = analyzeGraph(
+    result.schema!,
+    g.nodes,
+    g.edges,
+    g.candidates,
+    g.symptoms,
+    g.nonEdges,
+  );
   const graphJson = buildGraphJson(
     result.schema!,
     g.nodes,
     g.edges,
     g.symptoms,
+    g.nonEdges,
     g.references,
     g.walks,
     metrics,
@@ -59,12 +67,20 @@ describe('emit determinism', () => {
 describe('graph.json shape', () => {
   const result = runPipeline(FIXTURE_VALID);
   const g = result.graph!;
-  const metrics = analyzeGraph(result.schema!, g.nodes, g.edges, g.candidates);
+  const metrics = analyzeGraph(
+    result.schema!,
+    g.nodes,
+    g.edges,
+    g.candidates,
+    g.symptoms,
+    g.nonEdges,
+  );
   const graphJson = buildGraphJson(
     result.schema!,
     g.nodes,
     g.edges,
     g.symptoms,
+    g.nonEdges,
     g.references,
     g.walks,
     metrics,
@@ -72,7 +88,7 @@ describe('graph.json shape', () => {
   );
 
   it('carries version, provenance, schema, and sorted content', () => {
-    expect(graphJson.schema_version).toBe('1.3.0');
+    expect(graphJson.schema_version).toBe('1.4.0');
     expect(graphJson.generated_from).toBe('test-sha');
     const nodes = graphJson.nodes as { slug: string }[];
     expect(nodes.map((n) => n.slug)).toEqual(['eigenvalues', 'kalman-filter', 'markov-chains']);
@@ -88,6 +104,22 @@ describe('graph.json shape', () => {
     const walks = graphJson.walks as { id: string; steps: unknown[] }[];
     expect(walks.map((w) => w.id)).toEqual(['spectral-walk']);
     expect(walks[0]!.steps).toHaveLength(2);
+  });
+
+  it('carries the non_edges ledger and the metrics.queue block (added in 1.4.0)', () => {
+    // The valid fixture has no non-edges.yaml (the ledger is optional
+    // content) — the block still emits, deterministically empty.
+    expect(graphJson.non_edges).toEqual([]);
+    const m = graphJson.metrics as GraphMetrics;
+    expect(m.queue).toEqual({
+      link_suggestions: [],
+      bridge_deficits: [],
+      recurring_assumptions: [],
+      // The fixture eigenvalues node spans 3 fields with aliases in 2.
+      dialect_gaps: [{ slug: 'eigenvalues', field: 'probability' }],
+      // The fixture symptom carries a single move.
+      thin_symptoms: [{ id: 'coupled-variables', move_count: 1, has_worked_example: true }],
+    });
   });
 
   it('packages the metrics block: trusted floor, gaps, per-node entries', () => {
@@ -119,7 +151,14 @@ describe('graph.json shape', () => {
 describe('export emitters', () => {
   const result = runPipeline(FIXTURE_VALID);
   const g = result.graph!;
-  const metrics = analyzeGraph(result.schema!, g.nodes, g.edges, g.candidates);
+  const metrics = analyzeGraph(
+    result.schema!,
+    g.nodes,
+    g.edges,
+    g.candidates,
+    g.symptoms,
+    g.nonEdges,
+  );
 
   it('GraphML declares keys, escapes XML, and carries nodes/edges with data', () => {
     const xml = buildGraphml(g.nodes, g.edges, metrics);
