@@ -7,17 +7,21 @@ import MiniSearch from 'minisearch';
 import { describe, expect, it } from 'vitest';
 import { assembleAtlas, type Atlas } from '../src/data/atlas';
 import {
+  assumptionTrail,
   EGO_NODE_CAP,
   egoNetwork,
   hasLensFilter,
+  lensPinsToLayout,
   lensSubgraph,
   matrixSelection,
   pathsBetween,
+  trailUnfolds,
 } from '../src/data/subgraph';
 import type {
   GraphEdge,
   GraphJson,
   GraphNode,
+  NodeConnection,
   PublicSchema,
   SearchArtifact,
 } from '../src/data/types';
@@ -98,7 +102,11 @@ function edge(from: string, to: string, type: string, strength: string): GraphEd
   return { from, to, type, strength, symmetric: type === 'ANALOGOUS-TO', evidence: [] };
 }
 
-function makeAtlas(nodes: GraphNode[], edges: GraphEdge[]): Atlas {
+function makeAtlas(
+  nodes: GraphNode[],
+  edges: GraphEdge[],
+  layout: Record<string, [number, number]> = {},
+): Atlas {
   const graph: GraphJson = {
     schema_version: '1.0.0',
     generated_from: 'a'.repeat(40),
@@ -128,7 +136,7 @@ function makeAtlas(nodes: GraphNode[], edges: GraphEdge[]): Atlas {
         dialect_gaps: [],
         thin_symptoms: [],
       },
-      layout: {},
+      layout,
     },
   };
   const options = {
@@ -328,5 +336,141 @@ describe('aliasLookup', () => {
     expect(byName[0]!.alias).toBeUndefined();
     expect(pathAtlas.aliasLookup('perfekt adaptation')).toEqual([]);
     expect(pathAtlas.aliasLookup('   ')).toEqual([]);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// M15: the assumption trail and the lens pin threshold
+// ---------------------------------------------------------------------------
+
+function assumes(other: string, direction: 'out' | 'in'): NodeConnection {
+  return {
+    other,
+    type: 'ASSUMES',
+    direction,
+    phrase: direction === 'out' ? 'assumes' : 'is assumed by',
+    strength: 'theorem',
+    evidence: [],
+  };
+}
+
+/** Both endpoints of a ASSUMES b, as the linker would emit them. */
+function assumesNodes(pairs: [string, string][]): GraphNode[] {
+  const conns = new Map<string, NodeConnection[]>();
+  const add = (slug: string, conn: NodeConnection): void => {
+    conns.set(slug, [...(conns.get(slug) ?? []), conn]);
+  };
+  for (const [from, to] of pairs) {
+    add(from, assumes(to, 'out'));
+    add(to, assumes(from, 'in'));
+  }
+  return [...conns.entries()].map(([slug, connections]) => makeNode(slug, { connections }));
+}
+
+describe('assumptionTrail', () => {
+  it('unfolds a chain transitively and follows out-edges only', () => {
+    // t1 → t2 → t3: the real content's stability-margins shape.
+    const atlas = makeAtlas(
+      assumesNodes([
+        ['t1', 't2'],
+        ['t2', 't3'],
+      ]),
+      [],
+    );
+    const trail = assumptionTrail(atlas, 't1');
+    expect(trail).toHaveLength(1);
+    expect(trail[0]!.conn.other).toBe('t2');
+    expect(trail[0]!.cycle).toBe(false);
+    expect(trail[0]!.children.map((s) => s.conn.other)).toEqual(['t3']);
+    expect(trail[0]!.children[0]!.children).toEqual([]);
+    expect(trailUnfolds(trail)).toBe(true);
+
+    // One hop down the same chain there is nothing left to unfold…
+    const fromT2 = assumptionTrail(atlas, 't2');
+    expect(fromT2).toHaveLength(1);
+    expect(trailUnfolds(fromT2)).toBe(false);
+    // …and a node with only incoming ASSUMES has no trail at all.
+    expect(assumptionTrail(atlas, 't3')).toEqual([]);
+    expect(assumptionTrail(atlas, 'nope')).toEqual([]);
+  });
+
+  it('renders a diamond as two full branches — claims repeat, expansion does not fork wrong', () => {
+    const atlas = makeAtlas(
+      assumesNodes([
+        ['d0', 'd1'],
+        ['d0', 'd2'],
+        ['d1', 'd3'],
+        ['d2', 'd3'],
+      ]),
+      [],
+    );
+    const trail = assumptionTrail(atlas, 'd0');
+    expect(trail.map((s) => s.conn.other)).toEqual(['d1', 'd2']);
+    for (const branch of trail) {
+      expect(branch.children.map((s) => s.conn.other)).toEqual(['d3']);
+      expect(branch.children[0]!.cycle).toBe(false);
+    }
+  });
+
+  it('terminates a cycle on first revisit and flags the step', () => {
+    const atlas = makeAtlas(
+      assumesNodes([
+        ['c1', 'c2'],
+        ['c2', 'c1'],
+      ]),
+      [],
+    );
+    const trail = assumptionTrail(atlas, 'c1');
+    expect(trail).toHaveLength(1);
+    const back = trail[0]!.children[0]!;
+    expect(back.conn.other).toBe('c1');
+    expect(back.cycle).toBe(true);
+    expect(back.children).toEqual([]);
+    expect(trailUnfolds(trail)).toBe(true);
+  });
+});
+
+describe('lensPinsToLayout', () => {
+  const layout: Record<string, [number, number]> = {
+    a: [100, 100],
+    b: [200, 160],
+    c: [300, 220],
+  };
+  const positionedAtlas = makeAtlas(
+    [makeNode('a'), makeNode('b'), makeNode('c'), makeNode('d'), makeNode('e')],
+    [
+      edge('a', 'b', 'GOVERNS', 'theorem'),
+      edge('b', 'c', 'ANALOGOUS-TO', 'strong-analogy'),
+      edge('c', 'd', 'GOVERNS', 'heuristic-analogy'),
+      edge('a', 'e', 'GOVERNS', 'theorem'),
+    ],
+    layout,
+  );
+
+  it('pins a lens covering at least half the graph when positions exist', () => {
+    // Every GOVERNS edge: nodes a, b, c, d, e — the whole graph.
+    const wide = lensSubgraph(positionedAtlas, { edge: 'GOVERNS' });
+    expect(wide.nodes.length * 2).toBeGreaterThanOrEqual(positionedAtlas.nodes.length);
+    expect(lensPinsToLayout(positionedAtlas, wide)).toBe(true);
+  });
+
+  it('stays local below the fraction', () => {
+    const narrow = lensSubgraph(positionedAtlas, { edge: 'ANALOGOUS-TO' }); // b, c
+    expect(lensPinsToLayout(positionedAtlas, narrow)).toBe(false);
+  });
+
+  it('stays local when fewer than two rendered nodes hold positions', () => {
+    const bare = makeAtlas(
+      [makeNode('a'), makeNode('b'), makeNode('c'), makeNode('d'), makeNode('e')],
+      [
+        edge('a', 'b', 'GOVERNS', 'theorem'),
+        edge('c', 'd', 'GOVERNS', 'theorem'),
+        edge('a', 'e', 'GOVERNS', 'theorem'),
+      ],
+      { a: [100, 100] },
+    );
+    const wide = lensSubgraph(bare, { edge: 'GOVERNS' });
+    expect(wide.nodes).toHaveLength(5);
+    expect(lensPinsToLayout(bare, wide)).toBe(false);
   });
 });

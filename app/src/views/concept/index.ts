@@ -10,6 +10,7 @@
  */
 import { REPO_URL } from '../../config';
 import { APPLICATION_EDGE_TYPES, type Atlas } from '../../data/atlas';
+import { assumptionTrail, trailUnfolds, type TrailStep } from '../../data/subgraph';
 import type { GraphNode, NodeConnection } from '../../data/types';
 import { clearTrail, readTrail, recordVisit } from '../../shell/local';
 import { statusBadge, strengthBadge, typeBadge } from '../common/badges';
@@ -81,6 +82,53 @@ function provenanceLink(section: string): HTMLElement {
   return h('a', { href: `${REPO_URL}/blob/main/docs/${doc}.md#${anchor}` }, label);
 }
 
+/**
+ * The assumption trail (UI_REDESIGN.md §4.2, ROADMAP M15): the ASSUMES
+ * chain unfolded transitively as an indented claim tree — each line the
+ * shared connection fragment, a branch that revisits a node stopping with
+ * a label (cycles terminate on first revisit). Rendered as a disclosure
+ * only when unfolding goes beyond the one-hop list already shown above it.
+ */
+function trailTree(atlas: Atlas, steps: TrailStep[]): HTMLUListElement {
+  return h(
+    'ul',
+    { class: 'connection-list trail-level' },
+    steps.map((step) => {
+      const item = connectionItem(atlas, step.conn, { phrase: true });
+      if (step.cycle)
+        item.appendChild(
+          h('span', { class: 'trail-cycle' }, ' — cycles back to an assumption on this branch'),
+        );
+      if (step.children.length > 0) item.appendChild(trailTree(atlas, step.children));
+      return item;
+    }),
+  );
+}
+
+function countSteps(steps: TrailStep[]): number {
+  return steps.reduce((sum, step) => sum + 1 + countSteps(step.children), 0);
+}
+
+function trailDisclosure(atlas: Atlas, slug: string): HTMLElement | null {
+  const trail = assumptionTrail(atlas, slug);
+  if (!trailUnfolds(trail)) return null;
+  return h(
+    'details',
+    { class: 'assumption-trail' },
+    h(
+      'summary',
+      {},
+      `Trace assumptions — the transitive chain (${String(countSteps(trail))} claims)`,
+    ),
+    h(
+      'p',
+      { class: 'section-hint' },
+      'What the assumptions themselves assume, unfolded until the chain bottoms out.',
+    ),
+    trailTree(atlas, trail),
+  );
+}
+
 function assumptionsSection(atlas: Atlas, node: GraphNode, adjacent: NodeConnection[]) {
   if (node.assumptions.length === 0 && adjacent.length === 0) return null;
   return h(
@@ -99,6 +147,7 @@ function assumptionsSection(atlas: Atlas, node: GraphNode, adjacent: NodeConnect
         { class: 'connection-list' },
         adjacent.map((conn) => connectionItem(atlas, conn, { phrase: true })),
       ),
+    trailDisclosure(atlas, node.slug),
   );
 }
 

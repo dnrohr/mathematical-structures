@@ -22,7 +22,11 @@ export function installEdgeHop(): void {
     if (!(active instanceof HTMLElement)) return;
     const item = active.closest('li.connection');
     if (!item) return;
-    const items = [...document.querySelectorAll('main li.connection')];
+    // Claims folded inside a closed disclosure (the M15 assumption trail)
+    // are in the DOM but not focusable — hop over them, never onto them.
+    const items = [...document.querySelectorAll('main li.connection')].filter(
+      (el) => !el.closest('details:not([open])'),
+    );
     const next = items[items.indexOf(item) + (e.key === 'ArrowDown' ? 1 : -1)];
     if (!next) return; // past either end: let the arrow scroll as usual
     const link = next.querySelector('a');
@@ -61,6 +65,10 @@ const ACTIONS: { what: string; where: string }[] = [
   {
     what: 'Compare two concepts side by side',
     where: 'concept pages → “compare it with another concept”',
+  },
+  {
+    what: 'Trace assumptions — the ASSUMES chain unfolded transitively',
+    where: 'concept pages whose assumptions have assumptions of their own',
   },
   {
     what: 'Resume a walk · the recently-visited trail',

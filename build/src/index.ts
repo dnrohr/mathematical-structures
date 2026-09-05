@@ -2,12 +2,16 @@
  * atlas-build — compiler/validator CLI for the Structure Atlas
  * (ARCHITECTURE.md §4).
  *
- * Usage: atlas [--check] [--root <dir>] [--out <dir>]
+ * Usage: atlas [--check] [--content <dir>] [--out <dir>]
  *
- *   --check   validate only (parse, content rules, link/render rules);
- *             the CI gate. No files are written.
- *   --root    content root (default: nearest ancestor with graph/schema.yaml)
- *   --out     artifact directory (default: <root>/dist/data)
+ *   --check    validate only (parse, content rules, link/render rules);
+ *              the CI gate. No files are written.
+ *   --content  content root (default: nearest ancestor with
+ *              graph/schema.yaml). This is the fork seam (spec §8.5,
+ *              ARCHITECTURE.md §9): any tree with the §2 layout builds with
+ *              this tooling, this repository's included. `--root` is the
+ *              same flag under its pre-M15 name, kept as an alias.
+ *   --out      artifact directory (default: <content>/dist/data)
  *
  * A full run additionally analyzes (stage 4 metrics over the trusted
  * subgraph) and emits graph.json, search-index.json, and the GraphML/CSV
@@ -55,14 +59,14 @@ function parseArgs(argv: string[]): Args {
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--check') args.check = true;
-    else if (a === '--root' || a === '--out') {
+    else if (a === '--content' || a === '--root' || a === '--out') {
       const v = argv[++i];
       if (!v) {
         console.error(`atlas-build: ${a} needs a directory argument`);
         exit(2);
       }
-      if (a === '--root') args.root = v;
-      else args.out = v;
+      if (a === '--out') args.out = v;
+      else args.root = v;
     } else {
       console.error(`atlas-build: unknown argument "${a}"`);
       exit(2);

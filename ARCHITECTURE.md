@@ -64,7 +64,7 @@ Hard rules that define the layer boundaries:
 │   │   ├── link.ts
 │   │   ├── analyze.ts
 │   │   ├── emit.ts
-│   │   └── index.ts           # CLI entry: atlas-build [--check] [--out DIR]
+│   │   └── index.ts           # CLI entry: atlas-build [--check] [--content DIR] [--out DIR]
 │   └── test/
 ├── app/                       # the SPA source
 │   ├── index.html             # Vite entry
@@ -535,7 +535,7 @@ as app features.
 | Evidence/citations | landed (M8): `graph/references.bib` + validated `evidence` keys, resolved into `graph.json`; claims render a citation affordance and concept pages a Sources list |
 | Learning paths | landed (M9): `paths/<id>.yaml` (§3.7) compiled and validated like every content type, walks emitted into `graph.json`; the walk view steps through them reusing the path graph preset |
 | LLM-assisted authoring | operates on `graph.json` + `schema.yaml`; output enters as ordinary PRs through the same validator (spec §8.4's hard rule) |
-| Forks / multiple atlases | `atlas-build --content DIR`; nothing hardcodes this repository's content |
+| Forks / multiple atlases | `atlas-build --content DIR` (M15; `--root` is the pre-M15 alias); nothing hardcodes this repository's content — proven end to end by `build/test/cli.test.ts`, which builds a foreign mini-atlas from a bare temp directory; walkthrough in CONTRIBUTING.md |
 | 10× scale | per-node JSON split (§4.5 escape hatch), paginated lists, and the standing "no full-graph render" rule |
 | Applications as first-class content | `application` node type + APPLIED-IN edges already in `schema.yaml`; one new warn-level validator rule (§4.2); an index view reusing `views/common/` fragments |
 

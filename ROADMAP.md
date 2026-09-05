@@ -41,6 +41,7 @@ M10 (v1 program complete; UI_REDESIGN.md specifies what follows)
       ├── M12 survey views           (matrix + map; renders M11's holes)
       └── M13 applications wave, batch 1 + practitioner UI
                └── M14 pairs & orientation  (compare, atlas, facets — sequence, not dependency)
+                    └── M15 forkable atlas + redesign closeout  (spec §8.5; the §4.2 trail, §4.9 pins)
 ```
 
 ---
@@ -1028,12 +1029,84 @@ polish (UI_REDESIGN.md §4.5, §4.7, §4.8, §5).
 
 ---
 
+## M15 — The forkable atlas and the redesign's last seams
+
+**Goal:** spec §8.5 becomes proven fact — any content tree builds with the same
+tooling, end to end — and the two UI_REDESIGN.md commitments no milestone
+claimed (the §4.2 assumption trail, the §4.9 fixed coordinates) ship, closing
+out the redesign catalogue.
+
+**Exit criteria**
+
+- [x] `atlas-build --content DIR` (the flag ARCHITECTURE.md §9 has documented
+      all along; the implementation spelled it `--root`) validates and builds a
+      content tree that is not this repository: an end-to-end test (`build/test/cli.test.ts`) runs the
+      real CLI over a minimal *foreign* atlas — its own schema vocabularies,
+      nodes, edges, in a temp directory outside any git repository — and
+      proves `--check` passes, a full build emits all five artifacts,
+      `generated_from` degrades to `unknown`, and two runs are byte-identical.
+      A directory with no `graph/schema.yaml` fails with the schema/read error
+      naming the missing file, never a stack trace.
+- [x] Forking is documented: a CONTRIBUTING.md "fork your own atlas"
+      walkthrough (what the content layer owns, what `schema.yaml` controls,
+      the one app-side touchpoint `app/src/config.ts`), and the CLI usage
+      header and ARCHITECTURE.md §9 row agree on `--content` (`--root` stays
+      as a compatibility alias).
+- [x] Assumption trail (UI_REDESIGN.md §4.2; the §5 "trace assumptions"
+      action): on any concept whose assumptions have assumptions of their own,
+      the Assumptions & breakdown section grows a native `<details>`
+      disclosure unfolding the transitive ASSUMES chain as an indented claim
+      tree — every line the shared connection fragment, cycles terminated on
+      first revisit and labeled as such. When the one-hop list already *is*
+      the whole chain, no disclosure renders — unfolding would add nothing.
+      The traversal is a pure `data/` function unit-tested on chain, diamond,
+      and cycle fixtures; the real chain (stability-margins → linearization →
+      smoothness) is Playwright-proven, and the `?` panel documents the
+      action.
+- [x] Fixed coordinates (UI_REDESIGN.md §4.9): the shared graph renderer
+      accepts `metrics.layout` positions — positioned nodes pin to their
+      constellation coordinates (uniform fit, never per-axis), unpositioned
+      ones settle around them by force. On in the lens when the rendered set
+      is a large fraction of the graph (≥ half of all concepts; the view says
+      so and links `#/atlas`), opt-in in ego via a "pin to the atlas layout"
+      toggle, off by default — local legibility wins. The threshold predicate
+      is a unit-tested `data/` function; Playwright proves a pinned lens
+      (`type=model`, 26 of 47 concepts today) reproduces the constellation's
+      left-to-right arrangement against the emitted layout, and the new
+      states join the axe matrix in both themes.
+
+**Tasks**
+
+- [x] [build] CLI: accept `--content DIR` as the canonical spelling
+      (ARCHITECTURE.md §9), keep `--root` as an alias; update the usage
+      header.
+- [x] [build] End-to-end fork test (`build/test/cli.test.ts`): a
+      self-contained mini-atlas fixture with vocabularies of its own, built by
+      running the real CLI (`--content` + `--out`, then `--check`, then the
+      missing-schema failure), double-build byte equality included.
+- [x] [infra] CONTRIBUTING.md walkthrough + ARCHITECTURE.md §9 wording.
+- [x] [app] `assumptionTrail` in `data/subgraph.ts` (per-path visited set,
+      cycle flag), unit tests beside the path BFS suite.
+- [x] [app] Concept view: the disclosure + indented tree reusing the shared
+      connection fragment; a `?` panel action row; styles for the tree
+      indentation in both themes.
+- [x] [app] `graph-render`: optional `positions` prop — pin, settle, uniform
+      fit; `graphPanel` passes it through.
+- [x] [app] Lens: pin above the fraction threshold (`lensPinsToLayout` in
+      `data/`, unit-tested) with the hint line; ego: the off-by-default
+      toggle, rendered only when ≥ 2 of the drawn nodes hold positions.
+- [x] [app] Playwright `m15-closeout.spec.ts`: trail unfold on the real
+      chain + absence on a one-hop page; pinned-lens arrangement checked
+      against the emitted layout; ego toggle; axe scans for the new states
+      (trail open, pinned lens, pinned ego) in both themes.
+
+---
+
 ## Later backlog (unscheduled; spec §8 owns the rationale)
 
 - LLM-assisted authoring experiments — drafting node files in house style,
   free-text symptom matching, dialect-aware gap literature search — always landing
   as ordinary validated PRs (§8.4).
-- `atlas-build --content DIR` hardening for forked atlases (§8.5).
 - Scale work (per-node JSON, pagination) when node count approaches ~100 (§8.6).
 - Additional export formats on demand (§8.7).
 - Content expansion beyond the v1 set, driven by the M11 work queue

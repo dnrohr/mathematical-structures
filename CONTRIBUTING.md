@@ -203,6 +203,44 @@ analogy.
    appears at `#/walks`, steps through at `#/walk/<id>`, and every member
    concept page links back to its step.
 
+## Walkthrough: fork your own atlas
+
+The tooling is deliberately not married to this repository's content
+(spec §8.5): `atlas-build` compiles *any* tree with the layout of
+ARCHITECTURE.md §2, so a domain-specific atlas — a biology-centric one, a
+signal-processing one — is a fork away, and CI proves the path end to end
+(`build/test/cli.test.ts` builds a foreign mini-atlas from a bare temp
+directory).
+
+1. **Fork the repository and replace the content layer.** Everything the
+   atlas *says* lives in `concepts/*.md`, `graph/` (`schema.yaml`,
+   `edges.yaml`, `symptoms.yaml`, and optionally `non-edges.yaml`,
+   `references.bib`), and `paths/*.yaml`. Everything else — build, app, CI —
+   is the tooling you inherit unchanged.
+2. **Make `graph/schema.yaml` yours.** Node types, edge types, strengths,
+   fields, and statuses are all vocabulary, and the validator enforces
+   *your* lists. A few ids carry semantics the tooling (validator or app)
+   knows by name (`POSSIBLE-MISSING-MIGRATION`, `speculative`,
+   `heuristic-analogy`, `stub`, `application`, `APPLIED-IN`, `MIGRATED-TO`,
+   `ASSUMES`, `FAILS-WHEN`, `REPLACED-BY`) —
+   keep those if you want the gap workflow, the application bar, and the
+   assumption surfaces to keep working. Each node type's `color_token` must
+   have a matching `--nt-*` custom property in `app/src/style/main.css`
+   (a unit test names any that don't).
+3. **Point the app at yourself.** `app/src/config.ts` is the one app-side
+   touchpoint: `REPO_URL` (provenance and proposal links) and `APP_TITLE`.
+4. **Build against any tree.** The default content root is found by walking
+   up from the working directory, so inside the fork `npm run check` and
+   `npm run build` just work. To compile a tree that lives elsewhere:
+
+   ```sh
+   npm run atlas -- --content ~/my-atlas --check          # validate only
+   npm run atlas -- --content ~/my-atlas --out ~/my-atlas/dist/data
+   ```
+
+   Artifacts are deterministic wherever the tree lives; outside a git
+   repository, `generated_from` degrades to `"unknown"` instead of failing.
+
 ## Proposing without a PR
 
 Not ready to write files? Two paths, neither needing repository knowledge:
