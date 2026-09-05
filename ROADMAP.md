@@ -1,7 +1,8 @@
 # Roadmap: The Structure Atlas
 
-This roadmap sequences the work defined in [SPECIFICATION.md](SPECIFICATION.md) and
-[ARCHITECTURE.md](ARCHITECTURE.md) into milestones with concrete tasks. Task detail
+This roadmap sequences the work defined in [SPECIFICATION.md](SPECIFICATION.md),
+[ARCHITECTURE.md](ARCHITECTURE.md), and — for M11 onward —
+[UI_REDESIGN.md](UI_REDESIGN.md) into milestones with concrete tasks. Task detail
 is deliberately deeper for near milestones and coarser for far ones; this file is a
 living document — check items off, split tasks, and re-cut later milestones as
 earlier ones teach us things. Changes to *scope* (what a milestone must prove) go
@@ -34,6 +35,12 @@ M6 (v1 shipped)
       ├── M8 evidence & citations    (M7 creates the citation pressure)
       ├── M9 learning paths          (M7 provides the spines)
       └── M10 propose-an-edge form   (M7 proves the contribution pattern)
+
+M10 (v1 program complete; UI_REDESIGN.md specifies what follows)
+ └── M11 work queue: selection without arbitrariness
+      ├── M12 survey views           (matrix + map; renders M11's holes)
+      └── M13 applications wave, batch 1 + practitioner UI
+               └── M14 pairs & orientation  (compare, atlas, facets — sequence, not dependency)
 ```
 
 ---
@@ -681,6 +688,204 @@ the validator remains the only gate.
 
 ---
 
+## M11 — The work queue: selection without arbitrariness
+
+**Goal:** expansion becomes demand-driven — the build computes every curation
+signal from the data itself, each with its evidence, rejects become data, and
+the app renders the queue (UI_REDESIGN.md §4.6).
+
+**Exit criteria**
+
+- [ ] `graph.json` gains `metrics.queue` (link suggestions with their witness
+      neighbors, community bridge deficits, recurring free-text assumptions,
+      dialect gaps, thin symptoms) and top-level `non_edges` — additive minor
+      bump documented in `docs/graph-json.md`; the double-build determinism
+      test still holds.
+- [ ] `graph/non-edges.yaml` is a validated content type: unknown endpoint =
+      error, contradiction with an existing edge = error, and a ledger entry
+      provably suppresses its candidate/suggestion queue items — each rule
+      with a failing pipeline test (§4.2 practice, like M1's
+      unknown-endpoint test).
+- [ ] `#/queue` renders every signal class with its machine-checkable "why"
+      and a prefilled action per item (propose composer / issue form),
+      Playwright-proven like the M4/M5 views and in the axe matrix.
+- [ ] Dogfood: one queue item worked end to end — landed as a validated
+      edge/node PR, or recorded in `non-edges.yaml` with its reason (the
+      M5/M10 pattern: the loop closes using the tool itself).
+
+**Tasks**
+
+- [ ] [build] Stage 4 queue signals, deterministic and unit-tested on fixture
+      graphs: shared-trusted-neighbor link suggestions (≥ 2 witnesses, listed;
+      existing edges and non-edges excluded); bridge deficits (community pairs
+      joined by ≤ 1 trusted edge); recurring assumptions (identical normalized
+      free-text `assumptions` strings on ≥ 2 nodes); dialect gaps (field in
+      `fields`, no alias, on nodes with ≥ 2 dialects); thin symptoms (< 2
+      moves or no worked example). Plain, explainable math only — a signal a
+      reader can't verify by eye doesn't ship.
+- [ ] [build] `non-edges.yaml` stage-1 reader ({between: [a, b], reason,
+      see?}) + the three validator rules + suppression wiring, with failing
+      fixtures per rule.
+- [ ] [build] Emit `metrics.queue` + `non_edges`; document the shapes.
+- [ ] [app] `#/queue` as `#/questions`' sibling (nav: "Open questions · Work
+      queue"): items grouped by signal, evidence rendered inline, action
+      deep-links; a "deliberate non-connections" section rendered from
+      `non_edges` (for this project, "we checked — false friends" is content).
+- [ ] [app] Playwright: each signal class renders + one action deep-link
+      round-trip; both views join the axe matrix.
+- [ ] [curation] Seed `non-edges.yaml` with the rejects already recorded in
+      [#3](https://github.com/dnrohr/mathematical-structures/issues/3) and
+      [#14](https://github.com/dnrohr/mathematical-structures/issues/14), so
+      the ledger starts honest and the queue starts suppressed-correctly.
+- [ ] [curation] Dogfood pass per the exit criterion.
+
+---
+
+## M12 — Survey views: the matrix and the map
+
+**Goal:** the atlas's negative space becomes visible — every pair and every
+field membership on one screen each, absence included (UI_REDESIGN.md §4.3,
+§4.4, §4.9).
+
+**Exit criteria**
+
+- [ ] `#/matrix`: a real-table adjacency matrix over the lens filter grammar
+      (same params, same default strength floor), ordered by
+      community/type/az/degree with labeled group blocks; cells carry the
+      strength line grammar (never color-alone) with a ×n chip for parallel
+      edges and the warn style for gap edges; a pair panel lists every claim
+      between two nodes via the shared edge-claim fragment, with the propose
+      composer prefilled on unconnected pairs; keyboard cell navigation;
+      empty blocks between communities link the M11 bridge-deficit items.
+      Playwright + axe, both themes; URL round-trip like every M4 view.
+- [ ] `#/map`: structures × fields incidence with three visibly distinct,
+      text-equivalent cell states (named dialect / present-unnamed / empty);
+      present-unnamed cells link the dialect-gap queue items; row headers →
+      concept dialect table, column headers → field-filtered lens.
+      Playwright + axe, both themes; URL round-trip.
+- [ ] Directed edges render arrowheads in all three force presets (symmetric
+      types stay markerless — the absence is informative), smoke-tested with
+      parallel-edge bows.
+- [ ] Concept pages carry "see this node in: matrix · map" situating links
+      (`focus=<slug>` crosshair/row highlight on the target views).
+
+**Tasks**
+
+- [ ] [app] Matrix view: shared filter parsing with lens; sticky headers;
+      scroll container; block separators reusing the M5 community palette
+      rules; live caption reuse; the >~150-node filter-required posture
+      (mirrors the lens fallback) stated in the empty state.
+- [ ] [app] Pair panel + propose prefill; `focus` param.
+- [ ] [app] Map view: three cell states, span/type/az ordering, column
+      highlight via `field=`.
+- [ ] [app] Arrowheads in `graph-render/` (marker at target end only).
+- [ ] [app] Situating links on concept pages.
+- [ ] [app] Playwright suites + axe matrix membership for both views.
+
+---
+
+## M13 — The engineering applications wave, batch 1 (+ the Practitioner UI)
+
+**Goal:** the third front door carries real engineering weight — a
+queue-and-owner-sourced batch of application nodes lands into a UI shaped for
+the engineer reading it (UI_REDESIGN.md §2.1, §4.1, §4.2). Batches repeat this
+milestone's pattern; this one proves it at wave scale.
+
+**Exit criteria**
+
+- [ ] Batch fixed in a tracking issue before writing (the M2/M7 discipline):
+      4–6 new `application` nodes, every one `established`, each with ≥ 2
+      distinct structures converging over APPLIED-IN / MIGRATED-TO edges with
+      honest strengths, per-edge context, and ≥ 1 citation on every
+      nontrivial claim (the M8 bar). Tool-shaped candidates demote to
+      structure nodes or aliases with the decision recorded (the tomography
+      precedent).
+- [ ] Landing v4: the applications door grouped by primary field with filter
+      chips (`#/?af=<field>`), plus the survey strip linking the analytical
+      views; symptom primacy untouched (spec §3.4). Playwright-proven.
+- [ ] Application anatomy on `application` pages: incoming claims grouped by
+      the structure's node type, each led by its edge context; the assumption
+      surface (one-hop ASSUMES union of connected structures, clearly labeled
+      as derived, FAILS-WHEN/REPLACED-BY adjacent) rendered beneath.
+- [ ] Practitioner journey passes like M7's: search a domain term → the
+      application page with anatomy + assumption surface → a connected
+      structure page in ≤ 2 clicks (Playwright).
+
+**Tasks**
+
+- [ ] [curation] Inventory issue. Starting candidates from the owner's
+      direction, each checked against the ≥ 2-structures bar before writing:
+      weather prediction / data assimilation (kalman-filter, chaos,
+      fourier-analysis, diffusion); antenna design (greens-function,
+      eigenvalues, optimization, complex-analysis); protein folding
+      (optimization, thermodynamic-entropy, markov-state models via
+      hidden-markov-model); motor efficiency (feedback-control,
+      conservation-laws, the force–voltage electromechanical analogy as
+      ANALOGOUS-TO material); image registration / feature matching
+      (diffusion via Gaussian scale space, eigenvalues via the structure
+      tensor, optimization; SIFT/SURF as aliases). Tool-shaped names enter as
+      structures or aliases instead: PCA stays the statistics alias on
+      eigenvalues; FEA-shaped candidates land as operation content on or near
+      variational-principles.
+- [ ] [curation] Write nodes + edges with citations; new `fields` ids only as
+      the validator demands them (RF/electromagnetics is the likely first —
+      M7 needed none, this batch may).
+- [ ] [data] Symptom pass: add the recognition patterns the batch exposes
+      (M7 added `ranking-network-importance`; data assimilation and
+      registration likely earn theirs).
+- [ ] [app] Landing v4 (field grouping + chips + survey strip).
+- [ ] [app] Application anatomy + assumption surface (display joins only — no
+      new computation class client-side).
+- [ ] [app] Playwright: practitioner journey, landing grouping round-trip,
+      axe membership for changed views.
+- [ ] [curation] Metrics re-read after the batch (the M7 discipline): confirm
+      no overclaimed strength manufactured centrality; feed anything
+      suspicious back into strengths or edge context.
+
+---
+
+## M14 — Pairs and orientation
+
+**Goal:** the remaining redesign surfaces — comparing two concepts, situating
+oneself in the whole atlas, faceted browsing, and the cross-view actions
+polish (UI_REDESIGN.md §4.5, §4.7, §4.8, §5).
+
+**Exit criteria**
+
+- [ ] `#/compare/<a>/<b>`: side-by-side headers, the merged dialect table
+      (one row per field in the union, both nodes' aliases aligned), direct
+      claims, shared neighbors grouped by type, shared assumptions, path-view
+      link; entered from a "compare…" action on concept pages; legitimate
+      empty case handled (no implied claims). URL round-trip; Playwright +
+      axe.
+- [ ] `metrics.layout` in `graph.json` (additive minor): a deterministic
+      build-time layout of the trusted subgraph (double-build byte equality),
+      consumed by `#/atlas` — a fixed constellation, linked from nav and
+      survey strip, never the homepage — and by a concept-page minimap
+      ("you are here"). The >~100-trusted-node community-aggregation
+      degradation is documented next to the view.
+- [ ] `#/index` facets: node type / field / status chips with counts,
+      AND-combining, state in the URL; the landing type-groups link into
+      pre-filtered index states.
+- [ ] Actions polish shipped and documented in the `?` panel: copy-link with
+      the `generated_from` SHA, download-what-you-see CSV on matrix/map/lens,
+      BibTeX export of a page's sources, walk resume and recently-visited
+      trail (localStorage conveniences, graceful when absent).
+
+**Tasks**
+
+- [ ] [build] Stage 4 layout: deterministic force run over the trusted
+      subgraph, rounded coordinates keyed by slug; unit-tested for
+      determinism and emitted additively.
+- [ ] [app] Atlas view + minimap; communities toggle reusing `communities=1`.
+- [ ] [app] Compare view + concept-page entry; "atlas" joins the situating
+      links.
+- [ ] [app] Index facets.
+- [ ] [app] Actions polish (client-generated blobs only; still no server).
+- [ ] [app] Playwright + axe for every new/changed view.
+
+---
+
 ## Later backlog (unscheduled; spec §8 owns the rationale)
 
 - LLM-assisted authoring experiments — drafting node files in house style,
@@ -689,15 +894,17 @@ the validator remains the only gate.
 - `atlas-build --content DIR` hardening for forked atlases (§8.5).
 - Scale work (per-node JSON, pagination) when node count approaches ~100 (§8.6).
 - Additional export formats on demand (§8.7).
-- Content expansion beyond the v1 set, guided by the metrics view: fill
-  structural holes (low-span hubs, missing dialect rows) rather than chasing
-  coverage — standing work that runs alongside the milestones above, not after
-  them.
+- Content expansion beyond the v1 set, driven by the M11 work queue once it
+  exists (until then, the metrics view): fill structural holes rather than
+  chasing coverage — standing work that runs alongside the milestones above,
+  not after them. Application batches after M13's repeat its pattern
+  (tracking issue → honest bar → metrics re-read), sourced from the queue.
 
 ## Standing curation (no milestone; tracked in #3)
 
 - Peer-review of `graph/edges.yaml` as a set — the one unchecked M2 task; owner
-  work, and worth doing before M7 grows the edge population.
+  work, being worked through incrementally. By owner decision it is standing
+  work, not a gate on M11–M14 or the applications wave.
 - Triage of the info-level candidate edges (57 after M7 — its wiki-links grew
   the queue by design) into typed edges or deliberate non-edges.
 - Possible extraction of `wavelets` from `integral-transforms` once there is
