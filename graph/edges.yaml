@@ -353,6 +353,15 @@
     Separation into spatial modes: each Fourier mode decays independently
     at a rate proportional to its squared frequency.
 
+# Landed from the first #/propose composer proposal (issue #19, the M10
+# dogfood pass); block as prefilled, evidence key added while landing.
+- from: diffusion
+  to: eigenvalues
+  type: REPRESENTED-BY
+  strength: theorem
+  context: "eigenfunction expansion of the heat semigroup: with a discrete Laplacian spectrum (bounded domains, graphs), each eigenmode decays independently at its eigenvalue’s rate — the general form of the Fourier-mode story"
+  evidence: [evans-2010]
+
 - from: graph-laplacian
   to: diffusion
   type: GOVERNS
