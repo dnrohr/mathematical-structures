@@ -39,6 +39,11 @@ const SHORTCUTS: { keys: string[]; what: string }[] = [
   { keys: ['Tab', 'Shift+Tab'], what: 'Move through links and controls' },
   { keys: ['↓', '↑'], what: 'On a connection claim: hop along the page’s claims' },
   { keys: ['Enter'], what: 'On a claim or graph node: open that concept' },
+  {
+    keys: ['←', '→', '↑', '↓'],
+    what: 'In the matrix: move between cells (the diagonal is skipped)',
+  },
+  { keys: ['Enter'], what: 'In the matrix: open the pair panel for the focused cell' },
   { keys: ['Esc'], what: 'Close search results, or this panel' },
   { keys: ['?'], what: 'Show or hide this panel' },
 ];

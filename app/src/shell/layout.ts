@@ -43,6 +43,8 @@ export function createShell(root: HTMLElement, atlas: Atlas): Shell {
         h('a', { href: '#/walks' }, 'Walks'),
         h('a', { href: '#/dialects' }, 'Dialects'),
         h('a', { href: '#/lens' }, 'Lens'),
+        h('a', { href: '#/matrix' }, 'Matrix'),
+        h('a', { href: '#/map' }, 'Map'),
         h('a', { href: '#/path' }, 'Path'),
         h('a', { href: '#/metrics' }, 'Metrics'),
         h('a', { href: '#/questions' }, 'Questions'),

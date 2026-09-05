@@ -16,6 +16,8 @@ import { dialectsView } from './views/dialects';
 import { dataErrorScreen, notFoundView } from './views/errors';
 import { landingView } from './views/landing';
 import { lensView } from './views/lens';
+import { mapView } from './views/map';
+import { matrixView } from './views/matrix';
 import { metricsView } from './views/metrics';
 import { movesView } from './views/moves';
 import { pathView } from './views/path';
@@ -31,7 +33,7 @@ function viewFor(atlas: Atlas, route: Route): View {
     case 'landing':
       return landingView(atlas, { symptom: route.symptom });
     case 'concept':
-      return conceptView(atlas, route.slug) ?? notFoundView(`/c/${route.slug}`);
+      return conceptView(atlas, route.slug, route.at) ?? notFoundView(`/c/${route.slug}`);
     case 'symptom':
       return symptomView(atlas, route.id) ?? notFoundView(`/s/${route.id}`);
     case 'moves':
@@ -44,6 +46,10 @@ function viewFor(atlas: Atlas, route: Route): View {
       return dialectsView(atlas, route.query);
     case 'lens':
       return lensView(atlas, route.filters, route.communities);
+    case 'matrix':
+      return matrixView(atlas, route);
+    case 'map':
+      return mapView(atlas, route);
     case 'path':
       return pathView(atlas, route);
     case 'metrics':
@@ -51,7 +57,7 @@ function viewFor(atlas: Atlas, route: Route): View {
     case 'questions':
       return questionsView(atlas);
     case 'queue':
-      return queueView(atlas);
+      return queueView(atlas, { bridge: route.bridge });
     case 'propose':
       return proposeView(atlas, route);
     case 'walks':

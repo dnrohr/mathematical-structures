@@ -47,6 +47,7 @@ export function graphPanel(
         line: strength?.line ?? 'solid',
         emphasis: strength?.emphasis ?? 'medium',
         gap: edge.type === GAP_EDGE_TYPE,
+        directed: !edge.symmetric,
         sentence: edgeSentenceText(atlas, edge),
       };
     }),

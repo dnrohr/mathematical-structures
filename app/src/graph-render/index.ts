@@ -49,6 +49,11 @@ export interface GraphViewEdge {
   emphasis: 'strong' | 'medium' | 'light';
   /** Research-gap edge: flagged, never blended in (spec §4). */
   gap?: boolean;
+  /**
+   * Directed edge type: an arrowhead marks the target end (UI_REDESIGN.md
+   * §4.9). Symmetric types stay markerless — the absence is informative.
+   */
+  directed?: boolean;
   /** The full readable claim; caption text and accessible name. */
   sentence: string;
 }
@@ -203,17 +208,59 @@ function layout(props: GraphViewProps, geo: Geometry): { nodes: SimNode[]; links
   return { nodes, links };
 }
 
+/** Space between a directed edge's arrow tip and the target node's rim. */
+const ARROW_CLEARANCE = 2;
+
 /** Path for one edge; parallel edges of a pair bow apart symmetrically. */
 function edgePath(link: SimLink): string {
   const a = link.source as SimNode;
   const b = link.target as SimNode;
-  const [x1, y1, x2, y2] = [a.x!, a.y!, b.x!, b.y!];
+  const [x1, y1] = [a.x!, a.y!];
+  let [x2, y2] = [b.x!, b.y!];
   const bow = (link.seq - (link.count - 1) / 2) * 26;
-  if (bow === 0) return `M ${x1.toFixed(1)} ${y1.toFixed(1)} L ${x2.toFixed(1)} ${y2.toFixed(1)}`;
   const [mx, my] = [(x1 + x2) / 2, (y1 + y2) / 2];
   const len = Math.hypot(x2 - x1, y2 - y1) || 1;
   const [cx, cy] = [mx + (-(y2 - y1) / len) * bow, my + ((x2 - x1) / len) * bow];
+  if (link.view.directed) {
+    // Stop at the target's rim so the arrowhead isn't painted over by the
+    // node circle (nodes render above edges). The trim direction follows
+    // the end tangent — for a bowed pair that is the control point, which
+    // keeps parallel arrowheads separated.
+    const radius = (b.view.focus !== undefined ? 8 : 6) + ARROW_CLEARANCE;
+    const [tx, ty] = bow === 0 ? [x1, y1] : [cx, cy];
+    const tangent = Math.hypot(x2 - tx, y2 - ty) || 1;
+    x2 -= ((x2 - tx) / tangent) * radius;
+    y2 -= ((y2 - ty) / tangent) * radius;
+  }
+  if (bow === 0) return `M ${x1.toFixed(1)} ${y1.toFixed(1)} L ${x2.toFixed(1)} ${y2.toFixed(1)}`;
   return `M ${x1.toFixed(1)} ${y1.toFixed(1)} Q ${cx.toFixed(1)} ${cy.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+}
+
+/**
+ * Arrowhead markers for directed edges, one per stroke color the line
+ * grammar can produce (emphasis inks, the gap warn, hover/focus). Fill
+ * comes from the style module via the marker classes; the CSS `marker-end`
+ * rules attach them to `.edge-line.directed` by the same classes that
+ * color the stroke, so head and line can never disagree.
+ */
+function arrowDefs(): SVGDefsElement {
+  const defs = s('defs');
+  for (const kind of ['strong', 'medium', 'light', 'gap', 'focus']) {
+    const marker = s('marker', {
+      id: `arrow-${kind}`,
+      class: `graph-arrow arrow-${kind}`,
+      viewBox: '0 0 8 8',
+      refX: '8',
+      refY: '4',
+      markerWidth: '8',
+      markerHeight: '8',
+      markerUnits: 'userSpaceOnUse',
+      orient: 'auto',
+    });
+    marker.appendChild(s('path', { d: 'M 0 0 L 8 4 L 0 8 Z' }));
+    defs.appendChild(marker);
+  }
+  return defs;
 }
 
 /**
@@ -238,6 +285,8 @@ export function renderGraph(props: GraphViewProps): HTMLElement {
   const idleCaption = props.edges.length > 0 ? 'Point at or tab to an edge to read its claim.' : '';
   caption.textContent = idleCaption;
 
+  if (props.edges.some((e) => e.directed)) svg.appendChild(arrowDefs());
+
   const edgeLayer = s('g', { class: 'graph-edges' });
   for (const link of links) {
     const d = edgePath(link);
@@ -249,7 +298,7 @@ export function renderGraph(props: GraphViewProps): HTMLElement {
       'aria-label': view.sentence,
     });
     group.appendChild(s('path', { class: 'edge-hit', d }));
-    group.appendChild(s('path', { class: 'edge-line', d }));
+    group.appendChild(s('path', { class: `edge-line${view.directed ? ' directed' : ''}`, d }));
     const show = (): void => {
       caption.textContent = view.sentence;
     };

@@ -15,6 +15,8 @@ import { h, joinChildren } from '../common/dom';
 import { connectionItem, GAP_EDGE_TYPE } from '../common/edge-sentence';
 import { nodeLink } from '../common/node-link';
 import type { View } from '../common/view';
+import { mapHash } from '../map';
+import { matrixHash } from '../matrix';
 import { proposeHash } from '../propose';
 import { walkHash } from '../walk';
 import { egoSection } from './ego';
@@ -167,7 +169,7 @@ function connectionsSection(atlas: Atlas, groups: ConnectionGroup[]) {
   );
 }
 
-export function conceptView(atlas: Atlas, slug: string): View | null {
+export function conceptView(atlas: Atlas, slug: string, at?: string): View | null {
   const node = atlas.node(slug);
   if (!node) return null;
 
@@ -203,12 +205,25 @@ export function conceptView(atlas: Atlas, slug: string): View | null {
           { class: 'field-chips' },
           node.fields.map((f) => h('span', { class: 'chip field-chip' }, atlas.fieldLabel(f))),
         ),
+      // Situating links (UI_REDESIGN.md §4.2, ROADMAP M12): the survey views
+      // with this concept's row/column highlighted. The map draws structure
+      // rows only, so application nodes situate in the matrix alone.
+      h(
+        'p',
+        { class: 'situate' },
+        'See this concept in: ',
+        h('a', { href: matrixHash({ filters: {}, focus: node.slug }) }, 'the matrix'),
+        node.node_type !== 'application' && [
+          ' · ',
+          h('a', { href: mapHash({ focus: node.slug }) }, 'the map'),
+        ],
+      ),
     ),
     h('p', { class: 'summary' }, node.summary),
     dialects &&
       h(
         'section',
-        { class: 'concept-section' },
+        { class: 'concept-section', id: 'dialects' },
         h('h2', {}, 'Dialects'),
         h('p', { class: 'section-hint' }, 'The same structure, as each field names it.'),
         dialects,
@@ -255,5 +270,14 @@ export function conceptView(atlas: Atlas, slug: string): View | null {
       ),
   );
 
-  return { title: node.canonical_name, el };
+  // ?at=dialects (the map's row headers) lands the reader at the dialect
+  // table; anything else — or a node without one — stays at the top.
+  const onMount =
+    at === 'dialects'
+      ? (): void => {
+          el.querySelector('#dialects')?.scrollIntoView();
+        }
+      : undefined;
+
+  return { title: node.canonical_name, el, ...(onMount ? { onMount } : {}) };
 }

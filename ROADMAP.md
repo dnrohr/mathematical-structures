@@ -798,7 +798,7 @@ field membership on one screen each, absence included (UI_REDESIGN.md §4.3,
 
 **Exit criteria**
 
-- [ ] `#/matrix`: a real-table adjacency matrix over the lens filter grammar
+- [x] `#/matrix`: a real-table adjacency matrix over the lens filter grammar
       (same params, same default strength floor), ordered by
       community/type/az/degree with labeled group blocks; cells carry the
       strength line grammar (never color-alone) with a ×n chip for parallel
@@ -806,30 +806,54 @@ field membership on one screen each, absence included (UI_REDESIGN.md §4.3,
       between two nodes via the shared edge-claim fragment, with the propose
       composer prefilled on unconnected pairs; keyboard cell navigation;
       empty blocks between communities link the M11 bridge-deficit items.
-      Playwright + axe, both themes; URL round-trip like every M4 view.
-- [ ] `#/map`: structures × fields incidence with three visibly distinct,
+      Playwright + axe, both themes; URL round-trip like every M4 view —
+      the floor defaults to the path view's (speculative is the same
+      explicit opt-in, proven on the §35 gap edges rendering warn-tinted
+      only under `strength=speculative`); every cell carries its sentences
+      as text (title/aria + the shared live caption); arrow keys rove the
+      grid with the diagonal skipped; deficit links land on the exact
+      `#/queue?bridge=<a>-<b>` item, highlighted; `m12-survey.spec.ts`
+      (10 tests) + both views in the axe matrix, both themes.
+- [x] `#/map`: structures × fields incidence with three visibly distinct,
       text-equivalent cell states (named dialect / present-unnamed / empty);
       present-unnamed cells link the dialect-gap queue items; row headers →
       concept dialect table, column headers → field-filtered lens.
-      Playwright + axe, both themes; URL round-trip.
-- [ ] Directed edges render arrowheads in all three force presets (symmetric
+      Playwright + axe, both themes; URL round-trip — ● / ◌ / blank with
+      per-cell sentences, ◌ carrying the M11 alias-wanted action (the
+      dialect-gap warn made spatial, 43 cells at landing); row headers use
+      the new `#/c/<slug>?at=dialects` deep link; the legend states the
+      honesty rule (memberships, never claims; counts printed).
+- [x] Directed edges render arrowheads in all three force presets (symmetric
       types stay markerless — the absence is informative), smoke-tested with
-      parallel-edge bows.
-- [ ] Concept pages carry "see this node in: matrix · map" situating links
-      (`focus=<slug>` crosshair/row highlight on the target views).
+      parallel-edge bows — one marker per stroke color, attached by the same
+      CSS classes that color the line so head and stroke can never disagree;
+      directed ends trim at the target rim so heads stay visible under the
+      node layer; the eigenvalues ⇄ markov-chains bowed pair carries
+      opposite-direction heads, and a symmetric-only lens is asserted
+      markerless.
+- [x] Concept pages carry "see this node in: matrix · map" situating links
+      (`focus=<slug>` crosshair/row highlight on the target views) —
+      application nodes situate in the matrix alone (the map draws
+      structure rows by design), Playwright-proven both ways.
 
 **Tasks**
 
-- [ ] [app] Matrix view: shared filter parsing with lens; sticky headers;
+- [x] [app] Matrix view: shared filter parsing with lens; sticky headers;
       scroll container; block separators reusing the M5 community palette
       rules; live caption reuse; the >~150-node filter-required posture
-      (mirrors the lens fallback) stated in the empty state.
-- [ ] [app] Pair panel + propose prefill; `focus` param.
-- [ ] [app] Map view: three cell states, span/type/az ordering, column
-      highlight via `field=`.
-- [ ] [app] Arrowheads in `graph-render/` (marker at target end only).
-- [ ] [app] Situating links on concept pages.
-- [ ] [app] Playwright suites + axe matrix membership for both views.
+      (mirrors the lens fallback) stated in the empty state — selection
+      lives in `data/` (`matrixSelection`, unit-tested beside the lens: all
+      nodes kept so absence stays visible, edges filtered by type + floor).
+- [x] [app] Pair panel + propose prefill; `focus` param — the selected pair
+      rides the URL too (`a=`/`b=`), so a pair inspection is shareable.
+- [x] [app] Map view: three cell states, span/type/az ordering, column
+      highlight via `field=` (plus `focus=` row highlight; span order puts
+      the widest travelers on top, dialect count breaking ties).
+- [x] [app] Arrowheads in `graph-render/` (marker at target end only).
+- [x] [app] Situating links on concept pages.
+- [x] [app] Playwright suites + axe matrix membership for both views —
+      `m12-survey.spec.ts`; the matrix scans run with the pair panel open
+      and the crosshair on, the map with both highlights on.
 
 ---
 

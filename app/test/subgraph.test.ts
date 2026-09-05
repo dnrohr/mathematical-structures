@@ -11,6 +11,7 @@ import {
   egoNetwork,
   hasLensFilter,
   lensSubgraph,
+  matrixSelection,
   pathsBetween,
 } from '../src/data/subgraph';
 import type {
@@ -245,6 +246,40 @@ describe('lensSubgraph', () => {
     expect(lens.nodes).toEqual([]);
     expect(hasLensFilter({})).toBe(false);
     expect(hasLensFilter({ field: 'biology' })).toBe(true);
+  });
+});
+
+describe('matrixSelection', () => {
+  it('keeps every node — an empty row is the information (UI_REDESIGN §4.3)', () => {
+    const sel = matrixSelection(pathAtlas, {});
+    expect(sel.nodes.map((n) => n.slug)).toEqual(['a', 'b', 'c', 'd', 'e']);
+    // Default floor matches path finding: the speculative e–d gap edge is out.
+    expect(sel.edges).toHaveLength(5);
+    expect(sel.edges.some((e) => e.strength === 'speculative')).toBe(false);
+  });
+
+  it('includes speculative edges only on explicit opt-in, like lens/path', () => {
+    const sel = matrixSelection(pathAtlas, { strength: 'speculative' });
+    expect(sel.edges).toHaveLength(6);
+    const tight = matrixSelection(pathAtlas, { strength: 'theorem' });
+    expect(tight.edges.map((e) => `${e.from}-${e.to}`)).toEqual(['a-b', 'a-e']);
+    // Tightening the floor never drops a row — absence stays visible.
+    expect(tight.nodes).toHaveLength(5);
+  });
+
+  it('node filters narrow rows, and edges to outside nodes drop with them', () => {
+    const sel = matrixSelection(pathAtlas, { field: 'biology' });
+    expect(sel.nodes.map((n) => n.slug)).toEqual(['b', 'c']);
+    // Unlike the lens (edges touching ≥ 1 match), the matrix draws only
+    // pairs it has rows for: c–d has no d row to land on.
+    expect(sel.edges.map((e) => `${e.from}-${e.to}`)).toEqual(['b-c']);
+  });
+
+  it('filters by edge type over the full node set', () => {
+    const sel = matrixSelection(pathAtlas, { edge: 'ANALOGOUS-TO' });
+    expect(sel.nodes).toHaveLength(5);
+    expect(sel.edges).toHaveLength(2);
+    expect(sel.edges.every((e) => e.symmetric)).toBe(true);
   });
 });
 
