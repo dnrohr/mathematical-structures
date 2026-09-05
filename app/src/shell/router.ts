@@ -18,6 +18,14 @@ export type Route =
   | { name: 'path'; from?: string; to?: string; strength?: string }
   | { name: 'metrics'; sort?: string; dir?: 'asc' | 'desc' }
   | { name: 'questions' }
+  | {
+      name: 'propose';
+      from?: string;
+      to?: string;
+      type?: string;
+      strength?: string;
+      context?: string;
+    }
   | { name: 'walks' }
   | { name: 'walk'; id: string; step?: number }
   | { name: 'notfound'; path: string };
@@ -68,6 +76,21 @@ export function parseHash(hash: string): Route {
     };
   }
   if (segs[0] === 'questions' && segs.length === 1) return { name: 'questions' };
+  if (segs[0] === 'propose' && segs.length === 1) {
+    const from = params.get('from');
+    const to = params.get('to');
+    const type = params.get('type');
+    const strength = params.get('strength');
+    const context = params.get('context');
+    return {
+      name: 'propose',
+      ...(from ? { from } : {}),
+      ...(to ? { to } : {}),
+      ...(type ? { type } : {}),
+      ...(strength ? { strength } : {}),
+      ...(context ? { context } : {}),
+    };
+  }
   if (segs[0] === 'walks' && segs.length === 1) return { name: 'walks' };
   if (segs[0] === 'walk' && segs.length === 2 && SLUG_RE.test(segs[1]!)) {
     // Position is 1-based in the URL; anything unparseable means step 1.

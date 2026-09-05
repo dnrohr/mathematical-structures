@@ -184,6 +184,10 @@ const AXE_ROUTES: { name: string; path: string }[] = [
   { name: 'questions', path: '/#/questions' },
   { name: 'walks index', path: '/#/walks' },
   { name: 'walk view', path: '/#/walk/eigenvalue-tour?step=3' },
+  {
+    name: 'propose composer',
+    path: '/#/propose?from=eigenvalues&to=markov-chains&type=GOVERNS&strength=theorem',
+  },
 ];
 
 for (const theme of ['light', 'dark'] as const) {

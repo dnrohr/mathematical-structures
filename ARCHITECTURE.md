@@ -384,6 +384,8 @@ matching the "can never rot" deployment goal.
 #/questions             open research-gap candidates
 #/walks                 index of guided walks (spec §8.3)
 #/walk/<id>?step=<n>    one walk, stepped through; position in the URL
+#/propose?from=<slug>&to=<slug>&type=…&strength=…&context=…
+                        propose-an-edge composer → prefilled GitHub issue (M10)
 ```
 
 Every view's full state lives in the URL — filters included — so any screen is
@@ -469,7 +471,7 @@ as app features.
 
 | Expansion | Mechanism already in place |
 | --- | --- |
-| In-app "propose an edge" | a static form that deep-links to a prefilled GitHub PR/issue template; no server needed, validator still the gate |
+| In-app "propose an edge" | landed (M10): the `#/propose` composer — pickers over the schema vocabularies embedded in `graph.json` — deep-links the edge-proposal issue form prefilled with the claim as a sentence and as a copy-pasteable `edges.yaml` block; still no server, validator still the gate |
 | Evidence/citations | landed (M8): `graph/references.bib` + validated `evidence` keys, resolved into `graph.json`; claims render a citation affordance and concept pages a Sources list |
 | Learning paths | landed (M9): `paths/<id>.yaml` (§3.7) compiled and validated like every content type, walks emitted into `graph.json`; the walk view steps through them reusing the path graph preset |
 | LLM-assisted authoring | operates on `graph.json` + `schema.yaml`; output enters as ordinary PRs through the same validator (spec §8.4's hard rule) |

@@ -13,6 +13,7 @@ import { downloadBlock } from '../common/downloads';
 import { edgeClaim } from '../common/edge-claim';
 import { nodeLink } from '../common/node-link';
 import type { View } from '../common/view';
+import { proposeHash } from '../propose';
 
 const WORKFLOW_DOC = 'docs/research-gap-workflow.md';
 
@@ -115,13 +116,23 @@ export function questionsView(atlas: Atlas): View {
       h(
         'p',
         { class: 'section-hint' },
-        'Wiki-linked in prose but not yet claimed as a typed edge — the build reports these at info level as the curation queue. Prose links are navigation; an edge is a deliberate claim.',
+        'Wiki-linked in prose but not yet claimed as a typed edge — the build reports these at info level as the curation queue. Prose links are navigation; an edge is a deliberate claim. Each “propose” opens the composer with the pair filled in.',
       ),
       h(
         'ul',
         { class: 'candidate-list' },
         candidates.map((pair) =>
-          h('li', {}, joinChildren([nodeLink(atlas, pair.a), nodeLink(atlas, pair.b)], ' ↔ ')),
+          h(
+            'li',
+            {},
+            joinChildren([nodeLink(atlas, pair.a), nodeLink(atlas, pair.b)], ' ↔ '),
+            ' · ',
+            h(
+              'a',
+              { class: 'propose-candidate', href: proposeHash({ from: pair.a, to: pair.b }) },
+              'propose',
+            ),
+          ),
         ),
       ),
     ),

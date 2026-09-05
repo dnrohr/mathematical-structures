@@ -15,6 +15,7 @@ import { h, joinChildren } from '../common/dom';
 import { connectionItem, GAP_EDGE_TYPE } from '../common/edge-sentence';
 import { nodeLink } from '../common/node-link';
 import type { View } from '../common/view';
+import { proposeHash } from '../propose';
 import { walkHash } from '../walk';
 import { egoSection } from './ego';
 
@@ -121,6 +122,17 @@ function walksSection(atlas: Atlas, node: GraphNode) {
   );
 }
 
+/** The contribution front door (ROADMAP M10), one hop from every edge list. */
+function proposeLine(slug: string): HTMLElement {
+  return h(
+    'p',
+    { class: 'propose-line' },
+    'Missing a connection? ',
+    h('a', { href: proposeHash({ from: slug }) }, 'Propose an edge'),
+    ' — composed against the schema, filed as a prefilled GitHub issue, reviewed as a claim.',
+  );
+}
+
 function connectionsSection(atlas: Atlas, groups: ConnectionGroup[]) {
   if (groups.length === 0) return null;
   return h(
@@ -203,6 +215,7 @@ export function conceptView(atlas: Atlas, slug: string): View | null {
       ),
     assumptionsSection(atlas, node, adjacent),
     connectionsSection(atlas, grouped),
+    proposeLine(node.slug),
     ego,
     node.canonical_examples.length > 0 &&
       h(

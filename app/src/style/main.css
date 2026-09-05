@@ -1845,6 +1845,96 @@ th[aria-sort='ascending'] .sort-button::after {
 }
 
 /* ======================================================================
+   Propose an edge (the contribution front door, M10)
+   ====================================================================== */
+
+.propose-line {
+  font: 0.85rem/1.55 var(--font-ui);
+  color: var(--ink-muted);
+  margin: 0.9rem 0 0;
+}
+
+.candidate-list .propose-candidate {
+  font-family: var(--font-ui);
+  font-size: 0.85em;
+  color: var(--ink-muted);
+}
+
+.propose-context-field {
+  margin: 0.4rem 0 0.9rem;
+  max-width: 34rem;
+}
+
+.propose-context {
+  font: 0.9rem var(--font-ui);
+  color: var(--ink);
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.32rem 0.5rem;
+}
+
+.propose-swap {
+  align-self: flex-end;
+  padding-bottom: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.strength-hint {
+  margin: -0.6rem 0 0.9rem;
+}
+
+.propose-claim,
+.propose-existing,
+.propose-as-data {
+  margin-top: 1.6rem;
+}
+
+.propose h2 {
+  font: 700 0.85rem var(--font-ui);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.35rem;
+  margin: 0 0 0.7rem;
+}
+
+.propose-yaml {
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.propose-yaml code {
+  background: none;
+  padding: 0;
+}
+
+.propose-action {
+  margin: 1.4rem 0 0.5rem;
+}
+
+.propose-file {
+  display: inline-block;
+  font: 600 0.95rem var(--font-ui);
+  border: 1px solid var(--link);
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  text-decoration: none;
+}
+
+.propose-file:hover,
+.propose-file:focus-visible {
+  background: var(--bg-raised);
+  text-decoration: underline;
+}
+
+/* ======================================================================
    Small screens & motion
    ====================================================================== */
 
