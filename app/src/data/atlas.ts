@@ -15,6 +15,7 @@ import type {
   GraphMetrics,
   GraphNode,
   GraphSymptom,
+  NodeConnection,
   NodeMetrics,
   NodeType,
   PublicSchema,
@@ -32,6 +33,9 @@ export type LoadResult = { ok: true; atlas: Atlas } | { ok: false; error: AtlasE
 
 /** Mirrors build/src/model.ts SLUG (type-only imports keep build code out of the bundle). */
 export const SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+/** Structure-into-application edge types (mirrors build/src/model.ts; spec §8.8). */
+export const APPLICATION_EDGE_TYPES = new Set(['APPLIED-IN', 'MIGRATED-TO']);
 
 export function majorOf(version: unknown): number {
   if (typeof version !== 'string') return NaN;
@@ -131,6 +135,36 @@ export class Atlas {
   }
   symptomsUsing(slug: string): GraphSymptom[] {
     return this.data.symptoms.filter((s) => s.moves.includes(slug));
+  }
+
+  /**
+   * The distinct structure nodes converging on an application over
+   * APPLIED-IN / MIGRATED-TO edges — the same neighbor definition as the
+   * validator's application/underconnected rule (spec §8.8) — strongest
+   * claim first, one connection per neighbor.
+   */
+  convergingStructures(slug: string): NodeConnection[] {
+    const node = this.bySlug.get(slug);
+    if (!node) return [];
+    const eligible = node.connections
+      .filter(
+        (c) =>
+          APPLICATION_EDGE_TYPES.has(c.type) &&
+          this.bySlug.get(c.other)?.node_type !== 'application',
+      )
+      .sort(
+        (a, b) =>
+          (this.strengthsById.get(a.strength)?.rank ?? 99) -
+            (this.strengthsById.get(b.strength)?.rank ?? 99) || a.other.localeCompare(b.other),
+      );
+    const seen = new Set<string>();
+    const distinct: NodeConnection[] = [];
+    for (const conn of eligible) {
+      if (seen.has(conn.other)) continue;
+      seen.add(conn.other);
+      distinct.push(conn);
+    }
+    return distinct;
   }
 
   nodeType(id: string): NodeType | undefined {

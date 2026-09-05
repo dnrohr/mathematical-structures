@@ -8,6 +8,7 @@ import './style/main.css';
 import { loadAtlas, type Atlas } from './data/atlas';
 import { createShell } from './shell/layout';
 import { startRouter, type Route } from './shell/router';
+import { applicationsView } from './views/applications';
 import { atozView } from './views/atoz';
 import type { View } from './views/common/view';
 import { conceptView } from './views/concept';
@@ -31,6 +32,8 @@ function viewFor(atlas: Atlas, route: Route): View {
       return symptomView(atlas, route.id) ?? notFoundView(`/s/${route.id}`);
     case 'moves':
       return movesView(atlas);
+    case 'applications':
+      return applicationsView(atlas);
     case 'atoz':
       return atozView(atlas);
     case 'dialects':

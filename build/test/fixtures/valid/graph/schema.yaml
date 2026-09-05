@@ -1,6 +1,7 @@
 # Trimmed fixture schema for pipeline tests. Mirrors the real schema's shape;
 # must include the semantic ids the validator knows by name
-# (POSSIBLE-MISSING-MIGRATION, speculative, heuristic-analogy, stub).
+# (POSSIBLE-MISSING-MIGRATION, speculative, heuristic-analogy, stub,
+# application, APPLIED-IN, MIGRATED-TO).
 schema_version: 1.0.0
 
 node_types:
@@ -16,6 +17,10 @@ node_types:
     label: Reusable move
     color_token: nt-move
     description: Standard problem transformations.
+  - id: application
+    label: Application
+    color_token: nt-application
+    description: A domain problem structures converge on.
 
 edge_types:
   - id: IS-A
@@ -38,6 +43,20 @@ edge_types:
     forward: governs
     reverse: is governed by
     description: Controls a rate or behavior.
+  - id: APPLIED-IN
+    label: Applied in
+    group: algorithmics
+    directionality: directed
+    forward: is applied in
+    reverse: makes use of
+    description: A structure materially used inside an application.
+  - id: MIGRATED-TO
+    label: Migrated to
+    group: migration
+    directionality: directed
+    forward: historically migrated into
+    reverse: imported
+    description: Established transfer of machinery between fields.
   - id: POSSIBLE-MISSING-MIGRATION
     label: Possible missing migration
     group: migration

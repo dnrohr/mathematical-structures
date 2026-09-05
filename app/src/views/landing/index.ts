@@ -1,9 +1,11 @@
 /**
- * Landing v2 (spec §3.4, ROADMAP M4): leads with the Problem-Solver's
+ * Landing v3 (spec §3.4, ROADMAP M4 + M7): leads with the Problem-Solver's
  * question — the symptom index — alongside plain search, then the
- * node-type index for browsing. Each symptom card opens its detail page
- * (ranked moves with one-line whys); the inline move links stay as the
- * 1-click shortcut for readers who already see their answer.
+ * applications as the third front door (one real system, several
+ * structures converging on it), then the node-type index for browsing.
+ * Each symptom card opens its detail page (ranked moves with one-line
+ * whys); the inline move links stay as the 1-click shortcut for readers
+ * who already see their answer.
  */
 import type { Atlas } from '../../data/atlas';
 import { createSearchBox } from '../../shell/search';
@@ -45,6 +47,27 @@ export function landingView(atlas: Atlas, opts: { symptom?: string } = {}): View
     ),
   );
 
+  const applications = h(
+    'ul',
+    { class: 'application-entry-list' },
+    atlas.nodesOfType('application').map((a) =>
+      h(
+        'li',
+        { class: 'application-entry' },
+        h('h3', {}, h('a', { href: `#/c/${a.slug}` }, a.canonical_name)),
+        h(
+          'p',
+          { class: 'symptom-moves' },
+          'Structures that meet here: ',
+          joinChildren(
+            atlas.convergingStructures(a.slug).map((c) => nodeLink(atlas, c.other)),
+            ' · ',
+          ),
+        ),
+      ),
+    ),
+  );
+
   const byType = atlas.schema.node_types
     .map((t) => ({ def: t, nodes: atlas.nodesOfType(t.id) }))
     .filter((g) => g.nodes.length > 0);
@@ -68,6 +91,19 @@ export function landingView(atlas: Atlas, opts: { symptom?: string } = {}): View
       }),
     ),
     h('section', { class: 'landing-section' }, h('h2', {}, 'Start from a symptom'), symptoms),
+    h(
+      'section',
+      { class: 'landing-section' },
+      h('h2', {}, 'Or start from a real system'),
+      h(
+        'p',
+        { class: 'section-hint' },
+        'Applications run the demonstration the other way: one real problem, several structures converging on it — ',
+        h('a', { href: '#/applications' }, 'browse all applications'),
+        '.',
+      ),
+      applications,
+    ),
     h(
       'section',
       { class: 'landing-section' },
