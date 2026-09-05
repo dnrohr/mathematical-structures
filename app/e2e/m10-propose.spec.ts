@@ -66,25 +66,28 @@ test('candidate-queue pair → composer with the pair filled in; state round-tri
 }) => {
   // The candidate-edge list moved from #/questions to its M11 sibling,
   // #/queue (UI_REDESIGN.md §4.6); the propose entry point moved with it.
+  // The M16 triage drained the queue to its two recorded defers; the
+  // radon-transform ↔ greens-function pair is the composer fixture now
+  // (bayes-rule ↔ computational-imaging, the old fixture, became an edge).
   await page.goto('/#/queue');
-  const candidate = page.locator('.candidate-list li', { hasText: 'Bayes' }).first();
-  await expect(candidate).toContainText('Computational imaging');
+  const candidate = page.locator('.candidate-list li', { hasText: 'Radon' }).first();
+  await expect(candidate).toContainText("Green's functions");
   await candidate.getByRole('link', { name: 'propose' }).click();
-  await expect(page).toHaveURL(/#\/propose\?from=bayes-rule&to=computational-imaging$/);
-  await expect(page.locator('.propose-from')).toHaveValue('bayes-rule');
-  await expect(page.locator('.propose-to')).toHaveValue('computational-imaging');
+  await expect(page).toHaveURL(/#\/propose\?from=greens-function&to=radon-transform$/);
+  await expect(page.locator('.propose-from')).toHaveValue('greens-function');
+  await expect(page.locator('.propose-to')).toHaveValue('radon-transform');
 
   // Swap flips the direction and writes it to the URL.
   await page.locator('.propose-swap').click();
-  await expect(page).toHaveURL(/#\/propose\?from=computational-imaging&to=bayes-rule$/);
+  await expect(page).toHaveURL(/#\/propose\?from=radon-transform&to=greens-function$/);
   await page.locator('.propose-swap').click();
-  await expect(page.locator('.propose-from')).toHaveValue('bayes-rule');
+  await expect(page.locator('.propose-from')).toHaveValue('greens-function');
 
   // Completing the draft keeps the whole state in the URL (§5.2)…
   await page.locator('.propose-type').selectOption('APPLIED-IN');
   await page.locator('.propose-strength').selectOption('strong-analogy');
   await expect(page).toHaveURL(
-    /#\/propose\?from=bayes-rule&to=computational-imaging&type=APPLIED-IN&strength=strong-analogy$/,
+    /#\/propose\?from=greens-function&to=radon-transform&type=APPLIED-IN&strength=strong-analogy$/,
   );
   // …and the chosen strength surfaces its schema description.
   await expect(page.locator('.strength-hint')).toContainText('Established correspondence');

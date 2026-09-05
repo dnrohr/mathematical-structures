@@ -98,3 +98,28 @@
   moves: [optimization, eigenvalues, diffusion]
   mature_fields: [signal-processing, ml]
   worked_example: image-registration
+
+# Added in M16: recognition patterns wave batch 2 exposed (issue #32). The
+# threshold entry was checked against sharp-transitions-nonsmooth before
+# landing: that symptom recognizes nonsmooth behavior in functions and
+# data (worked example kept on smoothness); this one recognizes
+# parameter-driven regime change — a distinct recognition moment, the
+# model-drifts-from-data precedent.
+
+- id: driven-near-resonance
+  symptom: Driven system responds violently near a frequency
+  moves: [harmonic-oscillator, eigenvalues, fourier-analysis]
+  mature_fields: [mechanics, electromagnetics, control]
+  worked_example: structural-vibration
+
+- id: signal-buried-in-noise
+  symptom: A signal must get through noise reliably
+  moves: [shannon-entropy, fourier-analysis, bayes-rule]
+  mature_fields: [information-theory, signal-processing]
+  worked_example: digital-communications
+
+- id: parameter-crossing-threshold
+  symptom: A small parameter change flips the behavior
+  moves: [bifurcation, eigenvalues, stability]
+  mature_fields: [mechanics, biology, control]
+  worked_example: epidemic-modeling

@@ -79,15 +79,20 @@ test('assumption trail: the real chain unfolds transitively behind a disclosure'
   await page.goto('/#/c/stability-margins');
   const trail = page.locator('.assumption-trail');
   await expect(trail).toHaveCount(1);
-  await expect(trail.locator('summary')).toContainText('Trace assumptions');
-  await expect(trail.locator('summary')).toContainText('2 claims');
+  // The trail's own summary — a cited claim inside it (the M16
+  // feedback-control ASSUMES edge) nests a details.cite summary of its own.
+  const trailSummary = trail.locator('> summary');
+  await expect(trailSummary).toContainText('Trace assumptions');
+  await expect(trailSummary).toContainText('3 claims');
 
-  await trail.locator('summary').click();
-  // Level 1: the node's own ASSUMES claim; level 2, indented inside it:
-  // what that assumption itself assumes.
+  await trailSummary.click();
+  // Level 1: the node's own ASSUMES claims (linearization + the M16
+  // loop-existence claim); level 2, indented inside the linearization
+  // claim: what that assumption itself assumes.
   const level1 = page.locator('.assumption-trail > .trail-level > li.connection');
-  await expect(level1).toHaveCount(1);
+  await expect(level1).toHaveCount(2);
   await expect(level1.locator(':scope > a[href="#/c/linearization"]')).toBeVisible();
+  await expect(level1.locator(':scope > a[href="#/c/feedback-control"]')).toBeVisible();
   const level2 = level1.locator('.trail-level > li.connection');
   await expect(level2).toHaveCount(1);
   await expect(level2.locator('a[href="#/c/smoothness"]')).toBeVisible();
@@ -130,7 +135,7 @@ test('arrow-hop skips claims folded inside the closed trail and enters the open 
     'the hop lands on the next visible claim',
   ).toBe(true);
 
-  await page.locator('.assumption-trail summary').click();
+  await page.locator('.assumption-trail > summary').click();
   await focusLastAssumptionClaim();
   await page.keyboard.press('ArrowDown');
   expect(await focusInTrail(), 'unfolded claims join the hop order').toBe(true);
@@ -143,7 +148,11 @@ test('arrow-hop skips claims folded inside the closed trail and enters the open 
 test('lens: a lens covering most of the graph pins to the atlas constellation and says so', async ({
   page,
 }) => {
-  await page.goto('/#/lens?type=model');
+  // type=principle sits in the pin window at the M16 node count (29 of 53
+  // rendered: at least half the graph, under the legibility cap); the model
+  // lens that carried this test through M15 outgrew the cap when the
+  // applications wave connected the models.
+  await page.goto('/#/lens?type=principle');
   const note = page.locator('.lens-pinned-note');
   await expect(note).toBeVisible();
   await expect(note.locator('a[href="#/atlas"]')).toBeVisible();
@@ -190,7 +199,7 @@ for (const theme of ['light', 'dark'] as const) {
     await page.emulateMedia({ colorScheme: theme });
 
     await page.goto('/#/c/stability-margins');
-    await page.locator('.assumption-trail summary').click();
+    await page.locator('.assumption-trail > summary').click();
     await expect(
       page.locator('.assumption-trail .trail-level a[href="#/c/linearization"]').first(),
     ).toBeVisible();

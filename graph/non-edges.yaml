@@ -52,3 +52,269 @@
     one-structure story that stays on the structure pages; the allocation
     node's convergence story is optimization plus marginal analysis.
   see: https://github.com/dnrohr/mathematical-structures/issues/14
+
+# ---------------------------------------------------------------------------
+# M16 candidate-edge triage (issue #32): the standing link/candidate-edge
+# queue worked to a decision apiece. The entries below are the reviewed
+# "no"s — pairs whose story is already typed elsewhere, whose link is
+# navigation rather than a claim, or whose honest connection runs through a
+# middle node (the kalman-filter/state-space-model precedent). The "yes"s
+# are edges in graph/edges.yaml; the two defers are recorded in #3.
+# ---------------------------------------------------------------------------
+
+- between: [bayes-rule, hidden-markov-model]
+  reason: >-
+    Sequential Bayesian updating is typed once, at the model-class level:
+    bayes-rule → state-space-model (APPLIED-IN) names the discrete-HMM
+    forward–backward recursions in its context, and the dialect edge plus
+    the chain ASSUMES edge carry the rest. Duplicating the claim per
+    dialect sibling would double-count one claim.
+  see: state-space-model
+
+- between: [change-of-representation, fourier-analysis]
+  reason: >-
+    The containment already runs fourier-analysis → integral-transforms →
+    change-of-representation (both IS-A); a direct edge would restate the
+    composition. The prose link is the move node's index listing its
+    instances.
+  see: integral-transforms
+
+- between: [conservation-laws, noethers-theorem]
+  reason: >-
+    The Noether triangle is already typed: symmetry → conservation-laws
+    (GOVERNS, theorem) carries the conclusion with "hypotheses live on the
+    theorem node", and the theorem node's two ASSUMES edges
+    (variational-principles, symmetry) carry those hypotheses. A direct
+    edge would re-route the triangle it deliberately closes.
+  see: symmetry
+
+- between: [diffusion, vector-calculus]
+  reason: >-
+    Typed through conservation-laws: diffusion IS-A the continuity
+    equation with gradient flux, and vector-calculus ↔ conservation-laws
+    is the LOCAL-GLOBAL-DUAL edge. The ∇² neighborhood-probe reading is
+    page prose; the network discretization is typed on graph-laplacian.
+  see: conservation-laws
+
+- between: [dimensional-analysis, series-expansion]
+  reason: >-
+    Workflow adjacency, not a structural claim: "rescale until the small
+    parameter is dimensionless, then expand" sequences two moves. The
+    structural licenses are typed separately (series-expansion → smoothness
+    ASSUMES; nondimensionalization → dimensional-analysis IS-A). Typing
+    the pipeline would record a recipe, not a structure.
+  see: nondimensionalization
+
+- between: [nondimensionalization, series-expansion]
+  reason: >-
+    The same recipe-not-structure decision as dimensional-analysis ↔
+    series-expansion: rescaling exposes the small parameter perturbation
+    expands in — a composition of moves in practice, with no containment,
+    representation, or assumption relation between the moves themselves.
+
+- between: [feedback-control, change-of-representation]
+  reason: >-
+    The two views are already typed: feedback-control REPRESENTED-BY
+    state-space-model and REPRESENTED-BY integral-transforms. "Switching
+    between them is a change of representation" is the move read off that
+    pair of edges — navigation, not an additional claim.
+  see: state-space-model
+
+- between: [state-space-model, change-of-representation]
+  reason: >-
+    Same decision as feedback-control ↔ change-of-representation: the
+    state-space ↔ transfer-function correspondence is typed directly
+    (state-space-model → integral-transforms REPRESENTED-BY), and tagging
+    it as an instance of the move is navigation.
+  see: integral-transforms
+
+- between: [fourier-analysis, complex-analysis]
+  reason: >-
+    The analytic-function machinery enters at the transform-family level:
+    complex-analysis APPLIED-IN integral-transforms (contour inversion,
+    pole geometry), and fourier-analysis reaches it as that family's
+    special case. A direct edge would restate the composition.
+  see: integral-transforms
+
+- between: [greens-function, feedback-control]
+  reason: >-
+    Composes through integral-transforms: greens-function REPRESENTED-BY
+    integral-transforms states "the transfer function is the Laplace
+    transform of the impulse response", and feedback-control
+    REPRESENTED-BY integral-transforms puts the loop in that domain. The
+    pages meet in the transform domain, not directly.
+  see: integral-transforms
+
+- between: [harmonic-oscillator, series-expansion]
+  reason: >-
+    The truncation story is already typed: harmonic-oscillator →
+    phase-space APPROXIMATES carries "the leading nonconstant term is
+    quadratic" with its amplitude caveats, and the expansion's own license
+    chain (series-expansion → smoothness) is typed on the expansion side.
+  see: phase-space
+
+- between: [image-registration, computational-imaging]
+  reason: >-
+    A deliberate seam, fixed in the M13 inventory: computational-imaging
+    owns image formation (SAR focusing included), image-registration
+    starts where formation ends — aligning already-formed images. The
+    mutual links tell the boundary story; neither node is machinery used
+    inside the other.
+  see: https://github.com/dnrohr/mathematical-structures/issues/26
+
+- between: [large-number-limits, change-of-representation]
+  reason: >-
+    "Take the limit" reads as a representation change in prose, but the
+    typed content is the limit-edge family itself (LIMIT-OF,
+    CONTINUUM-LIMIT-OF); the move node collects deliberate rewritings, and
+    stretching it over limits would blur the type that keeps the moves
+    index useful.
+  see: diffusion
+
+- between: [linear-gaussian-ssm, eigenvalues]
+  reason: >-
+    Inherited through the containment: linear-gaussian-ssm IS-A
+    state-space-model, whose REPRESENTED-BY eigenvalues edge carries the
+    modal story of the state matrix. Restating it on the special case
+    would duplicate the parent claim.
+  see: state-space-model
+
+- between: [linearization, stability]
+  reason: >-
+    Deliberately typed through the middle: linearization → eigenvalues
+    (the Jacobian's eigenstructure) and eigenvalues → stability (the sign
+    pattern) compose to Lyapunov's indirect method, and the
+    portrait-level transfer is the Hartman–Grobman APPROXIMATES edge. A
+    direct edge would restate the map's most-traveled chain.
+  see: eigenvalues
+
+- between: [motor-efficiency, change-of-representation]
+  reason: >-
+    The dq-frame claim is carried by feedback-control → motor-efficiency
+    (field-oriented control in its context). Applications wiki-link the
+    moves they showcase for navigation; typing each mention would edge
+    every application into change-of-representation.
+  see: feedback-control
+
+- between: [phase-space, eigenvalues]
+  reason: >-
+    Fixed-point classification is typed through the move that does it:
+    linearization → eigenvalues carries the Jacobian claim and
+    linearization → phase-space (Hartman–Grobman) licenses transferring
+    the verdict to the portrait. A direct edge restates that composition.
+  see: linearization
+
+- between: [protein-folding, eigenvalues]
+  reason: >-
+    Inherited, as the page itself says: the Markov-state-model claims are
+    typed (markov-chains and hidden-markov-model → protein-folding), and
+    the spectral reading of chain relaxation is eigenvalues →
+    markov-chains GOVERNS. "The slowest mode is folding" is that
+    composition instantiated, with the caveats on the MSM edges.
+  see: markov-chains
+
+- between: [resource-allocation, variational-principles]
+  reason: >-
+    The chain is typed through its middle: variational-principles ↔
+    optimization (SAME-SKELETON, whose notes keep stationarity distinct
+    from minimization) then optimization → resource-allocation
+    (APPLIED-IN). A direct edge would flatten exactly the distinction the
+    middle edge preserves.
+  see: optimization
+
+- between: [series-expansion, change-of-representation]
+  reason: >-
+    The page's own table draws the boundary: Taylor/perturbation/
+    asymptotic rows are local in a parameter or variable, while Fourier
+    and wavelet rows are global representation changes living on other
+    nodes. The link marks the handoff; an edge would erase the local/
+    global distinction the table exists to make.
+  see: fourier-analysis
+
+- between: [series-expansion, fourier-analysis]
+  reason: >-
+    Same boundary as series-expansion ↔ change-of-representation: Fourier
+    expansion is a global representation change typed through its own
+    containment (fourier-analysis IS-A integral-transforms), not a member
+    of the local truncation family this node curates.
+  see: integral-transforms
+
+- between: [series-expansion, integral-transforms]
+  reason: >-
+    Same boundary again: the table classifies transform rows as global
+    changes of representation and points them at their own nodes; series
+    expansion keeps the local-in-a-parameter family. The wiki-link is the
+    handoff.
+  see: change-of-representation
+
+- between: [series-expansion, eigenvalues]
+  reason: >-
+    The quoted chain runs through linearization by construction:
+    linearization IS-A series-expansion (first-order truncation) and
+    linearization → eigenvalues carries the Jacobian claim. The chain
+    prose on both pages narrates those edges composed.
+  see: linearization
+
+- between: [series-expansion, stability]
+  reason: >-
+    Same chain, same middle: series expansion reaches stability through
+    linearization → eigenvalues → stability; the pages quote the chain as
+    orientation, and no direct claim is being made.
+  see: linearization
+
+- between: [thermodynamic-entropy, optimization]
+  reason: >-
+    Typed through variational-principles: equilibrium extremization enters
+    as variational-principles → thermodynamic-entropy (APPLIED-IN,
+    theorem), and the extremize-a-functional skeleton connects to
+    optimization once, on the variational node, whose notes keep the
+    stationarity-vs-minimization distinction. The prose's point is exactly
+    that sharing the max-ent form does not merge the physical and
+    inferential claims.
+  see: variational-principles
+
+- between: [variational-principles, conservation-laws]
+  reason: >-
+    The Noether triangle again: symmetry → conservation-laws (GOVERNS)
+    carries the conclusion and noethers-theorem's ASSUMES edges carry the
+    hypotheses — the variational formulation is precisely one of those
+    typed hypotheses, so a direct edge would re-route the triangle.
+  see: noethers-theorem
+
+- between: [vascular-branching, biological-regulation]
+  reason: >-
+    The link narrates an existing research-gap edge: dimensional-analysis
+    → biological-regulation (POSSIBLE-MISSING-MIGRATION), which the
+    vascular page's scaling content sharpens. The two applications share
+    that open question; no typed relation of their own is being claimed.
+  see: dimensional-analysis
+
+# The three seams the batch-2 prose tells deliberately (issue #32) —
+# recorded so the new pages' boundary links stay navigation, the
+# image-registration/computational-imaging precedent.
+
+- between: [power-grid, motor-efficiency]
+  reason: >-
+    A deliberate seam: motor-efficiency owns the individual machine — its
+    coordinates, losses, and drive loops — while power-grid starts where
+    machines meet a network and collective dynamics begin. The links tell
+    the boundary story; neither application is machinery used inside the
+    other.
+  see: https://github.com/dnrohr/mathematical-structures/issues/32
+
+- between: [digital-communications, antenna-design]
+  reason: >-
+    A deliberate seam: antenna-design owns the radiating hardware
+    (patterns, impedance, bandwidth), digital-communications owns the
+    symbols through the channel that hardware provides; the link budget is
+    the meeting point. Boundary navigation, not a usage claim.
+  see: https://github.com/dnrohr/mathematical-structures/issues/32
+
+- between: [option-pricing, resource-allocation]
+  reason: >-
+    A deliberate seam: resource-allocation keeps static allocation
+    (Markowitz portfolios are constrained optimization), option-pricing
+    owns claims whose value depends on a path of prices and their hedging
+    through time. The link draws the boundary between the two economics
+    applications.
+  see: https://github.com/dnrohr/mathematical-structures/issues/32

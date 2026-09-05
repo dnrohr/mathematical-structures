@@ -60,7 +60,9 @@ test('Practitioner journey: search "weather" → anatomy + assumption surface �
   await expect(
     lean.getByRole('link', { name: 'Continuity, smoothness, and their failure' }),
   ).toBeVisible();
-  const breakdown = surface.locator('.surface-breakdown');
+  // Since M16 the surface derives two breakdowns (linearization fails at
+  // bifurcations and, globally, at chaos) — scope to the bifurcation row.
+  const breakdown = surface.locator('.surface-breakdown').filter({ hasText: 'Bifurcation' });
   await expect(breakdown).toContainText('fails in the presence of');
   await expect(breakdown.getByRole('link', { name: 'Bifurcation' })).toBeVisible();
 

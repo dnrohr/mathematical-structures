@@ -74,7 +74,8 @@ test('keyboard-only Problem-Solver journey: symptom card → ranked move → wor
   await expect(
     page.getByRole('heading', { name: 'What does your problem look like?' }),
   ).toBeVisible();
-  await tabToLink(page, 'Too many dimensional parameters');
+  // 16 symptom cards since M16 — the target sits deep in the tab order.
+  await tabToLink(page, 'Too many dimensional parameters', 160);
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#\/s\/too-many-parameters$/);
   // The URL updates at commit, but the hashchange dispatch (render + focus
