@@ -410,7 +410,9 @@ matching the "can never rot" deployment goal.
 ### 5.2 Routing
 
 ```
-#/                      landing: symptom index + search (?s=<id> highlights a symptom)
+#/                      landing: symptom index + search (?s=<id> highlights a symptom;
+                        ?af=<field> filters the applications door by primary field — M13,
+                        UI_REDESIGN §4.1)
 #/c/<slug>              concept page (?at=dialects lands at the dialect table — the map's row headers)
 #/moves                 index of node_type=move (spec §5.2)
 #/index                 A–Z index — the plain fallback when search isn't the tool

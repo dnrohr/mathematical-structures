@@ -866,27 +866,43 @@ milestone's pattern; this one proves it at wave scale.
 
 **Exit criteria**
 
-- [ ] Batch fixed in a tracking issue before writing (the M2/M7 discipline):
+- [x] Batch fixed in a tracking issue before writing (the M2/M7 discipline):
       4–6 new `application` nodes, every one `established`, each with ≥ 2
       distinct structures converging over APPLIED-IN / MIGRATED-TO edges with
       honest strengths, per-edge context, and ≥ 1 citation on every
       nontrivial claim (the M8 bar). Tool-shaped candidates demote to
       structure nodes or aliases with the decision recorded (the tomography
-      precedent).
-- [ ] Landing v4: the applications door grouped by primary field with filter
+      precedent) — five nodes landed per
+      [#26](https://github.com/dnrohr/mathematical-structures/issues/26):
+      weather-prediction, antenna-design, protein-folding, motor-efficiency,
+      image-registration; 18 new edges (12 theorem-grade APPLIED-IN, 5
+      strong-analogy APPLIED-IN, the force–voltage analogy as ANALOGOUS-TO,
+      deliberately outside the bar), 28 references; demotions recorded
+      (SIFT/SURF → aliases, MSMs → hmm edge context, PCA/FEA unchanged).
+- [x] Landing v4: the applications door grouped by primary field with filter
       chips (`#/?af=<field>`), plus the survey strip linking the analytical
-      views; symptom primacy untouched (spec §3.4). Playwright-proven.
-- [ ] Application anatomy on `application` pages: incoming claims grouped by
+      views; symptom primacy untouched (spec §3.4). Playwright-proven —
+      groups render in schema field order, chips filter in place via
+      `replaceHash` (shareable URL, no history spam, focus preserved), and
+      the strip links matrix · map · metrics · questions · queue with
+      one-phrase descriptions (atlas joins in M14).
+- [x] Application anatomy on `application` pages: incoming claims grouped by
       the structure's node type, each led by its edge context; the assumption
       surface (one-hop ASSUMES union of connected structures, clearly labeled
-      as derived, FAILS-WHEN/REPLACED-BY adjacent) rendered beneath.
-- [ ] Practitioner journey passes like M7's: search a domain term → the
+      as derived, FAILS-WHEN/REPLACED-BY adjacent) rendered beneath — both
+      display joins over loaded data; contexts written "role: elaboration"
+      render the role lead emphasized, and MIGRATED-TO claims keep their
+      "imported" phrasing so the edge type stays recoverable.
+- [x] Practitioner journey passes like M7's: search a domain term → the
       application page with anatomy + assumption surface → a connected
-      structure page in ≤ 2 clicks (Playwright).
+      structure page in ≤ 2 clicks (Playwright) — "weather" →
+      weather-prediction (anatomy across four kind groups; surface deriving
+      linearization → smoothness with the bifurcation breakdown beside it) →
+      kalman-filter, in `m13-practitioner.spec.ts`.
 
 **Tasks**
 
-- [ ] [curation] Inventory issue. Starting candidates from the owner's
+- [x] [curation] Inventory issue. Starting candidates from the owner's
       direction, each checked against the ≥ 2-structures bar before writing:
       weather prediction / data assimilation (kalman-filter, chaos,
       fourier-analysis, diffusion); antenna design (greens-function,
@@ -899,21 +915,35 @@ milestone's pattern; this one proves it at wave scale.
       tensor, optimization; SIFT/SURF as aliases). Tool-shaped names enter as
       structures or aliases instead: PCA stays the statistics alias on
       eigenvalues; FEA-shaped candidates land as operation content on or near
-      variational-principles.
-- [ ] [curation] Write nodes + edges with citations; new `fields` ids only as
+      variational-principles —
+      [#26](https://github.com/dnrohr/mathematical-structures/issues/26),
+      all five accepted (weather-prediction additionally carries
+      linearization: incremental 4D-Var is iterated linearization).
+- [x] [curation] Write nodes + edges with citations; new `fields` ids only as
       the validator demands them (RF/electromagnetics is the likely first —
-      M7 needed none, this batch may).
-- [ ] [data] Symptom pass: add the recognition patterns the batch exposes
+      M7 needed none, this batch may) — exactly one new id landed:
+      `electromagnetics`, demanded by antenna-design and motor-efficiency.
+- [x] [data] Symptom pass: add the recognition patterns the batch exposes
       (M7 added `ranking-network-importance`; data assimilation and
-      registration likely earn theirs).
-- [ ] [app] Landing v4 (field grouping + chips + survey strip).
-- [ ] [app] Application anatomy + assumption surface (display joins only — no
-      new computation class client-side).
-- [ ] [app] Playwright: practitioner journey, landing grouping round-trip,
-      axe membership for changed views.
-- [ ] [curation] Metrics re-read after the batch (the M7 discipline): confirm
+      registration likely earn theirs) — two added: `model-drifts-from-data`
+      (worked example weather-prediction) and `misaligned-views` (worked
+      example image-registration); no retargets needed.
+- [x] [app] Landing v4 (field grouping + chips + survey strip).
+- [x] [app] Application anatomy + assumption surface (display joins only — no
+      new computation class client-side) — reuses `convergingStructures` and
+      `node.connections`; no data-contract change.
+- [x] [app] Playwright: practitioner journey, landing grouping round-trip,
+      axe membership for changed views — `m13-practitioner.spec.ts` (5
+      tests); the filtered landing (`#/?af=…`) and an application page with
+      anatomy + surface joined the axe matrix in both themes; the M7/M8
+      specs updated where the anatomy relocated the claims they asserted on.
+- [x] [curation] Metrics re-read after the batch (the M7 discipline): confirm
       no overclaimed strength manufactured centrality; feed anything
-      suspicious back into strengths or edge context.
+      suspicious back into strengths or edge context — recorded in
+      [#26](https://github.com/dnrohr/mathematical-structures/issues/26):
+      only the 12 theorem-grade claims joined the trusted subgraph, hub
+      ranking stable, protein-folding honestly outside the partition (all
+      its claims are graded analogies); nothing fed back.
 
 ---
 

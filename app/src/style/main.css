@@ -749,6 +749,66 @@ dialog.shortcuts::backdrop {
   line-height: 1.9;
 }
 
+/* Landing v4 (M13, UI_REDESIGN §4.1): the applications door grouped by
+   primary field, chip-filtered in place; state in the URL (#/?af=…). */
+.af-chips {
+  margin: 0 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+a.af-chip {
+  text-decoration: none;
+  color: var(--ink-muted);
+}
+
+a.af-chip:hover {
+  border-color: var(--link);
+  color: var(--link);
+}
+
+a.af-chip.active {
+  border-color: var(--link);
+  color: var(--link);
+  font-weight: 600;
+}
+
+.af-chip .count,
+.app-field-label .count {
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+.app-field-group {
+  margin-bottom: 1.3rem;
+}
+
+.app-field-label {
+  font: 600 0.95rem var(--font-ui);
+  color: var(--ink-muted);
+  margin: 0 0 0.5rem;
+}
+
+/* The survey strip: one compact row advertising the analytical views. */
+.survey-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.6rem;
+}
+
+.survey-links li {
+  font-size: 0.95rem;
+}
+
+.survey-phrase {
+  color: var(--ink-muted);
+  font-size: 0.88rem;
+}
+
 /* ======================================================================
    Concept page
    ====================================================================== */
@@ -849,6 +909,43 @@ dialog.shortcuts::backdrop {
   margin: 0.25rem 0 0;
   font-size: 0.88rem;
   color: var(--ink-muted);
+}
+
+/* Application anatomy + assumption surface (M13, UI_REDESIGN §4.2):
+   roles lead, names second; the surface is labeled as derived data. */
+.anatomy-group {
+  margin: 0 0 1rem;
+}
+
+.anatomy-kind {
+  margin: 0 0 0.35rem;
+}
+
+.anatomy-role {
+  font-weight: 600;
+}
+
+.anatomy-via {
+  color: var(--ink-muted);
+}
+
+.anatomy-via .node-link {
+  color: var(--link);
+}
+
+.derived-chip {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-right: 0.3rem;
+}
+
+.surface-breakdown {
+  border-left-color: color-mix(in srgb, var(--warn) 55%, transparent);
+}
+
+.surface-breakdown-lead {
+  margin-top: 0.7rem;
 }
 
 /* Citations (ROADMAP M8): the compact affordance on any claim — a native

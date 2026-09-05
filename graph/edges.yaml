@@ -945,6 +945,240 @@
   evidence: [mas-colell-etal-1995]
 
 # ---------------------------------------------------------------------------
+# Applications, wave batch 1 (M13; issue #26). Same bar as M7: every
+# APPLIED-IN strength grades how settled the usage claim is; claims about
+# idealized mathematics inside a stated model are theorem-grade, claims
+# about messy real systems stay analogies with their caveats in notes.
+# ---------------------------------------------------------------------------
+
+- from: kalman-filter
+  to: weather-prediction
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Data assimilation: the analysis step is the Kalman update — operational
+    ensemble (EnKF) and variational (4D-Var) schemes are its Monte-Carlo
+    and optimization forms, blending forecast and observations by their
+    error covariances.
+  notes: >-
+    Theorem-grade inside the linear-Gaussian idealization, where 4D-Var and
+    the Kalman smoother coincide; operational systems approximate it —
+    sampled covariances, localization, inflation — and the field's research
+    lives in those approximations.
+  evidence: [kalnay-2003, evensen-2003]
+
+- from: linearization
+  to: weather-prediction
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Incremental 4D-Var: each outer loop minimizes a quadratic cost built
+    from the tangent-linear model and its adjoint around the latest
+    trajectory — Gauss–Newton at planetary scale, and the tangent model's
+    validity horizon is what limits the assimilation window.
+  evidence: [courtier-etal-1994]
+
+- from: fourier-analysis
+  to: weather-prediction
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The spectral dynamical core: global models integrate the primitive
+    equations in spherical-harmonic space (the sphere's Laplacian
+    eigenfunctions) — derivatives become algebraic and the semi-implicit
+    step is a Helmholtz solve per mode, with fast transforms shuttling to
+    grid space for the physics.
+  evidence: [durran-2010, kalnay-2003]
+
+- from: chaos
+  to: weather-prediction
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Predictability and ensembles: sensitive dependence bounds deterministic
+    forecasts (roughly two weeks at synoptic scale), so operations run
+    perturbed ensembles to sample flow-dependent error growth — the
+    ensemble is the honest forecast.
+  notes: >-
+    Established for the model equations and empirically for the atmosphere;
+    "the atmosphere is chaotic" is an inference from models and analogs,
+    not a theorem about the physical system — hence not theorem-grade.
+  evidence: [lorenz-1963, lorenz-1982]
+
+- from: diffusion
+  to: weather-prediction
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Sub-grid closure: boundary-layer turbulence enters as eddy diffusion
+    (K-theory), mixing heat, moisture, and momentum down local gradients,
+    and horizontal (hyper)diffusion absorbs the cascade at the truncation
+    scale.
+  notes: >-
+    A closure, not a law: counter-gradient fluxes in the convective
+    boundary layer are the standard failure, patched by non-local schemes.
+  evidence: [stull-1988]
+
+- from: greens-function
+  to: antenna-design
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Radiation integrals: fields are sources convolved with the free-space
+    Green's function, far-field patterns are its asymptotic form, and the
+    method of moments discretizes the boundary integral equation built on
+    that kernel.
+  evidence: [balanis-2005, harrington-1968]
+
+- from: eigenvalues
+  to: antenna-design
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Resonant mode selection: characteristic-mode analysis diagonalizes the
+    impedance operator into real current modes — which modes a shape
+    supports, where they resonate, and what a feed placement can excite.
+  evidence: [harrington-mautz-1971]
+
+- from: optimization
+  to: antenna-design
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Pattern synthesis: Dolph's Chebyshev taper is provably the narrowest
+    main beam for a prescribed sidelobe level, and modern array synthesis
+    poses the same trade as a convex program over complex weights.
+  evidence: [dolph-1946, lebret-boyd-1997]
+
+- from: complex-analysis
+  to: antenna-design
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Impedance matching: the Smith chart is a Möbius map of the impedance
+    half-plane onto the reflection-coefficient disk, and Bode–Fano bounds —
+    analyticity of the reflection coefficient — cap the bandwidth any
+    lossless network can match.
+  evidence: [fano-1950, pozar-2012]
+
+- from: optimization
+  to: protein-folding
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Structure prediction as search: Anfinsen's thermodynamic hypothesis
+    makes the native state a free-energy minimum, so fragment assembly,
+    side-chain packing, and refinement run as global optimization over an
+    energy landscape.
+  notes: >-
+    The hypothesis has known scope — kinetically trapped and intrinsically
+    disordered proteins sit outside it, and Levinthal's paradox says
+    folding itself is not exhaustive search — so the optimization reading
+    stays an established analogy, not a theorem about molecules.
+  evidence: [anfinsen-1973, dill-maccallum-2012]
+
+- from: thermodynamic-entropy
+  to: protein-folding
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    The folding funnel: chain entropy lost against contact energy gained
+    shapes the free-energy landscape, and minimal frustration is why the
+    generic geometry is a funnel rather than a golf course.
+  notes: >-
+    Energy-landscape theory is ensemble-level statistical mechanics of a
+    messy evolved system; its predictions are generic, not per-protein
+    theorems.
+  evidence: [onuchic-etal-1997]
+
+- from: hidden-markov-model
+  to: protein-folding
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Folding kinetics: Markov state models compress simulation trajectories
+    into metastable conformations with memoryless transitions, and rates
+    and pathways read off the transition matrix's spectrum.
+  notes: >-
+    Markovianity after coarse-graining is an approximation validated per
+    system (implied-timescale tests); the models are Markov chains on
+    macrostates, hidden-Markov in the refinements that correct imperfect
+    state discretization. The MSM-as-node candidate was demoted here
+    (issue #26) — the tomography precedent.
+  evidence: [prinz-etal-2011, chodera-noe-2014]
+
+- from: feedback-control
+  to: motor-efficiency
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Drive control: field-oriented control puts the machine in rotating (dq)
+    coordinates where torque control becomes linear, then closes cascaded
+    current, speed, and position loops — the industrial servo architecture.
+  evidence: [leonhard-2001]
+
+- from: conservation-laws
+  to: motor-efficiency
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The loss budget: efficiency is energy conservation read as accounting —
+    electrical input balances shaft output plus copper, iron, and
+    mechanical losses, located and priced via the airgap power flow.
+  evidence: [fitzgerald-etal-2003]
+
+- from: harmonic-oscillator
+  to: motor-efficiency
+  type: ANALOGOUS-TO
+  strength: strong-analogy
+  context: >-
+    The force–voltage electromechanical analogy (L ↔ m, R ↔ b, 1/C ↔ k)
+    reads the armature circuit and the mechanical drivetrain as one
+    second-order family; reflected impedance carries the load into the
+    electrical domain, two-inertia torsional resonance is the mechanical
+    face.
+  notes: >-
+    Deliberately ANALOGOUS-TO, not APPLIED-IN (issue #26): exact for ideal
+    linear lumped elements — the equations are literally the same — but as
+    a claim about real machines (saturation, friction, distributed
+    compliance) it stays an established analogy, and it does not count
+    toward the application's two-structure bar.
+  evidence: [olson-1943]
+
+- from: diffusion
+  to: image-registration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Scale space: Gaussian smoothing is the diffusion equation run on the
+    image with scale as time — causality axioms single it out as the
+    linear scale space — and difference-of-Gaussians pyramids sample it
+    for scale-covariant keypoints.
+  evidence: [koenderink-1984, lowe-2004]
+
+- from: eigenvalues
+  to: image-registration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Feature detection: the structure tensor's eigenvalues classify
+    neighborhoods — two large means corner, one means edge, none means
+    flat (the aperture problem as a rank deficiency) — and "good features
+    to track" is a minimum-eigenvalue threshold.
+  evidence: [harris-stephens-1988, shi-tomasi-1994]
+
+- from: optimization
+  to: image-registration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Alignment as energy minimization: Lucas–Kanade solves linearized
+    brightness-constancy by least squares (Gauss–Newton, coarse to fine),
+    and multimodal medical registration maximizes mutual information over
+    transform parameters.
+  evidence: [lucas-kanade-1981, maes-etal-1997]
+
+# ---------------------------------------------------------------------------
 # Research-gap layer (§15 + §9): candidate missing migrations, every one
 # speculative + open-candidate, framed per docs/research-gap-workflow.md.
 # The margins → biological-regulation candidate that used to lead this list

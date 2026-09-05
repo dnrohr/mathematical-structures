@@ -24,9 +24,10 @@ test('Application journey: search "PageRank" → application page → eigenvalue
     .click();
   await expect(page).toHaveURL(/#\/c\/pagerank$/);
 
-  // The structure sentences are on the page, strengths attached: the
-  // APPLIED-IN edges read from the application's side as "Makes use of".
-  const uses = page.locator('.connection-group').filter({ hasText: 'Makes use of' });
+  // The structure sentences are on the page, strengths attached. Since M13
+  // the incoming APPLIED-IN claims lead the page as the application anatomy
+  // (grouped by the structure's kind) instead of a flat "Makes use of" group.
+  const uses = page.locator('.concept-section.anatomy');
   await expect(uses).toContainText('Markov chains and random walks');
   await expect(uses).toContainText('theorem');
   await expect(uses).toContainText('strong analogy');
@@ -43,9 +44,14 @@ test('applications index renders the whole batch, in both themes', async ({ page
   await page.goto('/#/applications');
   await expect(page.getByRole('heading', { name: 'Applications' })).toBeVisible();
 
-  // The v1 template node plus the four M7 applications.
+  // Every application node gets a card — count from the data, not a
+  // constant, so content batches (M7's four, M13's five…) keep this green.
+  const data = (await (await page.request.get('data/graph.json')).json()) as {
+    nodes: { node_type: string }[];
+  };
+  const appCount = data.nodes.filter((n) => n.node_type === 'application').length;
   const cards = page.locator('.application-card');
-  await expect(cards).toHaveCount(5);
+  await expect(cards).toHaveCount(appCount);
   await expect(cards.filter({ hasText: 'Biological regulation' })).toBeVisible();
 
   // Each card leads with the convergence: structure links + strength badges.

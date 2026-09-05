@@ -83,3 +83,18 @@
   moves: [smoothness, bifurcation]
   mature_fields: [pde, optimization, control]
   worked_example: smoothness
+
+# Added in M13: recognition patterns the applications wave exposed
+# (issue #26). Data assimilation's shape — an existing simulation to keep
+# on track — is distinct from hidden-state estimation from scratch.
+- id: model-drifts-from-data
+  symptom: A running model drifts away from measurements
+  moves: [kalman-filter, bayes-rule, state-space-model]
+  mature_fields: [control, signal-processing, statistics]
+  worked_example: weather-prediction
+
+- id: misaligned-views
+  symptom: Two views of the same thing, misaligned
+  moves: [optimization, eigenvalues, diffusion]
+  mature_fields: [signal-processing, ml]
+  worked_example: image-registration
