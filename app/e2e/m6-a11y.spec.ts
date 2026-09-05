@@ -179,6 +179,11 @@ const AXE_ROUTES: { name: string; path: string }[] = [
   { name: 'applications index', path: '/#/applications' },
   { name: 'dialect lookup', path: '/#/dialects?q=poles' },
   { name: 'lens with communities', path: '/#/lens?field=biology&communities=1' },
+  {
+    name: 'matrix with pair panel and crosshair',
+    path: '/#/matrix?focus=eigenvalues&a=eigenvalues&b=markov-chains',
+  },
+  { name: 'migration map with highlights', path: '/#/map?field=biology&focus=eigenvalues' },
   { name: 'path chains', path: '/#/path/harmonic-oscillator/markov-chains' },
   { name: 'metrics', path: '/#/metrics' },
   { name: 'questions', path: '/#/questions' },

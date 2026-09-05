@@ -411,15 +411,21 @@ matching the "can never rot" deployment goal.
 
 ```
 #/                      landing: symptom index + search (?s=<id> highlights a symptom)
-#/c/<slug>              concept page
+#/c/<slug>              concept page (?at=dialects lands at the dialect table — the map's row headers)
 #/moves                 index of node_type=move (spec §5.2)
 #/index                 A–Z index — the plain fallback when search isn't the tool
 #/dialects?q=...        reverse-dialect lookup
 #/lens?edge=...&type=...&field=...&strength=...   composed subgraph view
+#/matrix?order=…&edge=…&type=…&field=…&strength=…&focus=…&a=…&b=…
+                        adjacency matrix: every pair incl. absence; focus = crosshair,
+                        a/b = the open pair panel (M12, UI_REDESIGN §4.3)
+#/map?order=…&field=…&focus=…   structures × fields migration map (M12, UI_REDESIGN §4.4)
 #/path/<slugA>/<slugB>  translation-chain finder
 #/metrics               hubs, bridges, span/dialect rankings
 #/questions             open research-gap candidates
-#/queue                 the work queue: mechanical curation signals + the reject ledger (M11)
+#/queue                 the work queue: mechanical curation signals + the reject ledger
+                        (M11; ?bridge=<a>-<b> highlights one deficit item — the matrix's
+                        empty-block links land there)
 #/walks                 index of guided walks (spec §8.3)
 #/walk/<id>?step=<n>    one walk, stepped through; position in the URL
 #/propose?from=<slug>&to=<slug>&type=…&strength=…&context=…

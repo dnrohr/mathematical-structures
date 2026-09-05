@@ -110,9 +110,10 @@ function section(
 
 const actionSep = ' · ';
 
-export function queueView(atlas: Atlas): View {
+export function queueView(atlas: Atlas, opts: { bridge?: string } = {}): View {
   const queue = atlas.queue;
   const metrics = atlas.metrics;
+  const bridge = opts.bridge && /^\d+-\d+$/.test(opts.bridge) ? `bridge-${opts.bridge}` : undefined;
 
   // ---- candidate edges (wiki-linked, unedged — exists since M1) ----------
   const candidates = metrics.candidate_edges;
@@ -241,9 +242,12 @@ export function queueView(atlas: Atlas): View {
         const hubA = hubOf(ca);
         const hubB = hubOf(cb);
         const bridges = d.edges.map(bridgeEdge).filter((e): e is GraphEdge => e !== undefined);
+        const id = `bridge-${String(ca)}-${String(cb)}`;
         return h(
           'li',
-          {},
+          // The matrix's "empty between two communities?" links land here
+          // (#/queue?bridge=<a>-<b>), on the exact deficit item (M12).
+          { id, ...(bridge === id ? { class: 'highlight' } : {}) },
           h(
             'p',
             { class: 'deficit-head' },
@@ -559,5 +563,11 @@ export function queueView(atlas: Atlas): View {
     nonEdgeSection,
   );
 
-  return { title: 'Work queue', el };
+  const onMount = bridge
+    ? (): void => {
+        el.querySelector(`#${bridge}`)?.scrollIntoView({ block: 'center' });
+      }
+    : undefined;
+
+  return { title: 'Work queue', el, ...(onMount ? { onMount } : {}) };
 }

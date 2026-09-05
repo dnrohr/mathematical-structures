@@ -2012,3 +2012,285 @@ th[aria-sort='ascending'] .sort-button::after {
 .deficit-actions {
   font-family: var(--font-ui);
 }
+
+/* The matrix's "empty between two communities?" deep-link lands here. */
+.deficit-list > li.highlight {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+/* ======================================================================
+   Directed-edge arrowheads (M12, UI_REDESIGN §4.9): the marker fill is
+   keyed to the same classes that color the stroke, so head and line can
+   never disagree; symmetric edge types carry no marker on purpose.
+   ====================================================================== */
+
+.graph-arrow path {
+  fill: var(--ink-muted);
+}
+
+.arrow-strong path {
+  fill: var(--ink);
+}
+
+.arrow-light path {
+  fill: var(--ink-faint);
+}
+
+.arrow-gap path {
+  fill: var(--warn);
+}
+
+.arrow-focus path {
+  fill: var(--focus);
+}
+
+.graph-edge .edge-line.directed {
+  marker-end: url(#arrow-medium);
+}
+
+.graph-edge.emph-strong .edge-line.directed {
+  marker-end: url(#arrow-strong);
+}
+
+.graph-edge.emph-light .edge-line.directed {
+  marker-end: url(#arrow-light);
+}
+
+.graph-edge.gap .edge-line.directed {
+  marker-end: url(#arrow-gap);
+}
+
+.graph-edge:hover .edge-line.directed,
+.graph-edge:focus .edge-line.directed {
+  marker-end: url(#arrow-focus);
+}
+
+/* ======================================================================
+   Survey views (M12): the adjacency matrix and the migration map. One
+   table grammar for both — sticky headers on both axes, the strength line
+   grammar in matrix cells (never color-alone; every cell carries its
+   sentence as text), community/type block separators reusing the M5
+   palette rules, and the focus crosshair for the concept-page situating
+   links.
+   ====================================================================== */
+
+.situate {
+  margin: 0.45rem 0 0;
+  font: 0.82rem var(--font-ui);
+  color: var(--ink-muted);
+}
+
+.matrix-scroll {
+  position: relative;
+  overflow: auto;
+  max-height: 75vh;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+/* border-collapse would un-stick the header borders while scrolling. */
+.matrix-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--font-ui);
+}
+
+.matrix-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--bg-raised);
+  vertical-align: bottom;
+  padding: 0.45rem 0.2rem 0.3rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 500;
+}
+
+.matrix-table .matrix-corner {
+  left: 0;
+  z-index: 3;
+  text-align: left;
+  padding-left: 0.6rem;
+}
+
+.matrix-col-label {
+  display: inline-block;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  max-height: 11rem;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.matrix-col-label a,
+.matrix-row-head a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.matrix-col-label a:hover,
+.matrix-row-head a:hover {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+.matrix-table .matrix-row-head {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--bg-raised);
+  text-align: left;
+  font: 500 0.82rem var(--font-ui);
+  white-space: nowrap;
+  padding: 0.1rem 0.65rem 0.1rem 0.6rem;
+  border-right: 1px solid var(--rule);
+}
+
+/* Community / node-type block separators (rows are labeled; the mirrored
+   column boundary carries the same rule). */
+.matrix-block-row th,
+.matrix-block-row td {
+  border-top: 2px solid var(--rule);
+  padding: 0.3rem 0.6rem 0.15rem;
+}
+
+.matrix-table td.block-start,
+.matrix-table th.block-start {
+  border-left: 2px solid var(--rule);
+}
+
+.matrix-cell {
+  width: 1.65rem;
+  min-width: 1.65rem;
+  height: 1.65rem;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+  border-top: 1px solid color-mix(in srgb, var(--rule) 45%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--rule) 45%, transparent);
+}
+
+.matrix-cell.diag {
+  background: color-mix(in srgb, var(--rule) 40%, transparent);
+}
+
+.matrix-cell.gap {
+  background: color-mix(in srgb, var(--warn) 12%, transparent);
+}
+
+.matrix-cell.gap .cell-glyph {
+  color: var(--warn);
+}
+
+.matrix-cell:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+
+.matrix-cell.filled:hover {
+  background: color-mix(in srgb, var(--link) 12%, transparent);
+}
+
+/* The strength line grammar as a cell glyph: the generic .line-* /
+   .emph-* classes supply style, weight, and ink exactly as on badges. */
+.cell-glyph {
+  display: inline-block;
+  width: 1.05em;
+  border-bottom: 2px solid currentcolor;
+  vertical-align: middle;
+  color: var(--ink-muted);
+}
+
+.cell-glyph.gap-hint {
+  color: var(--warn);
+}
+
+.cell-count {
+  font: 600 0.6rem var(--font-ui);
+  color: var(--ink-muted);
+  margin-left: 2px;
+  vertical-align: top;
+}
+
+/* The focus crosshair (?focus=<slug>): opaque mixes, because the sticky
+   headers must not show scrolled cells through themselves. */
+.matrix-table .focus-col,
+.matrix-table tr.focus-row > td,
+.matrix-table tr.focus-row > th {
+  background: color-mix(in srgb, var(--focus) 12%, var(--bg-raised));
+}
+
+.matrix-deficits {
+  margin-top: 0.6rem;
+}
+
+.matrix-pair-panel {
+  margin-top: 1.5rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.8rem 1.1rem;
+}
+
+.matrix-pair-panel h2 {
+  font: 700 0.85rem var(--font-ui);
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+  margin: 0 0 0.5rem;
+}
+
+.matrix-pair-panel h2 .node-link {
+  font: 600 1.05rem var(--font-prose);
+  letter-spacing: normal;
+}
+
+.matrix-pair-actions {
+  margin: 0.5rem 0 0;
+  font: 0.85rem var(--font-ui);
+}
+
+/* ---- the migration map: three text-equivalent cell states ---- */
+
+.map-cell {
+  width: 2.1rem;
+  min-width: 2.1rem;
+  height: 1.7rem;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+  border-top: 1px solid color-mix(in srgb, var(--rule) 45%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--rule) 45%, transparent);
+}
+
+.map-glyph {
+  font: 0.85rem/1 var(--font-ui);
+  text-decoration: none;
+  color: var(--ink-muted);
+  padding: 0.2rem 0.3rem;
+}
+
+.map-unnamed .map-glyph,
+.map-legend-unnamed {
+  color: var(--warn);
+  font-weight: 700;
+}
+
+.map-named .map-glyph:hover {
+  color: var(--ink);
+}
+
+.map-unnamed .map-glyph:hover {
+  text-decoration: underline;
+}
+
+.map-legend .map-glyph {
+  padding: 0;
+}
+
+/* The map's row-header deep link (#/c/<slug>?at=dialects) scrolls here;
+   keep the heading clear of the sticky site header. */
+#dialects {
+  scroll-margin-top: 3.6rem;
+}

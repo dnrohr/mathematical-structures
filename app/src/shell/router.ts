@@ -8,17 +8,19 @@ import type { LensFilters } from '../data/subgraph';
 
 export type Route =
   | { name: 'landing'; symptom?: string }
-  | { name: 'concept'; slug: string }
+  | { name: 'concept'; slug: string; at?: string }
   | { name: 'symptom'; id: string }
   | { name: 'moves' }
   | { name: 'applications' }
   | { name: 'atoz' }
   | { name: 'dialects'; query: string }
   | { name: 'lens'; filters: LensFilters; communities: boolean }
+  | { name: 'matrix'; filters: LensFilters; order?: string; focus?: string; a?: string; b?: string }
+  | { name: 'map'; order?: string; field?: string; focus?: string }
   | { name: 'path'; from?: string; to?: string; strength?: string }
   | { name: 'metrics'; sort?: string; dir?: 'asc' | 'desc' }
   | { name: 'questions' }
-  | { name: 'queue' }
+  | { name: 'queue'; bridge?: string }
   | {
       name: 'propose';
       from?: string;
@@ -44,7 +46,8 @@ export function parseHash(hash: string): Route {
     return { name: 'landing', ...(symptom ? { symptom } : {}) };
   }
   if (segs[0] === 'c' && segs.length === 2 && SLUG_RE.test(segs[1]!)) {
-    return { name: 'concept', slug: segs[1]! };
+    const at = params.get('at');
+    return { name: 'concept', slug: segs[1]!, ...(at ? { at } : {}) };
   }
   if (segs[0] === 's' && segs.length === 2 && SLUG_RE.test(segs[1]!)) {
     return { name: 'symptom', id: segs[1]! };
@@ -76,8 +79,45 @@ export function parseHash(hash: string): Route {
       ...(dir === 'asc' || dir === 'desc' ? { dir } : {}),
     };
   }
+  if (segs[0] === 'matrix' && segs.length === 1) {
+    const filters: LensFilters = {};
+    const edge = params.get('edge');
+    const type = params.get('type');
+    const field = params.get('field');
+    const strength = params.get('strength');
+    if (edge) filters.edge = edge;
+    if (type) filters.type = type;
+    if (field) filters.field = field;
+    if (strength) filters.strength = strength;
+    const order = params.get('order');
+    const focus = params.get('focus');
+    const a = params.get('a');
+    const b = params.get('b');
+    return {
+      name: 'matrix',
+      filters,
+      ...(order ? { order } : {}),
+      ...(focus ? { focus } : {}),
+      ...(a ? { a } : {}),
+      ...(b ? { b } : {}),
+    };
+  }
+  if (segs[0] === 'map' && segs.length === 1) {
+    const order = params.get('order');
+    const field = params.get('field');
+    const focus = params.get('focus');
+    return {
+      name: 'map',
+      ...(order ? { order } : {}),
+      ...(field ? { field } : {}),
+      ...(focus ? { focus } : {}),
+    };
+  }
   if (segs[0] === 'questions' && segs.length === 1) return { name: 'questions' };
-  if (segs[0] === 'queue' && segs.length === 1) return { name: 'queue' };
+  if (segs[0] === 'queue' && segs.length === 1) {
+    const bridge = params.get('bridge');
+    return { name: 'queue', ...(bridge ? { bridge } : {}) };
+  }
   if (segs[0] === 'propose' && segs.length === 1) {
     const from = params.get('from');
     const to = params.get('to');

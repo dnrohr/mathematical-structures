@@ -178,6 +178,51 @@ export function lensSubgraph(atlas: Atlas, filters: LensFilters): Subgraph {
 }
 
 // ---------------------------------------------------------------------------
+// Matrix
+// ---------------------------------------------------------------------------
+
+/**
+ * Default strength floor for the adjacency matrix: the same posture as path
+ * finding (UI_REDESIGN.md §4.3) — every established edge, but a speculative
+ * hypothesis is never presented as a connection unless explicitly opted in
+ * (`strength=speculative`).
+ */
+export const MATRIX_DEFAULT_STRENGTH = 'heuristic-analogy';
+
+/**
+ * Above this many rows the matrix requires at least one filter before
+ * rendering (UI_REDESIGN.md §4.3 scale posture — the lens's 32-node
+ * fallback, one order of magnitude up: compact cells and sticky headers
+ * keep a scrolled table legible far longer than a force layout).
+ */
+export const MATRIX_FILTER_REQUIRED_ABOVE = 150;
+
+/**
+ * The matrix selection (UI_REDESIGN.md §4.3): unlike the lens, the node
+ * list is every concept matching the node filters — including concepts no
+ * surviving edge touches, because an empty row IS the information the view
+ * exists to show. Edges are those between kept nodes passing the edge-type
+ * filter and the strength floor; with no explicit floor the matrix
+ * defaults to excluding speculative edges (MATRIX_DEFAULT_STRENGTH).
+ */
+export function matrixSelection(atlas: Atlas, filters: LensFilters): Subgraph {
+  const floor = filters.strength ?? MATRIX_DEFAULT_STRENGTH;
+  const minRank = atlas.strength(floor)?.rank ?? 0;
+  const nodes = atlas.nodes.filter((node) => {
+    if (filters.type && node.node_type !== filters.type) return false;
+    if (filters.field && !node.fields.includes(filters.field)) return false;
+    return true;
+  });
+  const kept = new Set(nodes.map((n) => n.slug));
+  const edges = atlas.data.edges.filter((edge) => {
+    if (filters.edge && edge.type !== filters.edge) return false;
+    if ((atlas.strength(edge.strength)?.rank ?? 99) > minRank) return false;
+    return kept.has(edge.from) && kept.has(edge.to);
+  });
+  return { nodes, edges };
+}
+
+// ---------------------------------------------------------------------------
 // Paths
 // ---------------------------------------------------------------------------
 
