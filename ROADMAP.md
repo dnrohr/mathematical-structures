@@ -637,21 +637,35 @@ the validator remains the only gate.
 
 **Exit criteria**
 
-- [ ] From any concept page and from `#/questions`, "propose an edge" reaches a
+- [x] From any concept page and from `#/questions`, "propose an edge" reaches a
       prefilled GitHub issue carrying the claim in machine-usable form
-      (from/to/type/strength/context) — still no server, no accounts (spec §6).
+      (from/to/type/strength/context) — still no server, no accounts (spec §6) —
+      the `#/propose` composer deep-links the edge-proposal form with the claim
+      both as a sentence and as the ready-to-paste `edges.yaml` block,
+      Playwright-proven from both entry points in `m10-propose.spec.ts` (the
+      M10 CI criterion, like the M3/M4 journeys).
 - [ ] One proposal has round-tripped end to end: filed through the form, landed
       as an ordinary validated PR (a dogfood pass, like M5's).
 
 **Tasks**
 
-- [ ] [app] Proposal view (`#/propose?from=<slug>`): pickers constrained to the
+- [x] [app] Proposal view (`#/propose?from=<slug>`): pickers constrained to the
       schema vocabularies already embedded in `graph.json`, deep-linking to the
-      prefilled issue form (the ARCHITECTURE.md §9 mechanism).
-- [ ] [infra] Tighten the M6 edge-proposal issue form so the prefill
-      round-trips as a copy-pasteable `edges.yaml` block.
-- [ ] [app] Entry links: concept-page edge lists and `#/questions` candidate
-      edges get "propose this" affordances.
+      prefilled issue form (the ARCHITECTURE.md §9 mechanism) — draft state
+      entirely in the URL like every view; the claim previews through the
+      shared edge-claim fragment; existing edges between the chosen pair are
+      surfaced against duplicates; POSSIBLE-MISSING-MIGRATION and `speculative`
+      are deliberately absent (gap hypotheses route to their own issue form,
+      which collects the §35 workflow fields).
+- [x] [infra] Tighten the M6 edge-proposal issue form so the prefill
+      round-trips as a copy-pasteable `edges.yaml` block — the form's `edge`
+      field is a `render: yaml` textarea carrying exactly the entry a
+      maintainer lands; unit tests YAML-parse the composer's block back to the
+      proposed claim, free-text context included.
+- [x] [app] Entry links: concept-page edge lists and `#/questions` candidate
+      edges get "propose this" affordances — every concept page's connections
+      block ends in the composer link (`from` prefilled), every candidate pair
+      carries "propose" (both endpoints prefilled).
 - [ ] [curation] Dogfood: file one proposal through the form and land it.
 
 ---

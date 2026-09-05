@@ -8,35 +8,40 @@ body:
       value: >
         An edge is a claim, and it is reviewed as one — read it aloud with
         its qualifiers. Strengths are the map's epistemic core: analogies
-        must say they are analogies.
+        must say they are analogies. The easiest way to fill this form is
+        the atlas's [propose-an-edge
+        composer](https://dnrohr.github.io/mathematical-structures/#/propose),
+        which prefills every field below from schema-constrained pickers.
+        Either way, accepted proposals land as ordinary PRs and the
+        validator stays the only gate.
   - type: input
-    id: endpoints
+    id: claim
     attributes:
       label: The claim, read aloud
       description: e.g. "a linear-Gaussian SSM is a state-space model (theorem, exact)"
     validations:
       required: true
-  - type: input
-    id: type
-    attributes:
-      label: Edge type
-      description: From `graph/schema.yaml` edge_types (e.g. IS-A, GOVERNS, ANALOGOUS-TO).
-    validations:
-      required: true
-  - type: dropdown
-    id: strength
-    attributes:
-      label: Strength
-      options: [identity, theorem, special-case, strong-analogy, heuristic-analogy]
-    validations:
-      required: true
   - type: textarea
-    id: context
+    id: edge
     attributes:
-      label: Context and caveats
+      label: The edge, as data
       description: >
-        The conditions under which the claim holds, and anything that keeps
-        it honest (these become the edge's `context`/`notes`).
+        One `graph/edges.yaml` entry, ready to copy-paste — this block is
+        what a maintainer lands. `from`/`to` are concept slugs; `type` and
+        `strength` must exist in `graph/schema.yaml`; `context` carries the
+        conditions that keep the claim honest. Research-gap hypotheses
+        (POSSIBLE-MISSING-MIGRATION / speculative) belong in the
+        research-gap proposal form instead, which collects their workflow
+        fields.
+      render: yaml
+      value: |
+        - from: <from-slug>
+          to: <to-slug>
+          type: IS-A
+          strength: heuristic-analogy
+          context: "the conditions under which the claim holds"
+    validations:
+      required: true
   - type: textarea
     id: evidence
     attributes:

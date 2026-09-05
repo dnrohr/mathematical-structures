@@ -183,10 +183,20 @@ analogy.
 
 ## Proposing without a PR
 
-Not ready to write files? Open an issue — there are templates for a
-**node proposal**, an **edge proposal** (the claim, read aloud, with its
-strength), and a **research-gap proposal**. A maintainer (or a later PR)
-turns accepted proposals into content.
+Not ready to write files? Two paths, neither needing repository knowledge:
+
+- **The in-app composer.** "Propose an edge" on any concept page (or
+  "propose" on any candidate pair in the questions view) opens
+  [`#/propose`](https://dnrohr.github.io/mathematical-structures/#/propose),
+  where pickers constrained to the schema compose the claim and hand you a
+  prefilled edge-proposal issue — the claim read aloud, plus the exact
+  `graph/edges.yaml` block a maintainer lands.
+- **Plain issues.** Templates exist for a **node proposal**, an **edge
+  proposal** (the claim, read aloud, with its strength), and a
+  **research-gap proposal**.
+
+A maintainer (or a later PR) turns accepted proposals into content, and the
+validator reviews that PR like any other.
 
 ## Releases
 
