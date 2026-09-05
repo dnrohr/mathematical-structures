@@ -20,6 +20,8 @@ export function graphPanel(
     focus?: string[];
     /** Override node coloring (default: the node-type token). */
     colorToken?: (node: GraphNode) => string;
+    /** Pin nodes to `metrics.layout` coordinates (UI_REDESIGN.md §4.9). */
+    positions?: Record<string, [number, number]>;
   },
 ): HTMLElement {
   const focus = opts.focus ?? [];
@@ -29,6 +31,7 @@ export function graphPanel(
   return renderGraph({
     preset: opts.preset,
     label: opts.label,
+    ...(opts.positions ? { positions: opts.positions } : {}),
     nodes: subgraph.nodes.map((node) => {
       const rank = focus.indexOf(node.slug);
       return {

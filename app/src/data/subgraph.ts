@@ -6,7 +6,7 @@
  * time. All results are deterministically ordered.
  */
 import type { Atlas } from './atlas';
-import type { GraphEdge, GraphNode } from './types';
+import type { GraphEdge, GraphNode, NodeConnection } from './types';
 
 export interface Subgraph {
   nodes: GraphNode[];
@@ -177,6 +177,20 @@ export function lensSubgraph(atlas: Atlas, filters: LensFilters): Subgraph {
   return { nodes, edges };
 }
 
+/**
+ * Fixed coordinates in the lens (UI_REDESIGN.md §4.9): when the rendered
+ * set is a large fraction of the graph — at least half of all concepts —
+ * the view is close enough to "the whole thing" that spatial coherence
+ * with the atlas constellation beats a local force equilibrium, so
+ * positioned nodes pin to `metrics.layout`. Below the fraction, or when
+ * fewer than two rendered nodes hold positions (nothing to cohere with),
+ * the local layout wins.
+ */
+export function lensPinsToLayout(atlas: Atlas, sub: Subgraph): boolean {
+  if (sub.nodes.length * 2 < atlas.nodes.length) return false;
+  return sub.nodes.filter((n) => atlas.layout[n.slug] !== undefined).length >= 2;
+}
+
 // ---------------------------------------------------------------------------
 // Matrix
 // ---------------------------------------------------------------------------
@@ -220,6 +234,56 @@ export function matrixSelection(atlas: Atlas, filters: LensFilters): Subgraph {
     return kept.has(edge.from) && kept.has(edge.to);
   });
   return { nodes, edges };
+}
+
+// ---------------------------------------------------------------------------
+// Assumption trail
+// ---------------------------------------------------------------------------
+
+/** One unfolded ASSUMES claim; children are the target's own claims. */
+export interface TrailStep {
+  conn: NodeConnection;
+  children: TrailStep[];
+  /**
+   * The target already appeared earlier on this branch, so the branch
+   * stops here (UI_REDESIGN.md §4.2: cycles terminate on first revisit).
+   */
+  cycle: boolean;
+}
+
+function outAssumes(atlas: Atlas, slug: string): NodeConnection[] {
+  return (
+    atlas.node(slug)?.connections.filter((c) => c.direction === 'out' && c.type === 'ASSUMES') ?? []
+  );
+}
+
+/**
+ * The assumption trail (UI_REDESIGN.md §4.2): a node's ASSUMES claims
+ * unfolded transitively — the assumptions' own assumptions — as a claim
+ * tree. The same sanctioned client-side class as path finding: the ASSUMES
+ * subgraph is a few dozen edges. Termination on any input: a branch that
+ * revisits a node already on it stops with `cycle` set.
+ */
+export function assumptionTrail(atlas: Atlas, slug: string): TrailStep[] {
+  const unfold = (of: string, branch: Set<string>): TrailStep[] =>
+    outAssumes(atlas, of).map((conn) => {
+      const cycle = branch.has(conn.other);
+      return {
+        conn,
+        cycle,
+        children: cycle ? [] : unfold(conn.other, new Set([...branch, conn.other])),
+      };
+    });
+  return unfold(slug, new Set([slug]));
+}
+
+/**
+ * A trail worth a disclosure: some assumption has assumptions of its own.
+ * When the one-hop list already is the whole chain, unfolding it would
+ * restate the Assumptions section and add nothing.
+ */
+export function trailUnfolds(trail: TrailStep[]): boolean {
+  return trail.some((step) => step.children.length > 0);
 }
 
 // ---------------------------------------------------------------------------

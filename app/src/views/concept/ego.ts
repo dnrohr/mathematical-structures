@@ -17,10 +17,15 @@ export function egoSection(atlas: Atlas, slug: string): HTMLElement | null {
   if ((egoNetwork(atlas, slug, 1)?.edges.length ?? 0) === 0) return null;
 
   const body = h('div', { class: 'ego-body' });
+  // Fixed coordinates (UI_REDESIGN.md §4.9, M15): opt-in — off by default,
+  // local legibility wins — so successive ego views can share the atlas
+  // constellation's arrangement when the reader wants spatial coherence.
+  let pinned = false;
   const render = (hops: 1 | 2): void => {
     const ego = egoNetwork(atlas, slug, hops);
     if (!ego) return;
     const betweenNeighbors = ego.edges.filter((e) => e.from !== slug && e.to !== slug);
+    const positioned = ego.nodes.filter((n) => atlas.layout[n.slug] !== undefined).length;
     const toggle =
       hops === 1
         ? ego.expandable &&
@@ -34,13 +39,32 @@ export function egoSection(atlas: Atlas, slug: string): HTMLElement | null {
             { type: 'button', class: 'ego-toggle', onclick: () => render(1) },
             'Back to 1 hop',
           );
+    // Pinning needs something to cohere with: below two positioned nodes
+    // the toggle would change nothing, so it does not render — and a
+    // pinned state carried over from the other hop depth resets with it.
+    if (positioned < 2) pinned = false;
+    const pin =
+      positioned >= 2 &&
+      h(
+        'button',
+        {
+          type: 'button',
+          class: 'ego-toggle',
+          onclick: (): void => {
+            pinned = !pinned;
+            render(hops);
+          },
+        },
+        pinned ? 'Back to the local layout' : 'Pin to the atlas layout',
+      );
     const parts = [
       graphPanel(atlas, ego, {
         preset: 'ego',
         label: `Neighborhood of ${atlas.node(slug)?.canonical_name ?? slug}, ${String(hops)} hop${hops === 2 ? 's' : ''}`,
         focus: [slug],
+        ...(pinned && positioned >= 2 ? { positions: atlas.layout } : {}),
       }),
-      toggle && h('p', { class: 'ego-controls' }, toggle),
+      (toggle || pin) && h('p', { class: 'ego-controls' }, toggle, toggle && pin && ' ', pin),
       ego.overflow.length > 0 &&
         h(
           'p',

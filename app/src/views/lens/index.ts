@@ -7,7 +7,12 @@
  * a shortcut, never the only path (ARCHITECTURE.md §5.4).
  */
 import type { Atlas } from '../../data/atlas';
-import { hasLensFilter, lensSubgraph, type LensFilters } from '../../data/subgraph';
+import {
+  hasLensFilter,
+  lensPinsToLayout,
+  lensSubgraph,
+  type LensFilters,
+} from '../../data/subgraph';
 import { replaceHash } from '../../shell/router';
 import { communityChip, communityToken } from '../common/badges';
 import { h } from '../common/dom';
@@ -128,6 +133,10 @@ export function lensView(atlas: Atlas, initial: LensFilters, communitiesInitial 
       return;
     }
     const tooWide = sub.nodes.length > LENS_GRAPH_NODE_CAP;
+    // Fixed coordinates (UI_REDESIGN.md §4.9, M15): a lens covering at
+    // least half the graph pins to the atlas constellation, so successive
+    // wide lenses stay spatially coherent with each other and with #/atlas.
+    const pinned = !tooWide && lensPinsToLayout(atlas, sub);
     results.replaceChildren(
       tooWide
         ? h(
@@ -139,8 +148,20 @@ export function lensView(atlas: Atlas, initial: LensFilters, communitiesInitial 
         : graphPanel(atlas, sub, {
             preset: 'lens',
             label: 'Lens subgraph',
+            ...(pinned ? { positions: atlas.layout } : {}),
             ...(communities ? { colorToken: communityColor } : {}),
           }),
+      ...(pinned
+        ? [
+            h(
+              'p',
+              { class: 'section-hint lens-pinned-note' },
+              'This lens covers most of the graph, so concepts hold their fixed positions from ',
+              h('a', { href: '#/atlas' }, 'the atlas constellation'),
+              '; anything outside it settles nearby.',
+            ),
+          ]
+        : []),
       ...(!tooWide && communities ? [communityLegend()] : []),
       h(
         'section',

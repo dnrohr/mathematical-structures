@@ -64,6 +64,15 @@ export interface GraphViewProps {
   edges: GraphViewEdge[];
   /** Accessible name for the figure. */
   label: string;
+  /**
+   * Fixed coordinates (UI_REDESIGN.md §4.9, ROADMAP M15): `metrics.layout`
+   * positions keyed by node id. Nodes present here pin to their atlas
+   * constellation coordinates — fitted uniformly, never per-axis, so the
+   * arrangement stays the constellation's — and the rest settle around
+   * them by force. When any node pins, preset pinning (ego center, path
+   * endpoints) is skipped: the build-time layout is the spatial authority.
+   */
+  positions?: Record<string, [number, number]>;
 }
 
 interface SimNode extends SimulationNodeDatum {
@@ -153,13 +162,22 @@ function layout(props: GraphViewProps, geo: Geometry): { nodes: SimNode[]; links
     });
 
   const { width, height } = geo;
-  if (props.preset === 'ego') {
+  let pinned = 0;
+  for (const node of nodes) {
+    const pos = props.positions?.[node.id];
+    if (pos) {
+      node.fx = pos[0];
+      node.fy = pos[1];
+      pinned++;
+    }
+  }
+  if (pinned === 0 && props.preset === 'ego') {
     const center = nodes.find((n) => n.view.focus !== undefined);
     if (center) {
       center.fx = width / 2;
       center.fy = height / 2;
     }
-  } else if (props.preset === 'path') {
+  } else if (pinned === 0 && props.preset === 'path') {
     const focused = nodes
       .filter((n) => n.view.focus !== undefined)
       .sort((a, b) => a.view.focus! - b.view.focus!);
@@ -188,7 +206,9 @@ function layout(props: GraphViewProps, geo: Geometry): { nodes: SimNode[]; links
   // Fit to the canvas: whatever equilibrium the forces found, use the
   // drawing area (margins leave room for labels), scaling near-uniformly —
   // a mild per-axis boost fills the frame, a cap keeps a sparse layout
-  // from being stretched into distortion — and centering the rest.
+  // from being stretched into distortion — and centering the rest. With
+  // pinned constellation coordinates the fit is strictly uniform: a
+  // per-axis stretch would misread as structure (the §4.7 atlas rule).
   const xs = nodes.map((n) => n.x ?? width / 2);
   const ys = nodes.map((n) => n.y ?? height / 2);
   const [minX, maxX] = [Math.min(...xs), Math.max(...xs)];
@@ -199,8 +219,9 @@ function layout(props: GraphViewProps, geo: Geometry): { nodes: SimNode[]; links
   const sx = spanX < 1 ? Infinity : availW / spanX;
   const sy = spanY < 1 ? Infinity : availH / spanY;
   const uniform = Number.isFinite(Math.min(sx, sy)) ? Math.min(sx, sy) : 1;
-  const scaleX = Math.min(sx, uniform * 1.35);
-  const scaleY = Math.min(sy, uniform * 1.35);
+  const boost = pinned > 0 ? 1 : 1.35;
+  const scaleX = Math.min(sx, uniform * boost);
+  const scaleY = Math.min(sy, uniform * boost);
   const offX = padX + (availW - spanX * (Number.isFinite(scaleX) ? scaleX : 0)) / 2;
   const offY = padTop + (availH - spanY * (Number.isFinite(scaleY) ? scaleY : 0)) / 2;
   for (const node of nodes) {

@@ -948,6 +948,38 @@ a.af-chip.active {
   margin-top: 0.7rem;
 }
 
+/* The assumption trail (M15, UI_REDESIGN §4.2): the ASSUMES chain unfolded
+   as an indented claim tree inside a native disclosure. Nesting rides the
+   claim list's existing left-rule grammar — each level adds another rule. */
+.assumption-trail {
+  margin: 0.6rem 0 0;
+}
+
+.assumption-trail > summary {
+  cursor: pointer;
+  color: var(--ink-muted);
+  font: 0.95rem/1.6 var(--font-ui);
+}
+
+.assumption-trail > summary:hover,
+.assumption-trail[open] > summary {
+  color: var(--ink);
+}
+
+.assumption-trail > .section-hint {
+  margin: 0.35rem 0 0;
+}
+
+.trail-level .trail-level {
+  margin-top: 0.3rem;
+}
+
+.trail-cycle {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 /* Citations (ROADMAP M8): the compact affordance on any claim — a native
    disclosure, so the full reference is one keypress away with no script.
    The open/closed glyph lives in markup (aria-hidden) because summary's

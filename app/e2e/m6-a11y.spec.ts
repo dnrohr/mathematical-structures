@@ -176,6 +176,7 @@ const AXE_ROUTES: { name: string; path: string }[] = [
   { name: 'landing', path: '/' },
   { name: 'landing with the applications field filter', path: '/#/?af=electromagnetics' },
   { name: 'concept page', path: '/#/c/eigenvalues' },
+  { name: 'concept page with the assumption trail', path: '/#/c/stability-margins' },
   {
     name: 'application page with anatomy and assumption surface',
     path: '/#/c/weather-prediction',
@@ -185,6 +186,7 @@ const AXE_ROUTES: { name: string; path: string }[] = [
   { name: 'applications index', path: '/#/applications' },
   { name: 'dialect lookup', path: '/#/dialects?q=poles' },
   { name: 'lens with communities', path: '/#/lens?field=biology&communities=1' },
+  { name: 'lens pinned to the constellation', path: '/#/lens?type=model' },
   {
     name: 'matrix with pair panel and crosshair',
     path: '/#/matrix?focus=eigenvalues&a=eigenvalues&b=markov-chains',
