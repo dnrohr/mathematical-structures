@@ -31,7 +31,7 @@ import { walksView } from './views/walks';
 function viewFor(atlas: Atlas, route: Route): View {
   switch (route.name) {
     case 'landing':
-      return landingView(atlas, { symptom: route.symptom });
+      return landingView(atlas, { symptom: route.symptom, appField: route.appField });
     case 'concept':
       return conceptView(atlas, route.slug, route.at) ?? notFoundView(`/c/${route.slug}`);
     case 'symptom':

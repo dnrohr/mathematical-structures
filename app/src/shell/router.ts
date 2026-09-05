@@ -7,7 +7,7 @@ import { SLUG_RE } from '../data/atlas';
 import type { LensFilters } from '../data/subgraph';
 
 export type Route =
-  | { name: 'landing'; symptom?: string }
+  | { name: 'landing'; symptom?: string; appField?: string }
   | { name: 'concept'; slug: string; at?: string }
   | { name: 'symptom'; id: string }
   | { name: 'moves' }
@@ -43,7 +43,13 @@ export function parseHash(hash: string): Route {
 
   if (segs.length === 0) {
     const symptom = params.get('s');
-    return { name: 'landing', ...(symptom ? { symptom } : {}) };
+    // af = the applications door's field filter (UI_REDESIGN.md §4.1, M13).
+    const appField = params.get('af');
+    return {
+      name: 'landing',
+      ...(symptom ? { symptom } : {}),
+      ...(appField ? { appField } : {}),
+    };
   }
   if (segs[0] === 'c' && segs.length === 2 && SLUG_RE.test(segs[1]!)) {
     const at = params.get('at');

@@ -13,8 +13,9 @@ test('concept-page claims carry source markers that expand to full references', 
 }) => {
   await page.goto('/#/c/pagerank');
 
-  // The markov-chains APPLIED-IN claim cites two works.
-  const uses = page.locator('.connection-group').filter({ hasText: 'Makes use of' });
+  // The markov-chains APPLIED-IN claim cites two works. Since M13 the
+  // incoming structure claims lead application pages as the anatomy section.
+  const uses = page.locator('.concept-section.anatomy');
   const claim = uses.locator('.connection').filter({ hasText: 'Markov chains' });
   const cite = claim.locator('details.cite');
   await expect(cite.locator('summary')).toHaveText(/2 sources/);

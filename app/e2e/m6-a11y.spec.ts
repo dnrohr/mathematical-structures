@@ -173,7 +173,12 @@ test('community palette follows the auto (prefers-color-scheme) dark theme', asy
 
 const AXE_ROUTES: { name: string; path: string }[] = [
   { name: 'landing', path: '/' },
+  { name: 'landing with the applications field filter', path: '/#/?af=electromagnetics' },
   { name: 'concept page', path: '/#/c/eigenvalues' },
+  {
+    name: 'application page with anatomy and assumption surface',
+    path: '/#/c/weather-prediction',
+  },
   { name: 'symptom detail', path: '/#/s/too-many-parameters' },
   { name: 'moves index', path: '/#/moves' },
   { name: 'applications index', path: '/#/applications' },

@@ -3,13 +3,16 @@
  * which is M4): name + type badge, structural summary, dialect table,
  * assumptions with FAILS-WHEN / REPLACED-BY surfaced right beside them,
  * typed connections grouped by edge type, canonical examples, prose notes,
- * backlinks, provenance.
+ * backlinks, provenance. On `application` nodes the connections block leads
+ * with the Practitioner's anatomy — incoming structure claims grouped by
+ * the structure's kind, roles first — and the derived assumption surface
+ * (UI_REDESIGN.md §4.2, ROADMAP M13).
  */
 import { REPO_URL } from '../../config';
-import type { Atlas } from '../../data/atlas';
+import { APPLICATION_EDGE_TYPES, type Atlas } from '../../data/atlas';
 import type { GraphNode, NodeConnection } from '../../data/types';
-import { statusBadge, typeBadge } from '../common/badges';
-import { sourcesSection } from '../common/citations';
+import { statusBadge, strengthBadge, typeBadge } from '../common/badges';
+import { citeDetails, sourcesSection } from '../common/citations';
 import { dialectTable } from '../common/dialect-table';
 import { h, joinChildren } from '../common/dom';
 import { connectionItem, GAP_EDGE_TYPE } from '../common/edge-sentence';
@@ -124,6 +127,136 @@ function walksSection(atlas: Atlas, node: GraphNode) {
   );
 }
 
+/**
+ * Application anatomy (UI_REDESIGN.md §4.2, ROADMAP M13): the incoming
+ * APPLIED-IN / MIGRATED-TO claims, grouped by the *structure's* node type,
+ * each claim led by its edge context — the Practitioner reads roles first,
+ * names second. A context written as "role: elaboration" gets its role
+ * lead emphasized; the claim itself is the same typed sentence as
+ * everywhere else (strength, citations, notes attached).
+ */
+function anatomyItem(atlas: Atlas, conn: NodeConnection): HTMLLIElement {
+  const context = conn.context?.trim() ?? '';
+  const split = context.indexOf(': ');
+  const role = split > 0 ? context.slice(0, split) : null;
+  const rest = role ? context.slice(split + 1).trimStart() : context;
+  return h(
+    'li',
+    { class: 'connection anatomy-claim' },
+    role && h('span', { class: 'anatomy-role' }, `${role}: `),
+    rest && `${rest} `,
+    h(
+      'span',
+      { class: 'anatomy-via' },
+      context ? '— ' : '',
+      conn.phrase,
+      ' ',
+      nodeLink(atlas, conn.other),
+      ' ',
+      strengthBadge(atlas, conn.strength),
+    ),
+    ' ',
+    citeDetails(atlas, conn.evidence),
+    conn.notes && h('p', { class: 'connection-notes' }, conn.notes.trim()),
+  );
+}
+
+function anatomySection(atlas: Atlas, anatomy: NodeConnection[]): HTMLElement | null {
+  if (anatomy.length === 0) return null;
+  const rank = (id: string): number => atlas.strength(id)?.rank ?? 99;
+  const groups = atlas.schema.node_types
+    .map((t) => ({
+      def: t,
+      items: anatomy
+        .filter((c) => atlas.node(c.other)?.node_type === t.id)
+        .sort((a, b) => rank(a.strength) - rank(b.strength) || a.other.localeCompare(b.other)),
+    }))
+    .filter((g) => g.items.length > 0);
+  return h(
+    'section',
+    { class: 'concept-section anatomy' },
+    h('h2', {}, 'Application anatomy'),
+    h(
+      'p',
+      { class: 'section-hint' },
+      'The structures meeting in this system, grouped by kind — roles first, names second. Every line is a typed claim carrying its strength.',
+    ),
+    groups.map((group) =>
+      h(
+        'div',
+        { class: 'anatomy-group' },
+        h('h3', { class: 'anatomy-kind' }, typeBadge(atlas, group.def.id)),
+        h(
+          'ul',
+          { class: 'connection-list' },
+          group.items.map((conn) => anatomyItem(atlas, conn)),
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * The assumption surface (UI_REDESIGN.md §4.2, ROADMAP M13): what this
+ * application leans on — the union of the one-hop ASSUMES edges of every
+ * connected structure, FAILS-WHEN / REPLACED-BY beside them exactly as on
+ * structure pages. A pure display join over loaded data, and labeled as
+ * derived: nothing here is stored on the application node.
+ */
+function assumptionSurface(atlas: Atlas, node: GraphNode): HTMLElement | null {
+  interface Imported {
+    via: string;
+    conn: NodeConnection;
+  }
+  const leans: Imported[] = [];
+  const breakdowns: Imported[] = [];
+  for (const structure of atlas.convergingStructures(node.slug)) {
+    const other = atlas.node(structure.other);
+    if (!other) continue;
+    for (const conn of other.connections) {
+      if (conn.direction !== 'out') continue;
+      if (conn.type === 'ASSUMES') leans.push({ via: structure.other, conn });
+      else if (conn.type === 'FAILS-WHEN' || conn.type === 'REPLACED-BY')
+        breakdowns.push({ via: structure.other, conn });
+    }
+  }
+  if (leans.length === 0 && breakdowns.length === 0) return null;
+
+  const byName = (a: Imported, b: Imported): number =>
+    a.via.localeCompare(b.via) || a.conn.other.localeCompare(b.conn.other);
+  const item = ({ via, conn }: Imported): HTMLLIElement =>
+    h(
+      'li',
+      { class: `connection surface-item${conn.type === 'ASSUMES' ? '' : ' surface-breakdown'}` },
+      nodeLink(atlas, via),
+      ' ',
+      h('span', { class: 'phrase' }, `${conn.phrase} `),
+      nodeLink(atlas, conn.other),
+      ' ',
+      strengthBadge(atlas, conn.strength),
+      conn.context && h('span', { class: 'context' }, ` — ${conn.context.trim()}`),
+      ' ',
+      citeDetails(atlas, conn.evidence),
+    );
+
+  return h(
+    'section',
+    { class: 'concept-section assumption-surface' },
+    h('h2', {}, 'What this application leans on'),
+    h(
+      'p',
+      { class: 'section-hint' },
+      h('span', { class: 'chip derived-chip' }, 'derived'),
+      ' Not stored on this node: the assumption (ASSUMES) claims of every structure above, with their breakdown edges beside them — the licensing conditions of the whole pipeline on one screen.',
+    ),
+    leans.length > 0 && h('ul', { class: 'connection-list' }, leans.sort(byName).map(item)),
+    breakdowns.length > 0 && [
+      h('p', { class: 'section-hint surface-breakdown-lead' }, 'And what breaks them:'),
+      h('ul', { class: 'connection-list' }, breakdowns.sort(byName).map(item)),
+    ],
+  );
+}
+
 /** The contribution front door (ROADMAP M10), one hop from every edge list. */
 function proposeLine(slug: string): HTMLElement {
   return h(
@@ -176,9 +309,24 @@ export function conceptView(atlas: Atlas, slug: string, at?: string): View | nul
   const adjacent = node.connections.filter(
     (c) => c.direction === 'out' && ASSUMPTION_ADJACENT.has(c.type),
   );
+  // On application nodes the incoming structure claims move up into the
+  // anatomy section (same neighbor definition as convergingStructures and
+  // the validator's ≥ 2-structures bar); everything else stays grouped.
+  const anatomy =
+    node.node_type === 'application'
+      ? node.connections.filter(
+          (c) =>
+            c.direction === 'in' &&
+            APPLICATION_EDGE_TYPES.has(c.type) &&
+            atlas.node(c.other)?.node_type !== 'application',
+        )
+      : [];
+  const inAnatomy = new Set(anatomy);
   const grouped = groupConnections(
     atlas,
-    node.connections.filter((c) => !(c.direction === 'out' && ASSUMPTION_ADJACENT.has(c.type))),
+    node.connections.filter(
+      (c) => !(c.direction === 'out' && ASSUMPTION_ADJACENT.has(c.type)) && !inAnatomy.has(c),
+    ),
   );
 
   const dialects = dialectTable(atlas, node);
@@ -229,6 +377,8 @@ export function conceptView(atlas: Atlas, slug: string, at?: string): View | nul
         dialects,
       ),
     assumptionsSection(atlas, node, adjacent),
+    anatomySection(atlas, anatomy),
+    anatomy.length > 0 && assumptionSurface(atlas, node),
     connectionsSection(atlas, grouped),
     proposeLine(node.slug),
     ego,
