@@ -11,6 +11,7 @@ import type {
   GraphEdge,
   GraphMetrics,
   GraphNode,
+  GraphNonEdge,
   GraphReference,
   GraphSymptom,
   GraphWalk,
@@ -23,8 +24,9 @@ import type { AtlasSchema } from './schema.js';
  * 1.2.0: added the `references` block and `evidence` on node connections
  *        (M8) — additive.
  * 1.3.0: added the `walks` block (M9) — additive.
+ * 1.4.0: added the `non_edges` block and `metrics.queue` (M11) — additive.
  */
-export const GRAPH_SCHEMA_VERSION = '1.3.0';
+export const GRAPH_SCHEMA_VERSION = '1.4.0';
 
 /** MiniSearch construction options — the app must load with the same ones. */
 export const SEARCH_OPTIONS: { idField: string; fields: string[]; storeFields: string[] } = {
@@ -64,6 +66,7 @@ export function buildGraphJson(
   nodes: GraphNode[],
   edges: GraphEdge[],
   symptoms: GraphSymptom[],
+  nonEdges: GraphNonEdge[],
   references: GraphReference[],
   walks: GraphWalk[],
   metrics: GraphMetrics,
@@ -84,6 +87,7 @@ export function buildGraphJson(
     nodes,
     edges,
     symptoms,
+    non_edges: nonEdges,
     references,
     walks,
     metrics,

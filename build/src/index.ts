@@ -95,18 +95,27 @@ function main(): void {
   const g = result.graph!;
   console.log(
     `content OK: ${g.nodes.length} nodes, ${g.edges.length} edges, ` +
-      `${g.symptoms.length} symptoms, ${g.references.length} references, ` +
-      `${g.walks.length} walks — ${warns} warn(s), ${infos} info(s)`,
+      `${g.symptoms.length} symptoms, ${g.nonEdges.length} non-edges, ` +
+      `${g.references.length} references, ${g.walks.length} walks — ` +
+      `${warns} warn(s), ${infos} info(s)`,
   );
   if (args.check) exit(0);
 
   const outDir = args.out ?? join(args.root, 'dist', 'data');
-  const metrics = analyzeGraph(result.schema!, g.nodes, g.edges, g.candidates);
+  const metrics = analyzeGraph(
+    result.schema!,
+    g.nodes,
+    g.edges,
+    g.candidates,
+    g.symptoms,
+    g.nonEdges,
+  );
   const graphJson = buildGraphJson(
     result.schema!,
     g.nodes,
     g.edges,
     g.symptoms,
+    g.nonEdges,
     g.references,
     g.walks,
     metrics,

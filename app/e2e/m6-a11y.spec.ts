@@ -182,6 +182,7 @@ const AXE_ROUTES: { name: string; path: string }[] = [
   { name: 'path chains', path: '/#/path/harmonic-oscillator/markov-chains' },
   { name: 'metrics', path: '/#/metrics' },
   { name: 'questions', path: '/#/questions' },
+  { name: 'work queue', path: '/#/queue' },
   { name: 'walks index', path: '/#/walks' },
   { name: 'walk view', path: '/#/walk/eigenvalue-tour?step=3' },
   {

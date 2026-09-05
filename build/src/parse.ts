@@ -11,6 +11,7 @@ import {
   type ConceptRecord,
   type EdgeRecord,
   type Issue,
+  type NonEdgeRecord,
   type ReferenceRecord,
   type SymptomRecord,
   type WalkRecord,
@@ -22,6 +23,7 @@ export interface ParsedTree {
   concepts: ConceptRecord[];
   edges: EdgeRecord[];
   symptoms: SymptomRecord[];
+  nonEdges: NonEdgeRecord[];
   references: ReferenceRecord[];
   walks: WalkRecord[];
   issues: Issue[];
@@ -194,6 +196,18 @@ export function parseTree(root: string): ParsedTree {
     (raw, index) => ({ file: symptomsFile, index, raw }),
   );
 
+  // The reject ledger is optional content (an atlas that has never recorded
+  // a deliberate non-connection is valid — UI_REDESIGN.md §4.6).
+  const nonEdgesFile = join(root, 'graph', 'non-edges.yaml');
+  let nonEdges: NonEdgeRecord[] = [];
+  if (existsSync(nonEdgesFile)) {
+    nonEdges = parseYamlListFile(nonEdgesFile, 'non-edges', issues).map((raw, index) => ({
+      file: nonEdgesFile,
+      index,
+      raw,
+    }));
+  }
+
   // The bibliography is optional content (an atlas without citations is
   // valid — spec §8.2); when absent, any `evidence` key is simply unknown.
   const bibFile = join(root, 'graph', 'references.bib');
@@ -215,5 +229,5 @@ export function parseTree(root: string): ParsedTree {
     }
   }
 
-  return { schema, concepts, edges, symptoms, references, walks, issues };
+  return { schema, concepts, edges, symptoms, nonEdges, references, walks, issues };
 }

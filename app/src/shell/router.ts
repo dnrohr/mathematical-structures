@@ -18,6 +18,7 @@ export type Route =
   | { name: 'path'; from?: string; to?: string; strength?: string }
   | { name: 'metrics'; sort?: string; dir?: 'asc' | 'desc' }
   | { name: 'questions' }
+  | { name: 'queue' }
   | {
       name: 'propose';
       from?: string;
@@ -76,6 +77,7 @@ export function parseHash(hash: string): Route {
     };
   }
   if (segs[0] === 'questions' && segs.length === 1) return { name: 'questions' };
+  if (segs[0] === 'queue' && segs.length === 1) return { name: 'queue' };
   if (segs[0] === 'propose' && segs.length === 1) {
     const from = params.get('from');
     const to = params.get('to');

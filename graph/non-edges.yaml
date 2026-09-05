@@ -1,0 +1,54 @@
+# graph/non-edges.yaml — the reject ledger (ARCHITECTURE.md §3.8;
+# UI_REDESIGN.md §4.6; ROADMAP M11).
+#
+# A reviewed decision NOT to connect a pair is data. Entry shape:
+#
+#   - between: [<slug>, <slug>]  # the unordered pair; both slugs must exist
+#     reason: <free text>        # why the pair stays unconnected (required)
+#     see: <slug or URL>         # optional: where the real story lives
+#
+# The validator errors if a typed edge ever contradicts an entry, and the
+# build suppresses the pair's candidate-edge and link-suggestion queue
+# items, so a reviewed "no" is never re-asked. Entries render in #/queue as
+# deliberate non-connections: "we checked — false friends" is content here.
+
+# The notebook §8 correction — the distinction M2 was most careful to keep
+# as data (issue #3's spot-checks): the two pages wiki-link each other to
+# TELL this story, which is navigation, not a missing claim.
+- between: [kalman-filter, hidden-markov-model]
+  reason: >-
+    The Kalman filter is an algorithm, not a model class, so it is not "a
+    special case of an HMM" (notebook §8). The honest containment runs
+    linear-gaussian-ssm → hidden-markov-model (IS-A), and the filter hangs
+    off that model class by SOLVED-BY.
+  see: linear-gaussian-ssm
+
+# The M11 dogfood pass: this pair was the work queue's own link suggestion
+# (2 shared trusted neighbors: bayes-rule, linear-gaussian-ssm), worked end
+# to end through the queue's "record a non-edge" action — filed as issue
+# #23, landed here. The witnesses are exactly the triangle the map closes
+# deliberately, so the reviewed answer is a ledger entry, not an edge.
+- between: [kalman-filter, state-space-model]
+  reason: >-
+    The connection already runs through the special case at the honest
+    strength: linear-gaussian-ssm IS-A state-space-model and is SOLVED-BY
+    kalman-filter. A direct edge would overclaim — the filter's exactness
+    holds only for the linear-Gaussian case (notebook §8/§13); approximate
+    variants (EKF/UKF, particle) are page content, not typed claims.
+  see: linear-gaussian-ssm
+
+# M7 application-inventory rejects (issue #14), recorded as pair decisions.
+- between: [eigenvalues, resource-allocation]
+  reason: >-
+    Leontief input–output viability (Perron–Frobenius economics) is a real
+    eigenvalues-in-economics story but a different problem from
+    allocation-by-optimization — a possible future application node of its
+    own, not an edge into this one.
+  see: https://github.com/dnrohr/mathematical-structures/issues/14
+
+- between: [kalman-filter, resource-allocation]
+  reason: >-
+    Econometric state estimation (Kalman filtering in economics) is a
+    one-structure story that stays on the structure pages; the allocation
+    node's convergence story is optimization plus marginal analysis.
+  see: https://github.com/dnrohr/mathematical-structures/issues/14

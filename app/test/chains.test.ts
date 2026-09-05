@@ -22,14 +22,15 @@ function realAtlas(): Atlas {
       `pipeline failed on the repo tree: ${JSON.stringify(result.issues.slice(0, 5))}`,
     );
   }
-  const { nodes, edges, symptoms, references, walks, candidates } = result.graph;
-  const metrics = analyzeGraph(result.schema, nodes, edges, candidates);
+  const { nodes, edges, symptoms, nonEdges, references, walks, candidates } = result.graph;
+  const metrics = analyzeGraph(result.schema, nodes, edges, candidates, symptoms, nonEdges);
   const assembled = assembleAtlas(
     buildGraphJson(
       result.schema,
       nodes,
       edges,
       symptoms,
+      nonEdges,
       references,
       walks,
       metrics,

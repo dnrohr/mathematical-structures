@@ -62,6 +62,14 @@ export interface WalkRecord {
   raw: Record<string, unknown>;
 }
 
+/** One graph/non-edges.yaml entry as parsed (the reject ledger; §3.8). */
+export interface NonEdgeRecord {
+  file: string;
+  /** 0-based position in non-edges.yaml, for error messages. */
+  index: number;
+  raw: Record<string, unknown>;
+}
+
 /** One graph/references.bib entry as parsed (values are display text). */
 export interface ReferenceRecord {
   key: string;
@@ -152,6 +160,19 @@ export interface GraphWalk {
   steps: GraphWalkStep[];
 }
 
+/**
+ * One reviewed non-connection in graph.json (added in 1.4.0): a deliberate
+ * decision NOT to connect a pair, with its reason — "we checked, and these
+ * are false friends" is content, not bookkeeping (UI_REDESIGN.md §4.6).
+ */
+export interface GraphNonEdge {
+  /** The unordered pair, normalized to sorted order. */
+  between: [string, string];
+  reason: string;
+  /** Optional pointer: a concept slug or an absolute http(s) URL. */
+  see?: string;
+}
+
 /** One resolved literature reference in graph.json (added in 1.2.0). */
 export interface GraphReference {
   /** Citation key: what edges' `evidence` lists point at. */
@@ -197,6 +218,60 @@ export interface GapSummary {
   status: string;
 }
 
+// ---------------------------------------------------------------------------
+// Work-queue signals (added in 1.4.0; UI_REDESIGN.md §4.6, ROADMAP M11).
+// Every signal is deterministic, plain-math, and carries its own evidence —
+// a queue item a reader can't verify by eye doesn't ship.
+// ---------------------------------------------------------------------------
+
+/** An unconnected pair sharing trusted neighbors — the witnesses ARE the why. */
+export interface LinkSuggestion {
+  /** Endpoints, a < b (no edge of any strength connects them). */
+  a: string;
+  b: string;
+  /** Trusted neighbors both endpoints share, sorted (≥ 2 by construction). */
+  witnesses: string[];
+}
+
+/** A pair of trusted-subgraph communities joined by at most one trusted edge. */
+export interface BridgeDeficit {
+  /** Community labels, ascending. */
+  communities: [number, number];
+  /** The trusted edges joining them (0 or 1 entries by construction). */
+  edges: { from: string; to: string; type: string; strength: string }[];
+}
+
+/** A free-text assumption written identically on two or more nodes. */
+export interface RecurringAssumption {
+  /** The normalized (lowercased, whitespace-collapsed) assumption string. */
+  assumption: string;
+  /** Nodes listing it, sorted. */
+  slugs: string[];
+}
+
+/** A field a node claims membership in but records no local name for. */
+export interface DialectGap {
+  slug: string;
+  /** In the node's `fields`, absent from its alias fields (dialects ≥ 2). */
+  field: string;
+}
+
+/** A symptom below the useful floor: fewer than two moves or no example. */
+export interface ThinSymptom {
+  id: string;
+  move_count: number;
+  has_worked_example: boolean;
+}
+
+/** The `metrics.queue` block: the curation signals the #/queue view renders. */
+export interface QueueMetrics {
+  link_suggestions: LinkSuggestion[];
+  bridge_deficits: BridgeDeficit[];
+  recurring_assumptions: RecurringAssumption[];
+  dialect_gaps: DialectGap[];
+  thin_symptoms: ThinSymptom[];
+}
+
 export interface GraphMetrics {
   trusted: {
     /** Strength floor (schema `analysis.trusted_min_strength`); metrics use only edges at or above it. */
@@ -211,6 +286,8 @@ export interface GraphMetrics {
   nodes: Record<string, NodeMetrics>;
   gaps: GapSummary[];
   candidate_edges: CandidatePair[];
+  /** The work-queue signals (added in 1.4.0). */
+  queue: QueueMetrics;
 }
 
 export function countErrors(issues: Issue[]): number {

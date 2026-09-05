@@ -3,17 +3,15 @@
  * as a page. Every POSSIBLE-MISSING-MIGRATION / speculative edge, grouped by
  * its §35 workflow status, with the claim, its notes, and the verification
  * checklist — hypotheses with a workflow, never findings (spec §1). The
- * wiki-linked-but-unedged pairs (the validator's info level) close the page
- * as the curation queue.
+ * mechanical curation signals (candidate edges included) moved to the
+ * sibling #/queue view in M11: statuses here are epistemology, not chores.
  */
 import { REPO_URL } from '../../config';
 import type { Atlas } from '../../data/atlas';
-import { h, joinChildren } from '../common/dom';
+import { h } from '../common/dom';
 import { downloadBlock } from '../common/downloads';
 import { edgeClaim } from '../common/edge-claim';
-import { nodeLink } from '../common/node-link';
 import type { View } from '../common/view';
-import { proposeHash } from '../propose';
 
 const WORKFLOW_DOC = 'docs/research-gap-workflow.md';
 
@@ -65,8 +63,6 @@ export function questionsView(atlas: Atlas): View {
       );
     });
 
-  const candidates = atlas.metrics.candidate_edges;
-
   const el = h(
     'div',
     { class: 'questions content' },
@@ -74,7 +70,9 @@ export function questionsView(atlas: Atlas): View {
     h(
       'p',
       { class: 'tagline' },
-      'Candidate missing migrations — machinery mature in one field with no located counterpart in a structurally similar one. Each is a hypothesis with a verification workflow, never a finding.',
+      'Candidate missing migrations — machinery mature in one field with no located counterpart in a structurally similar one. Each is a hypothesis with a verification workflow, never a finding. Mechanical curation signals — candidate edges, link suggestions, dialect gaps — live in the ',
+      h('a', { href: '#/queue' }, 'work queue'),
+      '.',
     ),
     h(
       'p',
@@ -107,33 +105,6 @@ export function questionsView(atlas: Atlas): View {
         'Full workflow, with the worked margins-in-biology example: ',
         h('a', { href: `${REPO_URL}/blob/main/${WORKFLOW_DOC}` }, WORKFLOW_DOC),
         '.',
-      ),
-    ),
-    h(
-      'section',
-      { class: 'candidate-edges' },
-      h('h2', {}, `Candidate edges (${String(candidates.length)})`),
-      h(
-        'p',
-        { class: 'section-hint' },
-        'Wiki-linked in prose but not yet claimed as a typed edge — the build reports these at info level as the curation queue. Prose links are navigation; an edge is a deliberate claim. Each “propose” opens the composer with the pair filled in.',
-      ),
-      h(
-        'ul',
-        { class: 'candidate-list' },
-        candidates.map((pair) =>
-          h(
-            'li',
-            {},
-            joinChildren([nodeLink(atlas, pair.a), nodeLink(atlas, pair.b)], ' ↔ '),
-            ' · ',
-            h(
-              'a',
-              { class: 'propose-candidate', href: proposeHash({ from: pair.a, to: pair.b }) },
-              'propose',
-            ),
-          ),
-        ),
       ),
     ),
     downloadBlock(),

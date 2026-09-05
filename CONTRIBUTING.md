@@ -123,6 +123,28 @@ Research-gap hypotheses (`POSSIBLE-MISSING-MIGRATION`) additionally follow
 the edge when the literature check lands — citing what the check found as
 `evidence` keys, so the trail is data rather than notes prose.
 
+## Walkthrough: record a deliberate non-edge
+
+Deciding **not** to connect a pair is also a reviewable claim. When the
+[work queue](https://dnrohr.github.io/mathematical-structures/#/queue)
+suggests a pair (or a candidate edge keeps nagging) and the honest answer is
+"no — false friends", record it in
+[`graph/non-edges.yaml`](graph/non-edges.yaml):
+
+```yaml
+- between: [kalman-filter, hidden-markov-model] # unordered pair of slugs
+  reason: >- # required: why it stays unconnected
+    The filter is an algorithm, not a model class (notebook §8); the
+    containment runs through linear-gaussian-ssm.
+  see: linear-gaussian-ssm # optional: a slug or URL where the story lives
+```
+
+The validator checks the slugs exist and **fails the build if a typed edge
+ever contradicts an entry**; the build then suppresses the pair's
+candidate/suggestion queue items for good, and the queue view renders the
+ledger as "deliberate non-connections". Say why like you would for an edge:
+the reason is the content.
+
 ## Walkthrough: cite the literature behind a claim
 
 1. **Add the reference** to [`graph/references.bib`](graph/references.bib) —
@@ -186,11 +208,14 @@ analogy.
 Not ready to write files? Two paths, neither needing repository knowledge:
 
 - **The in-app composer.** "Propose an edge" on any concept page (or
-  "propose" on any candidate pair in the questions view) opens
+  "propose" on any candidate pair or link suggestion in the
+  [work queue](https://dnrohr.github.io/mathematical-structures/#/queue))
+  opens
   [`#/propose`](https://dnrohr.github.io/mathematical-structures/#/propose),
   where pickers constrained to the schema compose the claim and hand you a
   prefilled edge-proposal issue — the claim read aloud, plus the exact
-  `graph/edges.yaml` block a maintainer lands.
+  `graph/edges.yaml` block a maintainer lands. The queue's "record a
+  non-edge" action works the same way for the reject ledger.
 - **Plain issues.** Templates exist for a **node proposal**, an **edge
   proposal** (the claim, read aloud, with its strength), and a
   **research-gap proposal**.

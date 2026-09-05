@@ -3,6 +3,7 @@ import { afterAll, describe, expect, it } from 'vitest';
 import type {
   ConceptRecord,
   EdgeRecord,
+  NonEdgeRecord,
   ReferenceRecord,
   SymptomRecord,
   WalkRecord,
@@ -55,11 +56,18 @@ function rulesFor(
   symptoms: SymptomRecord[] = [],
   references: ReferenceRecord[] = [],
   walks: WalkRecord[] = [],
+  nonEdges: NonEdgeRecord[] = [],
 ): string[] {
-  return validateContent(schema, concepts, edges, symptoms, references, walks).map(
+  return validateContent(schema, concepts, edges, symptoms, references, walks, nonEdges).map(
     (i) => `${i.severity}:${i.rule}`,
   );
 }
+
+function nonEdge(raw: Record<string, unknown>, index = 0): NonEdgeRecord {
+  return { file: 'graph/non-edges.yaml', index, raw };
+}
+
+const GOOD_NON_EDGE = { between: ['a', 'b'], reason: 'checked — false friends' };
 
 function walk(raw: Record<string, unknown>, id = 'tour'): WalkRecord {
   return { id, file: `paths/${id}.yaml`, raw };
@@ -452,5 +460,75 @@ describe('walk rules (spec §8.3; ROADMAP M9)', () => {
     expect(
       rules(walk({ ...GOOD_WALK, steps: [{ slug: 'a', why: 'x' }, { slug: 'b' }] })),
     ).toContain('warn:content/unknown-key');
+  });
+});
+
+describe('non-edge rules (M11): the reject ledger', () => {
+  const rules = (...nonEdges: NonEdgeRecord[]): string[] =>
+    rulesFor(NODES_AB, [], [], [], [], nonEdges);
+
+  it('accepts a well-formed entry, with a slug or URL pointer', () => {
+    expect(rules(nonEdge(GOOD_NON_EDGE))).toEqual([]);
+    expect(rules(nonEdge({ ...GOOD_NON_EDGE, see: 'b' }))).toEqual([]);
+    expect(rules(nonEdge({ ...GOOD_NON_EDGE, see: 'https://github.com/x/y/issues/14' }))).toEqual(
+      [],
+    );
+  });
+
+  it('non-edge/between-shape: exactly two slugs', () => {
+    expect(rules(nonEdge({ reason: 'x' }))).toContain('error:non-edge/between-shape');
+    expect(rules(nonEdge({ between: ['a'], reason: 'x' }))).toContain(
+      'error:non-edge/between-shape',
+    );
+    expect(rules(nonEdge({ between: ['a', 'b', 'a'], reason: 'x' }))).toContain(
+      'error:non-edge/between-shape',
+    );
+  });
+
+  it('non-edge/unknown-endpoint and non-edge/self-pair', () => {
+    expect(rules(nonEdge({ between: ['a', 'ghost'], reason: 'x' }))).toContain(
+      'error:non-edge/unknown-endpoint',
+    );
+    expect(rules(nonEdge({ between: ['a', 'a'], reason: 'x' }))).toContain(
+      'error:non-edge/self-pair',
+    );
+  });
+
+  it('non-edge/reason: a reviewed decision needs its reason', () => {
+    expect(rules(nonEdge({ between: ['a', 'b'] }))).toContain('error:non-edge/reason');
+    expect(rules(nonEdge({ between: ['a', 'b'], reason: '  ' }))).toContain(
+      'error:non-edge/reason',
+    );
+  });
+
+  it('non-edge/see: pointer must be a concept slug or an http(s) URL', () => {
+    expect(rules(nonEdge({ ...GOOD_NON_EDGE, see: 'nowhere-slug' }))).toContain(
+      'error:non-edge/see',
+    );
+    expect(rules(nonEdge({ ...GOOD_NON_EDGE, see: 'ftp://x' }))).toContain('error:non-edge/see');
+  });
+
+  it('non-edge/duplicate: the pair is unordered', () => {
+    expect(
+      rules(nonEdge(GOOD_NON_EDGE), nonEdge({ between: ['b', 'a'], reason: 'y' }, 1)),
+    ).toContain('error:non-edge/duplicate');
+  });
+
+  it('non-edge/contradiction: any typed edge between the pair, either direction', () => {
+    const contradicted = rulesFor(
+      NODES_AB,
+      [edge(GOOD_EDGE)],
+      [],
+      [],
+      [],
+      [nonEdge({ between: ['b', 'a'], reason: 'x' })],
+    );
+    expect(contradicted).toContain('error:non-edge/contradiction');
+  });
+
+  it('unknown keys warn', () => {
+    expect(rules(nonEdge({ ...GOOD_NON_EDGE, because: 'x' }))).toContain(
+      'warn:content/unknown-key',
+    );
   });
 });

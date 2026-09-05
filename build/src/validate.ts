@@ -14,6 +14,7 @@ import {
   type ConceptRecord,
   type EdgeRecord,
   type Issue,
+  type NonEdgeRecord,
   type ReferenceRecord,
   type SymptomRecord,
   type WalkRecord,
@@ -45,6 +46,11 @@ const KNOWN_EDGE_KEYS = new Set([
 ]);
 
 const KNOWN_SYMPTOM_KEYS = new Set(['id', 'symptom', 'moves', 'mature_fields', 'worked_example']);
+
+const KNOWN_NON_EDGE_KEYS = new Set(['between', 'reason', 'see']);
+
+/** What a non-edge `see` pointer may be besides a concept slug. */
+const HTTP_URL = /^https?:\/\/\S+$/;
 
 const KNOWN_WALK_KEYS = new Set(['title', 'summary', 'steps']);
 const KNOWN_WALK_STEP_KEYS = new Set(['slug', 'note']);
@@ -431,6 +437,92 @@ function validateSymptom(
 }
 
 // ---------------------------------------------------------------------------
+// Non-edge rules (UI_REDESIGN.md §4.6; ROADMAP M11; ARCHITECTURE.md §3.8).
+// The ledger records reviewed decisions NOT to connect a pair, so the two
+// epistemic rules are: the pair must exist, and the ledger may never
+// contradict the edge list — a typed edge and a recorded rejection of the
+// same pair cannot both stand.
+// ---------------------------------------------------------------------------
+
+function validateNonEdge(
+  r: Rules,
+  slugs: Set<string>,
+  edgeTypesByPair: Map<string, string[]>,
+  n: NonEdgeRecord,
+  seenPairs: Set<string>,
+): void {
+  const where = `${n.file}[${n.index}]`;
+  const raw = n.raw;
+
+  for (const key of Object.keys(raw)) {
+    if (!KNOWN_NON_EDGE_KEYS.has(key)) {
+      r.add('warn', 'content/unknown-key', where, `unknown non-edge key "${key}"`);
+    }
+  }
+
+  const between = raw.between;
+  if (!Array.isArray(between) || between.length !== 2 || !between.every(isNonEmptyString)) {
+    r.add(
+      'error',
+      'non-edge/between-shape',
+      where,
+      '"between" must be a list of exactly two concept slugs',
+    );
+    return;
+  }
+  const [a, b] = between as [string, string];
+  let endpointsOk = true;
+  for (const slug of [a, b]) {
+    if (!slugs.has(slug)) {
+      endpointsOk = false;
+      r.add('error', 'non-edge/unknown-endpoint', where, `"${slug}" is not a concept slug`);
+    }
+  }
+  if (a === b) {
+    endpointsOk = false;
+    r.add('error', 'non-edge/self-pair', where, `non-edge between "${a}" and itself`);
+  }
+
+  if (!isNonEmptyString(raw.reason)) {
+    r.add(
+      'error',
+      'non-edge/reason',
+      where,
+      'a non-edge is a reviewed decision and needs a non-empty "reason"',
+    );
+  }
+  if (raw.see !== undefined) {
+    if (!isNonEmptyString(raw.see) || !(slugs.has(raw.see) || HTTP_URL.test(raw.see))) {
+      r.add(
+        'error',
+        'non-edge/see',
+        where,
+        `"see" must be an existing concept slug or an http(s) URL, not "${String(raw.see)}"`,
+      );
+    }
+  }
+
+  // Pair-level rules only make sense once both endpoints resolved.
+  if (!endpointsOk) return;
+  const key = pairKey(a, b);
+  if (seenPairs.has(key)) {
+    r.add('error', 'non-edge/duplicate', where, `the pair ${a} ↔ ${b} is recorded twice`);
+  }
+  seenPairs.add(key);
+
+  const contradicting = edgeTypesByPair.get(key);
+  if (contradicting) {
+    r.add(
+      'error',
+      'non-edge/contradiction',
+      where,
+      `a typed edge (${contradicting.join(', ')}) already connects ${a} and ${b} — ` +
+        'the ledger records decisions NOT to connect; remove the entry or the edge',
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Walk rules (spec §8.3; ROADMAP M9; ARCHITECTURE.md §3.7). A walk is an
 // ordered tour of existing concepts. The epistemic rule is the jump rule:
 // where consecutive steps have no typed edge between them, the later step
@@ -634,6 +726,7 @@ export function validateContent(
   symptoms: SymptomRecord[],
   references: ReferenceRecord[] = [],
   walks: WalkRecord[] = [],
+  nonEdges: NonEdgeRecord[] = [],
 ): Issue[] {
   const r = new Rules();
   const v = vocabOf(schema);
@@ -667,15 +760,24 @@ export function validateContent(
   const seenSymptomIds = new Set<string>();
   for (const s of symptoms) validateSymptom(r, v, slugs, stubs, s, seenSymptomIds);
 
-  // Which unordered pairs any typed edge connects — the walk jump rule's
+  // Which unordered pairs any typed edge connects, with the type names —
+  // the walk jump rule's and the non-edge contradiction rule's shared
   // input. Built from the raw records: a malformed edge is already its own
-  // error, and a walk hop over it should not double-report.
-  const edgedPairs = new Set<string>();
+  // error, and a rule over it should not double-report.
+  const edgeTypesByPair = new Map<string, string[]>();
   for (const e of edges) {
-    const { from, to } = e.raw;
-    if (isNonEmptyString(from) && isNonEmptyString(to)) edgedPairs.add(pairKey(from, to));
+    const { from, to, type } = e.raw;
+    if (!isNonEmptyString(from) || !isNonEmptyString(to)) continue;
+    const key = pairKey(from, to);
+    const types = edgeTypesByPair.get(key) ?? [];
+    if (isNonEmptyString(type) && !types.includes(type)) types.push(type);
+    edgeTypesByPair.set(key, types.sort());
   }
+  const edgedPairs = new Set(edgeTypesByPair.keys());
   for (const w of walks) validateWalk(r, slugs, stubs, edgedPairs, w);
+
+  const seenNonEdgePairs = new Set<string>();
+  for (const n of nonEdges) validateNonEdge(r, slugs, edgeTypesByPair, n, seenNonEdgePairs);
 
   return r.issues;
 }

@@ -696,48 +696,97 @@ the app renders the queue (UI_REDESIGN.md §4.6).
 
 **Exit criteria**
 
-- [ ] `graph.json` gains `metrics.queue` (link suggestions with their witness
+- [x] `graph.json` gains `metrics.queue` (link suggestions with their witness
       neighbors, community bridge deficits, recurring free-text assumptions,
       dialect gaps, thin symptoms) and top-level `non_edges` — additive minor
       bump documented in `docs/graph-json.md`; the double-build determinism
-      test still holds.
-- [ ] `graph/non-edges.yaml` is a validated content type: unknown endpoint =
+      test still holds — 1.4.0; the new blocks ride the same
+      sorted-keys/stable-order emit path the determinism test covers, and
+      the emit shape test pins them.
+- [x] `graph/non-edges.yaml` is a validated content type: unknown endpoint =
       error, contradiction with an existing edge = error, and a ledger entry
       provably suppresses its candidate/suggestion queue items — each rule
       with a failing pipeline test (§4.2 practice, like M1's
-      unknown-endpoint test).
-- [ ] `#/queue` renders every signal class with its machine-checkable "why"
+      unknown-endpoint test) — `non-edge/unknown-endpoint` and
+      `non-edge/contradiction` are the M11 pipeline criteria; suppression is
+      proven twice (a pipeline test shows the candidate item vanish when the
+      ledger entry lands, a stage-4 unit test the link suggestion); the
+      shape/self-pair/duplicate/reason/`see` rules each carry failing
+      fixtures.
+- [x] `#/queue` renders every signal class with its machine-checkable "why"
       and a prefilled action per item (propose composer / issue form),
-      Playwright-proven like the M4/M5 views and in the axe matrix.
-- [ ] Dogfood: one queue item worked end to end — landed as a validated
+      Playwright-proven like the M4/M5 views and in the axe matrix — nine
+      sections: the five new signals, the candidate-edge queue (moved here
+      from `#/questions`, which keeps the §35 epistemology and cross-links
+      its sibling), the M7/M8 underconnected-application and
+      unused-reference rules as display joins, and the ledger rendered as
+      "deliberate non-connections". `m11-queue.spec.ts` + the axe matrix in
+      both themes.
+- [x] Dogfood: one queue item worked end to end — landed as a validated
       edge/node PR, or recorded in `non-edges.yaml` with its reason (the
-      M5/M10 pattern: the loop closes using the tool itself).
+      M5/M10 pattern: the loop closes using the tool itself) —
+      `kalman-filter ↔ state-space-model`, the queue's own top-band link
+      suggestion (witnesses: bayes-rule, linear-gaussian-ssm), worked
+      through the queue's "record a non-edge" action into
+      [#23](https://github.com/dnrohr/mathematical-structures/issues/23)
+      and landed in the ledger: the witnesses are exactly the triangle the
+      map already closes deliberately through the special case, so the
+      reviewed answer is a non-edge, and the rebuilt queue no longer asks
+      (31 → 30 suggestions).
 
 **Tasks**
 
-- [ ] [build] Stage 4 queue signals, deterministic and unit-tested on fixture
+- [x] [build] Stage 4 queue signals, deterministic and unit-tested on fixture
       graphs: shared-trusted-neighbor link suggestions (≥ 2 witnesses, listed;
       existing edges and non-edges excluded); bridge deficits (community pairs
       joined by ≤ 1 trusted edge); recurring assumptions (identical normalized
       free-text `assumptions` strings on ≥ 2 nodes); dialect gaps (field in
       `fields`, no alias, on nodes with ≥ 2 dialects); thin symptoms (< 2
       moves or no worked example). Plain, explainable math only — a signal a
-      reader can't verify by eye doesn't ship.
-- [ ] [build] `non-edges.yaml` stage-1 reader ({between: [a, b], reason,
+      reader can't verify by eye doesn't ship — hand-checkable fixtures per
+      signal (a 4-cycle whose both diagonals are suggested, the bridged
+      cliques' one crossing edge, case/whitespace assumption variants);
+      edges of *any* strength exclude a pair from suggestion, untrusted
+      edges buy no witnesses, and slug-valued assumptions are typed
+      references, never signals.
+- [x] [build] `non-edges.yaml` stage-1 reader ({between: [a, b], reason,
       see?}) + the three validator rules + suppression wiring, with failing
-      fixtures per rule.
-- [ ] [build] Emit `metrics.queue` + `non_edges`; document the shapes.
-- [ ] [app] `#/queue` as `#/questions`' sibling (nav: "Open questions · Work
+      fixtures per rule — the file is optional content like walks; pairs
+      normalize to sorted order on emit; `see` must be a concept slug or an
+      http(s) URL.
+- [x] [build] Emit `metrics.queue` + `non_edges`; document the shapes —
+      graph.json 1.4.0 (additive minor), both shapes in
+      `docs/graph-json.md`; ARCHITECTURE.md gains §3.8 (the content type)
+      and the §4.2 rule rows.
+- [x] [app] `#/queue` as `#/questions`' sibling (nav: "Open questions · Work
       queue"): items grouped by signal, evidence rendered inline, action
       deep-links; a "deliberate non-connections" section rendered from
-      `non_edges` (for this project, "we checked — false friends" is content).
-- [ ] [app] Playwright: each signal class renders + one action deep-link
-      round-trip; both views join the axe matrix.
-- [ ] [curation] Seed `non-edges.yaml` with the rejects already recorded in
+      `non_edges` (for this project, "we checked — false friends" is content)
+      — nav gains Queue beside Questions and the two views cross-link;
+      bridge-deficit items render the one bridging claim through the shared
+      edge-claim fragment plus each side's busiest members, with path and
+      propose deep-links on the community hubs; "record a non-edge" is a
+      prefilled issue carrying the ready-to-paste ledger entry (the M10
+      mechanism, one artifact smaller — unit-tested to parse back).
+- [x] [app] Playwright: each signal class renders + one action deep-link
+      round-trip; both views join the axe matrix — four tests in
+      `m11-queue.spec.ts` (all nine sections with data-driven counts and
+      empty states, ledger + suppression against the emitted data, propose
+      round-trip into the composer, sibling nav); `#/queue` joined the axe
+      matrix in both themes, and the M10 candidate→composer journey now
+      starts from its new home.
+- [x] [curation] Seed `non-edges.yaml` with the rejects already recorded in
       [#3](https://github.com/dnrohr/mathematical-structures/issues/3) and
       [#14](https://github.com/dnrohr/mathematical-structures/issues/14), so
-      the ledger starts honest and the queue starts suppressed-correctly.
-- [ ] [curation] Dogfood pass per the exit criterion.
+      the ledger starts honest and the queue starts suppressed-correctly —
+      three seeds: the notebook §8 Kalman-filter ≠ HMM correction (#3's
+      most-guarded distinction; its wiki-linked candidate pair is the
+      ledger's first real suppression) and #14's two application rejects
+      (Leontief viability, econometric filtering) as pair decisions.
+- [x] [curation] Dogfood pass per the exit criterion — see above:
+      [#23](https://github.com/dnrohr/mathematical-structures/issues/23),
+      filed from the queue's own suggestion and landed as the ledger's
+      fourth entry.
 
 ---
 
@@ -894,8 +943,8 @@ polish (UI_REDESIGN.md §4.5, §4.7, §4.8, §5).
 - `atlas-build --content DIR` hardening for forked atlases (§8.5).
 - Scale work (per-node JSON, pagination) when node count approaches ~100 (§8.6).
 - Additional export formats on demand (§8.7).
-- Content expansion beyond the v1 set, driven by the M11 work queue once it
-  exists (until then, the metrics view): fill structural holes rather than
+- Content expansion beyond the v1 set, driven by the M11 work queue
+  (`#/queue`): fill structural holes rather than
   chasing coverage — standing work that runs alongside the milestones above,
   not after them. Application batches after M13's repeat its pattern
   (tracking issue → honest bar → metrics re-read), sourced from the queue.
@@ -905,8 +954,10 @@ polish (UI_REDESIGN.md §4.5, §4.7, §4.8, §5).
 - Peer-review of `graph/edges.yaml` as a set — the one unchecked M2 task; owner
   work, being worked through incrementally. By owner decision it is standing
   work, not a gate on M11–M14 or the applications wave.
-- Triage of the info-level candidate edges (57 after M7 — its wiki-links grew
-  the queue by design) into typed edges or deliberate non-edges.
+- Triage of the info-level candidate edges (55 after M11 — M10's dogfood
+  landed one as an edge, and the ledger's first entry suppressed another as
+  a reviewed non-edge) into typed edges or `non-edges.yaml` entries; the
+  M11 queue renders both queues with prefilled actions.
 - Possible extraction of `wavelets` from `integral-transforms` once there is
   enough content.
 

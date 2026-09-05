@@ -9,7 +9,7 @@ import { expect, test } from '@playwright/test';
 
 interface GraphData {
   edges: { type: string; strength: string; status?: string }[];
-  metrics: { candidate_edges: unknown[]; community_count: number };
+  metrics: { community_count: number };
 }
 
 test('metrics: rankings on the trusted subgraph, and it says so', async ({ page }) => {
@@ -89,10 +89,8 @@ test('open questions: every speculative edge listed with workflow status (spec Â
   expect(await page.locator('.workflow-steps li').count()).toBeGreaterThanOrEqual(6);
   await expect(page.locator('.workflow a[href$="docs/research-gap-workflow.md"]')).toBeVisible();
 
-  // The curation queue: wiki-linked pairs with no typed edge.
-  await expect(page.locator('.candidate-list li')).toHaveCount(data.metrics.candidate_edges.length);
-
-  // Export is one action from here too.
+  // Export is one action from here too. (The candidate-edge queue moved to
+  // its M11 sibling, #/queue â€” covered in m11-queue.spec.ts.)
   await expect(page.locator('.download-list a').first()).toContainText('graph.json');
 });
 
