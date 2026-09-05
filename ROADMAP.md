@@ -644,8 +644,13 @@ the validator remains the only gate.
       both as a sentence and as the ready-to-paste `edges.yaml` block,
       Playwright-proven from both entry points in `m10-propose.spec.ts` (the
       M10 CI criterion, like the M3/M4 journeys).
-- [ ] One proposal has round-tripped end to end: filed through the form, landed
-      as an ordinary validated PR (a dogfood pass, like M5's).
+- [x] One proposal has round-tripped end to end: filed through the form, landed
+      as an ordinary validated PR (a dogfood pass, like M5's) — diffusion
+      —REPRESENTED-BY→ eigenvalues, composed in `#/propose` from the diffusion
+      concept page, filed via the composer's prefilled-issue mechanism as
+      [#19](https://github.com/dnrohr/mathematical-structures/issues/19), and
+      landed by copy-pasting the issue's block into `edges.yaml` (evidence key
+      added per the form's Evidence field), validator green.
 
 **Tasks**
 
@@ -666,7 +671,13 @@ the validator remains the only gate.
       edges get "propose this" affordances — every concept page's connections
       block ends in the composer link (`from` prefilled), every candidate pair
       carries "propose" (both endpoints prefilled).
-- [ ] [curation] Dogfood: file one proposal through the form and land it.
+- [x] [curation] Dogfood: file one proposal through the form and land it —
+      done for exactly the flow a reader gets (see the exit criterion above);
+      the picked claim is a candidate-queue pair whose Fourier special case
+      (`diffusion → fourier-analysis`) and graph half
+      (`graph-laplacian → eigenvalues`) were already on the map, so the
+      general spectral statement completes an honest triangle rather than
+      inventing a connection.
 
 ---
 
