@@ -55,6 +55,9 @@ test('ego-network on the concept page: renders, expands to 2 hops, caps with ove
 test('every graph-visible relationship is also present as text', async ({ page }) => {
   await page.goto('/#/c/eigenvalues');
   const ego = page.locator('.concept-ego');
+  // The view attaches after the async data load: wait for the graph before
+  // counting, or the counts race the boot fetch.
+  await expect(ego.locator('.graph-svg')).toBeVisible();
   // Edges touching the node are the Connections sections; edges between
   // neighbors get their own claim list under the graph.
   const edges = await ego.locator('.graph-edge').count();

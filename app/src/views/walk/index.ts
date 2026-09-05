@@ -9,6 +9,7 @@
 import type { Atlas } from '../../data/atlas';
 import type { GraphEdge, GraphNode, GraphWalk } from '../../data/types';
 import type { Subgraph } from '../../data/subgraph';
+import { readWalkPosition, recordWalkPosition } from '../../shell/local';
 import { statusBadge, typeBadge } from '../common/badges';
 import { h } from '../common/dom';
 import { edgeClaim } from '../common/edge-claim';
@@ -66,6 +67,25 @@ export function walkView(atlas: Atlas, id: string, step?: number): View | null {
   const current = walk.steps[n - 1]!;
   const node = atlas.node(current.slug)!;
 
+  // Walk resume (UI_REDESIGN.md §5, M14): remember where the reader is —
+  // a per-browser convenience. Landing without a step offers the stored
+  // position rather than jumping: the URL stays the only state the view
+  // depends on. Read the old position BEFORE this visit overwrites it.
+  const stored = readWalkPosition(id);
+  const resume =
+    step === undefined && stored !== null && stored > 1 && stored <= total
+      ? h(
+          'p',
+          { class: 'walk-resume section-hint' },
+          h(
+            'a',
+            { href: walkHash(id, stored), title: 'Position saved in this browser only' },
+            `Resume where you left off: step ${String(stored)} →`,
+          ),
+        )
+      : null;
+  recordWalkPosition(id, n);
+
   const positionBar = h(
     'nav',
     { class: 'walk-position', 'aria-label': 'Walk position' },
@@ -107,6 +127,7 @@ export function walkView(atlas: Atlas, id: string, step?: number): View | null {
     { class: 'walk content' },
     h('header', { class: 'page-header' }, h('h1', {}, walk.title)),
     h('p', { class: 'tagline' }, walk.summary),
+    resume,
     positionBar,
     arrivalSection(atlas, walk, n),
     h(

@@ -288,6 +288,13 @@ export interface GraphMetrics {
   candidate_edges: CandidatePair[];
   /** The work-queue signals (added in 1.4.0). */
   queue: QueueMetrics;
+  /**
+   * Fixed constellation coordinates (added in 1.5.0): a deterministic
+   * build-time force layout of the trusted subgraph, rounded `[x, y]` keyed
+   * by slug — only nodes with at least one trusted edge have a position
+   * (UI_REDESIGN.md §4.7; the atlas overview and minimaps render these).
+   */
+  layout: Record<string, [number, number]>;
 }
 
 export function countErrors(issues: Issue[]): number {

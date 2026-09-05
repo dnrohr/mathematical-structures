@@ -48,10 +48,30 @@ const SHORTCUTS: { keys: string[]; what: string }[] = [
   { keys: ['?'], what: 'Show or hide this panel' },
 ];
 
+/** Cross-view actions (UI_REDESIGN.md §5, M14) — documented here so nothing
+ * lives only inside one view's screen. */
+const ACTIONS: { what: string; where: string }[] = [
+  {
+    what: 'Copy a citable link — the URL plus the data commit',
+    where: 'the footer, on every view',
+  },
+  { what: 'Download what you see as CSV', where: 'matrix · map · lens' },
+  { what: 'Download a page’s sources as BibTeX', where: 'concept pages with a Sources list' },
+  { what: 'Download the full dataset (JSON, GraphML, CSV)', where: 'metrics · questions' },
+  {
+    what: 'Compare two concepts side by side',
+    where: 'concept pages → “compare it with another concept”',
+  },
+  {
+    what: 'Resume a walk · the recently-visited trail',
+    where: 'saved in this browser only (localStorage), clearable, never required',
+  },
+];
+
 function buildDialog(): HTMLDialogElement {
   const dialog = h(
     'dialog',
-    { class: 'shortcuts', 'aria-label': 'Keyboard shortcuts' },
+    { class: 'shortcuts', 'aria-label': 'Keyboard shortcuts and actions' },
     h(
       'div',
       { class: 'shortcuts-head' },
@@ -68,6 +88,15 @@ function buildDialog(): HTMLDialogElement {
           keys.flatMap((k, i) => [i > 0 ? ' ' : '', h('kbd', {}, k)]),
         ),
         h('dd', {}, what),
+      ]),
+    ),
+    h('h3', { class: 'shortcuts-subhead' }, 'Cross-view actions'),
+    h(
+      'dl',
+      { class: 'shortcut-list action-list' },
+      ACTIONS.flatMap(({ what, where }) => [
+        h('dt', { class: 'action-what' }, what),
+        h('dd', {}, where),
       ]),
     ),
     h(

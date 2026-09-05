@@ -4,6 +4,7 @@
  * can see where a walk goes before starting it.
  */
 import type { Atlas } from '../../data/atlas';
+import { readWalkPosition } from '../../shell/local';
 import { h } from '../common/dom';
 import type { View } from '../common/view';
 import { walkHash } from '../walk';
@@ -25,8 +26,13 @@ export function walksView(atlas: Atlas): View {
       : h(
           'ul',
           { class: 'walk-list' },
-          atlas.walks.map((walk) =>
-            h(
+          atlas.walks.map((walk) => {
+            // Walk resume (UI_REDESIGN.md §5, M14): a localStorage
+            // convenience — the card offers the stored position when one
+            // exists beyond step 1, and nothing depends on it being there.
+            const stored = readWalkPosition(walk.id);
+            const resume = stored !== null && stored > 1 && stored <= walk.steps.length;
+            return h(
               'li',
               { class: 'walk-card' },
               h('h2', {}, h('a', { href: walkHash(walk.id, 1) }, walk.title)),
@@ -39,8 +45,21 @@ export function walksView(atlas: Atlas): View {
                   .map((step) => atlas.node(step.slug)?.canonical_name ?? step.slug)
                   .join(' → '),
               ),
-            ),
-          ),
+              resume &&
+                h(
+                  'p',
+                  { class: 'walk-resume' },
+                  h(
+                    'a',
+                    {
+                      href: walkHash(walk.id, stored),
+                      title: 'Position saved in this browser only',
+                    },
+                    `Resume at step ${String(stored)} →`,
+                  ),
+                ),
+            );
+          }),
         ),
     h(
       'p',

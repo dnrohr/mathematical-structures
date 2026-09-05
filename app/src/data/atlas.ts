@@ -137,6 +137,18 @@ export class Atlas {
   get queue(): QueueMetrics {
     return this.data.metrics.queue;
   }
+  /**
+   * The fixed constellation (1.5.0): build-time trusted-subgraph layout,
+   * `[x, y]` by slug. Nodes with no trusted edge have no position — the
+   * atlas view and minimaps must treat absence as information, not error.
+   */
+  get layout(): Record<string, [number, number]> {
+    return this.data.metrics.layout;
+  }
+  /** Strength rank of the trusted floor (metrics/layout run at or above it). */
+  get trustedRank(): number {
+    return this.strengthsById.get(this.data.schema.analysis.trusted_min_strength)?.rank ?? 0;
+  }
 
   node(slug: string): GraphNode | undefined {
     return this.bySlug.get(slug);
@@ -343,6 +355,8 @@ export function assembleAtlas(graphRaw: unknown, searchRaw: unknown): LoadResult
     return fail('corrupt', 'graph.json: missing walks list (needs data version ≥ 1.3)');
   if (!Array.isArray(graph.non_edges) || typeof graph.metrics.queue !== 'object')
     return fail('corrupt', 'graph.json: missing non_edges/queue blocks (needs data version ≥ 1.4)');
+  if (typeof graph.metrics.layout !== 'object' || graph.metrics.layout === null)
+    return fail('corrupt', 'graph.json: missing metrics.layout (needs data version ≥ 1.5)');
   if (typeof search.options !== 'object' || search.options === null || search.index === undefined)
     return fail('corrupt', 'search-index.json: missing options/index');
   try {

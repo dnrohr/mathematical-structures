@@ -80,7 +80,8 @@ interface SimLink extends SimulationLinkDatum<SimNode> {
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
-function s<K extends keyof SVGElementTagNameMap>(
+/** SVG element helper (shared with the atlas constellation renderer). */
+export function svgEl<K extends keyof SVGElementTagNameMap>(
   tag: K,
   attrs: Record<string, string> = {},
 ): SVGElementTagNameMap[K] {
@@ -88,6 +89,7 @@ function s<K extends keyof SVGElementTagNameMap>(
   for (const [key, value] of Object.entries(attrs)) el.setAttribute(key, value);
   return el;
 }
+const s = svgEl;
 
 /**
  * Compact node labels: prefer the first comma/colon segment of a long
@@ -243,7 +245,7 @@ function edgePath(link: SimLink): string {
  * rules attach them to `.edge-line.directed` by the same classes that
  * color the stroke, so head and line can never disagree.
  */
-function arrowDefs(): SVGDefsElement {
+export function arrowDefs(): SVGDefsElement {
   const defs = s('defs');
   for (const kind of ['strong', 'medium', 'light', 'gap', 'focus']) {
     const marker = s('marker', {

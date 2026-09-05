@@ -88,7 +88,7 @@ describe('graph.json shape', () => {
   );
 
   it('carries version, provenance, schema, and sorted content', () => {
-    expect(graphJson.schema_version).toBe('1.4.0');
+    expect(graphJson.schema_version).toBe('1.5.0');
     expect(graphJson.generated_from).toBe('test-sha');
     const nodes = graphJson.nodes as { slug: string }[];
     expect(nodes.map((n) => n.slug)).toEqual(['eigenvalues', 'kalman-filter', 'markov-chains']);
@@ -120,6 +120,17 @@ describe('graph.json shape', () => {
       // The fixture symptom carries a single move.
       thin_symptoms: [{ id: 'coupled-variables', move_count: 1, has_worked_example: true }],
     });
+  });
+
+  it('carries the trusted-subgraph constellation (added in 1.5.0)', () => {
+    const m = graphJson.metrics as GraphMetrics;
+    // Only the fixture's one trusted edge (kalman-filter IS-A markov-chains
+    // at special-case) buys positions; eigenvalues sits outside.
+    expect(Object.keys(m.layout).sort()).toEqual(['kalman-filter', 'markov-chains']);
+    for (const [x, y] of Object.values(m.layout)) {
+      expect(Math.round(x * 10)).toBeCloseTo(x * 10, 6);
+      expect(Math.round(y * 10)).toBeCloseTo(y * 10, 6);
+    }
   });
 
   it('packages the metrics block: trusted floor, gaps, per-node entries', () => {

@@ -13,6 +13,7 @@ import { communityChip, communityToken } from '../common/badges';
 import { h } from '../common/dom';
 import { edgeClaim } from '../common/edge-claim';
 import { graphPanel } from '../common/graph-panel';
+import { downloadViewLine, edgesCsv, saveBlobButton } from '../common/save';
 import type { View } from '../common/view';
 
 /** Above this many nodes a lens is a hairball; the text list carries it. */
@@ -155,6 +156,17 @@ export function lensView(atlas: Atlas, initial: LensFilters, communitiesInitial 
           'ul',
           { class: 'connection-list' },
           sub.edges.map((edge) => edgeClaim(atlas, edge)),
+        ),
+        // Download what you see (UI_REDESIGN.md §5, M14): this lens's edge
+        // list as CSV, generated client-side — still no server.
+        downloadViewLine(
+          atlas,
+          saveBlobButton(
+            `Download these ${String(sub.edges.length)} claims (CSV)`,
+            'lens-claims.csv',
+            'text/csv',
+            () => edgesCsv(sub.edges),
+          ),
         ),
       ),
     );

@@ -238,6 +238,10 @@ function makeGraph(version = '1.0.0'): GraphJson {
         dialect_gaps: [{ slug: 'eigenvalues', field: 'statistics' }],
         thin_symptoms: [{ id: 'too-many-parameters', move_count: 1, has_worked_example: false }],
       },
+      layout: {
+        eigenvalues: [120.5, 80],
+        'markov-chains': [340, 210.5],
+      },
     },
   };
 }
@@ -363,6 +367,14 @@ describe('assembleAtlas version gate', () => {
       error: { kind: 'corrupt' },
     });
   });
+  it('refuses pre-layout data rather than rendering a broken atlas overview', () => {
+    const graph = makeGraph() as unknown as { metrics: Record<string, unknown> };
+    delete graph.metrics['layout'];
+    expect(assembleAtlas(graph, makeSearchArtifact())).toMatchObject({
+      ok: false,
+      error: { kind: 'corrupt' },
+    });
+  });
 });
 
 describe('Atlas accessors', () => {
@@ -411,6 +423,12 @@ describe('Atlas accessors', () => {
     });
     // The walk's flagged jump: no typed edge, which is the bridge-note case.
     expect(atlas.edgesBetween('markov-chains', 'tomography')).toEqual([]);
+  });
+
+  it('exposes the constellation layout and the trusted floor rank (M14)', () => {
+    expect(atlas.layout['eigenvalues']).toEqual([120.5, 80]);
+    expect(atlas.layout['tomography']).toBeUndefined();
+    expect(atlas.trustedRank).toBe(1); // fixture floor: theorem
   });
 
   it('exposes the reject ledger and the queue signal blocks (M11)', () => {

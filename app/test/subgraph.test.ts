@@ -128,6 +128,7 @@ function makeAtlas(nodes: GraphNode[], edges: GraphEdge[]): Atlas {
         dialect_gaps: [],
         thin_symptoms: [],
       },
+      layout: {},
     },
   };
   const options = {
