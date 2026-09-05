@@ -7,7 +7,14 @@ import { spawnSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import MiniSearch from 'minisearch';
-import type { GraphEdge, GraphMetrics, GraphNode, GraphReference, GraphSymptom } from './model.js';
+import type {
+  GraphEdge,
+  GraphMetrics,
+  GraphNode,
+  GraphReference,
+  GraphSymptom,
+  GraphWalk,
+} from './model.js';
 import type { AtlasSchema } from './schema.js';
 
 /**
@@ -15,8 +22,9 @@ import type { AtlasSchema } from './schema.js';
  * 1.1.0: added the `metrics` block (M5) — additive.
  * 1.2.0: added the `references` block and `evidence` on node connections
  *        (M8) — additive.
+ * 1.3.0: added the `walks` block (M9) — additive.
  */
-export const GRAPH_SCHEMA_VERSION = '1.2.0';
+export const GRAPH_SCHEMA_VERSION = '1.3.0';
 
 /** MiniSearch construction options — the app must load with the same ones. */
 export const SEARCH_OPTIONS: { idField: string; fields: string[]; storeFields: string[] } = {
@@ -57,6 +65,7 @@ export function buildGraphJson(
   edges: GraphEdge[],
   symptoms: GraphSymptom[],
   references: GraphReference[],
+  walks: GraphWalk[],
   metrics: GraphMetrics,
   generatedFrom: string,
 ): Record<string, unknown> {
@@ -76,6 +85,7 @@ export function buildGraphJson(
     edges,
     symptoms,
     references,
+    walks,
     metrics,
   };
 }

@@ -16,6 +16,7 @@ import {
   type Issue,
   type ReferenceRecord,
   type SymptomRecord,
+  type WalkRecord,
 } from './model.js';
 import type { AtlasSchema } from './schema.js';
 
@@ -44,6 +45,9 @@ const KNOWN_EDGE_KEYS = new Set([
 ]);
 
 const KNOWN_SYMPTOM_KEYS = new Set(['id', 'symptom', 'moves', 'mature_fields', 'worked_example']);
+
+const KNOWN_WALK_KEYS = new Set(['title', 'summary', 'steps']);
+const KNOWN_WALK_STEP_KEYS = new Set(['slug', 'note']);
 
 /** The concrete BibTeX entry types graph/references.bib may use. */
 const BIB_ENTRY_TYPES = new Set([
@@ -427,6 +431,106 @@ function validateSymptom(
 }
 
 // ---------------------------------------------------------------------------
+// Walk rules (spec §8.3; ROADMAP M9; ARCHITECTURE.md §3.7). A walk is an
+// ordered tour of existing concepts. The epistemic rule is the jump rule:
+// where consecutive steps have no typed edge between them, the later step
+// must carry a bridging note saying why the walk jumps — a tour may never
+// imply a connection the graph does not make.
+// ---------------------------------------------------------------------------
+
+function validateWalk(
+  r: Rules,
+  slugs: Set<string>,
+  stubs: Set<string>,
+  edgedPairs: Set<string>,
+  w: WalkRecord,
+): void {
+  const raw = w.raw;
+  for (const key of Object.keys(raw)) {
+    if (!KNOWN_WALK_KEYS.has(key)) {
+      r.add('warn', 'content/unknown-key', w.file, `unknown walk key "${key}"`);
+    }
+  }
+  for (const field of ['title', 'summary'] as const) {
+    if (!isNonEmptyString(raw[field])) {
+      r.add('error', 'walk/required-field', w.file, `walk needs a non-empty "${field}"`);
+    }
+  }
+
+  if (!Array.isArray(raw.steps)) {
+    r.add('error', 'walk/steps-shape', w.file, '"steps" must be a list of {slug, note?} entries');
+    return;
+  }
+  interface CheckedStep {
+    slug: string;
+    hasNote: boolean;
+  }
+  const steps: (CheckedStep | undefined)[] = raw.steps.map((entry, i) => {
+    const where = `${w.file} steps[${i}]`;
+    if (entry === null || typeof entry !== 'object' || Array.isArray(entry)) {
+      r.add('error', 'walk/steps-shape', where, 'each step must be a {slug, note?} mapping');
+      return undefined;
+    }
+    const step = entry as Record<string, unknown>;
+    for (const key of Object.keys(step)) {
+      if (!KNOWN_WALK_STEP_KEYS.has(key)) {
+        r.add('warn', 'content/unknown-key', where, `unknown step key "${key}"`);
+      }
+    }
+    if (step.note !== undefined && !isNonEmptyString(step.note)) {
+      r.add('error', 'walk/steps-shape', where, '"note" must be a non-empty string when present');
+    }
+    if (!isNonEmptyString(step.slug)) {
+      r.add('error', 'walk/steps-shape', where, 'each step needs a "slug"');
+      return undefined;
+    }
+    if (!slugs.has(step.slug)) {
+      r.add('error', 'walk/unknown-step', where, `"${step.slug}" is not a concept slug`);
+      return undefined;
+    }
+    if (stubs.has(step.slug)) {
+      r.add('warn', 'walk/stub-step', where, `step "${step.slug}" is only a stub node`);
+    }
+    return { slug: step.slug, hasNote: isNonEmptyString(step.note) };
+  });
+
+  if (steps.length < 2) {
+    r.add('error', 'walk/too-short', w.file, 'a walk needs at least two steps');
+  }
+
+  const seen = new Set<string>();
+  steps.forEach((step, i) => {
+    if (!step) return;
+    if (seen.has(step.slug)) {
+      r.add(
+        'error',
+        'walk/duplicate-step',
+        `${w.file} steps[${i}]`,
+        `"${step.slug}" appears twice in one walk`,
+      );
+    }
+    seen.add(step.slug);
+
+    // The jump rule. Checked only when both endpoints resolved — a broken
+    // step already failed above, and a second error would just be noise.
+    const prev = i > 0 ? steps[i - 1] : undefined;
+    if (prev && !edgedPairs.has(pairKey(prev.slug, step.slug)) && !step.hasNote) {
+      r.add(
+        'error',
+        'walk/unbridged-jump',
+        `${w.file} steps[${i}]`,
+        `no typed edge connects "${prev.slug}" to "${step.slug}" — the step needs a bridging "note" saying why the walk jumps`,
+      );
+    }
+  });
+}
+
+/** Unordered endpoint-pair key: any typed edge bridges both directions. */
+function pairKey(a: string, b: string): string {
+  return [a, b].sort().join('|');
+}
+
+// ---------------------------------------------------------------------------
 // Reference rules (ROADMAP M8). Syntax lives in the bib reader; here each
 // parsed entry must be well-formed enough to cite: a stable key, a known
 // entry type, and at least a title and year to find the work by.
@@ -529,6 +633,7 @@ export function validateContent(
   edges: EdgeRecord[],
   symptoms: SymptomRecord[],
   references: ReferenceRecord[] = [],
+  walks: WalkRecord[] = [],
 ): Issue[] {
   const r = new Rules();
   const v = vocabOf(schema);
@@ -561,6 +666,16 @@ export function validateContent(
 
   const seenSymptomIds = new Set<string>();
   for (const s of symptoms) validateSymptom(r, v, slugs, stubs, s, seenSymptomIds);
+
+  // Which unordered pairs any typed edge connects — the walk jump rule's
+  // input. Built from the raw records: a malformed edge is already its own
+  // error, and a walk hop over it should not double-report.
+  const edgedPairs = new Set<string>();
+  for (const e of edges) {
+    const { from, to } = e.raw;
+    if (isNonEmptyString(from) && isNonEmptyString(to)) edgedPairs.add(pairKey(from, to));
+  }
+  for (const w of walks) validateWalk(r, slugs, stubs, edgedPairs, w);
 
   return r.issues;
 }

@@ -8,6 +8,7 @@ The Structure Atlas is a typed knowledge graph stored as plain files:
   types, edge types, strengths, fields, and statuses are defined.
 - `graph/symptoms.yaml` — the problem-recognition index.
 - `graph/references.bib` — the literature that edges cite.
+- `paths/<id>.yaml` — guided walks through the graph, one file per walk.
 
 Content changes are ordinary pull requests, and **the validator is the review
 gate**: `atlas-build` checks every file against the schema and fails CI with
@@ -152,6 +153,33 @@ the edge when the literature check lands — citing what the check found as
 Citations support a claim; they never inflate it. The edge's `strength`
 stays the honest epistemic verdict — a well-cited analogy is still an
 analogy.
+
+## Walkthrough: add a guided walk
+
+1. **Create `paths/<id>.yaml`** — the filename is the walk's permanent id,
+   like a concept slug. The file carries a `title`, a `summary`, and ordered
+   `steps` of `{slug, note?}` (ARCHITECTURE.md §3.7):
+
+   ```yaml
+   title: The eigenvalue tour
+   summary: >
+     One question, walked through five fields' vocabularies.
+   steps:
+     - slug: eigenvalues
+       note: Start at the hub.
+     - slug: harmonic-oscillator
+   ```
+
+2. **Let edges carry the tour.** The app shows the typed claims between
+   consecutive steps automatically — never restate them in notes. Where two
+   consecutive steps have **no** typed edge between them, the later step's
+   `note` is required and must say why the walk jumps; the validator
+   enforces it (`walk/unbridged-jump`), so a walk can never imply a
+   connection the graph does not make.
+3. **Run `npm run check`.** Unknown step slugs, repeated steps, and
+   one-step walks all fail with the file and rule named. The walk then
+   appears at `#/walks`, steps through at `#/walk/<id>`, and every member
+   concept page links back to its step.
 
 ## Proposing without a PR
 

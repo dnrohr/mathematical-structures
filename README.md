@@ -7,8 +7,8 @@ and what it refuses to be: [docs/mission.md](docs/mission.md).
 
 **Read it live: <https://dnrohr.github.io/mathematical-structures/>** —
 searchable concept pages with per-field dialect tables, typed
-strength-labeled connections, graph lenses, translation-chain finding, and
-the open-questions pipeline. v1 (all
+strength-labeled connections, graph lenses, translation-chain finding,
+guided walks, and the open-questions pipeline. v1 (all
 [SPECIFICATION.md](SPECIFICATION.md) §11 criteria met) as of tag `v1.0.0`;
 every merge to `main` deploys.
 
@@ -78,7 +78,7 @@ and graph views (the legend below is the whole of it):
 | [`graph/symptoms.yaml`](graph/symptoms.yaml) | the problem-recognition index |
 | [`build/`](build/) | `atlas-build`, the compiler/validator (TypeScript, Node) |
 | [`app/`](app/) | the reader SPA (Vite + vanilla TS; reads only the build artifacts) |
-| [`paths/`](paths/) | reserved for guided walks (post-v1) |
+| [`paths/`](paths/) | guided walks, one YAML file per walk |
 | [`docs/`](docs/) | mission, method docs, artifact format, the original notebook |
 | `dist/` | build output (gitignored) |
 

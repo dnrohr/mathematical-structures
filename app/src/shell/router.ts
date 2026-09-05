@@ -18,6 +18,8 @@ export type Route =
   | { name: 'path'; from?: string; to?: string; strength?: string }
   | { name: 'metrics'; sort?: string; dir?: 'asc' | 'desc' }
   | { name: 'questions' }
+  | { name: 'walks' }
+  | { name: 'walk'; id: string; step?: number }
   | { name: 'notfound'; path: string };
 
 export function parseHash(hash: string): Route {
@@ -66,6 +68,16 @@ export function parseHash(hash: string): Route {
     };
   }
   if (segs[0] === 'questions' && segs.length === 1) return { name: 'questions' };
+  if (segs[0] === 'walks' && segs.length === 1) return { name: 'walks' };
+  if (segs[0] === 'walk' && segs.length === 2 && SLUG_RE.test(segs[1]!)) {
+    // Position is 1-based in the URL; anything unparseable means step 1.
+    const step = Number(params.get('step'));
+    return {
+      name: 'walk',
+      id: segs[1]!,
+      ...(Number.isInteger(step) && step >= 1 ? { step } : {}),
+    };
+  }
   if (segs[0] === 'path' && segs.length <= 3) {
     const [, from, to] = segs;
     if ((from && !SLUG_RE.test(from)) || (to && !SLUG_RE.test(to))) {

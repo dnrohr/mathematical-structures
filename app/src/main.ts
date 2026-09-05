@@ -21,6 +21,8 @@ import { movesView } from './views/moves';
 import { pathView } from './views/path';
 import { questionsView } from './views/questions';
 import { symptomView } from './views/symptom';
+import { walkView } from './views/walk';
+import { walksView } from './views/walks';
 
 function viewFor(atlas: Atlas, route: Route): View {
   switch (route.name) {
@@ -46,6 +48,10 @@ function viewFor(atlas: Atlas, route: Route): View {
       return metricsView(atlas, route);
     case 'questions':
       return questionsView(atlas);
+    case 'walks':
+      return walksView(atlas);
+    case 'walk':
+      return walkView(atlas, route.id, route.step) ?? notFoundView(`/walk/${route.id}`);
     case 'notfound':
       return notFoundView(route.path);
   }

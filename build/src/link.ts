@@ -15,10 +15,12 @@ import {
   type GraphNode,
   type GraphReference,
   type GraphSymptom,
+  type GraphWalk,
   type Issue,
   type NodeConnection,
   type ReferenceRecord,
   type SymptomRecord,
+  type WalkRecord,
 } from './model.js';
 import type { RenderedBodies } from './render.js';
 import type { AtlasSchema, EdgeType } from './schema.js';
@@ -28,6 +30,7 @@ export interface LinkedGraph {
   edges: GraphEdge[];
   symptoms: GraphSymptom[];
   references: GraphReference[];
+  walks: GraphWalk[];
   /** Wiki-linked pairs with no typed edge — the info-level curation queue. */
   candidates: CandidatePair[];
   issues: Issue[];
@@ -47,6 +50,7 @@ export function linkGraph(
   edgeRecords: EdgeRecord[],
   symptomRecords: SymptomRecord[],
   referenceRecords: ReferenceRecord[],
+  walkRecords: WalkRecord[],
   rendered: RenderedBodies,
 ): LinkedGraph {
   const issues: Issue[] = [];
@@ -202,5 +206,17 @@ export function linkGraph(
     .map((ref) => ({ key: ref.key, entry_type: ref.entryType, fields: ref.fields }))
     .sort((a, b) => a.key.localeCompare(b.key));
 
-  return { nodes, edges, symptoms, references, candidates, issues };
+  const walks: GraphWalk[] = walkRecords
+    .map((w) => ({
+      id: w.id,
+      title: String(w.raw.title),
+      summary: String(w.raw.summary).trim(),
+      steps: (w.raw.steps as { slug: string; note?: string }[]).map((step) => {
+        const note = optionalString(step.note);
+        return { slug: String(step.slug), ...(note ? { note: note.trim() } : {}) };
+      }),
+    }))
+    .sort((a, b) => a.id.localeCompare(b.id));
+
+  return { nodes, edges, symptoms, references, walks, candidates, issues };
 }

@@ -36,7 +36,7 @@ citable. `generated_from` carries the git commit SHA of the content tree.
 
 ```jsonc
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "generated_from": "<git sha>",
   "schema": { /* the controlled vocabularies, verbatim from graph/schema.yaml */
     "node_types":   [ { "id", "label", "color_token", "description" } ],
@@ -52,6 +52,7 @@ citable. `generated_from` carries the git commit SHA of the content tree.
   "edges":      [ /* sorted by (from, to, type) */ ],
   "symptoms":   [ /* sorted by id */ ],
   "references": [ /* sorted by key; added in 1.2.0 — see below */ ],
+  "walks":      [ /* sorted by id; added in 1.3.0 — see below */ ],
   "metrics":    { /* build-time analysis; added in 1.1.0 — see below */ }
 }
 ```
@@ -143,6 +144,26 @@ whitespace collapsed) — no TeX escapes to undo.
     "year": "1988",
     "url"?: "...", "doi"?: "..."  // whichever the entry carries
   }
+}
+```
+
+### Walk (added in 1.3.0)
+
+Guided walks (`paths/<id>.yaml`, ARCHITECTURE.md §3.7), compiled verbatim
+and sorted by id. Steps are ordered; each `slug` is validated to exist. The
+connecting typed edges are deliberately *not* embedded — join `steps` against
+`edges` by endpoint pair. Where consecutive steps have no typed edge between
+them, the later step's `note` explains the jump (the build enforces this).
+
+```jsonc
+{
+  "id": "eigenvalue-tour",              // the filename, permanent
+  "title": "The eigenvalue tour",
+  "summary": "One question — ...",
+  "steps": [
+    { "slug": "eigenvalues", "note": "The hub itself. ..." },
+    { "slug": "harmonic-oscillator" }   // note is optional on edged hops
+  ]
 }
 ```
 

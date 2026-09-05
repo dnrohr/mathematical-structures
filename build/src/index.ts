@@ -95,8 +95,8 @@ function main(): void {
   const g = result.graph!;
   console.log(
     `content OK: ${g.nodes.length} nodes, ${g.edges.length} edges, ` +
-      `${g.symptoms.length} symptoms, ${g.references.length} references — ` +
-      `${warns} warn(s), ${infos} info(s)`,
+      `${g.symptoms.length} symptoms, ${g.references.length} references, ` +
+      `${g.walks.length} walks — ${warns} warn(s), ${infos} info(s)`,
   );
   if (args.check) exit(0);
 
@@ -108,6 +108,7 @@ function main(): void {
     g.edges,
     g.symptoms,
     g.references,
+    g.walks,
     metrics,
     gitSha(args.root),
   );

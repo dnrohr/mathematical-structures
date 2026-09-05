@@ -13,6 +13,7 @@ import {
   type Issue,
   type ReferenceRecord,
   type SymptomRecord,
+  type WalkRecord,
 } from './model.js';
 import { loadSchema, type AtlasSchema } from './schema.js';
 
@@ -22,6 +23,7 @@ export interface ParsedTree {
   edges: EdgeRecord[];
   symptoms: SymptomRecord[];
   references: ReferenceRecord[];
+  walks: WalkRecord[];
   issues: Issue[];
 }
 
@@ -128,6 +130,41 @@ function parseYamlListFile(
   return out;
 }
 
+/** One walk per file; the id is the filename, like concept slugs (§3.7). */
+function parseWalk(file: string, id: string, issues: Issue[]): WalkRecord | undefined {
+  if (!SLUG.test(id)) {
+    issues.push({
+      severity: 'error',
+      rule: 'content/slug-format',
+      file,
+      message: `filename walk id "${id}" must be lowercase-kebab (${SLUG})`,
+    });
+    return undefined;
+  }
+  let data: unknown;
+  try {
+    data = parseYaml(readFileSync(file, 'utf8'));
+  } catch (e) {
+    issues.push({
+      severity: 'error',
+      rule: 'content/yaml',
+      file,
+      message: `YAML parse error: ${(e as Error).message}`,
+    });
+    return undefined;
+  }
+  if (!isRecord(data)) {
+    issues.push({
+      severity: 'error',
+      rule: 'content/shape',
+      file,
+      message: 'top level must be a YAML mapping (title, summary, steps)',
+    });
+    return undefined;
+  }
+  return { id, file, raw: data };
+}
+
 /** Read the whole content tree rooted at `root`. */
 export function parseTree(root: string): ParsedTree {
   const issues: Issue[] = [];
@@ -167,5 +204,16 @@ export function parseTree(root: string): ParsedTree {
     issues.push(...bib.issues);
   }
 
-  return { schema, concepts, edges, symptoms, references, issues };
+  // Walks are optional content too (an atlas without tours is valid).
+  const walks: WalkRecord[] = [];
+  const pathsDir = join(root, 'paths');
+  if (existsSync(pathsDir)) {
+    for (const name of readdirSync(pathsDir).sort()) {
+      if (!name.endsWith('.yaml')) continue;
+      const record = parseWalk(join(pathsDir, name), name.slice(0, -5), issues);
+      if (record) walks.push(record);
+    }
+  }
+
+  return { schema, concepts, edges, symptoms, references, walks, issues };
 }

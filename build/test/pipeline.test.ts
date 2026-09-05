@@ -65,6 +65,20 @@ describe('valid fixture end to end', () => {
     expect(eigen.html).toContain('katex');
     expect(eigen.html).toContain('href="#/c/markov-chains"');
   });
+
+  it('compiles walks: id from the filename, notes kept only where written (M9)', () => {
+    expect(result.graph!.walks).toEqual([
+      {
+        id: 'spectral-walk',
+        title: 'The spectral walk',
+        summary: 'Fixture walk: every hop rides a typed edge from the fixture edge list.',
+        steps: [
+          { slug: 'eigenvalues', note: 'Start at the fixture hub.' },
+          { slug: 'markov-chains' },
+        ],
+      },
+    ]);
+  });
 });
 
 describe('link-stage rules', () => {
@@ -150,6 +164,47 @@ describe('parse-stage failures', () => {
     expect(hit).toBeDefined();
     expect(hit.message).toContain('ghost-2001');
     expect(countErrors(result.issues)).toBeGreaterThan(0);
+  });
+
+  it('fails when a walk steps on a slug that does not exist (the M9 exit criterion)', () => {
+    const dir = copyValidTree();
+    writeFileSync(
+      join(dir, 'paths', 'broken-tour.yaml'),
+      'title: Broken\nsummary: x\nsteps:\n  - slug: eigenvalues\n  - slug: ghost-node\n',
+    );
+    const result = runPipeline(dir);
+    const hit = result.issues.find((i) => i.rule === 'walk/unknown-step')!;
+    expect(hit).toBeDefined();
+    expect(hit.message).toContain('ghost-node');
+    expect(hit.file).toContain('broken-tour.yaml');
+    expect(countErrors(result.issues)).toBeGreaterThan(0);
+  });
+
+  it('fails when consecutive walk steps share no typed edge and no bridging note (the M9 exit criterion)', () => {
+    const dir = copyValidTree();
+    // eigenvalues–kalman-filter carries only the speculative gap edge in the
+    // fixture, which still counts as a typed edge — so jump via a fresh node.
+    writeFileSync(
+      join(dir, 'concepts', 'loner.md'),
+      '---\ncanonical_name: Loner\nnode_type: object\nstatus: stub\nsummary: x\n---\nx\n',
+    );
+    const jump =
+      'title: Jumpy\nsummary: x\nsteps:\n  - slug: eigenvalues\n  - slug: loner\n' as const;
+    writeFileSync(join(dir, 'paths', 'jumpy-tour.yaml'), jump);
+    const broken = runPipeline(dir);
+    const hit = broken.issues.find((i) => i.rule === 'walk/unbridged-jump')!;
+    expect(hit).toBeDefined();
+    expect(hit.message).toContain('bridging');
+    expect(countErrors(broken.issues)).toBeGreaterThan(0);
+
+    // The bridging note is exactly what fixes it.
+    writeFileSync(
+      join(dir, 'paths', 'jumpy-tour.yaml'),
+      jump.replace('- slug: loner', '- slug: loner\n    note: the walk jumps because…'),
+    );
+    const bridged = runPipeline(dir);
+    expect(bridged.issues.map((i) => i.rule)).not.toContain('walk/unbridged-jump');
+    expect(countErrors(bridged.issues)).toBe(0);
   });
 
   it('fails when edges.yaml references an unknown endpoint (the CI exit criterion)', () => {

@@ -55,6 +55,13 @@ export interface SymptomRecord {
   raw: Record<string, unknown>;
 }
 
+/** One paths/<id>.yaml walk as parsed; the id is the filename (§3.7). */
+export interface WalkRecord {
+  id: string;
+  file: string;
+  raw: Record<string, unknown>;
+}
+
 /** One graph/references.bib entry as parsed (values are display text). */
 export interface ReferenceRecord {
   key: string;
@@ -129,6 +136,20 @@ export interface GraphSymptom {
   moves: string[];
   mature_fields: string[];
   worked_example?: string;
+}
+
+export interface GraphWalkStep {
+  slug: string;
+  /** Why this step — required where no typed edge connects it to the previous one. */
+  note?: string;
+}
+
+/** One guided walk in graph.json (added in 1.3.0; ARCHITECTURE.md §3.7). */
+export interface GraphWalk {
+  id: string;
+  title: string;
+  summary: string;
+  steps: GraphWalkStep[];
 }
 
 /** One resolved literature reference in graph.json (added in 1.2.0). */

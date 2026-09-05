@@ -182,6 +182,8 @@ const AXE_ROUTES: { name: string; path: string }[] = [
   { name: 'path chains', path: '/#/path/harmonic-oscillator/markov-chains' },
   { name: 'metrics', path: '/#/metrics' },
   { name: 'questions', path: '/#/questions' },
+  { name: 'walks index', path: '/#/walks' },
+  { name: 'walk view', path: '/#/walk/eigenvalue-tour?step=3' },
 ];
 
 for (const theme of ['light', 'dark'] as const) {

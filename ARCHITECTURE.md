@@ -20,8 +20,8 @@ Three layers, one-way data flow, one data contract between each pair:
 │  graph/edges.yaml   │     │  validate (fail     │     │  (GitHub Pages)     │
 │  graph/schema.yaml  │     │    loudly)          │     │                     │
 │  graph/symptoms.yaml│     │  link & render      │     │  reads exactly:     │
-│  docs/              │     │  analyze (metrics)  │     │   graph.json        │
-│                     │     │  emit               │     │   search-index.json │
+│  paths/*.yaml       │     │  analyze (metrics)  │     │   graph.json        │
+│  docs/              │     │  emit               │     │   search-index.json │
 └─────────────────────┘     └─────────────────────┘     └─────────────────────┘
       plain files              deterministic               no network calls
       edited in git            Node CLI, CI-run            beyond first load
@@ -54,7 +54,7 @@ Hard rules that define the layer boundaries:
 │   ├── edges.yaml             # the typed edge list
 │   ├── symptoms.yaml          # the problem-recognition index
 │   └── references.bib         # the literature that edges cite (M8)
-├── paths/                     # reserved: guided walks (spec §8.3); empty in v1
+├── paths/                     # guided walks (spec §8.3), one YAML file per walk (M9)
 ├── docs/                      # working method, research-gap workflow, notes
 ├── build/                     # the compiler/validator (TypeScript, Node)
 │   ├── src/
@@ -229,6 +229,42 @@ info-level curation hint, and every entry needs at least a `title` and
 `year`. The file is optional — an atlas without citations is valid; the
 strength vocabulary, not the bibliography, carries the epistemic weight.
 
+### 3.7 Walks: `paths/<id>.yaml`
+
+Guided walks through the graph (spec §8.3, M9) — ordered tours a reader
+steps through, with the connecting claims shown along the way. One YAML
+file per walk; **the id is the filename** (lowercase-kebab, permanent),
+exactly like concept slugs (§3.1):
+
+```yaml
+# paths/eigenvalue-tour.yaml
+title: The eigenvalue tour
+summary: >
+  One question — which patterns does an operator preserve? — walked
+  through five fields' vocabularies.
+steps:
+  - slug: eigenvalues
+    note: Start at the hub; every later stop is this question in costume.
+  - slug: harmonic-oscillator
+    note: Normal modes are the mechanics dialect of the same decomposition.
+  - slug: markov-chains
+    note: >
+      No single edge makes this hop — the walk jumps across the hub we
+      just left (§34 chain 1 runs normal modes ↔ relaxation modes through
+      eigenvalues) into the probability dialect.
+```
+
+Each step is `{slug, note?}`: `slug` must be an existing concept, `note`
+is the "why this step" line the walk view shows beside the stop. Walks are
+content, not derived data: choosing the stops and telling the story is
+curation. The connecting typed edges are *not* stored in the file — the
+app looks them up, so a walk can never contradict the edge list. Where two
+consecutive steps have **no** typed edge between them (either direction),
+the later step's `note` is **required** and must say why the walk jumps;
+the validator enforces this, so every hop is either a claim from
+`edges.yaml` or an explicit, honest bridge — never an implied connection
+the graph does not make (spec §1).
+
 ## 4. Build layer
 
 A single CLI (`atlas-build`) with deterministic output (same input → byte-identical
@@ -262,6 +298,10 @@ The dataset's test suite. Severity levels: **error** (build fails), **warn**
 | `application` node with < 2 distinct structure neighbors over APPLIED-IN / MIGRATED-TO edges (spec §8.8's bar) | warn |
 | `evidence` key with no `references.bib` entry, or cited twice on one edge | error |
 | Malformed `references.bib` entry (syntax, unsupported construct, bad/duplicate key, missing title/year) | error |
+| Walk step slug that is not an existing concept | error |
+| Consecutive walk steps with no typed edge between them and no bridging `note` on the later step | error |
+| Walk with a repeated step, or fewer than two steps | error |
+| Walk step on a `stub` node | warn |
 | Wiki-linked pair with no edge (candidate edge) | info |
 | Reference cited by no edge | info |
 
@@ -300,7 +340,7 @@ Compute the README §33 derived metrics over the typed graph, entirely at build 
 Artifacts written to `dist/data/`:
 
 - **`graph.json`** — `{ schema_version, generated_from: <git sha>, schema, nodes[],
-  edges[], symptoms[], references[], metrics }`. Nodes embed their rendered HTML. Target scale
+  edges[], symptoms[], references[], walks[], metrics }`. Nodes embed their rendered HTML. Target scale
   (hundreds of nodes) keeps this well under a megabyte gzipped; if body HTML ever
   dominates, the escape hatch is splitting bodies into per-node
   `dist/data/nodes/<slug>.json` fetched on demand — the loader interface in
@@ -342,6 +382,8 @@ matching the "can never rot" deployment goal.
 #/path/<slugA>/<slugB>  translation-chain finder
 #/metrics               hubs, bridges, span/dialect rankings
 #/questions             open research-gap candidates
+#/walks                 index of guided walks (spec §8.3)
+#/walk/<id>?step=<n>    one walk, stepped through; position in the URL
 ```
 
 Every view's full state lives in the URL — filters included — so any screen is
@@ -429,7 +471,7 @@ as app features.
 | --- | --- |
 | In-app "propose an edge" | a static form that deep-links to a prefilled GitHub PR/issue template; no server needed, validator still the gate |
 | Evidence/citations | landed (M8): `graph/references.bib` + validated `evidence` keys, resolved into `graph.json`; claims render a citation affordance and concept pages a Sources list |
-| Learning paths | `paths/*.yaml` parsed by a new stage-1 reader; path view already renders ordered chains |
+| Learning paths | landed (M9): `paths/<id>.yaml` (§3.7) compiled and validated like every content type, walks emitted into `graph.json`; the walk view steps through them reusing the path graph preset |
 | LLM-assisted authoring | operates on `graph.json` + `schema.yaml`; output enters as ordinary PRs through the same validator (spec §8.4's hard rule) |
 | Forks / multiple atlases | `atlas-build --content DIR`; nothing hardcodes this repository's content |
 | 10× scale | per-node JSON split (§4.5 escape hatch), paginated lists, and the standing "no full-graph render" rule |
