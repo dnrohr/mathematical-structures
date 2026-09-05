@@ -21,5 +21,5 @@ anything to fix.
 ## Repository docs
 
 Scope and success criteria: `SPECIFICATION.md` · design and formats:
-`ARCHITECTURE.md` · sequencing: `ROADMAP.md` · provenance notebook:
-`docs/notebook-v0.md`.
+`ARCHITECTURE.md` · post-v1 UI design: `UI_REDESIGN.md` · sequencing:
+`ROADMAP.md` · provenance notebook: `docs/notebook-v0.md`.
