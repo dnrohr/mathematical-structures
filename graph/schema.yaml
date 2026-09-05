@@ -362,6 +362,9 @@ fields:
   - { id: ml, label: Machine learning }
   - { id: economics, label: Economics & econometrics }
   - { id: neuroscience, label: Neuroscience }
+  # Added in M13: the applications wave's first validator-demanded id
+  # (antenna-design, motor-efficiency; issue #26).
+  - { id: electromagnetics, label: RF & electromagnetics }
 
 # ---------------------------------------------------------------------------
 # Statuses
