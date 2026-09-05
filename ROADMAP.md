@@ -44,7 +44,7 @@ M10 (v1 program complete; UI_REDESIGN.md specifies what follows)
                     └── M15 forkable atlas + redesign closeout  (spec §8.5; the §4.2 trail, §4.9 pins)
 
 M15 (redesign complete; the wave continues as content batches)
- └── M16 applications wave, batch 2   (queue-sourced; repeats M13's pattern)
+ └── M16 applications wave, batch 2 + curation debts  (queue-sourced; M13's pattern)
 ```
 
 ---
@@ -1110,9 +1110,12 @@ out the redesign catalogue.
 **Goal:** the second wave batch repeats M13's proven pattern (tracking issue →
 honest bar → metrics re-read) with selection sourced from the queue and the
 survey views — the first batch chosen by the atlas's own recorded holes, which
-is what M11 built the instrument for. Content-only: no UI threshold flips
-below ~60 nodes (UI_REDESIGN.md §8), and M13's practitioner surfaces absorb
-new nodes as display joins.
+is what M11 built the instrument for. The milestone also settles two
+standing-curation debts the wave leans on: the graph states the ergodic
+theorem it already uses in three edge contexts, and the info-level
+candidate-edge queue is triaged to a decision apiece. Content-only: no UI
+threshold flips below ~60 nodes (UI_REDESIGN.md §8), and M13's practitioner
+surfaces absorb new nodes as display joins.
 
 **What the instruments show today** (the selection evidence, so the batch is
 auditable against it):
@@ -1155,6 +1158,24 @@ auditable against it):
       incoming-claim counts recorded against the ~60-node flip
       (UI_REDESIGN.md §8 — grouped claim lists with the "and N more" cap) as
       batch 3's early warning.
+- [ ] `large-number-limits` states the ergodic theorem the graph already
+      leans on: a fifth family row — time averages along a single trajectory
+      approach ensemble averages — with its caution (requires ergodicity;
+      metastability and broken ergodicity are real failure modes), a short
+      section tying Birkhoff to the three places the atlas already uses
+      ergodic reasoning (the GOVERNS → `markov-chains` context on MCMC
+      averages, the Kolmogorov–Sinai note's "transfer runs through ergodic
+      theory", the `chaos` ↔ `markov-chains` rigor condition), an
+      ergodic-hypothesis alias in the thermodynamics dialect, and ≥ 1
+      citation (the M8 bar). The prose-linked
+      `large-number-limits ↔ thermodynamic-entropy` pair — already in the
+      candidate queue — resolves to a typed edge read aloud in the PR.
+- [ ] The info-level candidate-edge queue (63 pairs today; the standing
+      `link/candidate-edge` infos) is triaged to a decision apiece: a typed
+      edge with honest strength and citation (the composer discipline), a
+      `non-edges.yaml` entry with its reason, or a defer recorded in #3 — so
+      the queue afterwards holds only pairs someone chose to leave, and the
+      post-batch queue re-read reads a drained baseline.
 - [ ] No app change needed and none made beyond test upkeep: node count stays
       under the ~60 flip (47 → ~52); count-sensitive e2e assertions updated
       to stay data-driven where content moved (the M13 precedent).
@@ -1266,6 +1287,22 @@ material, recorded in the issue).
       (epidemic-modeling — first check whether `sharp-transitions-nonsmooth`
       already carries it and only retarget if the new node is honestly the
       better worked example).
+- [ ] [data] Ergodicity: the fifth row plus a short "the dynamical sibling"
+      section in `concepts/large-number-limits.md`; the thermodynamics-
+      dialect alias ("ergodic hypothesis / time vs ensemble averages");
+      Birkhoff (plus a standard text) in `graph/references.bib`; the
+      `large-number-limits → thermodynamic-entropy` typed edge carrying the
+      ergodic-hypothesis claim, strength decided at writing and read aloud
+      in the PR. The new prose must not mint fresh untyped pairs — the
+      triage below catches any it does.
+- [ ] [curation] Candidate-edge triage: work the 63 `link/candidate-edge`
+      pairs through the M10 composer / `non-edges.yaml` ledger, decision
+      recorded per pair (edge, non-edge with reason, or defer noted in #3);
+      the `#/queue` prefilled actions are the working surface. Sequence it
+      before or alongside the batch: batch prose will mint pairs of its own,
+      and the metrics re-read should read a drained baseline. This schedules
+      the *current snapshot* only — post-M16 accumulation returns to
+      standing work.
 - [ ] [app] Test upkeep only: keep count-sensitive Playwright assertions
       data-driven where the batch moves content (the M13 precedent — specs
       updated where the anatomy relocated claims); landing groups, anatomy,
@@ -1302,8 +1339,10 @@ material, recorded in the issue).
   work, not a gate on M11–M14 or the applications wave.
 - Triage of the info-level candidate edges (55 after M11 — M10's dogfood
   landed one as an edge, and the ledger's first entry suppressed another as
-  a reviewed non-edge) into typed edges or `non-edges.yaml` entries; the
-  M11 queue renders both queues with prefilled actions.
+  a reviewed non-edge; 63 today) into typed edges or `non-edges.yaml`
+  entries; the M11 queue renders both queues with prefilled actions. The
+  current 63-pair snapshot is scheduled into M16 by owner decision; pairs
+  accumulating after M16 return here as standing work.
 - Possible extraction of `wavelets` from `integral-transforms` once there is
   enough content.
 
