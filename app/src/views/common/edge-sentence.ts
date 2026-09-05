@@ -7,6 +7,7 @@
 import type { Atlas } from '../../data/atlas';
 import type { NodeConnection } from '../../data/types';
 import { gapStatusChip, strengthBadge } from './badges';
+import { citeDetails } from './citations';
 import { h } from './dom';
 import { nodeLink } from './node-link';
 
@@ -32,6 +33,8 @@ export function connectionItem(
     strengthBadge(atlas, conn.strength),
     conn.status && gapStatusChip(atlas, conn.status),
     conn.context && h('span', { class: 'context' }, ` — ${conn.context.trim()}`),
+    ' ',
+    citeDetails(atlas, conn.evidence),
     conn.notes && h('p', { class: 'connection-notes' }, conn.notes.trim()),
   );
 }

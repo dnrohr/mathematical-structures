@@ -7,6 +7,7 @@
 import type { Atlas } from '../../data/atlas';
 import type { GraphEdge } from '../../data/types';
 import { gapStatusChip, strengthBadge } from './badges';
+import { citeDetails } from './citations';
 import { h } from './dom';
 import { GAP_EDGE_TYPE } from './edge-sentence';
 import { nodeLink } from './node-link';
@@ -59,6 +60,8 @@ export function edgeClaim(
     opts.context !== false &&
       edge.context &&
       h('span', { class: 'context' }, ` — ${edge.context.trim()}`),
+    ' ',
+    citeDetails(atlas, edge.evidence),
     opts.notes !== false && edge.notes && h('p', { class: 'connection-notes' }, edge.notes.trim()),
   );
 }

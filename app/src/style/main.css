@@ -851,6 +851,76 @@ dialog.shortcuts::backdrop {
   color: var(--ink-muted);
 }
 
+/* Citations (ROADMAP M8): the compact affordance on any claim — a native
+   disclosure, so the full reference is one keypress away with no script.
+   The open/closed glyph lives in markup (aria-hidden) because summary's
+   list-item marker disappears under display: inline-block. */
+details.cite {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+details.cite > summary {
+  display: inline-block;
+  list-style: none;
+  cursor: pointer;
+  font: 0.72rem/1.5 var(--font-ui);
+  color: var(--ink-muted);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0 0.5rem;
+  white-space: nowrap;
+}
+
+details.cite > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.cite > summary:hover,
+details.cite[open] > summary {
+  color: var(--ink);
+  border-color: var(--ink-faint);
+}
+
+details.cite .disclosure {
+  display: inline-block;
+}
+
+details.cite[open] .disclosure {
+  transform: rotate(90deg);
+}
+
+.cite-list {
+  list-style: none;
+  margin: 0.35rem 0 0.15rem;
+  padding: 0.1rem 0 0.1rem 0.7rem;
+  border-left: 2px solid var(--rule);
+}
+
+.reference {
+  margin: 0.25rem 0;
+  font: 0.85rem/1.55 var(--font-ui);
+  color: var(--ink-muted);
+}
+
+.reference a,
+.reference .ref-title {
+  font-style: italic;
+}
+
+.source-list {
+  list-style: none;
+  margin: 0.3rem 0 0;
+  padding: 0;
+}
+
+.source-list .reference {
+  margin: 0.4rem 0;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--rule);
+  font-size: 0.9rem;
+}
+
 .connection-group {
   margin: 1.1rem 0;
 }

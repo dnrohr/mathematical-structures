@@ -41,4 +41,8 @@ body:
     id: evidence
     attributes:
       label: Evidence
-      description: References or a sketch of the argument (textbook result, derivation, survey…).
+      description: >
+        References or a sketch of the argument (textbook result, derivation,
+        survey…). Literature you name here lands as `graph/references.bib`
+        entries cited from the edge's `evidence` keys — author(s), title,
+        venue, year is enough; a DOI or URL helps if you've checked it.

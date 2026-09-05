@@ -33,6 +33,11 @@ recording where it sits in this process.
      generalized method (step 5).
    - `open-candidate` / `literature-checked` — intermediate states.
 
+   Whatever the verdict, cite what the literature check actually found as
+   `evidence` keys into `graph/references.bib` (CONTRIBUTING.md has the
+   walkthrough) — the trail is then data the app renders with the claim,
+   not prose that only the notes reader sees.
+
 ## Worked example: phase/gain margins in biological networks
 
 The useful question is not simply whether papers use the terms "phase margin"

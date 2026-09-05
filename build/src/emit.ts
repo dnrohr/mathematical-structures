@@ -7,14 +7,16 @@ import { spawnSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import MiniSearch from 'minisearch';
-import type { GraphEdge, GraphMetrics, GraphNode, GraphSymptom } from './model.js';
+import type { GraphEdge, GraphMetrics, GraphNode, GraphReference, GraphSymptom } from './model.js';
 import type { AtlasSchema } from './schema.js';
 
 /**
  * The public artifact version (docs/graph-json.md); semver, additive = minor.
  * 1.1.0: added the `metrics` block (M5) — additive.
+ * 1.2.0: added the `references` block and `evidence` on node connections
+ *        (M8) — additive.
  */
-export const GRAPH_SCHEMA_VERSION = '1.1.0';
+export const GRAPH_SCHEMA_VERSION = '1.2.0';
 
 /** MiniSearch construction options — the app must load with the same ones. */
 export const SEARCH_OPTIONS: { idField: string; fields: string[]; storeFields: string[] } = {
@@ -54,6 +56,7 @@ export function buildGraphJson(
   nodes: GraphNode[],
   edges: GraphEdge[],
   symptoms: GraphSymptom[],
+  references: GraphReference[],
   metrics: GraphMetrics,
   generatedFrom: string,
 ): Record<string, unknown> {
@@ -72,6 +75,7 @@ export function buildGraphJson(
     nodes,
     edges,
     symptoms,
+    references,
     metrics,
   };
 }

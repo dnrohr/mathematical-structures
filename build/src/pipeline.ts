@@ -18,19 +18,19 @@ export interface PipelineResult {
 }
 
 export function runPipeline(root: string): PipelineResult {
-  const { schema, concepts, edges, symptoms, issues } = parseTree(root);
+  const { schema, concepts, edges, symptoms, references, issues } = parseTree(root);
   if (!schema) return { issues };
 
   // Content validation and body rendering are independent; run both even
   // when either (or parse) reported errors, so authors see edge problems,
   // TeX problems, and wiki-link problems together in one --check run.
-  issues.push(...validateContent(schema, concepts, edges, symptoms));
+  issues.push(...validateContent(schema, concepts, edges, symptoms, references));
   const rendered = renderAllBodies(concepts);
   issues.push(...rendered.issues);
   if (countErrors(issues) > 0) return { issues, schema };
 
   // Graph assembly (and its orphan/candidate rules) only on a clean tree.
-  const graph = linkGraph(schema, concepts, edges, symptoms, rendered);
+  const graph = linkGraph(schema, concepts, edges, symptoms, references, rendered);
   issues.push(...graph.issues);
   return { issues, schema, graph };
 }

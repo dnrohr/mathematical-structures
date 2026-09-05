@@ -77,6 +77,13 @@ test('keyboard-only Problem-Solver journey: symptom card → ranked move → wor
   await tabToLink(page, 'Too many dimensional parameters');
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#\/s\/too-many-parameters$/);
+  // The URL updates at commit, but the hashchange dispatch (render + focus
+  // move) is a later task — wait for the symptom view like the other two
+  // journeys, or the Tabs below walk the stale landing DOM and find its
+  // identically-named inline move link just before the render steals focus.
+  await expect(
+    page.getByRole('heading', { name: 'Too many dimensional parameters' }),
+  ).toBeVisible();
 
   // Navigation moved focus into the new view, so Tab starts at its top.
   await tabToLink(page, 'Dimensional analysis, scaling, and similarity');

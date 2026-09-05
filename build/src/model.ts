@@ -55,6 +55,18 @@ export interface SymptomRecord {
   raw: Record<string, unknown>;
 }
 
+/** One graph/references.bib entry as parsed (values are display text). */
+export interface ReferenceRecord {
+  key: string;
+  /** BibTeX entry type, lowercased (article, book, techreport, ...). */
+  entryType: string;
+  /** Field name (lowercased) → value with braces dropped, whitespace collapsed. */
+  fields: Record<string, string>;
+  file: string;
+  /** 1-based line of the entry's `@`, for error messages. */
+  line: number;
+}
+
 // ---------------------------------------------------------------------------
 // Emit-stage shapes: the public graph.json contract (docs/graph-json.md).
 // ---------------------------------------------------------------------------
@@ -76,6 +88,8 @@ export interface NodeConnection {
   context?: string;
   status?: string;
   notes?: string;
+  /** Citation keys into graph.json `references` (added in 1.2.0). */
+  evidence: string[];
 }
 
 export interface GraphNode {
@@ -115,6 +129,16 @@ export interface GraphSymptom {
   moves: string[];
   mature_fields: string[];
   worked_example?: string;
+}
+
+/** One resolved literature reference in graph.json (added in 1.2.0). */
+export interface GraphReference {
+  /** Citation key: what edges' `evidence` lists point at. */
+  key: string;
+  /** BibTeX entry type, lowercased. */
+  entry_type: string;
+  /** The entry's fields as display text (author, title, year, ...). */
+  fields: Record<string, string>;
 }
 
 // ---------------------------------------------------------------------------

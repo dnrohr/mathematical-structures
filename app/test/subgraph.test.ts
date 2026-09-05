@@ -105,6 +105,7 @@ function makeAtlas(nodes: GraphNode[], edges: GraphEdge[]): Atlas {
     nodes,
     edges,
     symptoms: [],
+    references: [],
     // Subgraph computations never read metrics; an empty block satisfies the contract.
     metrics: {
       trusted: {

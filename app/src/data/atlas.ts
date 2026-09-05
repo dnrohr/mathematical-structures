@@ -14,6 +14,7 @@ import type {
   GraphJson,
   GraphMetrics,
   GraphNode,
+  GraphReference,
   GraphSymptom,
   NodeConnection,
   NodeMetrics,
@@ -68,12 +69,14 @@ export class Atlas {
   private readonly fieldsById: Map<string, FieldDef>;
   private readonly nodeStatusesById: Map<string, StatusDef>;
   private readonly gapStatusesById: Map<string, StatusDef>;
+  private readonly referencesByKey: Map<string, GraphReference>;
   private readonly mini: MiniSearch;
   private readonly boost: Record<string, number>;
 
   constructor(data: GraphJson, search: SearchArtifact) {
     this.data = data;
     this.bySlug = new Map(data.nodes.map((n) => [n.slug, n]));
+    this.referencesByKey = new Map(data.references.map((r) => [r.key, r]));
     this.nodeTypesById = new Map(data.schema.node_types.map((t) => [t.id, t]));
     this.edgeTypesById = new Map(data.schema.edge_types.map((t) => [t.id, t]));
     this.strengthsById = new Map(data.schema.strengths.map((s) => [s.id, s]));
@@ -113,6 +116,10 @@ export class Atlas {
   }
   nodeMetrics(slug: string): NodeMetrics | undefined {
     return this.data.metrics.nodes[slug];
+  }
+  /** Resolve an `evidence` citation key (validation guarantees it exists). */
+  reference(key: string): GraphReference | undefined {
+    return this.referencesByKey.get(key);
   }
   /**
    * The research-gap layer for the Open Questions view (spec §11): every
@@ -279,6 +286,8 @@ export function assembleAtlas(graphRaw: unknown, searchRaw: unknown): LoadResult
     return fail('corrupt', 'graph.json: missing schema block');
   if (typeof graph.metrics !== 'object' || graph.metrics === null)
     return fail('corrupt', 'graph.json: missing metrics block (needs data version ≥ 1.1)');
+  if (!Array.isArray(graph.references))
+    return fail('corrupt', 'graph.json: missing references list (needs data version ≥ 1.2)');
   if (typeof search.options !== 'object' || search.options === null || search.index === undefined)
     return fail('corrupt', 'search-index.json: missing options/index');
   try {

@@ -8,11 +8,13 @@ import {
   APPLICATION_NODE_TYPE,
   GAP_EDGE_TYPE,
   HEURISTIC_ANALOGY,
+  SLUG,
   SPECULATIVE,
   STUB_STATUS,
   type ConceptRecord,
   type EdgeRecord,
   type Issue,
+  type ReferenceRecord,
   type SymptomRecord,
 } from './model.js';
 import type { AtlasSchema } from './schema.js';
@@ -42,6 +44,25 @@ const KNOWN_EDGE_KEYS = new Set([
 ]);
 
 const KNOWN_SYMPTOM_KEYS = new Set(['id', 'symptom', 'moves', 'mature_fields', 'worked_example']);
+
+/** The concrete BibTeX entry types graph/references.bib may use. */
+const BIB_ENTRY_TYPES = new Set([
+  'article',
+  'book',
+  'booklet',
+  'incollection',
+  'inproceedings',
+  'manual',
+  'mastersthesis',
+  'misc',
+  'phdthesis',
+  'proceedings',
+  'techreport',
+  'unpublished',
+]);
+
+/** A citation must at least be findable: who-free, but never title/year-free. */
+const REQUIRED_REFERENCE_FIELDS = ['title', 'year'] as const;
 
 export interface Vocab {
   nodeTypes: Set<string>;
@@ -197,6 +218,8 @@ function validateEdge(
   r: Rules,
   v: Vocab,
   slugs: Set<string>,
+  refKeys: Set<string>,
+  citedKeys: Set<string>,
   e: EdgeRecord,
   seen: Set<string>,
 ): void {
@@ -294,8 +317,33 @@ function validateEdge(
     }
   }
 
+  // Citations (ROADMAP M8): every evidence entry must resolve to a
+  // graph/references.bib key — a citation that points nowhere is worse
+  // than none, so it fails the build rather than rendering broken.
   if (raw.evidence !== undefined && !Array.isArray(raw.evidence)) {
-    r.add('error', 'edge/evidence-shape', where, '"evidence" must be a list');
+    r.add('error', 'edge/evidence-shape', where, '"evidence" must be a list of citation keys');
+  } else if (Array.isArray(raw.evidence)) {
+    const seenKeys = new Set<string>();
+    raw.evidence.forEach((entry, i) => {
+      if (!isNonEmptyString(entry)) {
+        r.add('error', 'edge/evidence-shape', where, `evidence[${i}] must be a citation key`);
+        return;
+      }
+      if (seenKeys.has(entry)) {
+        r.add('error', 'edge/duplicate-evidence', where, `evidence cites "${entry}" twice`);
+        return;
+      }
+      seenKeys.add(entry);
+      citedKeys.add(entry);
+      if (!refKeys.has(entry)) {
+        r.add(
+          'error',
+          'edge/unknown-evidence',
+          where,
+          `evidence key "${entry}" has no entry in graph/references.bib`,
+        );
+      }
+    });
   }
   for (const key of ['context', 'notes'] as const) {
     if (raw[key] !== undefined && !isNonEmptyString(raw[key])) {
@@ -379,6 +427,49 @@ function validateSymptom(
 }
 
 // ---------------------------------------------------------------------------
+// Reference rules (ROADMAP M8). Syntax lives in the bib reader; here each
+// parsed entry must be well-formed enough to cite: a stable key, a known
+// entry type, and at least a title and year to find the work by.
+// ---------------------------------------------------------------------------
+
+function validateReferences(r: Rules, references: ReferenceRecord[]): void {
+  const seen = new Set<string>();
+  for (const ref of references) {
+    const where = `${ref.file}:${String(ref.line)}`;
+    if (!SLUG.test(ref.key)) {
+      r.add(
+        'error',
+        'reference/key-format',
+        where,
+        `citation key "${ref.key}" must be lowercase-kebab (like "del-vecchio-murray-2015")`,
+      );
+    }
+    if (seen.has(ref.key)) {
+      r.add('error', 'reference/duplicate-key', where, `citation key "${ref.key}" appears twice`);
+    }
+    seen.add(ref.key);
+    if (!BIB_ENTRY_TYPES.has(ref.entryType)) {
+      r.add(
+        'error',
+        'reference/unknown-type',
+        where,
+        `"@${ref.entryType}" is not a supported BibTeX entry type`,
+      );
+    }
+    for (const field of REQUIRED_REFERENCE_FIELDS) {
+      if (!isNonEmptyString(ref.fields[field])) {
+        r.add(
+          'error',
+          'reference/required-field',
+          where,
+          `entry "${ref.key}" is missing "${field}"`,
+        );
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Application rules (spec §8.8; ROADMAP M7)
 // ---------------------------------------------------------------------------
 
@@ -437,6 +528,7 @@ export function validateContent(
   concepts: ConceptRecord[],
   edges: EdgeRecord[],
   symptoms: SymptomRecord[],
+  references: ReferenceRecord[] = [],
 ): Issue[] {
   const r = new Rules();
   const v = vocabOf(schema);
@@ -445,8 +537,25 @@ export function validateContent(
 
   for (const c of concepts) validateConcept(r, schema, v, c);
 
+  validateReferences(r, references);
+  const refKeys = new Set(references.map((ref) => ref.key));
+
   const seenEdges = new Set<string>();
-  for (const e of edges) validateEdge(r, v, slugs, e, seenEdges);
+  const citedKeys = new Set<string>();
+  for (const e of edges) validateEdge(r, v, slugs, refKeys, citedKeys, e, seenEdges);
+
+  // A reference nothing cites is a curation hint, like a candidate edge:
+  // either an edge deserves it, or the entry can go.
+  for (const ref of references) {
+    if (!citedKeys.has(ref.key)) {
+      r.add(
+        'info',
+        'reference/unused',
+        `${ref.file}:${String(ref.line)}`,
+        `"${ref.key}" is cited by no edge`,
+      );
+    }
+  }
 
   validateApplications(r, concepts, edges);
 

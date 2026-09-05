@@ -28,7 +28,7 @@ const WORKFLOW_STEPS: (string | HTMLElement)[][] = [
   ['If rare, identify which assumptions fail in the target system (the ASSUMES edges).'],
   ['Ask whether a generalized version of the method survives those failures.'],
   [
-    'Record the verdict as data: update the edge status, or convert it to MIGRATED-TO / FIELD-DIALECT-OF.',
+    'Record the verdict as data: update the edge status, or convert it to MIGRATED-TO / FIELD-DIALECT-OF — and cite what the check found as `evidence` keys into graph/references.bib, so the literature trail renders here with the claim.',
   ],
 ];
 

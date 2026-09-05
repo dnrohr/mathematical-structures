@@ -1,6 +1,6 @@
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
-import type { ConceptRecord, EdgeRecord, SymptomRecord } from '../src/model.js';
+import type { ConceptRecord, EdgeRecord, ReferenceRecord, SymptomRecord } from '../src/model.js';
 import { loadSchema, type AtlasSchema } from '../src/schema.js';
 import { validateContent } from '../src/validate.js';
 import { cleanupTrees, FIXTURE_VALID } from './helpers.js';
@@ -32,12 +32,26 @@ function symptom(raw: Record<string, unknown>, index = 0): SymptomRecord {
 
 const NODES_AB = [concept('a', GOOD_NODE), concept('b', GOOD_NODE)];
 
+function reference(key: string, overrides: Partial<ReferenceRecord> = {}): ReferenceRecord {
+  return {
+    key,
+    entryType: 'book',
+    fields: { title: 'A Title', year: '1999' },
+    file: 'graph/references.bib',
+    line: 1,
+    ...overrides,
+  };
+}
+
 function rulesFor(
   concepts: ConceptRecord[],
   edges: EdgeRecord[] = [],
   symptoms: SymptomRecord[] = [],
+  references: ReferenceRecord[] = [],
 ): string[] {
-  return validateContent(schema, concepts, edges, symptoms).map((i) => `${i.severity}:${i.rule}`);
+  return validateContent(schema, concepts, edges, symptoms, references).map(
+    (i) => `${i.severity}:${i.rule}`,
+  );
 }
 
 describe('concept rules', () => {
@@ -182,11 +196,60 @@ describe('edge rules', () => {
     expect(rulesFor(NODES_AB, [edge({ ...GOOD_EDGE, evidence: 'doi' })])).toContain(
       'error:edge/evidence-shape',
     );
+    expect(rulesFor(NODES_AB, [edge({ ...GOOD_EDGE, evidence: [7] })])).toContain(
+      'error:edge/evidence-shape',
+    );
     expect(rulesFor(NODES_AB, [edge({ ...GOOD_EDGE, notes: 7 })])).toContain(
       'error:edge/text-shape',
     );
     expect(rulesFor(NODES_AB, [edge({ ...GOOD_EDGE, vibes: 'high' })])).toContain(
       'warn:content/unknown-key',
+    );
+  });
+});
+
+describe('evidence and reference rules (ROADMAP M8)', () => {
+  const cite = (keys: string[]): EdgeRecord => edge({ ...GOOD_EDGE, evidence: keys });
+
+  it('accepts evidence that resolves, exactly once per key', () => {
+    expect(rulesFor(NODES_AB, [cite(['doob-1953'])], [], [reference('doob-1953')])).toEqual([]);
+  });
+
+  it('edge/unknown-evidence: a key with no references.bib entry fails the build', () => {
+    expect(rulesFor(NODES_AB, [cite(['ghost-2001'])])).toContain('error:edge/unknown-evidence');
+    expect(rulesFor(NODES_AB, [cite(['ghost-2001'])], [], [reference('doob-1953')])).toContain(
+      'error:edge/unknown-evidence',
+    );
+  });
+
+  it('edge/duplicate-evidence: the same key cited twice on one edge', () => {
+    expect(
+      rulesFor(NODES_AB, [cite(['doob-1953', 'doob-1953'])], [], [reference('doob-1953')]),
+    ).toContain('error:edge/duplicate-evidence');
+  });
+
+  it('reference/unused: an entry cited by no edge is an info-level curation hint', () => {
+    expect(rulesFor(NODES_AB, [edge(GOOD_EDGE)], [], [reference('doob-1953')])).toEqual([
+      'info:reference/unused',
+    ]);
+  });
+
+  it('reference/key-format and reference/duplicate-key', () => {
+    expect(rulesFor([], [], [], [reference('Doob1953')])).toContain('error:reference/key-format');
+    expect(rulesFor([], [], [], [reference('doob-1953'), reference('doob-1953')])).toContain(
+      'error:reference/duplicate-key',
+    );
+  });
+
+  it('reference/unknown-type and reference/required-field (title, year)', () => {
+    expect(rulesFor([], [], [], [reference('k', { entryType: 'website' })])).toContain(
+      'error:reference/unknown-type',
+    );
+    expect(rulesFor([], [], [], [reference('k', { fields: { title: 'T' } })])).toContain(
+      'error:reference/required-field',
+    );
+    expect(rulesFor([], [], [], [reference('k', { fields: { year: '1999' } })])).toContain(
+      'error:reference/required-field',
     );
   });
 });

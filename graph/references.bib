@@ -1,0 +1,288 @@
+% graph/references.bib — the literature behind the map's checkable claims.
+%
+% Edges cite entries here by key from their `evidence` lists (ROADMAP M8;
+% SPECIFICATION.md §8.2). The validator is the gate, as always: an evidence
+% key with no entry fails the build, an entry cited by no edge is an
+% info-level curation hint, and every entry needs at least a title and year.
+%
+% House rules (enforced; see CONTRIBUTING.md):
+%   - keys are lowercase-kebab, author(s)-year: two authors "kak-slaney-1988",
+%     three or more "west-etal-1997";
+%   - a strict BibTeX subset: concrete entries only (no @string/@preamble),
+%     values {braced}, "quoted", or bare numbers — no macros, no # concatenation;
+%   - plain UTF-8 text, not TeX: write ö, é, and en-dashes (–) directly;
+%   - authors in "Last, First and Last, First" form (the app reformats);
+%   - cite a DOI or URL only when checked; a findable title/venue/year
+%     beats a guessed link.
+%
+% Entries are grouped by the cluster that first demanded them; order is
+% cosmetic (the build sorts by key).
+
+% ---------------------------------------------------------------------------
+% Computational imaging (M7 batch)
+% ---------------------------------------------------------------------------
+
+@book{kak-slaney-1988,
+  author    = {Kak, Avinash C. and Slaney, Malcolm},
+  title     = {Principles of Computerized Tomographic Imaging},
+  publisher = {IEEE Press},
+  year      = {1988},
+  note      = {Reissued as SIAM Classics in Applied Mathematics 33, 2001},
+  url       = {https://www.slaney.org/pct/},
+}
+
+@book{natterer-2001,
+  author    = {Natterer, Frank},
+  title     = {The Mathematics of Computerized Tomography},
+  publisher = {SIAM, Classics in Applied Mathematics 32},
+  year      = {2001},
+  note      = {First published by Wiley/Teubner, 1986},
+}
+
+@book{liang-lauterbur-2000,
+  author    = {Liang, Zhi-Pei and Lauterbur, Paul C.},
+  title     = {Principles of Magnetic Resonance Imaging: A Signal Processing
+               Perspective},
+  publisher = {IEEE Press},
+  year      = {2000},
+}
+
+@book{cumming-wong-2005,
+  author    = {Cumming, Ian G. and Wong, Frank H.},
+  title     = {Digital Processing of Synthetic Aperture Radar Data:
+               Algorithms and Implementation},
+  publisher = {Artech House},
+  year      = {2005},
+}
+
+@book{claerbout-1985,
+  author    = {Claerbout, Jon F.},
+  title     = {Imaging the Earth's Interior},
+  publisher = {Blackwell Scientific Publications},
+  year      = {1985},
+}
+
+@article{gabor-1946,
+  author  = {Gabor, Dennis},
+  title   = {Theory of Communication},
+  journal = {Journal of the Institution of Electrical Engineers, Part III},
+  volume  = {93},
+  pages   = {429–457},
+  year    = {1946},
+}
+
+% ---------------------------------------------------------------------------
+% PageRank and spectral ranking (M7 batch)
+% ---------------------------------------------------------------------------
+
+@article{brin-page-1998,
+  author  = {Brin, Sergey and Page, Lawrence},
+  title   = {The Anatomy of a Large-Scale Hypertextual Web Search Engine},
+  journal = {Computer Networks and ISDN Systems},
+  volume  = {30},
+  number  = {1–7},
+  pages   = {107–117},
+  year    = {1998},
+  doi     = {10.1016/S0169-7552(98)00110-X},
+}
+
+@book{langville-meyer-2006,
+  author    = {Langville, Amy N. and Meyer, Carl D.},
+  title     = {Google's PageRank and Beyond: The Science of Search Engine
+               Rankings},
+  publisher = {Princeton University Press},
+  year      = {2006},
+}
+
+@techreport{haveliwala-kamvar-2003,
+  author      = {Haveliwala, Taher H. and Kamvar, Sepandar D.},
+  title       = {The Second Eigenvalue of the Google Matrix},
+  institution = {Stanford University},
+  year        = {2003},
+}
+
+@inproceedings{andersen-etal-2006,
+  author    = {Andersen, Reid and Chung, Fan and Lang, Kevin},
+  title     = {Local Graph Partitioning using PageRank Vectors},
+  booktitle = {Proceedings of the 47th Annual IEEE Symposium on Foundations
+               of Computer Science (FOCS)},
+  pages     = {475–486},
+  year      = {2006},
+}
+
+@book{chung-1997,
+  author    = {Chung, Fan R. K.},
+  title     = {Spectral Graph Theory},
+  publisher = {American Mathematical Society, CBMS Regional Conference
+               Series in Mathematics 92},
+  year      = {1997},
+}
+
+% ---------------------------------------------------------------------------
+% Vascular branching and allometry (M7 batch)
+% ---------------------------------------------------------------------------
+
+@article{murray-1926,
+  author  = {Murray, Cecil D.},
+  title   = {The Physiological Principle of Minimum Work: I. The Vascular
+             System and the Cost of Blood Volume},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {12},
+  number  = {3},
+  pages   = {207–214},
+  year    = {1926},
+  doi     = {10.1073/pnas.12.3.207},
+}
+
+@article{kleiber-1932,
+  author  = {Kleiber, Max},
+  title   = {Body Size and Metabolism},
+  journal = {Hilgardia},
+  volume  = {6},
+  number  = {11},
+  pages   = {315–353},
+  year    = {1932},
+}
+
+@article{west-etal-1997,
+  author  = {West, Geoffrey B. and Brown, James H. and Enquist, Brian J.},
+  title   = {A General Model for the Origin of Allometric Scaling Laws in
+             Biology},
+  journal = {Science},
+  volume  = {276},
+  number  = {5309},
+  pages   = {122–126},
+  year    = {1997},
+  doi     = {10.1126/science.276.5309.122},
+}
+
+@book{fung-1997,
+  author    = {Fung, Yuan-Cheng},
+  title     = {Biomechanics: Circulation},
+  publisher = {Springer},
+  edition   = {2nd},
+  year      = {1997},
+}
+
+% ---------------------------------------------------------------------------
+% Resource allocation and duality-as-economics (M7 batch)
+% ---------------------------------------------------------------------------
+
+@book{boyd-vandenberghe-2004,
+  author    = {Boyd, Stephen and Vandenberghe, Lieven},
+  title     = {Convex Optimization},
+  publisher = {Cambridge University Press},
+  year      = {2004},
+  url       = {https://web.stanford.edu/~boyd/cvxbook/},
+}
+
+@book{dorfman-etal-1958,
+  author    = {Dorfman, Robert and Samuelson, Paul A. and Solow, Robert M.},
+  title     = {Linear Programming and Economic Analysis},
+  publisher = {McGraw-Hill},
+  year      = {1958},
+}
+
+@book{mas-colell-etal-1995,
+  author    = {Mas-Colell, Andreu and Whinston, Michael D. and Green, Jerry R.},
+  title     = {Microeconomic Theory},
+  publisher = {Oxford University Press},
+  year      = {1995},
+}
+
+% ---------------------------------------------------------------------------
+% Control-into-biology migrations (§9; includes the M5 dogfood trail for
+% stability-margins → biological-regulation)
+% ---------------------------------------------------------------------------
+
+@book{del-vecchio-murray-2015,
+  author    = {Del Vecchio, Domitilla and Murray, Richard M.},
+  title     = {Biomolecular Feedback Systems},
+  publisher = {Princeton University Press},
+  year      = {2015},
+}
+
+@book{cosentino-bates-2011,
+  author    = {Cosentino, Carlo and Bates, Declan},
+  title     = {Feedback Control in Systems Biology},
+  publisher = {CRC Press},
+  year      = {2011},
+}
+
+@article{yi-etal-2000,
+  author  = {Yi, Tau-Mu and Huang, Yun and Simon, Melvin I. and Doyle, John},
+  title   = {Robust Perfect Adaptation in Bacterial Chemotaxis through
+             Integral Feedback Control},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {97},
+  number  = {9},
+  pages   = {4649–4653},
+  year    = {2000},
+  doi     = {10.1073/pnas.97.9.4649},
+}
+
+@article{el-samad-etal-2005,
+  author  = {El-Samad, Hana and Kurata, Hiroyuki and Doyle, John C. and
+             Gross, Carol A. and Khammash, Mustafa},
+  title   = {Surviving Heat Shock: Control Strategies for Robustness and
+             Performance},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {102},
+  number  = {8},
+  pages   = {2736–2741},
+  year    = {2005},
+}
+
+@article{chandra-etal-2011,
+  author  = {Chandra, Fiona A. and Buzi, Gentian and Doyle, John C.},
+  title   = {Glycolytic Oscillations and Limits on Robust Efficiency},
+  journal = {Science},
+  volume  = {333},
+  number  = {6039},
+  pages   = {187–192},
+  year    = {2011},
+  doi     = {10.1126/science.1200705},
+}
+
+@article{briat-etal-2016,
+  author  = {Briat, Corentin and Gupta, Ankit and Khammash, Mustafa},
+  title   = {Antithetic Integral Feedback Ensures Robust Perfect Adaptation
+             in Noisy Biomolecular Networks},
+  journal = {Cell Systems},
+  volume  = {2},
+  number  = {1},
+  pages   = {15–26},
+  year    = {2016},
+  doi     = {10.1016/j.cels.2016.01.004},
+}
+
+@article{arcak-sontag-2006,
+  author  = {Arcak, Murat and Sontag, Eduardo D.},
+  title   = {Diagonal Stability of a Class of Cyclic Systems and Its
+             Connection with the Secant Criterion},
+  journal = {Automatica},
+  volume  = {42},
+  number  = {9},
+  pages   = {1531–1537},
+  year    = {2006},
+}
+
+@article{barabasi-oltvai-2004,
+  author  = {Barabási, Albert-László and Oltvai, Zoltán N.},
+  title   = {Network Biology: Understanding the Cell's Functional
+             Organization},
+  journal = {Nature Reviews Genetics},
+  volume  = {5},
+  number  = {2},
+  pages   = {101–113},
+  year    = {2004},
+  doi     = {10.1038/nrg1272},
+}
+
+@book{alon-2006,
+  author    = {Alon, Uri},
+  title     = {An Introduction to Systems Biology: Design Principles of
+               Biological Circuits},
+  publisher = {Chapman & Hall/CRC},
+  year      = {2006},
+}
