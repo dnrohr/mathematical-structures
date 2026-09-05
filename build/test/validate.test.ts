@@ -1,6 +1,12 @@
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
-import type { ConceptRecord, EdgeRecord, ReferenceRecord, SymptomRecord } from '../src/model.js';
+import type {
+  ConceptRecord,
+  EdgeRecord,
+  ReferenceRecord,
+  SymptomRecord,
+  WalkRecord,
+} from '../src/model.js';
 import { loadSchema, type AtlasSchema } from '../src/schema.js';
 import { validateContent } from '../src/validate.js';
 import { cleanupTrees, FIXTURE_VALID } from './helpers.js';
@@ -48,11 +54,23 @@ function rulesFor(
   edges: EdgeRecord[] = [],
   symptoms: SymptomRecord[] = [],
   references: ReferenceRecord[] = [],
+  walks: WalkRecord[] = [],
 ): string[] {
-  return validateContent(schema, concepts, edges, symptoms, references).map(
+  return validateContent(schema, concepts, edges, symptoms, references, walks).map(
     (i) => `${i.severity}:${i.rule}`,
   );
 }
+
+function walk(raw: Record<string, unknown>, id = 'tour'): WalkRecord {
+  return { id, file: `paths/${id}.yaml`, raw };
+}
+
+/** Minimal valid walk over a↔b, which GOOD_EDGE connects. */
+const GOOD_WALK = {
+  title: 'A tour',
+  summary: 'x',
+  steps: [{ slug: 'a' }, { slug: 'b' }],
+};
 
 describe('concept rules', () => {
   it('accepts a well-formed node', () => {
@@ -353,5 +371,86 @@ describe('symptom rules', () => {
     expect(
       rulesFor([...NODES_AB, stub], [], [symptom({ ...GOOD_SYMPTOM, moves: ['c'] })]),
     ).toContain('warn:symptom/stub-move');
+  });
+});
+
+describe('walk rules (spec §8.3; ROADMAP M9)', () => {
+  // Non-stub endpoints so the stub warn stays out of the baseline cases.
+  const ESTABLISHED = {
+    ...GOOD_NODE,
+    status: 'established',
+    fields: ['control'],
+    canonical_examples: ['x'],
+  };
+  const WALK_NODES = [
+    concept('a', ESTABLISHED),
+    concept('b', ESTABLISHED),
+    concept('c', ESTABLISHED),
+  ];
+  const rules = (w: WalkRecord, edges: EdgeRecord[] = [edge(GOOD_EDGE)]): string[] =>
+    rulesFor(WALK_NODES, edges, [], [], [w]);
+
+  it('accepts a well-formed walk whose hop rides a typed edge', () => {
+    expect(rules(walk(GOOD_WALK))).toEqual([]);
+  });
+
+  it('walk/required-field: title and summary', () => {
+    expect(rules(walk({ ...GOOD_WALK, title: ' ' }))).toContain('error:walk/required-field');
+    expect(rules(walk({ ...GOOD_WALK, summary: undefined }))).toContain(
+      'error:walk/required-field',
+    );
+  });
+
+  it('walk/steps-shape: list of {slug, note?} mappings, notes non-empty', () => {
+    expect(rules(walk({ ...GOOD_WALK, steps: 'a,b' }))).toContain('error:walk/steps-shape');
+    expect(rules(walk({ ...GOOD_WALK, steps: ['a', 'b'] }))).toContain('error:walk/steps-shape');
+    expect(rules(walk({ ...GOOD_WALK, steps: [{ note: 'no slug' }, { slug: 'b' }] }))).toContain(
+      'error:walk/steps-shape',
+    );
+    expect(
+      rules(walk({ ...GOOD_WALK, steps: [{ slug: 'a', note: '' }, { slug: 'b' }] })),
+    ).toContain('error:walk/steps-shape');
+  });
+
+  it('walk/unknown-step: a step slug that is not a concept fails the build (the M9 exit criterion)', () => {
+    expect(rules(walk({ ...GOOD_WALK, steps: [{ slug: 'a' }, { slug: 'ghost' }] }))).toContain(
+      'error:walk/unknown-step',
+    );
+  });
+
+  it('walk/too-short and walk/duplicate-step', () => {
+    expect(rules(walk({ ...GOOD_WALK, steps: [{ slug: 'a' }] }))).toContain('error:walk/too-short');
+    expect(
+      rules(walk({ ...GOOD_WALK, steps: [{ slug: 'a' }, { slug: 'b' }, { slug: 'a' }] })),
+    ).toContain('error:walk/duplicate-step');
+  });
+
+  it('walk/unbridged-jump: an unedged hop needs a bridging note; a note or an edge satisfies it', () => {
+    // a–b is edged; b–c is not: the c step must say why the walk jumps.
+    const jump = { ...GOOD_WALK, steps: [{ slug: 'a' }, { slug: 'b' }, { slug: 'c' }] };
+    expect(rules(walk(jump))).toContain('error:walk/unbridged-jump');
+    const bridged = {
+      ...GOOD_WALK,
+      steps: [{ slug: 'a' }, { slug: 'b' }, { slug: 'c', note: 'the walk jumps because…' }],
+    };
+    expect(rules(walk(bridged))).toEqual([]);
+    // A reversed edge bridges too: any typed edge connects both directions.
+    const reversed = edge({ from: 'c', to: 'b', type: 'IS-A', strength: 'theorem' }, 1);
+    expect(rules(walk(jump), [edge(GOOD_EDGE), reversed])).toEqual([]);
+  });
+
+  it('walk/stub-step warn and unknown keys', () => {
+    const withStub = [...WALK_NODES.slice(0, 2), concept('c', GOOD_NODE)];
+    const stubWalk = walk({
+      ...GOOD_WALK,
+      steps: [{ slug: 'a' }, { slug: 'b' }, { slug: 'c', note: 'jump' }],
+    });
+    expect(rulesFor(withStub, [edge(GOOD_EDGE)], [], [], [stubWalk])).toContain(
+      'warn:walk/stub-step',
+    );
+    expect(rules(walk({ ...GOOD_WALK, spine: 'x' }))).toContain('warn:content/unknown-key');
+    expect(
+      rules(walk({ ...GOOD_WALK, steps: [{ slug: 'a', why: 'x' }, { slug: 'b' }] })),
+    ).toContain('warn:content/unknown-key');
   });
 });

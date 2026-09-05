@@ -16,6 +16,7 @@ import type {
   GraphNode,
   GraphReference,
   GraphSymptom,
+  GraphWalk,
   NodeConnection,
   NodeMetrics,
   NodeType,
@@ -60,9 +61,17 @@ export interface AliasHit {
   alias?: GraphAlias;
 }
 
+/** One concept's membership in a walk: the walk and the 0-based step index. */
+export interface WalkPosition {
+  walk: GraphWalk;
+  index: number;
+}
+
 export class Atlas {
   readonly data: GraphJson;
   private readonly bySlug: Map<string, GraphNode>;
+  private readonly walksById: Map<string, GraphWalk>;
+  private readonly edgesByPair: Map<string, GraphEdge[]>;
   private readonly nodeTypesById: Map<string, NodeType>;
   private readonly edgeTypesById: Map<string, EdgeType>;
   private readonly strengthsById: Map<string, Strength>;
@@ -77,6 +86,14 @@ export class Atlas {
     this.data = data;
     this.bySlug = new Map(data.nodes.map((n) => [n.slug, n]));
     this.referencesByKey = new Map(data.references.map((r) => [r.key, r]));
+    this.walksById = new Map(data.walks.map((w) => [w.id, w]));
+    this.edgesByPair = new Map();
+    for (const edge of data.edges) {
+      const key = [edge.from, edge.to].sort().join('|');
+      const list = this.edgesByPair.get(key);
+      if (list) list.push(edge);
+      else this.edgesByPair.set(key, [edge]);
+    }
     this.nodeTypesById = new Map(data.schema.node_types.map((t) => [t.id, t]));
     this.edgeTypesById = new Map(data.schema.edge_types.map((t) => [t.id, t]));
     this.strengthsById = new Map(data.schema.strengths.map((s) => [s.id, s]));
@@ -142,6 +159,30 @@ export class Atlas {
   }
   symptomsUsing(slug: string): GraphSymptom[] {
     return this.data.symptoms.filter((s) => s.moves.includes(slug));
+  }
+
+  get walks(): GraphWalk[] {
+    return this.data.walks;
+  }
+  walk(id: string): GraphWalk | undefined {
+    return this.walksById.get(id);
+  }
+  /** Every walk that steps on a concept — the "part of the walks" backlinks. */
+  walksThrough(slug: string): WalkPosition[] {
+    const positions: WalkPosition[] = [];
+    for (const walk of this.data.walks) {
+      const index = walk.steps.findIndex((step) => step.slug === slug);
+      if (index >= 0) positions.push({ walk, index });
+    }
+    return positions;
+  }
+  /**
+   * The typed edges between two concepts, either direction, in emitted
+   * order — how a walk hop finds the claims it rides on (empty for the
+   * bridged jumps, whose note the validator required instead).
+   */
+  edgesBetween(a: string, b: string): GraphEdge[] {
+    return this.edgesByPair.get([a, b].sort().join('|')) ?? [];
   }
 
   /**
@@ -288,6 +329,8 @@ export function assembleAtlas(graphRaw: unknown, searchRaw: unknown): LoadResult
     return fail('corrupt', 'graph.json: missing metrics block (needs data version ≥ 1.1)');
   if (!Array.isArray(graph.references))
     return fail('corrupt', 'graph.json: missing references list (needs data version ≥ 1.2)');
+  if (!Array.isArray(graph.walks))
+    return fail('corrupt', 'graph.json: missing walks list (needs data version ≥ 1.3)');
   if (typeof search.options !== 'object' || search.options === null || search.index === undefined)
     return fail('corrupt', 'search-index.json: missing options/index');
   try {

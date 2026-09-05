@@ -1,0 +1,42 @@
+# From random walk to renormalization (spec §8.3's second example walk;
+# ROADMAP M9). Shape: ARCHITECTURE.md §3.7. One deliberate jump — stepping
+# back from the diffusive limit to the aggregation principle behind it —
+# carries the bridging note the validator requires; the tour ends, in this
+# atlas's house style, on what renormalization is NOT (notebook §14).
+title: From random walk to renormalization
+summary: >
+  Microscopic coin flips coarse-grained into a PDE, the aggregation
+  principle behind that limit, and the scale-change machinery the limit
+  miniaturizes — ending on the false friend: why renormalization is
+  related to, but not the same as, dimensional analysis.
+steps:
+  - slug: markov-chains
+    note: >-
+      Start microscopic: the symmetric random walk, the canonical
+      memoryless dynamics, where the only real question is what survives
+      many steps.
+  - slug: diffusion
+    note: >-
+      Rescale: many small steps under diffusive scaling converge to the
+      diffusion equation, with Brownian motion as the limit process. The
+      fine detail is gone; a smooth PDE remains.
+  - slug: large-number-limits
+    note: >-
+      No typed edge carries this hop — the walk steps back to the
+      principle behind the limit it just took. Diffusive scaling is
+      aggregation at work: the same mechanism the law of large numbers
+      and the central limit theorem isolate in its purest form.
+  - slug: renormalization
+    note: >-
+      Aggregation as the simplest coarse-graining: the CLT forgets
+      everything about the summands except mean and variance —
+      universality in miniature. Renormalization generalizes the move:
+      change the scale of representation, and ask which effective
+      descriptions persist.
+  - slug: dimensional-analysis
+    note: >-
+      The closing caveat, straight from the notebook (§14): related
+      through invariance but NOT identical. A unit change alters the
+      description without changing the physical scale; renormalization
+      changes the scale at which the system is represented — anomalous
+      dimensions mark the difference.

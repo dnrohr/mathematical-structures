@@ -1,0 +1,52 @@
+# The eigenvalue tour (spec §8.3's own example walk; ROADMAP M9).
+# Shape: ARCHITECTURE.md §3.7. Hops ride typed edges from graph/edges.yaml;
+# the one deliberate jump (into the probability dialect) carries the
+# bridging note the validator requires.
+title: The eigenvalue tour
+summary: >
+  One question — which patterns does an operator preserve, except for a
+  change of scale? — walked through its dialects: normal modes in
+  mechanics, relaxation and mixing in probability, spectra of networks,
+  decay modes of diffusion, Fourier modes — and, at the end, the symmetry
+  principle that explains why the same modes keep being selected.
+steps:
+  - slug: eigenvalues
+    note: >-
+      The hub itself. One question — which directions survive an operator
+      unchanged except for scale? — and every later stop is this question
+      in a field's costume.
+  - slug: harmonic-oscillator
+    note: >-
+      The mechanics dialect: coupled oscillators decouple into normal
+      modes via the generalized eigenproblem, each mode an independent
+      oscillator with its own frequency.
+  - slug: markov-chains
+    note: >-
+      No single edge makes this hop — the walk jumps across the hub it
+      just left. Notebook §34's first translation chain runs normal modes
+      ↔ relaxation modes through eigenvalues: the same spectral question
+      asked of a transition matrix, where the gap below eigenvalue 1 sets
+      how fast memory of the initial state fades.
+  - slug: graph-laplacian
+    note: >-
+      Put the walk on a network: its generator is the (normalized)
+      Laplacian, so mixing becomes the Laplacian's spectral story — the
+      zero mode counts components, the Fiedler pair exposes the cheap
+      cuts.
+  - slug: diffusion
+    note: >-
+      The same spectrum run in continuous time: Laplacian eigenvalues set
+      the rates of graph diffusion, consensus, and synchronization, with
+      the spectral gap again in charge of the slowest mode.
+  - slug: fourier-analysis
+    note: >-
+      On translation-invariant domains the diffusion modes are complex
+      exponentials: each Fourier mode decays independently at a rate set
+      by its squared frequency — spectral decomposition for
+      translation-invariant operators.
+  - slug: symmetry
+    note: >-
+      Why the same modes keep appearing: symmetry selects the
+      representation. Translation invariance picks the Fourier basis, and
+      operators commuting with a symmetry share eigenspaces with it — the
+      tour's recurring coincidence, explained rather than observed.

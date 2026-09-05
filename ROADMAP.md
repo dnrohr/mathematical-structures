@@ -582,29 +582,51 @@ step-through UI; M7's applications are the natural spines.
 
 **Exit criteria**
 
-- [ ] `paths/*.yaml` is a compiled, validated content type: a step slug that
+- [x] `paths/*.yaml` is a compiled, validated content type: a step slug that
       doesn't exist fails the build; consecutive steps with no typed edge
-      between them must carry a bridging note saying why the walk jumps.
-- [ ] ≥ 2 walks shipped — one spined on an M7 application ("the SAR tour"), one
-      on a structure ("the eigenvalue tour", spec §8.3's own example) — each
-      reachable from a walks index and from every member concept's page.
-- [ ] Walk position is shareable by URL and round-trips, Playwright-proven like
-      the M4 view states.
+      between them must carry a bridging note saying why the walk jumps —
+      `walk/unknown-step` and `walk/unbridged-jump` are errors with pipeline
+      tests (the M9 CI criteria, like M1's unknown-endpoint test), plus
+      shape/too-short/duplicate-step errors and a stub-step warn, each with
+      failing fixtures per §4.2 practice. Both example walks exercise the
+      bridge path for real: their deliberate jumps carry the required notes,
+      rendered as flagged jumps in the UI.
+- [x] ≥ 2 walks shipped — landed at 3 (`sar-tour`, spined on M7's
+      `computational-imaging`; `eigenvalue-tour`;
+      `random-walk-to-renormalization`), each reachable from `#/walks` (site
+      nav) and from every member concept's "Appears in walks" section, which
+      links straight to the concept's step (Playwright-proven in
+      `m9-walks.spec.ts`).
+- [x] Walk position is shareable by URL and round-trips
+      (`#/walk/<id>?step=<n>`, 1-based, clamped): URL → view, next/prev →
+      URL, reload restores the step — Playwright-proven like the M4 view
+      states.
 
 **Tasks**
 
-- [ ] [data] Path file shape (`id`, `title`, `summary`, `steps: [{slug, note}]`)
-      recorded in ARCHITECTURE.md §3 alongside the other content types before
-      code exists — the reserved `paths/` directory finally gets its contract.
-- [ ] [build] Stage-1 reader + the validation rules above; walks emitted into
-      `graph.json` (additive minor, documented).
-- [ ] [app] Walk view (`#/walk/<id>`: current step, prev/next, position in the
-      URL) reusing the path graph preset for the chain; walks index (`#/walks`);
-      "appears in walks" backlinks on concept pages.
-- [ ] [curation] Author 2–3 walks: the SAR tour, the eigenvalue tour, "from
+- [x] [data] Path file shape (`title`, `summary`, `steps: [{slug, note}]`,
+      with the id as the filename — the concept-slug discipline) recorded in
+      ARCHITECTURE.md §3.7 alongside the other content types before code
+      existed — the reserved `paths/` directory finally has its contract.
+- [x] [build] Stage-1 reader + the validation rules above; walks emitted into
+      `graph.json` — 1.3.0 (additive minor), documented in
+      `docs/graph-json.md`; connecting edges deliberately not embedded (the
+      app joins steps against `edges`, so a walk can never contradict the
+      edge list).
+- [x] [app] Walk view (`#/walk/<id>`: current step with its "why this step"
+      note, arrival claims or flagged jump, prev/next, position in the URL)
+      reusing the path graph preset for the chain; walks index (`#/walks`);
+      "appears in walks" backlinks on concept pages; Walks in the site nav.
+- [x] [curation] Author 2–3 walks: the SAR tour, the eigenvalue tour, "from
       random walk to renormalization" (spec §8.3's examples plus one
-      application spine).
-- [ ] [app] Playwright: walk round-trip + concept-page backlink.
+      application spine) — landed at exactly those three; the two §8.3
+      walks each carry one honest bridging jump, the SAR tour rides typed
+      edges the whole way.
+- [x] [app] Playwright: walk round-trip + concept-page backlink — four tests
+      in `m9-walks.spec.ts` (round-trip incl. the flagged jump and step-list
+      jump, index + nav, concept backlink to the exact step, chain graph in
+      both themes), and both walk views joined the M6 axe matrix (WCAG 2.1
+      A/AA, light + dark).
 
 ---
 

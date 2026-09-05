@@ -1,0 +1,7 @@
+title: The spectral walk
+summary: >
+  Fixture walk: every hop rides a typed edge from the fixture edge list.
+steps:
+  - slug: eigenvalues
+    note: Start at the fixture hub.
+  - slug: markov-chains

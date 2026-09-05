@@ -23,6 +23,7 @@ function buildOnce(outDir: string): string[] {
     g.edges,
     g.symptoms,
     g.references,
+    g.walks,
     metrics,
     'test-sha',
   );
@@ -65,12 +66,13 @@ describe('graph.json shape', () => {
     g.edges,
     g.symptoms,
     g.references,
+    g.walks,
     metrics,
     'test-sha',
   );
 
   it('carries version, provenance, schema, and sorted content', () => {
-    expect(graphJson.schema_version).toBe('1.2.0');
+    expect(graphJson.schema_version).toBe('1.3.0');
     expect(graphJson.generated_from).toBe('test-sha');
     const nodes = graphJson.nodes as { slug: string }[];
     expect(nodes.map((n) => n.slug)).toEqual(['eigenvalues', 'kalman-filter', 'markov-chains']);
@@ -80,6 +82,12 @@ describe('graph.json shape', () => {
     const references = graphJson.references as { key: string; entry_type: string }[];
     expect(references.map((r) => r.key)).toEqual(['doob-1953', 'kalman-1960']);
     expect(references[0]).toMatchObject({ entry_type: 'book' });
+  });
+
+  it('carries the walks block, sorted by id (added in 1.3.0)', () => {
+    const walks = graphJson.walks as { id: string; steps: unknown[] }[];
+    expect(walks.map((w) => w.id)).toEqual(['spectral-walk']);
+    expect(walks[0]!.steps).toHaveLength(2);
   });
 
   it('packages the metrics block: trusted floor, gaps, per-node entries', () => {

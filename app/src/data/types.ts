@@ -10,6 +10,7 @@ import type {
   GraphNode,
   GraphReference,
   GraphSymptom,
+  GraphWalk,
 } from '../../../build/src/model.js';
 import type {
   EdgeType,
@@ -28,6 +29,8 @@ export type {
   GraphNode,
   GraphReference,
   GraphSymptom,
+  GraphWalk,
+  GraphWalkStep,
   NodeConnection,
   NodeMetrics,
 } from '../../../build/src/model.js';
@@ -50,7 +53,7 @@ export interface PublicSchema {
   analysis: { trusted_min_strength: string };
 }
 
-/** Top-level shape of graph.json, version 1.2+ (docs/graph-json.md). */
+/** Top-level shape of graph.json, version 1.3+ (docs/graph-json.md). */
 export interface GraphJson {
   schema_version: string;
   generated_from: string;
@@ -60,6 +63,8 @@ export interface GraphJson {
   symptoms: GraphSymptom[];
   /** Resolved literature references — what `evidence` keys point at (1.2.0). */
   references: GraphReference[];
+  /** Guided walks compiled from paths/*.yaml (added in 1.3.0). */
+  walks: GraphWalk[];
   /** Build-time analysis over the trusted subgraph (added in 1.1.0). */
   metrics: GraphMetrics;
 }

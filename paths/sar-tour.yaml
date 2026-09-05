@@ -1,0 +1,50 @@
+# The SAR tour (ROADMAP M9) — the computational-imaging application walked
+# back through the structures that converge on it (spec §8.8: applications
+# are the natural spines for learning paths). Shape: ARCHITECTURE.md §3.7.
+# Every hop is a typed edge in graph/edges.yaml; the app renders the claims
+# with their strengths, so the tour never says more than the graph does.
+title: The SAR tour
+summary: >
+  One inverse problem — reconstructing a hidden interior from indirect
+  measurements — walked back through the structures that converge on it:
+  the projection transform, its Fourier inversion route, the transform
+  pattern both belong to, the point-source response that is the physics'
+  side of the model, and the complex-analytic rigidity that sets the
+  enterprise's honest limits.
+steps:
+  - slug: computational-imaging
+    note: >-
+      The destination first. CT, SAR, and MRI all face one problem — the
+      interior is never measured directly, only through projections,
+      echoes, or spectral samples — and the rest of the tour unpacks the
+      structures that one problem makes use of.
+  - slug: radon-transform
+    note: >-
+      The forward model of projection tomography: each measurement
+      integrates the unknown field along a line, so reconstruction is —
+      exactly — inverting this transform.
+  - slug: fourier-analysis
+    note: >-
+      The inversion route. The Fourier slice theorem exchanges projecting
+      with slicing, so every projection fills in a radial slice of the
+      object's transform; MRI skips the exchange and samples that
+      transform (k-space) directly.
+  - slug: integral-transforms
+    note: >-
+      Step back one level: Radon and Fourier are two kernel families in
+      one pattern — represent a function by overlaps so the governing
+      operation becomes simple. The imaging pipeline is a composition of
+      instances of this pattern.
+  - slug: greens-function
+    note: >-
+      The physics half of the forward model: under the linearized (Born)
+      single-scattering picture the received field is the scene integrated
+      against the point-target response, which is why SAR focusing and
+      seismic migration are matched filtering against this kernel.
+  - slug: complex-analysis
+    note: >-
+      The coherent-signal layer underneath, and the tour's honest ending:
+      the analytic signal licenses quadrature demodulation, and
+      Paley–Wiener rigidity is why limited-angle completion is formally
+      determined yet violently ill-posed — the mathematical limit of the
+      whole enterprise.

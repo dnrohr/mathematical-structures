@@ -187,6 +187,18 @@ function makeGraph(version = '1.0.0'): GraphJson {
         },
       },
     ],
+    walks: [
+      {
+        id: 'spectral-tour',
+        title: 'The spectral tour',
+        summary: 'A fixture walk.',
+        steps: [
+          { slug: 'eigenvalues', note: 'Start here.' },
+          { slug: 'markov-chains' },
+          { slug: 'tomography', note: 'The walk jumps: no typed edge makes this hop.' },
+        ],
+      },
+    ],
     metrics: {
       trusted: { min_strength: 'theorem', edge_count: 1, excluded_edge_count: 0, node_count: 2 },
       community_count: 1,
@@ -313,6 +325,14 @@ describe('assembleAtlas version gate', () => {
       error: { kind: 'corrupt' },
     });
   });
+  it('refuses pre-walks data rather than rendering broken walk views', () => {
+    const noWalks = { ...makeGraph() } as Record<string, unknown>;
+    delete noWalks['walks'];
+    expect(assembleAtlas(noWalks, makeSearchArtifact())).toMatchObject({
+      ok: false,
+      error: { kind: 'corrupt' },
+    });
+  });
 });
 
 describe('Atlas accessors', () => {
@@ -341,6 +361,26 @@ describe('Atlas accessors', () => {
     expect(atlas.nodesOfType('operation').map((n) => n.slug)).toEqual(['eigenvalues']);
     expect(atlas.symptomsUsing('eigenvalues').map((s) => s.id)).toEqual(['too-many-parameters']);
     expect(atlas.symptomsUsing('markov-chains')).toEqual([]);
+  });
+
+  it('resolves walks by id and lists walk positions per concept (M9)', () => {
+    expect(atlas.walks.map((w) => w.id)).toEqual(['spectral-tour']);
+    expect(atlas.walk('spectral-tour')?.title).toBe('The spectral tour');
+    expect(atlas.walk('ghost-tour')).toBeUndefined();
+    expect(atlas.walksThrough('markov-chains')).toMatchObject([
+      { walk: { id: 'spectral-tour' }, index: 1 },
+    ]);
+    expect(atlas.walksThrough('other-app')).toEqual([]);
+  });
+
+  it('edgesBetween finds the typed edges of a hop in either direction (M9)', () => {
+    expect(atlas.edgesBetween('eigenvalues', 'markov-chains')).toHaveLength(1);
+    expect(atlas.edgesBetween('markov-chains', 'eigenvalues')).toHaveLength(1);
+    expect(atlas.edgesBetween('eigenvalues', 'markov-chains')[0]).toMatchObject({
+      type: 'GOVERNS',
+    });
+    // The walk's flagged jump: no typed edge, which is the bridge-note case.
+    expect(atlas.edgesBetween('markov-chains', 'tomography')).toEqual([]);
   });
 
   it('convergingStructures: distinct structures, strongest claim first, apps and other types ignored', () => {

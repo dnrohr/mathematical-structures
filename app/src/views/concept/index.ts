@@ -15,6 +15,7 @@ import { h, joinChildren } from '../common/dom';
 import { connectionItem, GAP_EDGE_TYPE } from '../common/edge-sentence';
 import { nodeLink } from '../common/node-link';
 import type { View } from '../common/view';
+import { walkHash } from '../walk';
 import { egoSection } from './ego';
 
 /** Edge types that belong beside the assumptions block (spec §3.1 item 4). */
@@ -88,6 +89,35 @@ function assumptionsSection(atlas: Atlas, node: GraphNode, adjacent: NodeConnect
         { class: 'connection-list' },
         adjacent.map((conn) => connectionItem(atlas, conn, { phrase: true })),
       ),
+  );
+}
+
+/**
+ * "Appears in walks" backlinks (ROADMAP M9): every guided walk that steps
+ * on this concept, linking straight to its step.
+ */
+function walksSection(atlas: Atlas, node: GraphNode) {
+  const positions = atlas.walksThrough(node.slug);
+  if (positions.length === 0) return null;
+  return h(
+    'section',
+    { class: 'concept-section' },
+    h('h2', {}, 'Appears in walks'),
+    h(
+      'p',
+      { class: 'walk-backlinks' },
+      joinChildren(
+        positions.map(({ walk, index }) =>
+          h(
+            'span',
+            { class: 'walk-backlink' },
+            h('a', { href: walkHash(walk.id, index + 1) }, walk.title),
+            ` (step ${String(index + 1)} of ${String(walk.steps.length)})`,
+          ),
+        ),
+        ' · ',
+      ),
+    ),
   );
 }
 
@@ -188,6 +218,7 @@ export function conceptView(atlas: Atlas, slug: string): View | null {
     node.html.trim().length > 0 &&
       h('section', { class: 'concept-section' }, h('h2', {}, 'Notes'), prose),
     sourcesSection(atlas, node),
+    walksSection(atlas, node),
     node.backlinks.length > 0 &&
       h(
         'section',

@@ -22,10 +22,19 @@ function realAtlas(): Atlas {
       `pipeline failed on the repo tree: ${JSON.stringify(result.issues.slice(0, 5))}`,
     );
   }
-  const { nodes, edges, symptoms, references, candidates } = result.graph;
+  const { nodes, edges, symptoms, references, walks, candidates } = result.graph;
   const metrics = analyzeGraph(result.schema, nodes, edges, candidates);
   const assembled = assembleAtlas(
-    buildGraphJson(result.schema, nodes, edges, symptoms, references, metrics, 'f'.repeat(40)),
+    buildGraphJson(
+      result.schema,
+      nodes,
+      edges,
+      symptoms,
+      references,
+      walks,
+      metrics,
+      'f'.repeat(40),
+    ),
     buildSearchIndex(nodes, symptoms),
   );
   if (!assembled.ok) throw new Error(`atlas refused: ${JSON.stringify(assembled.error)}`);
@@ -100,6 +109,40 @@ describe('M4 views over the real dataset', () => {
     const hits = atlas.aliasLookup('perfect adaptation');
     expect(hits[0]?.node.slug).toBe('feedback-control');
     expect(hits[0]?.alias?.field).toBe('biology');
+  });
+});
+
+describe('M9 walks over the real dataset', () => {
+  it('ships the promised walks: an application spine and the spec §8.3 examples', () => {
+    const ids = atlas.walks.map((w) => w.id);
+    expect(ids).toContain('sar-tour');
+    expect(ids).toContain('eigenvalue-tour');
+    expect(ids).toContain('random-walk-to-renormalization');
+    // The SAR tour is spined on an M7 application (ROADMAP M9 exit criterion).
+    expect(atlas.walk('sar-tour')!.steps[0]!.slug).toBe('computational-imaging');
+  });
+
+  it('every hop either rides a typed edge or carries the bridging note', () => {
+    for (const walk of atlas.walks) {
+      for (let i = 1; i < walk.steps.length; i++) {
+        const prev = walk.steps[i - 1]!.slug;
+        const step = walk.steps[i]!;
+        const bridged = atlas.edgesBetween(prev, step.slug).length > 0 || Boolean(step.note);
+        expect(bridged, `${walk.id}: ${prev} → ${step.slug}`).toBe(true);
+      }
+    }
+  });
+
+  it('every step is a resolvable concept, so the walk backlinks render', () => {
+    for (const walk of atlas.walks) {
+      for (const step of walk.steps) {
+        expect(atlas.node(step.slug), `${walk.id}: ${step.slug}`).toBeDefined();
+        expect(
+          atlas.walksThrough(step.slug).some((p) => p.walk.id === walk.id),
+          `${walk.id} appears on ${step.slug}`,
+        ).toBe(true);
+      }
+    }
   });
 });
 
