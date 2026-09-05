@@ -3,6 +3,7 @@
   type: IS-A
   strength: special-case
   context: fixture claim, not mathematics
+  evidence: [kalman-1960, doob-1953]
 
 - from: eigenvalues
   to: markov-chains

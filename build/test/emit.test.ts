@@ -22,6 +22,7 @@ function buildOnce(outDir: string): string[] {
     g.nodes,
     g.edges,
     g.symptoms,
+    g.references,
     metrics,
     'test-sha',
   );
@@ -63,15 +64,22 @@ describe('graph.json shape', () => {
     g.nodes,
     g.edges,
     g.symptoms,
+    g.references,
     metrics,
     'test-sha',
   );
 
   it('carries version, provenance, schema, and sorted content', () => {
-    expect(graphJson.schema_version).toBe('1.1.0');
+    expect(graphJson.schema_version).toBe('1.2.0');
     expect(graphJson.generated_from).toBe('test-sha');
     const nodes = graphJson.nodes as { slug: string }[];
     expect(nodes.map((n) => n.slug)).toEqual(['eigenvalues', 'kalman-filter', 'markov-chains']);
+  });
+
+  it('carries the resolved references block, sorted by key (added in 1.2.0)', () => {
+    const references = graphJson.references as { key: string; entry_type: string }[];
+    expect(references.map((r) => r.key)).toEqual(['doob-1953', 'kalman-1960']);
+    expect(references[0]).toMatchObject({ entry_type: 'book' });
   });
 
   it('packages the metrics block: trusted floor, gaps, per-node entries', () => {
@@ -112,6 +120,8 @@ describe('export emitters', () => {
     expect(xml).toContain('<node id="eigenvalues">');
     expect(xml).toContain('<edge source="eigenvalues" target="kalman-filter">');
     expect(xml).toContain('<data key="e_gap_status">open-candidate</data>');
+    expect(xml).toContain('<key id="e_evidence" for="edge" attr.name="evidence"');
+    expect(xml).toContain('<data key="e_evidence">kalman-1960;doob-1953</data>');
     // No raw ampersands/angles outside tags: canonical_name is escaped.
     expect(xml).not.toMatch(/&(?!amp;|lt;|gt;|quot;)/);
   });
@@ -129,6 +139,7 @@ describe('export emitters', () => {
       'from,to,type,strength,symmetric,gap_status,context,notes,evidence',
     );
     expect(edgesCsv).toContain('"fixture claim, not mathematics"');
+    expect(edgesCsv).toContain('kalman-1960;doob-1953');
   });
 });
 

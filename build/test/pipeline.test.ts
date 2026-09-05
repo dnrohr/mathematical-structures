@@ -39,6 +39,27 @@ describe('valid fixture end to end', () => {
     expect(sym).toMatchObject({ other: 'markov-chains', direction: 'sym' });
   });
 
+  it('resolves references and carries evidence on edges and both connection ends', () => {
+    expect(result.graph!.references.map((r) => r.key)).toEqual(['doob-1953', 'kalman-1960']);
+    expect(result.graph!.references[1]).toMatchObject({
+      entry_type: 'article',
+      fields: {
+        title: 'A New Approach to Linear Filtering and Prediction Problems',
+        journal: 'Journal of Basic Engineering',
+        year: '1960',
+      },
+    });
+    const cited = result.graph!.edges.find((e) => e.type === 'IS-A')!;
+    expect(cited.evidence).toEqual(['kalman-1960', 'doob-1953']);
+    for (const slug of ['kalman-filter', 'markov-chains']) {
+      const node = result.graph!.nodes.find((n) => n.slug === slug)!;
+      expect(node.connections.find((c) => c.type === 'IS-A')!.evidence).toEqual([
+        'kalman-1960',
+        'doob-1953',
+      ]);
+    }
+  });
+
   it('renders bodies with math and wiki-links', () => {
     const eigen = result.graph!.nodes.find((n) => n.slug === 'eigenvalues')!;
     expect(eigen.html).toContain('katex');
@@ -113,6 +134,22 @@ describe('parse-stage failures', () => {
     const issues = runPipeline(dir).issues.map((i) => i.rule);
     expect(issues).toContain('content/frontmatter-missing');
     expect(issues).toContain('content/slug-format');
+  });
+
+  it('fails when an evidence key resolves to no references.bib entry (the M8 exit criterion)', () => {
+    const dir = copyValidTree();
+    const edgesPath = join(dir, 'graph', 'edges.yaml');
+    writeFileSync(
+      edgesPath,
+      readFileSync(edgesPath, 'utf8') +
+        '\n- from: eigenvalues\n  to: kalman-filter\n  type: IS-A\n  strength: theorem\n' +
+        '  evidence: [ghost-2001]\n',
+    );
+    const result = runPipeline(dir);
+    const hit = result.issues.find((i) => i.rule === 'edge/unknown-evidence')!;
+    expect(hit).toBeDefined();
+    expect(hit.message).toContain('ghost-2001');
+    expect(countErrors(result.issues)).toBeGreaterThan(0);
   });
 
   it('fails when edges.yaml references an unknown endpoint (the CI exit criterion)', () => {

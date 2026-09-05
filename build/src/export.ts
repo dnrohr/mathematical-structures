@@ -37,6 +37,7 @@ const EDGE_KEYS: { id: string; type: string }[] = [
   { id: 'gap_status', type: 'string' },
   { id: 'context', type: 'string' },
   { id: 'notes', type: 'string' },
+  { id: 'evidence', type: 'string' },
 ];
 
 export function buildGraphml(
@@ -81,6 +82,7 @@ export function buildGraphml(
     data('e_gap_status', edge.status);
     data('e_context', edge.context?.trim());
     data('e_notes', edge.notes?.trim());
+    data('e_evidence', edge.evidence.join(';'));
     lines.push('    </edge>');
   }
   lines.push('  </graph>', '</graphml>');

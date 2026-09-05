@@ -531,28 +531,47 @@ carry literature, starting where M7 created the pressure.
 
 **Exit criteria**
 
-- [ ] `graph/references.bib` exists; an `evidence` key that resolves to no entry
-      fails the build; citations render wherever the owning edge renders.
-- [ ] Every nontrivial M7 application claim carries ≥ 1 citation, and the M5
+- [x] `graph/references.bib` exists; an `evidence` key that resolves to no entry
+      fails the build; citations render wherever the owning edge renders —
+      27 entries; `edge/unknown-evidence` is an error with a pipeline test
+      (the M8 CI criterion, like M1's unknown-endpoint test), and both claim
+      renderers (concept-page sentences and the lens/path/questions claim
+      list) carry the marker, Playwright-proven in `m8-citations.spec.ts`.
+- [x] Every nontrivial M7 application claim carries ≥ 1 citation, and the M5
       dogfood edge's literature trail (stability margins → biological
-      regulation) lives in `evidence` keys, not only in notes prose.
-- [ ] `graph.json` gains references additively (minor bump, documented in
-      `docs/graph-json.md`).
+      regulation) lives in `evidence` keys, not only in notes prose — all
+      12 APPLIED-IN edges cite 1–2 works each; the dogfood edge carries its
+      six-key trail (two textbooks, three worked loops, the secant-criterion
+      generalization) with the notes rewritten to point at the keys.
+- [x] `graph.json` gains references additively (minor bump, documented in
+      `docs/graph-json.md`) — 1.2.0: top-level `references` (resolved,
+      sorted) plus `evidence` on node connections; GraphML/CSV exports carry
+      the keys semicolon-joined.
 
 **Tasks**
 
-- [ ] [build] Stage-1 reader for `graph/references.bib`; validation: unknown
+- [x] [build] Stage-1 reader for `graph/references.bib`; validation: unknown
       `evidence` key = error, unused reference = info (a curation hint, like
       candidate edges); deterministic emit of resolved references into
-      `graph.json`.
-- [ ] [app] Citation affordance on edge sentences (compact marker expanding to
+      `graph.json` — the reader is a deliberately strict BibTeX subset
+      (concrete entries, plain UTF-8, no macros; stray text is an error so a
+      typo'd entry cannot silently vanish), each rule with failing fixtures
+      per §4.2 practice; determinism holds via the existing double-build test.
+- [x] [app] Citation affordance on edge sentences (compact marker expanding to
       the full reference) and a per-page "Sources" list aggregating the works
       cited by the node's edges; `#/questions` shows the literature trail on
-      checked gap edges.
-- [ ] [curation] Backfill pass, strongest claims first: the M7 batch, the three
-      MIGRATED-TO edges, and the converted M5 gap edge.
-- [ ] [infra] CONTRIBUTING: how to add a reference and cite it from an edge;
-      the edge-proposal issue form gains an optional evidence field.
+      checked gap edges — a native `<details>` disclosure ("N sources"), no
+      script; the questions view inherits it through the shared edge-claim
+      fragment (lens-proven in Playwright, since no gap edge is checked yet)
+      and its workflow step 6 now says to record the trail as evidence keys.
+- [x] [curation] Backfill pass, strongest claims first: the M7 batch, the three
+      MIGRATED-TO edges, and the converted M5 gap edge — 15 edges cite 27
+      works (all cited, so `reference/unused` stays quiet); DOIs/URLs only
+      where verified, en-dashes and diacritics written directly.
+- [x] [infra] CONTRIBUTING: how to add a reference and cite it from an edge
+      (the "cite the literature" walkthrough, with the strength-stays-honest
+      rule); the edge-proposal issue form's evidence field now says how named
+      literature lands as `references.bib` keys.
 
 ---
 

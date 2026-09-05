@@ -7,6 +7,7 @@ The Structure Atlas is a typed knowledge graph stored as plain files:
 - `graph/schema.yaml` — the controlled vocabularies. **The only place** node
   types, edge types, strengths, fields, and statuses are defined.
 - `graph/symptoms.yaml` — the problem-recognition index.
+- `graph/references.bib` — the literature that edges cite.
 
 Content changes are ordinary pull requests, and **the validator is the review
 gate**: `atlas-build` checks every file against the schema and fails CI with
@@ -97,6 +98,7 @@ needs a browser: `npx playwright install chromium`, or point
      strength: theorem # identity | theorem | special-case |
      #   strong-analogy | heuristic-analogy | speculative
      context: exact; no distributional caveats # optional
+     evidence: [some-textbook-1988] # optional; keys into graph/references.bib
      notes: > # optional; keeps analogies honest
        Caveats and scope.
    ```
@@ -117,7 +119,39 @@ needs a browser: `npx playwright install chromium`, or point
 Research-gap hypotheses (`POSSIBLE-MISSING-MIGRATION`) additionally follow
 [docs/research-gap-workflow.md](docs/research-gap-workflow.md): start at
 `status: open-candidate`, record verdicts in `notes`, and convert or retire
-the edge when the literature check lands.
+the edge when the literature check lands — citing what the check found as
+`evidence` keys, so the trail is data rather than notes prose.
+
+## Walkthrough: cite the literature behind a claim
+
+1. **Add the reference** to [`graph/references.bib`](graph/references.bib) —
+   a strict BibTeX subset (the file's header comment carries the house
+   rules). Concrete entries only, plain UTF-8 values (write ö and – directly,
+   no TeX escapes), and a lowercase-kebab author(s)-year key: two authors
+   `kak-slaney-1988`, three or more `west-etal-1997`.
+
+   ```bibtex
+   @book{kak-slaney-1988,
+     author    = {Kak, Avinash C. and Slaney, Malcolm},
+     title     = {Principles of Computerized Tomographic Imaging},
+     publisher = {IEEE Press},
+     year      = {1988},
+   }
+   ```
+
+   `title` and `year` are required; add a `doi` or `url` only if you have
+   checked it resolves — a findable title/venue/year beats a guessed link.
+2. **Cite it from the edge**: `evidence: [kak-slaney-1988]` in
+   `graph/edges.yaml`. The validator closes the loop in both directions —
+   an evidence key with no entry **fails the build**, and an entry cited by
+   no edge is reported as an info-level curation hint.
+3. **Run `npm run check`.** The app renders the rest: a compact source
+   marker on the claim wherever it appears, and a Sources list on each
+   concept page aggregating the works its claims cite.
+
+Citations support a claim; they never inflate it. The edge's `strength`
+stays the honest epistemic verdict — a well-cited analogy is still an
+analogy.
 
 ## Proposing without a PR
 

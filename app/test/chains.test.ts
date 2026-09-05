@@ -22,10 +22,10 @@ function realAtlas(): Atlas {
       `pipeline failed on the repo tree: ${JSON.stringify(result.issues.slice(0, 5))}`,
     );
   }
-  const { nodes, edges, symptoms, candidates } = result.graph;
+  const { nodes, edges, symptoms, references, candidates } = result.graph;
   const metrics = analyzeGraph(result.schema, nodes, edges, candidates);
   const assembled = assembleAtlas(
-    buildGraphJson(result.schema, nodes, edges, symptoms, metrics, 'f'.repeat(40)),
+    buildGraphJson(result.schema, nodes, edges, symptoms, references, metrics, 'f'.repeat(40)),
     buildSearchIndex(nodes, symptoms),
   );
   if (!assembled.ok) throw new Error(`atlas refused: ${JSON.stringify(assembled.error)}`);

@@ -9,6 +9,7 @@ import { REPO_URL } from '../../config';
 import type { Atlas } from '../../data/atlas';
 import type { GraphNode, NodeConnection } from '../../data/types';
 import { statusBadge, typeBadge } from '../common/badges';
+import { sourcesSection } from '../common/citations';
 import { dialectTable } from '../common/dialect-table';
 import { h, joinChildren } from '../common/dom';
 import { connectionItem, GAP_EDGE_TYPE } from '../common/edge-sentence';
@@ -186,6 +187,7 @@ export function conceptView(atlas: Atlas, slug: string): View | null {
       ),
     node.html.trim().length > 0 &&
       h('section', { class: 'concept-section' }, h('h2', {}, 'Notes'), prose),
+    sourcesSection(atlas, node),
     node.backlinks.length > 0 &&
       h(
         'section',

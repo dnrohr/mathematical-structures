@@ -109,6 +109,7 @@ const tomography = makeNode('tomography', {
       direction: 'in',
       phrase: 'makes use of',
       strength: 'strong-analogy',
+      evidence: [],
     },
     {
       other: 'eigenvalues',
@@ -116,6 +117,7 @@ const tomography = makeNode('tomography', {
       direction: 'in',
       phrase: 'imported',
       strength: 'theorem',
+      evidence: ['kalman-1960'],
     },
     {
       other: 'markov-chains',
@@ -123,6 +125,7 @@ const tomography = makeNode('tomography', {
       direction: 'in',
       phrase: 'makes use of',
       strength: 'theorem',
+      evidence: ['kalman-1960'],
     },
     {
       other: 'other-app',
@@ -130,6 +133,7 @@ const tomography = makeNode('tomography', {
       direction: 'out',
       phrase: 'is applied in',
       strength: 'theorem',
+      evidence: [],
     },
     {
       other: 'markov-chains',
@@ -137,6 +141,7 @@ const tomography = makeNode('tomography', {
       direction: 'in',
       phrase: 'is governed by',
       strength: 'theorem',
+      evidence: [],
     },
   ],
 });
@@ -168,6 +173,18 @@ function makeGraph(version = '1.0.0'): GraphJson {
         symptom: 'Too many dimensional parameters',
         moves: ['eigenvalues'],
         mature_fields: ['control'],
+      },
+    ],
+    references: [
+      {
+        key: 'kalman-1960',
+        entry_type: 'article',
+        fields: {
+          author: 'Kalman, Rudolf E.',
+          title: 'A New Approach to Linear Filtering and Prediction Problems',
+          journal: 'Journal of Basic Engineering',
+          year: '1960',
+        },
       },
     ],
     metrics: {
@@ -288,6 +305,14 @@ describe('assembleAtlas version gate', () => {
       error: { kind: 'corrupt' },
     });
   });
+  it('refuses pre-references data rather than rendering broken citations', () => {
+    const noReferences = { ...makeGraph() } as Record<string, unknown>;
+    delete noReferences['references'];
+    expect(assembleAtlas(noReferences, makeSearchArtifact())).toMatchObject({
+      ok: false,
+      error: { kind: 'corrupt' },
+    });
+  });
 });
 
 describe('Atlas accessors', () => {
@@ -298,6 +323,11 @@ describe('Atlas accessors', () => {
     expect(atlas.node('nope')).toBeUndefined();
     expect(atlas.isSlug('eigenvalues')).toBe(true);
     expect(atlas.isSlug('linearity')).toBe(false);
+  });
+
+  it('resolves evidence keys to references', () => {
+    expect(atlas.reference('kalman-1960')?.fields['journal']).toBe('Journal of Basic Engineering');
+    expect(atlas.reference('ghost-2001')).toBeUndefined();
   });
 
   it('resolves vocabulary entries and falls back to raw ids', () => {

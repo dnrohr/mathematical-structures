@@ -52,7 +52,8 @@ Hard rules that define the layer boundaries:
 ├── graph/
 │   ├── schema.yaml            # controlled vocabularies (single source of truth)
 │   ├── edges.yaml             # the typed edge list
-│   └── symptoms.yaml          # the problem-recognition index
+│   ├── symptoms.yaml          # the problem-recognition index
+│   └── references.bib         # the literature that edges cite (M8)
 ├── paths/                     # reserved: guided walks (spec §8.3); empty in v1
 ├── docs/                      # working method, research-gap workflow, notes
 ├── build/                     # the compiler/validator (TypeScript, Node)
@@ -168,7 +169,7 @@ node files — a relationship claim belongs to both endpoints and to neither fil
   notes: >
     Meaningful only where a linearization regime and I/O definition exist;
     see docs/research-gap-workflow.md before promoting.
-  evidence: []                  # reserved: citation keys (spec §8.2)
+  evidence: [del-vecchio-murray-2015] # citation keys into references.bib (§3.6)
 
 - from: impulse-response
   to: greens-function
@@ -205,6 +206,29 @@ The problem-recognition index as data:
 Each `moves` entry must be an existing node slug. Symptoms are content, not derived
 data: deciding what counts as a symptom is curation, not computation.
 
+### 3.6 References: `graph/references.bib`
+
+The literature behind the map's checkable claims (spec §8.2, M8). A strict
+BibTeX subset — concrete entries only, values as plain UTF-8 display text
+(no @string/@preamble, no `#` concatenation, no TeX escapes), keys
+lowercase-kebab author(s)-year (`kak-slaney-1988`, `west-etal-1997`):
+
+```bibtex
+@book{kak-slaney-1988,
+  author    = {Kak, Avinash C. and Slaney, Malcolm},
+  title     = {Principles of Computerized Tomographic Imaging},
+  publisher = {IEEE Press},
+  year      = {1988},
+}
+```
+
+Edges cite entries by key from their `evidence` lists. The coupling is
+validated both ways: an evidence key with no entry is an error (a citation
+that points nowhere is worse than none), an entry cited by no edge is an
+info-level curation hint, and every entry needs at least a `title` and
+`year`. The file is optional — an atlas without citations is valid; the
+strength vocabulary, not the bibliography, carries the epistemic weight.
+
 ## 4. Build layer
 
 A single CLI (`atlas-build`) with deterministic output (same input → byte-identical
@@ -236,7 +260,10 @@ The dataset's test suite. Severity levels: **error** (build fails), **warn**
 | Node with no aliases in a multi-field concept (`fields` ≥ 3) | warn |
 | Symptom referencing a `stub` node | warn |
 | `application` node with < 2 distinct structure neighbors over APPLIED-IN / MIGRATED-TO edges (spec §8.8's bar) | warn |
+| `evidence` key with no `references.bib` entry, or cited twice on one edge | error |
+| Malformed `references.bib` entry (syntax, unsupported construct, bad/duplicate key, missing title/year) | error |
 | Wiki-linked pair with no edge (candidate edge) | info |
+| Reference cited by no edge | info |
 
 The warn rules encode the spec's priorities (dialects, curation, the
 application bar) as machine checks. New rules are added here, never as
@@ -273,7 +300,7 @@ Compute the README §33 derived metrics over the typed graph, entirely at build 
 Artifacts written to `dist/data/`:
 
 - **`graph.json`** — `{ schema_version, generated_from: <git sha>, schema, nodes[],
-  edges[], symptoms[], metrics }`. Nodes embed their rendered HTML. Target scale
+  edges[], symptoms[], references[], metrics }`. Nodes embed their rendered HTML. Target scale
   (hundreds of nodes) keeps this well under a megabyte gzipped; if body HTML ever
   dominates, the escape hatch is splitting bodies into per-node
   `dist/data/nodes/<slug>.json` fetched on demand — the loader interface in
@@ -401,7 +428,7 @@ as app features.
 | Expansion | Mechanism already in place |
 | --- | --- |
 | In-app "propose an edge" | a static form that deep-links to a prefilled GitHub PR/issue template; no server needed, validator still the gate |
-| Evidence/citations | `evidence` keys in edges + a future `references.bib`; stage 4.3 renders footnotes |
+| Evidence/citations | landed (M8): `graph/references.bib` + validated `evidence` keys, resolved into `graph.json`; claims render a citation affordance and concept pages a Sources list |
 | Learning paths | `paths/*.yaml` parsed by a new stage-1 reader; path view already renders ordered chains |
 | LLM-assisted authoring | operates on `graph.json` + `schema.yaml`; output enters as ordinary PRs through the same validator (spec §8.4's hard rule) |
 | Forks / multiple atlases | `atlas-build --content DIR`; nothing hardcodes this repository's content |

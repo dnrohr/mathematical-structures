@@ -13,9 +13,11 @@ import {
   type EdgeRecord,
   type GraphEdge,
   type GraphNode,
+  type GraphReference,
   type GraphSymptom,
   type Issue,
   type NodeConnection,
+  type ReferenceRecord,
   type SymptomRecord,
 } from './model.js';
 import type { RenderedBodies } from './render.js';
@@ -25,6 +27,7 @@ export interface LinkedGraph {
   nodes: GraphNode[];
   edges: GraphEdge[];
   symptoms: GraphSymptom[];
+  references: GraphReference[];
   /** Wiki-linked pairs with no typed edge — the info-level curation queue. */
   candidates: CandidatePair[];
   issues: Issue[];
@@ -43,6 +46,7 @@ export function linkGraph(
   concepts: ConceptRecord[],
   edgeRecords: EdgeRecord[],
   symptomRecords: SymptomRecord[],
+  referenceRecords: ReferenceRecord[],
   rendered: RenderedBodies,
 ): LinkedGraph {
   const issues: Issue[] = [];
@@ -98,6 +102,7 @@ export function linkGraph(
       context: edge.context,
       status: edge.status,
       notes: edge.notes,
+      evidence: edge.evidence,
     };
     if (edge.symmetric) {
       const phrase = def.phrase ?? def.forward ?? def.label;
@@ -193,5 +198,9 @@ export function linkGraph(
     }))
     .sort((a, b) => a.id.localeCompare(b.id));
 
-  return { nodes, edges, symptoms, candidates, issues };
+  const references: GraphReference[] = referenceRecords
+    .map((ref) => ({ key: ref.key, entry_type: ref.entryType, fields: ref.fields }))
+    .sort((a, b) => a.key.localeCompare(b.key));
+
+  return { nodes, edges, symptoms, references, candidates, issues };
 }

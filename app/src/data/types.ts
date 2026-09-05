@@ -4,7 +4,13 @@
  * types across the data contract (ARCHITECTURE.md §2, decision log #1).
  * All imports are type-only, so nothing from build/ lands in the bundle.
  */
-import type { GraphEdge, GraphMetrics, GraphNode, GraphSymptom } from '../../../build/src/model.js';
+import type {
+  GraphEdge,
+  GraphMetrics,
+  GraphNode,
+  GraphReference,
+  GraphSymptom,
+} from '../../../build/src/model.js';
 import type {
   EdgeType,
   FieldDef,
@@ -20,6 +26,7 @@ export type {
   GraphEdge,
   GraphMetrics,
   GraphNode,
+  GraphReference,
   GraphSymptom,
   NodeConnection,
   NodeMetrics,
@@ -43,7 +50,7 @@ export interface PublicSchema {
   analysis: { trusted_min_strength: string };
 }
 
-/** Top-level shape of graph.json, version 1.1+ (docs/graph-json.md). */
+/** Top-level shape of graph.json, version 1.2+ (docs/graph-json.md). */
 export interface GraphJson {
   schema_version: string;
   generated_from: string;
@@ -51,6 +58,8 @@ export interface GraphJson {
   nodes: GraphNode[];
   edges: GraphEdge[];
   symptoms: GraphSymptom[];
+  /** Resolved literature references — what `evidence` keys point at (1.2.0). */
+  references: GraphReference[];
   /** Build-time analysis over the trusted subgraph (added in 1.1.0). */
   metrics: GraphMetrics;
 }

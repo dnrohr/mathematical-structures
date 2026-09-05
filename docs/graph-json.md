@@ -36,7 +36,7 @@ citable. `generated_from` carries the git commit SHA of the content tree.
 
 ```jsonc
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "generated_from": "<git sha>",
   "schema": { /* the controlled vocabularies, verbatim from graph/schema.yaml */
     "node_types":   [ { "id", "label", "color_token", "description" } ],
@@ -48,10 +48,11 @@ citable. `generated_from` carries the git commit SHA of the content tree.
     "gap_statuses": [ { "id", "description" } ],
     "analysis":     { "trusted_min_strength" }
   },
-  "nodes":    [ /* sorted by slug */ ],
-  "edges":    [ /* sorted by (from, to, type) */ ],
-  "symptoms": [ /* sorted by id */ ],
-  "metrics":  { /* build-time analysis; added in 1.1.0 — see below */ }
+  "nodes":      [ /* sorted by slug */ ],
+  "edges":      [ /* sorted by (from, to, type) */ ],
+  "symptoms":   [ /* sorted by id */ ],
+  "references": [ /* sorted by key; added in 1.2.0 — see below */ ],
+  "metrics":    { /* build-time analysis; added in 1.1.0 — see below */ }
 }
 ```
 
@@ -80,8 +81,9 @@ citable. `generated_from` carries the git commit SHA of the content tree.
       "direction": "sym",                 // "out" | "in" | "sym"
       "phrase": "is a field dialect of",
       "strength": "strong-analogy",
-      "context"?: "...", "status"?: "...", "notes"?: "..."
-    }
+      "context"?: "...", "status"?: "...", "notes"?: "...",
+      "evidence": []                      // the owning edge's citation keys
+    }                                     // (added in 1.2.0)
   ]
 }
 ```
@@ -99,7 +101,9 @@ citable. `generated_from` carries the git commit SHA of the content tree.
   "status"?: "open-candidate",    // gap workflow state; present on
                                   // POSSIBLE-MISSING-MIGRATION / speculative edges
   "notes"?: "...",
-  "evidence": []                  // reserved for citation keys
+  "evidence": ["kak-slaney-1988"] // citation keys into the top-level
+                                  // `references` list (resolved since 1.2.0;
+                                  // the build fails on an unknown key)
 }
 ```
 
@@ -117,6 +121,28 @@ An edge's epistemic weight is `strength` — consumers must not present
   "moves": ["dimensional-analysis"],      // node slugs, most useful first
   "mature_fields": ["fluids"],            // -> schema.fields
   "worked_example"?: "reynolds-number"    // node slug
+}
+```
+
+### Reference (added in 1.2.0)
+
+The resolved bibliography: one entry per `graph/references.bib` item, sorted
+by key. An edge's `evidence` list points into this by `key`; the build fails
+on an evidence key with no entry, so every citation in the artifact resolves.
+`fields` carries the BibTeX fields as plain display text (braces dropped,
+whitespace collapsed) — no TeX escapes to undo.
+
+```jsonc
+{
+  "key": "kak-slaney-1988",       // what `evidence` lists cite
+  "entry_type": "book",           // BibTeX entry type, lowercased
+  "fields": {                     // the entry's fields, as written
+    "author": "Kak, Avinash C. and Slaney, Malcolm",
+    "title": "Principles of Computerized Tomographic Imaging",
+    "publisher": "IEEE Press",
+    "year": "1988",
+    "url"?: "...", "doi"?: "..."  // whichever the entry carries
+  }
 }
 ```
 
@@ -170,12 +196,13 @@ network-analysis tools and spreadsheets:
 
 - **`atlas.graphml`** — nodes with `label`, `node_type`, `status`, `fields`
   (semicolon-joined) and the per-node metrics; edges with `type`, `strength`,
-  `symmetric`, `gap_status`, `context`, `notes`. Every edge is emitted in its
-  stored direction with `symmetric` as an attribute (mixed-directedness
-  GraphML is rejected by common readers); symmetrize on load if your analysis
-  wants an undirected view.
+  `symmetric`, `gap_status`, `context`, `notes`, and (since 1.2.0) `evidence`
+  (semicolon-joined citation keys). Every edge is emitted in its stored
+  direction with `symmetric` as an attribute (mixed-directedness GraphML is
+  rejected by common readers); symmetrize on load if your analysis wants an
+  undirected view.
 - **`nodes.csv` / `edges.csv`** — RFC 4180, one row per node/edge, metrics
-  included; multi-valued fields are semicolon-joined.
+  included; multi-valued fields (including `evidence`) are semicolon-joined.
 
 The live app links all four files from its Metrics page ("Download the
 dataset").
@@ -206,6 +233,13 @@ for e in atlas["edges"]:
 for e in atlas["edges"]:
     if e["type"] == "POSSIBLE-MISSING-MIGRATION":
         print(e["from"], "->", e["to"], f"[{e.get('status')}]")
+
+# what the literature says about a claim (evidence resolves by key)
+refs = {r["key"]: r for r in atlas["references"]}
+for e in atlas["edges"]:
+    for key in e["evidence"]:
+        f = refs[key]["fields"]
+        print(e["from"], "->", e["to"], ":", f["title"], f"({f['year']})")
 
 # the busiest bridges, from the precomputed trusted-subgraph metrics
 ranked = sorted(atlas["metrics"]["nodes"].items(),

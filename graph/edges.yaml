@@ -11,7 +11,8 @@
 #     status: <gap status id> # REQUIRED for POSSIBLE-MISSING-MIGRATION edges
 #                             # (symmetry comes from the edge type; there is
 #                             # no per-edge directionality override)
-#     evidence: []            # reserved: citation keys (SPECIFICATION.md §8.2)
+#     evidence: [key, ...]    # citation keys into graph/references.bib
+#                             # (unknown keys fail the build — ROADMAP M8)
 #     notes: <free text>      # caveats keeping analogies honest (optional)
 #
 # Extracted from notebook v0 (docs/notebook-v0.md) during M2. The §34
@@ -745,6 +746,7 @@
     systems biology, which retains much of the control vocabulary
     (homeostasis as disturbance rejection, integral feedback as perfect
     adaptation).
+  evidence: [del-vecchio-murray-2015, yi-etal-2000]
 
 - from: graph-laplacian
   to: biological-regulation
@@ -754,6 +756,7 @@
     Network theory moved from electrical/communication networks into
     biological regulation; graph concepts are now standard in systems
     biology.
+  evidence: [barabasi-oltvai-2004, alon-2006]
 
 - from: stability-margins
   to: biological-regulation
@@ -769,16 +772,21 @@
     workflow (M5 dogfood pass, worked from the app's Open Questions view).
     Verdict: established transfer under the source vocabulary —
     control-theoretic systems biology applies gain/phase-margin and
-    sensitivity analysis to identified loops (heat-shock response,
-    glycolytic-oscillation trade-offs, antithetic integral feedback;
-    textbook treatments: Del Vecchio & Murray, "Biomolecular Feedback
-    Systems"; Cosentino & Bates, "Feedback Control in Systems Biology").
-    Where the linearization or loop-breaking assumptions fail, margin-like
-    roles pass to generalized machinery such as the secant criterion for
-    cyclic feedback (workflow step 5). Scope caveat: routine within that
-    subcommunity, not yet across all of quantitative biology — hence
-    strong-analogy, not stronger.
-  evidence: []
+    sensitivity analysis to identified loops. The evidence keys carry the
+    literature trail: two textbook treatments, then the worked loops —
+    heat-shock response, glycolytic-oscillation trade-offs, antithetic
+    integral feedback. Where the linearization or loop-breaking assumptions
+    fail, margin-like roles pass to generalized machinery such as the
+    secant criterion for cyclic feedback (workflow step 5; the Arcak–Sontag
+    key). Scope caveat: routine within that subcommunity, not yet across
+    all of quantitative biology — hence strong-analogy, not stronger.
+  evidence:
+    - del-vecchio-murray-2015
+    - cosentino-bates-2011
+    - el-samad-etal-2005
+    - chandra-etal-2011
+    - briat-etal-2016
+    - arcak-sontag-2006
 
 # ---------------------------------------------------------------------------
 # Applications: the third front door (M7; spec §8.8). An application node
@@ -797,6 +805,7 @@
     operator is the Radon transform: CT reconstruction by filtered
     back-projection is the inverse transform — exact in the full-angle,
     noiseless idealization, regularized in production.
+  evidence: [kak-slaney-1988, natterer-2001]
 
 - from: fourier-analysis
   to: computational-imaging
@@ -806,6 +815,7 @@
     The Fourier slice theorem turns each projection into a radial slice of
     the object's transform; MRI acquires Fourier samples (k-space)
     directly, making reconstruction (regularized) Fourier inversion.
+  evidence: [natterer-2001, liang-lauterbur-2000]
 
 - from: greens-function
   to: computational-imaging
@@ -820,6 +830,7 @@
     Theorem-grade inside the stated linear forward model: where multiple
     scattering matters it is the linearization that fails, not the
     reconstruction identity built on it.
+  evidence: [cumming-wong-2005, claerbout-1985]
 
 - from: complex-analysis
   to: computational-imaging
@@ -830,6 +841,7 @@
     spectrum as boundary value of a half-plane-analytic function) licenses
     quadrature demodulation, and Paley–Wiener rigidity is why limited-angle
     completion is formally determined yet violently ill-posed.
+  evidence: [gabor-1946, natterer-2001]
 
 - from: markov-chains
   to: pagerank
@@ -839,6 +851,7 @@
     Rank is the stationary distribution of the teleporting random-surfer
     chain; teleportation makes the chain irreducible and aperiodic, so
     Perron–Frobenius guarantees a unique positive answer.
+  evidence: [brin-page-1998, langville-meyer-2006]
 
 - from: eigenvalues
   to: pagerank
@@ -848,6 +861,7 @@
     The rank vector is the principal eigenvector of the Google matrix, and
     damping bounds the subdominant eigenvalue (|λ₂| ≤ α), setting the
     geometric convergence rate of power iteration.
+  evidence: [langville-meyer-2006, haveliwala-kamvar-2003]
 
 - from: graph-laplacian
   to: pagerank
@@ -862,6 +876,7 @@
     Deliberately below theorem strength: the exact statements live on the
     walk–generator correspondence (markov-chains ↔ graph-laplacian), not
     on PageRank itself.
+  evidence: [andersen-etal-2006, chung-1997]
 
 - from: variational-principles
   to: vascular-branching
@@ -874,6 +889,7 @@
     A variational model of a messy evolved system — real vasculature
     scatters around the optimum, so the optimality claim stays an
     established analogy rather than a theorem about organisms.
+  evidence: [murray-1926]
 
 - from: dimensional-analysis
   to: vascular-branching
@@ -887,6 +903,7 @@
   notes: >-
     Established correspondence with known scope: the network derivations
     remain contested in detail and measured exponents vary across taxa.
+  evidence: [kleiber-1932, west-etal-1997]
 
 - from: conservation-laws
   to: vascular-branching
@@ -895,6 +912,7 @@
   context: >-
     Volumetric flow conservation at every junction is the exact constraint
     inside branching-optimality arguments and hemodynamic network models.
+  evidence: [murray-1926, fung-1997]
 
 - from: optimization
   to: resource-allocation
@@ -904,6 +922,7 @@
     Production plans, diets, and portfolios are constrained programs: KKT
     conditions characterize the optimum, and the dual variable on a binding
     constraint is the shadow price — duality read as economics.
+  evidence: [boyd-vandenberghe-2004, dorfman-etal-1958]
 
 - from: vector-calculus
   to: resource-allocation
@@ -914,6 +933,7 @@
     revenue" is a first-order condition read one coordinate at a time, and
     the envelope theorem makes shadow prices well-defined derivatives of
     the optimal value.
+  evidence: [mas-colell-etal-1995]
 
 # ---------------------------------------------------------------------------
 # Research-gap layer (§15 + §9): candidate missing migrations, every one

@@ -5,11 +5,13 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
+import { parseBib } from './bib.js';
 import {
   SLUG,
   type ConceptRecord,
   type EdgeRecord,
   type Issue,
+  type ReferenceRecord,
   type SymptomRecord,
 } from './model.js';
 import { loadSchema, type AtlasSchema } from './schema.js';
@@ -19,6 +21,7 @@ export interface ParsedTree {
   concepts: ConceptRecord[];
   edges: EdgeRecord[];
   symptoms: SymptomRecord[];
+  references: ReferenceRecord[];
   issues: Issue[];
 }
 
@@ -154,5 +157,15 @@ export function parseTree(root: string): ParsedTree {
     (raw, index) => ({ file: symptomsFile, index, raw }),
   );
 
-  return { schema, concepts, edges, symptoms, issues };
+  // The bibliography is optional content (an atlas without citations is
+  // valid — spec §8.2); when absent, any `evidence` key is simply unknown.
+  const bibFile = join(root, 'graph', 'references.bib');
+  let references: ReferenceRecord[] = [];
+  if (existsSync(bibFile)) {
+    const bib = parseBib(readFileSync(bibFile, 'utf8'), bibFile);
+    references = bib.references;
+    issues.push(...bib.issues);
+  }
+
+  return { schema, concepts, edges, symptoms, references, issues };
 }
