@@ -42,6 +42,9 @@ M10 (v1 program complete; UI_REDESIGN.md specifies what follows)
       └── M13 applications wave, batch 1 + practitioner UI
                └── M14 pairs & orientation  (compare, atlas, facets — sequence, not dependency)
                     └── M15 forkable atlas + redesign closeout  (spec §8.5; the §4.2 trail, §4.9 pins)
+
+M15 (redesign complete; the wave continues as content batches)
+ └── M16 applications wave, batch 2   (queue-sourced; repeats M13's pattern)
 ```
 
 ---
@@ -1102,6 +1105,180 @@ out the redesign catalogue.
 
 ---
 
+## M16 — The engineering applications wave, batch 2
+
+**Goal:** the second wave batch repeats M13's proven pattern (tracking issue →
+honest bar → metrics re-read) with selection sourced from the queue and the
+survey views — the first batch chosen by the atlas's own recorded holes, which
+is what M11 built the instrument for. Content-only: no UI threshold flips
+below ~60 nodes (UI_REDESIGN.md §8), and M13's practitioner surfaces absorb
+new nodes as display joins.
+
+**What the instruments show today** (the selection evidence, so the batch is
+auditable against it):
+
+- Fourteen structures have no APPLIED-IN/MIGRATED-TO edge into any
+  application — among them prime engineering machinery: `harmonic-oscillator`,
+  `state-space-model`, `linear-gaussian-ssm`, `stability`, `bifurcation`,
+  `phase-space`, `large-number-limits`, `series-expansion`, `symmetry`.
+- Five map columns carry no application: quantum, heat-transfer,
+  information-theory, numerical-analysis, neuroscience.
+- Four community pairs have zero connecting edges (the queue's bridge
+  deficits), including the estimation cluster ↔ the optimization cluster —
+  machinery that production plants combine daily.
+
+**Exit criteria**
+
+- [ ] Batch fixed in a tracking issue before writing (the M2/M7/M13
+      discipline, mirroring [#26](https://github.com/dnrohr/mathematical-structures/issues/26)):
+      4–6 new `application` nodes, every one `established`, each with ≥ 2
+      distinct structures converging over APPLIED-IN / MIGRATED-TO edges with
+      honest strengths, per-edge context, and ≥ 1 citation on every
+      nontrivial claim (the M8 bar). Tool-shaped candidates demote to
+      structure content or aliases with the decision recorded (the
+      tomography/SIFT precedent).
+- [ ] Selection is queue-audited (the M11 promise made good): for every
+      accepted node the issue names the holes it fills — never-applied
+      structures lit up, empty map columns given a first application,
+      zero-edge community pairs bridged — so the batch is checkably
+      non-arbitrary.
+- [ ] Dialect discipline holds: every batch node carries an alias for each
+      field it claims (no new dialect-gap queue items), and
+      `application/underconnected` stays at zero.
+- [ ] Symptom pass: the recognition patterns the batch exposes land with
+      moves, mature fields, and a batch worked example (M7 earned one, M13
+      two; expect 1–3, fixed in the issue); retargets only where a new node
+      is honestly the better worked example.
+- [ ] Metrics + queue re-read after landing (the M7 discipline), recorded in
+      the issue: no overclaimed strength manufactured centrality; the bridge
+      deficits the batch was selected to close actually closed; hub
+      incoming-claim counts recorded against the ~60-node flip
+      (UI_REDESIGN.md §8 — grouped claim lists with the "and N more" cap) as
+      batch 3's early warning.
+- [ ] No app change needed and none made beyond test upkeep: node count stays
+      under the ~60 flip (47 → ~52); count-sensitive e2e assertions updated
+      to stay data-driven where content moved (the M13 precedent).
+
+**Starting candidates.** Six, each pre-checked against the ≥ 2-structures bar
+using existing nodes only — no new structure nodes are expected, and any
+candidate that turns out to need one demotes instead. The inventory issue
+fixes the final 4–6 (M13 accepted all five of its slate; this is where the
+bar check starts, not a commitment):
+
+1. `power-grid` — Power grid dynamics and frequency control. Converging:
+   `harmonic-oscillator` (the swing equation reads each synchronous machine
+   as a driven pendulum — a first application for a never-applied model),
+   `eigenvalues` (small-signal rotor-angle stability is modal analysis of the
+   linearized network), `feedback-control` (droop + AGC as the regulation
+   layers), `graph-laplacian` (DC power flow / Kron reduction on the network
+   Laplacian), `conservation-laws` (system frequency integrates the power
+   imbalance). Fields: control, networks, electromagnetics (primary decided
+   in the issue). Seam: `motor-efficiency` owns the machine; this node starts
+   at the network of machines.
+2. `process-control` — Industrial process control (distillation columns,
+   reactors). Converging: `feedback-control` (PID/cascade as the plant-floor
+   architecture), `state-space-model` (the internal model of predictive
+   control — a first application for a never-applied model), `optimization`
+   (receding-horizon control as a constrained program; the real-time
+   optimization layer above it), `linearization` (operating-point models
+   scheduled across regimes). Gives the estimation and optimization clusters
+   a shared application — the zero-edge bridge deficit the queue flags.
+   Fields: control (primary), optimization; heat-transfer membership decided
+   at writing (exchanger/reactor dynamics would give that empty column its
+   first application honestly or not at all). Demotions: MPC and PID are
+   techniques — edge context, not nodes.
+3. `digital-communications` — Digital communications: bits through a noisy
+   channel. Converging: `shannon-entropy` (channel capacity as the operating
+   constraint — the structure's flagship application), `fourier-analysis`
+   (OFDM: the cyclic prefix makes the channel circulant, so the DFT
+   diagonalizes it), `markov-chains` (convolutional codes as finite-state
+   Markov models; Viterbi as the MAP path), `bayes-rule` (MAP detection;
+   iterative decoding as belief propagation). Fields: information-theory
+   (primary — the empty column's first application), signal-processing,
+   electromagnetics. Seam: `antenna-design` owns the radiating hardware; this
+   node owns the symbols through the channel. Demotions: Viterbi, LDPC, and
+   turbo codes are algorithms — edge context.
+4. `structural-vibration` — Structural dynamics and earthquake engineering.
+   Converging: `eigenvalues` (modal analysis of the mass–stiffness pencil —
+   the existing mechanics alias gains its domain application),
+   `harmonic-oscillator` (modal superposition reduces the structure to SDOF
+   oscillators; response spectra are read off them), `variational-principles`
+   (Rayleigh quotient / Ritz bounds on frequencies), `bifurcation` +
+   `stability` (Euler buckling as the pitchfork loss of stability — first
+   applications for both). Fields: mechanics (primary). Demotions hold: FEA
+   stays operation content near `variational-principles` (the M13 decision);
+   the response-spectrum method is edge context. The notebook's normal-modes
+   material may supply a `sections` link — checked at writing.
+5. `epidemic-modeling` — Epidemic modeling and forecasting. Converging:
+   `markov-chains` (stochastic SIR as a continuous-time Markov chain),
+   `large-number-limits` (the deterministic ODE limit as population grows — a
+   first application), `bifurcation` (R₀ = 1 as a transcritical threshold),
+   `eigenvalues` (network epidemic threshold from the contact-graph
+   spectrum), `bayes-rule` (reproduction-number nowcasting). Strengths per
+   the protein-folding precedent: theorem inside the model equations,
+   strong-analogy for claims about real outbreaks. Fields: biology (primary),
+   networks, probability.
+6. `option-pricing` — Derivative pricing and hedging. Converging: `diffusion`
+   (Black–Scholes transforms exactly to the heat equation; the machinery is a
+   documented physics→finance import — the wave's first MIGRATED-TO
+   candidate, where batch 1 recorded none of its claims as transfer stories),
+   `markov-chains` (binomial-lattice pricing converging to the continuum),
+   `large-number-limits` (the CLT under lognormal returns; lattice → PDE
+   convergence). Fields: economics (primary), probability, statistics. Seam:
+   `resource-allocation` keeps static allocation (Markowitz portfolios stay
+   there); this node owns pricing and hedging contingent claims.
+
+Reserve: `target-tracking` — radar/sonar tracking, the schema's own exemplar
+application: `kalman-filter` (its founding production application),
+`linear-gaussian-ssm` (constant-velocity/acceleration motion models — a
+never-applied model), `bayes-rule` (data association). Enters if a slate
+candidate demotes at the bar check; seam with `computational-imaging`
+(imaging forms pictures; tracking follows objects through them).
+
+Left honestly empty this batch: quantum (MRI already lives on
+`computational-imaging`; no candidate clears the bar on existing structures),
+numerical-analysis, and neuroscience (neural excitability passes a first read
+of the bar — cable-equation `diffusion`, spike-threshold `bifurcation`,
+`phase-space` — but defers on batch size and engineering weight; batch 3
+material, recorded in the issue).
+
+**Tasks**
+
+- [ ] [curation] Inventory issue mirroring
+      [#26](https://github.com/dnrohr/mathematical-structures/issues/26): fix
+      the slate against the bar (demotions recorded), slugs, per-edge
+      strength/context/citation tables, the symptom pass, and the queue audit
+      naming the holes each node fills.
+- [ ] [curation] Write the nodes + edges with citations, house style per the
+      batch-1 nodes: summary, per-field aliases (the dialect discipline), 2–3
+      canonical examples, essay body with resolving wikilinks; `sections`
+      only where `docs/notebook-v0.md` genuinely covers the topic, otherwise
+      the issue is the provenance (the PageRank precedent). New `fields` ids
+      only as the validator demands them — none expected this batch (M7
+      needed none, M13 exactly one; every candidate field above exists).
+- [ ] [data] References: one BibTeX entry per nontrivial claim in
+      `graph/references.bib` (batch 1 added 28 for five nodes; expect the
+      same order).
+- [ ] [data] Symptom pass: add the 1–3 patterns fixed in the issue.
+      Candidates to check at writing: the resonance shape
+      (structural-vibration), the noisy-channel shape
+      (digital-communications), the threshold-crossing shape
+      (epidemic-modeling — first check whether `sharp-transitions-nonsmooth`
+      already carries it and only retarget if the new node is honestly the
+      better worked example).
+- [ ] [app] Test upkeep only: keep count-sensitive Playwright assertions
+      data-driven where the batch moves content (the M13 precedent — specs
+      updated where the anatomy relocated claims); landing groups, anatomy,
+      assumption surfaces, matrix/map/facets absorb the nodes as display
+      joins with no code change expected.
+- [ ] [curation] Metrics + queue re-read after landing, recorded in the
+      issue: trusted-subgraph membership of the new theorem-grade claims, hub
+      ranking stability (`optimization`, `eigenvalues`, `fourier-analysis`
+      each gain again), closed bridge deficits, and the hub incoming-claim
+      counts against the ~60-node flip.
+
+---
+
 ## Later backlog (unscheduled; spec §8 owns the rationale)
 
 - LLM-assisted authoring experiments — drafting node files in house style,
@@ -1113,7 +1290,10 @@ out the redesign catalogue.
   (`#/queue`): fill structural holes rather than
   chasing coverage — standing work that runs alongside the milestones above,
   not after them. Application batches after M13's repeat its pattern
-  (tracking issue → honest bar → metrics re-read), sourced from the queue.
+  (tracking issue → honest bar → metrics re-read), sourced from the queue —
+  batch 2 is cut as M16; batches beyond it remain standing work here (batch 3
+  candidates already recorded in M16: neural excitability, target tracking if
+  unused, and whatever the post-M16 queue shows).
 
 ## Standing curation (no milestone; tracked in #3)
 
