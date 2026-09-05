@@ -1179,6 +1179,785 @@
   evidence: [lucas-kanade-1981, maes-etal-1997]
 
 # ---------------------------------------------------------------------------
+# Applications, wave batch 2 (M16; issue #32). Same bar as M7/M13: strengths
+# grade how settled each usage claim is — theorem inside a stated model,
+# strong-analogy where the claim is about a messy real system. Selection is
+# queue-audited in the issue (never-applied structures, empty map columns,
+# bridge deficits).
+# ---------------------------------------------------------------------------
+
+- from: harmonic-oscillator
+  to: power-grid
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The swing equation reads each synchronous machine as a driven, damped
+    rotational oscillator in rotor angle (Mδ̈ + Dδ̇ = Pm − Pmax sin δ);
+    linearized about the operating point, inter-machine swings are
+    coupled-oscillator normal modes.
+  notes: >-
+    Theorem-grade inside the classical machine model (constant voltage
+    behind reactance); saturation, AVR and governor dynamics sit outside
+    the reduction, and detailed studies swap in higher-order machine
+    models.
+  evidence: [kundur-1994]
+
+- from: eigenvalues
+  to: power-grid
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Small-signal (rotor-angle) stability is modal analysis of the
+    linearized grid: electromechanical eigenmodes — local and inter-area
+    swings — with damping ratios grading each mode and participation
+    factors locating which machines carry it.
+  evidence: [kundur-1994]
+
+- from: feedback-control
+  to: power-grid
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Frequency control is layered regulation: primary droop (decentralized
+    proportional response in every governor), secondary AGC (integral
+    action restoring nominal frequency and scheduled tie-line flows),
+    tertiary economic redispatch above both.
+  evidence: [machowski-etal-2008]
+
+- from: graph-laplacian
+  to: power-grid
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    DC power flow is a Laplacian system in bus angles on the
+    susceptance-weighted grid graph (Bθ = P); Kron reduction of passive
+    buses is the Schur complement on that Laplacian, and the reduced
+    spectrum feeds synchronization and coherency analysis.
+  evidence: [dorfler-bullo-2013]
+
+- from: conservation-laws
+  to: power-grid
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    System frequency integrates the active-power imbalance: the aggregate
+    swing dynamics make frequency the running energy balance of generation
+    minus load, with total rotating inertia setting how fast it moves —
+    the physical ledger AGC regulates.
+  evidence: [machowski-etal-2008]
+
+- from: stability
+  to: power-grid
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Transient stability: whether machines hold synchronism after a fault
+    is a basin-of-attraction question — the equal-area criterion for one
+    machine, energy (Lyapunov) functions for networks, critical clearing
+    time as the engineering unit of distance to the boundary.
+  evidence: [kundur-1994]
+
+- from: feedback-control
+  to: process-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The plant floor is layered feedback: single-loop PID on flows, levels,
+    and temperatures; cascade control nesting fast inner loops inside slow
+    outer ones; ratio and feedforward acting on measured disturbances
+    before feedback must. PID and cascade are techniques — they live here
+    as context, not as nodes (issue #32).
+  evidence: [seborg-etal-2011]
+
+- from: state-space-model
+  to: process-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Model predictive control's internal model: an identified state-space
+    model is propagated over the prediction horizon, corrected against
+    measurements by an observer each sample, and re-propagated — the model
+    is the controller's working substance.
+  evidence: [rawlings-etal-2017, qin-badgwell-2003]
+
+- from: optimization
+  to: process-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Receding-horizon control is a constrained program re-solved each
+    sample (a QP for linear MPC), holding the unit against hard limits;
+    real-time optimization re-solves a steady-state economic program above
+    it and hands down setpoints — the optimize-then-regulate stack.
+  evidence: [rawlings-etal-2017, qin-badgwell-2003]
+
+- from: linearization
+  to: process-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Operating-point models: step tests and identification yield local
+    linear models valid inside the regime that produced them (the field's
+    first-order-plus-dead-time shorthand); gain scheduling stitches
+    regimes across grade changes.
+  evidence: [seborg-etal-2011]
+
+- from: shannon-entropy
+  to: digital-communications
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Channel capacity is the operating constraint: the noisy-channel coding
+    theorem's sharp limit (C = max I(X;Y); log₂(1 + SNR) for the Gaussian
+    channel) — achievable below, impossible above — is the number every
+    link design is graded against, and modern codes run within fractions
+    of a dB of it.
+  evidence: [shannon-1948, cover-thomas-2006]
+
+- from: fourier-analysis
+  to: digital-communications
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    OFDM: the cyclic prefix makes the dispersive channel act circulantly
+    on each block, and the DFT diagonalizes circulant convolution exactly
+    — one FFT pair turns intersymbol interference into independent flat
+    subchannels, each equalized by a single complex division.
+  evidence: [proakis-salehi-2008]
+
+- from: markov-chains
+  to: digital-communications
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Convolutional codes are finite-state Markov models: the trellis is the
+    encoder's state diagram unrolled in time, and Viterbi's algorithm
+    computes the exact maximum-likelihood path by dynamic programming.
+    Viterbi is a technique — context here, not a node (issue #32).
+  evidence: [forney-1973]
+
+- from: bayes-rule
+  to: digital-communications
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Detection is posterior inference: MAP symbol detection, BCJR
+    forward–backward over the trellis, and iterative (turbo/LDPC) decoding
+    as belief-propagation message passing whose fixed points approximate
+    the posterior — the inference reading that closed Shannon's gap.
+  evidence: [mackay-2003]
+
+- from: eigenvalues
+  to: structural-vibration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Modal analysis is the generalized eigenproblem of the mass–stiffness
+    pencil, (K − ω²M)φ = 0: eigenvalues are natural frequencies,
+    eigenvectors are mode shapes, and mass-orthogonality decouples the
+    equations of motion — the mechanics alias doing its home-field job.
+  evidence: [chopra-2012]
+
+- from: harmonic-oscillator
+  to: structural-vibration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Modal superposition reduces an N-DOF structure to independent SDOF
+    oscillators, one per mode; earthquake response spectra are read per
+    oscillator (period, damping) and modal peaks recombined (SRSS/CQC) —
+    the response-spectrum method is edge context, not a node (issue #32).
+  evidence: [chopra-2012]
+
+- from: variational-principles
+  to: structural-vibration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The Rayleigh quotient bounds the fundamental frequency from above for
+    any admissible shape, and Rayleigh–Ritz turns trial-shape families
+    into matrix eigenproblems converging from above — the variational
+    route the finite-element method industrialized (FEA itself stays
+    operation content, the M13 demotion).
+  evidence: [chopra-2012]
+
+- from: bifurcation
+  to: structural-vibration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Euler buckling is the pitchfork: at the critical load the straight
+    configuration loses stability and symmetric bent equilibria branch —
+    engineering's oldest bifurcation (1744), with imperfection sensitivity
+    read from the pitchfork's unfolding.
+  evidence: [bazant-cedolin-1991]
+
+- from: stability
+  to: structural-vibration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Buckling loads are the stability boundary for equilibrium
+    configurations of loaded structures; slenderness ratios and effective
+    lengths are the design code's budget of distance to that boundary.
+  evidence: [bazant-cedolin-1991]
+
+- from: markov-chains
+  to: epidemic-modeling
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The stochastic SIR model is a continuous-time Markov chain on
+    compartment counts (infection rate βSI/N, recovery rate γI); early
+    spread is a branching process, and take-off versus chance-extinction
+    probabilities are chain calculations.
+  evidence: [andersson-britton-2000]
+
+- from: large-number-limits
+  to: epidemic-modeling
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The deterministic SIR ODEs are the chain's law-of-large-numbers limit
+    as population grows (Kurtz's density-dependent Markov chain theorem):
+    the ODE describes typical paths, fluctuations are CLT-scale, and
+    small-count phases (introduction, near-elimination) stay stochastic.
+  evidence: [kurtz-1970]
+
+- from: bifurcation
+  to: epidemic-modeling
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    R₀ = 1 is a transcritical bifurcation: the disease-free equilibrium
+    exchanges stability with the endemic branch as R₀ crosses one — the
+    threshold theorem behind "get R below one" as a control target.
+  evidence: [hethcote-2000]
+
+- from: eigenvalues
+  to: epidemic-modeling
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Thresholds are spectral: in structured populations R₀ is the spectral
+    radius of the next-generation matrix, and on explicit contact networks
+    the epidemic threshold reads off the adjacency spectrum (critical
+    ratio ~ 1/λ₁ for SIS spreading).
+  evidence: [diekmann-etal-1990, pastor-satorras-etal-2015]
+
+- from: bayes-rule
+  to: epidemic-modeling
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Situational awareness is posterior inference: time-varying
+    reproduction numbers estimated from case counts via the renewal
+    equation, forecasts as sequential updating.
+  notes: >-
+    Deliberately strong-analogy, the protein-folding precedent: the
+    inference machinery is exact, but the claim is about practice on real
+    outbreak data, where reporting delays, underascertainment, and
+    changing test behavior stand between model and epidemic.
+  evidence: [cori-etal-2013]
+
+- from: diffusion
+  to: option-pricing
+  type: MIGRATED-TO
+  strength: theorem
+  context: >-
+    The documented physics→finance import — the wave's first MIGRATED-TO:
+    Bachelier priced options with random-walk-to-diffusion machinery five
+    years before Einstein's Brownian-motion paper, and Black–Scholes–
+    Merton runs on geometric Brownian motion, with the pricing PDE
+    transforming exactly to the heat equation. The machinery moved whole,
+    transformation included.
+  notes: >-
+    Theorem-grade for the transformation and the model's internal
+    mathematics; as a description of markets the model has known failures
+    — volatility smiles, jumps, hedging frictions — which live where the
+    model meets data, not in the transfer claim.
+  evidence: [bachelier-1900, black-scholes-1973]
+
+- from: markov-chains
+  to: option-pricing
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Binomial-lattice pricing: the Cox–Ross–Rubinstein tree is a Markov
+    chain under the risk-neutral measure, priced by backward induction
+    (iterated conditional expectation), with early exercise checked
+    node-by-node for American claims.
+  evidence: [cox-etal-1979]
+
+- from: large-number-limits
+  to: option-pricing
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The lattice→continuum passage is the central-limit phenomenon (scaled
+    binomial log-prices → lognormal; Donsker to the diffusion) — why tree
+    prices converge to Black–Scholes — and Monte-Carlo pricing rides the
+    LLN with CLT-width error bars.
+  evidence: [cox-etal-1979, glasserman-2004]
+
+# ---------------------------------------------------------------------------
+# The ergodic theorem, stated (M16; issue #32). The graph leaned on ergodic
+# reasoning in three edge contexts without stating the theorem; these two
+# edges and the large-number-limits fifth row land it. The
+# thermodynamic-entropy edge also resolves that pair's standing
+# candidate-edge queue item.
+# ---------------------------------------------------------------------------
+
+- from: large-number-limits
+  to: chaos
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    Birkhoff's pointwise ergodic theorem: for an ergodic invariant
+    measure, time averages along almost every trajectory equal the space
+    average — the law of large numbers with a single trajectory as the
+    sample, which is what gives chaotic dynamics statistics where
+    individual paths are hopeless.
+  notes: >-
+    Theorem-grade under its stated hypotheses (a measure-preserving system
+    with an ergodic invariant measure, integrable observable). Which
+    physical attractors carry such measures (SRB) and whether observations
+    sample them is where honesty about real systems lives; mixing, not
+    ergodicity alone, is what buys convergence rates.
+  evidence: [birkhoff-1931, walters-1982]
+
+- from: large-number-limits
+  to: thermodynamic-entropy
+  type: GOVERNS
+  strength: strong-analogy
+  context: >-
+    The ergodic hypothesis: laboratories measure time averages, ensembles
+    compute phase-space averages, and equating the two — Birkhoff's
+    equality assumed to apply to the physical system on the timescales
+    observed — is what earns equilibrium ensemble entropy its
+    thermodynamic reading for a single system.
+  notes: >-
+    Deliberately strong-analogy, read aloud at landing (issue #32): inside
+    an ergodic measure-preserving model the equality is Birkhoff's
+    theorem; that a real many-body system is ergodic over observation
+    times is a hypothesis with standing failure modes — metastability
+    (glasses, magnetized domains), broken ergodicity after symmetry
+    breaking, integrable dynamics confined to invariant tori — and the
+    observables must self-average for the equality to matter.
+  evidence: [birkhoff-1931, walters-1982]
+
+# ---------------------------------------------------------------------------
+# Candidate-edge triage (M16; issue #32): the standing link/candidate-edge
+# queue worked to a decision apiece. The 33 pairs below resolved to typed
+# edges (the ergodic thermodynamic-entropy edge above is the 34th); 27
+# resolved to non-edges.yaml entries; 2 defers are recorded in #3. Every
+# edge carries the composer discipline: honest strength, context, citation.
+# ---------------------------------------------------------------------------
+
+- from: fourier-analysis
+  to: antenna-design
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The array factor is the spatial Fourier transform of the element
+    weights, and a continuous aperture's far-field pattern is the Fourier
+    transform of its illumination — beamwidth–aperture and
+    taper–sidelobe trades are transform-pair statements, which is what
+    makes pattern synthesis clean.
+  evidence: [balanis-2005]
+
+- from: bifurcation
+  to: phase-space
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    A bifurcation is defined in phase space: the qualitative reorganization
+    of the portrait — equilibria created, destroyed, or exchanged, cycles
+    born — with normal forms and center manifolds doing the local
+    bookkeeping there.
+  evidence: [guckenheimer-holmes-1983]
+
+- from: bifurcation
+  to: stability
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    Local bifurcation points are exactly where an equilibrium's stability
+    verdict changes — eigenvalues reaching the boundary create, destroy,
+    or exchange stable states — so the bifurcation set is the parameter-
+    space boundary of the stability answer, and crossing it is
+    reorganization rather than explosion.
+  evidence: [strogatz-1994]
+
+- from: bifurcation
+  to: feedback-control
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Oscillation onset in a closed loop — gain or delay pushed past its
+    margin — is a Hopf bifurcation: a complex pair crossing the boundary
+    births the limit cycle whose amplitude describing-function analysis
+    estimates.
+  notes: >-
+    Theorem-grade for smooth ODE loop models satisfying the Hopf
+    hypotheses (transversal crossing, nonzero first Lyapunov coefficient);
+    as a claim about physical control loops it stays an established
+    analogy.
+  evidence: [guckenheimer-holmes-1983, astrom-murray-2008]
+
+- from: linearization
+  to: biological-regulation
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Steady states of regulatory ODE models are classified by the Jacobian
+    at the operating point — the small-signal move in biological dress —
+    and delay-induced oscillation onset is read from the linearized
+    characteristic equation.
+  notes: >-
+    Strong-analogy like this cluster's MIGRATED-TO edges: routine within
+    quantitative systems biology, and the model-to-organism step carries
+    the usual caveats.
+  evidence: [del-vecchio-murray-2015]
+
+- from: stability
+  to: biological-regulation
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Stability of regulatory steady states is the workhorse question of
+    quantitative models — which fixed points of a network model attract,
+    and how robustly — asked with exactly the map's spectral and Lyapunov
+    machinery.
+  evidence: [del-vecchio-murray-2015, alon-2006]
+
+- from: bifurcation
+  to: biological-regulation
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Bistable switches (the toggle) are saddle-node/pitchfork events,
+    oscillation onset in delayed or repressive loops is the Hopf story in
+    biological dress, and developmental switching is routinely modeled as
+    a bifurcation crossed by a slowly varying signal.
+  evidence: [del-vecchio-murray-2015, alon-2006]
+
+- from: symmetry
+  to: change-of-representation
+  type: SYMMETRY-SELECTS-REPRESENTATION
+  strength: theorem
+  context: >-
+    The pattern in its general form: the problem's invariance group
+    selects the coordinates in which it block-diagonalizes — translation
+    picks Fourier modes, rotation picks spherical harmonics, commuting
+    operators share eigenspaces — with representation theory as the
+    machinery. The typed Fourier and eigenvalue edges are this edge
+    specialized.
+  evidence: [hamermesh-1962]
+
+- from: chaos
+  to: phase-space
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    Chaos is a phase-space phenomenon: stretch-and-fold geometry, strange
+    attractors, and the erasure of initial-condition information are
+    defined on the portrait, and boundedness-plus-stretching is read
+    there, not from any time series alone.
+  evidence: [strogatz-1994]
+
+- from: eigenvalues
+  to: chaos
+  type: GOVERNS
+  strength: strong-analogy
+  context: >-
+    The Lyapunov spectrum governs sensitive dependence — a positive
+    leading exponent is the quantitative definition of chaos — and the
+    exponents are eigenvalue-like growth rates of the tangent flow, made
+    well-defined by Oseledets' multiplicative ergodic theorem.
+  notes: >-
+    The upgrade is the content: eigenvalues of frozen Jacobians along a
+    trajectory do not in general give Lyapunov exponents, and reasoning
+    from pointwise spectra to global behavior is the standard trap — hence
+    strong-analogy rather than theorem for the eigenvalue reading.
+  evidence: [eckmann-ruelle-1985]
+
+- from: chaos
+  to: thermodynamic-entropy
+  type: ANALOGOUS-TO
+  strength: heuristic-analogy
+  context: >-
+    Mixing supplies the mechanism in dynamical accounts of macroscopic
+    irreversibility: what stretching-and-folding disperses over the energy
+    shell, coarse-graining then discards, and the entropy balance records
+    the loss.
+  notes: >-
+    A program-level correspondence, not a theorem about real many-body
+    systems: Kolmogorov–Sinai entropy is a rate of information production
+    about initial conditions, not the thermodynamic state function, and
+    the transfer runs through ergodic theory rather than the shared word.
+  evidence: [dorfman-1999]
+
+- from: renormalization
+  to: chaos
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Feigenbaum universality: the period-doubling cascade's constants α and
+    δ are eigenvalue data of the doubling operator's fixed point —
+    renormalization run in function space — which is why quantitatively
+    different unimodal maps share the same exponents.
+  notes: >-
+    Established rigorously for unimodal maps (computer-assisted and later
+    conceptual proofs); the RG reading is exact there, not merely
+    suggestive.
+  evidence: [feigenbaum-1978]
+
+- from: optimization
+  to: computational-imaging
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Modern reconstruction is variational: penalized-likelihood and
+    compressed-sensing programs (TV, ℓ₁) replace inverse formulas for
+    noisy, incomplete data, with exact-recovery theorems (RIP,
+    incoherence) grading the idealized claims.
+  evidence: [candes-etal-2006]
+
+- from: bayes-rule
+  to: computational-imaging
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Bayesian inversion: priors regularize the ill-posedness (MAP with
+    Gaussian noise and a quadratic prior is exactly Tikhonov), and the
+    posterior quantifies the uncertainty an inverse formula pretends away.
+  evidence: [kaipio-somersalo-2005]
+
+- from: conservation-laws
+  to: graph-laplacian
+  type: SAME-SKELETON
+  strength: strong-analogy
+  context: >-
+    Kirchhoff's current law is the continuity equation discretized to a
+    network: flow conservation at every node, with the Laplacian factoring
+    through the incidence matrix (L = BᵀWB) as div∘grad — the same
+    balance skeleton the continuum writes with ∇·.
+  evidence: [chung-1997]
+
+- from: diffusion
+  to: large-number-limits
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    The diffusion reading of a microscopic process assumes the scaling
+    regime: many small, weakly dependent increments with finite variance
+    in the window observed — Donsker's invariance principle states the
+    precise hypotheses.
+  notes: >-
+    The standing failure modes are the point of recording the assumption:
+    heavy-tailed steps or long memory give Lévy flights and anomalous
+    diffusion, and the classical heat kernel silently misdescribes both.
+  evidence: [billingsley-1999]
+
+- from: dimensional-analysis
+  to: symmetry
+  type: IS-A
+  strength: special-case
+  context: >-
+    Unit rescalings form a transformation group, and Buckingham Π says
+    physical laws are invariant under it — so laws must be functions of
+    the group's invariants, the dimensionless products. Dimensional
+    analysis is symmetry reasoning for the similarity group.
+  evidence: [barenblatt-1996]
+
+- from: stability-margins
+  to: feedback-control
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    Margins are defined on a loop: a loop transfer function with a
+    declared breaking point, read near the Nyquist critical point — no
+    loop, no margin — and multivariable loops need disk or structured
+    variants before the numbers mean what designers budget.
+  evidence: [astrom-murray-2008]
+
+- from: linearization
+  to: image-registration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Lucas–Kanade linearizes brightness constancy about the current warp
+    each iteration — the optical-flow normal equations are the linearized
+    residual's least squares, solved coarse-to-fine (Gauss–Newton on the
+    alignment energy).
+  evidence: [lucas-kanade-1981]
+
+- from: state-space-model
+  to: integral-transforms
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    LTI realizations become rational transfer functions under the
+    Laplace/z transform (C(sI − A)⁻¹B + D), and realization theory runs
+    the other way, with minimal ↔ controllable-and-observable (Kalman) —
+    the bridge feedback design crosses freely.
+  notes: >-
+    Scoped to linear time-invariant models: time-varying and nonlinear
+    state-space models leave the transform picture.
+  evidence: [kailath-1980]
+
+- from: linearization
+  to: chaos
+  type: FAILS-WHEN
+  strength: theorem
+  context: >-
+    Chaos is global: trajectories leave every neighborhood where one
+    Jacobian speaks, and no single linearization's spectrum can certify or
+    exclude it — limit cycles far from equilibria and strange attractors
+    are invisible to the move by construction.
+  evidence: [strogatz-1994]
+
+- from: state-space-model
+  to: markov-chains
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    The state process is Markov — given the present state, the future is
+    independent of the past — which is the structural condition that makes
+    recursive prediction–correction possible; the mirror of the same
+    assumption typed on the hidden-Markov side.
+  evidence: [anderson-moore-1979]
+
+- from: kalman-filter
+  to: optimization
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    The filter is recursive least squares: the minimum-variance / MAP
+    estimate of a linear-Gaussian state is a quadratic program the
+    recursion solves exactly, and estimation–control (LQE/LQR) duality
+    runs the same Riccati equation both ways.
+  evidence: [anderson-moore-1979]
+
+- from: shannon-entropy
+  to: optimization
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    Maximum entropy is convex duality in exact form: entropy maximization
+    under moment constraints has Lagrange multipliers that become the
+    natural parameters of the exponential family, and the dual problem is
+    maximum likelihood in that family.
+  evidence: [cover-thomas-2006, boyd-vandenberghe-2004]
+
+- from: stability
+  to: phase-space
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    Stability's definitions are portrait geometry: Lyapunov stability and
+    attraction are neighborhood statements about the flow, basins bound
+    how far the local verdict reaches, and Lyapunov functions turn "energy
+    decreases" into invariant level-set geometry — the direct method needs
+    no linearization at all.
+  evidence: [khalil-2002]
+
+- from: markov-chains
+  to: protein-folding
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: >-
+    Markov state models are Markov chains on conformational macrostates:
+    transition probabilities estimated at a lag time, with folding rates
+    and pathways read from the chain's spectrum — the slowest relaxation
+    is folding itself.
+  notes: >-
+    Markovianity after coarse-graining is validated per system (implied
+    timescales); the hidden-Markov edge carries the refinement that
+    corrects imperfect state discretization. Together they type the
+    MSM story the M13 inventory routed through edges, not nodes.
+  evidence: [prinz-etal-2011]
+
+- from: shannon-entropy
+  to: markov-chains
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Entropy rate has closed form for a stationary chain
+    (−Σᵢ πᵢ Pᵢⱼ log Pᵢⱼ), and the asymptotic equipartition property
+    extends to ergodic Markov sources (Shannon–McMillan–Breiman) — typical
+    sequences and compression limits, exactly.
+  evidence: [cover-thomas-2006]
+
+- from: smoothness
+  to: large-number-limits
+  type: FAILS-WHEN
+  strength: theorem
+  context: >-
+    Phase transitions: free energies of finite systems are analytic, and
+    the nonanalyticity that defines a transition emerges only in the
+    thermodynamic limit — regularity assumptions about collective
+    observables break exactly where the large-number limit creates the
+    kink.
+  evidence: [goldenfeld-1992]
+
+- from: smoothness
+  to: renormalization
+  type: REPLACED-BY
+  strength: strong-analogy
+  context: >-
+    At critical points the analytic (Landau/mean-field) description gives
+    way to scaling: exponents, data collapse, and RG flow replace Taylor
+    expansion of the free energy — the replacement rung for nonsmoothness
+    that emerges collectively rather than pointwise.
+  evidence: [goldenfeld-1992]
+
+- from: smoothness
+  to: variational-principles
+  type: REPLACED-BY
+  strength: theorem
+  context: >-
+    When classical derivatives fail — shocks, corners, rough coefficients
+    — the variational statement survives: weak solutions are stationarity
+    conditions in integral form, existence comes from the direct method,
+    and the classical PDE is recovered exactly where regularity returns.
+  evidence: [evans-2010]
+
+- from: vector-calculus
+  to: smoothness
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    The differential probes (gradient, divergence, curl, Laplacian) need
+    differentiability of the fields they probe; at shocks and interfaces
+    the local statements hand over to the integral/weak forms, which is
+    the local–global duality doing rescue work.
+  evidence: [evans-2010]
+
+- from: bayes-rule
+  to: weather-prediction
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Assimilation is posterior inference: 3D/4D-Var cost functions are
+    negative log posteriors under Gaussian error models, the EnKF samples
+    the same update, and the Bayesian formulation is what licenses
+    extensions beyond the linear-Gaussian idealization (particle DA).
+  evidence: [wikle-berliner-2007, kalnay-2003]
+
+- from: state-space-model
+  to: weather-prediction
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The assimilation cycle is state estimation on an explicit state-space
+    model: forecast dynamics propagate the state, observation operators
+    map it to measurements, the analysis corrects it — the structure that
+    makes "forecast, then update" well-posed at a billion state variables.
+  evidence: [kalnay-2003]
+
+# ---------------------------------------------------------------------------
 # Research-gap layer (§15 + §9): candidate missing migrations, every one
 # speculative + open-candidate, framed per docs/research-gap-workflow.md.
 # The margins → biological-regulation candidate that used to lead this list

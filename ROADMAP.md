@@ -1132,33 +1132,52 @@ auditable against it):
 
 **Exit criteria**
 
-- [ ] Batch fixed in a tracking issue before writing (the M2/M7/M13
+- [x] Batch fixed in a tracking issue before writing (the M2/M7/M13
       discipline, mirroring [#26](https://github.com/dnrohr/mathematical-structures/issues/26)):
       4–6 new `application` nodes, every one `established`, each with ≥ 2
       distinct structures converging over APPLIED-IN / MIGRATED-TO edges with
       honest strengths, per-edge context, and ≥ 1 citation on every
       nontrivial claim (the M8 bar). Tool-shaped candidates demote to
       structure content or aliases with the decision recorded (the
-      tomography/SIFT precedent).
-- [ ] Selection is queue-audited (the M11 promise made good): for every
+      tomography/SIFT precedent) — six nodes landed per
+      [#32](https://github.com/dnrohr/mathematical-structures/issues/32):
+      power-grid, process-control, digital-communications,
+      structural-vibration, epidemic-modeling, option-pricing; 27 batch
+      edges (26 theorem-grade — the wave's first MIGRATED-TO among them,
+      diffusion → option-pricing — and one strong-analogy: R_t nowcasting,
+      the protein-folding precedent); demotions recorded (MPC/PID/RTO,
+      Viterbi/BCJR/LDPC, response-spectrum method, Itô calculus → edge
+      context or prose; FEA unchanged).
+- [x] Selection is queue-audited (the M11 promise made good): for every
       accepted node the issue names the holes it fills — never-applied
       structures lit up, empty map columns given a first application,
       zero-edge community pairs bridged — so the batch is checkably
-      non-arbitrary.
-- [ ] Dialect discipline holds: every batch node carries an alias for each
+      non-arbitrary. Seven of the seventeen never-applied structures lit
+      (bayes-rule, bifurcation, harmonic-oscillator, large-number-limits,
+      shannon-entropy, stability, state-space-model); information-theory and
+      heat-transfer columns got first applications (quantum,
+      numerical-analysis, neuroscience left honestly empty, recorded); the
+      estimation ↔ optimization deficit closed.
+- [x] Dialect discipline holds: every batch node carries an alias for each
       field it claims (no new dialect-gap queue items), and
       `application/underconnected` stays at zero.
-- [ ] Symptom pass: the recognition patterns the batch exposes land with
+- [x] Symptom pass: the recognition patterns the batch exposes land with
       moves, mature fields, and a batch worked example (M7 earned one, M13
       two; expect 1–3, fixed in the issue); retargets only where a new node
-      is honestly the better worked example.
-- [ ] Metrics + queue re-read after landing (the M7 discipline), recorded in
+      is honestly the better worked example — three landed
+      (driven-near-resonance → structural-vibration, signal-buried-in-noise
+      → digital-communications, parameter-crossing-threshold →
+      epidemic-modeling); no retargets — `sharp-transitions-nonsmooth`
+      checked and honestly kept on `smoothness` (it recognizes nonsmooth
+      functions and data; the new entry recognizes parameter-driven regime
+      change).
+- [x] Metrics + queue re-read after landing (the M7 discipline), recorded in
       the issue: no overclaimed strength manufactured centrality; the bridge
       deficits the batch was selected to close actually closed; hub
       incoming-claim counts recorded against the ~60-node flip
       (UI_REDESIGN.md §8 — grouped claim lists with the "and N more" cap) as
       batch 3's early warning.
-- [ ] `large-number-limits` states the ergodic theorem the graph already
+- [x] `large-number-limits` states the ergodic theorem the graph already
       leans on: a fifth family row — time averages along a single trajectory
       approach ensemble averages — with its caution (requires ergodicity;
       metastability and broken ergodicity are real failure modes), a short
@@ -1169,15 +1188,22 @@ auditable against it):
       ergodic-hypothesis alias in the thermodynamics dialect, and ≥ 1
       citation (the M8 bar). The prose-linked
       `large-number-limits ↔ thermodynamic-entropy` pair — already in the
-      candidate queue — resolves to a typed edge read aloud in the PR.
-- [ ] The info-level candidate-edge queue (63 pairs today; the standing
+      candidate queue — resolves to a typed edge read aloud in the PR
+      (GOVERNS at strong-analogy: Birkhoff is a theorem inside an ergodic
+      model; "real systems are ergodic over observation times" is the
+      hypothesis), with a companion theorem-grade GOVERNS edge into `chaos`
+      so the new section's links stay typed.
+- [x] The info-level candidate-edge queue (63 pairs today; the standing
       `link/candidate-edge` infos) is triaged to a decision apiece: a typed
       edge with honest strength and citation (the composer discipline), a
       `non-edges.yaml` entry with its reason, or a defer recorded in #3 — so
       the queue afterwards holds only pairs someone chose to leave, and the
-      post-batch queue re-read reads a drained baseline.
-- [ ] No app change needed and none made beyond test upkeep: node count stays
-      under the ~60 flip (47 → ~52); count-sensitive e2e assertions updated
+      post-batch queue re-read reads a drained baseline. Decisions: 34 typed
+      edges, 27 ledger entries (+ 3 batch-seam entries), 2 defers
+      (greens-function ↔ smoothness, radon-transform ↔ greens-function) —
+      the queue now reads exactly those two.
+- [x] No app change needed and none made beyond test upkeep: node count stays
+      under the ~60 flip (47 → 53); count-sensitive e2e assertions updated
       to stay data-driven where content moved (the M13 precedent).
 
 **Starting candidates.** Six, each pre-checked against the ≥ 2-structures bar
@@ -1265,50 +1291,64 @@ material, recorded in the issue).
 
 **Tasks**
 
-- [ ] [curation] Inventory issue mirroring
+- [x] [curation] Inventory issue mirroring
       [#26](https://github.com/dnrohr/mathematical-structures/issues/26): fix
       the slate against the bar (demotions recorded), slugs, per-edge
       strength/context/citation tables, the symptom pass, and the queue audit
-      naming the holes each node fills.
-- [ ] [curation] Write the nodes + edges with citations, house style per the
+      naming the holes each node fills —
+      [#32](https://github.com/dnrohr/mathematical-structures/issues/32);
+      all six starting candidates cleared the bar (the reserve,
+      target-tracking, stays unused), with one slate refinement recorded:
+      `stability` joined power-grid's table at the bar check (transient
+      stability is load-bearing grid engineering).
+- [x] [curation] Write the nodes + edges with citations, house style per the
       batch-1 nodes: summary, per-field aliases (the dialect discipline), 2–3
       canonical examples, essay body with resolving wikilinks; `sections`
       only where `docs/notebook-v0.md` genuinely covers the topic, otherwise
-      the issue is the provenance (the PageRank precedent). New `fields` ids
-      only as the validator demands them — none expected this batch (M7
-      needed none, M13 exactly one; every candidate field above exists).
-- [ ] [data] References: one BibTeX entry per nontrivial claim in
+      the issue is the provenance (the PageRank precedent — structural-
+      vibration carries the notebook's normal-modes section; the other five
+      carry none). New `fields` ids only as the validator demands them —
+      none needed, as predicted.
+- [x] [data] References: one BibTeX entry per nontrivial claim in
       `graph/references.bib` (batch 1 added 28 for five nodes; expect the
-      same order).
-- [ ] [data] Symptom pass: add the 1–3 patterns fixed in the issue.
+      same order) — 41 entries landed: 23 for the batch, 2 for the ergodic
+      theorem (Birkhoff 1931, Walters), 16 for the triage edges; every entry
+      cited by at least one edge.
+- [x] [data] Symptom pass: add the 1–3 patterns fixed in the issue.
       Candidates to check at writing: the resonance shape
       (structural-vibration), the noisy-channel shape
       (digital-communications), the threshold-crossing shape
       (epidemic-modeling — first check whether `sharp-transitions-nonsmooth`
       already carries it and only retarget if the new node is honestly the
-      better worked example).
-- [ ] [data] Ergodicity: the fifth row plus a short "the dynamical sibling"
+      better worked example) — all three landed; the check kept
+      `sharp-transitions-nonsmooth` untouched.
+- [x] [data] Ergodicity: the fifth row plus a short "the dynamical sibling"
       section in `concepts/large-number-limits.md`; the thermodynamics-
       dialect alias ("ergodic hypothesis / time vs ensemble averages");
       Birkhoff (plus a standard text) in `graph/references.bib`; the
       `large-number-limits → thermodynamic-entropy` typed edge carrying the
       ergodic-hypothesis claim, strength decided at writing and read aloud
       in the PR. The new prose must not mint fresh untyped pairs — the
-      triage below catches any it does.
-- [ ] [curation] Candidate-edge triage: work the 63 `link/candidate-edge`
+      triage below catches any it does (it minted none: the section's links
+      are all typed, one via the companion `large-number-limits → chaos`
+      GOVERNS edge).
+- [x] [curation] Candidate-edge triage: work the 63 `link/candidate-edge`
       pairs through the M10 composer / `non-edges.yaml` ledger, decision
       recorded per pair (edge, non-edge with reason, or defer noted in #3);
       the `#/queue` prefilled actions are the working surface. Sequence it
       before or alongside the batch: batch prose will mint pairs of its own,
       and the metrics re-read should read a drained baseline. This schedules
       the *current snapshot* only — post-M16 accumulation returns to
-      standing work.
-- [ ] [app] Test upkeep only: keep count-sensitive Playwright assertions
+      standing work. Done: 34 edges / 27 non-edges / 2 defers, the per-pair
+      table in [#32](https://github.com/dnrohr/mathematical-structures/issues/32),
+      defers recorded in #3; batch prose minted only its three deliberate
+      seams, ledgered alongside.
+- [x] [app] Test upkeep only: keep count-sensitive Playwright assertions
       data-driven where the batch moves content (the M13 precedent — specs
       updated where the anatomy relocated claims); landing groups, anatomy,
       assumption surfaces, matrix/map/facets absorb the nodes as display
       joins with no code change expected.
-- [ ] [curation] Metrics + queue re-read after landing, recorded in the
+- [x] [curation] Metrics + queue re-read after landing, recorded in the
       issue: trusted-subgraph membership of the new theorem-grade claims, hub
       ranking stability (`optimization`, `eigenvalues`, `fourier-analysis`
       each gain again), closed bridge deficits, and the hub incoming-claim
@@ -1339,10 +1379,12 @@ material, recorded in the issue).
   work, not a gate on M11–M14 or the applications wave.
 - Triage of the info-level candidate edges (55 after M11 — M10's dogfood
   landed one as an edge, and the ledger's first entry suppressed another as
-  a reviewed non-edge; 63 today) into typed edges or `non-edges.yaml`
-  entries; the M11 queue renders both queues with prefilled actions. The
-  current 63-pair snapshot is scheduled into M16 by owner decision; pairs
-  accumulating after M16 return here as standing work.
+  a reviewed non-edge; 63 at the M16 cut) into typed edges or
+  `non-edges.yaml` entries; the M11 queue renders both queues with prefilled
+  actions. The 63-pair snapshot was worked in M16
+  ([#32](https://github.com/dnrohr/mathematical-structures/issues/32): 34
+  edges, 27 non-edges, 2 defers recorded in #3), so the queue now holds only
+  the two defers; pairs accumulating after M16 return here as standing work.
 - Possible extraction of `wavelets` from `integral-transforms` once there is
   enough content.
 

@@ -44,9 +44,10 @@ test('the per-page Sources list aggregates every work the claims cite', async ({
   await expect(sources).toContainText("Google's PageRank and Beyond");
   await expect(sources).toContainText('Spectral Graph Theory');
 
-  // A page whose claims cite nothing renders no Sources section.
-  await page.goto('/#/c/bayes-rule');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Bayes');
+  // A page whose claims cite nothing renders no Sources section. (Was
+  // bayes-rule until M16's wave batch 2 gave its claims citations.)
+  await page.goto('/#/c/nondimensionalization');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Nondimensionalize');
   await expect(page.locator('.concept-section.sources')).toHaveCount(0);
 });
 
@@ -85,8 +86,9 @@ test('the shared edge-claim renderer (lens, path, questions) carries citations',
   await claim.locator('details.cite summary').click();
   await expect(claim).toContainText('Del Vecchio');
 
-  // Claims without evidence render no marker at all.
-  await page.goto('/#/lens?edge=SAME-SKELETON');
+  // Claims without evidence render no marker at all. (SAME-SKELETON gained
+  // a cited edge in M16's triage; the local–global duality stays bare.)
+  await page.goto('/#/lens?edge=LOCAL-GLOBAL-DUAL');
   await expect(page.locator('.connection.claim').first()).toBeVisible();
   await expect(page.locator('details.cite')).toHaveCount(0);
 });
