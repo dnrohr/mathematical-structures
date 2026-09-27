@@ -1,0 +1,186 @@
+# Pre-admission candidate validation
+
+## Overlap and integration note
+
+This design is based on the current implementation, not only on the repository
+documents. The pre-admission layer is a separate consumer of `atlas-build`; it
+does not become another trusted-content compiler.
+
+### Reuse directly
+
+- `loadSchema` and `AtlasSchema` in `build/src/schema.ts` remain the only source
+  of atlas node types, edge types, strengths, fields, and gap statuses.
+- `parseTree` supplies the raw trusted concept, edge, reference, symptom, and
+  walk records. `runPipeline` supplies the clean linked graph. Candidate
+  validation stops if the trusted atlas itself has errors.
+- `validateContent` is called through a narrow adapter for proposed trusted
+  edges. This reuses endpoint, vocabulary, strength, gap-workflow, citation-key,
+  and duplicate rules, including reversed duplicates for symmetric edge types.
+- `linkGraph`'s `GraphNode`, `GraphEdge`, aliases, and wiki-link candidate pairs
+  are the normalization index. Its deliberate non-edge ledger suppresses
+  already-reviewed pairs, and `metrics.queue.link_suggestions` adds the current
+  mechanical proposal queue. Matches always cite an atlas slug and the
+  triggering canonical name, alias, acronym, or normalized spelling.
+- `analyzeGraph` provides the existing degree, betweenness, community, field
+  span, dialect count, gap, candidate-edge, and work-queue summaries used as
+  graph-value inputs. Candidate claims are never inserted into those metrics.
+- `APPLICATION_NODE_TYPE` and `APPLICATION_EDGE_TYPES` preserve the existing
+  two-structure application bar. Candidate reports apply the same bar as a
+  recommendation; final enforcement remains in the trusted validator.
+- The node, edge, and gap issue templates, ordinary pull requests, and
+  `npm run check` remain the promotion path and final gate.
+
+### Narrow extraction or extension
+
+- Candidate validation constructs in-memory `ConceptRecord` and `EdgeRecord`
+  adapters, then filters the existing validator's results to the proposed
+  records. No trusted rule is copied into the candidate implementation.
+- Existing `NonEdgeRecord` entries are passed through the same adapter, so a
+  proposal contradicting `graph/non-edges.yaml` is detected by the trusted
+  `non-edge/contradiction` rule rather than by a competing admission rule.
+- Name normalization is new but deliberately lexical: Unicode normalization,
+  case folding, punctuation/whitespace folding, a small transparent plural
+  normalization, and only explicitly supplied aliases/acronyms. Semantic
+  similarity remains a recorded heuristic signal, never identity.
+- Existing metrics are read, not recomputed with hypothetical nodes or edges.
+  The prototype reports observable graph-value dimensions separately from
+  evidence and truth.
+
+### New components actually required
+
+- A versioned YAML dossier contract under `admission/`, outside `concepts/`,
+  `graph/`, and `paths/`.
+- Deterministic dossier parsing, workflow/source-consistency rules,
+  normalization, evidence-status checks, recommendation logic, and stable
+  text/JSON report renderers.
+- A separate `atlas-admit` CLI. It reads trusted content and dossiers but never
+  writes trusted content or build artifacts.
+- Optional retrieval and model adapters behind a recorded-judgment boundary.
+  They are documented interfaces only in this prototype; completed dossiers
+  remain fully reviewable offline.
+
+No change to `graph/schema.yaml` or the trusted ontology is necessary. The
+candidate workflow states and dispositions are admission-process vocabulary,
+not atlas ontology; they are versioned with the dossier contract. Any future
+attempt to promote them into trusted graph data is a separate schema decision
+for human review.
+
+## Boundary and data flow
+
+```text
+untrusted YAML dossier(s)
+          |
+          v
+shape/provenance/workflow checks ---- graph/schema.yaml vocabulary lookup
+          |                                      |
+          v                                      v
+lexical normalization <-------------- clean linked trusted atlas
+          |
+          +---- proposed-edge adapter ----> existing validateContent
+          |
+          +---- evidence and adversarial checks (recorded, never presumed)
+          |
+          +---- existing metrics, read-only graph-value signals
+          v
+stable review report (text or JSON) ---> human decision
+                                           |
+                                           v
+ordinary issue/PR ---> trusted atlas validator ---> trusted graph artifacts
+```
+
+The CLI never retrieves sources and never invokes a model. A retrieval adapter
+may append search history and source inventory entries; an assessment adapter
+may append a judgment with tool/model identity, version, inputs, and rationale.
+Those entries are untrusted dossier facts. The deterministic core checks their
+shape and labels them by method, but never upgrades them to evidence.
+
+## Deterministic and heuristic checks
+
+Deterministic checks cover YAML shape, ids, schema-derived vocabularies, source
+references, evidence assessment fields, workflow transitions, exact/normalized
+name matches, trusted-edge duplication, symmetric reversed duplication, and
+byte-stable report ordering. A source assessment only counts as claim support
+when it names the exact proposition, a location or excerpt, and a status of
+`direct-support` or `qualified-support`. `background-only` and
+`irrelevant-co-mention` never support a claim. A `not-located` search is reported
+only as a retrieval result and cannot establish absence or a missing migration.
+
+Heuristic outputs are inspectable suggestions: likely alias, near duplicate,
+broader/narrower term, ontological category warnings, application demotion,
+weaker edge, and graph-value dimensions. Each carries a reason and provenance;
+there is no aggregate confidence score. Model-assisted and retrieval-dependent
+judgments are preserved in separate report sections and disagreement is shown,
+not averaged.
+
+## Workflow
+
+The dossier keeps an append-only sequence of transitions. Allowed transitions
+are:
+
+```text
+harvested -> normalized -> dossier-ready -> evidence-collected -> assessed
+assessed -> automated-review-passed | needs-revision | insufficient-evidence | rejected
+automated-review-passed -> human-review
+needs-revision -> dossier-ready
+insufficient-evidence -> evidence-collected
+human-review -> accepted-as-node | accepted-as-edge | accepted-as-alias
+             | accepted-as-example | accepted-as-application
+             | deliberate-non-edge | deferred | rejected
+```
+
+Terminal human dispositions are not produced automatically. The CLI recommends
+one of `propose-node`, `propose-edge`, `add-alias`, `merge-or-refine`,
+`retain-example`, `propose-application`, `weaken-edge`, `deliberate-non-edge`,
+`defer`, or `reject`; a reviewer records the final state separately.
+
+## Important failure modes
+
+- **Vocabulary drift:** prevented by looking up atlas values in
+  `graph/schema.yaml`; the dossier contract does not enumerate them.
+- **False identity from fuzzy text:** semantic similarity can only create a
+  review signal. Exact alias recommendations require a transparent lexical or
+  explicitly supplied match.
+- **Citation laundering:** citation presence, endpoint co-mention, repeated
+  secondary assertions, and a syntactically valid report do not establish
+  entailment.
+- **Argument from failed search:** `not-located` means only that the recorded
+  query did not locate a source.
+- **Speculative bridge inflation:** graph metrics are read from the existing
+  trusted subgraph and never include candidate edges.
+- **Category inflation:** algorithms/models and one-structure applications are
+  candidates for edges or canonical examples before new nodes.
+- **Automation leakage:** output paths are explicit and the implementation has
+  no writer for `concepts/`, `graph/`, or `paths/`.
+
+## Human promotion
+
+After review, translate only the approved portion of a dossier:
+
+- node: file a node proposal or author `concepts/<slug>.md`;
+- edge: use the edge proposal/composer or edit `graph/edges.yaml` and add any
+  approved citation to `graph/references.bib`;
+- alias: edit the matched concept's `aliases` with a schema field id;
+- example: add it to the matched concept's `canonical_examples`;
+- application: author an application node only when at least two existing
+  structures materially converge, otherwise retain an example;
+- deliberate non-edge/defer/reject: keep the dossier and decision history in
+  the admission queue; do not manufacture trusted graph content.
+
+Every promoted change is an ordinary reviewed contribution and must pass
+`npm run check`. A passing candidate report is never a substitute for that
+gate.
+
+## Bounded pilot
+
+Use 20 dossiers sampled for contrast, not coverage: five each from numerical
+analysis, systems biology, machine learning, and mathematical physics. Within
+each group, include two literature-harvested terms, one syllabus or handbook
+term, one glossary/taxonomy term, and one LLM-suggested candidate that is kept
+explicitly untrusted. Stop after one human review round per dossier.
+
+Record duplicate/alias suggestion precision; final disposition across every
+supported outcome; retrieval and entailment agreement with the reviewer;
+edge-type corrections; strength reductions; review minutes; accepted claims
+per review hour; rejection reasons; and hashes of two identical deterministic
+runs. The pilot succeeds by producing useful accepted claims with tolerable
+review effort, not by maximizing generated terms or disciplinary coverage.

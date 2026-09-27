@@ -6,7 +6,8 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "atlas": "tsx src/index.ts"
+    "atlas": "tsx src/index.ts",
+    "admit": "tsx src/admission-cli.ts"
   },
   "dependencies": {
     "d3-force": "^3.0.0",
