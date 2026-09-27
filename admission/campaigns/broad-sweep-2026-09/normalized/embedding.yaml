@@ -1,0 +1,39 @@
+dossier_schema: 1.0.0
+candidate:
+  id: embedding
+  canonical_name: Embedding
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+    - pde
+  proposed_disposition: reject
+  possible_matches: []
+source_inventory:
+  - id: lee-smooth-manifolds-2012
+    kind: textbook
+    title: Introduction to Smooth Manifolds, second edition
+    authors:
+      - John M. Lee
+    year: 2012
+    locator: https://link.springer.com/book/10.1007/978-1-4419-9982-5
+    supplied_by: atlas-campaign-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from lee-smooth-manifolds-2012 at Publisher table of contents, chapters 1-20.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

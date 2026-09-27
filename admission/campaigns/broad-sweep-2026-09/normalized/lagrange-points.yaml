@@ -1,0 +1,127 @@
+dossier_schema: 1.0.0
+candidate:
+  id: lagrange-points
+  canonical_name: Lagrange points
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: fitzpatrick-celestial-mechanics-2012
+    kind: textbook
+    title: An Introduction to Celestial Mechanics
+    authors:
+      - Richard Fitzpatrick
+    year: 2012
+    locator: https://www.cambridge.org/core/books/an-introduction-to-celestial-mechanics/0E9275B6D76F141E4F4948BCA112284D
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: lagrange-points-claim
+    proposition: Lagrange points are equilibrium points of the circular restricted three-body equations
+      in the uniformly rotating frame.
+    endpoints:
+      from: $candidate
+      to: phase-space
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Circular restricted three-body problem in rotating position-velocity phase space.
+    mathematical_skeleton: Set rotating-frame velocity and acceleration to zero so the effective-force gradient vanishes.
+    scope: Five classical equilibrium points L1 through L5.
+    assumptions:
+      - circular primaries
+      - massless third body
+      - uniformly rotating frame
+    validity_regime: Classical circular restricted model.
+    caveats:
+      - Only the triangular points are linearly stable for sufficiently small mass ratio; collinear
+        points are unstable.
+    counterexamples:
+      - Adding substantial third-body mass changes the equilibrium problem.
+    source_assessments:
+      - source_id: fitzpatrick-celestial-mechanics-2012
+        proposition: Lagrange points are equilibrium points of the circular restricted three-body equations
+          in the uniformly rotating frame.
+        status: direct-support
+        location: Restricted three-body problem and Lagrange points sections.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A listed point where the rotating effective-force gradient is nonzero.
+    alternative_interpretations:
+      - Quasi-equilibrium regions in perturbed ephemeris models.
+search:
+  queries:
+    - id: lagrange-points-query
+      query: Fitzpatrick celestial mechanics Lagrange points rotating equilibrium
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: lagrange-points-query
+      result: located
+      source_ids:
+        - fitzpatrick-celestial-mechanics-2012
+      executed_by: structure-atlas-evidence-curator
+      notes: Restricted three-body problem and Lagrange points sections.
+generated_hypotheses:
+  - id: lagrange-points-hypothesis
+    text: Lagrange points are equilibrium points of the circular restricted three-body equations in the
+      uniformly rotating frame.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - fitzpatrick-celestial-mechanics-2012
+automated_judgments:
+  - id: lagrange-points-judgment
+    method: model-assisted
+    subject: lagrange-points-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\lagrange-points.yaml#source_inventory
+adversarial_reviews:
+  - id: lagrange-points-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Popular descriptions call all five points stable parking locations.
+    response: The dossier separates equilibrium existence from the mass-ratio-dependent stability result.
+    recommended_action: Retain with stability stated per point family.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\lagrange-points.yaml#claims.lagrange-points-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from fitzpatrick-celestial-mechanics-2012 at Publisher table of contents, chapters
+        2-9.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

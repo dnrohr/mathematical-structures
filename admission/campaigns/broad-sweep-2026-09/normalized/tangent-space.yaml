@@ -1,0 +1,124 @@
+dossier_schema: 1.0.0
+candidate:
+  id: tangent-space
+  canonical_name: Tangent space
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+    - pde
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: lee-smooth-manifolds-2012
+    kind: textbook
+    title: Introduction to Smooth Manifolds, second edition
+    authors:
+      - John M. Lee
+    year: 2012
+    locator: https://link.springer.com/book/10.1007/978-1-4419-9982-5
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: tangent-space-claim
+    proposition: The tangent space is the linear local representation in which first-order linearization
+      of smooth manifold dynamics lives.
+    endpoints:
+      from: linearization
+      to: $candidate
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: First derivatives of smooth maps and vector fields at a point.
+    mathematical_skeleton: The derivative Df_p is a linear map from T_pM to T_f(p)N.
+    scope: Smooth finite-dimensional manifolds.
+    assumptions:
+      - differentiable map at the base point
+    validity_regime: First-order local approximation.
+    caveats:
+      - A tangent space is not globally identical to the manifold.
+    counterexamples:
+      - Singular spaces can lack a constant-dimensional manifold tangent bundle.
+    source_assessments:
+      - source_id: lee-smooth-manifolds-2012
+        proposition: The tangent space is the linear local representation in which first-order linearization
+          of smooth manifold dynamics lives.
+        status: direct-support
+        location: Tangent vectors, tangent spaces, and differentials chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - The derivative fails to define a coordinate-independent linear map.
+    alternative_interpretations:
+      - Tangent cone at a nonsmooth point.
+search:
+  queries:
+    - id: tangent-space-query
+      query: Lee smooth manifolds tangent space differential linear map
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: tangent-space-query
+      result: located
+      source_ids:
+        - lee-smooth-manifolds-2012
+      executed_by: structure-atlas-evidence-curator
+      notes: Tangent vectors, tangent spaces, and differentials chapters.
+generated_hypotheses:
+  - id: tangent-space-hypothesis
+    text: The tangent space is the linear local representation in which first-order linearization of
+      smooth manifold dynamics lives.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - lee-smooth-manifolds-2012
+automated_judgments:
+  - id: tangent-space-judgment
+    method: model-assisted
+    subject: tangent-space-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\tangent-space.yaml#source_inventory
+adversarial_reviews:
+  - id: tangent-space-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Visual tangent planes encourage an embedding-dependent definition.
+    response: The claim uses the intrinsic derivative construction.
+    recommended_action: Retain as the local linear object behind linearization.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\tangent-space.yaml#claims.tangent-space-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from lee-smooth-manifolds-2012 at Publisher table of contents, chapters 1-20.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

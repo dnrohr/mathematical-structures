@@ -1,0 +1,139 @@
+dossier_schema: 1.0.0
+candidate:
+  id: factor-graph
+  canonical_name: Factor graph
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - ml
+    - probability
+    - statistics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: model
+source_inventory:
+  - id: koller-friedman-2009
+    kind: textbook
+    title: Probabilistic Graphical Models
+    authors:
+      - Daphne Koller
+      - Nir Friedman
+    year: 2009
+    locator: https://mitpress.mit.edu/9780262013192/probabilistic-graphical-models/
+    supplied_by: atlas-campaign-curator
+  - id: thrun-burgard-fox-2005
+    kind: textbook
+    title: Probabilistic Robotics
+    authors:
+      - Sebastian Thrun
+      - Wolfram Burgard
+      - Dieter Fox
+    year: 2005
+    locator: https://mitpress.mit.edu/9780262201629/probabilistic-robotics/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: factor-graph-claim
+    proposition: A factor graph represents a global function or probability distribution as a bipartite
+      graph of variables and local factors.
+    endpoints:
+      from: state-space-model
+      to: $candidate
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: State-space joint distributions factorized into transition and observation factors.
+    mathematical_skeleton: f(x_1,...,x_n) equals a product of factors f_a over subsets of variables
+      adjacent to each factor node.
+    scope: Finite factorization graphs, including temporal state-space models.
+    assumptions:
+      - specified factorization
+    validity_regime: Exact representation when the product equals the target function.
+    caveats:
+      - Graph cycles affect inference algorithms but not the validity of the factorization.
+    counterexamples:
+      - A missing factor that changes the represented joint distribution.
+    source_assessments:
+      - source_id: koller-friedman-2009
+        proposition: A factor graph represents a global function or probability distribution as a bipartite
+          graph of variables and local factors.
+        status: direct-support
+        location: Factorized representations and message-passing chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - The factor product fails to reconstruct the stated joint distribution.
+    alternative_interpretations:
+      - Forney-style normal factor graphs.
+search:
+  queries:
+    - id: factor-graph-query
+      query: Koller Friedman factor graph variables factors product
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: factor-graph-query
+      result: located
+      source_ids:
+        - koller-friedman-2009
+      executed_by: structure-atlas-evidence-curator
+      notes: Factorized representations and message-passing chapters.
+generated_hypotheses:
+  - id: factor-graph-hypothesis
+    text: A factor graph represents a global function or probability distribution as a bipartite graph
+      of variables and local factors.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - koller-friedman-2009
+automated_judgments:
+  - id: factor-graph-judgment
+    method: model-assisted
+    subject: factor-graph-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\factor-graph.yaml#source_inventory
+adversarial_reviews:
+  - id: factor-graph-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: A factor graph is a representation, not an inference algorithm.
+    response: The claim confines the node to representation and leaves message passing separate.
+    recommended_action: Retain as an object/representation node.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\factor-graph.yaml#claims.factor-graph-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from koller-friedman-2009, thrun-burgard-fox-2005 at Book SLAM chapters; Publisher
+        description and book index.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 2 raw entries and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

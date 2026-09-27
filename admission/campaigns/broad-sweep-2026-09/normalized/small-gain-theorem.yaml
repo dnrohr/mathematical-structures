@@ -1,0 +1,41 @@
+dossier_schema: 1.0.0
+candidate:
+  id: small-gain-theorem
+  canonical_name: Small-gain theorem
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - mechanics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: theorem
+source_inventory:
+  - id: khalil-nonlinear-systems-2014
+    kind: textbook
+    title: Nonlinear Systems, third edition
+    authors:
+      - Hassan K. Khalil
+    year: 2014
+    locator: https://www.pearson.com/en-gb/subject-catalog/p/nonlinear-systems-pearson-new-international-edition/P200000004623
+    supplied_by: atlas-campaign-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from khalil-nonlinear-systems-2014 at Publisher table of contents and topic
+        summary.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

@@ -1,0 +1,46 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://structure-atlas.example/admission/evidence-pack-schema-v1.yaml
+title: Structure Atlas campaign evidence pack
+description: Proposition-level assessments and adversarial reviews for a triage review queue.
+type: object
+additionalProperties: false
+required: [evidence_schema, campaign_id, assessor, entries]
+properties:
+  evidence_schema: { const: 1.0.0 }
+  campaign_id: { type: string }
+  assessor: { type: string, minLength: 1 }
+  entries:
+    type: array
+    minItems: 30
+    maxItems: 50
+    items:
+      type: object
+      required: [candidate_id, proposition, endpoints, edge, mathematical_skeleton, scope, assumptions, validity_regime, caveats, counterexamples, source_id, source_location, possible_falsifiers, alternative_interpretations, search_query, challenge, response, recommended_action]
+      properties:
+        candidate_id: { type: string }
+        proposition: { type: string }
+        endpoints:
+          type: object
+          required: [from, to]
+          properties: { from: { type: string }, to: { type: string } }
+        edge:
+          type: object
+          required: [type, strength, context]
+          properties:
+            type: { type: string, x-atlas-vocabulary: edge_types }
+            strength: { type: string, x-atlas-vocabulary: strengths }
+            context: { type: string }
+        mathematical_skeleton: { type: string }
+        scope: { type: string }
+        assumptions: { type: array, items: { type: string } }
+        validity_regime: { type: string }
+        caveats: { type: array, items: { type: string } }
+        counterexamples: { type: array, items: { type: string } }
+        source_id: { type: string }
+        source_location: { type: string }
+        possible_falsifiers: { type: array, items: { type: string } }
+        alternative_interpretations: { type: array, items: { type: string } }
+        search_query: { type: string }
+        challenge: { type: string }
+        response: { type: string }
+        recommended_action: { type: string }

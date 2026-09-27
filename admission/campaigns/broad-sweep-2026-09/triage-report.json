@@ -1,0 +1,940 @@
+{
+  "campaign_id": "broad-sweep-2026-09",
+  "curator": "structure-atlas-campaign",
+  "decisions": [
+    {
+      "candidate_id": "alternating-direction-method-of-multipliers",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "asymptotic-equipartition-property",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Named result or criterion whose usefulness depends on explicit hypotheses.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "attractors",
+      "disposition": "propose-node",
+      "proposed_node_type": "phenomenon",
+      "rationale": "Recurring dynamical behavior that appears across more than one model family.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "augmented-lagrangian-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "automatic-differentiation",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "averaging-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "b-series",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "backstepping",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "backward-error-analysis",
+      "disposition": "propose-node",
+      "proposed_node_type": "move",
+      "rationale": "Reusable reasoning or discretization move that exposes or preserves mathematical structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "barrier-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "bayes-filter",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "bayesian-network",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Reusable model class with explicit mathematical state, assumptions, or inference semantics.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "belief-propagation",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "bfgs-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "causal-graph",
+      "disposition": "deliberate-non-edge",
+      "rationale": "Lexical proximity invites a misleading graph connection that should be explicitly tested and refused.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "central-force-motion",
+      "disposition": "retain-example",
+      "rationale": "Concrete model or regime useful as an example under a broader node, but too narrow for the first promotion wave.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "channel-capacity",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Cross-cutting structural constraint or quantitative principle rather than a single algorithm.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "composition-method",
+      "disposition": "reject",
+      "rationale": "The harvested label is too polysemous or generic to identify a reviewable atlas entity without a narrower source-local definition.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "conditional-independence",
+      "disposition": "propose-edge",
+      "rationale": "The harvested term primarily names a relation, so review it as graph structure rather than forcing a standalone node.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "conditional-random-field",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Reusable model class with explicit mathematical state, assumptions, or inference semantics.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "conic-programming",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "conjugate-gradient-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "convex-function",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "convex-set",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "cotangent-bundle",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "d-separation",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Named result or criterion whose usefulness depends on explicit hypotheses.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "data-processing-inequality",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Named result or criterion whose usefulness depends on explicit hypotheses.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "de-rham-cohomology",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "derivative-free-optimization",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "differential-entropy",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "differential-form",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "dynamic-bayesian-network",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Reusable model class with explicit mathematical state, assumptions, or inference semantics.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "eccentric-anomaly",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "embedding",
+      "disposition": "reject",
+      "rationale": "The harvested label is too polysemous or generic to identify a reviewable atlas entity without a narrower source-local definition.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "entropy-rate",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Cross-cutting structural constraint or quantitative principle rather than a single algorithm.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "equilibrium-points",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "expectation-maximization-algorithm",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "extended-kalman-filter",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "extended-kalman-filter-slam",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "factor-graph",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Reusable model class with explicit mathematical state, assumptions, or inference semantics.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "fano-inequality",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Named result or criterion whose usefulness depends on explicit hypotheses.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "feedback-linearization",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "fenchel-conjugate",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "first-integral",
+      "disposition": "add-alias",
+      "rationale": "In dynamics, a first integral is the conserved-quantity formulation of a conservation law; review scope before alias admission.",
+      "selected_for_review": false,
+      "target_slug": "conservation-laws"
+    },
+    {
+      "candidate_id": "flow",
+      "disposition": "reject",
+      "rationale": "The harvested label is too polysemous or generic to identify a reviewable atlas entity without a narrower source-local definition.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "foliation",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "gaussian-channel",
+      "disposition": "retain-example",
+      "rationale": "Concrete model or regime useful as an example under a broader node, but too narrow for the first promotion wave.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "geometric-programming",
+      "disposition": "deliberate-non-edge",
+      "rationale": "Lexical proximity invites a misleading graph connection that should be explicitly tested and refused.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "graphslam",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "hamiltonian-system",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Reusable model class with explicit mathematical state, assumptions, or inference semantics.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "highly-oscillatory-system",
+      "disposition": "retain-example",
+      "rationale": "Concrete model or regime useful as an example under a broader node, but too narrow for the first promotion wave.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "histogram-filter",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "immersion",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "influence-diagram",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Reusable model class with explicit mathematical state, assumptions, or inference semantics.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "information-filter",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "input-to-state-stability",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Cross-cutting structural constraint or quantitative principle rather than a single algorithm.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "interior-point-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "jacobi-integral",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "junction-tree-algorithm",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "kalman-filter",
+      "disposition": "merge-or-refine",
+      "rationale": "Exact canonical-name match; the two-source dossier should refine the trusted Kalman-filter node.",
+      "selected_for_review": true,
+      "target_slug": "kalman-filter"
+    },
+    {
+      "candidate_id": "kam-theory",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Named result or criterion whose usefulness depends on explicit hypotheses.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "karush-kuhn-tucker-conditions",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Named result or criterion whose usefulness depends on explicit hypotheses.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "keplerian-orbit",
+      "disposition": "retain-example",
+      "rationale": "Concrete model or regime useful as an example under a broader node, but too narrow for the first promotion wave.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "kolmogorov-complexity",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "lagrange-duality",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Cross-cutting structural constraint or quantitative principle rather than a single algorithm.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "lagrange-points",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "lagrangian-mechanics",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "lasalle-invariance-principle",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Named result or criterion whose usefulness depends on explicit hypotheses.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "lie-group",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "limit-cycles",
+      "disposition": "propose-node",
+      "proposed_node_type": "phenomenon",
+      "rationale": "Recurring dynamical behavior that appears across more than one model family.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "line-search",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "linear-matrix-inequality",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "lyapunov-functions",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Cross-cutting structural constraint or quantitative principle rather than a single algorithm.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "magnus-expansion",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "markov-chain-monte-carlo",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "markov-localization",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "markov-random-field",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Reusable model class with explicit mathematical state, assumptions, or inference semantics.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "maximum-entropy-principle",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "mean-anomaly",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "multistep-method",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "mutual-information",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "network-information-theory",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "newton-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "nonlinear-least-squares",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "nonlinear-observers",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "occupancy-grid-mapping",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "orbital-elements",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "orbital-resonance",
+      "disposition": "propose-node",
+      "proposed_node_type": "phenomenon",
+      "rationale": "Recurring dynamical behavior that appears across more than one model family.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "partially-observable-markov-decision-process",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Reusable model class with explicit mathematical state, assumptions, or inference semantics.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "particle-filter",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "passivity",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Cross-cutting structural constraint or quantitative principle rather than a single algorithm.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "phase-portraits",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "poisson-manifold",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "probabilistic-motion-model",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "projected-gradient-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "proximal-operator",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "quadratic-programming",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "rate-distortion-theory",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Cross-cutting structural constraint or quantitative principle rather than a single algorithm.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "relative-entropy",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "restricted-three-body-problem",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Reusable model class with explicit mathematical state, assumptions, or inference semantics.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "reversible-integrator",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "riemannian-metric",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "robust-optimization",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Cross-cutting structural constraint or quantitative principle rather than a single algorithm.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "rotating-reference-frame",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "runge-kutta-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "sard-theorem",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Named result or criterion whose usefulness depends on explicit hypotheses.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "second-order-cone-programming",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "secular-perturbation-theory",
+      "disposition": "propose-node",
+      "proposed_node_type": "phenomenon",
+      "rationale": "Recurring dynamical behavior that appears across more than one model family.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "semidefinite-programming",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "semidefinite-relaxation",
+      "disposition": "propose-node",
+      "proposed_node_type": "move",
+      "rationale": "Reusable reasoning or discretization move that exposes or preserves mathematical structure.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "sensor-model",
+      "disposition": "reject",
+      "rationale": "The harvested label is too polysemous or generic to identify a reviewable atlas entity without a narrower source-local definition.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "sequential-quadratic-programming",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "simplex-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "singular-perturbation",
+      "disposition": "propose-node",
+      "proposed_node_type": "phenomenon",
+      "rationale": "Recurring dynamical behavior that appears across more than one model family.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "sliding-mode-control",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "small-gain-theorem",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Named result or criterion whose usefulness depends on explicit hypotheses.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "smooth-manifold",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "source-coding",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "spin-orbit-coupling",
+      "disposition": "propose-edge",
+      "rationale": "The harvested term primarily names a relation, so review it as graph structure rather than forcing a standalone node.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "splitting-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "structure-learning",
+      "disposition": "propose-application",
+      "proposed_node_type": "application",
+      "rationale": "Domain workflow whose value is showing where structural methods are materially used.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "subgradient-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "submersion",
+      "disposition": "defer",
+      "rationale": "Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "symplectic-integrator",
+      "disposition": "propose-node",
+      "proposed_node_type": "move",
+      "rationale": "Reusable reasoning or discretization move that exposes or preserves mathematical structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "tangent-space",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "tidal-evolution",
+      "disposition": "propose-node",
+      "proposed_node_type": "phenomenon",
+      "rationale": "Recurring dynamical behavior that appears across more than one model family.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "trust-region-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "universal-source-coding",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "unscented-kalman-filter",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "variable-elimination",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "variational-inference",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Named, reusable computational or analytical procedure with stable textbook identity.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "variational-integrator",
+      "disposition": "propose-node",
+      "proposed_node_type": "move",
+      "rationale": "Reusable reasoning or discretization move that exposes or preserves mathematical structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "vector-bundle",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "vector-field",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "zero-velocity-surface",
+      "disposition": "retain-example",
+      "rationale": "Concrete model or regime useful as an example under a broader node, but too narrow for the first promotion wave.",
+      "selected_for_review": false
+    }
+  ],
+  "report_version": "1.0.0",
+  "summary": {
+    "by_disposition": {
+      "add-alias": 1,
+      "defer": 15,
+      "deliberate-non-edge": 2,
+      "merge-or-refine": 1,
+      "propose-application": 1,
+      "propose-edge": 2,
+      "propose-node": 104,
+      "reject": 4,
+      "retain-example": 5
+    },
+    "classified": 135,
+    "review_queue": 40,
+    "survivors": 135
+  }
+}

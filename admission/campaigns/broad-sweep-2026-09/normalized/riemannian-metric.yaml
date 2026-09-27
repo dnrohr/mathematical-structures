@@ -1,0 +1,125 @@
+dossier_schema: 1.0.0
+candidate:
+  id: riemannian-metric
+  canonical_name: Riemannian metric
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+    - pde
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: lee-smooth-manifolds-2012
+    kind: textbook
+    title: Introduction to Smooth Manifolds, second edition
+    authors:
+      - John M. Lee
+    year: 2012
+    locator: https://link.springer.com/book/10.1007/978-1-4419-9982-5
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: riemannian-metric-claim
+    proposition: A Riemannian metric is a smoothly varying positive-definite inner product on tangent
+      spaces and therefore assumes a smooth manifold structure.
+    endpoints:
+      from: $candidate
+      to: smoothness
+    proposed_edge:
+      type: ASSUMES
+      strength: theorem
+      context: Finite-dimensional smooth manifolds.
+    mathematical_skeleton: Each point p has an inner product g_p on T_pM whose coordinate components vary smoothly.
+    scope: Positive-definite Riemannian geometry.
+    assumptions:
+      - smooth manifold
+      - positive-definite symmetric tensor field
+    validity_regime: Smooth coordinate changes preserving tensorial transformation.
+    caveats:
+      - Pseudo-Riemannian metrics relax positive definiteness.
+    counterexamples:
+      - A discontinuously varying inner product is not a smooth Riemannian metric.
+    source_assessments:
+      - source_id: lee-smooth-manifolds-2012
+        proposition: A Riemannian metric is a smoothly varying positive-definite inner product on tangent
+          spaces and therefore assumes a smooth manifold structure.
+        status: direct-support
+        location: Riemannian metrics and tensor fields chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Failure of positive definiteness or smooth coordinate transformation.
+    alternative_interpretations:
+      - Pseudo-Riemannian metric.
+search:
+  queries:
+    - id: riemannian-metric-query
+      query: Lee smooth manifolds Riemannian metric tangent inner product
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: riemannian-metric-query
+      result: located
+      source_ids:
+        - lee-smooth-manifolds-2012
+      executed_by: structure-atlas-evidence-curator
+      notes: Riemannian metrics and tensor fields chapters.
+generated_hypotheses:
+  - id: riemannian-metric-hypothesis
+    text: A Riemannian metric is a smoothly varying positive-definite inner product on tangent spaces
+      and therefore assumes a smooth manifold structure.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - lee-smooth-manifolds-2012
+automated_judgments:
+  - id: riemannian-metric-judgment
+    method: model-assisted
+    subject: riemannian-metric-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\riemannian-metric.yaml#source_inventory
+adversarial_reviews:
+  - id: riemannian-metric-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Metric can mean a distance function rather than a tensor field.
+    response: The node uses the differential-geometric definition and can cross-link induced distance later.
+    recommended_action: Retain with terminology clarified.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\riemannian-metric.yaml#claims.riemannian-metric-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from lee-smooth-manifolds-2012 at Publisher table of contents, chapters 1-20.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

@@ -1,0 +1,1444 @@
+{
+  "atlas_schema_version": "1.0.0",
+  "campaign": {
+    "id": "broad-sweep-2026-09",
+    "target_raw_candidates": 141,
+    "title": "First broad source-inventory sweep"
+  },
+  "candidates": [
+    {
+      "atlas_matches": [],
+      "canonical_name": "Alternating direction method of multipliers",
+      "dossier_file": "alternating-direction-method-of-multipliers.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "alternating-direction-method-of-multipliers",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Alternating direction method of multipliers"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Asymptotic equipartition property",
+      "dossier_file": "asymptotic-equipartition-property.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "asymptotic-equipartition-property",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Asymptotic equipartition property"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Attractors",
+      "dossier_file": "attractors.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "attractors",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Attractors"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Augmented Lagrangian method",
+      "dossier_file": "augmented-lagrangian-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "augmented-lagrangian-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Augmented Lagrangian method"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Automatic differentiation",
+      "dossier_file": "automatic-differentiation.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "automatic-differentiation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Automatic differentiation"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Averaging method",
+      "dossier_file": "averaging-method.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "averaging-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Averaging method"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "B-series",
+      "dossier_file": "b-series.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "b-series",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["B-series"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Backstepping",
+      "dossier_file": "backstepping.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "backstepping",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Backstepping"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Backward error analysis",
+      "dossier_file": "backward-error-analysis.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "backward-error-analysis",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Backward error analysis"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Barrier method",
+      "dossier_file": "barrier-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "barrier-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Barrier method"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Bayes filter",
+      "dossier_file": "bayes-filter.yaml",
+      "fields": ["control", "probability"],
+      "id": "bayes-filter",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Bayes filter"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Bayesian network",
+      "dossier_file": "bayesian-network.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "bayesian-network",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Bayesian network"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Belief propagation",
+      "dossier_file": "belief-propagation.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "belief-propagation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Belief propagation"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "BFGS method",
+      "dossier_file": "bfgs-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "bfgs-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["BFGS method"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Causal graph",
+      "dossier_file": "causal-graph.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "causal-graph",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Causal graph"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Central-force motion",
+      "dossier_file": "central-force-motion.yaml",
+      "fields": ["mechanics"],
+      "id": "central-force-motion",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Central-force motion"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Channel capacity",
+      "dossier_file": "channel-capacity.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "channel-capacity",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Channel capacity"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Composition method",
+      "dossier_file": "composition-method.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "composition-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Composition method"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Conditional independence",
+      "dossier_file": "conditional-independence.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "conditional-independence",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Conditional independence"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Conditional random field",
+      "dossier_file": "conditional-random-field.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "conditional-random-field",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Conditional random field"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Conic programming",
+      "dossier_file": "conic-programming.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "conic-programming",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Conic programming"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Conjugate-gradient method",
+      "dossier_file": "conjugate-gradient-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "conjugate-gradient-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Conjugate-gradient method"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Convex function",
+      "dossier_file": "convex-function.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "convex-function",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Convex function"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Convex set",
+      "dossier_file": "convex-set.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "convex-set",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Convex set"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Cotangent bundle",
+      "dossier_file": "cotangent-bundle.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "cotangent-bundle",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Cotangent bundle"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "D-separation",
+      "dossier_file": "d-separation.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "d-separation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["D-separation"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Data-processing inequality",
+      "dossier_file": "data-processing-inequality.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "data-processing-inequality",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Data-processing inequality"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "De Rham cohomology",
+      "dossier_file": "de-rham-cohomology.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "de-rham-cohomology",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["De Rham cohomology"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Derivative-free optimization",
+      "dossier_file": "derivative-free-optimization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "derivative-free-optimization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Derivative-free optimization"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Differential entropy",
+      "dossier_file": "differential-entropy.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "differential-entropy",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Differential entropy"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Differential form",
+      "dossier_file": "differential-form.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "differential-form",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Differential form"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Dynamic Bayesian network",
+      "dossier_file": "dynamic-bayesian-network.yaml",
+      "fields": ["control", "ml", "probability", "statistics"],
+      "id": "dynamic-bayesian-network",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Dynamic Bayesian network"],
+      "source_ids": ["koller-friedman-2009", "thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Eccentric anomaly",
+      "dossier_file": "eccentric-anomaly.yaml",
+      "fields": ["mechanics"],
+      "id": "eccentric-anomaly",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Eccentric anomaly"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Embedding",
+      "dossier_file": "embedding.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "embedding",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Embedding"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Entropy rate",
+      "dossier_file": "entropy-rate.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "entropy-rate",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Entropy rate"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Equilibrium points",
+      "dossier_file": "equilibrium-points.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "equilibrium-points",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Equilibrium points"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Expectation-maximization algorithm",
+      "dossier_file": "expectation-maximization-algorithm.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "expectation-maximization-algorithm",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Expectation-maximization algorithm"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [
+        {
+          "atlas_value": "Kalman filter",
+          "relationship": "near-name",
+          "slug": "kalman-filter",
+          "trigger": "Extended Kalman filter"
+        }
+      ],
+      "canonical_name": "Extended Kalman filter",
+      "dossier_file": "extended-kalman-filter.yaml",
+      "fields": ["control", "probability"],
+      "id": "extended-kalman-filter",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Extended Kalman filter"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Extended Kalman filter SLAM",
+      "dossier_file": "extended-kalman-filter-slam.yaml",
+      "fields": ["control", "probability"],
+      "id": "extended-kalman-filter-slam",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Extended Kalman filter SLAM"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Factor graph",
+      "dossier_file": "factor-graph.yaml",
+      "fields": ["control", "ml", "probability", "statistics"],
+      "id": "factor-graph",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Factor graph"],
+      "source_ids": ["koller-friedman-2009", "thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Fano's inequality",
+      "dossier_file": "fano-inequality.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "fano-inequality",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Fano's inequality"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Feedback linearization",
+      "dossier_file": "feedback-linearization.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "feedback-linearization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Feedback linearization"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Fenchel conjugate",
+      "dossier_file": "fenchel-conjugate.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "fenchel-conjugate",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Fenchel conjugate"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "First integral",
+      "dossier_file": "first-integral.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "first-integral",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["First integral"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Flow",
+      "dossier_file": "flow.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "flow",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Flow"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Foliation",
+      "dossier_file": "foliation.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "foliation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Foliation"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Gaussian channel",
+      "dossier_file": "gaussian-channel.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "gaussian-channel",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Gaussian channel"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Geometric programming",
+      "dossier_file": "geometric-programming.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "geometric-programming",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Geometric programming"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "GraphSLAM",
+      "dossier_file": "graphslam.yaml",
+      "fields": ["control", "probability"],
+      "id": "graphslam",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["GraphSLAM"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Hamiltonian system",
+      "dossier_file": "hamiltonian-system.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "hamiltonian-system",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Hamiltonian system"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012", "hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Highly oscillatory system",
+      "dossier_file": "highly-oscillatory-system.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "highly-oscillatory-system",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Highly oscillatory system"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Histogram filter",
+      "dossier_file": "histogram-filter.yaml",
+      "fields": ["control", "probability"],
+      "id": "histogram-filter",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Histogram filter"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Immersion",
+      "dossier_file": "immersion.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "immersion",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Immersion"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Influence diagram",
+      "dossier_file": "influence-diagram.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "influence-diagram",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Influence diagram"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Information filter",
+      "dossier_file": "information-filter.yaml",
+      "fields": ["control", "probability"],
+      "id": "information-filter",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Information filter"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Input-to-state stability",
+      "dossier_file": "input-to-state-stability.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "input-to-state-stability",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Input-to-state stability"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Interior-point method",
+      "dossier_file": "interior-point-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "interior-point-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Interior-point method"],
+      "source_ids": ["boyd-vandenberghe-2004", "nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Jacobi integral",
+      "dossier_file": "jacobi-integral.yaml",
+      "fields": ["mechanics"],
+      "id": "jacobi-integral",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Jacobi integral"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Junction tree algorithm",
+      "dossier_file": "junction-tree-algorithm.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "junction-tree-algorithm",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Junction tree algorithm"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [
+        {
+          "atlas_value": "Kalman filter",
+          "relationship": "identity-or-alias",
+          "slug": "kalman-filter",
+          "trigger": "Kalman filter"
+        }
+      ],
+      "canonical_name": "Kalman filter",
+      "dossier_file": "kalman-filter.yaml",
+      "fields": ["control", "ml", "probability", "statistics"],
+      "id": "kalman-filter",
+      "preliminary_disposition": "merge-or-refine",
+      "raw_terms": ["Kalman filter"],
+      "source_ids": ["koller-friedman-2009", "thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "KAM theory",
+      "dossier_file": "kam-theory.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "kam-theory",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["KAM theory"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Karush-Kuhn-Tucker conditions",
+      "dossier_file": "karush-kuhn-tucker-conditions.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "karush-kuhn-tucker-conditions",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Karush-Kuhn-Tucker conditions"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Keplerian orbit",
+      "dossier_file": "keplerian-orbit.yaml",
+      "fields": ["mechanics"],
+      "id": "keplerian-orbit",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Keplerian orbit"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Kolmogorov complexity",
+      "dossier_file": "kolmogorov-complexity.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "kolmogorov-complexity",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Kolmogorov complexity"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Lagrange duality",
+      "dossier_file": "lagrange-duality.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "lagrange-duality",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Lagrange duality"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Lagrange points",
+      "dossier_file": "lagrange-points.yaml",
+      "fields": ["mechanics"],
+      "id": "lagrange-points",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Lagrange points"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Lagrangian mechanics",
+      "dossier_file": "lagrangian-mechanics.yaml",
+      "fields": ["mechanics"],
+      "id": "lagrangian-mechanics",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Lagrangian mechanics"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "LaSalle invariance principle",
+      "dossier_file": "lasalle-invariance-principle.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "lasalle-invariance-principle",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["LaSalle invariance principle"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Lie group",
+      "dossier_file": "lie-group.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "lie-group",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Lie group"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Limit cycles",
+      "dossier_file": "limit-cycles.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "limit-cycles",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Limit cycles"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Line search",
+      "dossier_file": "line-search.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "line-search",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Line search"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Linear matrix inequality",
+      "dossier_file": "linear-matrix-inequality.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "linear-matrix-inequality",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Linear matrix inequality"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Lyapunov functions",
+      "dossier_file": "lyapunov-functions.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "lyapunov-functions",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Lyapunov functions"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Magnus expansion",
+      "dossier_file": "magnus-expansion.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "magnus-expansion",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Magnus expansion"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [
+        {
+          "atlas_value": "MCMC (Markov chain Monte Carlo)",
+          "relationship": "near-name",
+          "slug": "markov-chains",
+          "trigger": "Markov chain Monte Carlo"
+        }
+      ],
+      "canonical_name": "Markov chain Monte Carlo",
+      "dossier_file": "markov-chain-monte-carlo.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "markov-chain-monte-carlo",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Markov chain Monte Carlo"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Markov localization",
+      "dossier_file": "markov-localization.yaml",
+      "fields": ["control", "probability"],
+      "id": "markov-localization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Markov localization"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Markov random field",
+      "dossier_file": "markov-random-field.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "markov-random-field",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Markov random field"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Maximum entropy principle",
+      "dossier_file": "maximum-entropy-principle.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "maximum-entropy-principle",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Maximum entropy principle"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Mean anomaly",
+      "dossier_file": "mean-anomaly.yaml",
+      "fields": ["mechanics"],
+      "id": "mean-anomaly",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Mean anomaly"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Multistep method",
+      "dossier_file": "multistep-method.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "multistep-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Multistep method"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Mutual information",
+      "dossier_file": "mutual-information.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "mutual-information",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Mutual information"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Network information theory",
+      "dossier_file": "network-information-theory.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "network-information-theory",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Network information theory"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Newton's method",
+      "dossier_file": "newton-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "newton-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Newton's method"],
+      "source_ids": ["boyd-vandenberghe-2004", "nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Nonlinear least squares",
+      "dossier_file": "nonlinear-least-squares.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "nonlinear-least-squares",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Nonlinear least squares"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Nonlinear observers",
+      "dossier_file": "nonlinear-observers.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "nonlinear-observers",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Nonlinear observers"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Occupancy grid mapping",
+      "dossier_file": "occupancy-grid-mapping.yaml",
+      "fields": ["control", "probability"],
+      "id": "occupancy-grid-mapping",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Occupancy grid mapping"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Orbital elements",
+      "dossier_file": "orbital-elements.yaml",
+      "fields": ["mechanics"],
+      "id": "orbital-elements",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Orbital elements"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Orbital resonance",
+      "dossier_file": "orbital-resonance.yaml",
+      "fields": ["mechanics"],
+      "id": "orbital-resonance",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Orbital resonance"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Partially observable Markov decision process",
+      "dossier_file": "partially-observable-markov-decision-process.yaml",
+      "fields": ["control", "probability"],
+      "id": "partially-observable-markov-decision-process",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Partially observable Markov decision process"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Particle filter",
+      "dossier_file": "particle-filter.yaml",
+      "fields": ["control", "probability"],
+      "id": "particle-filter",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Particle filter"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Passivity",
+      "dossier_file": "passivity.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "passivity",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Passivity"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [
+        {
+          "atlas_value": "state portrait / phase portrait",
+          "relationship": "near-name",
+          "slug": "phase-space",
+          "trigger": "Phase portraits"
+        }
+      ],
+      "canonical_name": "Phase portraits",
+      "dossier_file": "phase-portraits.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "phase-portraits",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Phase portraits"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Poisson manifold",
+      "dossier_file": "poisson-manifold.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "poisson-manifold",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Poisson manifold"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Probabilistic motion model",
+      "dossier_file": "probabilistic-motion-model.yaml",
+      "fields": ["control", "probability"],
+      "id": "probabilistic-motion-model",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Probabilistic motion model"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Projected gradient method",
+      "dossier_file": "projected-gradient-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "projected-gradient-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Projected gradient method"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Proximal operator",
+      "dossier_file": "proximal-operator.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "proximal-operator",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Proximal operator"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Quadratic programming",
+      "dossier_file": "quadratic-programming.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "quadratic-programming",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Quadratic programming"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Rate-distortion theory",
+      "dossier_file": "rate-distortion-theory.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "rate-distortion-theory",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Rate-distortion theory"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Relative entropy",
+      "dossier_file": "relative-entropy.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "relative-entropy",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Relative entropy"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Restricted three-body problem",
+      "dossier_file": "restricted-three-body-problem.yaml",
+      "fields": ["mechanics"],
+      "id": "restricted-three-body-problem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Restricted three-body problem"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Reversible integrator",
+      "dossier_file": "reversible-integrator.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "reversible-integrator",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Reversible integrator"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Riemannian metric",
+      "dossier_file": "riemannian-metric.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "riemannian-metric",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Riemannian metric"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Robust optimization",
+      "dossier_file": "robust-optimization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "robust-optimization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Robust optimization"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Rotating reference frame",
+      "dossier_file": "rotating-reference-frame.yaml",
+      "fields": ["mechanics"],
+      "id": "rotating-reference-frame",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Rotating reference frame"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Runge-Kutta method",
+      "dossier_file": "runge-kutta-method.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "runge-kutta-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Runge-Kutta method"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Sard's theorem",
+      "dossier_file": "sard-theorem.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "sard-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Sard's theorem"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Second-order cone programming",
+      "dossier_file": "second-order-cone-programming.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "second-order-cone-programming",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Second-order cone programming"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Secular perturbation theory",
+      "dossier_file": "secular-perturbation-theory.yaml",
+      "fields": ["mechanics"],
+      "id": "secular-perturbation-theory",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Secular perturbation theory"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Semidefinite programming",
+      "dossier_file": "semidefinite-programming.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "semidefinite-programming",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Semidefinite programming"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Semidefinite relaxation",
+      "dossier_file": "semidefinite-relaxation.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "semidefinite-relaxation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Semidefinite relaxation"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Sensor model",
+      "dossier_file": "sensor-model.yaml",
+      "fields": ["control", "probability"],
+      "id": "sensor-model",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Sensor model"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Sequential quadratic programming",
+      "dossier_file": "sequential-quadratic-programming.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "sequential-quadratic-programming",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Sequential quadratic programming"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Simplex method",
+      "dossier_file": "simplex-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "simplex-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Simplex method"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Singular perturbation",
+      "dossier_file": "singular-perturbation.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "singular-perturbation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Singular perturbation"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Sliding-mode control",
+      "dossier_file": "sliding-mode-control.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "sliding-mode-control",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Sliding-mode control"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Small-gain theorem",
+      "dossier_file": "small-gain-theorem.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "small-gain-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Small-gain theorem"],
+      "source_ids": ["khalil-nonlinear-systems-2014"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Smooth manifold",
+      "dossier_file": "smooth-manifold.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "smooth-manifold",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Smooth manifold"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Source coding",
+      "dossier_file": "source-coding.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "source-coding",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Source coding"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Spin-orbit coupling",
+      "dossier_file": "spin-orbit-coupling.yaml",
+      "fields": ["mechanics"],
+      "id": "spin-orbit-coupling",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Spin-orbit coupling"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Splitting method",
+      "dossier_file": "splitting-method.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "splitting-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Splitting method"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Structure learning",
+      "dossier_file": "structure-learning.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "structure-learning",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Structure learning"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Subgradient method",
+      "dossier_file": "subgradient-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "subgradient-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Subgradient method"],
+      "source_ids": ["boyd-vandenberghe-2004"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Submersion",
+      "dossier_file": "submersion.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "submersion",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Submersion"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Symplectic integrator",
+      "dossier_file": "symplectic-integrator.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "symplectic-integrator",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Symplectic integrator"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Tangent space",
+      "dossier_file": "tangent-space.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "tangent-space",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Tangent space"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Tidal evolution",
+      "dossier_file": "tidal-evolution.yaml",
+      "fields": ["mechanics"],
+      "id": "tidal-evolution",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Tidal evolution"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Trust-region method",
+      "dossier_file": "trust-region-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "trust-region-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Trust-region method"],
+      "source_ids": ["nocedal-wright-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Universal source coding",
+      "dossier_file": "universal-source-coding.yaml",
+      "fields": ["information-theory", "probability"],
+      "id": "universal-source-coding",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Universal source coding"],
+      "source_ids": ["cover-thomas-2006"]
+    },
+    {
+      "atlas_matches": [
+        {
+          "atlas_value": "Kalman filter",
+          "relationship": "near-name",
+          "slug": "kalman-filter",
+          "trigger": "Unscented Kalman filter"
+        }
+      ],
+      "canonical_name": "Unscented Kalman filter",
+      "dossier_file": "unscented-kalman-filter.yaml",
+      "fields": ["control", "probability"],
+      "id": "unscented-kalman-filter",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Unscented Kalman filter"],
+      "source_ids": ["thrun-burgard-fox-2005"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Variable elimination",
+      "dossier_file": "variable-elimination.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "variable-elimination",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Variable elimination"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Variational inference",
+      "dossier_file": "variational-inference.yaml",
+      "fields": ["ml", "probability", "statistics"],
+      "id": "variational-inference",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Variational inference"],
+      "source_ids": ["koller-friedman-2009"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Variational integrator",
+      "dossier_file": "variational-integrator.yaml",
+      "fields": ["mechanics", "numerical-analysis"],
+      "id": "variational-integrator",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Variational integrator"],
+      "source_ids": ["hairer-lubich-wanner-2006"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Vector bundle",
+      "dossier_file": "vector-bundle.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "vector-bundle",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Vector bundle"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Vector field",
+      "dossier_file": "vector-field.yaml",
+      "fields": ["mechanics", "pde"],
+      "id": "vector-field",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Vector field"],
+      "source_ids": ["lee-smooth-manifolds-2012"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Zero-velocity surface",
+      "dossier_file": "zero-velocity-surface.yaml",
+      "fields": ["mechanics"],
+      "id": "zero-velocity-surface",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Zero-velocity surface"],
+      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+    }
+  ],
+  "issues": [],
+  "report_version": "1.0.0",
+  "sampling": [
+    {
+      "field": "control",
+      "raw_entries": 31
+    },
+    {
+      "field": "information-theory",
+      "raw_entries": 15
+    },
+    {
+      "field": "mechanics",
+      "raw_entries": 61
+    },
+    {
+      "field": "ml",
+      "raw_entries": 17
+    },
+    {
+      "field": "numerical-analysis",
+      "raw_entries": 47
+    },
+    {
+      "field": "optimization",
+      "raw_entries": 32
+    },
+    {
+      "field": "pde",
+      "raw_entries": 15
+    },
+    {
+      "field": "probability",
+      "raw_entries": 48
+    },
+    {
+      "field": "statistics",
+      "raw_entries": 17
+    }
+  ],
+  "summary": {
+    "dossier_files": 135,
+    "duplicate_entries_consolidated": 6,
+    "exact_atlas_matches": 1,
+    "near_atlas_matches": 4,
+    "normalized_clusters": 135,
+    "novel_name_clusters": 130,
+    "raw_entries": 141
+  }
+}

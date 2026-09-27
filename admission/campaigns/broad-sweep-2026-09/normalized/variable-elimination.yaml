@@ -1,0 +1,42 @@
+dossier_schema: 1.0.0
+candidate:
+  id: variable-elimination
+  canonical_name: Variable elimination
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - ml
+    - probability
+    - statistics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: koller-friedman-2009
+    kind: textbook
+    title: Probabilistic Graphical Models
+    authors:
+      - Daphne Koller
+      - Nir Friedman
+    year: 2009
+    locator: https://mitpress.mit.edu/9780262013192/probabilistic-graphical-models/
+    supplied_by: atlas-campaign-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from koller-friedman-2009 at Publisher description and book index.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

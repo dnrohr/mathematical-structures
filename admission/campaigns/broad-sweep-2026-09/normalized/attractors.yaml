@@ -1,0 +1,127 @@
+dossier_schema: 1.0.0
+candidate:
+  id: attractors
+  canonical_name: Attractors
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - mechanics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: phenomenon
+source_inventory:
+  - id: khalil-nonlinear-systems-2014
+    kind: textbook
+    title: Nonlinear Systems, third edition
+    authors:
+      - Hassan K. Khalil
+    year: 2014
+    locator: https://www.pearson.com/en-gb/subject-catalog/p/nonlinear-systems-pearson-new-international-edition/P200000004623
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: attractors-claim
+    proposition: An asymptotically stable invariant set is a local attractor because nearby trajectories
+      converge to it.
+    endpoints:
+      from: stability
+      to: $candidate
+    proposed_edge:
+      type: GOVERNS
+      strength: theorem
+      context: Local autonomous dynamics with an invariant set and an attracting neighborhood.
+    mathematical_skeleton: Distance to the invariant set tends to zero along trajectories begun in its basin.
+    scope: Local attractors in finite-dimensional autonomous dynamical systems.
+    assumptions:
+      - forward completeness in the neighborhood
+      - invariant candidate set
+    validity_regime: Initial states in the basin of attraction.
+    caveats:
+      - An invariant set need not attract
+      - and an attractor need not be a fixed point.
+    counterexamples:
+      - A Lyapunov-stable center is not attracting.
+    source_assessments:
+      - source_id: khalil-nonlinear-systems-2014
+        proposition: An asymptotically stable invariant set is a local attractor because nearby trajectories
+          converge to it.
+        status: direct-support
+        location: Stability and invariant-set chapters; attractors and limit sets discussion.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A nearby trajectory that remains in the basin but fails to approach the set.
+    alternative_interpretations:
+      - Milnor attractor with a measure-theoretic basin.
+search:
+  queries:
+    - id: attractors-query
+      query: Khalil Nonlinear Systems attractor asymptotic stability invariant set
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: attractors-query
+      result: located
+      source_ids:
+        - khalil-nonlinear-systems-2014
+      executed_by: structure-atlas-evidence-curator
+      notes: Stability and invariant-set chapters; attractors and limit sets discussion.
+generated_hypotheses:
+  - id: attractors-hypothesis
+    text: An asymptotically stable invariant set is a local attractor because nearby trajectories
+      converge to it.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - khalil-nonlinear-systems-2014
+automated_judgments:
+  - id: attractors-judgment
+    method: model-assisted
+    subject: attractors-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\attractors.yaml#source_inventory
+adversarial_reviews:
+  - id: attractors-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: The term attractor has inequivalent topological and measure-theoretic definitions.
+    response: The claim is restricted to the local asymptotically stable invariant-set definition.
+    recommended_action: Retain the scoped node and record broader definitions as caveats.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\attractors.yaml#claims.attractors-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from khalil-nonlinear-systems-2014 at Publisher table of contents and topic
+        summary.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

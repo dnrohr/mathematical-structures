@@ -1,0 +1,128 @@
+dossier_schema: 1.0.0
+candidate:
+  id: lagrange-duality
+  canonical_name: Lagrange duality
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: principle
+source_inventory:
+  - id: boyd-vandenberghe-2004
+    kind: textbook
+    title: Convex Optimization
+    authors:
+      - Stephen Boyd
+      - Lieven Vandenberghe
+    year: 2004
+    locator: https://web.stanford.edu/~boyd/cvxbook/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: lagrange-duality-claim
+    proposition: Lagrange duality represents a constrained optimization problem by a dual lower-bound
+      problem obtained from the infimum of its Lagrangian.
+    endpoints:
+      from: optimization
+      to: $candidate
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Minimization problems with equality and inequality constraints.
+    mathematical_skeleton: The dual function g(lambda,nu) is the infimum over x of the Lagrangian and
+      never exceeds the primal optimum for dual-feasible multipliers.
+    scope: Finite-dimensional constrained optimization.
+    assumptions:
+      - well-defined Lagrangian
+    validity_regime: Weak duality always; strong duality only under added regularity such as Slater
+      conditions in convex problems.
+    caveats:
+      - A duality gap can remain outside strong-duality conditions.
+    counterexamples:
+      - A nonconvex problem with positive duality gap.
+    source_assessments:
+      - source_id: boyd-vandenberghe-2004
+        proposition: Lagrange duality represents a constrained optimization problem by a dual lower-bound
+          problem obtained from the infimum of its Lagrangian.
+        status: direct-support
+        location: Lagrange duality and optimality conditions chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A dual-feasible value exceeding the primal optimum in a minimization problem.
+    alternative_interpretations:
+      - Fenchel duality.
+search:
+  queries:
+    - id: lagrange-duality-query
+      query: Boyd Vandenberghe Lagrange dual function weak strong duality
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: lagrange-duality-query
+      result: located
+      source_ids:
+        - boyd-vandenberghe-2004
+      executed_by: structure-atlas-evidence-curator
+      notes: Lagrange duality and optimality conditions chapters.
+generated_hypotheses:
+  - id: lagrange-duality-hypothesis
+    text: Lagrange duality represents a constrained optimization problem by a dual lower-bound problem
+      obtained from the infimum of its Lagrangian.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - boyd-vandenberghe-2004
+automated_judgments:
+  - id: lagrange-duality-judgment
+    method: model-assisted
+    subject: lagrange-duality-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\lagrange-duality.yaml#source_inventory
+adversarial_reviews:
+  - id: lagrange-duality-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Strong duality is not automatic from writing a Lagrangian.
+    response: The claim separates unconditional weak duality from qualified strong duality.
+    recommended_action: Retain with the duality-gap caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\lagrange-duality.yaml#claims.lagrange-duality-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from boyd-vandenberghe-2004 at Book table of contents and Stanford course
+        materials.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

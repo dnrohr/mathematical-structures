@@ -1,0 +1,128 @@
+dossier_schema: 1.0.0
+candidate:
+  id: occupancy-grid-mapping
+  canonical_name: Occupancy grid mapping
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: thrun-burgard-fox-2005
+    kind: textbook
+    title: Probabilistic Robotics
+    authors:
+      - Sebastian Thrun
+      - Wolfram Burgard
+      - Dieter Fox
+    year: 2005
+    locator: https://mitpress.mit.edu/9780262201629/probabilistic-robotics/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: occupancy-grid-mapping-claim
+    proposition: Occupancy-grid mapping applies Bayesian updates to cell occupancy variables using
+      inverse sensor evidence under a simplifying cell-independence approximation.
+    endpoints:
+      from: bayes-rule
+      to: $candidate
+    proposed_edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Static maps with grid cells and an inverse sensor model.
+    mathematical_skeleton: Per-cell log odds accumulate prior-adjusted measurement log-likelihood ratios.
+    scope: Static two-dimensional or three-dimensional occupancy grids.
+    assumptions:
+      - static environment
+      - approximate conditional independence of cells
+    validity_regime: Mapping with known or separately estimated robot poses.
+    caveats:
+      - Cell independence is computationally useful but generally false in the full posterior.
+    counterexamples:
+      - Strongly correlated occlusion structure violates independent cell updates.
+    source_assessments:
+      - source_id: thrun-burgard-fox-2005
+        proposition: Occupancy-grid mapping applies Bayesian updates to cell occupancy variables using
+          inverse sensor evidence under a simplifying cell-independence approximation.
+        status: direct-support
+        location: Occupancy grid mapping chapter.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - An update rule that cannot be derived from odds-form Bayesian evidence accumulation.
+    alternative_interpretations:
+      - Forward-model occupancy mapping without inverse sensor factorization.
+search:
+  queries:
+    - id: occupancy-grid-mapping-query
+      query: Probabilistic Robotics occupancy grid mapping log odds Bayes
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: occupancy-grid-mapping-query
+      result: located
+      source_ids:
+        - thrun-burgard-fox-2005
+      executed_by: structure-atlas-evidence-curator
+      notes: Occupancy grid mapping chapter.
+generated_hypotheses:
+  - id: occupancy-grid-mapping-hypothesis
+    text: Occupancy-grid mapping applies Bayesian updates to cell occupancy variables using inverse
+      sensor evidence under a simplifying cell-independence approximation.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - thrun-burgard-fox-2005
+automated_judgments:
+  - id: occupancy-grid-mapping-judgment
+    method: model-assisted
+    subject: occupancy-grid-mapping-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\occupancy-grid-mapping.yaml#source_inventory
+adversarial_reviews:
+  - id: occupancy-grid-mapping-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: The standard update can look exact while relying on a strong independence approximation.
+    response: The approximation is stated in the proposition and caveats.
+    recommended_action: Retain as a Bayesian mapping operation.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\occupancy-grid-mapping.yaml#claims.occupancy-grid-mapping-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from thrun-burgard-fox-2005 at Publisher description, index, and localization/SLAM
+        chapters.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

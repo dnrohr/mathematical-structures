@@ -1,0 +1,127 @@
+dossier_schema: 1.0.0
+candidate:
+  id: smooth-manifold
+  canonical_name: Smooth manifold
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+    - pde
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: lee-smooth-manifolds-2012
+    kind: textbook
+    title: Introduction to Smooth Manifolds, second edition
+    authors:
+      - John M. Lee
+    year: 2012
+    locator: https://link.springer.com/book/10.1007/978-1-4419-9982-5
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: smooth-manifold-claim
+    proposition: A smooth manifold is a locally Euclidean topological space equipped with smoothly
+      compatible coordinate charts.
+    endpoints:
+      from: $candidate
+      to: smoothness
+    proposed_edge:
+      type: ASSUMES
+      strength: theorem
+      context: Finite-dimensional Hausdorff second-countable manifolds.
+    mathematical_skeleton: Transition maps between overlapping charts are smooth maps between open
+      subsets of Euclidean space.
+    scope: Finite-dimensional smooth manifolds without boundary unless stated.
+    assumptions:
+      - Hausdorff topology
+      - second countability
+      - smooth atlas
+    validity_regime: Coordinate-independent differential calculus.
+    caveats:
+      - Topological manifolds need not admit a unique smooth structure.
+    counterexamples:
+      - A chart collection with nonsmooth transition maps defines no smooth atlas.
+    source_assessments:
+      - source_id: lee-smooth-manifolds-2012
+        proposition: A smooth manifold is a locally Euclidean topological space equipped with smoothly
+          compatible coordinate charts.
+        status: direct-support
+        location: Smooth manifolds and smooth maps chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - An overlap map failing the required differentiability class.
+    alternative_interpretations:
+      - Manifold with boundary or corners.
+search:
+  queries:
+    - id: smooth-manifold-query
+      query: Lee Introduction Smooth Manifolds compatible charts definition
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: smooth-manifold-query
+      result: located
+      source_ids:
+        - lee-smooth-manifolds-2012
+      executed_by: structure-atlas-evidence-curator
+      notes: Smooth manifolds and smooth maps chapters.
+generated_hypotheses:
+  - id: smooth-manifold-hypothesis
+    text: A smooth manifold is a locally Euclidean topological space equipped with smoothly compatible
+      coordinate charts.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - lee-smooth-manifolds-2012
+automated_judgments:
+  - id: smooth-manifold-judgment
+    method: model-assisted
+    subject: smooth-manifold-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\smooth-manifold.yaml#source_inventory
+adversarial_reviews:
+  - id: smooth-manifold-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Local Euclidean structure alone defines only a topological manifold.
+    response: Smooth compatibility of the atlas is an explicit part of the claim.
+    recommended_action: Retain as a foundational object.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\smooth-manifold.yaml#claims.smooth-manifold-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from lee-smooth-manifolds-2012 at Publisher table of contents, chapters 1-20.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

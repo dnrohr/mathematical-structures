@@ -1,0 +1,139 @@
+dossier_schema: 1.0.0
+candidate:
+  id: newton-method
+  canonical_name: Newton's method
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: boyd-vandenberghe-2004
+    kind: textbook
+    title: Convex Optimization
+    authors:
+      - Stephen Boyd
+      - Lieven Vandenberghe
+    year: 2004
+    locator: https://web.stanford.edu/~boyd/cvxbook/
+    supplied_by: atlas-campaign-curator
+  - id: nocedal-wright-2006
+    kind: textbook
+    title: Numerical Optimization, second edition
+    authors:
+      - Jorge Nocedal
+      - Stephen J. Wright
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/978-0-387-40065-5
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: newton-method-claim
+    proposition: Newton's optimization method locally solves the stationarity equation by repeatedly
+      minimizing the quadratic Taylor model built from the gradient and Hessian.
+    endpoints:
+      from: optimization
+      to: $candidate
+    proposed_edge:
+      type: SOLVED-BY
+      strength: theorem
+      context: Smooth unconstrained optimization near a nondegenerate minimizer with suitable
+        globalization when needed.
+    mathematical_skeleton: Solve Hessian times step equals minus gradient, then update the iterate.
+    scope: Twice-differentiable unconstrained minimization.
+    assumptions:
+      - nonsingular local Hessian
+      - Lipschitz-continuous Hessian for standard local rate
+    validity_regime: Quadratic local convergence near a solution under standard hypotheses.
+    caveats:
+      - Far from a minimizer the step may not descend; line search or trust region is commonly
+        required.
+    counterexamples:
+      - An indefinite Hessian can produce an ascent direction.
+    source_assessments:
+      - source_id: nocedal-wright-2006
+        proposition: Newton's optimization method locally solves the stationarity equation by repeatedly
+          minimizing the quadratic Taylor model built from the gradient and Hessian.
+        status: direct-support
+        location: Fundamentals of unconstrained optimization and Newton-method sections.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Loss of the stated quadratic rate despite all local hypotheses.
+    alternative_interpretations:
+      - Newton's root-finding method applied directly to F(x)=0.
+search:
+  queries:
+    - id: newton-method-query
+      query: Nocedal Wright Newton method optimization Hessian quadratic convergence
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: newton-method-query
+      result: located
+      source_ids:
+        - nocedal-wright-2006
+      executed_by: structure-atlas-evidence-curator
+      notes: Fundamentals of unconstrained optimization and Newton-method sections.
+generated_hypotheses:
+  - id: newton-method-hypothesis
+    text: Newton's optimization method locally solves the stationarity equation by repeatedly minimizing
+      the quadratic Taylor model built from the gradient and Hessian.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - nocedal-wright-2006
+automated_judgments:
+  - id: newton-method-judgment
+    method: model-assisted
+    subject: newton-method-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\newton-method.yaml#source_inventory
+adversarial_reviews:
+  - id: newton-method-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Root finding and optimization versions are often conflated.
+    response: The node records the shared Newton linearization skeleton and scopes this claim to
+      stationarity.
+    recommended_action: Retain with root-finding as a related formulation.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\newton-method.yaml#claims.newton-method-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from boyd-vandenberghe-2004, nocedal-wright-2006 at Book chapters 9-11; Publisher
+        table of contents, chapters 2-19.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 2 raw entries and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

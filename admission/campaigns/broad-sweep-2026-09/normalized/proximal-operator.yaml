@@ -1,0 +1,129 @@
+dossier_schema: 1.0.0
+candidate:
+  id: proximal-operator
+  canonical_name: Proximal operator
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: boyd-vandenberghe-2004
+    kind: textbook
+    title: Convex Optimization
+    authors:
+      - Stephen Boyd
+      - Lieven Vandenberghe
+    year: 2004
+    locator: https://web.stanford.edu/~boyd/cvxbook/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: proximal-operator-claim
+    proposition: The proximal operator converts a possibly nonsmooth convex function into a regularized
+      minimization subproblem used by first-order optimization algorithms.
+    endpoints:
+      from: $candidate
+      to: optimization
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Proper closed convex functions and positive proximal parameter.
+    mathematical_skeleton: prox of f at v is the argmin over x of f(x) plus one over twice lambda times
+      squared distance to v.
+    scope: Convex composite optimization.
+    assumptions:
+      - proper lower-semicontinuous convex function
+    validity_regime: Euclidean proximal map; generalized metrics require adjusted statements.
+    caveats:
+      - The proximal subproblem may itself be expensive or set-valued outside standard convex
+        assumptions.
+    counterexamples:
+      - A nonconvex function with multiple proximal minimizers.
+    source_assessments:
+      - source_id: boyd-vandenberghe-2004
+        proposition: The proximal operator converts a possibly nonsmooth convex function into a regularized
+          minimization subproblem used by first-order optimization algorithms.
+        status: direct-support
+        location: Convex optimization course materials on decomposition and proximal methods.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Failure of the minimization definition to produce the claimed update.
+    alternative_interpretations:
+      - Resolvent of a maximal monotone operator.
+search:
+  queries:
+    - id: proximal-operator-query
+      query: Boyd convex optimization proximal operator definition
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: proximal-operator-query
+      result: located
+      source_ids:
+        - boyd-vandenberghe-2004
+      executed_by: structure-atlas-evidence-curator
+      notes: Convex optimization course materials on decomposition and proximal methods.
+generated_hypotheses:
+  - id: proximal-operator-hypothesis
+    text: The proximal operator converts a possibly nonsmooth convex function into a regularized
+      minimization subproblem used by first-order optimization algorithms.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - boyd-vandenberghe-2004
+automated_judgments:
+  - id: proximal-operator-judgment
+    method: model-assisted
+    subject: proximal-operator-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\proximal-operator.yaml#source_inventory
+adversarial_reviews:
+  - id: proximal-operator-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: The main textbook predates some modern proximal terminology.
+    response: The source supports the convex minimization structure; terminology is cross-checked in the
+      course materials locator.
+    recommended_action: Retain, but seek a dedicated proximal-algorithms reference before final publication.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\proximal-operator.yaml#claims.proximal-operator-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from boyd-vandenberghe-2004 at Book table of contents and Stanford course
+        materials.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

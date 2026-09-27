@@ -1,0 +1,126 @@
+dossier_schema: 1.0.0
+candidate:
+  id: jacobi-integral
+  canonical_name: Jacobi integral
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: fitzpatrick-celestial-mechanics-2012
+    kind: textbook
+    title: An Introduction to Celestial Mechanics
+    authors:
+      - Richard Fitzpatrick
+    year: 2012
+    locator: https://www.cambridge.org/core/books/an-introduction-to-celestial-mechanics/0E9275B6D76F141E4F4948BCA112284D
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: jacobi-integral-claim
+    proposition: The Jacobi integral is a conserved quantity of the circular restricted three-body
+      problem in the uniformly rotating frame.
+    endpoints:
+      from: $candidate
+      to: conservation-laws
+    proposed_edge:
+      type: IS-A
+      strength: special-case
+      context: Circular restricted three-body dynamics in rotating coordinates.
+    mathematical_skeleton: The rotating-frame equations imply a constant combining effective potential and squared speed.
+    scope: Circular restricted three-body problem.
+    assumptions:
+      - circular primaries
+      - uniformly rotating frame
+      - massless third body
+    validity_regime: Autonomous rotating-frame equations with no added perturbations.
+    caveats:
+      - It is not the inertial mechanical energy.
+    counterexamples:
+      - Elliptic primaries generally destroy the time-independent Jacobi constant.
+    source_assessments:
+      - source_id: fitzpatrick-celestial-mechanics-2012
+        proposition: The Jacobi integral is a conserved quantity of the circular restricted three-body
+          problem in the uniformly rotating frame.
+        status: direct-support
+        location: Restricted three-body problem, Jacobi integral, and zero-velocity surface sections.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Nonzero derivative of the stated integral along an unperturbed solution.
+    alternative_interpretations:
+      - Jacobi constant with opposite sign convention.
+search:
+  queries:
+    - id: jacobi-integral-query
+      query: Fitzpatrick celestial mechanics Jacobi integral restricted three body rotating
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: jacobi-integral-query
+      result: located
+      source_ids:
+        - fitzpatrick-celestial-mechanics-2012
+      executed_by: structure-atlas-evidence-curator
+      notes: Restricted three-body problem, Jacobi integral, and zero-velocity surface sections.
+generated_hypotheses:
+  - id: jacobi-integral-hypothesis
+    text: The Jacobi integral is a conserved quantity of the circular restricted three-body problem in
+      the uniformly rotating frame.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - fitzpatrick-celestial-mechanics-2012
+automated_judgments:
+  - id: jacobi-integral-judgment
+    method: model-assisted
+    subject: jacobi-integral-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\jacobi-integral.yaml#source_inventory
+adversarial_reviews:
+  - id: jacobi-integral-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Calling it energy can obscure rotating-frame and sign conventions.
+    response: The claim uses conserved quantity and identifies the precise model.
+    recommended_action: Retain as a special conservation-law object.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\jacobi-integral.yaml#claims.jacobi-integral-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from fitzpatrick-celestial-mechanics-2012 at Publisher table of contents, chapters
+        2-9.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

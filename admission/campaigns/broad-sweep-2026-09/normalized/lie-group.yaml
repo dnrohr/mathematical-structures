@@ -1,0 +1,125 @@
+dossier_schema: 1.0.0
+candidate:
+  id: lie-group
+  canonical_name: Lie group
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+    - pde
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: lee-smooth-manifolds-2012
+    kind: textbook
+    title: Introduction to Smooth Manifolds, second edition
+    authors:
+      - John M. Lee
+    year: 2012
+    locator: https://link.springer.com/book/10.1007/978-1-4419-9982-5
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: lie-group-claim
+    proposition: Continuous symmetries are represented by Lie groups whose smooth multiplication
+      supports infinitesimal generators in a Lie algebra.
+    endpoints:
+      from: symmetry
+      to: $candidate
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Finite-dimensional continuous transformation groups.
+    mathematical_skeleton: A smooth group has a tangent space at the identity with a bracket induced by
+      invariant vector fields.
+    scope: Finite-dimensional Lie groups and smooth actions.
+    assumptions:
+      - smooth manifold structure compatible with group operations
+    validity_regime: Continuous symmetries described by smooth group actions.
+    caveats:
+      - Discrete symmetries are groups but not captured by infinitesimal generators.
+    counterexamples:
+      - A purely finite symmetry group has zero-dimensional local Lie algebra information.
+    source_assessments:
+      - source_id: lee-smooth-manifolds-2012
+        proposition: Continuous symmetries are represented by Lie groups whose smooth multiplication
+          supports infinitesimal generators in a Lie algebra.
+        status: direct-support
+        location: Lie groups, Lie algebras, and group actions chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Group multiplication or inversion fails to be smooth.
+    alternative_interpretations:
+      - Infinite-dimensional Lie groups.
+search:
+  queries:
+    - id: lie-group-query
+      query: Lee smooth manifolds Lie group symmetry Lie algebra
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: lie-group-query
+      result: located
+      source_ids:
+        - lee-smooth-manifolds-2012
+      executed_by: structure-atlas-evidence-curator
+      notes: Lie groups, Lie algebras, and group actions chapters.
+generated_hypotheses:
+  - id: lie-group-hypothesis
+    text: Continuous symmetries are represented by Lie groups whose smooth multiplication supports
+      infinitesimal generators in a Lie algebra.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - lee-smooth-manifolds-2012
+automated_judgments:
+  - id: lie-group-judgment
+    method: model-assisted
+    subject: lie-group-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\lie-group.yaml#source_inventory
+adversarial_reviews:
+  - id: lie-group-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Not every symmetry group is a positive-dimensional Lie group.
+    response: The claim is explicitly about continuous finite-dimensional symmetries.
+    recommended_action: Retain with discrete groups outside the main scope.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\lie-group.yaml#claims.lie-group-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from lee-smooth-manifolds-2012 at Publisher table of contents, chapters 1-20.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

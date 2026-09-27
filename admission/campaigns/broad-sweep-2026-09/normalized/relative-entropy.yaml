@@ -1,0 +1,126 @@
+dossier_schema: 1.0.0
+candidate:
+  id: relative-entropy
+  canonical_name: Relative entropy
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - information-theory
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: cover-thomas-2006
+    kind: textbook
+    title: Elements of Information Theory, second edition
+    authors:
+      - Thomas M. Cover
+      - Joy A. Thomas
+    year: 2006
+    locator: https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: relative-entropy-claim
+    proposition: Relative entropy measures the discrepancy of a distribution P from a reference Q and
+      can be written as cross-entropy minus Shannon entropy.
+    endpoints:
+      from: $candidate
+      to: shannon-entropy
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: P absolutely continuous with respect to Q; finite alphabets for the elementary formula.
+    mathematical_skeleton: D(P parallel Q) equals the expectation under P of log p over q and is nonnegative.
+    scope: Classical probability distributions.
+    assumptions:
+      - P absolutely continuous with respect to Q for finite divergence
+    validity_regime: Discrete finite alphabets or measure-theoretic extension with Radon-Nikodym derivative.
+    caveats:
+      - It is asymmetric and is not a metric.
+    counterexamples:
+      - If Q assigns zero mass where P is positive
+      - divergence is infinite.
+    source_assessments:
+      - source_id: cover-thomas-2006
+        proposition: Relative entropy measures the discrepancy of a distribution P from a reference Q and
+          can be written as cross-entropy minus Shannon entropy.
+        status: direct-support
+        location: Entropy, relative entropy, and mutual information chapter.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A pair with finite formula yielding negative divergence.
+    alternative_interpretations:
+      - Quantum relative entropy.
+search:
+  queries:
+    - id: relative-entropy-query
+      query: Cover Thomas relative entropy cross entropy Shannon entropy
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: relative-entropy-query
+      result: located
+      source_ids:
+        - cover-thomas-2006
+      executed_by: structure-atlas-evidence-curator
+      notes: Entropy, relative entropy, and mutual information chapter.
+generated_hypotheses:
+  - id: relative-entropy-hypothesis
+    text: Relative entropy measures the discrepancy of a distribution P from a reference Q and can be
+      written as cross-entropy minus Shannon entropy.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - cover-thomas-2006
+automated_judgments:
+  - id: relative-entropy-judgment
+    method: model-assisted
+    subject: relative-entropy-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\relative-entropy.yaml#source_inventory
+adversarial_reviews:
+  - id: relative-entropy-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: The word distance encourages false symmetry and triangle-inequality assumptions.
+    response: The claim uses discrepancy and explicitly denies metric status.
+    recommended_action: Retain with asymmetry prominent.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\relative-entropy.yaml#claims.relative-entropy-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from cover-thomas-2006 at Publisher table of contents, chapters 2-17.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

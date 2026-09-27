@@ -1,0 +1,127 @@
+dossier_schema: 1.0.0
+candidate:
+  id: bayesian-network
+  canonical_name: Bayesian network
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - ml
+    - probability
+    - statistics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: model
+source_inventory:
+  - id: koller-friedman-2009
+    kind: textbook
+    title: Probabilistic Graphical Models
+    authors:
+      - Daphne Koller
+      - Nir Friedman
+    year: 2009
+    locator: https://mitpress.mit.edu/9780262013192/probabilistic-graphical-models/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: bayesian-network-claim
+    proposition: A Bayesian network factorizes a joint distribution according to a directed acyclic
+      graph and applies Bayes rule for probabilistic inference.
+    endpoints:
+      from: bayes-rule
+      to: $candidate
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Directed acyclic graphical models with normalized conditional distributions.
+    mathematical_skeleton: p(x_1,...,x_n) equals the product over nodes of p(x_i given its parents).
+    scope: Discrete or continuous Bayesian networks with well-defined conditional densities.
+    assumptions:
+      - directed acyclic graph
+      - local Markov property
+    validity_regime: Distributions Markov with respect to the graph.
+    caveats:
+      - The graph alone does not imply causal semantics.
+    counterexamples:
+      - A directed cyclic model is not a Bayesian network under this definition.
+    source_assessments:
+      - source_id: koller-friedman-2009
+        proposition: A Bayesian network factorizes a joint distribution according to a directed acyclic
+          graph and applies Bayes rule for probabilistic inference.
+        status: direct-support
+        location: Bayesian-network representation chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A claimed factorization that cannot normalize or violates the parent ordering.
+    alternative_interpretations:
+      - Causal Bayesian network with intervention semantics.
+search:
+  queries:
+    - id: bayesian-network-query
+      query: Koller Friedman Bayesian network DAG factorization
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: bayesian-network-query
+      result: located
+      source_ids:
+        - koller-friedman-2009
+      executed_by: structure-atlas-evidence-curator
+      notes: Bayesian-network representation chapters.
+generated_hypotheses:
+  - id: bayesian-network-hypothesis
+    text: A Bayesian network factorizes a joint distribution according to a directed acyclic graph and
+      applies Bayes rule for probabilistic inference.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - koller-friedman-2009
+automated_judgments:
+  - id: bayesian-network-judgment
+    method: model-assisted
+    subject: bayesian-network-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\bayesian-network.yaml#source_inventory
+adversarial_reviews:
+  - id: bayesian-network-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Directed edges are often misread as causal claims.
+    response: The proposition is purely probabilistic; causality is an additional interpretation.
+    recommended_action: Retain as a model node with an explicit noncausal default.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\bayesian-network.yaml#claims.bayesian-network-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from koller-friedman-2009 at Publisher description and book index.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

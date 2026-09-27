@@ -1,0 +1,127 @@
+dossier_schema: 1.0.0
+candidate:
+  id: b-series
+  canonical_name: B-series
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+    - numerical-analysis
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: hairer-lubich-wanner-2006
+    kind: textbook
+    title: Geometric Numerical Integration, second edition
+    authors:
+      - Ernst Hairer
+      - Christian Lubich
+      - Gerhard Wanner
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/3-540-30666-8
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: b-series-claim
+    proposition: A B-series is a rooted-tree-indexed formal series expansion used to represent
+      Runge-Kutta flows and their compositions.
+    endpoints:
+      from: $candidate
+      to: series-expansion
+    proposed_edge:
+      type: IS-A
+      strength: special-case
+      context: Formal expansions for numerical flows of ODEs.
+    mathematical_skeleton: Coefficients are indexed by rooted trees whose elementary differentials
+      encode derivative compositions.
+    scope: Formal local expansions for sufficiently smooth autonomous ODEs.
+    assumptions:
+      - sufficient derivatives of the vector field
+    validity_regime: Formal order analysis and convergent regimes where the series is controlled.
+    caveats:
+      - Not every geometric integrator is representable by an ordinary B-series.
+    counterexamples:
+      - Aromatic series require graph structures beyond rooted trees.
+    source_assessments:
+      - source_id: hairer-lubich-wanner-2006
+        proposition: A B-series is a rooted-tree-indexed formal series expansion used to represent
+          Runge-Kutta flows and their compositions.
+        status: direct-support
+        location: B-series and order-condition sections.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A purported B-series coefficient requiring a non-rooted-tree invariant.
+    alternative_interpretations:
+      - Exact-flow versus numerical-method B-series.
+search:
+  queries:
+    - id: b-series-query
+      query: Hairer Lubich Wanner B-series rooted trees Runge-Kutta
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: b-series-query
+      result: located
+      source_ids:
+        - hairer-lubich-wanner-2006
+      executed_by: structure-atlas-evidence-curator
+      notes: B-series and order-condition sections.
+generated_hypotheses:
+  - id: b-series-hypothesis
+    text: A B-series is a rooted-tree-indexed formal series expansion used to represent Runge-Kutta
+      flows and their compositions.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - hairer-lubich-wanner-2006
+automated_judgments:
+  - id: b-series-judgment
+    method: model-assisted
+    subject: b-series-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\b-series.yaml#source_inventory
+adversarial_reviews:
+  - id: b-series-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: The label can refer to a formal algebra, a method expansion, or the exact flow.
+    response: The node encompasses the rooted-tree formalism and distinguishes those uses in scope notes.
+    recommended_action: Retain as a specialized series-expansion object.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\b-series.yaml#claims.b-series-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from hairer-lubich-wanner-2006 at Publisher table of contents, chapters 2-15.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

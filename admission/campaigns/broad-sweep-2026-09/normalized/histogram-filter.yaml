@@ -1,0 +1,43 @@
+dossier_schema: 1.0.0
+candidate:
+  id: histogram-filter
+  canonical_name: Histogram filter
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: thrun-burgard-fox-2005
+    kind: textbook
+    title: Probabilistic Robotics
+    authors:
+      - Sebastian Thrun
+      - Wolfram Burgard
+      - Dieter Fox
+    year: 2005
+    locator: https://mitpress.mit.edu/9780262201629/probabilistic-robotics/
+    supplied_by: atlas-campaign-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from thrun-burgard-fox-2005 at Publisher description, index, and localization/SLAM
+        chapters.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

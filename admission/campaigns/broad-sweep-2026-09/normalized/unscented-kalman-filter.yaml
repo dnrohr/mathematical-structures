@@ -1,0 +1,136 @@
+dossier_schema: 1.0.0
+candidate:
+  id: unscented-kalman-filter
+  canonical_name: Unscented Kalman filter
+  local_names: []
+  acronyms:
+    - UKF
+  originating_fields:
+    - control
+    - probability
+  proposed_disposition: propose-node
+  possible_matches:
+    - slug: kalman-filter
+      relationship: related
+      basis: 'Harvest normalization: "Unscented Kalman filter" matched "Kalman filter".'
+      source_ids:
+        - thrun-burgard-fox-2005
+  proposed_node_type: operation
+source_inventory:
+  - id: thrun-burgard-fox-2005
+    kind: textbook
+    title: Probabilistic Robotics
+    authors:
+      - Sebastian Thrun
+      - Wolfram Burgard
+      - Dieter Fox
+    year: 2005
+    locator: https://mitpress.mit.edu/9780262201629/probabilistic-robotics/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: unscented-kalman-filter-claim
+    proposition: When nonlinear maps break exact Kalman propagation, the unscented Kalman filter
+      replaces linearization by deterministic sigma points chosen to reproduce moments.
+    endpoints:
+      from: kalman-filter
+      to: $candidate
+    proposed_edge:
+      type: REPLACED-BY
+      strength: strong-analogy
+      context: Nonlinear state-space models with approximately Gaussian beliefs.
+    mathematical_skeleton: Transform weighted sigma points through the nonlinear map and reconstruct
+      approximate mean and covariance.
+    scope: Nonlinear Gaussian filtering.
+    assumptions:
+      - finite moments
+      - useful Gaussian moment approximation
+    validity_regime: Unimodal uncertainty where low-order moments summarize the belief adequately.
+    caveats:
+      - The posterior remains approximated as Gaussian and parameter choices affect numerical
+        behavior.
+    counterexamples:
+      - Strong multimodality not representable by reconstructed mean and covariance.
+    source_assessments:
+      - source_id: thrun-burgard-fox-2005
+        proposition: When nonlinear maps break exact Kalman propagation, the unscented Kalman filter
+          replaces linearization by deterministic sigma points chosen to reproduce moments.
+        status: direct-support
+        location: Gaussian filters and unscented Kalman filter sections.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Sigma points fail to reproduce the prescribed prior moments.
+    alternative_interpretations:
+      - Cubature Kalman filters with different point rules.
+search:
+  queries:
+    - id: unscented-kalman-filter-query
+      query: Probabilistic Robotics unscented Kalman filter sigma points moments
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: unscented-kalman-filter-query
+      result: located
+      source_ids:
+        - thrun-burgard-fox-2005
+      executed_by: structure-atlas-evidence-curator
+      notes: Gaussian filters and unscented Kalman filter sections.
+generated_hypotheses:
+  - id: unscented-kalman-filter-hypothesis
+    text: When nonlinear maps break exact Kalman propagation, the unscented Kalman filter replaces
+      linearization by deterministic sigma points chosen to reproduce moments.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - thrun-burgard-fox-2005
+automated_judgments:
+  - id: unscented-kalman-filter-judgment
+    method: model-assisted
+    subject: unscented-kalman-filter-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\unscented-kalman-filter.yaml#source_inventory
+adversarial_reviews:
+  - id: unscented-kalman-filter-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Avoiding Jacobians does not make the UKF exact for arbitrary nonlinear models.
+    response: The claim calls it deterministic moment approximation and states Gaussian limitations.
+    recommended_action: Retain as a distinct nonlinear replacement operation.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\unscented-kalman-filter.yaml#claims.unscented-kalman-filter-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from thrun-burgard-fox-2005 at Publisher description, index, and localization/SLAM
+        chapters.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator
