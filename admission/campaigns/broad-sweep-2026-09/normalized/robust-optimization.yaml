@@ -1,0 +1,42 @@
+dossier_schema: 1.0.0
+candidate:
+  id: robust-optimization
+  canonical_name: Robust optimization
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: principle
+source_inventory:
+  - id: boyd-vandenberghe-2004
+    kind: textbook
+    title: Convex Optimization
+    authors:
+      - Stephen Boyd
+      - Lieven Vandenberghe
+    year: 2004
+    locator: https://web.stanford.edu/~boyd/cvxbook/
+    supplied_by: atlas-campaign-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from boyd-vandenberghe-2004 at Book table of contents and Stanford course
+        materials.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

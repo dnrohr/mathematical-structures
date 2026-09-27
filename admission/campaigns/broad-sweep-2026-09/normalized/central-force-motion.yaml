@@ -1,0 +1,39 @@
+dossier_schema: 1.0.0
+candidate:
+  id: central-force-motion
+  canonical_name: Central-force motion
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+  proposed_disposition: retain-example
+  possible_matches: []
+source_inventory:
+  - id: fitzpatrick-celestial-mechanics-2012
+    kind: textbook
+    title: An Introduction to Celestial Mechanics
+    authors:
+      - Richard Fitzpatrick
+    year: 2012
+    locator: https://www.cambridge.org/core/books/an-introduction-to-celestial-mechanics/0E9275B6D76F141E4F4948BCA112284D
+    supplied_by: atlas-campaign-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from fitzpatrick-celestial-mechanics-2012 at Publisher table of contents, chapters
+        2-9.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

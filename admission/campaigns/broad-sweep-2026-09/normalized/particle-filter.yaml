@@ -1,0 +1,130 @@
+dossier_schema: 1.0.0
+candidate:
+  id: particle-filter
+  canonical_name: Particle filter
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: thrun-burgard-fox-2005
+    kind: textbook
+    title: Probabilistic Robotics
+    authors:
+      - Sebastian Thrun
+      - Wolfram Burgard
+      - Dieter Fox
+    year: 2005
+    locator: https://mitpress.mit.edu/9780262201629/probabilistic-robotics/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: particle-filter-claim
+    proposition: When Gaussian filtering assumptions fail, a particle filter replaces a single Gaussian
+      belief by a weighted empirical sample propagated and reweighted recursively.
+    endpoints:
+      from: kalman-filter
+      to: $candidate
+    proposed_edge:
+      type: REPLACED-BY
+      strength: strong-analogy
+      context: Nonlinear or non-Gaussian state-space models where sequential Monte Carlo is
+        computationally feasible.
+    mathematical_skeleton: Importance-sample the predictive distribution, weight by likelihood, and
+      resample to control weight degeneracy.
+    scope: Sequential Bayesian state estimation.
+    assumptions:
+      - simulable proposal
+      - evaluable importance weights
+    validity_regime: Monte Carlo consistency as particle count grows under regularity conditions.
+    caveats:
+      - Finite samples suffer degeneracy and high-dimensional collapse.
+    counterexamples:
+      - A proposal with zero support where the posterior has mass.
+    source_assessments:
+      - source_id: thrun-burgard-fox-2005
+        proposition: When Gaussian filtering assumptions fail, a particle filter replaces a single Gaussian
+          belief by a weighted empirical sample propagated and reweighted recursively.
+        status: direct-support
+        location: Nonparametric filters and particle-filter chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Importance weights do not target the stated posterior even asymptotically.
+    alternative_interpretations:
+      - Rao-Blackwellized particle filter.
+search:
+  queries:
+    - id: particle-filter-query
+      query: Probabilistic Robotics particle filter weighted samples resampling
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: particle-filter-query
+      result: located
+      source_ids:
+        - thrun-burgard-fox-2005
+      executed_by: structure-atlas-evidence-curator
+      notes: Nonparametric filters and particle-filter chapters.
+generated_hypotheses:
+  - id: particle-filter-hypothesis
+    text: When Gaussian filtering assumptions fail, a particle filter replaces a single Gaussian belief
+      by a weighted empirical sample propagated and reweighted recursively.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - thrun-burgard-fox-2005
+automated_judgments:
+  - id: particle-filter-judgment
+    method: model-assisted
+    subject: particle-filter-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\particle-filter.yaml#source_inventory
+adversarial_reviews:
+  - id: particle-filter-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Particle filtering is not automatically accurate for arbitrary nonlinear systems.
+    response: The claim is representational and asymptotic; finite-sample failure modes are explicit.
+    recommended_action: Retain as a replacement operation with dimensionality caveats.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\particle-filter.yaml#claims.particle-filter-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from thrun-burgard-fox-2005 at Publisher description, index, and localization/SLAM
+        chapters.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

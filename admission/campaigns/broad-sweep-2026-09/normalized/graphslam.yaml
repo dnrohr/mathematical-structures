@@ -1,0 +1,132 @@
+dossier_schema: 1.0.0
+candidate:
+  id: graphslam
+  canonical_name: GraphSLAM
+  local_names: []
+  acronyms:
+    - GraphSLAM
+  originating_fields:
+    - control
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: thrun-burgard-fox-2005
+    kind: textbook
+    title: Probabilistic Robotics
+    authors:
+      - Sebastian Thrun
+      - Wolfram Burgard
+      - Dieter Fox
+    year: 2005
+    locator: https://mitpress.mit.edu/9780262201629/probabilistic-robotics/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: graphslam-claim
+    proposition: GraphSLAM formulates simultaneous localization and mapping as sparse graph-based
+      maximum a posteriori optimization over robot poses and landmarks.
+    endpoints:
+      from: optimization
+      to: $candidate
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: SLAM posterior factorized into motion and measurement constraints.
+    mathematical_skeleton: Negative log factors yield a sparse nonlinear least-squares objective whose
+      graph records variable-constraint incidence.
+    scope: Offline or smoothing-based SLAM with differentiable residual models.
+    assumptions:
+      - factorized motion and measurement likelihoods
+      - chosen gauge or anchor
+    validity_regime: MAP estimation under the stated probabilistic model.
+    caveats:
+      - Nonconvexity
+      - data association
+      - and gauge freedom can dominate practical behavior.
+    counterexamples:
+      - An unanchored pose graph has gauge nonuniqueness.
+    source_assessments:
+      - source_id: thrun-burgard-fox-2005
+        proposition: GraphSLAM formulates simultaneous localization and mapping as sparse graph-based
+          maximum a posteriori optimization over robot poses and landmarks.
+        status: direct-support
+        location: GraphSLAM chapter and full-SLAM inference sections.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A claimed GraphSLAM formulation lacking a graph-factorized global objective.
+    alternative_interpretations:
+      - Pose-graph optimization without explicit landmarks.
+search:
+  queries:
+    - id: graphslam-query
+      query: Probabilistic Robotics GraphSLAM graph optimization poses landmarks
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: graphslam-query
+      result: located
+      source_ids:
+        - thrun-burgard-fox-2005
+      executed_by: structure-atlas-evidence-curator
+      notes: GraphSLAM chapter and full-SLAM inference sections.
+generated_hypotheses:
+  - id: graphslam-hypothesis
+    text: GraphSLAM formulates simultaneous localization and mapping as sparse graph-based maximum a
+      posteriori optimization over robot poses and landmarks.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - thrun-burgard-fox-2005
+automated_judgments:
+  - id: graphslam-judgment
+    method: model-assisted
+    subject: graphslam-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\graphslam.yaml#source_inventory
+adversarial_reviews:
+  - id: graphslam-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: GraphSLAM is not merely any SLAM implementation using a graph data structure.
+    response: The definition requires a factorized global MAP objective and sparse graph structure.
+    recommended_action: Retain as a named optimization operation.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\graphslam.yaml#claims.graphslam-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from thrun-burgard-fox-2005 at Publisher description, index, and localization/SLAM
+        chapters.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

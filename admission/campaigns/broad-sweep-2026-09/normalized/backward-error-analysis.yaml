@@ -1,0 +1,128 @@
+dossier_schema: 1.0.0
+candidate:
+  id: backward-error-analysis
+  canonical_name: Backward error analysis
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+    - numerical-analysis
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: move
+source_inventory:
+  - id: hairer-lubich-wanner-2006
+    kind: textbook
+    title: Geometric Numerical Integration, second edition
+    authors:
+      - Ernst Hairer
+      - Christian Lubich
+      - Gerhard Wanner
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/3-540-30666-8
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: backward-error-analysis-claim
+    proposition: Backward error analysis interprets a numerical trajectory as the exact trajectory of a
+      nearby modified differential equation.
+    endpoints:
+      from: $candidate
+      to: smoothness
+    proposed_edge:
+      type: ASSUMES
+      strength: theorem
+      context: Truncated modified equations for sufficiently smooth or analytic dynamics.
+    mathematical_skeleton: Choose modified vector-field coefficients so its exact flow matches the
+      numerical one step map order by order.
+    scope: One-step integrators for smooth ODEs.
+    assumptions:
+      - smooth or analytic vector field
+      - sufficiently small step size
+    validity_regime: Finite truncation, or exponentially long regimes under analyticity hypotheses.
+    caveats:
+      - The full modified series commonly diverges and is used asymptotically.
+    counterexamples:
+      - Nonsmooth dynamics where the required derivatives do not exist.
+    source_assessments:
+      - source_id: hairer-lubich-wanner-2006
+        proposition: Backward error analysis interprets a numerical trajectory as the exact trajectory of a
+          nearby modified differential equation.
+        status: direct-support
+        location: Backward error analysis and modified equations chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Failure to match the numerical one-step map through the claimed order.
+    alternative_interpretations:
+      - Backward error for linear algebra rather than ODE integration.
+search:
+  queries:
+    - id: backward-error-analysis-query
+      query: Hairer Lubich Wanner backward error analysis modified differential equation
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: backward-error-analysis-query
+      result: located
+      source_ids:
+        - hairer-lubich-wanner-2006
+      executed_by: structure-atlas-evidence-curator
+      notes: Backward error analysis and modified equations chapters.
+generated_hypotheses:
+  - id: backward-error-analysis-hypothesis
+    text: Backward error analysis interprets a numerical trajectory as the exact trajectory of a nearby
+      modified differential equation.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - hairer-lubich-wanner-2006
+automated_judgments:
+  - id: backward-error-analysis-judgment
+    method: model-assisted
+    subject: backward-error-analysis-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\backward-error-analysis.yaml#source_inventory
+adversarial_reviews:
+  - id: backward-error-analysis-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Calling the numerical solution exact may hide truncation and divergence.
+    response: The claim says nearby truncated modified equation and states the asymptotic limitation.
+    recommended_action: Retain with the truncation caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\backward-error-analysis.yaml#claims.backward-error-analysis-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from hairer-lubich-wanner-2006 at Publisher table of contents, chapters 2-15.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

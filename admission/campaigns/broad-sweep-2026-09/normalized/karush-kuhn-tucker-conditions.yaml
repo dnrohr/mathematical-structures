@@ -1,0 +1,128 @@
+dossier_schema: 1.0.0
+candidate:
+  id: karush-kuhn-tucker-conditions
+  canonical_name: Karush-Kuhn-Tucker conditions
+  local_names: []
+  acronyms:
+    - KKT
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: theorem
+source_inventory:
+  - id: nocedal-wright-2006
+    kind: textbook
+    title: Numerical Optimization, second edition
+    authors:
+      - Jorge Nocedal
+      - Stephen J. Wright
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/978-0-387-40065-5
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: karush-kuhn-tucker-conditions-claim
+    proposition: Under a constraint qualification, KKT conditions are necessary for a constrained local
+      optimum and are sufficient for global optimality in a convex problem.
+    endpoints:
+      from: $candidate
+      to: optimization
+    proposed_edge:
+      type: GOVERNS
+      strength: theorem
+      context: Differentiable constrained programs; sufficiency additionally uses convexity.
+    mathematical_skeleton: Stationarity, primal feasibility, dual feasibility, and complementary slackness.
+    scope: Smooth finite-dimensional constrained optimization.
+    assumptions:
+      - constraint qualification for necessity
+      - convexity for sufficiency
+    validity_regime: Local necessity generally; global sufficiency in convex programs.
+    caveats:
+      - Without a qualification
+      - a valid optimum can lack KKT multipliers.
+    counterexamples:
+      - Degenerate constraints violating all standard qualifications.
+    source_assessments:
+      - source_id: nocedal-wright-2006
+        proposition: Under a constraint qualification, KKT conditions are necessary for a constrained local
+          optimum and are sufficient for global optimality in a convex problem.
+        status: direct-support
+        location: Optimality conditions and constraint qualifications chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A convex qualified KKT point that is not globally optimal.
+    alternative_interpretations:
+      - Nonsmooth KKT conditions using subgradients.
+search:
+  queries:
+    - id: karush-kuhn-tucker-conditions-query
+      query: Nocedal Wright KKT necessary sufficient constraint qualification convex
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: karush-kuhn-tucker-conditions-query
+      result: located
+      source_ids:
+        - nocedal-wright-2006
+      executed_by: structure-atlas-evidence-curator
+      notes: Optimality conditions and constraint qualifications chapters.
+generated_hypotheses:
+  - id: karush-kuhn-tucker-conditions-hypothesis
+    text: Under a constraint qualification, KKT conditions are necessary for a constrained local optimum
+      and are sufficient for global optimality in a convex problem.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - nocedal-wright-2006
+automated_judgments:
+  - id: karush-kuhn-tucker-conditions-judgment
+    method: model-assisted
+    subject: karush-kuhn-tucker-conditions-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\karush-kuhn-tucker-conditions.yaml#source_inventory
+adversarial_reviews:
+  - id: karush-kuhn-tucker-conditions-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: KKT is routinely stated without the hypotheses separating necessity from sufficiency.
+    response: Both constraint qualification and convexity roles are explicit.
+    recommended_action: Retain as a theorem node with split regimes.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\karush-kuhn-tucker-conditions.yaml#claims.karush-kuhn-tucker-conditions-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from nocedal-wright-2006 at Publisher table of contents, chapters 2-19.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

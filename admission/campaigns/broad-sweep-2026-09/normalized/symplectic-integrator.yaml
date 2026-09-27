@@ -1,0 +1,127 @@
+dossier_schema: 1.0.0
+candidate:
+  id: symplectic-integrator
+  canonical_name: Symplectic integrator
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+    - numerical-analysis
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: move
+source_inventory:
+  - id: hairer-lubich-wanner-2006
+    kind: textbook
+    title: Geometric Numerical Integration, second edition
+    authors:
+      - Ernst Hairer
+      - Christian Lubich
+      - Gerhard Wanner
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/3-540-30666-8
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: symplectic-integrator-claim
+    proposition: A symplectic integrator preserves the discrete symplectic two-form and thereby
+      reproduces the long-time geometric structure of Hamiltonian phase-space flow.
+    endpoints:
+      from: $candidate
+      to: phase-space
+    proposed_edge:
+      type: GOVERNS
+      strength: theorem
+      context: Symplectic numerical maps applied to Hamiltonian systems.
+    mathematical_skeleton: The one-step map Phi satisfies pullback of omega equals omega.
+    scope: Finite-dimensional Hamiltonian integration.
+    assumptions:
+      - symplectic phase space
+      - symplectic one-step map
+    validity_regime: Fixed-step methods under the stated construction.
+    caveats:
+      - Symplecticity does not imply exact energy conservation at every step.
+    counterexamples:
+      - Generic adaptive step-size changes can destroy symplecticity.
+    source_assessments:
+      - source_id: hairer-lubich-wanner-2006
+        proposition: A symplectic integrator preserves the discrete symplectic two-form and thereby
+          reproduces the long-time geometric structure of Hamiltonian phase-space flow.
+        status: direct-support
+        location: Symplectic integration and long-time energy behavior chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - The numerical map fails the pullback symplectic-form identity.
+    alternative_interpretations:
+      - Poisson integrator on a degenerate manifold.
+search:
+  queries:
+    - id: symplectic-integrator-query
+      query: Hairer Lubich Wanner symplectic integrator preserves symplectic form
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: symplectic-integrator-query
+      result: located
+      source_ids:
+        - hairer-lubich-wanner-2006
+      executed_by: structure-atlas-evidence-curator
+      notes: Symplectic integration and long-time energy behavior chapters.
+generated_hypotheses:
+  - id: symplectic-integrator-hypothesis
+    text: A symplectic integrator preserves the discrete symplectic two-form and thereby reproduces the
+      long-time geometric structure of Hamiltonian phase-space flow.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - hairer-lubich-wanner-2006
+automated_judgments:
+  - id: symplectic-integrator-judgment
+    method: model-assisted
+    subject: symplectic-integrator-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\symplectic-integrator.yaml#source_inventory
+adversarial_reviews:
+  - id: symplectic-integrator-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Good energy plots alone do not prove a method symplectic.
+    response: The definition uses the form-preservation identity, with energy behavior only a consequence.
+    recommended_action: Retain as a structure-preserving move.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\symplectic-integrator.yaml#claims.symplectic-integrator-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from hairer-lubich-wanner-2006 at Publisher table of contents, chapters 2-15.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

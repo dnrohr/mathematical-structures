@@ -1,0 +1,126 @@
+dossier_schema: 1.0.0
+candidate:
+  id: mutual-information
+  canonical_name: Mutual information
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - information-theory
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: cover-thomas-2006
+    kind: textbook
+    title: Elements of Information Theory, second edition
+    authors:
+      - Thomas M. Cover
+      - Joy A. Thomas
+    year: 2006
+    locator: https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: mutual-information-claim
+    proposition: Mutual information is an entropy-derived measure of statistical dependence equal to the
+      relative entropy between the joint law and the product of marginals.
+    endpoints:
+      from: $candidate
+      to: shannon-entropy
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Discrete variables
+    mathematical_skeleton: I(X;Y) equals H(X) plus H(Y) minus H(X,Y), and equals D(pXY parallel pX pY).
+    scope: Shannon information theory.
+    assumptions:
+      - well-defined entropies or relative entropy
+    validity_regime: Finite discrete alphabets without extra measure-theoretic qualifications.
+    caveats:
+      - Differential-entropy terms may be coordinate-dependent even when mutual information is
+        invariant.
+    counterexamples:
+      - Zero covariance does not imply zero mutual information outside Gaussian families.
+    source_assessments:
+      - source_id: cover-thomas-2006
+        proposition: Mutual information is an entropy-derived measure of statistical dependence equal to the
+          relative entropy between the joint law and the product of marginals.
+        status: direct-support
+        location: Entropy and mutual information chapter.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A dependent finite distribution with zero KL divergence from the product law.
+    alternative_interpretations:
+      - Conditional mutual information.
+search:
+  queries:
+    - id: mutual-information-query
+      query: Cover Thomas mutual information entropy relative entropy joint product
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: mutual-information-query
+      result: located
+      source_ids:
+        - cover-thomas-2006
+      executed_by: structure-atlas-evidence-curator
+      notes: Entropy and mutual information chapter.
+generated_hypotheses:
+  - id: mutual-information-hypothesis
+    text: Mutual information is an entropy-derived measure of statistical dependence equal to the
+      relative entropy between the joint law and the product of marginals.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - cover-thomas-2006
+automated_judgments:
+  - id: mutual-information-judgment
+    method: model-assisted
+    subject: mutual-information-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\mutual-information.yaml#source_inventory
+adversarial_reviews:
+  - id: mutual-information-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Mutual information is sometimes reduced to linear correlation.
+    response: The KL definition captures arbitrary statistical dependence.
+    recommended_action: Retain as an information-theoretic object.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\mutual-information.yaml#claims.mutual-information-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from cover-thomas-2006 at Publisher table of contents, chapters 2-17.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

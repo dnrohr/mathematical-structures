@@ -1,0 +1,83 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://structure-atlas.example/admission/harvest-schema-v1.yaml
+title: Structure Atlas harvest manifest
+description: >
+  Source-backed raw candidate inventory. This is untrusted input to
+  atlas-harvest, not atlas content and not evidence that a claim holds.
+type: object
+additionalProperties: false
+required: [harvest_schema, campaign, sources]
+properties:
+  harvest_schema: { const: 1.0.0 }
+  campaign:
+    type: object
+    required: [id, title, sampling_frame, target_raw_candidates]
+    properties:
+      id: { type: string, pattern: '^[a-z0-9]+(-[a-z0-9]+)*$' }
+      title: { type: string, minLength: 1 }
+      sampling_frame: { type: array, items: { type: string } }
+      target_raw_candidates: { type: integer, minimum: 1 }
+  sources:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required: [id, kind, title, locator, supplied_by]
+      properties:
+        id: { type: string, pattern: '^[a-z0-9]+(-[a-z0-9]+)*$' }
+        kind: { type: string }
+        title: { type: string }
+        authors: { type: array, items: { type: string } }
+        year: { type: [integer, string] }
+        locator: { type: string }
+        supplied_by: { type: string }
+  entries:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required: [term, source_ids, originating_fields, harvest_location]
+      properties:
+        term: { type: string, minLength: 1 }
+        source_ids: { type: array, minItems: 1, items: { type: string } }
+        originating_fields:
+          type: array
+          minItems: 1
+          items: { type: string, x-atlas-vocabulary: fields }
+        local_names:
+          type: array
+          items:
+            type: object
+            required: [name, field]
+            properties:
+              name: { type: string }
+              field: { type: string, x-atlas-vocabulary: fields }
+        acronyms: { type: array, items: { type: string } }
+        harvest_location: { type: string, minLength: 1 }
+        notes: { type: string }
+  inventories:
+    type: array
+    description: Compact source inventories expanded deterministically into entries.
+    items:
+      type: object
+      required: [source_id, originating_fields, harvest_location, terms]
+      properties:
+        source_id: { type: string }
+        originating_fields:
+          type: array
+          minItems: 1
+          items: { type: string, x-atlas-vocabulary: fields }
+        harvest_location: { type: string }
+        terms:
+          type: array
+          minItems: 1
+          items:
+            oneOf:
+              - { type: string, minLength: 1 }
+              - type: object
+                required: [term]
+                properties:
+                  term: { type: string }
+                  local_names: { type: array }
+                  acronyms: { type: array, items: { type: string } }
+                  notes: { type: string }

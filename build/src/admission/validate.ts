@@ -56,9 +56,11 @@ function add(
   });
 }
 
-/** Transparent lexical normalization only; never a semantic identity test. */
-export function normalizeName(value: string): string {
-  const folded = value
+/** Punctuation/case folding only. Suitable for stable identifiers, never semantic identity. */
+export function foldName(value: string): string {
+  return value
+    .replace(/[\u2018\u2019']/g, "'")
+    .replace(/'s\b/gi, '')
     .normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLocaleLowerCase('en-US')
@@ -66,12 +68,26 @@ export function normalizeName(value: string): string {
     .replace(/[^a-z0-9]+/g, ' ')
     .trim()
     .replace(/\s+/g, ' ');
+}
+
+/** Conservative morphology for candidate clustering; never a semantic identity test. */
+export function normalizeName(value: string): string {
+  const acronymTokens = new Set(
+    (value.match(/\b[A-Z][A-Z0-9]{1,}\b/g) ?? []).map((token) => token.toLocaleLowerCase('en-US')),
+  );
+  const folded = foldName(value);
   return folded
     .split(' ')
     .map((token) => {
-      if (token.length > 4 && token.endsWith('ies')) return `${token.slice(0, -3)}y`;
-      if (token.length > 4 && /(ches|shes|xes|zes|ses)$/.test(token)) return token.slice(0, -2);
-      if (token.length > 3 && token.endsWith('s') && !token.endsWith('ss'))
+      if (acronymTokens.has(token)) return token;
+      if (token.length > 4 && token.endsWith('ies') && !/^(series|species)$/.test(token))
+        return `${token.slice(0, -3)}y`;
+      if (token.length > 4 && /(ches|shes|xes|zes)$/.test(token)) return token.slice(0, -2);
+      if (
+        token.length > 3 &&
+        token.endsWith('s') &&
+        !/(ss|us|is|ics|ness|ous|news|series|species|bayes)$/.test(token)
+      )
         return token.slice(0, -1);
       return token;
     })
@@ -280,7 +296,13 @@ function validateShape(
       [`${file}#source_inventory`],
     );
   }
-  if (Array.isArray(dossier.claims) && dossier.claims.length === 0) {
+  const workflowState = isRecord(dossier.workflow) ? dossier.workflow.state : undefined;
+  if (
+    Array.isArray(dossier.claims) &&
+    dossier.claims.length === 0 &&
+    workflowState !== 'harvested' &&
+    workflowState !== 'normalized'
+  ) {
     add(
       rules,
       'admission/required',

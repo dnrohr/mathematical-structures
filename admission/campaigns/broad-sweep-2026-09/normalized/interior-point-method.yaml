@@ -1,0 +1,137 @@
+dossier_schema: 1.0.0
+candidate:
+  id: interior-point-method
+  canonical_name: Interior-point method
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: boyd-vandenberghe-2004
+    kind: textbook
+    title: Convex Optimization
+    authors:
+      - Stephen Boyd
+      - Lieven Vandenberghe
+    year: 2004
+    locator: https://web.stanford.edu/~boyd/cvxbook/
+    supplied_by: atlas-campaign-curator
+  - id: nocedal-wright-2006
+    kind: textbook
+    title: Numerical Optimization, second edition
+    authors:
+      - Jorge Nocedal
+      - Stephen J. Wright
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/978-0-387-40065-5
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: interior-point-method-claim
+    proposition: Interior-point methods solve constrained convex optimization by following central
+      solutions defined by barrier-perturbed optimality conditions.
+    endpoints:
+      from: optimization
+      to: $candidate
+    proposed_edge:
+      type: SOLVED-BY
+      strength: theorem
+      context: Convex programs satisfying the regularity conditions of the chosen primal-dual method.
+    mathematical_skeleton: Replace inequality constraints by a barrier or perturbed complementarity
+      equations and drive the barrier parameter toward zero.
+    scope: Linear, conic, and smooth convex programming.
+    assumptions:
+      - convexity
+      - feasible interior or suitable homogeneous embedding
+    validity_regime: Iterates remain in the interior and approach primal-dual optimality.
+    caveats:
+      - Nonconvex variants lack the same global guarantees.
+    counterexamples:
+      - An infeasible problem without an embedding has no central path to an optimum.
+    source_assessments:
+      - source_id: boyd-vandenberghe-2004
+        proposition: Interior-point methods solve constrained convex optimization by following central
+          solutions defined by barrier-perturbed optimality conditions.
+        status: direct-support
+        location: Interior-point methods chapter.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Failure of perturbed KKT residuals to approach zero under theorem assumptions.
+    alternative_interpretations:
+      - Primal versus primal-dual path-following methods.
+search:
+  queries:
+    - id: interior-point-method-query
+      query: Boyd Vandenberghe interior point central path barrier KKT
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: interior-point-method-query
+      result: located
+      source_ids:
+        - boyd-vandenberghe-2004
+      executed_by: structure-atlas-evidence-curator
+      notes: Interior-point methods chapter.
+generated_hypotheses:
+  - id: interior-point-method-hypothesis
+    text: Interior-point methods solve constrained convex optimization by following central solutions
+      defined by barrier-perturbed optimality conditions.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - boyd-vandenberghe-2004
+automated_judgments:
+  - id: interior-point-method-judgment
+    method: model-assisted
+    subject: interior-point-method-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\interior-point-method.yaml#source_inventory
+adversarial_reviews:
+  - id: interior-point-method-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Interior-point is a family, not one update rule.
+    response: The node is defined by central-path/barrier structure and records variants beneath it.
+    recommended_action: Retain as an operation family.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\interior-point-method.yaml#claims.interior-point-method-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from boyd-vandenberghe-2004, nocedal-wright-2006 at Book chapter 11; Publisher
+        table of contents, chapters 2-19.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 2 raw entries and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

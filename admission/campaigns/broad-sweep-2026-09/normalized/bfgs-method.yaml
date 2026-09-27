@@ -1,0 +1,130 @@
+dossier_schema: 1.0.0
+candidate:
+  id: bfgs-method
+  canonical_name: BFGS method
+  local_names: []
+  acronyms:
+    - BFGS
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: nocedal-wright-2006
+    kind: textbook
+    title: Numerical Optimization, second edition
+    authors:
+      - Jorge Nocedal
+      - Stephen J. Wright
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/978-0-387-40065-5
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: bfgs-method-claim
+    proposition: BFGS is a quasi-Newton optimization method that updates an inverse-Hessian
+      approximation using gradient differences while preserving positive definiteness under a
+      curvature condition.
+    endpoints:
+      from: $candidate
+      to: optimization
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Smooth unconstrained optimization with a line search satisfying the curvature condition.
+    mathematical_skeleton: A rank-two secant update enforces H_{k+1} y_k = s_k and remains positive
+      definite when s_k^T y_k is positive.
+    scope: Smooth unconstrained minimization.
+    assumptions:
+      - available gradients
+      - positive curvature pair
+    validity_regime: Local convergence regimes with suitable line search.
+    caveats:
+      - Nonconvex curvature can require damping or skipped updates.
+    counterexamples:
+      - A step with nonpositive s transpose y destroys the standard positivity guarantee.
+    source_assessments:
+      - source_id: nocedal-wright-2006
+        proposition: BFGS is a quasi-Newton optimization method that updates an inverse-Hessian
+          approximation using gradient differences while preserving positive definiteness under a
+          curvature condition.
+        status: direct-support
+        location: Quasi-Newton methods chapter; BFGS update and convergence sections.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Violation of the secant equation by the stated update.
+    alternative_interpretations:
+      - Limited-memory BFGS as a storage variant.
+search:
+  queries:
+    - id: bfgs-method-query
+      query: Nocedal Wright BFGS secant positive definite curvature condition
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: bfgs-method-query
+      result: located
+      source_ids:
+        - nocedal-wright-2006
+      executed_by: structure-atlas-evidence-curator
+      notes: Quasi-Newton methods chapter; BFGS update and convergence sections.
+generated_hypotheses:
+  - id: bfgs-method-hypothesis
+    text: BFGS is a quasi-Newton optimization method that updates an inverse-Hessian approximation using
+      gradient differences while preserving positive definiteness under a curvature condition.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - nocedal-wright-2006
+automated_judgments:
+  - id: bfgs-method-judgment
+    method: model-assisted
+    subject: bfgs-method-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\bfgs-method.yaml#source_inventory
+adversarial_reviews:
+  - id: bfgs-method-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: BFGS is not simply Newton's method without an exact Hessian.
+    response: The claim identifies its distinct secant update and conditional positivity result.
+    recommended_action: Retain as an operation distinct from Newton's method.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\bfgs-method.yaml#claims.bfgs-method-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from nocedal-wright-2006 at Publisher table of contents, chapters 2-19.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

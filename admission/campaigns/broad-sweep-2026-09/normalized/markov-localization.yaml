@@ -1,0 +1,130 @@
+dossier_schema: 1.0.0
+candidate:
+  id: markov-localization
+  canonical_name: Markov localization
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: thrun-burgard-fox-2005
+    kind: textbook
+    title: Probabilistic Robotics
+    authors:
+      - Sebastian Thrun
+      - Wolfram Burgard
+      - Dieter Fox
+    year: 2005
+    locator: https://mitpress.mit.edu/9780262201629/probabilistic-robotics/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: markov-localization-claim
+    proposition: Markov localization performs recursive Bayes filtering over robot pose using motion and
+      sensor models.
+    endpoints:
+      from: hidden-markov-model
+      to: $candidate
+    proposed_edge:
+      type: SOLVED-BY
+      strength: strong-analogy
+      context: Discrete or continuous pose-state hidden Markov models.
+    mathematical_skeleton: Alternate prediction by the transition kernel with correction by the observation likelihood.
+    scope: Robot localization in a known map.
+    assumptions:
+      - Markov state
+      - conditionally independent current observation given state
+    validity_regime: Correctly specified motion and measurement models.
+    caveats:
+      - Representation may be grid
+      - particles
+      - or parametric and changes approximation behavior.
+    counterexamples:
+      - Long-lived unmodeled state violates the Markov pose model.
+    source_assessments:
+      - source_id: thrun-burgard-fox-2005
+        proposition: Markov localization performs recursive Bayes filtering over robot pose using motion and
+          sensor models.
+        status: direct-support
+        location: Bayes filters and Markov localization chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - An update not decomposable into predict and measurement-correction steps.
+    alternative_interpretations:
+      - Topological localization rather than metric pose estimation.
+search:
+  queries:
+    - id: markov-localization-query
+      query: Probabilistic Robotics Markov localization Bayes filter pose
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: markov-localization-query
+      result: located
+      source_ids:
+        - thrun-burgard-fox-2005
+      executed_by: structure-atlas-evidence-curator
+      notes: Bayes filters and Markov localization chapters.
+generated_hypotheses:
+  - id: markov-localization-hypothesis
+    text: Markov localization performs recursive Bayes filtering over robot pose using motion and sensor
+      models.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - thrun-burgard-fox-2005
+automated_judgments:
+  - id: markov-localization-judgment
+    method: model-assisted
+    subject: markov-localization-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\markov-localization.yaml#source_inventory
+adversarial_reviews:
+  - id: markov-localization-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Markov localization names a problem family and several implementations.
+    response: The node is anchored to the common recursive Bayes skeleton; implementations become examples.
+    recommended_action: Retain as an operation family.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\markov-localization.yaml#claims.markov-localization-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from thrun-burgard-fox-2005 at Publisher description, index, and localization/SLAM
+        chapters.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

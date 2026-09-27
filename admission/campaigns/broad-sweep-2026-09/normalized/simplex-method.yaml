@@ -1,0 +1,41 @@
+dossier_schema: 1.0.0
+candidate:
+  id: simplex-method
+  canonical_name: Simplex method
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: nocedal-wright-2006
+    kind: textbook
+    title: Numerical Optimization, second edition
+    authors:
+      - Jorge Nocedal
+      - Stephen J. Wright
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/978-0-387-40065-5
+    supplied_by: atlas-campaign-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from nocedal-wright-2006 at Publisher table of contents, chapters 2-19.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

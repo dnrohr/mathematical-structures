@@ -1,0 +1,125 @@
+dossier_schema: 1.0.0
+candidate:
+  id: limit-cycles
+  canonical_name: Limit cycles
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - mechanics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: phenomenon
+source_inventory:
+  - id: khalil-nonlinear-systems-2014
+    kind: textbook
+    title: Nonlinear Systems, third edition
+    authors:
+      - Hassan K. Khalil
+    year: 2014
+    locator: https://www.pearson.com/en-gb/subject-catalog/p/nonlinear-systems-pearson-new-international-edition/P200000004623
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: limit-cycles-claim
+    proposition: A limit cycle is an isolated periodic orbit represented as a closed trajectory in phase space.
+    endpoints:
+      from: $candidate
+      to: phase-space
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Autonomous continuous-time systems.
+    mathematical_skeleton: A periodic solution traces a closed orbit; isolation distinguishes a limit
+      cycle from a family of periodic orbits.
+    scope: Finite-dimensional autonomous ODEs.
+    assumptions:
+      - existence and uniqueness of trajectories
+    validity_regime: Periodic solutions of autonomous flows.
+    caveats:
+      - Closed phase curves in nonautonomous projections need not be limit cycles.
+    counterexamples:
+      - Every orbit of a linear center is periodic
+      - so none is an isolated limit cycle.
+    source_assessments:
+      - source_id: khalil-nonlinear-systems-2014
+        proposition: A limit cycle is an isolated periodic orbit represented as a closed trajectory in phase
+          space.
+        status: direct-support
+        location: Phase-plane analysis and limit-cycle sections.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A claimed cycle lying in a continuum of neighboring periodic orbits.
+    alternative_interpretations:
+      - Periodic orbit in a discrete map.
+search:
+  queries:
+    - id: limit-cycles-query
+      query: Khalil Nonlinear Systems limit cycle isolated periodic orbit
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: limit-cycles-query
+      result: located
+      source_ids:
+        - khalil-nonlinear-systems-2014
+      executed_by: structure-atlas-evidence-curator
+      notes: Phase-plane analysis and limit-cycle sections.
+generated_hypotheses:
+  - id: limit-cycles-hypothesis
+    text: A limit cycle is an isolated periodic orbit represented as a closed trajectory in phase space.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - khalil-nonlinear-systems-2014
+automated_judgments:
+  - id: limit-cycles-judgment
+    method: model-assisted
+    subject: limit-cycles-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\limit-cycles.yaml#source_inventory
+adversarial_reviews:
+  - id: limit-cycles-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: A closed curve alone does not establish a limit cycle.
+    response: Isolation and autonomous-flow assumptions are explicit in the proposition.
+    recommended_action: Retain with the isolation condition prominent.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\limit-cycles.yaml#claims.limit-cycles-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from khalil-nonlinear-systems-2014 at Publisher table of contents and topic
+        summary.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

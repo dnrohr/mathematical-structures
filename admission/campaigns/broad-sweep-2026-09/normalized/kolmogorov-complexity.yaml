@@ -1,0 +1,41 @@
+dossier_schema: 1.0.0
+candidate:
+  id: kolmogorov-complexity
+  canonical_name: Kolmogorov complexity
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - information-theory
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: cover-thomas-2006
+    kind: textbook
+    title: Elements of Information Theory, second edition
+    authors:
+      - Thomas M. Cover
+      - Joy A. Thomas
+    year: 2006
+    locator: https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X
+    supplied_by: atlas-campaign-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from cover-thomas-2006 at Publisher table of contents, chapters 2-17.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

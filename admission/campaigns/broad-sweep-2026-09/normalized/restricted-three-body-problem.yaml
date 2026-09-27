@@ -1,0 +1,129 @@
+dossier_schema: 1.0.0
+candidate:
+  id: restricted-three-body-problem
+  canonical_name: Restricted three-body problem
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: model
+source_inventory:
+  - id: fitzpatrick-celestial-mechanics-2012
+    kind: textbook
+    title: An Introduction to Celestial Mechanics
+    authors:
+      - Richard Fitzpatrick
+    year: 2012
+    locator: https://www.cambridge.org/core/books/an-introduction-to-celestial-mechanics/0E9275B6D76F141E4F4948BCA112284D
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: restricted-three-body-problem-claim
+    proposition: The circular restricted three-body problem is an autonomous rotating-frame dynamical
+      model for a massless body moving under two circularly orbiting primaries.
+    endpoints:
+      from: $candidate
+      to: phase-space
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Rotating position-velocity phase space after normalization.
+    mathematical_skeleton: A four-dimensional first-order system combines Coriolis terms with the
+      gradient of an effective potential.
+    scope: Planar circular restricted problem.
+    assumptions:
+      - massless third body
+      - circular two-body motion of primaries
+    validity_regime: Newtonian point-mass gravity in the rotating frame.
+    caveats:
+      - Spatial
+      - elliptic
+      - relativistic
+      - and finite-mass variants change the model.
+    counterexamples:
+      - A third body with appreciable mass invalidates the restricted assumption.
+    source_assessments:
+      - source_id: fitzpatrick-celestial-mechanics-2012
+        proposition: The circular restricted three-body problem is an autonomous rotating-frame dynamical
+          model for a massless body moving under two circularly orbiting primaries.
+        status: direct-support
+        location: Restricted three-body problem chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Equations fail to recover the gravitational and rotating-frame accelerations.
+    alternative_interpretations:
+      - Spatial circular restricted problem.
+search:
+  queries:
+    - id: restricted-three-body-problem-query
+      query: Fitzpatrick celestial mechanics circular restricted three body rotating frame
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: restricted-three-body-problem-query
+      result: located
+      source_ids:
+        - fitzpatrick-celestial-mechanics-2012
+      executed_by: structure-atlas-evidence-curator
+      notes: Restricted three-body problem chapters.
+generated_hypotheses:
+  - id: restricted-three-body-problem-hypothesis
+    text: The circular restricted three-body problem is an autonomous rotating-frame dynamical model for
+      a massless body moving under two circularly orbiting primaries.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - fitzpatrick-celestial-mechanics-2012
+automated_judgments:
+  - id: restricted-three-body-problem-judgment
+    method: model-assisted
+    subject: restricted-three-body-problem-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\restricted-three-body-problem.yaml#source_inventory
+adversarial_reviews:
+  - id: restricted-three-body-problem-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: The familiar five-point picture hides the model's severe restrictions.
+    response: Each restriction is named in the proposition and assumptions.
+    recommended_action: Retain as a canonical model.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\restricted-three-body-problem.yaml#claims.restricted-three-body-problem-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from fitzpatrick-celestial-mechanics-2012 at Publisher table of contents, chapters
+        2-9.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

@@ -1,0 +1,126 @@
+dossier_schema: 1.0.0
+candidate:
+  id: convex-set
+  canonical_name: Convex set
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: boyd-vandenberghe-2004
+    kind: textbook
+    title: Convex Optimization
+    authors:
+      - Stephen Boyd
+      - Lieven Vandenberghe
+    year: 2004
+    locator: https://web.stanford.edu/~boyd/cvxbook/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: convex-set-claim
+    proposition: A convex optimization feasible region assumes closure under line segments between
+      feasible points.
+    endpoints:
+      from: optimization
+      to: $candidate
+    proposed_edge:
+      type: ASSUMES
+      strength: theorem
+      context: Feasible sets in convex optimization.
+    mathematical_skeleton: For x and y in C and theta in [0,1], theta x plus one-minus-theta y remains in C.
+    scope: Euclidean convex optimization.
+    assumptions:
+      - affine ambient space
+    validity_regime: Ordinary linear interpolation in the chosen coordinates.
+    caveats:
+      - A coordinate change need not preserve Euclidean convexity.
+    counterexamples:
+      - A disconnected feasible set is nonconvex.
+    source_assessments:
+      - source_id: boyd-vandenberghe-2004
+        proposition: A convex optimization feasible region assumes closure under line segments between
+          feasible points.
+        status: direct-support
+        location: Convex sets chapter.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - Two feasible points whose connecting segment leaves the set.
+    alternative_interpretations:
+      - Geodesically convex sets.
+search:
+  queries:
+    - id: convex-set-query
+      query: Boyd Vandenberghe convex set line segment definition
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: convex-set-query
+      result: located
+      source_ids:
+        - boyd-vandenberghe-2004
+      executed_by: structure-atlas-evidence-curator
+      notes: Convex sets chapter.
+generated_hypotheses:
+  - id: convex-set-hypothesis
+    text: A convex optimization feasible region assumes closure under line segments between feasible
+      points.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - boyd-vandenberghe-2004
+automated_judgments:
+  - id: convex-set-judgment
+    method: model-assisted
+    subject: convex-set-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\convex-set.yaml#source_inventory
+adversarial_reviews:
+  - id: convex-set-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Convexity depends on the affine representation.
+    response: The ambient affine coordinates are part of the scope.
+    recommended_action: Retain as an object node linked to optimization assumptions.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\convex-set.yaml#claims.convex-set-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from boyd-vandenberghe-2004 at Book table of contents and Stanford course
+        materials.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

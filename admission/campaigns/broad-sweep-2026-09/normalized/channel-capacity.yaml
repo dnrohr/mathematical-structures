@@ -1,0 +1,126 @@
+dossier_schema: 1.0.0
+candidate:
+  id: channel-capacity
+  canonical_name: Channel capacity
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - information-theory
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: principle
+source_inventory:
+  - id: cover-thomas-2006
+    kind: textbook
+    title: Elements of Information Theory, second edition
+    authors:
+      - Thomas M. Cover
+      - Joy A. Thomas
+    year: 2006
+    locator: https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: channel-capacity-claim
+    proposition: Channel capacity is the supremum of reliably achievable communication rates and governs
+      the asymptotic rate limit for digital communication over a specified channel model.
+    endpoints:
+      from: $candidate
+      to: digital-communications
+    proposed_edge:
+      type: GOVERNS
+      strength: theorem
+      context: Asymptotically long codes under the channel model and error criterion of the coding theorem.
+    mathematical_skeleton: For a memoryless channel C equals the maximum over input laws of mutual information I(X;Y).
+    scope: Discrete memoryless channels, with model-specific extensions.
+    assumptions:
+      - fixed channel law
+      - arbitrarily long block codes
+    validity_regime: Rates below capacity are achievable; rates above are ruled out by a converse.
+    caveats:
+      - Finite-blocklength and mismatch constraints change practical limits.
+    counterexamples:
+      - A rate above C with vanishing error would contradict the converse.
+    source_assessments:
+      - source_id: cover-thomas-2006
+        proposition: Channel capacity is the supremum of reliably achievable communication rates and governs
+          the asymptotic rate limit for digital communication over a specified channel model.
+        status: direct-support
+        location: Channel capacity and channel coding theorem chapters.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A valid coding sequence above capacity with vanishing error under the same model.
+    alternative_interpretations:
+      - Operational capacity under cost or feedback constraints.
+search:
+  queries:
+    - id: channel-capacity-query
+      query: Cover Thomas channel capacity coding theorem mutual information
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: channel-capacity-query
+      result: located
+      source_ids:
+        - cover-thomas-2006
+      executed_by: structure-atlas-evidence-curator
+      notes: Channel capacity and channel coding theorem chapters.
+generated_hypotheses:
+  - id: channel-capacity-hypothesis
+    text: Channel capacity is the supremum of reliably achievable communication rates and governs the
+      asymptotic rate limit for digital communication over a specified channel model.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - cover-thomas-2006
+automated_judgments:
+  - id: channel-capacity-judgment
+    method: model-assisted
+    subject: channel-capacity-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\channel-capacity.yaml#source_inventory
+adversarial_reviews:
+  - id: channel-capacity-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: Capacity is model-dependent, not a property of hardware alone.
+    response: The channel law and asymptotic coding regime are explicit.
+    recommended_action: Retain with model and finite-blocklength caveats.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\channel-capacity.yaml#claims.channel-capacity-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from cover-thomas-2006 at Publisher table of contents, chapters 2-17.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

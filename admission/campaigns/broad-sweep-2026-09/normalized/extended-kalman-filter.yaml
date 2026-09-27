@@ -1,0 +1,135 @@
+dossier_schema: 1.0.0
+candidate:
+  id: extended-kalman-filter
+  canonical_name: Extended Kalman filter
+  local_names: []
+  acronyms:
+    - EKF
+  originating_fields:
+    - control
+    - probability
+  proposed_disposition: propose-node
+  possible_matches:
+    - slug: kalman-filter
+      relationship: related
+      basis: 'Harvest normalization: "Extended Kalman filter" matched "Kalman filter".'
+      source_ids:
+        - thrun-burgard-fox-2005
+  proposed_node_type: operation
+source_inventory:
+  - id: thrun-burgard-fox-2005
+    kind: textbook
+    title: Probabilistic Robotics
+    authors:
+      - Sebastian Thrun
+      - Wolfram Burgard
+      - Dieter Fox
+    year: 2005
+    locator: https://mitpress.mit.edu/9780262201629/probabilistic-robotics/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: extended-kalman-filter-claim
+    proposition: When nonlinear dynamics or observations break the linear Kalman assumptions, the
+      extended Kalman filter replaces exact propagation with Jacobian linearization.
+    endpoints:
+      from: kalman-filter
+      to: $candidate
+    proposed_edge:
+      type: REPLACED-BY
+      strength: strong-analogy
+      context: Differentiable nonlinear state-space models with approximately Gaussian local uncertainty.
+    mathematical_skeleton: Propagate mean through nonlinear maps and covariance through their Jacobians,
+      then apply a Kalman-form correction.
+    scope: Differentiable nonlinear filtering with unimodal local uncertainty.
+    assumptions:
+      - differentiable models
+      - useful first-order approximation
+    validity_regime: Small uncertainty and weak local nonlinearity.
+    caveats:
+      - The recursion is approximate and can be inconsistent or diverge.
+    counterexamples:
+      - Strongly multimodal posteriors not captured by one Gaussian.
+    source_assessments:
+      - source_id: thrun-burgard-fox-2005
+        proposition: When nonlinear dynamics or observations break the linear Kalman assumptions, the
+          extended Kalman filter replaces exact propagation with Jacobian linearization.
+        status: direct-support
+        location: Gaussian filters and extended Kalman filter chapter.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - An implementation that does not use local Jacobians or equivalent linearization.
+    alternative_interpretations:
+      - Iterated EKF measurement updates.
+search:
+  queries:
+    - id: extended-kalman-filter-query
+      query: Probabilistic Robotics extended Kalman filter Jacobian nonlinear
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: extended-kalman-filter-query
+      result: located
+      source_ids:
+        - thrun-burgard-fox-2005
+      executed_by: structure-atlas-evidence-curator
+      notes: Gaussian filters and extended Kalman filter chapter.
+generated_hypotheses:
+  - id: extended-kalman-filter-hypothesis
+    text: When nonlinear dynamics or observations break the linear Kalman assumptions, the extended
+      Kalman filter replaces exact propagation with Jacobian linearization.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - thrun-burgard-fox-2005
+automated_judgments:
+  - id: extended-kalman-filter-judgment
+    method: model-assisted
+    subject: extended-kalman-filter-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\extended-kalman-filter.yaml#source_inventory
+adversarial_reviews:
+  - id: extended-kalman-filter-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: The EKF is often incorrectly described as an exact nonlinear Kalman filter.
+    response: Approximation, locality, and failure modes are explicit.
+    recommended_action: Retain as a replacement operation, not an exact specialization.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\extended-kalman-filter.yaml#claims.extended-kalman-filter-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from thrun-burgard-fox-2005 at Publisher description, index, and localization/SLAM
+        chapters.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

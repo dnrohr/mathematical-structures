@@ -71,7 +71,9 @@ properties:
         supplied_by: { type: string, minLength: 1 }
   claims:
     type: array
-    minItems: 1
+    description: >
+      May be empty only while workflow.state is harvested or normalized.
+      Dossier-ready and later states require at least one atomic claim.
     items:
       type: object
       additionalProperties: false

@@ -1,0 +1,41 @@
+dossier_schema: 1.0.0
+candidate:
+  id: multistep-method
+  canonical_name: Multistep method
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - mechanics
+    - numerical-analysis
+  proposed_disposition: defer
+  possible_matches: []
+source_inventory:
+  - id: hairer-lubich-wanner-2006
+    kind: textbook
+    title: Geometric Numerical Integration, second edition
+    authors:
+      - Ernst Hairer
+      - Christian Lubich
+      - Gerhard Wanner
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/3-540-30666-8
+    supplied_by: atlas-campaign-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from hairer-lubich-wanner-2006 at Publisher table of contents, chapters 2-15.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

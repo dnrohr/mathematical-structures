@@ -55,9 +55,10 @@ does not become another trusted-content compiler.
   text/JSON report renderers.
 - A separate `atlas-admit` CLI. It reads trusted content and dossiers but never
   writes trusted content or build artifacts.
-- Optional retrieval and model adapters behind a recorded-judgment boundary.
-  They are documented interfaces only in this prototype; completed dossiers
-  remain fully reviewable offline.
+- Source-inventory, triage, and evidence-pack adapters behind a
+  recorded-judgment boundary. Their outputs remain untrusted, deterministic,
+  and fully reviewable offline; they cannot write `concepts/`, `graph/`, or
+  `paths/`.
 
 No change to `graph/schema.yaml` or the trusted ontology is necessary. The
 candidate workflow states and dispositions are admission-process vocabulary,
@@ -88,11 +89,22 @@ stable review report (text or JSON) ---> human decision
 ordinary issue/PR ---> trusted atlas validator ---> trusted graph artifacts
 ```
 
-The CLI never retrieves sources and never invokes a model. A retrieval adapter
-may append search history and source inventory entries; an assessment adapter
-may append a judgment with tool/model identity, version, inputs, and rationale.
-Those entries are untrusted dossier facts. The deterministic core checks their
-shape and labels them by method, but never upgrades them to evidence.
+The deterministic CLIs never invoke a model. `atlas-harvest` expands recorded
+source inventories, consolidates transparent lexical duplicates, compares
+names with the trusted atlas, and emits normalized dossiers. `atlas-triage`
+requires an exhaustive exactly-once classification and a bounded 30–50 item
+review queue. `atlas-evidence` requires exactly one evidence-pack entry for
+every selected candidate and records proposition-level source assessments and
+adversarial reviews. These are still untrusted dossier facts: the core checks
+their shape, provenance, and compatibility but never decides that they are
+true.
+
+```powershell
+npm run harvest -- --manifest admission/campaigns/<id>/harvest.yaml --out admission/campaigns/<id>/normalized
+npm run triage -- --campaign admission/campaigns/<id> --manifest admission/campaigns/<id>/triage.yaml
+npm run evidence -- --campaign admission/campaigns/<id> --pack admission/campaigns/<id>/evidence-pack.yaml
+npm run admit -- --format text admission/campaigns/<id>/normalized
+```
 
 ## Deterministic and heuristic checks
 
@@ -170,13 +182,15 @@ Every promoted change is an ordinary reviewed contribution and must pass
 `npm run check`. A passing candidate report is never a substitute for that
 gate.
 
-## Bounded pilot
+## Bounded campaigns
 
-Use 20 dossiers sampled for contrast, not coverage: five each from numerical
-analysis, systems biology, machine learning, and mathematical physics. Within
-each group, include two literature-harvested terms, one syllabus or handbook
-term, one glossary/taxonomy term, and one LLM-suggested candidate that is kept
-explicitly untrusted. Stop after one human review round per dossier.
+Use a declared sampling frame and a target of 100–200 raw terms for discovery,
+then cap proposition-level evidence work at the strongest 30–50 dossiers.
+Source overlap is desirable: it tests duplicate consolidation and keeps every
+provenance rather than silently deduplicating before admission. Exhaustive
+triage must account for every normalized survivor, including deferrals,
+rejections, examples, applications, aliases, edges, and deliberate non-edges.
+Stop after one human review round per enriched dossier.
 
 Record duplicate/alias suggestion precision; final disposition across every
 supported outcome; retrieval and entailment agreement with the reviewer;

@@ -1,0 +1,35 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://structure-atlas.example/admission/triage-schema-v1.yaml
+title: Structure Atlas campaign triage ledger
+description: Exhaustive, reviewable classification of a normalized harvest campaign.
+type: object
+additionalProperties: false
+required: [triage_schema, campaign_id, curator, groups, review_queue]
+properties:
+  triage_schema: { const: 1.0.0 }
+  campaign_id: { type: string, pattern: '^[a-z0-9]+(-[a-z0-9]+)*$' }
+  curator: { type: string, minLength: 1 }
+  groups:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      required: [disposition, rationale, candidate_ids]
+      properties:
+        disposition:
+          enum: [propose-node, propose-edge, add-alias, merge-or-refine, retain-example, propose-application, weaken-edge, defer, deliberate-non-edge, reject]
+        proposed_node_type: { type: string, x-atlas-vocabulary: node_types }
+        target_slug: { type: string }
+        rationale: { type: string, minLength: 1 }
+        candidate_ids:
+          type: array
+          minItems: 1
+          items: { type: string, pattern: '^[a-z0-9]+(-[a-z0-9]+)*$' }
+  review_queue:
+    description: Candidates selected for proposition-level evidence and adversarial review.
+    type: array
+    minItems: 30
+    maxItems: 50
+    uniqueItems: true
+    items: { type: string, pattern: '^[a-z0-9]+(-[a-z0-9]+)*$' }

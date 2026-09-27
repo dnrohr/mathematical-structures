@@ -1,0 +1,144 @@
+dossier_schema: 1.0.0
+candidate:
+  id: kalman-filter
+  canonical_name: Kalman filter
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - ml
+    - probability
+    - statistics
+  proposed_disposition: merge-or-refine
+  possible_matches:
+    - slug: kalman-filter
+      relationship: identity
+      basis: 'Harvest normalization: "Kalman filter" matched "Kalman filter".'
+      source_ids:
+        - koller-friedman-2009
+        - thrun-burgard-fox-2005
+source_inventory:
+  - id: koller-friedman-2009
+    kind: textbook
+    title: Probabilistic Graphical Models
+    authors:
+      - Daphne Koller
+      - Nir Friedman
+    year: 2009
+    locator: https://mitpress.mit.edu/9780262013192/probabilistic-graphical-models/
+    supplied_by: atlas-campaign-curator
+  - id: thrun-burgard-fox-2005
+    kind: textbook
+    title: Probabilistic Robotics
+    authors:
+      - Sebastian Thrun
+      - Wolfram Burgard
+      - Dieter Fox
+    year: 2005
+    locator: https://mitpress.mit.edu/9780262201629/probabilistic-robotics/
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: kalman-filter-claim
+    proposition: The Kalman update applies Bayes rule as exact Gaussian conditioning inside a
+      linear-Gaussian state-space model.
+    endpoints:
+      from: bayes-rule
+      to: linear-gaussian-ssm
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Gaussian prediction and measurement conditioning in the exact Kalman recursion.
+    mathematical_skeleton: Gaussian prediction and conditioning close on the mean and covariance recursions.
+    scope: Linear-Gaussian filtering.
+    assumptions:
+      - linear transition and observation maps
+      - Gaussian noises with known covariances
+    validity_regime: Exact finite-dimensional Gaussian posterior recursion.
+    caveats:
+      - Nonlinear or non-Gaussian models require approximations or different representations.
+    counterexamples:
+      - A multimodal posterior cannot be represented exactly by one mean and covariance.
+    source_assessments:
+      - source_id: thrun-burgard-fox-2005
+        proposition: The Kalman update applies Bayes rule as exact Gaussian conditioning inside a
+          linear-Gaussian state-space model.
+        status: direct-support
+        location: Gaussian filters and Kalman filter sections.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A linear-Gaussian example where the recursion differs from direct Gaussian conditioning.
+    alternative_interpretations:
+      - Information-form Kalman filtering.
+search:
+  queries:
+    - id: kalman-filter-query
+      query: Probabilistic Robotics Kalman filter exact linear Gaussian
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: kalman-filter-query
+      result: located
+      source_ids:
+        - thrun-burgard-fox-2005
+      executed_by: structure-atlas-evidence-curator
+      notes: Gaussian filters and Kalman filter sections.
+generated_hypotheses:
+  - id: kalman-filter-hypothesis
+    text: The Kalman update applies Bayes rule as exact Gaussian conditioning inside a linear-Gaussian
+      state-space model.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - thrun-burgard-fox-2005
+automated_judgments:
+  - id: kalman-filter-judgment
+    method: model-assisted
+    subject: kalman-filter-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\kalman-filter.yaml#source_inventory
+adversarial_reviews:
+  - id: kalman-filter-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: The algorithm is often conflated with the state-space model it solves.
+    response: The edge direction explicitly separates model from solver.
+    recommended_action: Merge the evidence into the existing trusted node.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\kalman-filter.yaml#claims.kalman-filter-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from koller-friedman-2009, thrun-burgard-fox-2005 at Book temporal-model chapters;
+        Publisher description, index, and localization/SLAM chapters.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 2 raw entries and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

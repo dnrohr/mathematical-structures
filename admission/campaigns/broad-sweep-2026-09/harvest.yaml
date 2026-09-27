@@ -1,0 +1,288 @@
+harvest_schema: 1.0.0
+campaign:
+  id: broad-sweep-2026-09
+  title: First broad source-inventory sweep
+  sampling_frame:
+    - nonlinear dynamics and control
+    - numerical optimization
+    - probabilistic robotics
+    - probabilistic graphical models
+    - smooth geometry
+    - geometric numerical integration
+    - information theory
+    - convex optimization
+    - celestial mechanics
+  target_raw_candidates: 141
+
+sources:
+  - id: khalil-nonlinear-systems-2014
+    kind: textbook
+    title: Nonlinear Systems, third edition
+    authors: [Hassan K. Khalil]
+    year: 2014
+    locator: https://www.pearson.com/en-gb/subject-catalog/p/nonlinear-systems-pearson-new-international-edition/P200000004623
+    supplied_by: atlas-campaign-curator
+  - id: nocedal-wright-2006
+    kind: textbook
+    title: Numerical Optimization, second edition
+    authors: [Jorge Nocedal, Stephen J. Wright]
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/978-0-387-40065-5
+    supplied_by: atlas-campaign-curator
+  - id: thrun-burgard-fox-2005
+    kind: textbook
+    title: Probabilistic Robotics
+    authors: [Sebastian Thrun, Wolfram Burgard, Dieter Fox]
+    year: 2005
+    locator: https://mitpress.mit.edu/9780262201629/probabilistic-robotics/
+    supplied_by: atlas-campaign-curator
+  - id: koller-friedman-2009
+    kind: textbook
+    title: Probabilistic Graphical Models
+    authors: [Daphne Koller, Nir Friedman]
+    year: 2009
+    locator: https://mitpress.mit.edu/9780262013192/probabilistic-graphical-models/
+    supplied_by: atlas-campaign-curator
+  - id: lee-smooth-manifolds-2012
+    kind: textbook
+    title: Introduction to Smooth Manifolds, second edition
+    authors: [John M. Lee]
+    year: 2012
+    locator: https://link.springer.com/book/10.1007/978-1-4419-9982-5
+    supplied_by: atlas-campaign-curator
+  - id: hairer-lubich-wanner-2006
+    kind: textbook
+    title: Geometric Numerical Integration, second edition
+    authors: [Ernst Hairer, Christian Lubich, Gerhard Wanner]
+    year: 2006
+    locator: https://link.springer.com/book/10.1007/3-540-30666-8
+    supplied_by: atlas-campaign-curator
+  - id: cover-thomas-2006
+    kind: textbook
+    title: Elements of Information Theory, second edition
+    authors: [Thomas M. Cover, Joy A. Thomas]
+    year: 2006
+    locator: https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X
+    supplied_by: atlas-campaign-curator
+  - id: boyd-vandenberghe-2004
+    kind: textbook
+    title: Convex Optimization
+    authors: [Stephen Boyd, Lieven Vandenberghe]
+    year: 2004
+    locator: https://web.stanford.edu/~boyd/cvxbook/
+    supplied_by: atlas-campaign-curator
+  - id: fitzpatrick-celestial-mechanics-2012
+    kind: textbook
+    title: An Introduction to Celestial Mechanics
+    authors: [Richard Fitzpatrick]
+    year: 2012
+    locator: https://www.cambridge.org/core/books/an-introduction-to-celestial-mechanics/0E9275B6D76F141E4F4948BCA112284D
+    supplied_by: atlas-campaign-curator
+
+entries:
+  # Deliberate source overlaps exercise real duplicate consolidation and retain both provenances.
+  - term: Newton's method
+    source_ids: [boyd-vandenberghe-2004]
+    originating_fields: [optimization, numerical-analysis]
+    harvest_location: Book chapters 9-11
+  - term: Interior-point method
+    source_ids: [boyd-vandenberghe-2004]
+    originating_fields: [optimization, numerical-analysis]
+    harvest_location: Book chapter 11
+  - term: Dynamic Bayesian network
+    source_ids: [koller-friedman-2009]
+    originating_fields: [probability, statistics, ml]
+    harvest_location: Book temporal-model chapters
+  - term: Kalman filter
+    source_ids: [koller-friedman-2009]
+    originating_fields: [probability, statistics, ml]
+    harvest_location: Book temporal-model chapters
+  - term: Hamiltonian system
+    source_ids: [fitzpatrick-celestial-mechanics-2012]
+    originating_fields: [mechanics]
+    harvest_location: Book analytical-mechanics chapters
+  - term: Factor graph
+    source_ids: [thrun-burgard-fox-2005]
+    originating_fields: [control, probability]
+    harvest_location: Book SLAM chapters
+
+inventories:
+  - source_id: khalil-nonlinear-systems-2014
+    originating_fields: [control, mechanics]
+    harvest_location: Publisher table of contents and topic summary
+    terms:
+      - Attractors
+      - Limit cycles
+      - Phase portraits
+      - Equilibrium points
+      - Lyapunov functions
+      - LaSalle invariance principle
+      - Input-to-state stability
+      - Passivity
+      - Small-gain theorem
+      - Averaging method
+      - Singular perturbation
+      - Feedback linearization
+      - Sliding-mode control
+      - Backstepping
+      - Nonlinear observers
+
+  - source_id: nocedal-wright-2006
+    originating_fields: [optimization, numerical-analysis]
+    harvest_location: Publisher table of contents, chapters 2-19
+    terms:
+      - Line search
+      - Trust-region method
+      - Conjugate-gradient method
+      - { term: BFGS method, acronyms: [BFGS] }
+      - Automatic differentiation
+      - Derivative-free optimization
+      - Nonlinear least squares
+      - Newton's method
+      - { term: Karush-Kuhn-Tucker conditions, acronyms: [KKT] }
+      - Simplex method
+      - Interior-point method
+      - Quadratic programming
+      - Augmented Lagrangian method
+      - Sequential quadratic programming
+      - Barrier method
+
+  - source_id: thrun-burgard-fox-2005
+    originating_fields: [control, probability]
+    harvest_location: Publisher description, index, and localization/SLAM chapters
+    terms:
+      - Bayes filter
+      - Kalman filter
+      - { term: Extended Kalman filter, acronyms: [EKF] }
+      - { term: Unscented Kalman filter, acronyms: [UKF] }
+      - Information filter
+      - Histogram filter
+      - Particle filter
+      - Probabilistic motion model
+      - Sensor model
+      - Markov localization
+      - { term: Extended Kalman filter SLAM, acronyms: [EKF-SLAM] }
+      - { term: GraphSLAM, acronyms: [GraphSLAM] }
+      - Occupancy grid mapping
+      - { term: Partially observable Markov decision process, acronyms: [POMDP] }
+      - Dynamic Bayesian network
+
+  - source_id: koller-friedman-2009
+    originating_fields: [probability, statistics, ml]
+    harvest_location: Publisher description and book index
+    terms:
+      - Bayesian network
+      - Markov random field
+      - Factor graph
+      - Conditional independence
+      - D-separation
+      - Variable elimination
+      - Belief propagation
+      - Junction tree algorithm
+      - Markov chain Monte Carlo
+      - Variational inference
+      - Expectation-maximization algorithm
+      - Structure learning
+      - Conditional random field
+      - Influence diagram
+      - Causal graph
+
+  - source_id: lee-smooth-manifolds-2012
+    originating_fields: [mechanics, pde]
+    harvest_location: Publisher table of contents, chapters 1-20
+    terms:
+      - Smooth manifold
+      - Tangent space
+      - Cotangent bundle
+      - Immersion
+      - Submersion
+      - Embedding
+      - Lie group
+      - Vector field
+      - Flow
+      - Vector bundle
+      - Differential form
+      - Riemannian metric
+      - De Rham cohomology
+      - Foliation
+      - Sard's theorem
+
+  - source_id: hairer-lubich-wanner-2006
+    originating_fields: [numerical-analysis, mechanics]
+    harvest_location: Publisher table of contents, chapters 2-15
+    terms:
+      - Runge-Kutta method
+      - B-series
+      - Symplectic integrator
+      - Variational integrator
+      - Splitting method
+      - Composition method
+      - Backward error analysis
+      - Hamiltonian system
+      - Poisson manifold
+      - First integral
+      - Reversible integrator
+      - Magnus expansion
+      - Multistep method
+      - Highly oscillatory system
+      - KAM theory
+
+  - source_id: cover-thomas-2006
+    originating_fields: [information-theory, probability]
+    harvest_location: Publisher table of contents, chapters 2-17
+    terms:
+      - Relative entropy
+      - Mutual information
+      - Asymptotic equipartition property
+      - Entropy rate
+      - Source coding
+      - Channel capacity
+      - Differential entropy
+      - Gaussian channel
+      - Rate-distortion theory
+      - Maximum entropy principle
+      - Universal source coding
+      - Kolmogorov complexity
+      - Network information theory
+      - Data-processing inequality
+      - Fano's inequality
+
+  - source_id: boyd-vandenberghe-2004
+    originating_fields: [optimization, numerical-analysis]
+    harvest_location: Book table of contents and Stanford course materials
+    terms:
+      - Convex set
+      - Convex function
+      - Conic programming
+      - Semidefinite programming
+      - Second-order cone programming
+      - Geometric programming
+      - Lagrange duality
+      - Fenchel conjugate
+      - Proximal operator
+      - Subgradient method
+      - Projected gradient method
+      - Alternating direction method of multipliers
+      - Linear matrix inequality
+      - Robust optimization
+      - Semidefinite relaxation
+
+  - source_id: fitzpatrick-celestial-mechanics-2012
+    originating_fields: [mechanics]
+    harvest_location: Publisher table of contents, chapters 2-9
+    terms:
+      - Keplerian orbit
+      - Orbital elements
+      - Eccentric anomaly
+      - Mean anomaly
+      - Central-force motion
+      - Rotating reference frame
+      - Lagrangian mechanics
+      - Spin-orbit coupling
+      - Restricted three-body problem
+      - Lagrange points
+      - Jacobi integral
+      - Zero-velocity surface
+      - Secular perturbation theory
+      - Orbital resonance
+      - Tidal evolution

@@ -1,0 +1,125 @@
+dossier_schema: 1.0.0
+candidate:
+  id: data-processing-inequality
+  canonical_name: Data-processing inequality
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - information-theory
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: theorem
+source_inventory:
+  - id: cover-thomas-2006
+    kind: textbook
+    title: Elements of Information Theory, second edition
+    authors:
+      - Thomas M. Cover
+      - Joy A. Thomas
+    year: 2006
+    locator: https://onlinelibrary.wiley.com/doi/book/10.1002/047174882X
+    supplied_by: atlas-campaign-curator
+claims:
+  - id: data-processing-inequality-claim
+    proposition: Processing data through a Markov channel cannot increase mutual information,
+      constraining entropy-derived information measures.
+    endpoints:
+      from: $candidate
+      to: shannon-entropy
+    proposed_edge:
+      type: GOVERNS
+      strength: theorem
+      context: Markov chain X to Y to Z under Shannon mutual information.
+    mathematical_skeleton: If X-Y-Z is Markov, then I(X;Z) is at most I(X;Y).
+    scope: Shannon mutual information for random variables forming a Markov chain.
+    assumptions:
+      - Markov conditional independence
+    validity_regime: Deterministic or stochastic post-processing represented by the channel Y to Z.
+    caveats:
+      - Equality conditions require additional sufficiency structure.
+    counterexamples:
+      - Side information not included in the Markov chain can alter the comparison.
+    source_assessments:
+      - source_id: cover-thomas-2006
+        proposition: Processing data through a Markov channel cannot increase mutual information,
+          constraining entropy-derived information measures.
+        status: direct-support
+        location: Entropy, mutual information, and data-processing inequality sections.
+        rationale: The cited textbook location states or develops this proposition; no inference is made
+          from topical co-mention alone.
+        assessor:
+          kind: model-assisted
+          identity: structure-atlas-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - A valid Markov chain with I(X;Z) greater than I(X;Y).
+    alternative_interpretations:
+      - Quantum data-processing inequalities.
+search:
+  queries:
+    - id: data-processing-inequality-query
+      query: Cover Thomas data processing inequality Markov chain mutual information
+      dialects: []
+      designed_by: structure-atlas-evidence-curator
+  history:
+    - query_id: data-processing-inequality-query
+      result: located
+      source_ids:
+        - cover-thomas-2006
+      executed_by: structure-atlas-evidence-curator
+      notes: Entropy, mutual information, and data-processing inequality sections.
+generated_hypotheses:
+  - id: data-processing-inequality-hypothesis
+    text: Processing data through a Markov channel cannot increase mutual information, constraining
+      entropy-derived information measures.
+    generator: structure-atlas-evidence-curator
+    input_source_ids:
+      - cover-thomas-2006
+automated_judgments:
+  - id: data-processing-inequality-judgment
+    method: model-assisted
+    subject: data-processing-inequality-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\data-processing-inequality.yaml#source_inventory
+adversarial_reviews:
+  - id: data-processing-inequality-adversarial
+    method: model-assisted
+    reviewer: structure-atlas-evidence-curator-adversarial
+    challenge: The theorem is about mutual information, not entropy monotonically decreasing in every process.
+    response: The proposition names mutual information and the Markov condition explicitly.
+    recommended_action: Retain as a theorem with no generic entropy-monotonicity claim.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\data-processing-inequality.yaml#claims.data-processing-inequality-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from cover-thomas-2006 at Publisher table of contents, chapters 2-17.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: structure-atlas-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: structure-atlas-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: structure-atlas-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: structure-atlas-evidence-curator

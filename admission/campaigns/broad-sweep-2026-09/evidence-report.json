@@ -1,0 +1,253 @@
+{
+  "assessor": "structure-atlas-evidence-curator",
+  "campaign_id": "broad-sweep-2026-09",
+  "candidates": [
+    {
+      "candidate_id": "attractors",
+      "claim_id": "attractors-claim",
+      "source_id": "khalil-nonlinear-systems-2014",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "b-series",
+      "claim_id": "b-series-claim",
+      "source_id": "hairer-lubich-wanner-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "backward-error-analysis",
+      "claim_id": "backward-error-analysis-claim",
+      "source_id": "hairer-lubich-wanner-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "bayesian-network",
+      "claim_id": "bayesian-network-claim",
+      "source_id": "koller-friedman-2009",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "belief-propagation",
+      "claim_id": "belief-propagation-claim",
+      "source_id": "koller-friedman-2009",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "bfgs-method",
+      "claim_id": "bfgs-method-claim",
+      "source_id": "nocedal-wright-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "channel-capacity",
+      "claim_id": "channel-capacity-claim",
+      "source_id": "cover-thomas-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "convex-function",
+      "claim_id": "convex-function-claim",
+      "source_id": "boyd-vandenberghe-2004",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "convex-set",
+      "claim_id": "convex-set-claim",
+      "source_id": "boyd-vandenberghe-2004",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "cotangent-bundle",
+      "claim_id": "cotangent-bundle-claim",
+      "source_id": "lee-smooth-manifolds-2012",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "data-processing-inequality",
+      "claim_id": "data-processing-inequality-claim",
+      "source_id": "cover-thomas-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "differential-form",
+      "claim_id": "differential-form-claim",
+      "source_id": "lee-smooth-manifolds-2012",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "extended-kalman-filter",
+      "claim_id": "extended-kalman-filter-claim",
+      "source_id": "thrun-burgard-fox-2005",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "factor-graph",
+      "claim_id": "factor-graph-claim",
+      "source_id": "koller-friedman-2009",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "graphslam",
+      "claim_id": "graphslam-claim",
+      "source_id": "thrun-burgard-fox-2005",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "hamiltonian-system",
+      "claim_id": "hamiltonian-system-claim",
+      "source_id": "hairer-lubich-wanner-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "interior-point-method",
+      "claim_id": "interior-point-method-claim",
+      "source_id": "boyd-vandenberghe-2004",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "jacobi-integral",
+      "claim_id": "jacobi-integral-claim",
+      "source_id": "fitzpatrick-celestial-mechanics-2012",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "kalman-filter",
+      "claim_id": "kalman-filter-claim",
+      "source_id": "thrun-burgard-fox-2005",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "karush-kuhn-tucker-conditions",
+      "claim_id": "karush-kuhn-tucker-conditions-claim",
+      "source_id": "nocedal-wright-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "lagrange-duality",
+      "claim_id": "lagrange-duality-claim",
+      "source_id": "boyd-vandenberghe-2004",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "lagrange-points",
+      "claim_id": "lagrange-points-claim",
+      "source_id": "fitzpatrick-celestial-mechanics-2012",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "lie-group",
+      "claim_id": "lie-group-claim",
+      "source_id": "lee-smooth-manifolds-2012",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "limit-cycles",
+      "claim_id": "limit-cycles-claim",
+      "source_id": "khalil-nonlinear-systems-2014",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "lyapunov-functions",
+      "claim_id": "lyapunov-functions-claim",
+      "source_id": "khalil-nonlinear-systems-2014",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "markov-localization",
+      "claim_id": "markov-localization-claim",
+      "source_id": "thrun-burgard-fox-2005",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "mutual-information",
+      "claim_id": "mutual-information-claim",
+      "source_id": "cover-thomas-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "newton-method",
+      "claim_id": "newton-method-claim",
+      "source_id": "nocedal-wright-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "occupancy-grid-mapping",
+      "claim_id": "occupancy-grid-mapping-claim",
+      "source_id": "thrun-burgard-fox-2005",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "orbital-resonance",
+      "claim_id": "orbital-resonance-claim",
+      "source_id": "fitzpatrick-celestial-mechanics-2012",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "particle-filter",
+      "claim_id": "particle-filter-claim",
+      "source_id": "thrun-burgard-fox-2005",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "proximal-operator",
+      "claim_id": "proximal-operator-claim",
+      "source_id": "boyd-vandenberghe-2004",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "relative-entropy",
+      "claim_id": "relative-entropy-claim",
+      "source_id": "cover-thomas-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "restricted-three-body-problem",
+      "claim_id": "restricted-three-body-problem-claim",
+      "source_id": "fitzpatrick-celestial-mechanics-2012",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "riemannian-metric",
+      "claim_id": "riemannian-metric-claim",
+      "source_id": "lee-smooth-manifolds-2012",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "smooth-manifold",
+      "claim_id": "smooth-manifold-claim",
+      "source_id": "lee-smooth-manifolds-2012",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "symplectic-integrator",
+      "claim_id": "symplectic-integrator-claim",
+      "source_id": "hairer-lubich-wanner-2006",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "tangent-space",
+      "claim_id": "tangent-space-claim",
+      "source_id": "lee-smooth-manifolds-2012",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "unscented-kalman-filter",
+      "claim_id": "unscented-kalman-filter-claim",
+      "source_id": "thrun-burgard-fox-2005",
+      "workflow_state": "automated-review-passed"
+    },
+    {
+      "candidate_id": "variational-integrator",
+      "claim_id": "variational-integrator-claim",
+      "source_id": "hairer-lubich-wanner-2006",
+      "workflow_state": "automated-review-passed"
+    }
+  ],
+  "report_version": "1.0.0",
+  "summary": {
+    "adversarial_reviews": 40,
+    "direct_support_assessments": 40,
+    "enriched": 40,
+    "selected": 40
+  }
+}
