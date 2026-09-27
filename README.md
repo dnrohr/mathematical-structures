@@ -79,6 +79,7 @@ and graph views (the legend below is the whole of it):
 | [`build/`](build/) | `atlas-build`, the compiler/validator (TypeScript, Node) |
 | [`app/`](app/) | the reader SPA (Vite + vanilla TS; reads only the build artifacts) |
 | [`paths/`](paths/) | guided walks, one YAML file per walk |
+| [`admission/`](admission/) | untrusted candidate dossiers, schema, examples, and pre-admission rules |
 | [`docs/`](docs/) | mission, method docs, artifact format, the original notebook |
 | `dist/` | build output (gitignored) |
 
@@ -93,6 +94,9 @@ content cannot merge.
 npm run check    # typecheck + lint + format + tests + content validation
                  # — the first gate CI runs; CI then builds the site,
                  # enforces the JS budget, and runs the Playwright suite
+
+# Offline, read-only review of untrusted candidate dossiers
+npm run admit -- --format text admission/examples
 ```
 
 [CONTRIBUTING.md](CONTRIBUTING.md) has the ground rules (slugs are

@@ -1,0 +1,81 @@
+dossier_schema: 1.0.0
+candidate:
+  id: principal-components
+  canonical_name: Principal components
+  local_names:
+    - name: principal components / explained variance / singular values
+      field: statistics
+      source_ids: [jolliffe-2002]
+  acronyms: [PCA]
+  originating_fields: [statistics, ml]
+  proposed_node_type: operation
+  proposed_disposition: propose-node
+  possible_matches:
+    - slug: eigenvalues
+      relationship: alias
+      basis: The current eigenvalues node already records this exact statistics dialect and explains covariance diagonalization.
+      source_ids: [jolliffe-2002]
+source_inventory:
+  - id: jolliffe-2002
+    kind: textbook
+    title: Principal Component Analysis, second edition
+    authors: [I. T. Jolliffe]
+    year: 2002
+    locator: Chapter 1
+    supplied_by: human-curator
+claims:
+  - id: pca-is-representation-change
+    proposition: Principal component analysis changes to orthogonal covariance eigenvector coordinates ordered by explained variance.
+    endpoints: { from: principal-components, to: change-of-representation }
+    proposed_edge:
+      type: IS-A
+      strength: special-case
+      context: Classical linear PCA for a centered finite-variance data matrix or covariance operator.
+    mathematical_skeleton: Diagonalize the covariance matrix and project observations onto its ordered orthonormal eigenvectors.
+    scope: Classical linear PCA.
+    assumptions: [finite second moments, a chosen centering and scaling convention]
+    validity_regime: Exact for the sample covariance construction; usefulness as dimension reduction depends on variance being meaningful.
+    caveats: [Components need not be causally meaningful., Scaling changes the result.]
+    counterexamples: [Nonlinear manifolds poorly represented by a linear subspace.]
+    source_assessments:
+      - source_id: jolliffe-2002
+        proposition: Classical PCA finds orthogonal linear combinations ordered by variance through covariance eigendecomposition.
+        status: direct-support
+        location: Chapter 1, definition and derivation of principal components
+        assessor: { kind: human, identity: atlas-pilot-curator, version: '1' }
+    possible_falsifiers: [A standard definition of classical PCA that does not use the covariance/correlation spectral construction.]
+    alternative_interpretations: [Add PCA as a sourced alias and canonical example to eigenvalues instead of creating a node.]
+search:
+  queries:
+    - id: q-pca-atlas
+      query: 'principal components explained variance eigenvalues dialect'
+      dialects: [PCA, covariance eigendecomposition, explained variance]
+      designed_by: human-curator
+  history:
+    - query_id: q-pca-atlas
+      result: located
+      source_ids: [jolliffe-2002]
+      executed_by: human-curator
+generated_hypotheses:
+  - id: hypothesis-1
+    text: PCA might be a standalone operation node.
+    generator: handbook-harvest
+    input_source_ids: [jolliffe-2002]
+automated_judgments: []
+adversarial_reviews:
+  - id: adversarial-1
+    method: human
+    reviewer: pilot-adversary
+    challenge: The proposal restates an existing dialect and adds no connection independent of eigenvalues.
+    response: Merge into the existing node; consider improving the alias provenance outside this prototype.
+    recommended_action: merge-or-refine
+    provenance: [concepts/eigenvalues.md, admission/examples/principal-components.yaml]
+human_decisions: []
+workflow:
+  state: assessed
+  history:
+    - { from: null, to: harvested, reason: Harvested from a statistics textbook index., actor: human-curator }
+    - { from: harvested, to: normalized, reason: Compared the name against current canonical names and aliases., actor: human-curator }
+    - { from: normalized, to: dossier-ready, reason: Recast the proposal as one atomic structural claim., actor: human-curator }
+    - { from: dossier-ready, to: evidence-collected, reason: Recorded a textbook location for the PCA definition., actor: human-curator }
+    - { from: evidence-collected, to: assessed, reason: Exact atlas alias makes merge or alias refinement more economical than a node., actor: human-curator }

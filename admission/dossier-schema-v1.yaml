@@ -1,0 +1,201 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://structure-atlas.example/admission/dossier-schema-v1.yaml
+title: Structure Atlas candidate dossier
+description: >
+  Version 1 contract for untrusted pre-admission candidates. Atlas ontology
+  values are resolved dynamically from graph/schema.yaml, never enumerated here.
+type: object
+additionalProperties: false
+required:
+  - dossier_schema
+  - candidate
+  - source_inventory
+  - claims
+  - search
+  - generated_hypotheses
+  - automated_judgments
+  - adversarial_reviews
+  - workflow
+  - human_decisions
+properties:
+  dossier_schema:
+    const: 1.0.0
+  candidate:
+    type: object
+    additionalProperties: false
+    required: [id, canonical_name, local_names, acronyms, originating_fields, proposed_disposition]
+    properties:
+      id: { type: string, pattern: '^[a-z0-9]+(-[a-z0-9]+)*$' }
+      canonical_name: { type: string, minLength: 1 }
+      local_names:
+        type: array
+        items:
+          type: object
+          additionalProperties: false
+          required: [name, field, source_ids]
+          properties:
+            name: { type: string, minLength: 1 }
+            field: { type: string, x-atlas-vocabulary: fields }
+            source_ids: { type: array, items: { type: string } }
+      acronyms: { type: array, items: { type: string, minLength: 1 } }
+      originating_fields:
+        type: array
+        items: { type: string, x-atlas-vocabulary: fields }
+      proposed_node_type: { type: string, x-atlas-vocabulary: node_types }
+      proposed_disposition:
+        enum: [propose-node, propose-edge, add-alias, merge-or-refine, retain-example, propose-application, weaken-edge, defer, deliberate-non-edge, reject]
+      possible_matches:
+        type: array
+        items:
+          type: object
+          required: [slug, relationship, basis, source_ids]
+          properties:
+            slug: { type: string }
+            relationship: { enum: [identity, alias, broader, narrower, related] }
+            basis: { type: string }
+            source_ids: { type: array, items: { type: string } }
+  source_inventory:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      required: [id, kind, title, locator, supplied_by]
+      properties:
+        id: { type: string, pattern: '^[a-z0-9]+(-[a-z0-9]+)*$' }
+        kind: { enum: [primary-literature, textbook, handbook, standard, review, syllabus, glossary, taxonomy, web, model-output, other] }
+        title: { type: string, minLength: 1 }
+        authors: { type: array, items: { type: string } }
+        year: { type: [integer, string] }
+        locator: { type: string, minLength: 1 }
+        supplied_by: { type: string, minLength: 1 }
+  claims:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      required: [id, proposition, endpoints, proposed_edge, mathematical_skeleton, scope, assumptions, validity_regime, caveats, counterexamples, source_assessments, possible_falsifiers, alternative_interpretations]
+      properties:
+        id: { type: string, pattern: '^[a-z0-9]+(-[a-z0-9]+)*$' }
+        proposition: { type: string, minLength: 1 }
+        endpoints:
+          type: object
+          required: [from, to]
+          properties:
+            from: { type: string, description: "Trusted slug or $candidate" }
+            to: { type: string, description: "Trusted slug or $candidate" }
+        proposed_edge:
+          type: object
+          required: [type, strength]
+          properties:
+            type: { type: string, x-atlas-vocabulary: edge_types }
+            strength: { type: string, x-atlas-vocabulary: strengths }
+            status: { type: string, x-atlas-vocabulary: gap_statuses }
+            context: { type: string }
+        mathematical_skeleton: { type: string, minLength: 1 }
+        scope: { type: string, minLength: 1 }
+        assumptions: { type: array, items: { type: string } }
+        validity_regime: { type: string, minLength: 1 }
+        caveats: { type: array, items: { type: string } }
+        counterexamples: { type: array, items: { type: string } }
+        source_assessments:
+          type: array
+          items:
+            type: object
+            required: [source_id, proposition, status, location, assessor]
+            properties:
+              source_id: { type: string }
+              proposition: { type: string }
+              status: { enum: [direct-support, qualified-support, background-only, contradiction, irrelevant-co-mention, unable-to-assess] }
+              location: { type: string }
+              excerpt: { type: string }
+              rationale: { type: string }
+              assessor:
+                type: object
+                required: [kind, identity, version]
+                properties:
+                  kind: { enum: [human, retrieval, model-assisted] }
+                  identity: { type: string }
+                  version: { type: string }
+                  input_digest: { type: string }
+        possible_falsifiers: { type: array, items: { type: string } }
+        alternative_interpretations: { type: array, items: { type: string } }
+  search:
+    type: object
+    required: [queries, history]
+    properties:
+      queries:
+        type: array
+        items:
+          type: object
+          required: [id, query, dialects, designed_by]
+          properties:
+            id: { type: string }
+            query: { type: string }
+            dialects: { type: array, items: { type: string } }
+            designed_by: { type: string }
+      history:
+        type: array
+        items:
+          type: object
+          required: [query_id, result, source_ids, executed_by]
+          properties:
+            query_id: { type: string }
+            result: { enum: [located, not-located, error] }
+            source_ids: { type: array, items: { type: string } }
+            executed_by: { type: string }
+            notes: { type: string }
+  generated_hypotheses:
+    type: array
+    items:
+      type: object
+      required: [id, text, generator, input_source_ids]
+      properties:
+        id: { type: string }
+        text: { type: string }
+        generator: { type: string }
+        input_source_ids: { type: array, items: { type: string } }
+  automated_judgments:
+    description: Untrusted retrieval, heuristic, or model output; deterministic CLI results never go here.
+    type: array
+    items:
+      type: object
+      required: [id, method, subject, recommendation, rationale, provenance]
+      properties:
+        id: { type: string }
+        method: { enum: [retrieval-dependent, heuristic, model-assisted] }
+        subject: { type: string }
+        recommendation:
+          enum: [change-edge-type, reverse-edge, lower-strength, split-claim, merge, demote-to-example, reject-claim, retain]
+        rationale: { type: string }
+        provenance: { type: array, items: { type: string } }
+  adversarial_reviews:
+    type: array
+    items:
+      type: object
+      required: [id, method, reviewer, challenge, response, recommended_action, provenance]
+      properties:
+        id: { type: string }
+        method: { enum: [human, model-assisted] }
+        reviewer: { type: string }
+        challenge: { type: string }
+        response: { type: string }
+        recommended_action: { type: string }
+        provenance: { type: array, items: { type: string } }
+  workflow:
+    type: object
+    required: [state, history]
+    properties:
+      state: { type: string }
+      history: { type: array }
+  human_decisions:
+    type: array
+    items:
+      type: object
+      required: [id, reviewer, disposition, reason]
+      properties:
+        id: { type: string }
+        reviewer: { type: string }
+        disposition: { type: string }
+        reason: { type: string }

@@ -1,0 +1,113 @@
+dossier_schema: 1.0.0
+candidate:
+  id: singular-value-decomposition
+  canonical_name: Singular value decomposition
+  local_names:
+    - name: singular system
+      field: numerical-analysis
+      source_ids: [golub-van-loan-2013]
+    - name: SVD
+      field: ml
+      source_ids: [golub-van-loan-2013]
+  acronyms: [SVD]
+  originating_fields: [numerical-analysis, statistics, ml, signal-processing]
+  proposed_node_type: operation
+  proposed_disposition: propose-node
+  possible_matches:
+    - slug: eigenvalues
+      relationship: related
+      basis: Existing spectral-decomposition node discusses SVD but does not identify rectangular singular systems with eigendecomposition.
+      source_ids: [golub-van-loan-2013]
+source_inventory:
+  - id: golub-van-loan-2013
+    kind: textbook
+    title: Matrix Computations, fourth edition
+    authors: [Gene H. Golub, Charles F. Van Loan]
+    year: 2013
+    locator: Chapter 2.4
+    supplied_by: human-curator
+  - id: hansen-2010
+    kind: textbook
+    title: Discrete Inverse Problems
+    authors: [Per Christian Hansen]
+    year: 2010
+    locator: Chapters 2-4
+    supplied_by: human-curator
+claims:
+  - id: svd-is-representation-change
+    proposition: SVD is a change of representation that diagonalizes a linear map between two possibly different inner-product spaces.
+    endpoints: { from: singular-value-decomposition, to: change-of-representation }
+    proposed_edge:
+      type: IS-A
+      strength: theorem
+      context: Finite-dimensional real or complex inner-product spaces; the left and right singular-vector bases may differ.
+    mathematical_skeleton: A = U Sigma V*, with orthonormal domain and codomain bases and nonnegative diagonal singular values.
+    scope: Finite-dimensional linear maps represented by rectangular or square matrices.
+    assumptions: [finite dimension, compatible real or complex inner products]
+    validity_regime: Exact factorization; numerical algorithms introduce ordinary floating-point error.
+    caveats: [It is not generally an eigendecomposition of A., Degenerate singular subspaces do not select unique vectors.]
+    counterexamples: [A nonsquare matrix has no eigendecomposition of the same form.]
+    source_assessments:
+      - source_id: golub-van-loan-2013
+        proposition: Every matrix admits A = U Sigma V* with unitary or orthogonal U and V.
+        status: direct-support
+        location: Chapter 2.4, singular value decomposition theorem and discussion
+        assessor: { kind: human, identity: atlas-pilot-curator, version: '1' }
+    possible_falsifiers: [A finite matrix for which no unitary/orthogonal singular-vector bases exist.]
+    alternative_interpretations: [Retain SVD as an extended example on eigenvalues rather than a standalone node.]
+  - id: svd-applied-in-imaging
+    proposition: SVD materially supports analysis and regularization of discrete inverse problems in computational imaging.
+    endpoints: { from: singular-value-decomposition, to: computational-imaging }
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Linearized discrete inverse problems; truncated SVD and filter factors diagnose and regularize ill-conditioning.
+    mathematical_skeleton: Singular components separate data-informed directions from small-singular-value directions that amplify noise.
+    scope: Discretized linear inverse problems, including representative imaging operators.
+    assumptions: [linear or linearized forward operator, specified noise/error model]
+    validity_regime: Diagnostic and regularization role, not a claim that every imaging method explicitly computes a full SVD.
+    caveats: [Large-scale solvers often use iterative partial decompositions., Nonlinear inverse problems need additional machinery.]
+    counterexamples: [A nonlinear forward model with no useful local linearization.]
+    source_assessments:
+      - source_id: hansen-2010
+        proposition: Singular systems and filter factors characterize ill-posed discrete inverse problems and truncated-SVD regularization.
+        status: direct-support
+        location: Chapters 2-4, especially the SVD analysis and TSVD sections
+        assessor: { kind: human, identity: atlas-pilot-curator, version: '1' }
+    possible_falsifiers: [Evidence that singular-component analysis has no material role in the stated linear inverse-problem regime.]
+    alternative_interpretations: [Represent only a canonical example under change-of-representation.]
+search:
+  queries:
+    - id: q-svd-inverse-problems
+      query: 'singular value decomposition discrete inverse problems imaging regularization'
+      dialects: [singular system, filter factors, truncated SVD]
+      designed_by: human-curator
+  history:
+    - query_id: q-svd-inverse-problems
+      result: located
+      source_ids: [hansen-2010]
+      executed_by: human-curator
+generated_hypotheses:
+  - id: hypothesis-1
+    text: SVD may deserve an operation node separate from eigenvalues because its two-space skeleton and inverse-problem role carry independent connections.
+    generator: human-curator
+    input_source_ids: [golub-van-loan-2013, hansen-2010]
+automated_judgments: []
+adversarial_reviews:
+  - id: adversarial-1
+    method: human
+    reviewer: pilot-adversary
+    challenge: The eigenvalues node already discusses SVD; a new node risks granularity inflation.
+    response: Keep the candidate only if the two-space factorization and inverse-problem connections survive review as independent content.
+    recommended_action: human-review
+    provenance: [concepts/eigenvalues.md, admission/examples/singular-value-decomposition.yaml]
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - { from: null, to: harvested, reason: Extracted from two authoritative textbooks., actor: human-curator }
+    - { from: harvested, to: normalized, reason: Compared names and claims with the current atlas., actor: human-curator }
+    - { from: normalized, to: dossier-ready, reason: Split the proposal into two atomic claims., actor: human-curator }
+    - { from: dossier-ready, to: evidence-collected, reason: Recorded exact textbook locations for both claims., actor: human-curator }
+    - { from: evidence-collected, to: assessed, reason: Assessed entailment and alternatives claim by claim., actor: human-curator }
+    - { from: assessed, to: automated-review-passed, reason: Deterministic checks passed; adversarial concern is preserved for human review., actor: atlas-admit }
