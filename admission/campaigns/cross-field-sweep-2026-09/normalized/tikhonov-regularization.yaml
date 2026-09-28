@@ -1,0 +1,133 @@
+dossier_schema: 1.0.0
+candidate:
+  id: tikhonov-regularization
+  canonical_name: Tikhonov regularization
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: hansen-inverse-2010
+    kind: textbook
+    title: "Discrete Inverse Problems: Insight and Algorithms"
+    authors:
+      - Per Christian Hansen
+    year: 2010
+    locator: https://epubs.siam.org/doi/book/10.1137/1.9780898718836
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: tikhonov-regularization-claim
+    proposition: Tikhonov regularization minimizes data misfit plus a weighted quadratic penalty.
+    endpoints:
+      from: $candidate
+      to: optimization
+    proposed_edge:
+      type: IS-A
+      strength: special-case
+      context: Linear inverse problems with a chosen penalty operator.
+    mathematical_skeleton: The solution balances ||Ax-b||² against λ²||Lx||².
+    scope: Linear inverse problems with a chosen penalty operator.
+    assumptions:
+      - positive regularization parameter
+    validity_regime: The stated claim is limited to linear inverse problems with a chosen penalty operator.
+    caveats:
+      - The result depends materially on the penalty and parameter choice.
+    counterexamples:
+      - An identity penalty oversmooths a solution whose meaningful structure lies in a rough component.
+    source_assessments:
+      - source_id: hansen-inverse-2010
+        proposition: Tikhonov regularization minimizes data misfit plus a weighted quadratic penalty.
+        status: direct-support
+        location: Chapter 4, §4.4, pp. 65–70.
+        rationale: The pinpointed section defines or develops Tikhonov regularization and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Tikhonov regularization minimizes data misfit
+        plus a weighted quadratic penalty."
+    alternative_interpretations:
+      - A broader use of “Tikhonov regularization” outside the recorded scope.
+search:
+  queries:
+    - id: tikhonov-regularization-query
+      query: "Tikhonov regularization Discrete Inverse Problems: Insight and Algorithms definition theorem"
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: tikhonov-regularization-query
+      result: located
+      source_ids:
+        - hansen-inverse-2010
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 4, §4.4, pp. 65–70.
+generated_hypotheses:
+  - id: tikhonov-regularization-hypothesis
+    text: Tikhonov regularization minimizes data misfit plus a weighted quadratic penalty.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - hansen-inverse-2010
+automated_judgments:
+  - id: tikhonov-regularization-judgment
+    method: model-assisted
+    subject: tikhonov-regularization-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\tikhonov-regularization.yaml#source_inventory
+adversarial_reviews:
+  - id: tikhonov-regularization-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: The result depends materially on the penalty and parameter choice."
+    response: The proposition is restricted to linear inverse problems with a chosen penalty operator, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\tikhonov-regularization.yaml#claims.tikhonov-regularization-claim
+  - id: tikhonov-regularization-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of IS-A.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The result depends materially on
+      the penalty and parameter choice."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\tikhonov-regularization.yaml#claims.tikhonov-regularization-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from hansen-inverse-2010 at SIAM book, Chapters 1–8.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

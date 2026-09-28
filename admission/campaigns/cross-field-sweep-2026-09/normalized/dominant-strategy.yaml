@@ -1,0 +1,40 @@
+dossier_schema: 1.0.0
+candidate:
+  id: dominant-strategy
+  canonical_name: Dominant strategy
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - economics
+    - optimization
+  proposed_disposition: defer
+  possible_matches: []
+source_inventory:
+  - id: osborne-rubinstein-1994
+    kind: textbook
+    title: A Course in Game Theory
+    authors:
+      - Martin J. Osborne
+      - Ariel Rubinstein
+    year: 1994
+    locator: https://mitpress.mit.edu/9780262650403/a-course-in-game-theory/
+    supplied_by: atlas-cross-field-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from osborne-rubinstein-1994 at MIT Press contents, Parts I–IV.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

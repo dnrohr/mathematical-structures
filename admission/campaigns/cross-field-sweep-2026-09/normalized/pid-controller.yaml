@@ -1,0 +1,135 @@
+dossier_schema: 1.0.0
+candidate:
+  id: pid-controller
+  canonical_name: PID controller
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - mechanics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: astrom-murray-2020
+    kind: textbook
+    title: Feedback Systems, second edition
+    authors:
+      - Karl J. Astrom
+      - Richard M. Murray
+    year: 2020
+    locator: https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: pid-controller-claim
+    proposition: A PID controller combines proportional, integral, and derivative actions on tracking error.
+    endpoints:
+      from: $candidate
+      to: process-control
+    proposed_edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Single-loop feedback with implementable filtering and anti-windup provisions.
+    mathematical_skeleton: The control signal weights present error, accumulated error, and error rate.
+    scope: Single-loop feedback with implementable filtering and anti-windup provisions.
+    assumptions:
+      - measured tracking error
+    validity_regime: The stated claim is limited to single-loop feedback with implementable filtering and
+      anti-windup provisions.
+    caveats:
+      - Derivative action amplifies measurement noise and integral action can wind up.
+    counterexamples:
+      - An ideal differentiator driven by white measurement noise has unbounded output variance.
+    source_assessments:
+      - source_id: astrom-murray-2020
+        proposition: A PID controller combines proportional, integral, and derivative actions on tracking error.
+        status: direct-support
+        location: Chapter 11, §§11.1–11.5.
+        rationale: The pinpointed section defines or develops PID controller and the scoped structural claim recorded
+          here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A PID controller combines proportional,
+        integral, and derivative actions on tracking error."
+    alternative_interpretations:
+      - A broader use of “PID controller” outside the recorded scope.
+search:
+  queries:
+    - id: pid-controller-query
+      query: PID controller Feedback Systems, second edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: pid-controller-query
+      result: located
+      source_ids:
+        - astrom-murray-2020
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 11, §§11.1–11.5.
+generated_hypotheses:
+  - id: pid-controller-hypothesis
+    text: A PID controller combines proportional, integral, and derivative actions on tracking error.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - astrom-murray-2020
+automated_judgments:
+  - id: pid-controller-judgment
+    method: model-assisted
+    subject: pid-controller-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\pid-controller.yaml#source_inventory
+adversarial_reviews:
+  - id: pid-controller-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Derivative action amplifies measurement noise and integral action can wind up."
+    response: The proposition is restricted to single-loop feedback with implementable filtering and anti-windup
+      provisions, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\pid-controller.yaml#claims.pid-controller-claim
+  - id: pid-controller-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Derivative action amplifies
+      measurement noise and integral action can wind up."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\pid-controller.yaml#claims.pid-controller-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from astrom-murray-2020 at Author-hosted second edition, Chapters 1–15.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

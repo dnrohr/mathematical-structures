@@ -1,0 +1,137 @@
+dossier_schema: 1.0.0
+candidate:
+  id: correlated-equilibrium
+  canonical_name: Correlated equilibrium
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - economics
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: model
+source_inventory:
+  - id: osborne-rubinstein-1994
+    kind: textbook
+    title: A Course in Game Theory
+    authors:
+      - Martin J. Osborne
+      - Ariel Rubinstein
+    year: 1994
+    locator: https://mitpress.mit.edu/9780262650403/a-course-in-game-theory/
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: correlated-equilibrium-claim
+    proposition: Every mixed-strategy Nash equilibrium induces a correlated equilibrium, but correlation permits
+      additional joint distributions.
+    endpoints:
+      from: $candidate
+      to: optimization
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: strong-analogy
+      context: Finite strategic games.
+    mathematical_skeleton: Obedience inequalities condition each player’s deviation payoff on a private recommendation.
+    scope: Finite strategic games.
+    assumptions:
+      - trusted correlation device
+    validity_regime: The stated claim is limited to finite strategic games.
+    caveats:
+      - A correlated equilibrium is not generally a Nash equilibrium in independent mixed strategies.
+    counterexamples:
+      - Recommendation signals can correlate actions in a way no product distribution can match.
+    source_assessments:
+      - source_id: osborne-rubinstein-1994
+        proposition: Every mixed-strategy Nash equilibrium induces a correlated equilibrium, but correlation permits
+          additional joint distributions.
+        status: direct-support
+        location: Part I, Chapter 3, correlated strategic recommendations.
+        rationale: The pinpointed section defines or develops Correlated equilibrium and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Every mixed-strategy Nash equilibrium induces
+        a correlated equilibrium, but correlation permits additional joint distributions."
+    alternative_interpretations:
+      - A broader use of “Correlated equilibrium” outside the recorded scope.
+search:
+  queries:
+    - id: correlated-equilibrium-query
+      query: Correlated equilibrium A Course in Game Theory definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: correlated-equilibrium-query
+      result: located
+      source_ids:
+        - osborne-rubinstein-1994
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Part I, Chapter 3, correlated strategic recommendations.
+generated_hypotheses:
+  - id: correlated-equilibrium-hypothesis
+    text: Every mixed-strategy Nash equilibrium induces a correlated equilibrium, but correlation permits
+      additional joint distributions.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - osborne-rubinstein-1994
+automated_judgments:
+  - id: correlated-equilibrium-judgment
+    method: model-assisted
+    subject: correlated-equilibrium-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\correlated-equilibrium.yaml#source_inventory
+adversarial_reviews:
+  - id: correlated-equilibrium-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: A correlated equilibrium is not generally a Nash equilibrium in independent mixed
+      strategies."
+    response: The proposition is restricted to finite strategic games, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\correlated-equilibrium.yaml#claims.correlated-equilibrium-claim
+  - id: correlated-equilibrium-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of REPRESENTED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: A correlated equilibrium is not
+      generally a Nash equilibrium in independent mixed strategies."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\correlated-equilibrium.yaml#claims.correlated-equilibrium-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from osborne-rubinstein-1994 at MIT Press contents, Parts I–IV.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

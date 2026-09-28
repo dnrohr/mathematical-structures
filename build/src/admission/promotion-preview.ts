@@ -162,7 +162,12 @@ function ensureUntrustedOutput(root: string, output: string): void {
   }
 }
 
-function conceptMarkdown(dossier: RecordValue, claim: RecordValue, challenge: RecordValue): string {
+function conceptMarkdown(
+  dossier: RecordValue,
+  claim: RecordValue,
+  challenge: RecordValue,
+  campaignId: string,
+): string {
   const candidate = isRecord(dossier.candidate) ? dossier.candidate : {};
   const edge = isRecord(claim.proposed_edge) ? claim.proposed_edge : {};
   const fields = strings(candidate.originating_fields);
@@ -193,7 +198,7 @@ function conceptMarkdown(dossier: RecordValue, claim: RecordValue, challenge: Re
     canonical_examples: [
       `${requiredString(claim, 'scope', canonical)} — ${requiredString(edge, 'context', canonical)}`,
     ],
-    sections: [`campaign-broad-sweep-2026-09#${String(candidate.id)}`],
+    sections: [`campaign-${campaignId}#${String(candidate.id)}`],
   };
   const caveats = strings(claim.caveats)
     .map((value) => `- ${value}`)
@@ -274,6 +279,45 @@ export function normalizeLineEndings(value: string): string {
   return value.replace(/\r\n?/g, '\n');
 }
 
+function promotionSources(campaignDirectory: string): {
+  sourceKeys: Record<string, string>;
+  bibliography: string;
+  referenceCount: number;
+} {
+  const file = join(campaignDirectory, 'promotion-sources.yaml');
+  if (!existsSync(file)) {
+    return {
+      sourceKeys: SOURCE_KEYS,
+      bibliography: REFERENCE_ADDITIONS.trimStart(),
+      referenceCount: [...REFERENCE_ADDITIONS.matchAll(/^@[^\n{]+\{/gm)].length,
+    };
+  }
+  const data = parse(readFileSync(file, 'utf8')) as unknown;
+  if (!isRecord(data) || data.promotion_sources_schema !== '1.0.0')
+    throw new Error('promotion sources must be a version 1.0.0 mapping');
+  const entries = records(data.sources);
+  const sourceKeys: Record<string, string> = {};
+  const bibliography: string[] = [];
+  for (const [index, entry] of entries.entries()) {
+    const subject = `promotion sources[${index}]`;
+    const sourceId = requiredString(entry, 'source_id', subject);
+    const citationKey = requiredString(entry, 'citation_key', subject);
+    if (sourceKeys[sourceId]) throw new Error(`duplicate promotion source ${sourceId}`);
+    sourceKeys[sourceId] = citationKey;
+    if (typeof entry.bibtex === 'string' && entry.bibtex.trim() !== '') {
+      const bibtex = entry.bibtex.trim();
+      if (!bibtex.startsWith('@') || !bibtex.includes(`{${citationKey},`))
+        throw new Error(`${sourceId}.bibtex must define citation key ${citationKey}`);
+      bibliography.push(bibtex);
+    }
+  }
+  return {
+    sourceKeys,
+    bibliography: `${bibliography.join('\n\n')}\n`,
+    referenceCount: bibliography.length,
+  };
+}
+
 function reviewSection(dossier: RecordValue, disposition: string, accepted: boolean): string {
   const candidate = isRecord(dossier.candidate) ? dossier.candidate : {};
   const claim = records(dossier.claims)[0] ?? {};
@@ -301,6 +345,8 @@ export function buildPromotionPreview(
   const triage = JSON.parse(
     readFileSync(join(campaignDirectory, 'triage-report.json'), 'utf8'),
   ) as RecordValue;
+  const campaignId = String(triage.campaign_id);
+  const sourceConfig = promotionSources(campaignDirectory);
   const selected = records(triage.decisions).filter(
     (decision) => decision.selected_for_review === true,
   );
@@ -339,7 +385,7 @@ export function buildPromotionPreview(
     if (decision.disposition === 'propose-node')
       writeFileSync(
         join(output, 'concepts', `${id}.md`),
-        conceptMarkdown(dossier, claim, challenge),
+        conceptMarkdown(dossier, claim, challenge, campaignId),
         'utf8',
       );
     const endpoints = isRecord(claim.endpoints) ? claim.endpoints : {};
@@ -347,7 +393,7 @@ export function buildPromotionPreview(
     const assessment = records(claim.source_assessments)[0];
     if (!assessment) throw new Error(`${id} lacks a source assessment`);
     const sourceId = requiredString(assessment, 'source_id', id);
-    const evidenceKey = SOURCE_KEYS[sourceId];
+    const evidenceKey = sourceConfig.sourceKeys[sourceId];
     if (!evidenceKey) throw new Error(`${id} has no promotion citation mapping for ${sourceId}`);
     edges.push({
       from: endpoints.from === '$candidate' ? id : endpoints.from,
@@ -360,7 +406,7 @@ export function buildPromotionPreview(
     });
   }
   writeFileSync(join(output, 'edges.yaml'), stringify(edges, { lineWidth: 100 }), 'utf8');
-  writeFileSync(join(output, 'references.bib'), REFERENCE_ADDITIONS.trimStart(), 'utf8');
+  writeFileSync(join(output, 'references.bib'), sourceConfig.bibliography, 'utf8');
   const humanApprovalRequired = acceptedStates.some((state) => state === 'automated-review-passed');
   const resultFile = join(campaignDirectory, 'admission-result.json');
   const admissionResult = existsSync(resultFile)
@@ -388,13 +434,13 @@ export function buildPromotionPreview(
     }));
   const report: PromotionPreviewReport = {
     report_version: '1.0.0',
-    campaign_id: String(triage.campaign_id),
+    campaign_id: campaignId,
     human_approval_required: humanApprovalRequired,
     summary: {
       proposed_new_concepts: newNodes.length,
       proposed_merge_refinements: mergeRefinements.length,
       proposed_edges: edges.length,
-      reference_additions: 8,
+      reference_additions: sourceConfig.referenceCount,
       integrated_validation_errors: issues.filter((issue) => issue.severity === 'error').length,
       integrated_validation_warnings: issues.filter((issue) => issue.severity === 'warn').length,
     },

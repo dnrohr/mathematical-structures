@@ -1,0 +1,134 @@
+dossier_schema: 1.0.0
+candidate:
+  id: z-transform
+  canonical_name: Z-transform
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - signal-processing
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: siebert-signals-1986
+    kind: textbook
+    title: Circuits, Signals, and Systems
+    authors:
+      - William McC. Siebert
+    year: 1986
+    locator: https://mitpress.mit.edu/9780262690959/circuits-signals-and-systems/
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: z-transform-claim
+    proposition: The Z-transform represents a discrete sequence as a complex power series.
+    endpoints:
+      from: $candidate
+      to: integral-transforms
+    proposed_edge:
+      type: IS-A
+      strength: special-case
+      context: One- or two-sided discrete-time sequences with a stated region of convergence.
+    mathematical_skeleton: X(z)=Σ x[n]z^{-n} converts shifts and convolution into algebraic factors and products.
+    scope: One- or two-sided discrete-time sequences with a stated region of convergence.
+    assumptions:
+      - nonempty region of convergence
+    validity_regime: The stated claim is limited to one- or two-sided discrete-time sequences with a stated region
+      of convergence.
+    caveats:
+      - The algebraic expression alone does not determine the sequence without its convergence region.
+    counterexamples:
+      - The same rational function can encode causal or anticausal sequences.
+    source_assessments:
+      - source_id: siebert-signals-1986
+        proposition: The Z-transform represents a discrete sequence as a complex power series.
+        status: direct-support
+        location: Chapter 5, unilateral Z-transform and its applications.
+        rationale: The pinpointed section defines or develops Z-transform and the scoped structural claim recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The Z-transform represents a discrete sequence
+        as a complex power series."
+    alternative_interpretations:
+      - A broader use of “Z-transform” outside the recorded scope.
+search:
+  queries:
+    - id: z-transform-query
+      query: Z-transform Circuits, Signals, and Systems definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: z-transform-query
+      result: located
+      source_ids:
+        - siebert-signals-1986
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 5, unilateral Z-transform and its applications.
+generated_hypotheses:
+  - id: z-transform-hypothesis
+    text: The Z-transform represents a discrete sequence as a complex power series.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - siebert-signals-1986
+automated_judgments:
+  - id: z-transform-judgment
+    method: model-assisted
+    subject: z-transform-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\z-transform.yaml#source_inventory
+adversarial_reviews:
+  - id: z-transform-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: The algebraic expression alone does not determine the sequence without its
+      convergence region."
+    response: The proposition is restricted to one- or two-sided discrete-time sequences with a stated region of
+      convergence, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\z-transform.yaml#claims.z-transform-claim
+  - id: z-transform-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of IS-A.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The algebraic expression alone
+      does not determine the sequence without its convergence region."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\z-transform.yaml#claims.z-transform-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from siebert-signals-1986 at MIT Press contents and lecture sequence.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

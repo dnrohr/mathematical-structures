@@ -103,6 +103,7 @@ true.
 npm run harvest -- --manifest admission/campaigns/<id>/harvest.yaml --out admission/campaigns/<id>/normalized
 npm run triage -- --campaign admission/campaigns/<id> --manifest admission/campaigns/<id>/triage.yaml
 npm run evidence -- --campaign admission/campaigns/<id> --pack admission/campaigns/<id>/evidence-pack.yaml
+node scripts/apply-independent-review.mjs admission/campaigns/<id>
 npm run admit -- --format text admission/campaigns/<id>/normalized
 npm run promotion-preview -- --campaign admission/campaigns/<id> --out admission/campaigns/<id>/promotion-preview
 ```
@@ -112,6 +113,13 @@ edges, and bibliography additions under `admission/`, then validates them in a
 temporary combined content tree with the ordinary trusted compiler. It refuses
 output paths inside trusted directories and marks its report as requiring
 human approval. It is a review artifact, not a promotion command.
+
+A repeatable campaign may provide `promotion-sources.yaml`. Each entry maps a
+harvest `source_id` to its trusted citation key and may include a BibTeX record
+when that reference is not already trusted. This keeps source mapping in the
+campaign instead of requiring compiler edits. `independent-review.yaml` can be
+applied with the script above to append a separate model-assisted adversarial
+review without changing workflow state or claiming human review time.
 
 ## Deterministic and heuristic checks
 
@@ -198,7 +206,7 @@ successfully promoted edge for a duplicate proposal.
 
 ## Bounded campaigns
 
-Use a declared sampling frame and a target of 100–200 raw terms for discovery,
+Use a declared sampling frame and a target of 100–300 raw terms for discovery,
 then cap proposition-level evidence work at the strongest 30–50 dossiers.
 Source overlap is desirable: it tests duplicate consolidation and keeps every
 provenance rather than silently deduplicating before admission. Exhaustive

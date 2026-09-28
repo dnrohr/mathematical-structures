@@ -1,0 +1,1679 @@
+evidence_schema: 1.0.0
+campaign_id: cross-field-sweep-2026-09
+assessor: atlas-cross-field-evidence-curator
+entries:
+  - candidate_id: weak-solution
+    proposition: A weak solution satisfies an integrated PDE identity without requiring all classical derivatives
+      to exist.
+    endpoints:
+      from: $candidate
+      to: vector-calculus
+    edge:
+      type: REPRESENTED-BY
+      strength: strong-analogy
+      context: Weak formulations of PDEs on domains with specified boundary data.
+    mathematical_skeleton: Derivatives are transferred to test functions by integration by parts, producing an integral identity.
+    scope: Weak formulations of PDEs on domains with specified boundary data.
+    assumptions:
+      - locally integrable unknown
+      - admissible test functions
+    validity_regime: The stated claim is limited to weak formulations of PDEs on domains with specified boundary data.
+    caveats:
+      - Weak solutions may be nonunique without additional estimates or entropy conditions.
+    counterexamples:
+      - A distribution satisfying the equation can fail required boundary or energy conditions.
+    source_id: evans-pde-2010
+    source_location: Chapter 1, §1.3.2, pp. 7–9; Chapter 6, §6.1, pp. 297–310.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Weak solution and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A weak solution satisfies an integrated PDE
+        identity without requiring all classical derivatives to exist."
+    alternative_interpretations:
+      - A broader use of “Weak solution” outside the recorded scope.
+    search_query: Weak solution Partial Differential Equations, second edition definition theorem
+    challenge: "Boundary test: Weak solutions may be nonunique without additional estimates or entropy conditions."
+    response: The proposition is restricted to weak formulations of PDEs on domains with specified boundary data,
+      and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: sobolev-space
+    proposition: A Sobolev space controls functions through integrability of weak derivatives.
+    endpoints:
+      from: $candidate
+      to: smoothness
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Integer-order Sobolev spaces on open Euclidean domains.
+    mathematical_skeleton: The norm combines an Lp size with the Lp sizes of weak derivatives up to a fixed order.
+    scope: Integer-order Sobolev spaces on open Euclidean domains.
+    assumptions:
+      - measurable functions modulo equality almost everywhere
+    validity_regime: The stated claim is limited to integer-order Sobolev spaces on open Euclidean domains.
+    caveats:
+      - Sobolev regularity does not generally imply pointwise differentiability.
+    counterexamples:
+      - A W^{1,p} function below the embedding threshold need not be continuous.
+    source_id: evans-pde-2010
+    source_location: Chapter 5, §§5.1–5.8, pp. 253–296.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Sobolev space and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A Sobolev space controls functions through
+        integrability of weak derivatives."
+    alternative_interpretations:
+      - A broader use of “Sobolev space” outside the recorded scope.
+    search_query: Sobolev space Partial Differential Equations, second edition definition theorem
+    challenge: "Boundary test: Sobolev regularity does not generally imply pointwise differentiability."
+    response: The proposition is restricted to integer-order Sobolev spaces on open Euclidean domains, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: galerkin-method
+    proposition: The Galerkin method approximates a weak PDE solution in a finite-dimensional trial space.
+    endpoints:
+      from: $candidate
+      to: computational-imaging
+    edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Galerkin approximations for coercive boundary-value problems.
+    mathematical_skeleton: A variational identity is restricted to a mesh-based subspace, yielding a finite linear
+      or nonlinear system.
+    scope: Galerkin approximations for coercive boundary-value problems.
+    assumptions:
+      - weak formulation
+      - stable conforming trial space
+    validity_regime: The stated claim is limited to galerkin approximations for coercive boundary-value problems.
+    caveats:
+      - "The edge is approximate: trial-space refinement and stability are needed for convergence."
+    counterexamples:
+      - An unstable or nonconforming discretization can fail to converge.
+    source_id: evans-pde-2010
+    source_location: Chapter 6, §6.2, pp. 310–324.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Galerkin method and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The Galerkin method approximates a weak PDE
+        solution in a finite-dimensional trial space."
+    alternative_interpretations:
+      - A broader use of “Galerkin method” outside the recorded scope.
+    search_query: Galerkin method Partial Differential Equations, second edition definition theorem
+    challenge: "Boundary test: The edge is approximate: trial-space refinement and stability are needed for
+      convergence."
+    response: The proposition is restricted to galerkin approximations for coercive boundary-value problems, and
+      the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: maximum-principle
+    proposition: A maximum principle bounds an elliptic or parabolic solution by boundary and forcing data.
+    endpoints:
+      from: $candidate
+      to: stability
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Uniformly elliptic or parabolic equations under the stated sign and regularity hypotheses.
+    mathematical_skeleton: The differential inequality prevents an interior strict extremum unless the solution is
+      suitably degenerate.
+    scope: Uniformly elliptic or parabolic equations under the stated sign and regularity hypotheses.
+    assumptions:
+      - appropriate ellipticity
+      - connected domain
+    validity_regime: The stated claim is limited to uniformly elliptic or parabolic equations under the stated
+      sign and regularity hypotheses.
+    caveats:
+      - The principle can fail for the wrong zeroth-order sign or nonelliptic operators.
+    counterexamples:
+      - A reaction term with the wrong sign permits an interior maximum.
+    source_id: evans-pde-2010
+    source_location: Chapter 2, §2.2.3, pp. 27–35; Chapter 6, §6.4, pp. 333–347.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Maximum principle and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A maximum principle bounds an elliptic or
+        parabolic solution by boundary and forcing data."
+    alternative_interpretations:
+      - A broader use of “Maximum principle” outside the recorded scope.
+    search_query: Maximum principle Partial Differential Equations, second edition definition theorem
+    challenge: "Boundary test: The principle can fail for the wrong zeroth-order sign or nonelliptic operators."
+    response: The proposition is restricted to uniformly elliptic or parabolic equations under the stated sign and
+      regularity hypotheses, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: method-of-characteristics
+    proposition: The method of characteristics converts a first-order PDE into ODEs along characteristic curves.
+    endpoints:
+      from: $candidate
+      to: phase-space
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Smooth first-order transport and Hamilton-Jacobi equations before characteristic crossing.
+    mathematical_skeleton: The PDE derivative becomes a directional derivative along a flow in state space.
+    scope: Smooth first-order transport and Hamilton-Jacobi equations before characteristic crossing.
+    assumptions:
+      - sufficiently regular coefficients
+      - local characteristic flow
+    validity_regime: The stated claim is limited to smooth first-order transport and Hamilton-Jacobi equations
+      before characteristic crossing.
+    caveats:
+      - Characteristics can intersect and destroy classical single-valued solutions.
+    counterexamples:
+      - Burgers characteristics cross at shock formation.
+    source_id: evans-pde-2010
+    source_location: Chapter 2, §2.1, pp. 18–20; Chapter 3, §3.2, pp. 101–115.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Method of characteristics and the scoped
+      structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The method of characteristics converts a
+        first-order PDE into ODEs along characteristic curves."
+    alternative_interpretations:
+      - A broader use of “Method of characteristics” outside the recorded scope.
+    search_query: Method of characteristics Partial Differential Equations, second edition definition theorem
+    challenge: "Boundary test: Characteristics can intersect and destroy classical single-valued solutions."
+    response: The proposition is restricted to smooth first-order transport and Hamilton-Jacobi equations before
+      characteristic crossing, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: singular-value-decomposition
+    proposition: The singular value decomposition expresses a matrix as orthogonal input and output directions
+      linked by nonnegative gains.
+    endpoints:
+      from: $candidate
+      to: computational-imaging
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Finite real or complex matrices.
+    mathematical_skeleton: A = UΣV* separates domain directions, amplification factors, and range directions.
+    scope: Finite real or complex matrices.
+    assumptions:
+      - finite-dimensional inner-product spaces
+    validity_regime: The stated claim is limited to finite real or complex matrices.
+    caveats:
+      - Small singular values amplify inverse-problem noise.
+    counterexamples:
+      - A rank-deficient matrix has no ordinary inverse despite having an SVD.
+    source_id: trefethen-bau-1997
+    source_location: Lectures 4–5, pp. 25–38.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Singular value decomposition and the scoped
+      structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The singular value decomposition expresses a
+        matrix as orthogonal input and output directions linked by nonnegative gains."
+    alternative_interpretations:
+      - A broader use of “Singular value decomposition” outside the recorded scope.
+    search_query: Singular value decomposition Numerical Linear Algebra definition theorem
+    challenge: "Boundary test: Small singular values amplify inverse-problem noise."
+    response: The proposition is restricted to finite real or complex matrices, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: qr-factorization
+    proposition: QR factorization reduces a full-rank least-squares problem to a triangular solve.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Overdetermined full-column-rank linear least squares.
+    mathematical_skeleton: A = QR preserves Euclidean residual norms because Q has orthonormal columns.
+    scope: Overdetermined full-column-rank linear least squares.
+    assumptions:
+      - full column rank
+    validity_regime: The stated claim is limited to overdetermined full-column-rank linear least squares.
+    caveats:
+      - Normal equations and QR have different numerical conditioning.
+    counterexamples:
+      - Rank deficiency requires pivoting or a rank-revealing method.
+    source_id: trefethen-bau-1997
+    source_location: Lectures 7–11, pp. 48–88.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops QR factorization and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: QR factorization reduces a full-rank
+        least-squares problem to a triangular solve."
+    alternative_interpretations:
+      - A broader use of “QR factorization” outside the recorded scope.
+    search_query: QR factorization Numerical Linear Algebra definition theorem
+    challenge: "Boundary test: Normal equations and QR have different numerical conditioning."
+    response: The proposition is restricted to overdetermined full-column-rank linear least squares, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: krylov-subspace
+    proposition: A Krylov subspace collects successive applications of a linear operator to a starting vector.
+    endpoints:
+      from: $candidate
+      to: eigenvalues
+    edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Finite-dimensional iterative linear algebra.
+    mathematical_skeleton: K_m(A,b)=span{b,Ab,...,A^{m-1}b} encodes polynomial approximations to operator action.
+    scope: Finite-dimensional iterative linear algebra.
+    assumptions:
+      - chosen start vector
+    validity_regime: The stated claim is limited to finite-dimensional iterative linear algebra.
+    caveats:
+      - A deficient start vector may miss invariant subspaces.
+    counterexamples:
+      - If b is an eigenvector, the Krylov space never grows beyond dimension one.
+    source_id: trefethen-bau-1997
+    source_location: Lectures 32–35, pp. 243–275.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Krylov subspace and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A Krylov subspace collects successive
+        applications of a linear operator to a starting vector."
+    alternative_interpretations:
+      - A broader use of “Krylov subspace” outside the recorded scope.
+    search_query: Krylov subspace Numerical Linear Algebra definition theorem
+    challenge: "Boundary test: A deficient start vector may miss invariant subspaces."
+    response: The proposition is restricted to finite-dimensional iterative linear algebra, and the caveat remains
+      explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: gmres
+    proposition: GMRES chooses from a Krylov affine space the iterate with minimum Euclidean residual.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Nonsymmetric linear systems in exact arithmetic or controlled finite precision.
+    mathematical_skeleton: Arnoldi orthogonalization converts residual minimization to a small Hessenberg least-squares problem.
+    scope: Nonsymmetric linear systems in exact arithmetic or controlled finite precision.
+    assumptions:
+      - nonzero initial residual
+    validity_regime: The stated claim is limited to nonsymmetric linear systems in exact arithmetic or controlled
+      finite precision.
+    caveats:
+      - Memory and orthogonalization costs grow unless the method is restarted.
+    counterexamples:
+      - Restarted GMRES can stagnate even when unrestarted GMRES converges.
+    source_id: trefethen-bau-1997
+    source_location: Lecture 35, pp. 266–275.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops GMRES and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: GMRES chooses from a Krylov affine space the
+        iterate with minimum Euclidean residual."
+    alternative_interpretations:
+      - A broader use of “GMRES” outside the recorded scope.
+    search_query: GMRES Numerical Linear Algebra definition theorem
+    challenge: "Boundary test: Memory and orthogonalization costs grow unless the method is restarted."
+    response: The proposition is restricted to nonsymmetric linear systems in exact arithmetic or controlled
+      finite precision, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: condition-number
+    proposition: A condition number governs first-order amplification of input perturbations into solution changes.
+    endpoints:
+      from: $candidate
+      to: backward-error-analysis
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Well-posed finite-dimensional numerical problems near a specified input.
+    mathematical_skeleton: It is a local Lipschitz ratio, often expressed through operator norms or singular values.
+    scope: Well-posed finite-dimensional numerical problems near a specified input.
+    assumptions:
+      - specified norms
+      - small perturbations
+    validity_regime: The stated claim is limited to well-posed finite-dimensional numerical problems near a specified input.
+    caveats:
+      - Conditioning is a property of the problem, not the algorithm.
+    counterexamples:
+      - A backward-stable algorithm can still give a poor forward answer on an ill-conditioned problem.
+    source_id: trefethen-bau-1997
+    source_location: Lecture 12, pp. 89–97.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Condition number and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A condition number governs first-order
+        amplification of input perturbations into solution changes."
+    alternative_interpretations:
+      - A broader use of “Condition number” outside the recorded scope.
+    search_query: Condition number Numerical Linear Algebra definition theorem
+    challenge: "Boundary test: Conditioning is a property of the problem, not the algorithm."
+    response: The proposition is restricted to well-posed finite-dimensional numerical problems near a specified
+      input, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: stationary-distribution
+    proposition: A stationary distribution is unchanged by one transition of a Markov chain.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Finite-state Markov chains.
+    mathematical_skeleton: The probability row vector π satisfies πP = π.
+    scope: Finite-state Markov chains.
+    assumptions:
+      - stochastic transition matrix
+    validity_regime: The stated claim is limited to finite-state Markov chains.
+    caveats:
+      - Stationarity need not be unique without irreducibility.
+    counterexamples:
+      - A chain with two closed classes has multiple stationary distributions.
+    source_id: levin-peres-2017
+    source_location: Chapter 1, §§1.3–1.7, pp. 4–15.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Stationary distribution and the scoped structural
+      claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A stationary distribution is unchanged by one
+        transition of a Markov chain."
+    alternative_interpretations:
+      - A broader use of “Stationary distribution” outside the recorded scope.
+    search_query: Stationary distribution Markov Chains and Mixing Times, second edition definition theorem
+    challenge: "Boundary test: Stationarity need not be unique without irreducibility."
+    response: The proposition is restricted to finite-state Markov chains, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: detailed-balance
+    proposition: Detailed balance implies stationarity by pairing probability flow across each ordered state pair.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Finite reversible Markov chains.
+    mathematical_skeleton: The identities π(x)P(x,y)=π(y)P(y,x) sum to πP=π.
+    scope: Finite reversible Markov chains.
+    assumptions:
+      - nonnegative normalized π
+    validity_regime: The stated claim is limited to finite reversible Markov chains.
+    caveats:
+      - Stationarity does not imply detailed balance for nonreversible chains.
+    counterexamples:
+      - A directed cycle has a stationary law but violates pairwise reversibility.
+    source_id: levin-peres-2017
+    source_location: Chapter 1, §1.6, pp. 11–13.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Detailed balance and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Detailed balance implies stationarity by
+        pairing probability flow across each ordered state pair."
+    alternative_interpretations:
+      - A broader use of “Detailed balance” outside the recorded scope.
+    search_query: Detailed balance Markov Chains and Mixing Times, second edition definition theorem
+    challenge: "Boundary test: Stationarity does not imply detailed balance for nonreversible chains."
+    response: The proposition is restricted to finite reversible Markov chains, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: mixing-time
+    proposition: Mixing time quantifies how long a Markov chain takes to approach stationarity in total variation
+      distance.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    edge:
+      type: MEASURES-DISTANCE-TO
+      strength: theorem
+      context: Finite irreducible aperiodic chains.
+    mathematical_skeleton: It is the first time after which the worst-start total variation distance falls below a fixed threshold.
+    scope: Finite irreducible aperiodic chains.
+    assumptions:
+      - unique stationary distribution
+    validity_regime: The stated claim is limited to finite irreducible aperiodic chains.
+    caveats:
+      - The numerical value depends on the distance threshold convention.
+    counterexamples:
+      - A periodic chain need not converge in total variation.
+    source_id: levin-peres-2017
+    source_location: Chapter 4, §§4.1–4.5, pp. 47–65.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Mixing time and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Mixing time quantifies how long a Markov chain
+        takes to approach stationarity in total variation distance."
+    alternative_interpretations:
+      - A broader use of “Mixing time” outside the recorded scope.
+    search_query: Mixing time Markov Chains and Mixing Times, second edition definition theorem
+    challenge: "Boundary test: The numerical value depends on the distance threshold convention."
+    response: The proposition is restricted to finite irreducible aperiodic chains, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: coupling-method
+    proposition: A coupling bounds mixing by constructing two copies that eventually coalesce.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Markov chains admitting a jointly constructed coupling.
+    mathematical_skeleton: The coupling inequality bounds total variation by the probability that coupled states differ.
+    scope: Markov chains admitting a jointly constructed coupling.
+    assumptions:
+      - correct marginal transition laws
+    validity_regime: The stated claim is limited to markov chains admitting a jointly constructed coupling.
+    caveats:
+      - A poorly chosen coupling can give a vacuous bound.
+    counterexamples:
+      - Independent copies may meet far later than an optimized coupling.
+    source_id: levin-peres-2017
+    source_location: Chapter 5, §§5.1–5.4, pp. 66–78.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Coupling method and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A coupling bounds mixing by constructing two
+        copies that eventually coalesce."
+    alternative_interpretations:
+      - A broader use of “Coupling method” outside the recorded scope.
+    search_query: Coupling method Markov Chains and Mixing Times, second edition definition theorem
+    challenge: "Boundary test: A poorly chosen coupling can give a vacuous bound."
+    response: The proposition is restricted to markov chains admitting a jointly constructed coupling, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: metropolis-hastings-algorithm
+    proposition: Metropolis-Hastings constructs a reversible Markov chain with a prescribed stationary distribution.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Targets and proposals with compatible support.
+    mathematical_skeleton: An acceptance ratio corrects a proposal kernel so detailed balance holds for the target law.
+    scope: Targets and proposals with compatible support.
+    assumptions:
+      - computable density ratio
+      - irreducible proposal on target support
+    validity_regime: The stated claim is limited to targets and proposals with compatible support.
+    caveats:
+      - Stationarity does not guarantee rapid mixing.
+    counterexamples:
+      - A local proposal on a multimodal target can mix exponentially slowly.
+    source_id: levin-peres-2017
+    source_location: Chapter 3, §3.2, pp. 44–46.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Metropolis-Hastings algorithm and the scoped
+      structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Metropolis-Hastings constructs a reversible
+        Markov chain with a prescribed stationary distribution."
+    alternative_interpretations:
+      - A broader use of “Metropolis-Hastings algorithm” outside the recorded scope.
+    search_query: Metropolis-Hastings algorithm Markov Chains and Mixing Times, second edition definition theorem
+    challenge: "Boundary test: Stationarity does not guarantee rapid mixing."
+    response: The proposition is restricted to targets and proposals with compatible support, and the caveat
+      remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: transfer-function
+    proposition: A transfer function is the frequency-domain input-output representation of an LTI state-space
+      model under zero initial conditions.
+    endpoints:
+      from: $candidate
+      to: state-space-model
+    edge:
+      type: FIELD-DIALECT-OF
+      strength: strong-analogy
+      context: Finite-dimensional linear time-invariant systems.
+    mathematical_skeleton: G(s)=C(sI-A)^{-1}B+D maps transformed inputs to outputs.
+    scope: Finite-dimensional linear time-invariant systems.
+    assumptions:
+      - zero initial condition
+      - Laplace transform exists
+    validity_regime: The stated claim is limited to finite-dimensional linear time-invariant systems.
+    caveats:
+      - Different state realizations can share the same transfer function.
+    counterexamples:
+      - Unobservable internal modes do not appear in the transfer function.
+    source_id: astrom-murray-2020
+    source_location: Chapter 9, §§9.1–9.3.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Transfer function and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A transfer function is the frequency-domain
+        input-output representation of an LTI state-space model under zero initial conditions."
+    alternative_interpretations:
+      - A broader use of “Transfer function” outside the recorded scope.
+    search_query: Transfer function Feedback Systems, second edition definition theorem
+    challenge: "Boundary test: Different state realizations can share the same transfer function."
+    response: The proposition is restricted to finite-dimensional linear time-invariant systems, and the caveat
+      remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: controllability
+    proposition: Controllability determines whether inputs can steer a linear state-space model between states in
+      finite time.
+    endpoints:
+      from: $candidate
+      to: state-space-model
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Finite-dimensional continuous-time LTI systems.
+    mathematical_skeleton: Full rank of the controllability matrix characterizes reachability for finite-dimensional LTI systems.
+    scope: Finite-dimensional continuous-time LTI systems.
+    assumptions:
+      - unconstrained inputs
+    validity_regime: The stated claim is limited to finite-dimensional continuous-time LTI systems.
+    caveats:
+      - Input constraints can obstruct steering despite algebraic controllability.
+    counterexamples:
+      - A saturated actuator may not reach a distant state in the allotted time.
+    source_id: astrom-murray-2020
+    source_location: Chapter 6, §§6.1–6.3.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Controllability and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Controllability determines whether inputs can
+        steer a linear state-space model between states in finite time."
+    alternative_interpretations:
+      - A broader use of “Controllability” outside the recorded scope.
+    search_query: Controllability Feedback Systems, second edition definition theorem
+    challenge: "Boundary test: Input constraints can obstruct steering despite algebraic controllability."
+    response: The proposition is restricted to finite-dimensional continuous-time LTI systems, and the caveat
+      remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: observability
+    proposition: Observability determines whether an initial state is uniquely recoverable from input-output data.
+    endpoints:
+      from: $candidate
+      to: state-space-model
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Finite-dimensional continuous-time LTI systems.
+    mathematical_skeleton: Full rank of the observability matrix eliminates indistinguishable state directions.
+    scope: Finite-dimensional continuous-time LTI systems.
+    assumptions:
+      - known input
+      - noise-free finite observation interval
+    validity_regime: The stated claim is limited to finite-dimensional continuous-time LTI systems.
+    caveats:
+      - Poor observability can make reconstruction numerically fragile before rank is lost.
+    counterexamples:
+      - Nearly collinear output modes produce an ill-conditioned observability matrix.
+    source_id: astrom-murray-2020
+    source_location: Chapter 6, §§6.4–6.5.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Observability and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Observability determines whether an initial
+        state is uniquely recoverable from input-output data."
+    alternative_interpretations:
+      - A broader use of “Observability” outside the recorded scope.
+    search_query: Observability Feedback Systems, second edition definition theorem
+    challenge: "Boundary test: Poor observability can make reconstruction numerically fragile before rank is lost."
+    response: The proposition is restricted to finite-dimensional continuous-time LTI systems, and the caveat
+      remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: pid-controller
+    proposition: A PID controller combines proportional, integral, and derivative actions on tracking error.
+    endpoints:
+      from: $candidate
+      to: process-control
+    edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Single-loop feedback with implementable filtering and anti-windup provisions.
+    mathematical_skeleton: The control signal weights present error, accumulated error, and error rate.
+    scope: Single-loop feedback with implementable filtering and anti-windup provisions.
+    assumptions:
+      - measured tracking error
+    validity_regime: The stated claim is limited to single-loop feedback with implementable filtering and
+      anti-windup provisions.
+    caveats:
+      - Derivative action amplifies measurement noise and integral action can wind up.
+    counterexamples:
+      - An ideal differentiator driven by white measurement noise has unbounded output variance.
+    source_id: astrom-murray-2020
+    source_location: Chapter 11, §§11.1–11.5.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops PID controller and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A PID controller combines proportional,
+        integral, and derivative actions on tracking error."
+    alternative_interpretations:
+      - A broader use of “PID controller” outside the recorded scope.
+    search_query: PID controller Feedback Systems, second edition definition theorem
+    challenge: "Boundary test: Derivative action amplifies measurement noise and integral action can wind up."
+    response: The proposition is restricted to single-loop feedback with implementable filtering and anti-windup
+      provisions, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: nyquist-stability-criterion
+    proposition: The Nyquist criterion determines closed-loop stability from encirclements of the critical point
+      by the open-loop frequency response.
+    endpoints:
+      from: $candidate
+      to: stability
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Proper rational feedback loops with a specified contour convention.
+    mathematical_skeleton: The argument principle relates winding number to right-half-plane zeros of the
+      closed-loop characteristic function.
+    scope: Proper rational feedback loops with a specified contour convention.
+    assumptions:
+      - known open-loop unstable poles
+      - no unhandled contour singularities
+    validity_regime: The stated claim is limited to proper rational feedback loops with a specified contour convention.
+    caveats:
+      - Sign and contour conventions change the reported encirclement direction.
+    counterexamples:
+      - Ignoring an imaginary-axis pole invalidates the ordinary contour count.
+    source_id: astrom-murray-2020
+    source_location: Chapter 10, §§10.2–10.4.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Nyquist stability criterion and the scoped
+      structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The Nyquist criterion determines closed-loop
+        stability from encirclements of the critical point by the open-loop frequency response."
+    alternative_interpretations:
+      - A broader use of “Nyquist stability criterion” outside the recorded scope.
+    search_query: Nyquist stability criterion Feedback Systems, second edition definition theorem
+    challenge: "Boundary test: Sign and contour conventions change the reported encirclement direction."
+    response: The proposition is restricted to proper rational feedback loops with a specified contour convention,
+      and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: convolution
+    proposition: Convolution in time becomes multiplication under the Fourier transform when both sides are defined.
+    endpoints:
+      from: $candidate
+      to: fourier-analysis
+    edge:
+      type: TRANSFORM-DUAL
+      strength: theorem
+      context: Integrable signals or generalized-signal settings with justified transforms.
+    mathematical_skeleton: The transform of x*h equals the pointwise product of the transforms of x and h.
+    scope: Integrable signals or generalized-signal settings with justified transforms.
+    assumptions:
+      - transform and convolution exist
+    validity_regime: The stated claim is limited to integrable signals or generalized-signal settings with
+      justified transforms.
+    caveats:
+      - Distributional signals require a generalized formulation.
+    counterexamples:
+      - Two arbitrary nonintegrable functions need not have a classical convolution.
+    source_id: siebert-signals-1986
+    source_location: Chapter 6, convolutional representations of continuous- and discrete-time systems.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Convolution and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Convolution in time becomes multiplication
+        under the Fourier transform when both sides are defined."
+    alternative_interpretations:
+      - A broader use of “Convolution” outside the recorded scope.
+    search_query: Convolution Circuits, Signals, and Systems definition theorem
+    challenge: "Boundary test: Distributional signals require a generalized formulation."
+    response: The proposition is restricted to integrable signals or generalized-signal settings with justified
+      transforms, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: impulse-response
+    proposition: An LTI system impulse response is the Green-function kernel for its input-output operator.
+    endpoints:
+      from: $candidate
+      to: greens-function
+    edge:
+      type: FIELD-DIALECT-OF
+      strength: identity
+      context: Linear time-invariant systems with compatible boundary or initial conventions.
+    mathematical_skeleton: Translation invariance makes the response to an input the convolution with the response
+      to a unit impulse.
+    scope: Linear time-invariant systems with compatible boundary or initial conventions.
+    assumptions:
+      - linearity
+      - time invariance
+    validity_regime: The stated claim is limited to linear time-invariant systems with compatible boundary or
+      initial conventions.
+    caveats:
+      - Boundary-dependent Green functions need not be translation invariant.
+    counterexamples:
+      - A time-varying system requires a two-time kernel rather than a single impulse response.
+    source_id: siebert-signals-1986
+    source_location: Chapter 6, unit-sample response and discrete-time convolution.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Impulse response and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: An LTI system impulse response is the
+        Green-function kernel for its input-output operator."
+    alternative_interpretations:
+      - A broader use of “Impulse response” outside the recorded scope.
+    search_query: Impulse response Circuits, Signals, and Systems definition theorem
+    challenge: "Boundary test: Boundary-dependent Green functions need not be translation invariant."
+    response: The proposition is restricted to linear time-invariant systems with compatible boundary or initial
+      conventions, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: sampling-theorem
+    proposition: A bandlimited signal is determined by uniformly spaced samples taken above twice its highest frequency.
+    endpoints:
+      from: $candidate
+      to: digital-communications
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Exactly bandlimited continuous-time signals with ideal uniform sampling.
+    mathematical_skeleton: Spectral replicas created by sampling remain disjoint above the Nyquist rate and can be ideally filtered.
+    scope: Exactly bandlimited continuous-time signals with ideal uniform sampling.
+    assumptions:
+      - strict bandlimit
+      - sampling clock without jitter
+    validity_regime: The stated claim is limited to exactly bandlimited continuous-time signals with ideal uniform sampling.
+    caveats:
+      - Real signals are rarely exactly bandlimited and ideal reconstruction is noncausal.
+    counterexamples:
+      - A sinusoid above the Nyquist frequency aliases to a lower sampled frequency.
+    source_id: siebert-signals-1986
+    source_location: Chapter 12, sampling in time and frequency.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Sampling theorem and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A bandlimited signal is determined by
+        uniformly spaced samples taken above twice its highest frequency."
+    alternative_interpretations:
+      - A broader use of “Sampling theorem” outside the recorded scope.
+    search_query: Sampling theorem Circuits, Signals, and Systems definition theorem
+    challenge: "Boundary test: Real signals are rarely exactly bandlimited and ideal reconstruction is noncausal."
+    response: The proposition is restricted to exactly bandlimited continuous-time signals with ideal uniform
+      sampling, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: z-transform
+    proposition: The Z-transform represents a discrete sequence as a complex power series.
+    endpoints:
+      from: $candidate
+      to: integral-transforms
+    edge:
+      type: IS-A
+      strength: special-case
+      context: One- or two-sided discrete-time sequences with a stated region of convergence.
+    mathematical_skeleton: X(z)=Σ x[n]z^{-n} converts shifts and convolution into algebraic factors and products.
+    scope: One- or two-sided discrete-time sequences with a stated region of convergence.
+    assumptions:
+      - nonempty region of convergence
+    validity_regime: The stated claim is limited to one- or two-sided discrete-time sequences with a stated region
+      of convergence.
+    caveats:
+      - The algebraic expression alone does not determine the sequence without its convergence region.
+    counterexamples:
+      - The same rational function can encode causal or anticausal sequences.
+    source_id: siebert-signals-1986
+    source_location: Chapter 5, unilateral Z-transform and its applications.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Z-transform and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The Z-transform represents a discrete sequence
+        as a complex power series."
+    alternative_interpretations:
+      - A broader use of “Z-transform” outside the recorded scope.
+    search_query: Z-transform Circuits, Signals, and Systems definition theorem
+    challenge: "Boundary test: The algebraic expression alone does not determine the sequence without its
+      convergence region."
+    response: The proposition is restricted to one- or two-sided discrete-time sequences with a stated region of
+      convergence, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: aliasing
+    proposition: Aliasing occurs when sampling makes distinct continuous frequencies indistinguishable.
+    endpoints:
+      from: digital-communications
+      to: $candidate
+    edge:
+      type: FAILS-WHEN
+      strength: theorem
+      context: Uniform sampling of continuous-time sinusoids.
+    mathematical_skeleton: Frequency components separated by an integer multiple of the sampling frequency map to identical samples.
+    scope: Uniform sampling of continuous-time sinusoids.
+    assumptions:
+      - fixed sampling interval
+    validity_regime: The stated claim is limited to uniform sampling of continuous-time sinusoids.
+    caveats:
+      - Antialias filtering changes the input before sampling rather than undoing aliasing afterward.
+    counterexamples:
+      - Two sinusoids separated by the sampling frequency have identical sample values.
+    source_id: siebert-signals-1986
+    source_location: Chapter 12, sampling in time and frequency.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Aliasing and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Aliasing occurs when sampling makes distinct
+        continuous frequencies indistinguishable."
+    alternative_interpretations:
+      - A broader use of “Aliasing” outside the recorded scope.
+    search_query: Aliasing Circuits, Signals, and Systems definition theorem
+    challenge: "Boundary test: Antialias filtering changes the input before sampling rather than undoing aliasing
+      afterward."
+    response: The proposition is restricted to uniform sampling of continuous-time sinusoids, and the caveat
+      remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: inverse-problem
+    proposition: An inverse problem infers latent causes or parameters from indirect observed effects.
+    endpoints:
+      from: $candidate
+      to: computational-imaging
+    edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Linear discrete inverse problems arising from measurement operators.
+    mathematical_skeleton: A forward operator maps an unknown x to data b, and inversion seeks x from noisy b.
+    scope: Linear discrete inverse problems arising from measurement operators.
+    assumptions:
+      - specified forward model
+    validity_regime: The stated claim is limited to linear discrete inverse problems arising from measurement operators.
+    caveats:
+      - Nonidentifiability can persist even with noiseless data.
+    counterexamples:
+      - A forward operator with a nontrivial nullspace maps different unknowns to the same data.
+    source_id: hansen-inverse-2010
+    source_location: Chapter 1, §§1.1–1.4, pp. 1–12.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Inverse problem and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: An inverse problem infers latent causes or
+        parameters from indirect observed effects."
+    alternative_interpretations:
+      - A broader use of “Inverse problem” outside the recorded scope.
+    search_query: "Inverse problem Discrete Inverse Problems: Insight and Algorithms definition theorem"
+    challenge: "Boundary test: Nonidentifiability can persist even with noiseless data."
+    response: The proposition is restricted to linear discrete inverse problems arising from measurement
+      operators, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: ill-posed-problem
+    proposition: An ill-posed inverse problem lacks existence, uniqueness, or stable dependence on data.
+    endpoints:
+      from: stability
+      to: $candidate
+    edge:
+      type: FAILS-WHEN
+      strength: special-case
+      context: Linear inverse problems in finite discretizations or compact-operator limits.
+    mathematical_skeleton: Small singular values or nonclosed range cause small data perturbations to produce
+      large solution changes.
+    scope: Linear inverse problems in finite discretizations or compact-operator limits.
+    assumptions:
+      - chosen solution and data norms
+    validity_regime: The stated claim is limited to linear inverse problems in finite discretizations or
+      compact-operator limits.
+    caveats:
+      - Finite matrices are formally continuous even when numerically ill-conditioned.
+    counterexamples:
+      - A well-conditioned orthogonal forward operator defines a well-posed inverse problem.
+    source_id: hansen-inverse-2010
+    source_location: Chapter 2, §§2.1–2.6, pp. 13–34.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Ill-posed problem and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: An ill-posed inverse problem lacks existence,
+        uniqueness, or stable dependence on data."
+    alternative_interpretations:
+      - A broader use of “Ill-posed problem” outside the recorded scope.
+    search_query: "Ill-posed problem Discrete Inverse Problems: Insight and Algorithms definition theorem"
+    challenge: "Boundary test: Finite matrices are formally continuous even when numerically ill-conditioned."
+    response: The proposition is restricted to linear inverse problems in finite discretizations or
+      compact-operator limits, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: regularization
+    proposition: Regularization trades exact data fit for stability by suppressing poorly determined solution components.
+    endpoints:
+      from: $candidate
+      to: stability
+    edge:
+      type: GOVERNS
+      strength: strong-analogy
+      context: Noisy linear discrete inverse problems.
+    mathematical_skeleton: A parameterized approximation filters directions that amplify noise.
+    scope: Noisy linear discrete inverse problems.
+    assumptions:
+      - noise or prior scale
+    validity_regime: The stated claim is limited to noisy linear discrete inverse problems.
+    caveats:
+      - Too much regularization erases real structure and too little amplifies noise.
+    counterexamples:
+      - Taking the regularization parameter to infinity can collapse the estimate toward a trivial prior.
+    source_id: hansen-inverse-2010
+    source_location: Chapter 4, §§4.1–4.7, pp. 53–83.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Regularization and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Regularization trades exact data fit for
+        stability by suppressing poorly determined solution components."
+    alternative_interpretations:
+      - A broader use of “Regularization” outside the recorded scope.
+    search_query: "Regularization Discrete Inverse Problems: Insight and Algorithms definition theorem"
+    challenge: "Boundary test: Too much regularization erases real structure and too little amplifies noise."
+    response: The proposition is restricted to noisy linear discrete inverse problems, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: tikhonov-regularization
+    proposition: Tikhonov regularization minimizes data misfit plus a weighted quadratic penalty.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: IS-A
+      strength: special-case
+      context: Linear inverse problems with a chosen penalty operator.
+    mathematical_skeleton: The solution balances ||Ax-b||² against λ²||Lx||².
+    scope: Linear inverse problems with a chosen penalty operator.
+    assumptions:
+      - positive regularization parameter
+    validity_regime: The stated claim is limited to linear inverse problems with a chosen penalty operator.
+    caveats:
+      - The result depends materially on the penalty and parameter choice.
+    counterexamples:
+      - An identity penalty oversmooths a solution whose meaningful structure lies in a rough component.
+    source_id: hansen-inverse-2010
+    source_location: Chapter 4, §4.4, pp. 65–70.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Tikhonov regularization and the scoped structural
+      claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Tikhonov regularization minimizes data misfit
+        plus a weighted quadratic penalty."
+    alternative_interpretations:
+      - A broader use of “Tikhonov regularization” outside the recorded scope.
+    search_query: "Tikhonov regularization Discrete Inverse Problems: Insight and Algorithms definition theorem"
+    challenge: "Boundary test: The result depends materially on the penalty and parameter choice."
+    response: The proposition is restricted to linear inverse problems with a chosen penalty operator, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: truncated-singular-value-decomposition
+    proposition: Truncated SVD regularizes inversion by discarding components associated with small singular values.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: IS-A
+      strength: special-case
+      context: Linear inverse problems with an informative spectral ordering.
+    mathematical_skeleton: Only singular components above a selected index or threshold are inverted.
+    scope: Linear inverse problems with an informative spectral ordering.
+    assumptions:
+      - available SVD
+      - selected truncation level
+    validity_regime: The stated claim is limited to linear inverse problems with an informative spectral ordering.
+    caveats:
+      - A hard cutoff can introduce artifacts and is expensive at large scale.
+    counterexamples:
+      - Signal aligned with a discarded singular vector is lost completely.
+    source_id: hansen-inverse-2010
+    source_location: Chapter 4, §4.2, pp. 56–61.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Truncated singular value decomposition and the
+      scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Truncated SVD regularizes inversion by
+        discarding components associated with small singular values."
+    alternative_interpretations:
+      - A broader use of “Truncated singular value decomposition” outside the recorded scope.
+    search_query: "Truncated singular value decomposition Discrete Inverse Problems: Insight and Algorithms
+      definition theorem"
+    challenge: "Boundary test: A hard cutoff can introduce artifacts and is expensive at large scale."
+    response: The proposition is restricted to linear inverse problems with an informative spectral ordering, and
+      the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: bellman-equation
+    proposition: The Bellman equation represents optimal sequential decision making through a one-step recursion in value.
+    endpoints:
+      from: optimization
+      to: $candidate
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Finite-horizon problems and discounted or proper infinite-horizon variants.
+    mathematical_skeleton: Optimal cost equals the best immediate cost plus the value of the successor state.
+    scope: Finite-horizon problems and discounted or proper infinite-horizon variants.
+    assumptions:
+      - Markov state description
+      - optimal substructure
+    validity_regime: The stated claim is limited to finite-horizon problems and discounted or proper
+      infinite-horizon variants.
+    caveats:
+      - Undiscounted improper problems may have multiple or pathological fixed points.
+    counterexamples:
+      - A negative-cost cycle makes total cost unbounded below.
+    source_id: bertsekas-dp-2017
+    source_location: Volume I, Chapter 1, §§1.2–1.4.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Bellman equation and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The Bellman equation represents optimal
+        sequential decision making through a one-step recursion in value."
+    alternative_interpretations:
+      - A broader use of “Bellman equation” outside the recorded scope.
+    search_query: Bellman equation Dynamic Programming and Optimal Control, fourth edition definition theorem
+    challenge: "Boundary test: Undiscounted improper problems may have multiple or pathological fixed points."
+    response: The proposition is restricted to finite-horizon problems and discounted or proper infinite-horizon
+      variants, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: dynamic-programming
+    proposition: Dynamic programming solves sequential optimization by decomposing it into state-indexed subproblems.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: IS-A
+      strength: special-case
+      context: Problems with a sufficient Markov state and separable stage costs.
+    mathematical_skeleton: The principle of optimality yields recursive value functions and policies.
+    scope: Problems with a sufficient Markov state and separable stage costs.
+    assumptions:
+      - state summarizes relevant history
+    validity_regime: The stated claim is limited to problems with a sufficient Markov state and separable stage costs.
+    caveats:
+      - State dimension can make exact computation infeasible.
+    counterexamples:
+      - A continuous high-dimensional state space produces the curse of dimensionality.
+    source_id: bertsekas-dp-2017
+    source_location: Volume I, Chapter 1, §1.3; Chapter 2, §§2.1–2.6.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Dynamic programming and the scoped structural
+      claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Dynamic programming solves sequential
+        optimization by decomposing it into state-indexed subproblems."
+    alternative_interpretations:
+      - A broader use of “Dynamic programming” outside the recorded scope.
+    search_query: Dynamic programming Dynamic Programming and Optimal Control, fourth edition definition theorem
+    challenge: "Boundary test: State dimension can make exact computation infeasible."
+    response: The proposition is restricted to problems with a sufficient Markov state and separable stage costs,
+      and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: markov-decision-process
+    proposition: A Markov decision process models controlled stochastic transitions with state-dependent rewards or costs.
+    endpoints:
+      from: $candidate
+      to: state-space-model
+    edge:
+      type: IS-A
+      strength: theorem
+      context: Finite-state finite-action MDPs under a stated horizon and criterion.
+    mathematical_skeleton: A policy selects actions and induces a controlled Markov kernel whose accumulated criterion is optimized.
+    scope: Finite-state finite-action MDPs under a stated horizon and criterion.
+    assumptions:
+      - Markov transition law
+    validity_regime: The stated claim is limited to finite-state finite-action MDPs under a stated horizon and criterion.
+    caveats:
+      - Partial observability requires a belief-state reformulation.
+    counterexamples:
+      - If the current observation is not a sufficient state, ordinary MDP policies can be suboptimal.
+    source_id: bertsekas-dp-2017
+    source_location: Volume I, Chapter 1, §§1.1–1.3; Chapter 2.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Markov decision process and the scoped structural
+      claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A Markov decision process models controlled
+        stochastic transitions with state-dependent rewards or costs."
+    alternative_interpretations:
+      - A broader use of “Markov decision process” outside the recorded scope.
+    search_query: Markov decision process Dynamic Programming and Optimal Control, fourth edition definition theorem
+    challenge: "Boundary test: Partial observability requires a belief-state reformulation."
+    response: The proposition is restricted to finite-state finite-action MDPs under a stated horizon and
+      criterion, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: value-iteration
+    proposition: Value iteration repeatedly applies the Bellman optimality operator to approximate an MDP value function.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Finite discounted MDPs.
+    mathematical_skeleton: Discounting makes the Bellman operator a contraction with the optimal value as unique fixed point.
+    scope: Finite discounted MDPs.
+    assumptions:
+      - discount factor below one
+    validity_regime: The stated claim is limited to finite discounted MDPs.
+    caveats:
+      - Convergence can be slow when the discount factor is close to one.
+    counterexamples:
+      - Undiscounted multichain problems need not satisfy the same contraction proof.
+    source_id: bertsekas-dp-2017
+    source_location: Volume I, Chapter 2, §§2.2–2.4.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Value iteration and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Value iteration repeatedly applies the Bellman
+        optimality operator to approximate an MDP value function."
+    alternative_interpretations:
+      - A broader use of “Value iteration” outside the recorded scope.
+    search_query: Value iteration Dynamic Programming and Optimal Control, fourth edition definition theorem
+    challenge: "Boundary test: Convergence can be slow when the discount factor is close to one."
+    response: The proposition is restricted to finite discounted MDPs, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: policy-iteration
+    proposition: Policy iteration alternates exact policy evaluation with greedy policy improvement.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Finite discounted MDPs with exact arithmetic.
+    mathematical_skeleton: Each improvement weakly lowers cost until a policy is Bellman optimal.
+    scope: Finite discounted MDPs with exact arithmetic.
+    assumptions:
+      - finite policy set
+    validity_regime: The stated claim is limited to finite discounted MDPs with exact arithmetic.
+    caveats:
+      - Approximate evaluation can break monotone improvement without error control.
+    counterexamples:
+      - A noisy value estimate can choose a worse greedy action.
+    source_id: bertsekas-dp-2017
+    source_location: Volume I, Chapter 2, §§2.5–2.6.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Policy iteration and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Policy iteration alternates exact policy
+        evaluation with greedy policy improvement."
+    alternative_interpretations:
+      - A broader use of “Policy iteration” outside the recorded scope.
+    search_query: Policy iteration Dynamic Programming and Optimal Control, fourth edition definition theorem
+    challenge: "Boundary test: Approximate evaluation can break monotone improvement without error control."
+    response: The proposition is restricted to finite discounted MDPs with exact arithmetic, and the caveat
+      remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: nash-equilibrium
+    proposition: A Nash equilibrium is a strategy profile in which no player benefits from a unilateral deviation.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: REPRESENTED-BY
+      strength: strong-analogy
+      context: Finite strategic games, allowing mixed strategies when stated.
+    mathematical_skeleton: Each component is a best response to the others, giving a coupled fixed-point condition.
+    scope: Finite strategic games, allowing mixed strategies when stated.
+    assumptions:
+      - common knowledge of the game
+    validity_regime: The stated claim is limited to finite strategic games, allowing mixed strategies when stated.
+    caveats:
+      - Equilibrium may be nonunique and does not imply efficiency.
+    counterexamples:
+      - The prisoner dilemma equilibrium is Pareto dominated.
+    source_id: osborne-rubinstein-1994
+    source_location: Part I, Chapter 2, pp. 11–42.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Nash equilibrium and the scoped structural claim
+      recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A Nash equilibrium is a strategy profile in
+        which no player benefits from a unilateral deviation."
+    alternative_interpretations:
+      - A broader use of “Nash equilibrium” outside the recorded scope.
+    search_query: Nash equilibrium A Course in Game Theory definition theorem
+    challenge: "Boundary test: Equilibrium may be nonunique and does not imply efficiency."
+    response: The proposition is restricted to finite strategic games, allowing mixed strategies when stated, and
+      the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: mixed-strategy
+    proposition: A mixed strategy is a probability distribution over a player’s pure actions.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Finite strategic games.
+    mathematical_skeleton: Expected utility extends multilinearly from pure action profiles to product distributions.
+    scope: Finite strategic games.
+    assumptions:
+      - randomization independently implemented unless correlation is modeled
+    validity_regime: The stated claim is limited to finite strategic games.
+    caveats:
+      - Mixing can represent deliberate randomization or population frequencies, which are different
+        interpretations.
+    counterexamples:
+      - A correlated device produces joint distributions not expressible as independent mixed strategies.
+    source_id: osborne-rubinstein-1994
+    source_location: Part I, Chapter 3, pp. 43–78.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Mixed strategy and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A mixed strategy is a probability distribution
+        over a player’s pure actions."
+    alternative_interpretations:
+      - A broader use of “Mixed strategy” outside the recorded scope.
+    search_query: Mixed strategy A Course in Game Theory definition theorem
+    challenge: "Boundary test: Mixing can represent deliberate randomization or population frequencies, which are
+      different interpretations."
+    response: The proposition is restricted to finite strategic games, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: minimax-theorem
+    proposition: The minimax theorem equates maximin and minimax values in finite two-player zero-sum games with
+      mixed strategies.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Finite two-player zero-sum games.
+    mathematical_skeleton: Convexification by probability simplices permits interchange of max and min.
+    scope: Finite two-player zero-sum games.
+    assumptions:
+      - mixed strategies allowed
+    validity_regime: The stated claim is limited to finite two-player zero-sum games.
+    caveats:
+      - The equality generally fails outside zero-sum or suitable convex-concave settings.
+    counterexamples:
+      - A general-sum bimatrix game has no single opposing value to equate.
+    source_id: osborne-rubinstein-1994
+    source_location: Part I, Chapter 3, §§3.2–3.3.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Minimax theorem and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The minimax theorem equates maximin and
+        minimax values in finite two-player zero-sum games with mixed strategies."
+    alternative_interpretations:
+      - A broader use of “Minimax theorem” outside the recorded scope.
+    search_query: Minimax theorem A Course in Game Theory definition theorem
+    challenge: "Boundary test: The equality generally fails outside zero-sum or suitable convex-concave settings."
+    response: The proposition is restricted to finite two-player zero-sum games, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: correlated-equilibrium
+    proposition: Every mixed-strategy Nash equilibrium induces a correlated equilibrium, but correlation permits
+      additional joint distributions.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: REPRESENTED-BY
+      strength: strong-analogy
+      context: Finite strategic games.
+    mathematical_skeleton: Obedience inequalities condition each player’s deviation payoff on a private recommendation.
+    scope: Finite strategic games.
+    assumptions:
+      - trusted correlation device
+    validity_regime: The stated claim is limited to finite strategic games.
+    caveats:
+      - A correlated equilibrium is not generally a Nash equilibrium in independent mixed strategies.
+    counterexamples:
+      - Recommendation signals can correlate actions in a way no product distribution can match.
+    source_id: osborne-rubinstein-1994
+    source_location: Part I, Chapter 3, correlated strategic recommendations.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Correlated equilibrium and the scoped structural
+      claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Every mixed-strategy Nash equilibrium induces
+        a correlated equilibrium, but correlation permits additional joint distributions."
+    alternative_interpretations:
+      - A broader use of “Correlated equilibrium” outside the recorded scope.
+    search_query: Correlated equilibrium A Course in Game Theory definition theorem
+    challenge: "Boundary test: A correlated equilibrium is not generally a Nash equilibrium in independent mixed
+      strategies."
+    response: The proposition is restricted to finite strategic games, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: subgame-perfect-equilibrium
+    proposition: A subgame-perfect equilibrium is a Nash equilibrium in every subgame of an extensive-form game.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: REPRESENTED-BY
+      strength: special-case
+      context: Finite extensive games with proper subgames.
+    mathematical_skeleton: Sequential rationality removes noncredible threats by imposing equilibrium after every
+      history defining a subgame.
+    scope: Finite extensive games with proper subgames.
+    assumptions:
+      - well-defined continuation games
+    validity_regime: The stated claim is limited to finite extensive games with proper subgames.
+    caveats:
+      - Games of imperfect information can have few or no proper subgames, requiring stronger refinements.
+    counterexamples:
+      - A Nash profile supported by an incredible off-path threat is not subgame perfect.
+    source_id: osborne-rubinstein-1994
+    source_location: Part II, Chapter 6, pp. 97–124.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Subgame-perfect equilibrium and the scoped
+      structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A subgame-perfect equilibrium is a Nash
+        equilibrium in every subgame of an extensive-form game."
+    alternative_interpretations:
+      - A broader use of “Subgame-perfect equilibrium” outside the recorded scope.
+    search_query: Subgame-perfect equilibrium A Course in Game Theory definition theorem
+    challenge: "Boundary test: Games of imperfect information can have few or no proper subgames, requiring
+      stronger refinements."
+    response: The proposition is restricted to finite extensive games with proper subgames, and the caveat remains
+      explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: random-graph
+    proposition: A random graph is a probability distribution over graph-valued outcomes.
+    endpoints:
+      from: $candidate
+      to: graph-laplacian
+    edge:
+      type: REPRESENTED-BY
+      strength: special-case
+      context: Finite random graph ensembles.
+    mathematical_skeleton: Edges, degrees, or other structure are sampled according to a specified generative law.
+    scope: Finite random graph ensembles.
+    assumptions:
+      - explicit probability model
+    validity_regime: The stated claim is limited to finite random graph ensembles.
+    caveats:
+      - Different ensembles with similar mean degree can have different higher-order structure.
+    counterexamples:
+      - A configuration model and an Erdos-Renyi graph can share mean degree but differ in degree variance.
+    source_id: newman-networks-2018
+    source_location: Chapter 11, random graphs.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Random graph and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A random graph is a probability distribution
+        over graph-valued outcomes."
+    alternative_interpretations:
+      - A broader use of “Random graph” outside the recorded scope.
+    search_query: Random graph Networks, second edition definition theorem
+    challenge: "Boundary test: Different ensembles with similar mean degree can have different higher-order structure."
+    response: The proposition is restricted to finite random graph ensembles, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: configuration-model
+    proposition: The configuration model samples graphs constrained by a prescribed degree sequence or degree
+      distribution.
+    endpoints:
+      from: $candidate
+      to: epidemic-modeling
+    edge:
+      type: APPLIED-IN
+      strength: special-case
+      context: Sparse undirected networks under the specified simple-graph or multigraph convention.
+    mathematical_skeleton: Half-edges are paired at random, producing a null model that controls degrees.
+    scope: Sparse undirected networks under the specified simple-graph or multigraph convention.
+    assumptions:
+      - graphical or pairable degree sequence
+    validity_regime: The stated claim is limited to sparse undirected networks under the specified simple-graph or
+      multigraph convention.
+    caveats:
+      - The basic pairing construction permits self-loops and parallel edges.
+    counterexamples:
+      - Conditioning on simplicity can materially change probabilities for heavy-tailed degrees.
+    source_id: newman-networks-2018
+    source_location: Chapter 12, the configuration model.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Configuration model and the scoped structural
+      claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The configuration model samples graphs
+        constrained by a prescribed degree sequence or degree distribution."
+    alternative_interpretations:
+      - A broader use of “Configuration model” outside the recorded scope.
+    search_query: Configuration model Networks, second edition definition theorem
+    challenge: "Boundary test: The basic pairing construction permits self-loops and parallel edges."
+    response: The proposition is restricted to sparse undirected networks under the specified simple-graph or
+      multigraph convention, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: community-detection
+    proposition: Spectral community detection uses graph-matrix eigenvectors to find groups with unusually dense
+      internal connection.
+    endpoints:
+      from: $candidate
+      to: graph-laplacian
+    edge:
+      type: SOLVED-BY
+      strength: strong-analogy
+      context: Networks whose chosen objective has meaningful mesoscale structure.
+    mathematical_skeleton: A partition is extracted from low-dimensional spectral coordinates associated with
+      Laplacian or modularity matrices.
+    scope: Networks whose chosen objective has meaningful mesoscale structure.
+    assumptions:
+      - specified null model or cut objective
+    validity_regime: The stated claim is limited to networks whose chosen objective has meaningful mesoscale structure.
+    caveats:
+      - Different objectives define different communities and can have resolution limits.
+    counterexamples:
+      - Modularity optimization can merge small well-defined groups in a large network.
+    source_id: newman-networks-2018
+    source_location: Chapter 14, community structure.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Community detection and the scoped structural
+      claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Spectral community detection uses graph-matrix
+        eigenvectors to find groups with unusually dense internal connection."
+    alternative_interpretations:
+      - A broader use of “Community detection” outside the recorded scope.
+    search_query: Community detection Networks, second edition definition theorem
+    challenge: "Boundary test: Different objectives define different communities and can have resolution limits."
+    response: The proposition is restricted to networks whose chosen objective has meaningful mesoscale structure,
+      and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: network-centrality
+    proposition: Network centrality assigns node scores intended to quantify a chosen notion of structural importance.
+    endpoints:
+      from: pagerank
+      to: $candidate
+    edge:
+      type: IS-A
+      strength: strong-analogy
+      context: Finite networks with a declared centrality definition.
+    mathematical_skeleton: Degree, paths, eigenvectors, or random-walk visitation induce distinct score functionals.
+    scope: Finite networks with a declared centrality definition.
+    assumptions:
+      - chosen graph direction and weighting conventions
+    validity_regime: The stated claim is limited to finite networks with a declared centrality definition.
+    caveats:
+      - Centrality is not a single invariant notion of importance.
+    counterexamples:
+      - A bridge node can have high betweenness but low eigenvector centrality.
+    source_id: newman-networks-2018
+    source_location: Chapter 7, measures and metrics.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Network centrality and the scoped structural
+      claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Network centrality assigns node scores
+        intended to quantify a chosen notion of structural importance."
+    alternative_interpretations:
+      - A broader use of “Network centrality” outside the recorded scope.
+    search_query: Network centrality Networks, second edition definition theorem
+    challenge: "Boundary test: Centrality is not a single invariant notion of importance."
+    response: The proposition is restricted to finite networks with a declared centrality definition, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: percolation-on-networks
+    proposition: Network percolation and epidemic models share threshold behavior governed by connectivity and
+      transmissibility.
+    endpoints:
+      from: $candidate
+      to: epidemic-modeling
+    edge:
+      type: SAME-SKELETON
+      strength: strong-analogy
+      context: Locally tree-like networks and bond-percolation mappings of final outbreak size.
+    mathematical_skeleton: Occupied edges or successful transmissions generate connected clusters through the same
+      branching structure in suitable SIR limits.
+    scope: Locally tree-like networks and bond-percolation mappings of final outbreak size.
+    assumptions:
+      - independent transmission or occupation in the mapping
+    validity_regime: The stated claim is limited to locally tree-like networks and bond-percolation mappings of
+      final outbreak size.
+    caveats:
+      - Temporal correlations and reinfection break the simple static percolation equivalence.
+    counterexamples:
+      - SIS dynamics can persist without corresponding to a one-shot occupied cluster.
+    source_id: newman-networks-2018
+    source_location: Chapter 15, percolation and network resilience.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Percolation on networks and the scoped structural
+      claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Network percolation and epidemic models share
+        threshold behavior governed by connectivity and transmissibility."
+    alternative_interpretations:
+      - A broader use of “Percolation on networks” outside the recorded scope.
+    search_query: Percolation on networks Networks, second edition definition theorem
+    challenge: "Boundary test: Temporal correlations and reinfection break the simple static percolation equivalence."
+    response: The proposition is restricted to locally tree-like networks and bond-percolation mappings of final
+      outbreak size, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: martingale
+    proposition: A martingale has conditional expected future value equal to its present value relative to a filtration.
+    endpoints:
+      from: $candidate
+      to: option-pricing
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Integrable discrete-time processes adapted to a filtration.
+    mathematical_skeleton: E[X_{n+1}|F_n]=X_n encodes fair-game evolution under the chosen information flow.
+    scope: Integrable discrete-time processes adapted to a filtration.
+    assumptions:
+      - integrability
+      - adaptedness
+    validity_regime: The stated claim is limited to integrable discrete-time processes adapted to a filtration.
+    caveats:
+      - Changing probability measure or numeraire changes the martingale property.
+    counterexamples:
+      - A process with positive conditional drift is a submartingale, not a martingale.
+    source_id: durrett-probability-2019
+    source_location: Chapter 5, martingales.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Martingale and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A martingale has conditional expected future
+        value equal to its present value relative to a filtration."
+    alternative_interpretations:
+      - A broader use of “Martingale” outside the recorded scope.
+    search_query: "Martingale Probability: Theory and Examples, fifth edition definition theorem"
+    challenge: "Boundary test: Changing probability measure or numeraire changes the martingale property."
+    response: The proposition is restricted to integrable discrete-time processes adapted to a filtration, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: brownian-motion
+    proposition: Brownian motion is the canonical continuous-path process with independent stationary Gaussian increments.
+    endpoints:
+      from: $candidate
+      to: diffusion
+    edge:
+      type: SAME-SKELETON
+      strength: theorem
+      context: Standard Brownian motion in Euclidean space.
+    mathematical_skeleton: Increment variance grows linearly in time, yielding the heat semigroup and diffusion scaling.
+    scope: Standard Brownian motion in Euclidean space.
+    assumptions:
+      - continuous paths
+      - Gaussian independent increments
+    validity_regime: The stated claim is limited to standard Brownian motion in Euclidean space.
+    caveats:
+      - Physical diffusion models may include drift, boundaries, or anomalous scaling.
+    counterexamples:
+      - A Levy flight has jumps and is not Brownian despite spreading randomly.
+    source_id: durrett-probability-2019
+    source_location: Chapter 7, Brownian motion, §§7.1–7.8.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Brownian motion and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Brownian motion is the canonical
+        continuous-path process with independent stationary Gaussian increments."
+    alternative_interpretations:
+      - A broader use of “Brownian motion” outside the recorded scope.
+    search_query: "Brownian motion Probability: Theory and Examples, fifth edition definition theorem"
+    challenge: "Boundary test: Physical diffusion models may include drift, boundaries, or anomalous scaling."
+    response: The proposition is restricted to standard Brownian motion in Euclidean space, and the caveat remains
+      explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: poisson-process
+    proposition: A Poisson process models independent events arriving at a constant rate.
+    endpoints:
+      from: $candidate
+      to: epidemic-modeling
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Homogeneous point processes on the nonnegative time line.
+    mathematical_skeleton: Counts have Poisson increments and exponential waiting times with the memoryless property.
+    scope: Homogeneous point processes on the nonnegative time line.
+    assumptions:
+      - constant rate
+      - independent increments
+    validity_regime: The stated claim is limited to homogeneous point processes on the nonnegative time line.
+    caveats:
+      - Overdispersion or history dependence violates the homogeneous Poisson model.
+    counterexamples:
+      - A self-exciting event stream has clustered arrivals rather than independent increments.
+    source_id: durrett-probability-2019
+    source_location: Chapter 2, Poisson processes, §§2.5–2.7.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Poisson process and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A Poisson process models independent events
+        arriving at a constant rate."
+    alternative_interpretations:
+      - A broader use of “Poisson process” outside the recorded scope.
+    search_query: "Poisson process Probability: Theory and Examples, fifth edition definition theorem"
+    challenge: "Boundary test: Overdispersion or history dependence violates the homogeneous Poisson model."
+    response: The proposition is restricted to homogeneous point processes on the nonnegative time line, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: ito-formula
+    proposition: Ito formula is the stochastic chain rule with an additional quadratic-variation term.
+    endpoints:
+      from: $candidate
+      to: option-pricing
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Twice spatially differentiable functions of continuous semimartingales.
+    mathematical_skeleton: For dX=b dt+σ dW, the differential of f(X,t) contains one half σ² times the second derivative.
+    scope: Twice spatially differentiable functions of continuous semimartingales.
+    assumptions:
+      - required smoothness and integrability
+    validity_regime: The stated claim is limited to twice spatially differentiable functions of continuous semimartingales.
+    caveats:
+      - Ordinary chain-rule intuition misses the second-order term.
+    counterexamples:
+      - Applying the classical chain rule to W_t² omits the dt contribution.
+    source_id: durrett-probability-2019
+    source_location: Chapter 7, §7.6, Ito formula.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Ito formula and the scoped structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Ito formula is the stochastic chain rule with
+        an additional quadratic-variation term."
+    alternative_interpretations:
+      - A broader use of “Ito formula” outside the recorded scope.
+    search_query: "Ito formula Probability: Theory and Examples, fifth edition definition theorem"
+    challenge: "Boundary test: Ordinary chain-rule intuition misses the second-order term."
+    response: The proposition is restricted to twice spatially differentiable functions of continuous
+      semimartingales, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+  - candidate_id: optional-stopping-theorem
+    proposition: Optional stopping preserves martingale expectation only under stated boundedness or integrability
+      conditions.
+    endpoints:
+      from: $candidate
+      to: option-pricing
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Discrete-time martingales under one of the theorem’s standard sufficient conditions.
+    mathematical_skeleton: Stopped martingales have controlled expectations when the stopping time and increments
+      prevent mass escaping at infinity.
+    scope: Discrete-time martingales under one of the theorem’s standard sufficient conditions.
+    assumptions:
+      - valid stopping-time condition
+      - uniform integrability or boundedness condition
+    validity_regime: The stated claim is limited to discrete-time martingales under one of the theorem’s standard
+      sufficient conditions.
+    caveats:
+      - The slogan that fair games remain fair at any stopping time is false without hypotheses.
+    counterexamples:
+      - A doubling strategy uses an unbounded stopping time and violates the naive conclusion.
+    source_id: durrett-probability-2019
+    source_location: Chapter 5, §5.7, optional stopping.
+    source_status: direct-support
+    source_rationale: The pinpointed section defines or develops Optional stopping theorem and the scoped
+      structural claim recorded here.
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Optional stopping preserves martingale
+        expectation only under stated boundedness or integrability conditions."
+    alternative_interpretations:
+      - A broader use of “Optional stopping theorem” outside the recorded scope.
+    search_query: "Optional stopping theorem Probability: Theory and Examples, fifth edition definition theorem"
+    challenge: "Boundary test: The slogan that fair games remain fair at any stopping time is false without hypotheses."
+    response: The proposition is restricted to discrete-time martingales under one of the theorem’s standard
+      sufficient conditions, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.

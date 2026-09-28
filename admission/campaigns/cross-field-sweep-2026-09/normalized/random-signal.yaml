@@ -1,0 +1,39 @@
+dossier_schema: 1.0.0
+candidate:
+  id: random-signal
+  canonical_name: Random signal
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - signal-processing
+  proposed_disposition: defer
+  possible_matches: []
+source_inventory:
+  - id: siebert-signals-1986
+    kind: textbook
+    title: Circuits, Signals, and Systems
+    authors:
+      - William McC. Siebert
+    year: 1986
+    locator: https://mitpress.mit.edu/9780262690959/circuits-signals-and-systems/
+    supplied_by: atlas-cross-field-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from siebert-signals-1986 at MIT Press contents and lecture sequence.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

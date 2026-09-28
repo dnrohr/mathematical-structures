@@ -1,0 +1,134 @@
+dossier_schema: 1.0.0
+candidate:
+  id: coupling-method
+  canonical_name: Coupling method
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - probability
+    - statistics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: levin-peres-2017
+    kind: textbook
+    title: Markov Chains and Mixing Times, second edition
+    authors:
+      - David A. Levin
+      - Yuval Peres
+    year: 2017
+    locator: https://pages.uoregon.edu/dlevin/MARKOV/
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: coupling-method-claim
+    proposition: A coupling bounds mixing by constructing two copies that eventually coalesce.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Markov chains admitting a jointly constructed coupling.
+    mathematical_skeleton: The coupling inequality bounds total variation by the probability that coupled states differ.
+    scope: Markov chains admitting a jointly constructed coupling.
+    assumptions:
+      - correct marginal transition laws
+    validity_regime: The stated claim is limited to markov chains admitting a jointly constructed coupling.
+    caveats:
+      - A poorly chosen coupling can give a vacuous bound.
+    counterexamples:
+      - Independent copies may meet far later than an optimized coupling.
+    source_assessments:
+      - source_id: levin-peres-2017
+        proposition: A coupling bounds mixing by constructing two copies that eventually coalesce.
+        status: direct-support
+        location: Chapter 5, §§5.1–5.4, pp. 66–78.
+        rationale: The pinpointed section defines or develops Coupling method and the scoped structural claim recorded
+          here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A coupling bounds mixing by constructing two
+        copies that eventually coalesce."
+    alternative_interpretations:
+      - A broader use of “Coupling method” outside the recorded scope.
+search:
+  queries:
+    - id: coupling-method-query
+      query: Coupling method Markov Chains and Mixing Times, second edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: coupling-method-query
+      result: located
+      source_ids:
+        - levin-peres-2017
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 5, §§5.1–5.4, pp. 66–78.
+generated_hypotheses:
+  - id: coupling-method-hypothesis
+    text: A coupling bounds mixing by constructing two copies that eventually coalesce.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - levin-peres-2017
+automated_judgments:
+  - id: coupling-method-judgment
+    method: model-assisted
+    subject: coupling-method-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\coupling-method.yaml#source_inventory
+adversarial_reviews:
+  - id: coupling-method-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: A poorly chosen coupling can give a vacuous bound."
+    response: The proposition is restricted to markov chains admitting a jointly constructed coupling, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\coupling-method.yaml#claims.coupling-method-claim
+  - id: coupling-method-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: A poorly chosen coupling can give
+      a vacuous bound."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\coupling-method.yaml#claims.coupling-method-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from levin-peres-2017 at Author-hosted book, Chapters 1–20.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

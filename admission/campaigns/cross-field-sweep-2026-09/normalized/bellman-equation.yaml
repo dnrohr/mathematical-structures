@@ -1,0 +1,136 @@
+dossier_schema: 1.0.0
+candidate:
+  id: bellman-equation
+  canonical_name: Bellman equation
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: model
+source_inventory:
+  - id: bertsekas-dp-2017
+    kind: textbook
+    title: Dynamic Programming and Optimal Control, fourth edition
+    authors:
+      - Dimitri P. Bertsekas
+    year: 2017
+    locator: https://athenasc.com/dpbook.html
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: bellman-equation-claim
+    proposition: The Bellman equation represents optimal sequential decision making through a one-step recursion in value.
+    endpoints:
+      from: optimization
+      to: $candidate
+    proposed_edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Finite-horizon problems and discounted or proper infinite-horizon variants.
+    mathematical_skeleton: Optimal cost equals the best immediate cost plus the value of the successor state.
+    scope: Finite-horizon problems and discounted or proper infinite-horizon variants.
+    assumptions:
+      - Markov state description
+      - optimal substructure
+    validity_regime: The stated claim is limited to finite-horizon problems and discounted or proper
+      infinite-horizon variants.
+    caveats:
+      - Undiscounted improper problems may have multiple or pathological fixed points.
+    counterexamples:
+      - A negative-cost cycle makes total cost unbounded below.
+    source_assessments:
+      - source_id: bertsekas-dp-2017
+        proposition: The Bellman equation represents optimal sequential decision making through a one-step recursion
+          in value.
+        status: direct-support
+        location: Volume I, Chapter 1, §§1.2–1.4.
+        rationale: The pinpointed section defines or develops Bellman equation and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The Bellman equation represents optimal
+        sequential decision making through a one-step recursion in value."
+    alternative_interpretations:
+      - A broader use of “Bellman equation” outside the recorded scope.
+search:
+  queries:
+    - id: bellman-equation-query
+      query: Bellman equation Dynamic Programming and Optimal Control, fourth edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: bellman-equation-query
+      result: located
+      source_ids:
+        - bertsekas-dp-2017
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Volume I, Chapter 1, §§1.2–1.4.
+generated_hypotheses:
+  - id: bellman-equation-hypothesis
+    text: The Bellman equation represents optimal sequential decision making through a one-step recursion in value.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - bertsekas-dp-2017
+automated_judgments:
+  - id: bellman-equation-judgment
+    method: model-assisted
+    subject: bellman-equation-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\bellman-equation.yaml#source_inventory
+adversarial_reviews:
+  - id: bellman-equation-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Undiscounted improper problems may have multiple or pathological fixed points."
+    response: The proposition is restricted to finite-horizon problems and discounted or proper infinite-horizon
+      variants, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\bellman-equation.yaml#claims.bellman-equation-claim
+  - id: bellman-equation-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of REPRESENTED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Undiscounted improper problems
+      may have multiple or pathological fixed points."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\bellman-equation.yaml#claims.bellman-equation-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from bertsekas-dp-2017 at Publisher contents, Volume I, Chapters 1–7.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

@@ -1,0 +1,134 @@
+dossier_schema: 1.0.0
+candidate:
+  id: krylov-subspace
+  canonical_name: Krylov subspace
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: trefethen-bau-1997
+    kind: textbook
+    title: Numerical Linear Algebra
+    authors:
+      - Lloyd N. Trefethen
+      - David Bau III
+    year: 1997
+    locator: https://people.maths.ox.ac.uk/trefethen/text.html
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: krylov-subspace-claim
+    proposition: A Krylov subspace collects successive applications of a linear operator to a starting vector.
+    endpoints:
+      from: $candidate
+      to: eigenvalues
+    proposed_edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Finite-dimensional iterative linear algebra.
+    mathematical_skeleton: K_m(A,b)=span{b,Ab,...,A^{m-1}b} encodes polynomial approximations to operator action.
+    scope: Finite-dimensional iterative linear algebra.
+    assumptions:
+      - chosen start vector
+    validity_regime: The stated claim is limited to finite-dimensional iterative linear algebra.
+    caveats:
+      - A deficient start vector may miss invariant subspaces.
+    counterexamples:
+      - If b is an eigenvector, the Krylov space never grows beyond dimension one.
+    source_assessments:
+      - source_id: trefethen-bau-1997
+        proposition: A Krylov subspace collects successive applications of a linear operator to a starting vector.
+        status: direct-support
+        location: Lectures 32–35, pp. 243–275.
+        rationale: The pinpointed section defines or develops Krylov subspace and the scoped structural claim recorded
+          here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A Krylov subspace collects successive
+        applications of a linear operator to a starting vector."
+    alternative_interpretations:
+      - A broader use of “Krylov subspace” outside the recorded scope.
+search:
+  queries:
+    - id: krylov-subspace-query
+      query: Krylov subspace Numerical Linear Algebra definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: krylov-subspace-query
+      result: located
+      source_ids:
+        - trefethen-bau-1997
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Lectures 32–35, pp. 243–275.
+generated_hypotheses:
+  - id: krylov-subspace-hypothesis
+    text: A Krylov subspace collects successive applications of a linear operator to a starting vector.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - trefethen-bau-1997
+automated_judgments:
+  - id: krylov-subspace-judgment
+    method: model-assisted
+    subject: krylov-subspace-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\krylov-subspace.yaml#source_inventory
+adversarial_reviews:
+  - id: krylov-subspace-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: A deficient start vector may miss invariant subspaces."
+    response: The proposition is restricted to finite-dimensional iterative linear algebra, and the caveat remains
+      explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\krylov-subspace.yaml#claims.krylov-subspace-claim
+  - id: krylov-subspace-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: A deficient start vector may miss
+      invariant subspaces."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\krylov-subspace.yaml#claims.krylov-subspace-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from trefethen-bau-1997 at Author table of contents, Lectures 1–40.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

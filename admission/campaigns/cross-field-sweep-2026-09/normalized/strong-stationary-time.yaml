@@ -1,0 +1,40 @@
+dossier_schema: 1.0.0
+candidate:
+  id: strong-stationary-time
+  canonical_name: Strong stationary time
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - probability
+    - statistics
+  proposed_disposition: defer
+  possible_matches: []
+source_inventory:
+  - id: levin-peres-2017
+    kind: textbook
+    title: Markov Chains and Mixing Times, second edition
+    authors:
+      - David A. Levin
+      - Yuval Peres
+    year: 2017
+    locator: https://pages.uoregon.edu/dlevin/MARKOV/
+    supplied_by: atlas-cross-field-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from levin-peres-2017 at Author-hosted book, Chapters 1–20.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

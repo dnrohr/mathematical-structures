@@ -1,0 +1,135 @@
+dossier_schema: 1.0.0
+candidate:
+  id: metropolis-hastings-algorithm
+  canonical_name: Metropolis-Hastings algorithm
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - probability
+    - statistics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: levin-peres-2017
+    kind: textbook
+    title: Markov Chains and Mixing Times, second edition
+    authors:
+      - David A. Levin
+      - Yuval Peres
+    year: 2017
+    locator: https://pages.uoregon.edu/dlevin/MARKOV/
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: metropolis-hastings-algorithm-claim
+    proposition: Metropolis-Hastings constructs a reversible Markov chain with a prescribed stationary distribution.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    proposed_edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Targets and proposals with compatible support.
+    mathematical_skeleton: An acceptance ratio corrects a proposal kernel so detailed balance holds for the target law.
+    scope: Targets and proposals with compatible support.
+    assumptions:
+      - computable density ratio
+      - irreducible proposal on target support
+    validity_regime: The stated claim is limited to targets and proposals with compatible support.
+    caveats:
+      - Stationarity does not guarantee rapid mixing.
+    counterexamples:
+      - A local proposal on a multimodal target can mix exponentially slowly.
+    source_assessments:
+      - source_id: levin-peres-2017
+        proposition: Metropolis-Hastings constructs a reversible Markov chain with a prescribed stationary distribution.
+        status: direct-support
+        location: Chapter 3, §3.2, pp. 44–46.
+        rationale: The pinpointed section defines or develops Metropolis-Hastings algorithm and the scoped structural
+          claim recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Metropolis-Hastings constructs a reversible
+        Markov chain with a prescribed stationary distribution."
+    alternative_interpretations:
+      - A broader use of “Metropolis-Hastings algorithm” outside the recorded scope.
+search:
+  queries:
+    - id: metropolis-hastings-algorithm-query
+      query: Metropolis-Hastings algorithm Markov Chains and Mixing Times, second edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: metropolis-hastings-algorithm-query
+      result: located
+      source_ids:
+        - levin-peres-2017
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 3, §3.2, pp. 44–46.
+generated_hypotheses:
+  - id: metropolis-hastings-algorithm-hypothesis
+    text: Metropolis-Hastings constructs a reversible Markov chain with a prescribed stationary distribution.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - levin-peres-2017
+automated_judgments:
+  - id: metropolis-hastings-algorithm-judgment
+    method: model-assisted
+    subject: metropolis-hastings-algorithm-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\metropolis-hastings-algorithm.yaml#source_inventory
+adversarial_reviews:
+  - id: metropolis-hastings-algorithm-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Stationarity does not guarantee rapid mixing."
+    response: The proposition is restricted to targets and proposals with compatible support, and the caveat
+      remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\metropolis-hastings-algorithm.yaml#claims.metropolis-hastings-algorithm-claim
+  - id: metropolis-hastings-algorithm-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Stationarity does not guarantee
+      rapid mixing."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\metropolis-hastings-algorithm.yaml#claims.metropolis-hastings-algorithm-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from levin-peres-2017 at Author-hosted book, Chapters 1–20.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

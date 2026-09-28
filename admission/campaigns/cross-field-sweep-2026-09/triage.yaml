@@ -1,0 +1,343 @@
+triage_schema: 1.0.0
+campaign_id: cross-field-sweep-2026-09
+curator: atlas-cross-field-curator
+groups:
+  - disposition: propose-node
+    proposed_node_type: dialect
+    rationale: Stable source-defined concept selected for evidence review because it supports reusable cross-field
+      structure.
+    candidate_ids:
+      - impulse-response
+      - transfer-function
+  - disposition: propose-node
+    proposed_node_type: model
+    rationale: Stable source-defined concept selected for evidence review because it supports reusable cross-field
+      structure.
+    candidate_ids:
+      - bellman-equation
+      - brownian-motion
+      - configuration-model
+      - correlated-equilibrium
+      - ill-posed-problem
+      - inverse-problem
+      - markov-decision-process
+      - nash-equilibrium
+      - poisson-process
+      - random-graph
+      - subgame-perfect-equilibrium
+      - weak-solution
+  - disposition: propose-node
+    proposed_node_type: object
+    rationale: Stable source-defined concept selected for evidence review because it supports reusable cross-field
+      structure.
+    candidate_ids:
+      - krylov-subspace
+      - martingale
+      - mixed-strategy
+      - singular-value-decomposition
+      - sobolev-space
+      - stationary-distribution
+  - disposition: propose-node
+    proposed_node_type: operation
+    rationale: Stable source-defined concept selected for evidence review because it supports reusable cross-field
+      structure.
+    candidate_ids:
+      - community-detection
+      - convolution
+      - coupling-method
+      - dynamic-programming
+      - galerkin-method
+      - gmres
+      - method-of-characteristics
+      - metropolis-hastings-algorithm
+      - pid-controller
+      - policy-iteration
+      - qr-factorization
+      - tikhonov-regularization
+      - truncated-singular-value-decomposition
+      - value-iteration
+      - z-transform
+  - disposition: propose-node
+    proposed_node_type: phenomenon
+    rationale: Stable source-defined concept selected for evidence review because it supports reusable cross-field
+      structure.
+    candidate_ids:
+      - aliasing
+      - percolation-on-networks
+  - disposition: propose-node
+    proposed_node_type: principle
+    rationale: Stable source-defined concept selected for evidence review because it supports reusable cross-field
+      structure.
+    candidate_ids:
+      - condition-number
+      - controllability
+      - detailed-balance
+      - mixing-time
+      - network-centrality
+      - observability
+      - regularization
+  - disposition: propose-node
+    proposed_node_type: theorem
+    rationale: Stable source-defined concept selected for evidence review because it supports reusable cross-field
+      structure.
+    candidate_ids:
+      - ito-formula
+      - maximum-principle
+      - minimax-theorem
+      - nyquist-stability-criterion
+      - optional-stopping-theorem
+      - sampling-theorem
+  - disposition: defer
+    rationale: Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier
+      evidence budget.
+    candidate_ids:
+      - adjacency-matrix
+      - almost-sure-convergence
+      - amplitude-modulation
+      - aperiodic-chain
+      - approximate-dynamic-programming
+      - arnoldi-iteration
+      - assortative-mixing
+      - autocorrelation
+      - average-cost-problem
+      - backward-induction
+      - bandpass-signal
+      - bargaining-solution
+      - bayesian-game
+      - best-response
+      - betweenness-centrality
+      - bidiagonalization
+      - biorthogonalization
+      - bode-plot
+      - borel-cantelli-lemma
+      - calculus-of-variations
+      - central-limit-theorem
+      - certainty-equivalence-control
+      - characteristic-function
+      - cheeger-inequality
+      - cholesky-factorization
+      - clustering-coefficient
+      - coalitional-game
+      - commute-time
+      - complementary-sensitivity
+      - conditional-expectation
+      - conductance-bound
+      - conjugate-gradient-method
+      - continuous-time-markov-chain
+      - convergence-in-probability
+      - core-allocation
+      - core-periphery-structure
+      - cost-to-go-function
+      - coupling-from-the-past
+      - coupon-collector
+      - cover-time
+      - cutoff-phenomenon
+      - degree-correlation
+      - degree-distribution
+      - describing-function
+      - difference-equation
+      - discounted-cost-problem
+      - discrepancy-principle
+      - discrete-fourier-transform
+      - distribution
+      - disturbance-attenuation
+      - dominant-strategy
+      - donsker-theorem
+      - doob-decomposition
+      - duhamel-principle
+      - dynamical-process-on-a-network
+      - eigenvector-centrality
+      - elliptic-regularity
+      - energy-method
+      - epidemic-threshold
+      - euler-lagrange-equation
+      - evolving-set
+      - exponential-martingale
+      - extensive-form-game
+      - feedforward-control
+      - filter-factor
+      - finite-element-method
+      - finite-horizon-control
+      - finite-impulse-response-filter
+      - floating-point-arithmetic
+      - folk-theorem
+      - fourier-series
+      - fredholm-integral-equation
+      - frequency-response
+      - fundamental-solution
+      - gain-margin
+      - gambler-ruin
+      - gaussian-elimination
+      - generalized-cross-validation
+      - generalized-singular-value-decomposition
+      - giant-component
+      - glauber-dynamics
+      - gram-schmidt-orthogonalization
+      - hamilton-jacobi-bellman-equation
+      - hamilton-jacobi-equation
+      - harmonic-function
+      - heat-equation
+      - hitting-time
+      - householder-transformation
+      - hybrid-krylov-method
+      - hyperbolic-conservation-law
+      - ideal-filter
+      - image-deblurring
+      - imperfect-information-game
+      - infinite-horizon-control
+      - infinite-impulse-response-filter
+      - integral-feedback
+      - internal-model-principle
+      - inverse-iteration
+      - irreducible-chain
+      - iterative-regularization
+      - l-curve-criterion
+      - lanczos-iteration
+      - landweber-iteration
+      - laplace-equation
+      - laplace-transform
+      - large-deviation-principle
+      - least-squares-problem
+      - levy-process
+      - linear-quadratic-regulator
+      - linear-time-invariant-system
+      - link-prediction
+      - loop-shaping
+      - martingale-convergence-theorem
+      - mean-value-property
+      - mechanism-design
+      - model-predictive-control
+      - modularity
+      - motif-census
+      - multidimensional-brownian-motion
+      - network-resilience
+      - network-search
+      - neuro-dynamic-programming
+      - noise-propagation
+      - observer-design
+      - optimal-policy
+      - orthogonal-projector
+      - parseval-theorem
+      - partial-pivoting
+      - path-coupling
+      - perfect-bayesian-equilibrium
+      - perfect-information-game
+      - phase-margin
+      - picard-condition
+      - poincare-inequality
+      - pole-placement
+      - poles-zeros
+      - policy-gradient
+      - pontryagin-maximum-principle
+      - power-iteration
+      - power-spectral-density
+      - preconditioning
+      - preferential-attachment
+      - principle-of-optimality
+      - pseudospectrum
+      - q-learning
+      - qr-algorithm
+      - quadratic-variation
+      - random-signal
+      - random-walk-on-a-graph
+      - rationalizability
+      - rayleigh-quotient
+      - reachability
+      - receding-horizon-control
+      - reference-tracking
+      - regularization-by-discretization
+      - regularization-parameter
+      - repeated-game
+      - reversible-chain
+      - riccati-equation
+      - ritz-value
+      - robust-stability
+      - rollout-algorithm
+      - root-locus
+      - scale-free-network
+      - schur-factorization
+      - semi-convergence
+      - sensitivity-function
+      - sequential-equilibrium
+      - shapley-value
+      - sigma-algebra
+      - small-world-model
+      - social-choice-function
+      - source-condition
+      - spectral-filtering
+      - spectral-gap
+      - standard-form-transformation
+      - state-feedback
+      - stationary-policy
+      - stochastic-block-model
+      - stochastic-integral
+      - stochastic-shortest-path
+      - stopping-time
+      - strategic-game
+      - strictly-dominated-strategy
+      - strong-law-of-large-numbers
+      - strong-stationary-time
+      - superposition-integral
+      - system-function
+      - time-frequency-uncertainty
+      - tomographic-reconstruction
+      - total-variation-distance
+      - trace-theorem
+      - transport-equation
+      - uniform-integrability
+      - unit-sample-response
+      - viscosity-solution
+      - wave-equation
+      - weak-convergence
+      - weak-derivative
+review_queue:
+  - aliasing
+  - bellman-equation
+  - brownian-motion
+  - community-detection
+  - condition-number
+  - configuration-model
+  - controllability
+  - convolution
+  - correlated-equilibrium
+  - coupling-method
+  - detailed-balance
+  - dynamic-programming
+  - galerkin-method
+  - gmres
+  - ill-posed-problem
+  - impulse-response
+  - inverse-problem
+  - ito-formula
+  - krylov-subspace
+  - markov-decision-process
+  - martingale
+  - maximum-principle
+  - method-of-characteristics
+  - metropolis-hastings-algorithm
+  - minimax-theorem
+  - mixed-strategy
+  - mixing-time
+  - nash-equilibrium
+  - network-centrality
+  - nyquist-stability-criterion
+  - observability
+  - optional-stopping-theorem
+  - percolation-on-networks
+  - pid-controller
+  - poisson-process
+  - policy-iteration
+  - qr-factorization
+  - random-graph
+  - regularization
+  - sampling-theorem
+  - singular-value-decomposition
+  - sobolev-space
+  - stationary-distribution
+  - subgame-perfect-equilibrium
+  - tikhonov-regularization
+  - transfer-function
+  - truncated-singular-value-decomposition
+  - value-iteration
+  - weak-solution
+  - z-transform

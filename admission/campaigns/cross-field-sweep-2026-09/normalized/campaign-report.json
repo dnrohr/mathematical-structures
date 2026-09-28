@@ -1,0 +1,2567 @@
+{
+  "atlas_schema_version": "1.0.0",
+  "campaign": {
+    "id": "cross-field-sweep-2026-09",
+    "target_raw_candidates": 250,
+    "title": "Second cross-field source-inventory sweep"
+  },
+  "candidates": [
+    {
+      "atlas_matches": [],
+      "canonical_name": "Adjacency matrix",
+      "dossier_file": "adjacency-matrix.yaml",
+      "fields": ["networks", "probability"],
+      "id": "adjacency-matrix",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Adjacency matrix"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Aliasing",
+      "dossier_file": "aliasing.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "aliasing",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Aliasing"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Almost sure convergence",
+      "dossier_file": "almost-sure-convergence.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "almost-sure-convergence",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Almost sure convergence"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Amplitude modulation",
+      "dossier_file": "amplitude-modulation.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "amplitude-modulation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Amplitude modulation"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Aperiodic chain",
+      "dossier_file": "aperiodic-chain.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "aperiodic-chain",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Aperiodic chain"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Approximate dynamic programming",
+      "dossier_file": "approximate-dynamic-programming.yaml",
+      "fields": ["control", "optimization"],
+      "id": "approximate-dynamic-programming",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Approximate dynamic programming"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Arnoldi iteration",
+      "dossier_file": "arnoldi-iteration.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "arnoldi-iteration",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Arnoldi iteration"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Assortative mixing",
+      "dossier_file": "assortative-mixing.yaml",
+      "fields": ["networks", "probability"],
+      "id": "assortative-mixing",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Assortative mixing"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Autocorrelation",
+      "dossier_file": "autocorrelation.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "autocorrelation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Autocorrelation"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Average-cost problem",
+      "dossier_file": "average-cost-problem.yaml",
+      "fields": ["control", "optimization"],
+      "id": "average-cost-problem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Average-cost problem"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Backward induction",
+      "dossier_file": "backward-induction.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "backward-induction",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Backward induction"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Bandpass signal",
+      "dossier_file": "bandpass-signal.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "bandpass-signal",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Bandpass signal"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Bargaining solution",
+      "dossier_file": "bargaining-solution.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "bargaining-solution",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Bargaining solution"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Bayesian game",
+      "dossier_file": "bayesian-game.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "bayesian-game",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Bayesian game"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Bellman equation",
+      "dossier_file": "bellman-equation.yaml",
+      "fields": ["control", "optimization"],
+      "id": "bellman-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Bellman equation"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Best response",
+      "dossier_file": "best-response.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "best-response",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Best response"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Betweenness centrality",
+      "dossier_file": "betweenness-centrality.yaml",
+      "fields": ["networks", "probability"],
+      "id": "betweenness-centrality",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Betweenness centrality"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Bidiagonalization",
+      "dossier_file": "bidiagonalization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "bidiagonalization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Bidiagonalization"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Biorthogonalization",
+      "dossier_file": "biorthogonalization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "biorthogonalization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Biorthogonalization"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Bode plot",
+      "dossier_file": "bode-plot.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "bode-plot",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Bode plot"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Borel-Cantelli lemma",
+      "dossier_file": "borel-cantelli-lemma.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "borel-cantelli-lemma",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Borel-Cantelli lemma"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Brownian motion",
+      "dossier_file": "brownian-motion.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "brownian-motion",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Brownian motion"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Calculus of variations",
+      "dossier_file": "calculus-of-variations.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "calculus-of-variations",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Calculus of variations"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Central limit theorem",
+      "dossier_file": "central-limit-theorem.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "central-limit-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Central limit theorem"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Certainty-equivalence control",
+      "dossier_file": "certainty-equivalence-control.yaml",
+      "fields": ["control", "optimization"],
+      "id": "certainty-equivalence-control",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Certainty-equivalence control"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Characteristic function",
+      "dossier_file": "characteristic-function.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "characteristic-function",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Characteristic function"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Cheeger inequality",
+      "dossier_file": "cheeger-inequality.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "cheeger-inequality",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Cheeger inequality"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Cholesky factorization",
+      "dossier_file": "cholesky-factorization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "cholesky-factorization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Cholesky factorization"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Clustering coefficient",
+      "dossier_file": "clustering-coefficient.yaml",
+      "fields": ["networks", "probability"],
+      "id": "clustering-coefficient",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Clustering coefficient"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Coalitional game",
+      "dossier_file": "coalitional-game.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "coalitional-game",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Coalitional game"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Community detection",
+      "dossier_file": "community-detection.yaml",
+      "fields": ["networks", "probability"],
+      "id": "community-detection",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Community detection"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Commute time",
+      "dossier_file": "commute-time.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "commute-time",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Commute time"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Complementary sensitivity",
+      "dossier_file": "complementary-sensitivity.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "complementary-sensitivity",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Complementary sensitivity"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Condition number",
+      "dossier_file": "condition-number.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "condition-number",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Condition number"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Conditional expectation",
+      "dossier_file": "conditional-expectation.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "conditional-expectation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Conditional expectation"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Conductance bound",
+      "dossier_file": "conductance-bound.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "conductance-bound",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Conductance bound"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Configuration model",
+      "dossier_file": "configuration-model.yaml",
+      "fields": ["networks", "probability"],
+      "id": "configuration-model",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Configuration model"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Conjugate-gradient method",
+      "dossier_file": "conjugate-gradient-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "conjugate-gradient-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Conjugate-gradient method"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Continuous-time Markov chain",
+      "dossier_file": "continuous-time-markov-chain.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "continuous-time-markov-chain",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Continuous-time Markov chain"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Controllability",
+      "dossier_file": "controllability.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "controllability",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Controllability"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Convergence in probability",
+      "dossier_file": "convergence-in-probability.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "convergence-in-probability",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Convergence in probability"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Convolution",
+      "dossier_file": "convolution.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "convolution",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Convolution"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Core allocation",
+      "dossier_file": "core-allocation.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "core-allocation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Core allocation"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Core-periphery structure",
+      "dossier_file": "core-periphery-structure.yaml",
+      "fields": ["networks", "probability"],
+      "id": "core-periphery-structure",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Core-periphery structure"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Correlated equilibrium",
+      "dossier_file": "correlated-equilibrium.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "correlated-equilibrium",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Correlated equilibrium"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Cost-to-go function",
+      "dossier_file": "cost-to-go-function.yaml",
+      "fields": ["control", "optimization"],
+      "id": "cost-to-go-function",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Cost-to-go function"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Coupling from the past",
+      "dossier_file": "coupling-from-the-past.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "coupling-from-the-past",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Coupling from the past"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Coupling method",
+      "dossier_file": "coupling-method.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "coupling-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Coupling method"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Coupon collector",
+      "dossier_file": "coupon-collector.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "coupon-collector",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Coupon collector"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Cover time",
+      "dossier_file": "cover-time.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "cover-time",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Cover time"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Cutoff phenomenon",
+      "dossier_file": "cutoff-phenomenon.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "cutoff-phenomenon",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Cutoff phenomenon"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Degree correlation",
+      "dossier_file": "degree-correlation.yaml",
+      "fields": ["networks", "probability"],
+      "id": "degree-correlation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Degree correlation"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Degree distribution",
+      "dossier_file": "degree-distribution.yaml",
+      "fields": ["networks", "probability"],
+      "id": "degree-distribution",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Degree distribution"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Describing function",
+      "dossier_file": "describing-function.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "describing-function",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Describing function"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Detailed balance",
+      "dossier_file": "detailed-balance.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "detailed-balance",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Detailed balance"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Difference equation",
+      "dossier_file": "difference-equation.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "difference-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Difference equation"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Discounted-cost problem",
+      "dossier_file": "discounted-cost-problem.yaml",
+      "fields": ["control", "optimization"],
+      "id": "discounted-cost-problem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Discounted-cost problem"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Discrepancy principle",
+      "dossier_file": "discrepancy-principle.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "discrepancy-principle",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Discrepancy principle"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Discrete Fourier transform",
+      "dossier_file": "discrete-fourier-transform.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "discrete-fourier-transform",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Discrete Fourier transform"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Distribution",
+      "dossier_file": "distribution.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "distribution",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Distribution"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Disturbance attenuation",
+      "dossier_file": "disturbance-attenuation.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "disturbance-attenuation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Disturbance attenuation"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Dominant strategy",
+      "dossier_file": "dominant-strategy.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "dominant-strategy",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Dominant strategy"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Donsker theorem",
+      "dossier_file": "donsker-theorem.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "donsker-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Donsker theorem"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Doob decomposition",
+      "dossier_file": "doob-decomposition.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "doob-decomposition",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Doob decomposition"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Duhamel principle",
+      "dossier_file": "duhamel-principle.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "duhamel-principle",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Duhamel principle"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Dynamic programming",
+      "dossier_file": "dynamic-programming.yaml",
+      "fields": ["control", "optimization"],
+      "id": "dynamic-programming",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Dynamic programming"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Dynamical process on a network",
+      "dossier_file": "dynamical-process-on-a-network.yaml",
+      "fields": ["networks", "probability"],
+      "id": "dynamical-process-on-a-network",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Dynamical process on a network"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Eigenvector centrality",
+      "dossier_file": "eigenvector-centrality.yaml",
+      "fields": ["networks", "probability"],
+      "id": "eigenvector-centrality",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Eigenvector centrality"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Elliptic regularity",
+      "dossier_file": "elliptic-regularity.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "elliptic-regularity",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Elliptic regularity"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Energy method",
+      "dossier_file": "energy-method.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "energy-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Energy method"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Epidemic threshold",
+      "dossier_file": "epidemic-threshold.yaml",
+      "fields": ["networks", "probability"],
+      "id": "epidemic-threshold",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Epidemic threshold"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Euler-Lagrange equation",
+      "dossier_file": "euler-lagrange-equation.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "euler-lagrange-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Euler-Lagrange equation"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Evolving set",
+      "dossier_file": "evolving-set.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "evolving-set",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Evolving set"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Exponential martingale",
+      "dossier_file": "exponential-martingale.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "exponential-martingale",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Exponential martingale"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Extensive-form game",
+      "dossier_file": "extensive-form-game.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "extensive-form-game",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Extensive-form game"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Feedforward control",
+      "dossier_file": "feedforward-control.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "feedforward-control",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Feedforward control"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Filter factor",
+      "dossier_file": "filter-factor.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "filter-factor",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Filter factor"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Finite element method",
+      "dossier_file": "finite-element-method.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "finite-element-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Finite element method"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Finite-horizon control",
+      "dossier_file": "finite-horizon-control.yaml",
+      "fields": ["control", "optimization"],
+      "id": "finite-horizon-control",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Finite-horizon control"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Finite impulse response filter",
+      "dossier_file": "finite-impulse-response-filter.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "finite-impulse-response-filter",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Finite impulse response filter"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Floating-point arithmetic",
+      "dossier_file": "floating-point-arithmetic.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "floating-point-arithmetic",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Floating-point arithmetic"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Folk theorem",
+      "dossier_file": "folk-theorem.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "folk-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Folk theorem"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Fourier series",
+      "dossier_file": "fourier-series.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "fourier-series",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Fourier series"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Fredholm integral equation",
+      "dossier_file": "fredholm-integral-equation.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "fredholm-integral-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Fredholm integral equation"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Frequency response",
+      "dossier_file": "frequency-response.yaml",
+      "fields": ["control", "mechanics", "signal-processing"],
+      "id": "frequency-response",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Frequency response"],
+      "source_ids": ["astrom-murray-2020", "siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Fundamental solution",
+      "dossier_file": "fundamental-solution.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "fundamental-solution",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Fundamental solution"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Gain margin",
+      "dossier_file": "gain-margin.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "gain-margin",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Gain margin"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Galerkin method",
+      "dossier_file": "galerkin-method.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "galerkin-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Galerkin method"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Gambler ruin",
+      "dossier_file": "gambler-ruin.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "gambler-ruin",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Gambler ruin"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Gaussian elimination",
+      "dossier_file": "gaussian-elimination.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "gaussian-elimination",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Gaussian elimination"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Generalized cross-validation",
+      "dossier_file": "generalized-cross-validation.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "generalized-cross-validation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Generalized cross-validation"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Generalized singular value decomposition",
+      "dossier_file": "generalized-singular-value-decomposition.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "generalized-singular-value-decomposition",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Generalized singular value decomposition"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Giant component",
+      "dossier_file": "giant-component.yaml",
+      "fields": ["networks", "probability"],
+      "id": "giant-component",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Giant component"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Glauber dynamics",
+      "dossier_file": "glauber-dynamics.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "glauber-dynamics",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Glauber dynamics"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "GMRES",
+      "dossier_file": "gmres.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "gmres",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["GMRES"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Gram-Schmidt orthogonalization",
+      "dossier_file": "gram-schmidt-orthogonalization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "gram-schmidt-orthogonalization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Gram-Schmidt orthogonalization"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Hamilton-Jacobi-Bellman equation",
+      "dossier_file": "hamilton-jacobi-bellman-equation.yaml",
+      "fields": ["control", "optimization"],
+      "id": "hamilton-jacobi-bellman-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Hamilton-Jacobi-Bellman equation"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Hamilton-Jacobi equation",
+      "dossier_file": "hamilton-jacobi-equation.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "hamilton-jacobi-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Hamilton-Jacobi equation"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Harmonic function",
+      "dossier_file": "harmonic-function.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "harmonic-function",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Harmonic function"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [
+        {
+          "atlas_value": "heat equation / heat kernel",
+          "relationship": "near-name",
+          "slug": "diffusion",
+          "trigger": "Heat equation"
+        }
+      ],
+      "canonical_name": "Heat equation",
+      "dossier_file": "heat-equation.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "heat-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Heat equation"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Hitting time",
+      "dossier_file": "hitting-time.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "hitting-time",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Hitting time"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Householder transformation",
+      "dossier_file": "householder-transformation.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "householder-transformation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Householder transformation"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Hybrid Krylov method",
+      "dossier_file": "hybrid-krylov-method.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "hybrid-krylov-method",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Hybrid Krylov method"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [
+        {
+          "atlas_value": "Conservation laws",
+          "relationship": "near-name",
+          "slug": "conservation-laws",
+          "trigger": "Hyperbolic conservation law"
+        }
+      ],
+      "canonical_name": "Hyperbolic conservation law",
+      "dossier_file": "hyperbolic-conservation-law.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "hyperbolic-conservation-law",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Hyperbolic conservation law"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Ideal filter",
+      "dossier_file": "ideal-filter.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "ideal-filter",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Ideal filter"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Ill-posed problem",
+      "dossier_file": "ill-posed-problem.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "ill-posed-problem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Ill-posed problem"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Image deblurring",
+      "dossier_file": "image-deblurring.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "image-deblurring",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Image deblurring"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Imperfect-information game",
+      "dossier_file": "imperfect-information-game.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "imperfect-information-game",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Imperfect-information game"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Impulse response",
+      "dossier_file": "impulse-response.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "impulse-response",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Impulse response"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Infinite-horizon control",
+      "dossier_file": "infinite-horizon-control.yaml",
+      "fields": ["control", "optimization"],
+      "id": "infinite-horizon-control",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Infinite-horizon control"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Infinite impulse response filter",
+      "dossier_file": "infinite-impulse-response-filter.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "infinite-impulse-response-filter",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Infinite impulse response filter"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Integral feedback",
+      "dossier_file": "integral-feedback.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "integral-feedback",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Integral feedback"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Internal model principle",
+      "dossier_file": "internal-model-principle.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "internal-model-principle",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Internal model principle"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Inverse iteration",
+      "dossier_file": "inverse-iteration.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "inverse-iteration",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Inverse iteration"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Inverse problem",
+      "dossier_file": "inverse-problem.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "inverse-problem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Inverse problem"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Irreducible chain",
+      "dossier_file": "irreducible-chain.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "irreducible-chain",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Irreducible chain"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Iterative regularization",
+      "dossier_file": "iterative-regularization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "iterative-regularization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Iterative regularization"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Ito formula",
+      "dossier_file": "ito-formula.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "ito-formula",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Ito formula"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Krylov subspace",
+      "dossier_file": "krylov-subspace.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "krylov-subspace",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Krylov subspace"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "L-curve criterion",
+      "dossier_file": "l-curve-criterion.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "l-curve-criterion",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["L-curve criterion"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Lanczos iteration",
+      "dossier_file": "lanczos-iteration.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "lanczos-iteration",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Lanczos iteration"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Landweber iteration",
+      "dossier_file": "landweber-iteration.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "landweber-iteration",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Landweber iteration"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Laplace equation",
+      "dossier_file": "laplace-equation.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "laplace-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Laplace equation"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Laplace transform",
+      "dossier_file": "laplace-transform.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "laplace-transform",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Laplace transform"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Large deviation principle",
+      "dossier_file": "large-deviation-principle.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "large-deviation-principle",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Large deviation principle"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Least-squares problem",
+      "dossier_file": "least-squares-problem.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "least-squares-problem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Least-squares problem"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Levy process",
+      "dossier_file": "levy-process.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "levy-process",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Levy process"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Linear quadratic regulator",
+      "dossier_file": "linear-quadratic-regulator.yaml",
+      "fields": ["control", "optimization"],
+      "id": "linear-quadratic-regulator",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Linear quadratic regulator"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Linear time-invariant system",
+      "dossier_file": "linear-time-invariant-system.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "linear-time-invariant-system",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Linear time-invariant system"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Link prediction",
+      "dossier_file": "link-prediction.yaml",
+      "fields": ["networks", "probability"],
+      "id": "link-prediction",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Link prediction"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Loop shaping",
+      "dossier_file": "loop-shaping.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "loop-shaping",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Loop shaping"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Markov decision process",
+      "dossier_file": "markov-decision-process.yaml",
+      "fields": ["control", "optimization"],
+      "id": "markov-decision-process",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Markov decision process"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Martingale",
+      "dossier_file": "martingale.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "martingale",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Martingale"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Martingale convergence theorem",
+      "dossier_file": "martingale-convergence-theorem.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "martingale-convergence-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Martingale convergence theorem"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Maximum principle",
+      "dossier_file": "maximum-principle.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "maximum-principle",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Maximum principle"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Mean-value property",
+      "dossier_file": "mean-value-property.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "mean-value-property",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Mean-value property"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Mechanism design",
+      "dossier_file": "mechanism-design.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "mechanism-design",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Mechanism design"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Method of characteristics",
+      "dossier_file": "method-of-characteristics.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "method-of-characteristics",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Method of characteristics"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Metropolis-Hastings algorithm",
+      "dossier_file": "metropolis-hastings-algorithm.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "metropolis-hastings-algorithm",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Metropolis-Hastings algorithm"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Minimax theorem",
+      "dossier_file": "minimax-theorem.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "minimax-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Minimax theorem"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Mixed strategy",
+      "dossier_file": "mixed-strategy.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "mixed-strategy",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Mixed strategy"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Mixing time",
+      "dossier_file": "mixing-time.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "mixing-time",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Mixing time"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Model predictive control",
+      "dossier_file": "model-predictive-control.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "model-predictive-control",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Model predictive control"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Modularity",
+      "dossier_file": "modularity.yaml",
+      "fields": ["networks", "probability"],
+      "id": "modularity",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Modularity"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Motif census",
+      "dossier_file": "motif-census.yaml",
+      "fields": ["networks", "probability"],
+      "id": "motif-census",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Motif census"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Multidimensional Brownian motion",
+      "dossier_file": "multidimensional-brownian-motion.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "multidimensional-brownian-motion",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Multidimensional Brownian motion"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Nash equilibrium",
+      "dossier_file": "nash-equilibrium.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "nash-equilibrium",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Nash equilibrium"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Network centrality",
+      "dossier_file": "network-centrality.yaml",
+      "fields": ["networks", "probability"],
+      "id": "network-centrality",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Network centrality"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Network resilience",
+      "dossier_file": "network-resilience.yaml",
+      "fields": ["networks", "probability"],
+      "id": "network-resilience",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Network resilience"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Network search",
+      "dossier_file": "network-search.yaml",
+      "fields": ["networks", "probability"],
+      "id": "network-search",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Network search"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Neuro-dynamic programming",
+      "dossier_file": "neuro-dynamic-programming.yaml",
+      "fields": ["control", "optimization"],
+      "id": "neuro-dynamic-programming",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Neuro-dynamic programming"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Noise propagation",
+      "dossier_file": "noise-propagation.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "noise-propagation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Noise propagation"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Nyquist stability criterion",
+      "dossier_file": "nyquist-stability-criterion.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "nyquist-stability-criterion",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Nyquist stability criterion"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Observability",
+      "dossier_file": "observability.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "observability",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Observability"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Observer design",
+      "dossier_file": "observer-design.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "observer-design",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Observer design"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Optimal policy",
+      "dossier_file": "optimal-policy.yaml",
+      "fields": ["control", "optimization"],
+      "id": "optimal-policy",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Optimal policy"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Optional stopping theorem",
+      "dossier_file": "optional-stopping-theorem.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "optional-stopping-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Optional stopping theorem"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Orthogonal projector",
+      "dossier_file": "orthogonal-projector.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "orthogonal-projector",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Orthogonal projector"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Parseval theorem",
+      "dossier_file": "parseval-theorem.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "parseval-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Parseval theorem"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Partial pivoting",
+      "dossier_file": "partial-pivoting.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "partial-pivoting",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Partial pivoting"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Path coupling",
+      "dossier_file": "path-coupling.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "path-coupling",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Path coupling"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Percolation on networks",
+      "dossier_file": "percolation-on-networks.yaml",
+      "fields": ["networks", "probability"],
+      "id": "percolation-on-networks",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Percolation on networks"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Perfect Bayesian equilibrium",
+      "dossier_file": "perfect-bayesian-equilibrium.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "perfect-bayesian-equilibrium",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Perfect Bayesian equilibrium"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Perfect-information game",
+      "dossier_file": "perfect-information-game.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "perfect-information-game",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Perfect-information game"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Phase margin",
+      "dossier_file": "phase-margin.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "phase-margin",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Phase margin"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Picard condition",
+      "dossier_file": "picard-condition.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "picard-condition",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Picard condition"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "PID controller",
+      "dossier_file": "pid-controller.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "pid-controller",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["PID controller"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Poincare inequality",
+      "dossier_file": "poincare-inequality.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "poincare-inequality",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Poincare inequality"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Poisson process",
+      "dossier_file": "poisson-process.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "poisson-process",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Poisson process"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Poles and zeros",
+      "dossier_file": "poles-zeros.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "poles-zeros",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Poles and zeros"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Pole placement",
+      "dossier_file": "pole-placement.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "pole-placement",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Pole placement"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Policy gradient",
+      "dossier_file": "policy-gradient.yaml",
+      "fields": ["control", "optimization"],
+      "id": "policy-gradient",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Policy gradient"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Policy iteration",
+      "dossier_file": "policy-iteration.yaml",
+      "fields": ["control", "optimization"],
+      "id": "policy-iteration",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Policy iteration"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Pontryagin maximum principle",
+      "dossier_file": "pontryagin-maximum-principle.yaml",
+      "fields": ["control", "optimization"],
+      "id": "pontryagin-maximum-principle",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Pontryagin maximum principle"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Power iteration",
+      "dossier_file": "power-iteration.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "power-iteration",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Power iteration"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Power spectral density",
+      "dossier_file": "power-spectral-density.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "power-spectral-density",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Power spectral density"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Preconditioning",
+      "dossier_file": "preconditioning.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "preconditioning",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Preconditioning"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Preferential attachment",
+      "dossier_file": "preferential-attachment.yaml",
+      "fields": ["networks", "probability"],
+      "id": "preferential-attachment",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Preferential attachment"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Principle of optimality",
+      "dossier_file": "principle-of-optimality.yaml",
+      "fields": ["control", "optimization"],
+      "id": "principle-of-optimality",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Principle of optimality"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Pseudospectrum",
+      "dossier_file": "pseudospectrum.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "pseudospectrum",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Pseudospectrum"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Q-learning",
+      "dossier_file": "q-learning.yaml",
+      "fields": ["control", "optimization"],
+      "id": "q-learning",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Q-learning"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "QR algorithm",
+      "dossier_file": "qr-algorithm.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "qr-algorithm",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["QR algorithm"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "QR factorization",
+      "dossier_file": "qr-factorization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "qr-factorization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["QR factorization"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Quadratic variation",
+      "dossier_file": "quadratic-variation.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "quadratic-variation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Quadratic variation"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Random graph",
+      "dossier_file": "random-graph.yaml",
+      "fields": ["networks", "probability"],
+      "id": "random-graph",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Random graph"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Random signal",
+      "dossier_file": "random-signal.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "random-signal",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Random signal"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Random walk on a graph",
+      "dossier_file": "random-walk-on-a-graph.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "random-walk-on-a-graph",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Random walk on a graph"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Rationalizability",
+      "dossier_file": "rationalizability.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "rationalizability",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Rationalizability"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Rayleigh quotient",
+      "dossier_file": "rayleigh-quotient.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "rayleigh-quotient",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Rayleigh quotient"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Reachability",
+      "dossier_file": "reachability.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "reachability",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Reachability"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Receding-horizon control",
+      "dossier_file": "receding-horizon-control.yaml",
+      "fields": ["control", "optimization"],
+      "id": "receding-horizon-control",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Receding-horizon control"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Reference tracking",
+      "dossier_file": "reference-tracking.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "reference-tracking",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Reference tracking"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Regularization",
+      "dossier_file": "regularization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "regularization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Regularization"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Regularization by discretization",
+      "dossier_file": "regularization-by-discretization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "regularization-by-discretization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Regularization by discretization"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Regularization parameter",
+      "dossier_file": "regularization-parameter.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "regularization-parameter",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Regularization parameter"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Repeated game",
+      "dossier_file": "repeated-game.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "repeated-game",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Repeated game"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Reversible chain",
+      "dossier_file": "reversible-chain.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "reversible-chain",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Reversible chain"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Riccati equation",
+      "dossier_file": "riccati-equation.yaml",
+      "fields": ["control", "optimization"],
+      "id": "riccati-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Riccati equation"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Ritz value",
+      "dossier_file": "ritz-value.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "ritz-value",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Ritz value"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Robust stability",
+      "dossier_file": "robust-stability.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "robust-stability",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Robust stability"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Rollout algorithm",
+      "dossier_file": "rollout-algorithm.yaml",
+      "fields": ["control", "optimization"],
+      "id": "rollout-algorithm",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Rollout algorithm"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Root locus",
+      "dossier_file": "root-locus.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "root-locus",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Root locus"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Sampling theorem",
+      "dossier_file": "sampling-theorem.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "sampling-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Sampling theorem"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Scale-free network",
+      "dossier_file": "scale-free-network.yaml",
+      "fields": ["networks", "probability"],
+      "id": "scale-free-network",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Scale-free network"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Schur factorization",
+      "dossier_file": "schur-factorization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "schur-factorization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Schur factorization"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Semi-convergence",
+      "dossier_file": "semi-convergence.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "semi-convergence",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Semi-convergence"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Sensitivity function",
+      "dossier_file": "sensitivity-function.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "sensitivity-function",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Sensitivity function"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Sequential equilibrium",
+      "dossier_file": "sequential-equilibrium.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "sequential-equilibrium",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Sequential equilibrium"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Shapley value",
+      "dossier_file": "shapley-value.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "shapley-value",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Shapley value"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Sigma algebra",
+      "dossier_file": "sigma-algebra.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "sigma-algebra",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Sigma algebra"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Singular value decomposition",
+      "dossier_file": "singular-value-decomposition.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "singular-value-decomposition",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Singular value decomposition"],
+      "source_ids": ["trefethen-bau-1997"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Small-world model",
+      "dossier_file": "small-world-model.yaml",
+      "fields": ["networks", "probability"],
+      "id": "small-world-model",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Small-world model"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Sobolev space",
+      "dossier_file": "sobolev-space.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "sobolev-space",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Sobolev space"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Social choice function",
+      "dossier_file": "social-choice-function.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "social-choice-function",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Social choice function"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Source condition",
+      "dossier_file": "source-condition.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "source-condition",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Source condition"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Spectral filtering",
+      "dossier_file": "spectral-filtering.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "spectral-filtering",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Spectral filtering"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Spectral gap",
+      "dossier_file": "spectral-gap.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "spectral-gap",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Spectral gap"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Standard-form transformation",
+      "dossier_file": "standard-form-transformation.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "standard-form-transformation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Standard-form transformation"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "State feedback",
+      "dossier_file": "state-feedback.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "state-feedback",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["State feedback"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Stationary distribution",
+      "dossier_file": "stationary-distribution.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "stationary-distribution",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Stationary distribution"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Stationary policy",
+      "dossier_file": "stationary-policy.yaml",
+      "fields": ["control", "optimization"],
+      "id": "stationary-policy",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Stationary policy"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Stochastic block model",
+      "dossier_file": "stochastic-block-model.yaml",
+      "fields": ["networks", "probability"],
+      "id": "stochastic-block-model",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Stochastic block model"],
+      "source_ids": ["newman-networks-2018"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Stochastic integral",
+      "dossier_file": "stochastic-integral.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "stochastic-integral",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Stochastic integral"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Stochastic shortest path",
+      "dossier_file": "stochastic-shortest-path.yaml",
+      "fields": ["control", "optimization"],
+      "id": "stochastic-shortest-path",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Stochastic shortest path"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Stopping time",
+      "dossier_file": "stopping-time.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "stopping-time",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Stopping time"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Strategic game",
+      "dossier_file": "strategic-game.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "strategic-game",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Strategic game"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Strictly dominated strategy",
+      "dossier_file": "strictly-dominated-strategy.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "strictly-dominated-strategy",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Strictly dominated strategy"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Strong law of large numbers",
+      "dossier_file": "strong-law-of-large-numbers.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "strong-law-of-large-numbers",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Strong law of large numbers"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Strong stationary time",
+      "dossier_file": "strong-stationary-time.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "strong-stationary-time",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Strong stationary time"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Subgame-perfect equilibrium",
+      "dossier_file": "subgame-perfect-equilibrium.yaml",
+      "fields": ["economics", "optimization"],
+      "id": "subgame-perfect-equilibrium",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Subgame-perfect equilibrium"],
+      "source_ids": ["osborne-rubinstein-1994"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Superposition integral",
+      "dossier_file": "superposition-integral.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "superposition-integral",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Superposition integral"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "System function",
+      "dossier_file": "system-function.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "system-function",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["System function"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Tikhonov regularization",
+      "dossier_file": "tikhonov-regularization.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "tikhonov-regularization",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Tikhonov regularization"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Time-frequency uncertainty",
+      "dossier_file": "time-frequency-uncertainty.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "time-frequency-uncertainty",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Time-frequency uncertainty"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Tomographic reconstruction",
+      "dossier_file": "tomographic-reconstruction.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "tomographic-reconstruction",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Tomographic reconstruction"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Total variation distance",
+      "dossier_file": "total-variation-distance.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "total-variation-distance",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Total variation distance"],
+      "source_ids": ["levin-peres-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Trace theorem",
+      "dossier_file": "trace-theorem.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "trace-theorem",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Trace theorem"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Transfer function",
+      "dossier_file": "transfer-function.yaml",
+      "fields": ["control", "mechanics"],
+      "id": "transfer-function",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Transfer function"],
+      "source_ids": ["astrom-murray-2020"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Transport equation",
+      "dossier_file": "transport-equation.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "transport-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Transport equation"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Truncated singular value decomposition",
+      "dossier_file": "truncated-singular-value-decomposition.yaml",
+      "fields": ["numerical-analysis", "optimization"],
+      "id": "truncated-singular-value-decomposition",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Truncated singular value decomposition"],
+      "source_ids": ["hansen-inverse-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Uniform integrability",
+      "dossier_file": "uniform-integrability.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "uniform-integrability",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Uniform integrability"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Unit-sample response",
+      "dossier_file": "unit-sample-response.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "unit-sample-response",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Unit-sample response"],
+      "source_ids": ["siebert-signals-1986"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Value iteration",
+      "dossier_file": "value-iteration.yaml",
+      "fields": ["control", "optimization"],
+      "id": "value-iteration",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Value iteration"],
+      "source_ids": ["bertsekas-dp-2017"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Viscosity solution",
+      "dossier_file": "viscosity-solution.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "viscosity-solution",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Viscosity solution"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Wave equation",
+      "dossier_file": "wave-equation.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "wave-equation",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Wave equation"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Weak convergence",
+      "dossier_file": "weak-convergence.yaml",
+      "fields": ["probability", "statistics"],
+      "id": "weak-convergence",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Weak convergence"],
+      "source_ids": ["durrett-probability-2019"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Weak derivative",
+      "dossier_file": "weak-derivative.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "weak-derivative",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Weak derivative"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Weak solution",
+      "dossier_file": "weak-solution.yaml",
+      "fields": ["numerical-analysis", "pde"],
+      "id": "weak-solution",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Weak solution"],
+      "source_ids": ["evans-pde-2010"]
+    },
+    {
+      "atlas_matches": [],
+      "canonical_name": "Z-transform",
+      "dossier_file": "z-transform.yaml",
+      "fields": ["control", "signal-processing"],
+      "id": "z-transform",
+      "preliminary_disposition": "defer",
+      "raw_terms": ["Z-transform"],
+      "source_ids": ["siebert-signals-1986"]
+    }
+  ],
+  "issues": [],
+  "report_version": "1.0.0",
+  "sampling": [
+    {
+      "field": "control",
+      "raw_entries": 75
+    },
+    {
+      "field": "economics",
+      "raw_entries": 25
+    },
+    {
+      "field": "mechanics",
+      "raw_entries": 25
+    },
+    {
+      "field": "networks",
+      "raw_entries": 25
+    },
+    {
+      "field": "numerical-analysis",
+      "raw_entries": 75
+    },
+    {
+      "field": "optimization",
+      "raw_entries": 100
+    },
+    {
+      "field": "pde",
+      "raw_entries": 25
+    },
+    {
+      "field": "probability",
+      "raw_entries": 75
+    },
+    {
+      "field": "signal-processing",
+      "raw_entries": 25
+    },
+    {
+      "field": "statistics",
+      "raw_entries": 50
+    }
+  ],
+  "summary": {
+    "dossier_files": 249,
+    "duplicate_entries_consolidated": 1,
+    "exact_atlas_matches": 0,
+    "near_atlas_matches": 2,
+    "normalized_clusters": 249,
+    "novel_name_clusters": 247,
+    "raw_entries": 250
+  }
+}

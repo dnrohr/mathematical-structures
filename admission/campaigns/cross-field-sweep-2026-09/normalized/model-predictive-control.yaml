@@ -1,0 +1,40 @@
+dossier_schema: 1.0.0
+candidate:
+  id: model-predictive-control
+  canonical_name: Model predictive control
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - mechanics
+  proposed_disposition: defer
+  possible_matches: []
+source_inventory:
+  - id: astrom-murray-2020
+    kind: textbook
+    title: Feedback Systems, second edition
+    authors:
+      - Karl J. Astrom
+      - Richard M. Murray
+    year: 2020
+    locator: https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html
+    supplied_by: atlas-cross-field-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from astrom-murray-2020 at Author-hosted second edition, Chapters 1–15.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

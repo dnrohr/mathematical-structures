@@ -1,0 +1,39 @@
+dossier_schema: 1.0.0
+candidate:
+  id: finite-horizon-control
+  canonical_name: Finite-horizon control
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - optimization
+  proposed_disposition: defer
+  possible_matches: []
+source_inventory:
+  - id: bertsekas-dp-2017
+    kind: textbook
+    title: Dynamic Programming and Optimal Control, fourth edition
+    authors:
+      - Dimitri P. Bertsekas
+    year: 2017
+    locator: https://athenasc.com/dpbook.html
+    supplied_by: atlas-cross-field-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from bertsekas-dp-2017 at Publisher contents, Volume I, Chapters 1–7.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

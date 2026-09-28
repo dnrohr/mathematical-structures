@@ -1,0 +1,134 @@
+dossier_schema: 1.0.0
+candidate:
+  id: poisson-process
+  canonical_name: Poisson process
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - probability
+    - statistics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: model
+source_inventory:
+  - id: durrett-probability-2019
+    kind: textbook
+    title: "Probability: Theory and Examples, fifth edition"
+    authors:
+      - Rick Durrett
+    year: 2019
+    locator: https://www.cambridge.org/core/books/probability/DD9A1907F810BB14CCFF022CDFC5677A
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: poisson-process-claim
+    proposition: A Poisson process models independent events arriving at a constant rate.
+    endpoints:
+      from: $candidate
+      to: epidemic-modeling
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Homogeneous point processes on the nonnegative time line.
+    mathematical_skeleton: Counts have Poisson increments and exponential waiting times with the memoryless property.
+    scope: Homogeneous point processes on the nonnegative time line.
+    assumptions:
+      - constant rate
+      - independent increments
+    validity_regime: The stated claim is limited to homogeneous point processes on the nonnegative time line.
+    caveats:
+      - Overdispersion or history dependence violates the homogeneous Poisson model.
+    counterexamples:
+      - A self-exciting event stream has clustered arrivals rather than independent increments.
+    source_assessments:
+      - source_id: durrett-probability-2019
+        proposition: A Poisson process models independent events arriving at a constant rate.
+        status: direct-support
+        location: Chapter 2, Poisson processes, §§2.5–2.7.
+        rationale: The pinpointed section defines or develops Poisson process and the scoped structural claim recorded
+          here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A Poisson process models independent events
+        arriving at a constant rate."
+    alternative_interpretations:
+      - A broader use of “Poisson process” outside the recorded scope.
+search:
+  queries:
+    - id: poisson-process-query
+      query: "Poisson process Probability: Theory and Examples, fifth edition definition theorem"
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: poisson-process-query
+      result: located
+      source_ids:
+        - durrett-probability-2019
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 2, Poisson processes, §§2.5–2.7.
+generated_hypotheses:
+  - id: poisson-process-hypothesis
+    text: A Poisson process models independent events arriving at a constant rate.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - durrett-probability-2019
+automated_judgments:
+  - id: poisson-process-judgment
+    method: model-assisted
+    subject: poisson-process-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\poisson-process.yaml#source_inventory
+adversarial_reviews:
+  - id: poisson-process-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Overdispersion or history dependence violates the homogeneous Poisson model."
+    response: The proposition is restricted to homogeneous point processes on the nonnegative time line, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\poisson-process.yaml#claims.poisson-process-claim
+  - id: poisson-process-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Overdispersion or history
+      dependence violates the homogeneous Poisson model."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\poisson-process.yaml#claims.poisson-process-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from durrett-probability-2019 at Cambridge Core contents, Chapters 1–8.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

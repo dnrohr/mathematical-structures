@@ -1,0 +1,133 @@
+dossier_schema: 1.0.0
+candidate:
+  id: detailed-balance
+  canonical_name: Detailed balance
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - probability
+    - statistics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: principle
+source_inventory:
+  - id: levin-peres-2017
+    kind: textbook
+    title: Markov Chains and Mixing Times, second edition
+    authors:
+      - David A. Levin
+      - Yuval Peres
+    year: 2017
+    locator: https://pages.uoregon.edu/dlevin/MARKOV/
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: detailed-balance-claim
+    proposition: Detailed balance implies stationarity by pairing probability flow across each ordered state pair.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    proposed_edge:
+      type: GOVERNS
+      strength: theorem
+      context: Finite reversible Markov chains.
+    mathematical_skeleton: The identities π(x)P(x,y)=π(y)P(y,x) sum to πP=π.
+    scope: Finite reversible Markov chains.
+    assumptions:
+      - nonnegative normalized π
+    validity_regime: The stated claim is limited to finite reversible Markov chains.
+    caveats:
+      - Stationarity does not imply detailed balance for nonreversible chains.
+    counterexamples:
+      - A directed cycle has a stationary law but violates pairwise reversibility.
+    source_assessments:
+      - source_id: levin-peres-2017
+        proposition: Detailed balance implies stationarity by pairing probability flow across each ordered state pair.
+        status: direct-support
+        location: Chapter 1, §1.6, pp. 11–13.
+        rationale: The pinpointed section defines or develops Detailed balance and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Detailed balance implies stationarity by
+        pairing probability flow across each ordered state pair."
+    alternative_interpretations:
+      - A broader use of “Detailed balance” outside the recorded scope.
+search:
+  queries:
+    - id: detailed-balance-query
+      query: Detailed balance Markov Chains and Mixing Times, second edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: detailed-balance-query
+      result: located
+      source_ids:
+        - levin-peres-2017
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 1, §1.6, pp. 11–13.
+generated_hypotheses:
+  - id: detailed-balance-hypothesis
+    text: Detailed balance implies stationarity by pairing probability flow across each ordered state pair.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - levin-peres-2017
+automated_judgments:
+  - id: detailed-balance-judgment
+    method: model-assisted
+    subject: detailed-balance-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\detailed-balance.yaml#source_inventory
+adversarial_reviews:
+  - id: detailed-balance-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Stationarity does not imply detailed balance for nonreversible chains."
+    response: The proposition is restricted to finite reversible Markov chains, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\detailed-balance.yaml#claims.detailed-balance-claim
+  - id: detailed-balance-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Stationarity does not imply
+      detailed balance for nonreversible chains."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\detailed-balance.yaml#claims.detailed-balance-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from levin-peres-2017 at Author-hosted book, Chapters 1–20.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

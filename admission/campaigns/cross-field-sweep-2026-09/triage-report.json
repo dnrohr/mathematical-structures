@@ -1,0 +1,1560 @@
+{
+  "campaign_id": "cross-field-sweep-2026-09",
+  "curator": "atlas-cross-field-curator",
+  "decisions": [
+    {
+      "candidate_id": "adjacency-matrix",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "aliasing",
+      "disposition": "propose-node",
+      "proposed_node_type": "phenomenon",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "almost-sure-convergence",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "amplitude-modulation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "aperiodic-chain",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "approximate-dynamic-programming",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "arnoldi-iteration",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "assortative-mixing",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "autocorrelation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "average-cost-problem",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "backward-induction",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "bandpass-signal",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "bargaining-solution",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "bayesian-game",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "bellman-equation",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "best-response",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "betweenness-centrality",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "bidiagonalization",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "biorthogonalization",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "bode-plot",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "borel-cantelli-lemma",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "brownian-motion",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "calculus-of-variations",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "central-limit-theorem",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "certainty-equivalence-control",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "characteristic-function",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "cheeger-inequality",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "cholesky-factorization",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "clustering-coefficient",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "coalitional-game",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "community-detection",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "commute-time",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "complementary-sensitivity",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "condition-number",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "conditional-expectation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "conductance-bound",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "configuration-model",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "conjugate-gradient-method",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "continuous-time-markov-chain",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "controllability",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "convergence-in-probability",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "convolution",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "core-allocation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "core-periphery-structure",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "correlated-equilibrium",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "cost-to-go-function",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "coupling-from-the-past",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "coupling-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "coupon-collector",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "cover-time",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "cutoff-phenomenon",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "degree-correlation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "degree-distribution",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "describing-function",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "detailed-balance",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "difference-equation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "discounted-cost-problem",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "discrepancy-principle",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "discrete-fourier-transform",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "distribution",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "disturbance-attenuation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "dominant-strategy",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "donsker-theorem",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "doob-decomposition",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "duhamel-principle",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "dynamic-programming",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "dynamical-process-on-a-network",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "eigenvector-centrality",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "elliptic-regularity",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "energy-method",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "epidemic-threshold",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "euler-lagrange-equation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "evolving-set",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "exponential-martingale",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "extensive-form-game",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "feedforward-control",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "filter-factor",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "finite-element-method",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "finite-horizon-control",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "finite-impulse-response-filter",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "floating-point-arithmetic",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "folk-theorem",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "fourier-series",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "fredholm-integral-equation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "frequency-response",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "fundamental-solution",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "gain-margin",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "galerkin-method",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "gambler-ruin",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "gaussian-elimination",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "generalized-cross-validation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "generalized-singular-value-decomposition",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "giant-component",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "glauber-dynamics",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "gmres",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "gram-schmidt-orthogonalization",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "hamilton-jacobi-bellman-equation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "hamilton-jacobi-equation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "harmonic-function",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "heat-equation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "hitting-time",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "householder-transformation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "hybrid-krylov-method",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "hyperbolic-conservation-law",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "ideal-filter",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "ill-posed-problem",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "image-deblurring",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "imperfect-information-game",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "impulse-response",
+      "disposition": "propose-node",
+      "proposed_node_type": "dialect",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "infinite-horizon-control",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "infinite-impulse-response-filter",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "integral-feedback",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "internal-model-principle",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "inverse-iteration",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "inverse-problem",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "irreducible-chain",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "iterative-regularization",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "ito-formula",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "krylov-subspace",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "l-curve-criterion",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "lanczos-iteration",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "landweber-iteration",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "laplace-equation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "laplace-transform",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "large-deviation-principle",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "least-squares-problem",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "levy-process",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "linear-quadratic-regulator",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "linear-time-invariant-system",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "link-prediction",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "loop-shaping",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "markov-decision-process",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "martingale",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "martingale-convergence-theorem",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "maximum-principle",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "mean-value-property",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "mechanism-design",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "method-of-characteristics",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "metropolis-hastings-algorithm",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "minimax-theorem",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "mixed-strategy",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "mixing-time",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "model-predictive-control",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "modularity",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "motif-census",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "multidimensional-brownian-motion",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "nash-equilibrium",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "network-centrality",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "network-resilience",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "network-search",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "neuro-dynamic-programming",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "noise-propagation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "nyquist-stability-criterion",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "observability",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "observer-design",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "optimal-policy",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "optional-stopping-theorem",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "orthogonal-projector",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "parseval-theorem",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "partial-pivoting",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "path-coupling",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "percolation-on-networks",
+      "disposition": "propose-node",
+      "proposed_node_type": "phenomenon",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "perfect-bayesian-equilibrium",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "perfect-information-game",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "phase-margin",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "picard-condition",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "pid-controller",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "poincare-inequality",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "poisson-process",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "pole-placement",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "poles-zeros",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "policy-gradient",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "policy-iteration",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "pontryagin-maximum-principle",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "power-iteration",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "power-spectral-density",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "preconditioning",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "preferential-attachment",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "principle-of-optimality",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "pseudospectrum",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "q-learning",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "qr-algorithm",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "qr-factorization",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "quadratic-variation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "random-graph",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "random-signal",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "random-walk-on-a-graph",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "rationalizability",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "rayleigh-quotient",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "reachability",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "receding-horizon-control",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "reference-tracking",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "regularization",
+      "disposition": "propose-node",
+      "proposed_node_type": "principle",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "regularization-by-discretization",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "regularization-parameter",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "repeated-game",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "reversible-chain",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "riccati-equation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "ritz-value",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "robust-stability",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "rollout-algorithm",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "root-locus",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "sampling-theorem",
+      "disposition": "propose-node",
+      "proposed_node_type": "theorem",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "scale-free-network",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "schur-factorization",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "semi-convergence",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "sensitivity-function",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "sequential-equilibrium",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "shapley-value",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "sigma-algebra",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "singular-value-decomposition",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "small-world-model",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "sobolev-space",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "social-choice-function",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "source-condition",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "spectral-filtering",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "spectral-gap",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "standard-form-transformation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "state-feedback",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "stationary-distribution",
+      "disposition": "propose-node",
+      "proposed_node_type": "object",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "stationary-policy",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "stochastic-block-model",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "stochastic-integral",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "stochastic-shortest-path",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "stopping-time",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "strategic-game",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "strictly-dominated-strategy",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "strong-law-of-large-numbers",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "strong-stationary-time",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "subgame-perfect-equilibrium",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "superposition-integral",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "system-function",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "tikhonov-regularization",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "time-frequency-uncertainty",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "tomographic-reconstruction",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "total-variation-distance",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "trace-theorem",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "transfer-function",
+      "disposition": "propose-node",
+      "proposed_node_type": "dialect",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "transport-equation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "truncated-singular-value-decomposition",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "uniform-integrability",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "unit-sample-response",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "value-iteration",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "viscosity-solution",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "wave-equation",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "weak-convergence",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "weak-derivative",
+      "disposition": "defer",
+      "rationale": "Legitimate source topic retained in the audit trail but outside this campaign’s bounded 50-dossier evidence budget.",
+      "selected_for_review": false
+    },
+    {
+      "candidate_id": "weak-solution",
+      "disposition": "propose-node",
+      "proposed_node_type": "model",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    },
+    {
+      "candidate_id": "z-transform",
+      "disposition": "propose-node",
+      "proposed_node_type": "operation",
+      "rationale": "Stable source-defined concept selected for evidence review because it supports reusable cross-field structure.",
+      "selected_for_review": true
+    }
+  ],
+  "report_version": "1.0.0",
+  "summary": {
+    "by_disposition": {
+      "defer": 199,
+      "propose-node": 50
+    },
+    "classified": 249,
+    "review_queue": 50,
+    "survivors": 249
+  }
+}

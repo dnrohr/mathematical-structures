@@ -1,0 +1,135 @@
+dossier_schema: 1.0.0
+candidate:
+  id: ill-posed-problem
+  canonical_name: Ill-posed problem
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: model
+source_inventory:
+  - id: hansen-inverse-2010
+    kind: textbook
+    title: "Discrete Inverse Problems: Insight and Algorithms"
+    authors:
+      - Per Christian Hansen
+    year: 2010
+    locator: https://epubs.siam.org/doi/book/10.1137/1.9780898718836
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: ill-posed-problem-claim
+    proposition: An ill-posed inverse problem lacks existence, uniqueness, or stable dependence on data.
+    endpoints:
+      from: stability
+      to: $candidate
+    proposed_edge:
+      type: FAILS-WHEN
+      strength: special-case
+      context: Linear inverse problems in finite discretizations or compact-operator limits.
+    mathematical_skeleton: Small singular values or nonclosed range cause small data perturbations to produce
+      large solution changes.
+    scope: Linear inverse problems in finite discretizations or compact-operator limits.
+    assumptions:
+      - chosen solution and data norms
+    validity_regime: The stated claim is limited to linear inverse problems in finite discretizations or
+      compact-operator limits.
+    caveats:
+      - Finite matrices are formally continuous even when numerically ill-conditioned.
+    counterexamples:
+      - A well-conditioned orthogonal forward operator defines a well-posed inverse problem.
+    source_assessments:
+      - source_id: hansen-inverse-2010
+        proposition: An ill-posed inverse problem lacks existence, uniqueness, or stable dependence on data.
+        status: direct-support
+        location: Chapter 2, §§2.1–2.6, pp. 13–34.
+        rationale: The pinpointed section defines or develops Ill-posed problem and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: An ill-posed inverse problem lacks existence,
+        uniqueness, or stable dependence on data."
+    alternative_interpretations:
+      - A broader use of “Ill-posed problem” outside the recorded scope.
+search:
+  queries:
+    - id: ill-posed-problem-query
+      query: "Ill-posed problem Discrete Inverse Problems: Insight and Algorithms definition theorem"
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: ill-posed-problem-query
+      result: located
+      source_ids:
+        - hansen-inverse-2010
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 2, §§2.1–2.6, pp. 13–34.
+generated_hypotheses:
+  - id: ill-posed-problem-hypothesis
+    text: An ill-posed inverse problem lacks existence, uniqueness, or stable dependence on data.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - hansen-inverse-2010
+automated_judgments:
+  - id: ill-posed-problem-judgment
+    method: model-assisted
+    subject: ill-posed-problem-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\ill-posed-problem.yaml#source_inventory
+adversarial_reviews:
+  - id: ill-posed-problem-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Finite matrices are formally continuous even when numerically ill-conditioned."
+    response: The proposition is restricted to linear inverse problems in finite discretizations or
+      compact-operator limits, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\ill-posed-problem.yaml#claims.ill-posed-problem-claim
+  - id: ill-posed-problem-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of FAILS-WHEN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Finite matrices are formally
+      continuous even when numerically ill-conditioned."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\ill-posed-problem.yaml#claims.ill-posed-problem-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from hansen-inverse-2010 at SIAM book, Chapters 1–8.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

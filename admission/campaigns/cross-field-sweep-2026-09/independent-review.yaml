@@ -1,0 +1,366 @@
+review_schema: 1.0.0
+campaign_id: cross-field-sweep-2026-09
+reviewer: codex-independent-review
+reviewer_kind: model-assisted
+reviewed_on: 2026-09-28
+human_review_minutes_added: 0
+methodology: Rechecked every proposition, edge direction and type, scope, counterexample, and pinpoint
+  independently from the first-pass evidence generator. This audit is model-assisted and does not replace
+  human approval.
+summary:
+  reviewed: 50
+  retained_without_substantive_change: 44
+  revised_then_retained: 6
+  rejected: 0
+  pinpoint_assessments: 50
+entries:
+  - candidate_id: weak-solution
+    disposition: revise-then-retain
+    finding: Independent review narrowed or redirected the edge/source claim before retaining the candidate.
+    source_location: Chapter 1, §1.3.2, pp. 7–9; Chapter 6, §6.1, pp. 297–310.
+    challenge: Independently test the claim against its counterexample and the semantics of REPRESENTED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Weak solutions may be nonunique
+      without additional estimates or entropy conditions."
+  - candidate_id: sobolev-space
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 5, §§5.1–5.8, pp. 253–296.
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Sobolev regularity does not
+      generally imply pointwise differentiability."
+  - candidate_id: galerkin-method
+    disposition: revise-then-retain
+    finding: Independent review narrowed or redirected the edge/source claim before retaining the candidate.
+    source_location: Chapter 6, §6.2, pp. 310–324.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The edge is approximate:
+      trial-space refinement and stability are needed for convergence."
+  - candidate_id: maximum-principle
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 2, §2.2.3, pp. 27–35; Chapter 6, §6.4, pp. 333–347.
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The principle can fail for the
+      wrong zeroth-order sign or nonelliptic operators."
+  - candidate_id: method-of-characteristics
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 2, §2.1, pp. 18–20; Chapter 3, §3.2, pp. 101–115.
+    challenge: Independently test the claim against its counterexample and the semantics of REPRESENTED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Characteristics can intersect and
+      destroy classical single-valued solutions."
+  - candidate_id: singular-value-decomposition
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Lectures 4–5, pp. 25–38.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Small singular values amplify
+      inverse-problem noise."
+  - candidate_id: qr-factorization
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Lectures 7–11, pp. 48–88.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Normal equations and QR have
+      different numerical conditioning."
+  - candidate_id: krylov-subspace
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Lectures 32–35, pp. 243–275.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: A deficient start vector may miss
+      invariant subspaces."
+  - candidate_id: gmres
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Lecture 35, pp. 266–275.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Memory and orthogonalization
+      costs grow unless the method is restarted."
+  - candidate_id: condition-number
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Lecture 12, pp. 89–97.
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Conditioning is a property of the
+      problem, not the algorithm."
+  - candidate_id: stationary-distribution
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 1, §§1.3–1.7, pp. 4–15.
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Stationarity need not be unique
+      without irreducibility."
+  - candidate_id: detailed-balance
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 1, §1.6, pp. 11–13.
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Stationarity does not imply
+      detailed balance for nonreversible chains."
+  - candidate_id: mixing-time
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 4, §§4.1–4.5, pp. 47–65.
+    challenge: Independently test the claim against its counterexample and the semantics of MEASURES-DISTANCE-TO.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The numerical value depends on
+      the distance threshold convention."
+  - candidate_id: coupling-method
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 5, §§5.1–5.4, pp. 66–78.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: A poorly chosen coupling can give
+      a vacuous bound."
+  - candidate_id: metropolis-hastings-algorithm
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 3, §3.2, pp. 44–46.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Stationarity does not guarantee
+      rapid mixing."
+  - candidate_id: transfer-function
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 9, §§9.1–9.3.
+    challenge: Independently test the claim against its counterexample and the semantics of FIELD-DIALECT-OF.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Different state realizations can
+      share the same transfer function."
+  - candidate_id: controllability
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 6, §§6.1–6.3.
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Input constraints can obstruct
+      steering despite algebraic controllability."
+  - candidate_id: observability
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 6, §§6.4–6.5.
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Poor observability can make
+      reconstruction numerically fragile before rank is lost."
+  - candidate_id: pid-controller
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 11, §§11.1–11.5.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Derivative action amplifies
+      measurement noise and integral action can wind up."
+  - candidate_id: nyquist-stability-criterion
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 10, §§10.2–10.4.
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Sign and contour conventions
+      change the reported encirclement direction."
+  - candidate_id: convolution
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 6, convolutional representations of continuous- and discrete-time systems.
+    challenge: Independently test the claim against its counterexample and the semantics of TRANSFORM-DUAL.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Distributional signals require a
+      generalized formulation."
+  - candidate_id: impulse-response
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 6, unit-sample response and discrete-time convolution.
+    challenge: Independently test the claim against its counterexample and the semantics of FIELD-DIALECT-OF.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Boundary-dependent Green
+      functions need not be translation invariant."
+  - candidate_id: sampling-theorem
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 12, sampling in time and frequency.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Real signals are rarely exactly
+      bandlimited and ideal reconstruction is noncausal."
+  - candidate_id: z-transform
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 5, unilateral Z-transform and its applications.
+    challenge: Independently test the claim against its counterexample and the semantics of IS-A.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The algebraic expression alone
+      does not determine the sequence without its convergence region."
+  - candidate_id: aliasing
+    disposition: revise-then-retain
+    finding: Independent review narrowed or redirected the edge/source claim before retaining the candidate.
+    source_location: Chapter 12, sampling in time and frequency.
+    challenge: Independently test the claim against its counterexample and the semantics of FAILS-WHEN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Antialias filtering changes the
+      input before sampling rather than undoing aliasing afterward."
+  - candidate_id: inverse-problem
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 1, §§1.1–1.4, pp. 1–12.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Nonidentifiability can persist
+      even with noiseless data."
+  - candidate_id: ill-posed-problem
+    disposition: revise-then-retain
+    finding: Independent review narrowed or redirected the edge/source claim before retaining the candidate.
+    source_location: Chapter 2, §§2.1–2.6, pp. 13–34.
+    challenge: Independently test the claim against its counterexample and the semantics of FAILS-WHEN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Finite matrices are formally
+      continuous even when numerically ill-conditioned."
+  - candidate_id: regularization
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 4, §§4.1–4.7, pp. 53–83.
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Too much regularization erases
+      real structure and too little amplifies noise."
+  - candidate_id: tikhonov-regularization
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 4, §4.4, pp. 65–70.
+    challenge: Independently test the claim against its counterexample and the semantics of IS-A.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The result depends materially on
+      the penalty and parameter choice."
+  - candidate_id: truncated-singular-value-decomposition
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 4, §4.2, pp. 56–61.
+    challenge: Independently test the claim against its counterexample and the semantics of IS-A.
+    response: "The claim remains bounded by its recorded assumptions and caveat: A hard cutoff can introduce
+      artifacts and is expensive at large scale."
+  - candidate_id: bellman-equation
+    disposition: revise-then-retain
+    finding: Independent review narrowed or redirected the edge/source claim before retaining the candidate.
+    source_location: Volume I, Chapter 1, §§1.2–1.4.
+    challenge: Independently test the claim against its counterexample and the semantics of REPRESENTED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Undiscounted improper problems
+      may have multiple or pathological fixed points."
+  - candidate_id: dynamic-programming
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Volume I, Chapter 1, §1.3; Chapter 2, §§2.1–2.6.
+    challenge: Independently test the claim against its counterexample and the semantics of IS-A.
+    response: "The claim remains bounded by its recorded assumptions and caveat: State dimension can make exact
+      computation infeasible."
+  - candidate_id: markov-decision-process
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Volume I, Chapter 1, §§1.1–1.3; Chapter 2.
+    challenge: Independently test the claim against its counterexample and the semantics of IS-A.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Partial observability requires a
+      belief-state reformulation."
+  - candidate_id: value-iteration
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Volume I, Chapter 2, §§2.2–2.4.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Convergence can be slow when the
+      discount factor is close to one."
+  - candidate_id: policy-iteration
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Volume I, Chapter 2, §§2.5–2.6.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Approximate evaluation can break
+      monotone improvement without error control."
+  - candidate_id: nash-equilibrium
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Part I, Chapter 2, pp. 11–42.
+    challenge: Independently test the claim against its counterexample and the semantics of REPRESENTED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Equilibrium may be nonunique and
+      does not imply efficiency."
+  - candidate_id: mixed-strategy
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Part I, Chapter 3, pp. 43–78.
+    challenge: Independently test the claim against its counterexample and the semantics of REPRESENTED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Mixing can represent deliberate
+      randomization or population frequencies, which are different interpretations."
+  - candidate_id: minimax-theorem
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Part I, Chapter 3, §§3.2–3.3.
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The equality generally fails
+      outside zero-sum or suitable convex-concave settings."
+  - candidate_id: correlated-equilibrium
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Part I, Chapter 3, correlated strategic recommendations.
+    challenge: Independently test the claim against its counterexample and the semantics of REPRESENTED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: A correlated equilibrium is not
+      generally a Nash equilibrium in independent mixed strategies."
+  - candidate_id: subgame-perfect-equilibrium
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Part II, Chapter 6, pp. 97–124.
+    challenge: Independently test the claim against its counterexample and the semantics of REPRESENTED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Games of imperfect information
+      can have few or no proper subgames, requiring stronger refinements."
+  - candidate_id: random-graph
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 11, random graphs.
+    challenge: Independently test the claim against its counterexample and the semantics of REPRESENTED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Different ensembles with similar
+      mean degree can have different higher-order structure."
+  - candidate_id: configuration-model
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 12, the configuration model.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The basic pairing construction
+      permits self-loops and parallel edges."
+  - candidate_id: community-detection
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 14, community structure.
+    challenge: Independently test the claim against its counterexample and the semantics of SOLVED-BY.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Different objectives define
+      different communities and can have resolution limits."
+  - candidate_id: network-centrality
+    disposition: revise-then-retain
+    finding: Independent review narrowed or redirected the edge/source claim before retaining the candidate.
+    source_location: Chapter 7, measures and metrics.
+    challenge: Independently test the claim against its counterexample and the semantics of IS-A.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Centrality is not a single
+      invariant notion of importance."
+  - candidate_id: percolation-on-networks
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 15, percolation and network resilience.
+    challenge: Independently test the claim against its counterexample and the semantics of SAME-SKELETON.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Temporal correlations and
+      reinfection break the simple static percolation equivalence."
+  - candidate_id: martingale
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 5, martingales.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Changing probability measure or
+      numeraire changes the martingale property."
+  - candidate_id: brownian-motion
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 7, Brownian motion, §§7.1–7.8.
+    challenge: Independently test the claim against its counterexample and the semantics of SAME-SKELETON.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Physical diffusion models may
+      include drift, boundaries, or anomalous scaling."
+  - candidate_id: poisson-process
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 2, Poisson processes, §§2.5–2.7.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Overdispersion or history
+      dependence violates the homogeneous Poisson model."
+  - candidate_id: ito-formula
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 7, §7.6, Ito formula.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Ordinary chain-rule intuition
+      misses the second-order term."
+  - candidate_id: optional-stopping-theorem
+    disposition: retain
+    finding: The scoped proposition, edge semantics, failure boundary, and source pinpoint remain defensible.
+    source_location: Chapter 5, §5.7, optional stopping.
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The slogan that fair games remain
+      fair at any stopping time is false without hypotheses."

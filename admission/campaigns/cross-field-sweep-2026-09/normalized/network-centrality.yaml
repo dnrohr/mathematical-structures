@@ -1,0 +1,133 @@
+dossier_schema: 1.0.0
+candidate:
+  id: network-centrality
+  canonical_name: Network centrality
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - networks
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: principle
+source_inventory:
+  - id: newman-networks-2018
+    kind: textbook
+    title: Networks, second edition
+    authors:
+      - Mark Newman
+    year: 2018
+    locator: https://academic.oup.com/book/27884
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: network-centrality-claim
+    proposition: Network centrality assigns node scores intended to quantify a chosen notion of structural importance.
+    endpoints:
+      from: pagerank
+      to: $candidate
+    proposed_edge:
+      type: IS-A
+      strength: strong-analogy
+      context: Finite networks with a declared centrality definition.
+    mathematical_skeleton: Degree, paths, eigenvectors, or random-walk visitation induce distinct score functionals.
+    scope: Finite networks with a declared centrality definition.
+    assumptions:
+      - chosen graph direction and weighting conventions
+    validity_regime: The stated claim is limited to finite networks with a declared centrality definition.
+    caveats:
+      - Centrality is not a single invariant notion of importance.
+    counterexamples:
+      - A bridge node can have high betweenness but low eigenvector centrality.
+    source_assessments:
+      - source_id: newman-networks-2018
+        proposition: Network centrality assigns node scores intended to quantify a chosen notion of structural importance.
+        status: direct-support
+        location: Chapter 7, measures and metrics.
+        rationale: The pinpointed section defines or develops Network centrality and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Network centrality assigns node scores
+        intended to quantify a chosen notion of structural importance."
+    alternative_interpretations:
+      - A broader use of “Network centrality” outside the recorded scope.
+search:
+  queries:
+    - id: network-centrality-query
+      query: Network centrality Networks, second edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: network-centrality-query
+      result: located
+      source_ids:
+        - newman-networks-2018
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 7, measures and metrics.
+generated_hypotheses:
+  - id: network-centrality-hypothesis
+    text: Network centrality assigns node scores intended to quantify a chosen notion of structural importance.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - newman-networks-2018
+automated_judgments:
+  - id: network-centrality-judgment
+    method: model-assisted
+    subject: network-centrality-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\network-centrality.yaml#source_inventory
+adversarial_reviews:
+  - id: network-centrality-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Centrality is not a single invariant notion of importance."
+    response: The proposition is restricted to finite networks with a declared centrality definition, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\network-centrality.yaml#claims.network-centrality-claim
+  - id: network-centrality-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of IS-A.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Centrality is not a single
+      invariant notion of importance."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\network-centrality.yaml#claims.network-centrality-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from newman-networks-2018 at Oxford Academic contents, Chapters 6–18.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

@@ -1,0 +1,136 @@
+dossier_schema: 1.0.0
+candidate:
+  id: galerkin-method
+  canonical_name: Galerkin method
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - pde
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: evans-pde-2010
+    kind: textbook
+    title: Partial Differential Equations, second edition
+    authors:
+      - Lawrence C. Evans
+    year: 2010
+    locator: https://bookstore.ams.org/gsm-19-r/
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: galerkin-method-claim
+    proposition: The Galerkin method approximates a weak PDE solution in a finite-dimensional trial space.
+    endpoints:
+      from: $candidate
+      to: computational-imaging
+    proposed_edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Galerkin approximations for coercive boundary-value problems.
+    mathematical_skeleton: A variational identity is restricted to a mesh-based subspace, yielding a finite linear
+      or nonlinear system.
+    scope: Galerkin approximations for coercive boundary-value problems.
+    assumptions:
+      - weak formulation
+      - stable conforming trial space
+    validity_regime: The stated claim is limited to galerkin approximations for coercive boundary-value problems.
+    caveats:
+      - "The edge is approximate: trial-space refinement and stability are needed for convergence."
+    counterexamples:
+      - An unstable or nonconforming discretization can fail to converge.
+    source_assessments:
+      - source_id: evans-pde-2010
+        proposition: The Galerkin method approximates a weak PDE solution in a finite-dimensional trial space.
+        status: direct-support
+        location: Chapter 6, §6.2, pp. 310–324.
+        rationale: The pinpointed section defines or develops Galerkin method and the scoped structural claim recorded
+          here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The Galerkin method approximates a weak PDE
+        solution in a finite-dimensional trial space."
+    alternative_interpretations:
+      - A broader use of “Galerkin method” outside the recorded scope.
+search:
+  queries:
+    - id: galerkin-method-query
+      query: Galerkin method Partial Differential Equations, second edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: galerkin-method-query
+      result: located
+      source_ids:
+        - evans-pde-2010
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 6, §6.2, pp. 310–324.
+generated_hypotheses:
+  - id: galerkin-method-hypothesis
+    text: The Galerkin method approximates a weak PDE solution in a finite-dimensional trial space.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - evans-pde-2010
+automated_judgments:
+  - id: galerkin-method-judgment
+    method: model-assisted
+    subject: galerkin-method-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\galerkin-method.yaml#source_inventory
+adversarial_reviews:
+  - id: galerkin-method-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: The edge is approximate: trial-space refinement and stability are needed for
+      convergence."
+    response: The proposition is restricted to galerkin approximations for coercive boundary-value problems, and
+      the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\galerkin-method.yaml#claims.galerkin-method-claim
+  - id: galerkin-method-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: The edge is approximate:
+      trial-space refinement and stability are needed for convergence."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\galerkin-method.yaml#claims.galerkin-method-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from evans-pde-2010 at Book table of contents, Chapters 1–7.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

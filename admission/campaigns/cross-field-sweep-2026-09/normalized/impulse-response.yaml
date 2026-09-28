@@ -1,0 +1,136 @@
+dossier_schema: 1.0.0
+candidate:
+  id: impulse-response
+  canonical_name: Impulse response
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - signal-processing
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: dialect
+source_inventory:
+  - id: siebert-signals-1986
+    kind: textbook
+    title: Circuits, Signals, and Systems
+    authors:
+      - William McC. Siebert
+    year: 1986
+    locator: https://mitpress.mit.edu/9780262690959/circuits-signals-and-systems/
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: impulse-response-claim
+    proposition: An LTI system impulse response is the Green-function kernel for its input-output operator.
+    endpoints:
+      from: $candidate
+      to: greens-function
+    proposed_edge:
+      type: FIELD-DIALECT-OF
+      strength: identity
+      context: Linear time-invariant systems with compatible boundary or initial conventions.
+    mathematical_skeleton: Translation invariance makes the response to an input the convolution with the response
+      to a unit impulse.
+    scope: Linear time-invariant systems with compatible boundary or initial conventions.
+    assumptions:
+      - linearity
+      - time invariance
+    validity_regime: The stated claim is limited to linear time-invariant systems with compatible boundary or
+      initial conventions.
+    caveats:
+      - Boundary-dependent Green functions need not be translation invariant.
+    counterexamples:
+      - A time-varying system requires a two-time kernel rather than a single impulse response.
+    source_assessments:
+      - source_id: siebert-signals-1986
+        proposition: An LTI system impulse response is the Green-function kernel for its input-output operator.
+        status: direct-support
+        location: Chapter 6, unit-sample response and discrete-time convolution.
+        rationale: The pinpointed section defines or develops Impulse response and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: An LTI system impulse response is the
+        Green-function kernel for its input-output operator."
+    alternative_interpretations:
+      - A broader use of “Impulse response” outside the recorded scope.
+search:
+  queries:
+    - id: impulse-response-query
+      query: Impulse response Circuits, Signals, and Systems definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: impulse-response-query
+      result: located
+      source_ids:
+        - siebert-signals-1986
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 6, unit-sample response and discrete-time convolution.
+generated_hypotheses:
+  - id: impulse-response-hypothesis
+    text: An LTI system impulse response is the Green-function kernel for its input-output operator.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - siebert-signals-1986
+automated_judgments:
+  - id: impulse-response-judgment
+    method: model-assisted
+    subject: impulse-response-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\impulse-response.yaml#source_inventory
+adversarial_reviews:
+  - id: impulse-response-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Boundary-dependent Green functions need not be translation invariant."
+    response: The proposition is restricted to linear time-invariant systems with compatible boundary or initial
+      conventions, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\impulse-response.yaml#claims.impulse-response-claim
+  - id: impulse-response-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of FIELD-DIALECT-OF.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Boundary-dependent Green
+      functions need not be translation invariant."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\impulse-response.yaml#claims.impulse-response-claim
+human_decisions: []
+workflow:
+  state: automated-review-passed
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from siebert-signals-1986 at MIT Press contents and lecture sequence.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator

@@ -1,0 +1,39 @@
+dossier_schema: 1.0.0
+candidate:
+  id: generalized-singular-value-decomposition
+  canonical_name: Generalized singular value decomposition
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: defer
+  possible_matches: []
+source_inventory:
+  - id: hansen-inverse-2010
+    kind: textbook
+    title: "Discrete Inverse Problems: Insight and Algorithms"
+    authors:
+      - Per Christian Hansen
+    year: 2010
+    locator: https://epubs.siam.org/doi/book/10.1137/1.9780898718836
+    supplied_by: atlas-cross-field-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from hansen-inverse-2010 at SIAM book, Chapters 1–8.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
