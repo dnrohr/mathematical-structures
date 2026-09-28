@@ -179,7 +179,7 @@ export function lensSubgraph(atlas: Atlas, filters: LensFilters): Subgraph {
 
 /**
  * Fixed coordinates in the lens (UI_REDESIGN.md §4.9): when the rendered
- * set is a large fraction of the graph — at least half of all concepts —
+ * set is a large fraction of the graph — more than two fifths of all concepts —
  * the view is close enough to "the whole thing" that spatial coherence
  * with the atlas constellation beats a local force equilibrium, so
  * positioned nodes pin to `metrics.layout`. Below the fraction, or when
@@ -187,7 +187,7 @@ export function lensSubgraph(atlas: Atlas, filters: LensFilters): Subgraph {
  * the local layout wins.
  */
 export function lensPinsToLayout(atlas: Atlas, sub: Subgraph): boolean {
-  if (sub.nodes.length * 2 < atlas.nodes.length) return false;
+  if (sub.nodes.length * 5 <= atlas.nodes.length * 2) return false;
   return sub.nodes.filter((n) => atlas.layout[n.slug] !== undefined).length >= 2;
 }
 
@@ -205,7 +205,7 @@ export const MATRIX_DEFAULT_STRENGTH = 'heuristic-analogy';
 
 /**
  * Above this many rows the matrix requires at least one filter before
- * rendering (UI_REDESIGN.md §4.3 scale posture — the lens's 32-node
+ * rendering (UI_REDESIGN.md §4.3 scale posture — the lens's 48-node
  * fallback, one order of magnitude up: compact cells and sticky headers
  * keep a scrolled table legible far longer than a force layout).
  */

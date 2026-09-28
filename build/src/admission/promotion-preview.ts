@@ -1,9 +1,11 @@
 import {
   appendFileSync,
   cpSync,
+  existsSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
+  readdirSync,
   rmSync,
   writeFileSync,
 } from 'node:fs';
@@ -117,7 +119,7 @@ const REFERENCE_ADDITIONS = `
 export interface PromotionPreviewReport {
   report_version: '1.0.0';
   campaign_id: string;
-  human_approval_required: true;
+  human_approval_required: boolean;
   summary: {
     proposed_new_concepts: number;
     proposed_merge_refinements: number;
@@ -188,17 +190,50 @@ function validateIntegratedPreview(root: string, preview: string): ReturnType<ty
     cpSync(join(root, 'concepts'), join(temporary, 'concepts'), { recursive: true });
     cpSync(join(root, 'graph'), join(temporary, 'graph'), { recursive: true });
     cpSync(join(root, 'paths'), join(temporary, 'paths'), { recursive: true });
-    cpSync(join(preview, 'concepts'), join(temporary, 'concepts'), { recursive: true });
-    appendFileSync(
-      join(temporary, 'graph', 'edges.yaml'),
-      `\n\n# Broad source-inventory campaign promotion preview\n${readFileSync(join(preview, 'edges.yaml'), 'utf8')}`,
-      'utf8',
+    for (const name of readdirSync(join(preview, 'concepts')).sort()) {
+      const source = join(preview, 'concepts', name);
+      const target = join(temporary, 'concepts', name);
+      if (existsSync(target)) {
+        if (readFileSync(target, 'utf8') !== readFileSync(source, 'utf8'))
+          throw new Error(`trusted concept ${name} differs from the promotion preview`);
+      } else cpSync(source, target);
+    }
+
+    const trustedEdges = parse(readFileSync(join(temporary, 'graph', 'edges.yaml'), 'utf8'));
+    const previewEdges = parse(readFileSync(join(preview, 'edges.yaml'), 'utf8'));
+    const trustedEdgeRecords = records(trustedEdges);
+    const missingEdges = records(previewEdges).filter(
+      (edge) =>
+        !trustedEdgeRecords.some(
+          (trusted) =>
+            trusted.from === edge.from &&
+            trusted.to === edge.to &&
+            trusted.type === edge.type &&
+            trusted.strength === edge.strength &&
+            trusted.context === edge.context,
+        ),
     );
-    appendFileSync(
-      join(temporary, 'graph', 'references.bib'),
-      `\n\n% Broad source-inventory campaign promotion preview\n${readFileSync(join(preview, 'references.bib'), 'utf8')}`,
-      'utf8',
+    if (missingEdges.length > 0)
+      appendFileSync(
+        join(temporary, 'graph', 'edges.yaml'),
+        `\n\n# Broad source-inventory campaign promotion preview\n${stringify(missingEdges, { lineWidth: 100 })}`,
+        'utf8',
+      );
+
+    const referenceText = readFileSync(join(temporary, 'graph', 'references.bib'), 'utf8');
+    const previewReferenceText = readFileSync(join(preview, 'references.bib'), 'utf8');
+    const referenceKeys = [...previewReferenceText.matchAll(/^@[^{]+\{([^,]+),/gm)].map(
+      (match) => match[1],
     );
+    const presentReferenceKeys = referenceKeys.filter((key) => referenceText.includes(`{${key},`));
+    if (presentReferenceKeys.length !== 0 && presentReferenceKeys.length !== referenceKeys.length)
+      throw new Error('trusted references contain only part of the promotion preview bibliography');
+    if (presentReferenceKeys.length === 0)
+      appendFileSync(
+        join(temporary, 'graph', 'references.bib'),
+        `\n\n% Broad source-inventory campaign promotion preview\n${previewReferenceText}`,
+        'utf8',
+      );
     const result = runPipeline(temporary);
     return {
       ...result,
@@ -212,7 +247,7 @@ function validateIntegratedPreview(root: string, preview: string): ReturnType<ty
   }
 }
 
-function reviewSection(dossier: RecordValue, disposition: string): string {
+function reviewSection(dossier: RecordValue, disposition: string, accepted: boolean): string {
   const candidate = isRecord(dossier.candidate) ? dossier.candidate : {};
   const claim = records(dossier.claims)[0] ?? {};
   const endpoints = isRecord(claim.endpoints) ? claim.endpoints : {};
@@ -224,7 +259,7 @@ function reviewSection(dossier: RecordValue, disposition: string): string {
   const to = endpoints.to === '$candidate' ? id : String(endpoints.to);
   const list = (values: string[]): string =>
     values.length > 0 ? values.map((value) => `  - ${value}`).join('\n') : '  - None recorded.';
-  return `## ${requiredString(candidate, 'canonical_name', id)} \`${id}\`\n\n- Proposed disposition: \`${disposition}\`\n- Proposed node type: \`${String(candidate.proposed_node_type ?? 'existing-node refinement')}\`\n- Proposed edge: \`${from} —${String(edge.type)}→ ${to}\` (\`${String(edge.strength)}\`)\n- Source: \`${String(assessment.source_id)}\`, ${String(assessment.location)}\n- Proposition: ${String(claim.proposition)}\n- Mathematical skeleton: ${String(claim.mathematical_skeleton)}\n- Scope: ${String(claim.scope)}\n- Validity regime: ${String(claim.validity_regime)}\n- Assumptions:\n${list(strings(claim.assumptions))}\n- Caveats:\n${list(strings(claim.caveats))}\n- Counterexamples:\n${list(strings(claim.counterexamples))}\n- Adversarial challenge: ${String(review.challenge)}\n- Response: ${String(review.response)}\n\nDecision: [ ] accept  [ ] revise  [ ] defer  [ ] reject\n`;
+  return `## ${requiredString(candidate, 'canonical_name', id)} \`${id}\`\n\n- Proposed disposition: \`${disposition}\`\n- Proposed node type: \`${String(candidate.proposed_node_type ?? 'existing-node refinement')}\`\n- Proposed edge: \`${from} —${String(edge.type)}→ ${to}\` (\`${String(edge.strength)}\`)\n- Source: \`${String(assessment.source_id)}\`, ${String(assessment.location)}\n- Proposition: ${String(claim.proposition)}\n- Mathematical skeleton: ${String(claim.mathematical_skeleton)}\n- Scope: ${String(claim.scope)}\n- Validity regime: ${String(claim.validity_regime)}\n- Assumptions:\n${list(strings(claim.assumptions))}\n- Caveats:\n${list(strings(claim.caveats))}\n- Counterexamples:\n${list(strings(claim.counterexamples))}\n- Adversarial challenge: ${String(review.challenge)}\n- Response: ${String(review.response)}\n\nDecision: [${accepted ? 'x' : ' '}] accept  [ ] revise  [ ] defer  [ ] reject\n`;
 }
 
 export function buildPromotionPreview(
@@ -253,17 +288,27 @@ export function buildPromotionPreview(
   mkdirSync(join(output, 'concepts'), { recursive: true });
   const edges: RecordValue[] = [];
   const reviewSections: string[] = [];
+  const acceptedStates: string[] = [];
   for (const decision of selected) {
     const id = requiredString(decision, 'candidate_id', 'triage decision');
     const dossierFile = join(campaignDirectory, 'normalized', `${id}.yaml`);
     const dossier = parse(readFileSync(dossierFile, 'utf8')) as RecordValue;
     const workflow = isRecord(dossier.workflow) ? dossier.workflow : {};
-    if (workflow.state !== 'automated-review-passed')
-      throw new Error(`${id} is not at automated-review-passed`);
+    const expectedAcceptedState =
+      decision.disposition === 'propose-node' ? 'accepted-as-node' : 'accepted-as-edge';
+    if (!['automated-review-passed', expectedAcceptedState].includes(String(workflow.state)))
+      throw new Error(`${id} is neither at automated-review-passed nor ${expectedAcceptedState}`);
+    acceptedStates.push(String(workflow.state));
     const claim = records(dossier.claims)[0];
     const challenge = records(dossier.adversarial_reviews)[0];
     if (!claim || !challenge) throw new Error(`${id} lacks a claim or adversarial review`);
-    reviewSections.push(reviewSection(dossier, String(decision.disposition)));
+    reviewSections.push(
+      reviewSection(
+        dossier,
+        String(decision.disposition),
+        workflow.state === expectedAcceptedState,
+      ),
+    );
     if (decision.disposition === 'propose-node')
       writeFileSync(
         join(output, 'concepts', `${id}.md`),
@@ -289,9 +334,20 @@ export function buildPromotionPreview(
   }
   writeFileSync(join(output, 'edges.yaml'), stringify(edges, { lineWidth: 100 }), 'utf8');
   writeFileSync(join(output, 'references.bib'), REFERENCE_ADDITIONS.trimStart(), 'utf8');
+  const humanApprovalRequired = acceptedStates.some((state) => state === 'automated-review-passed');
+  const resultFile = join(campaignDirectory, 'admission-result.json');
+  const admissionResult = existsSync(resultFile)
+    ? (JSON.parse(readFileSync(resultFile, 'utf8')) as RecordValue)
+    : {};
+  const resultDecision = isRecord(admissionResult.decision) ? admissionResult.decision : {};
+  const reviewEffort = isRecord(admissionResult.human_review_effort)
+    ? admissionResult.human_review_effort
+    : {};
   writeFileSync(
     join(output, 'review.md'),
-    `# Broad sweep promotion review\n\nThis packet contains the ${selected.length} dossiers selected for human review. The generated content and edges have passed the ordinary trusted validator in an isolated combined tree, but no box below is a recorded decision until a human reviewer explicitly supplies it.\n\nRecord actual active review time rather than wall-clock delay:\n\n- Reviewer:\n- Review started:\n- Review completed:\n- Active review minutes:\n\n${reviewSections.join('\n').trimEnd()}\n`,
+    humanApprovalRequired
+      ? `# Broad sweep promotion review\n\nThis packet contains the ${selected.length} dossiers selected for human review. The generated content and edges have passed the ordinary trusted validator in an isolated combined tree, but no box below is a recorded decision until a human reviewer explicitly supplies it.\n\nRecord actual active review time rather than wall-clock delay:\n\n- Reviewer:\n- Review started:\n- Review completed:\n- Active review minutes:\n\n${reviewSections.join('\n').trimEnd()}\n`
+      : `# Broad sweep promotion review\n\nThis packet contains the ${selected.length} dossiers selected for human review. All are recorded as accepted in their authoritative normalized dossiers and the generated content passes the ordinary trusted validator.\n\n- Reviewer: ${String(resultDecision.reviewer ?? 'recorded in normalized dossiers')}\n- Review started: not reported\n- Review completed: ${String(resultDecision.date ?? 'recorded in normalized dossiers')}\n- Active review minutes: ${String(reviewEffort.active_minutes ?? 'not reported')}\n\n${reviewSections.join('\n').trimEnd()}\n`,
     'utf8',
   );
   const validation = validateIntegratedPreview(root, output);
@@ -306,7 +362,7 @@ export function buildPromotionPreview(
   const report: PromotionPreviewReport = {
     report_version: '1.0.0',
     campaign_id: String(triage.campaign_id),
-    human_approval_required: true,
+    human_approval_required: humanApprovalRequired,
     summary: {
       proposed_new_concepts: newNodes.length,
       proposed_merge_refinements: mergeRefinements.length,

@@ -41,7 +41,7 @@
     "unscented-kalman-filter",
     "variational-integrator"
   ],
-  "human_approval_required": true,
+  "human_approval_required": false,
   "merge_refinements": ["kalman-filter"],
   "report_version": "1.0.0",
   "summary": {

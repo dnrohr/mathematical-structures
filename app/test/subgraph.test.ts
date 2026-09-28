@@ -447,7 +447,7 @@ describe('lensPinsToLayout', () => {
     layout,
   );
 
-  it('pins a lens covering at least half the graph when positions exist', () => {
+  it('pins a lens covering more than two fifths of the graph when positions exist', () => {
     // Every GOVERNS edge: nodes a, b, c, d, e — the whole graph.
     const wide = lensSubgraph(positionedAtlas, { edge: 'GOVERNS' });
     expect(wide.nodes.length * 2).toBeGreaterThanOrEqual(positionedAtlas.nodes.length);
@@ -456,6 +456,7 @@ describe('lensPinsToLayout', () => {
 
   it('stays local below the fraction', () => {
     const narrow = lensSubgraph(positionedAtlas, { edge: 'ANALOGOUS-TO' }); // b, c
+    expect(narrow.nodes.length * 5).toBeLessThanOrEqual(positionedAtlas.nodes.length * 2);
     expect(lensPinsToLayout(positionedAtlas, narrow)).toBe(false);
   });
 

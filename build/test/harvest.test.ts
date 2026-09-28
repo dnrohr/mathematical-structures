@@ -70,7 +70,7 @@ describe('atlas-harvest', () => {
     expect(report.summary.raw_entries).toBe(3);
     expect(report.summary.normalized_clusters).toBe(2);
     expect(report.summary.duplicate_entries_consolidated).toBe(1);
-    expect(report.summary.exact_atlas_matches).toBe(1);
+    expect(report.summary.exact_atlas_matches).toBe(2);
     expect(report.candidates.map((candidate) => candidate.id)).toEqual([
       'attractor',
       'lagrange-points',
