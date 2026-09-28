@@ -288,23 +288,27 @@ test('arrowheads: directed edges carry target markers in all three presets; para
   // directions, rendered as two bowed parallel edges with opposite arrows.
   await page.goto('/#/path/eigenvalues/markov-chains');
   const directed = page.locator('.graph-edge .edge-line.directed');
-  expect(await directed.count()).toBeGreaterThanOrEqual(2);
+  await expect.poll(() => directed.count()).toBeGreaterThanOrEqual(2);
   expect(await markerEnd(page, '.edge-line.directed')).toContain('url(');
   const bowed = page.locator('.edge-line.directed[d*="Q"]');
-  expect(await bowed.count()).toBeGreaterThanOrEqual(2);
+  await expect.poll(() => bowed.count()).toBeGreaterThanOrEqual(2);
   await expect(page.locator('.graph-svg marker')).toHaveCount(5);
 
   // Ego preset (concept page).
   await page.goto('/#/c/eigenvalues');
-  expect(await page.locator('.graph-edge .edge-line.directed').count()).toBeGreaterThan(0);
+  await expect
+    .poll(() => page.locator('.graph-edge .edge-line.directed').count())
+    .toBeGreaterThan(0);
   expect(await markerEnd(page, '.edge-line.directed')).toContain('url(');
 
   // Lens preset — and a symmetric-only lens stays markerless on purpose:
   // the absence of an arrowhead is itself information.
   await page.goto('/#/lens?edge=GOVERNS');
-  expect(await page.locator('.graph-edge .edge-line.directed').count()).toBeGreaterThan(0);
+  await expect
+    .poll(() => page.locator('.graph-edge .edge-line.directed').count())
+    .toBeGreaterThan(0);
   await page.goto('/#/lens?edge=ANALOGOUS-TO');
-  expect(await page.locator('.graph-edge .edge-line').count()).toBeGreaterThan(0);
+  await expect.poll(() => page.locator('.graph-edge .edge-line').count()).toBeGreaterThan(0);
   await expect(page.locator('.edge-line.directed')).toHaveCount(0);
   await expect(page.locator('.graph-svg marker')).toHaveCount(0);
 });

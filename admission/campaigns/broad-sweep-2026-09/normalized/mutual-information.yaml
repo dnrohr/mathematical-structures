@@ -30,7 +30,7 @@ claims:
     proposed_edge:
       type: REPRESENTED-BY
       strength: theorem
-      context: Discrete variables
+      context: Discrete variables, or continuous variables when the relevant divergences exist.
     mathematical_skeleton: I(X;Y) equals H(X) plus H(Y) minus H(X,Y), and equals D(pXY parallel pX pY).
     scope: Shannon information theory.
     assumptions:

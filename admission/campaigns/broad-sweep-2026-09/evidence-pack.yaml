@@ -10,7 +10,7 @@ entries:
     scope: Local attractors in finite-dimensional autonomous dynamical systems.
     assumptions: [forward completeness in the neighborhood, invariant candidate set]
     validity_regime: Initial states in the basin of attraction.
-    caveats: [An invariant set need not attract, and an attractor need not be a fixed point.]
+    caveats: ["An invariant set need not attract, and an attractor need not be a fixed point."]
     counterexamples: [A Lyapunov-stable center is not attracting.]
     source_id: khalil-nonlinear-systems-2014
     source_location: Stability and invariant-set chapters; attractors and limit sets discussion.
@@ -30,7 +30,7 @@ entries:
     assumptions: [existence and uniqueness of trajectories]
     validity_regime: Periodic solutions of autonomous flows.
     caveats: [Closed phase curves in nonautonomous projections need not be limit cycles.]
-    counterexamples: [Every orbit of a linear center is periodic, so none is an isolated limit cycle.]
+    counterexamples: ["Every orbit of a linear center is periodic, so none is an isolated limit cycle."]
     source_id: khalil-nonlinear-systems-2014
     source_location: Phase-plane analysis and limit-cycle sections.
     possible_falsifiers: [A claimed cycle lying in a continuum of neighboring periodic orbits.]
@@ -162,7 +162,7 @@ entries:
     scope: Convex minimization problems.
     assumptions: [convex domain, convex objective]
     validity_regime: Local minima considered within the convex feasible set.
-    caveats: [Strict convexity is needed for uniqueness, not for local-to-global optimality.]
+    caveats: ["Strict convexity is needed for uniqueness, not for local-to-global optimality."]
     counterexamples: [A nonconvex double-well has nonglobal local minima.]
     source_id: boyd-vandenberghe-2004
     source_location: Convex functions and convex optimization problem chapters.
@@ -233,7 +233,7 @@ entries:
   - candidate_id: differential-form
     proposition: Differential forms provide the coordinate-independent representation that unifies gradient, circulation, flux, and integral theorems from vector calculus.
     endpoints: { from: vector-calculus, to: $candidate }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: Smooth oriented manifolds, specializing in dimensions two and three. }
+    edge: { type: REPRESENTED-BY, strength: theorem, context: "Smooth oriented manifolds, specializing in dimensions two and three." }
     mathematical_skeleton: The exterior derivative and pullback combine with Stokes theorem integral over boundary equals integral of the derivative.
     scope: Smooth manifolds and classical vector calculus under metric-dependent identifications.
     assumptions: [smoothness, orientation where integration requires it]
@@ -295,7 +295,7 @@ entries:
     scope: Offline or smoothing-based SLAM with differentiable residual models.
     assumptions: [factorized motion and measurement likelihoods, chosen gauge or anchor]
     validity_regime: MAP estimation under the stated probabilistic model.
-    caveats: [Nonconvexity, data association, and gauge freedom can dominate practical behavior.]
+    caveats: ["Nonconvexity, data association, and gauge freedom can dominate practical behavior."]
     counterexamples: [An unanchored pose graph has gauge nonuniqueness.]
     source_id: thrun-burgard-fox-2005
     source_location: GraphSLAM chapter and full-SLAM inference sections.
@@ -390,7 +390,7 @@ entries:
     scope: Smooth finite-dimensional constrained optimization.
     assumptions: [constraint qualification for necessity, convexity for sufficiency]
     validity_regime: Local necessity generally; global sufficiency in convex programs.
-    caveats: [Without a qualification, a valid optimum can lack KKT multipliers.]
+    caveats: ["Without a qualification, a valid optimum can lack KKT multipliers."]
     counterexamples: [Degenerate constraints violating all standard qualifications.]
     source_id: nocedal-wright-2006
     source_location: Optimality conditions and constraint qualifications chapters.
@@ -485,7 +485,7 @@ entries:
     scope: Robot localization in a known map.
     assumptions: [Markov state, conditionally independent current observation given state]
     validity_regime: Correctly specified motion and measurement models.
-    caveats: [Representation may be grid, particles, or parametric and changes approximation behavior.]
+    caveats: ["Representation may be grid, particles, or parametric and changes approximation behavior."]
     counterexamples: [Long-lived unmodeled state violates the Markov pose model.]
     source_id: thrun-burgard-fox-2005
     source_location: Bayes filters and Markov localization chapters.
@@ -499,7 +499,7 @@ entries:
   - candidate_id: mutual-information
     proposition: Mutual information is an entropy-derived measure of statistical dependence equal to the relative entropy between the joint law and the product of marginals.
     endpoints: { from: $candidate, to: shannon-entropy }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: Discrete variables, or continuous variables when the relevant divergences exist. }
+    edge: { type: REPRESENTED-BY, strength: theorem, context: "Discrete variables, or continuous variables when the relevant divergences exist." }
     mathematical_skeleton: I(X;Y) equals H(X) plus H(Y) minus H(X,Y), and equals D(pXY parallel pX pY).
     scope: Shannon information theory.
     assumptions: [well-defined entropies or relative entropy]
@@ -556,7 +556,7 @@ entries:
   - candidate_id: orbital-resonance
     proposition: Orbital resonance occurs when fundamental orbital frequencies are near a low-integer ratio, producing slow resonant angle dynamics analogous to coupled oscillators.
     endpoints: { from: $candidate, to: harmonic-oscillator }
-    edge: { type: SAME-SKELETON, strength: strong-analogy, context: Weakly perturbed, near-integrable motion after resonant averaging. }
+    edge: { type: SAME-SKELETON, strength: strong-analogy, context: "Weakly perturbed, near-integrable motion after resonant averaging." }
     mathematical_skeleton: A slow integer combination of angles survives averaging and often reduces locally to a pendulum-like libration Hamiltonian.
     scope: Mean-motion and related resonances in weakly perturbed celestial systems.
     assumptions: [near commensurability, perturbative separation of fast and slow angles]
@@ -619,7 +619,7 @@ entries:
     assumptions: [P absolutely continuous with respect to Q for finite divergence]
     validity_regime: Discrete finite alphabets or measure-theoretic extension with Radon-Nikodym derivative.
     caveats: [It is asymmetric and is not a metric.]
-    counterexamples: [If Q assigns zero mass where P is positive, divergence is infinite.]
+    counterexamples: ["If Q assigns zero mass where P is positive, divergence is infinite."]
     source_id: cover-thomas-2006
     source_location: Entropy, relative entropy, and mutual information chapter.
     possible_falsifiers: [A pair with finite formula yielding negative divergence.]
@@ -637,7 +637,7 @@ entries:
     scope: Planar circular restricted problem.
     assumptions: [massless third body, circular two-body motion of primaries]
     validity_regime: Newtonian point-mass gravity in the rotating frame.
-    caveats: [Spatial, elliptic, relativistic, and finite-mass variants change the model.]
+    caveats: ["Spatial, elliptic, relativistic, and finite-mass variants change the model."]
     counterexamples: [A third body with appreciable mass invalidates the restricted assumption.]
     source_id: fitzpatrick-celestial-mechanics-2012
     source_location: Restricted three-body problem chapters.

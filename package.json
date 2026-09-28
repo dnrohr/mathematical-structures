@@ -20,6 +20,7 @@
     "harvest": "npm run -w build harvest --",
     "triage": "npm run -w build triage --",
     "evidence": "npm run -w build evidence --",
+    "promotion-preview": "npm run -w build promotion-preview --",
     "dev": "npm run -w app dev",
     "build": "npm run clean && npm run build:data && npm run build:app",
     "build:data": "npm run -w build atlas",

@@ -10,7 +10,8 @@
     "admit": "tsx src/admission-cli.ts",
     "harvest": "tsx src/harvest-cli.ts",
     "triage": "tsx src/triage-cli.ts",
-    "evidence": "tsx src/evidence-cli.ts"
+    "evidence": "tsx src/evidence-cli.ts",
+    "promotion-preview": "tsx src/promotion-preview-cli.ts"
   },
   "dependencies": {
     "d3-force": "^3.0.0",

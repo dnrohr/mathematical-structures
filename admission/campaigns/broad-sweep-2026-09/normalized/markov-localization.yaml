@@ -39,9 +39,7 @@ claims:
       - conditionally independent current observation given state
     validity_regime: Correctly specified motion and measurement models.
     caveats:
-      - Representation may be grid
-      - particles
-      - or parametric and changes approximation behavior.
+      - Representation may be grid, particles, or parametric and changes approximation behavior.
     counterexamples:
       - Long-lived unmodeled state violates the Markov pose model.
     source_assessments:

@@ -37,10 +37,7 @@ claims:
       - circular two-body motion of primaries
     validity_regime: Newtonian point-mass gravity in the rotating frame.
     caveats:
-      - Spatial
-      - elliptic
-      - relativistic
-      - and finite-mass variants change the model.
+      - Spatial, elliptic, relativistic, and finite-mass variants change the model.
     counterexamples:
       - A third body with appreciable mass invalidates the restricted assumption.
     source_assessments:

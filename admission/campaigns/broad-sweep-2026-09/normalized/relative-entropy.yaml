@@ -39,8 +39,7 @@ claims:
     caveats:
       - It is asymmetric and is not a metric.
     counterexamples:
-      - If Q assigns zero mass where P is positive
-      - divergence is infinite.
+      - If Q assigns zero mass where P is positive, divergence is infinite.
     source_assessments:
       - source_id: cover-thomas-2006
         proposition: Relative entropy measures the discrepancy of a distribution P from a reference Q and

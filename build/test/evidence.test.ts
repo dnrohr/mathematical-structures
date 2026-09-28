@@ -82,4 +82,15 @@ describe('atlas-evidence', () => {
     expect((dossier.workflow as { state: string }).state).toBe('automated-review-passed');
     expect(dossier.human_decisions).toBeUndefined();
   });
+
+  it('rejects unexpected YAML fields instead of silently truncating flow mappings', () => {
+    const data = fixture();
+    const pack = data.pack as { entries: Record<string, unknown>[] };
+    (pack.entries[0]!.edge as Record<string, unknown>)['near-integrable motion'] = null;
+    data.files['pack.yaml'] = stringify(pack);
+    const directory = makeTree(data.files);
+    expect(() =>
+      applyEvidencePack(join(directory, 'campaign'), join(directory, 'pack.yaml')),
+    ).toThrow('candidate-1.edge has unexpected field(s): near-integrable motion');
+  });
 });
