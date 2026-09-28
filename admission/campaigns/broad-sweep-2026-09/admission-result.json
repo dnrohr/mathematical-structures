@@ -11,8 +11,8 @@
   },
   "human_review_effort": {
     "accepted_claims_per_review_hour": null,
-    "active_minutes": null,
-    "status": "not-reported"
+    "active_minutes": 0,
+    "status": "reported"
   },
   "promotion": {
     "new_concepts": 39,
