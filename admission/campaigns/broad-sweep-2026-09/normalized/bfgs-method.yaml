@@ -50,9 +50,9 @@ claims:
           approximation using gradient differences while preserving positive definiteness under a
           curvature condition.
         status: direct-support
-        location: Quasi-Newton methods chapter; BFGS update and convergence sections.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter 6, §6.1, pp. 136–143.
+        rationale: The BFGS inverse-Hessian update and its positive-definiteness conditions are stated
+          explicitly.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -73,7 +73,7 @@ search:
       source_ids:
         - nocedal-wright-2006
       executed_by: structure-atlas-evidence-curator
-      notes: Quasi-Newton methods chapter; BFGS update and convergence sections.
+      notes: Chapter 6, §6.1, pp. 136–143.
 generated_hypotheses:
   - id: bfgs-method-hypothesis
     text: BFGS is a quasi-Newton optimization method that updates an inverse-Hessian approximation using
@@ -100,11 +100,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\bfgs-method.yaml#claims.bfgs-method-claim
+  - id: bfgs-method-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: The scoped proposition and typed edge remain defensible.
+    recommended_action: Retain the accepted disposition with the new pinpoint assessment.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\bfgs-method.yaml#claims.bfgs-method-claim
 human_decisions:
   - id: bfgs-method-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -132,7 +143,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

@@ -45,9 +45,9 @@ claims:
         proposition: The Jacobi integral is a conserved quantity of the circular restricted three-body
           problem in the uniformly rotating frame.
         status: direct-support
-        location: Restricted three-body problem, Jacobi integral, and zero-velocity surface sections.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter 8, §8.3, pp. 149–151.
+        rationale: The Jacobi integral is derived as a conserved quantity in the rotating restricted
+          three-body problem.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -68,7 +68,7 @@ search:
       source_ids:
         - fitzpatrick-celestial-mechanics-2012
       executed_by: structure-atlas-evidence-curator
-      notes: Restricted three-body problem, Jacobi integral, and zero-velocity surface sections.
+      notes: Chapter 8, §8.3, pp. 149–151.
 generated_hypotheses:
   - id: jacobi-integral-hypothesis
     text: The Jacobi integral is a conserved quantity of the circular restricted three-body problem in
@@ -95,11 +95,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\jacobi-integral.yaml#claims.jacobi-integral-claim
+  - id: jacobi-integral-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: The scoped proposition and typed edge remain defensible.
+    recommended_action: Retain the accepted disposition with the new pinpoint assessment.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\jacobi-integral.yaml#claims.jacobi-integral-claim
 human_decisions:
   - id: jacobi-integral-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -128,7 +139,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

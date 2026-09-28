@@ -51,6 +51,7 @@ export interface EvidenceReport {
     selected: number;
     enriched: number;
     direct_support_assessments: number;
+    qualified_support_assessments: number;
     adversarial_reviews: number;
   };
   candidates: {
@@ -103,6 +104,8 @@ export function applyEvidencePack(
         'counterexamples',
         'source_id',
         'source_location',
+        'source_status',
+        'source_rationale',
         'possible_falsifiers',
         'alternative_interpretations',
         'search_query',
@@ -144,6 +147,12 @@ export function applyEvidencePack(
     const edge = isRecord(entry.edge) ? entry.edge : {};
     const claimId = `${id}-claim`;
     const proposition = requiredString(entry, 'proposition', id);
+    const sourceStatus =
+      typeof entry.source_status === 'string' && entry.source_status.trim() !== ''
+        ? entry.source_status
+        : 'direct-support';
+    if (!['direct-support', 'qualified-support'].includes(sourceStatus))
+      throw new Error(`${id}.source_status must be direct-support or qualified-support`);
     dossier.claims = [
       {
         id: claimId,
@@ -167,10 +176,12 @@ export function applyEvidencePack(
           {
             source_id: sourceId,
             proposition,
-            status: 'direct-support',
+            status: sourceStatus,
             location: requiredString(entry, 'source_location', id),
             rationale:
-              'The cited textbook location states or develops this proposition; no inference is made from topical co-mention alone.',
+              typeof entry.source_rationale === 'string' && entry.source_rationale.trim() !== ''
+                ? entry.source_rationale
+                : 'The pinpointed source location states or develops the assessed proposition.',
             assessor: { kind: 'model-assisted', identity: assessor, version: '1.0.0' },
           },
         ],
@@ -216,16 +227,18 @@ export function applyEvidencePack(
         provenance: [packFile, `${dossierFile}#source_inventory`],
       },
     ];
+    const primaryReview = {
+      id: `${id}-adversarial`,
+      method: 'model-assisted',
+      reviewer: `${assessor}-adversarial`,
+      challenge: requiredString(entry, 'challenge', id),
+      response: requiredString(entry, 'response', id),
+      recommended_action: requiredString(entry, 'recommended_action', id),
+      provenance: [packFile, `${dossierFile}#claims.${claimId}`],
+    };
     dossier.adversarial_reviews = [
-      {
-        id: `${id}-adversarial`,
-        method: 'model-assisted',
-        reviewer: `${assessor}-adversarial`,
-        challenge: requiredString(entry, 'challenge', id),
-        response: requiredString(entry, 'response', id),
-        recommended_action: requiredString(entry, 'recommended_action', id),
-        provenance: [packFile, `${dossierFile}#claims.${claimId}`],
-      },
+      primaryReview,
+      ...records(dossier.adversarial_reviews).filter((review) => review.id !== primaryReview.id),
     ];
     const workflow = isRecord(dossier.workflow) ? dossier.workflow : { history: [] };
     const history = records(workflow.history).slice(0, 2);
@@ -256,13 +269,19 @@ export function applyEvidencePack(
         actor: assessor,
       },
     );
-    dossier.workflow = { state: 'automated-review-passed', history };
+    const terminalState = [
+      'accepted-as-node',
+      'accepted-as-edge',
+      'retained-as-example',
+      'rejected',
+    ].includes(String(workflow.state));
+    dossier.workflow = terminalState ? workflow : { state: 'automated-review-passed', history };
     writeFileSync(dossierFile, stringify(dossier, { lineWidth: 100 }), 'utf8');
     candidates.push({
       candidate_id: id,
       claim_id: claimId,
       source_id: sourceId,
-      workflow_state: 'automated-review-passed',
+      workflow_state: String((dossier.workflow as RecordValue).state),
     });
   }
   const report: EvidenceReport = {
@@ -272,7 +291,12 @@ export function applyEvidencePack(
     summary: {
       selected: selected.size,
       enriched: candidates.length,
-      direct_support_assessments: candidates.length,
+      direct_support_assessments: entries.filter(
+        (entry) => entry.source_status !== 'qualified-support',
+      ).length,
+      qualified_support_assessments: entries.filter(
+        (entry) => entry.source_status === 'qualified-support',
+      ).length,
       adversarial_reviews: candidates.length,
     },
     candidates,

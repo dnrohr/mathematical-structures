@@ -49,6 +49,8 @@ const SOURCE_KEYS: Record<string, string> = {
   'cover-thomas-2006': 'cover-thomas-2006',
   'boyd-vandenberghe-2004': 'boyd-vandenberghe-2004',
   'fitzpatrick-celestial-mechanics-2012': 'fitzpatrick-2012',
+  'murray-dermott-1999': 'murray-dermott-1999',
+  'parikh-boyd-2014': 'parikh-boyd-2014',
 };
 
 const PROMOTION_ALIASES: Record<string, { name: string; field: string }[]> = {
@@ -113,6 +115,24 @@ const REFERENCE_ADDITIONS = `
   title     = {An Introduction to Celestial Mechanics},
   publisher = {Cambridge University Press},
   year      = {2012},
+}
+
+@book{murray-dermott-1999,
+  author    = {Murray, Carl D. and Dermott, Stanley F.},
+  title     = {Solar System Dynamics},
+  publisher = {Cambridge University Press},
+  year      = {1999},
+}
+
+@article{parikh-boyd-2014,
+  author  = {Parikh, Neal and Boyd, Stephen},
+  title   = {Proximal Algorithms},
+  journal = {Foundations and Trends in Optimization},
+  volume  = {1},
+  number  = {3},
+  pages   = {123–231},
+  year    = {2014},
+  url     = {https://web.stanford.edu/~boyd/papers/prox_algs.html},
 }
 `;
 
@@ -374,7 +394,7 @@ export function buildPromotionPreview(
       proposed_new_concepts: newNodes.length,
       proposed_merge_refinements: mergeRefinements.length,
       proposed_edges: edges.length,
-      reference_additions: 6,
+      reference_additions: 8,
       integrated_validation_errors: issues.filter((issue) => issue.severity === 'error').length,
       integrated_validation_warnings: issues.filter((issue) => issue.severity === 'warn').length,
     },

@@ -10,28 +10,29 @@ candidate:
   possible_matches: []
   proposed_node_type: phenomenon
 source_inventory:
-  - id: fitzpatrick-celestial-mechanics-2012
+  - id: murray-dermott-1999
     kind: textbook
-    title: An Introduction to Celestial Mechanics
+    title: Solar System Dynamics
     authors:
-      - Richard Fitzpatrick
-    year: 2012
-    locator: https://www.cambridge.org/core/books/an-introduction-to-celestial-mechanics/0E9275B6D76F141E4F4948BCA112284D
-    supplied_by: atlas-campaign-curator
+      - Carl D. Murray
+      - Stanley F. Dermott
+    year: 1999
+    locator: https://www.cambridge.org/core/books/abs/solar-system-dynamics/resonant-perturbations/55275B58F1A2B00FE0DB74E508E0EA68
+    supplied_by: codex-independent-review
 claims:
   - id: orbital-resonance-claim
-    proposition: Orbital resonance occurs when fundamental orbital frequencies are near a low-integer
-      ratio, producing slow resonant angle dynamics analogous to coupled oscillators.
+    proposition: After resonant averaging, the local libration dynamics near a stable isolated orbital
+      resonance can be approximated by a pendulum-type Hamiltonian.
     endpoints:
       from: $candidate
       to: harmonic-oscillator
     proposed_edge:
-      type: SAME-SKELETON
+      type: ANALOGOUS-TO
       strength: strong-analogy
-      context: Weakly perturbed, near-integrable motion after resonant averaging.
+      context: Small-amplitude libration about a stable isolated resonance after resonant averaging.
     mathematical_skeleton: A slow integer combination of angles survives averaging and often reduces
       locally to a pendulum-like libration Hamiltonian.
-    scope: Mean-motion and related resonances in weakly perturbed celestial systems.
+    scope: Weakly perturbed orbit–orbit resonances admitting a one-degree-of-freedom resonant reduction.
     assumptions:
       - near commensurability
       - perturbative separation of fast and slow angles
@@ -41,13 +42,13 @@ claims:
     counterexamples:
       - A near rational ratio with a circulating resonant angle.
     source_assessments:
-      - source_id: fitzpatrick-celestial-mechanics-2012
-        proposition: Orbital resonance occurs when fundamental orbital frequencies are near a low-integer
-          ratio, producing slow resonant angle dynamics analogous to coupled oscillators.
+      - source_id: murray-dermott-1999
+        proposition: After resonant averaging, the local libration dynamics near a stable isolated orbital
+          resonance can be approximated by a pendulum-type Hamiltonian.
         status: direct-support
-        location: Perturbation theory and orbital resonance sections.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter 8, §§8.3 and 8.6–8.8, pp. 326–363.
+        rationale: The resonant perturbation chapter derives a pendulum model and Hamiltonian description
+          for libration near isolated orbit–orbit resonances.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -66,16 +67,16 @@ search:
     - query_id: orbital-resonance-query
       result: located
       source_ids:
-        - fitzpatrick-celestial-mechanics-2012
+        - murray-dermott-1999
       executed_by: structure-atlas-evidence-curator
-      notes: Perturbation theory and orbital resonance sections.
+      notes: Chapter 8, §§8.3 and 8.6–8.8, pp. 326–363.
 generated_hypotheses:
   - id: orbital-resonance-hypothesis
-    text: Orbital resonance occurs when fundamental orbital frequencies are near a low-integer ratio,
-      producing slow resonant angle dynamics analogous to coupled oscillators.
+    text: After resonant averaging, the local libration dynamics near a stable isolated orbital
+      resonance can be approximated by a pendulum-type Hamiltonian.
     generator: structure-atlas-evidence-curator
     input_source_ids:
-      - fitzpatrick-celestial-mechanics-2012
+      - murray-dermott-1999
 automated_judgments:
   - id: orbital-resonance-judgment
     method: model-assisted
@@ -95,11 +96,23 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\orbital-resonance.yaml#claims.orbital-resonance-claim
+  - id: orbital-resonance-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: Replaced the unsupported source and narrowed SAME-SKELETON to an explicit pendulum-model
+      analogy.
+    recommended_action: Revise as recorded, then retain the accepted disposition.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\orbital-resonance.yaml#claims.orbital-resonance-claim
 human_decisions:
   - id: orbital-resonance-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -128,7 +141,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

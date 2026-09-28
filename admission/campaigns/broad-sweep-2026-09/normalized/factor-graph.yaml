@@ -11,7 +11,7 @@ candidate:
     - statistics
   proposed_disposition: propose-node
   possible_matches: []
-  proposed_node_type: model
+  proposed_node_type: object
 source_inventory:
   - id: koller-friedman-2009
     kind: textbook
@@ -58,9 +58,9 @@ claims:
         proposition: A factor graph represents a global function or probability distribution as a bipartite
           graph of variables and local factors.
         status: direct-support
-        location: Factorized representations and message-passing chapters.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter 4, §4.4.1, pp. 123–127.
+        rationale: The factor graph is defined as a bipartite representation of a factorized function,
+          supporting classification as an object/representation.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -81,7 +81,7 @@ search:
       source_ids:
         - koller-friedman-2009
       executed_by: structure-atlas-evidence-curator
-      notes: Factorized representations and message-passing chapters.
+      notes: Chapter 4, §4.4.1, pp. 123–127.
 generated_hypotheses:
   - id: factor-graph-hypothesis
     text: A factor graph represents a global function or probability distribution as a bipartite graph
@@ -108,11 +108,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\factor-graph.yaml#claims.factor-graph-claim
+  - id: factor-graph-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: Reclassified the factor graph from model to object/representation.
+    recommended_action: Revise as recorded, then retain the accepted disposition.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\factor-graph.yaml#claims.factor-graph-claim
 human_decisions:
   - id: factor-graph-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -141,7 +152,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

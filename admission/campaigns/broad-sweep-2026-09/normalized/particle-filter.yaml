@@ -49,9 +49,9 @@ claims:
         proposition: When Gaussian filtering assumptions fail, a particle filter replaces a single Gaussian
           belief by a weighted empirical sample propagated and reweighted recursively.
         status: direct-support
-        location: Nonparametric filters and particle-filter chapters.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter 4, §4.3, pp. 96–112.
+        rationale: The particle filter is presented as sequential Monte Carlo for nonlinear or non-Gaussian
+          Bayes filtering.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -72,7 +72,7 @@ search:
       source_ids:
         - thrun-burgard-fox-2005
       executed_by: structure-atlas-evidence-curator
-      notes: Nonparametric filters and particle-filter chapters.
+      notes: Chapter 4, §4.3, pp. 96–112.
 generated_hypotheses:
   - id: particle-filter-hypothesis
     text: When Gaussian filtering assumptions fail, a particle filter replaces a single Gaussian belief
@@ -99,11 +99,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\particle-filter.yaml#claims.particle-filter-claim
+  - id: particle-filter-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: The scoped proposition and typed edge remain defensible.
+    recommended_action: Retain the accepted disposition with the new pinpoint assessment.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\particle-filter.yaml#claims.particle-filter-claim
 human_decisions:
   - id: particle-filter-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -132,7 +143,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

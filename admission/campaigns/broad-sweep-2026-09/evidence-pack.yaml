@@ -3,761 +3,1328 @@ campaign_id: broad-sweep-2026-09
 assessor: structure-atlas-evidence-curator
 entries:
   - candidate_id: attractors
-    proposition: An asymptotically stable invariant set is a local attractor because nearby trajectories converge to it.
-    endpoints: { from: stability, to: $candidate }
-    edge: { type: GOVERNS, strength: theorem, context: Local autonomous dynamics with an invariant set and an attracting neighborhood. }
+    proposition: A locally asymptotically stable equilibrium is a local attractor because trajectories
+      from a neighborhood converge to it.
+    endpoints:
+      from: stability
+      to: $candidate
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Local autonomous dynamics with an invariant set and an attracting neighborhood.
     mathematical_skeleton: Distance to the invariant set tends to zero along trajectories begun in its basin.
-    scope: Local attractors in finite-dimensional autonomous dynamical systems.
-    assumptions: [forward completeness in the neighborhood, invariant candidate set]
+    scope: Local equilibrium attractors in finite-dimensional autonomous dynamical systems.
+    assumptions:
+      - forward completeness in the neighborhood
+      - locally asymptotically stable equilibrium
     validity_regime: Initial states in the basin of attraction.
-    caveats: ["An invariant set need not attract, and an attractor need not be a fixed point."]
-    counterexamples: [A Lyapunov-stable center is not attracting.]
+    caveats:
+      - An invariant set need not attract, and an attractor need not be a fixed point.
+    counterexamples:
+      - A Lyapunov-stable center is not attracting.
     source_id: khalil-nonlinear-systems-2014
-    source_location: Stability and invariant-set chapters; attractors and limit sets discussion.
-    possible_falsifiers: [A nearby trajectory that remains in the basin but fails to approach the set.]
-    alternative_interpretations: [Milnor attractor with a measure-theoretic basin.]
+    source_location: Chapter 4, §4.1, pp. 112–126; Chapter 8, §8.2, pp. 312–321.
+    possible_falsifiers:
+      - A nearby trajectory that remains in the basin but fails to approach the set.
+    alternative_interpretations:
+      - Milnor attractor with a measure-theoretic basin.
     search_query: Khalil Nonlinear Systems attractor asymptotic stability invariant set
     challenge: The term attractor has inequivalent topological and measure-theoretic definitions.
     response: The claim is restricted to the local asymptotically stable invariant-set definition.
     recommended_action: Retain the scoped node and record broader definitions as caveats.
-
+    source_rationale: The stability and region-of-attraction sections directly support convergence of
+      nearby trajectories to a locally asymptotically stable equilibrium.
+    source_status: direct-support
   - candidate_id: limit-cycles
     proposition: A limit cycle is an isolated periodic orbit represented as a closed trajectory in phase space.
-    endpoints: { from: $candidate, to: phase-space }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: Autonomous continuous-time systems. }
-    mathematical_skeleton: A periodic solution traces a closed orbit; isolation distinguishes a limit cycle from a family of periodic orbits.
+    endpoints:
+      from: $candidate
+      to: phase-space
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Autonomous continuous-time systems.
+    mathematical_skeleton: A periodic solution traces a closed orbit; isolation distinguishes a limit
+      cycle from a family of periodic orbits.
     scope: Finite-dimensional autonomous ODEs.
-    assumptions: [existence and uniqueness of trajectories]
+    assumptions:
+      - existence and uniqueness of trajectories
     validity_regime: Periodic solutions of autonomous flows.
-    caveats: [Closed phase curves in nonautonomous projections need not be limit cycles.]
-    counterexamples: ["Every orbit of a linear center is periodic, so none is an isolated limit cycle."]
+    caveats:
+      - Closed phase curves in nonautonomous projections need not be limit cycles.
+    counterexamples:
+      - Every orbit of a linear center is periodic, so none is an isolated limit cycle.
     source_id: khalil-nonlinear-systems-2014
-    source_location: Phase-plane analysis and limit-cycle sections.
-    possible_falsifiers: [A claimed cycle lying in a continuum of neighboring periodic orbits.]
-    alternative_interpretations: [Periodic orbit in a discrete map.]
+    source_location: Chapter 2, §2.4, pp. 54–59.
+    possible_falsifiers:
+      - A claimed cycle lying in a continuum of neighboring periodic orbits.
+    alternative_interpretations:
+      - Periodic orbit in a discrete map.
     search_query: Khalil Nonlinear Systems limit cycle isolated periodic orbit
     challenge: A closed curve alone does not establish a limit cycle.
     response: Isolation and autonomous-flow assumptions are explicit in the proposition.
     recommended_action: Retain with the isolation condition prominent.
-
+    source_rationale: Section 2.4 identifies limit cycles as isolated closed orbits and distinguishes
+      them from centers.
+    source_status: direct-support
   - candidate_id: b-series
-    proposition: A B-series is a rooted-tree-indexed formal series expansion used to represent Runge-Kutta flows and their compositions.
-    endpoints: { from: $candidate, to: series-expansion }
-    edge: { type: IS-A, strength: special-case, context: Formal expansions for numerical flows of ODEs. }
-    mathematical_skeleton: Coefficients are indexed by rooted trees whose elementary differentials encode derivative compositions.
+    proposition: A B-series is a rooted-tree-indexed formal series expansion used to represent
+      Runge-Kutta flows and their compositions.
+    endpoints:
+      from: $candidate
+      to: series-expansion
+    edge:
+      type: IS-A
+      strength: special-case
+      context: Formal expansions for numerical flows of ODEs.
+    mathematical_skeleton: Coefficients are indexed by rooted trees whose elementary differentials
+      encode derivative compositions.
     scope: Formal local expansions for sufficiently smooth autonomous ODEs.
-    assumptions: [sufficient derivatives of the vector field]
+    assumptions:
+      - sufficient derivatives of the vector field
     validity_regime: Formal order analysis and convergent regimes where the series is controlled.
-    caveats: [Not every geometric integrator is representable by an ordinary B-series.]
-    counterexamples: [Aromatic series require graph structures beyond rooted trees.]
+    caveats:
+      - Not every geometric integrator is representable by an ordinary B-series.
+    counterexamples:
+      - Aromatic series require graph structures beyond rooted trees.
     source_id: hairer-lubich-wanner-2006
-    source_location: B-series and order-condition sections.
-    possible_falsifiers: [A purported B-series coefficient requiring a non-rooted-tree invariant.]
-    alternative_interpretations: [Exact-flow versus numerical-method B-series.]
+    source_location: Chapter III, §§III.1–III.2, pp. 51–74.
+    possible_falsifiers:
+      - A purported B-series coefficient requiring a non-rooted-tree invariant.
+    alternative_interpretations:
+      - Exact-flow versus numerical-method B-series.
     search_query: Hairer Lubich Wanner B-series rooted trees Runge-Kutta
     challenge: The label can refer to a formal algebra, a method expansion, or the exact flow.
     response: The node encompasses the rooted-tree formalism and distinguishes those uses in scope notes.
     recommended_action: Retain as a specialized series-expansion object.
-
+    source_rationale: The rooted-tree construction and B-series representation of Runge–Kutta expansions
+      are developed explicitly.
+    source_status: direct-support
   - candidate_id: backward-error-analysis
-    proposition: Backward error analysis interprets a numerical trajectory as the exact trajectory of a nearby modified differential equation.
-    endpoints: { from: $candidate, to: smoothness }
-    edge: { type: ASSUMES, strength: theorem, context: Truncated modified equations for sufficiently smooth or analytic dynamics. }
-    mathematical_skeleton: Choose modified vector-field coefficients so its exact flow matches the numerical one step map order by order.
+    proposition: At any fixed truncation order, backward error analysis constructs a nearby modified
+      differential equation whose exact flow matches the numerical one-step map up to a controlled
+      defect.
+    endpoints:
+      from: $candidate
+      to: smoothness
+    edge:
+      type: ASSUMES
+      strength: theorem
+      context: Truncated modified equations for sufficiently smooth or analytic dynamics.
+    mathematical_skeleton: Choose finitely many modified-vector-field coefficients so the truncated
+      modified flow matches the numerical one-step map through the claimed order.
     scope: One-step integrators for smooth ODEs.
-    assumptions: [smooth or analytic vector field, sufficiently small step size]
+    assumptions:
+      - smooth or analytic vector field
+      - sufficiently small step size
     validity_regime: Finite truncation, or exponentially long regimes under analyticity hypotheses.
-    caveats: [The full modified series commonly diverges and is used asymptotically.]
-    counterexamples: [Nonsmooth dynamics where the required derivatives do not exist.]
+    caveats:
+      - The full modified series commonly diverges and is used asymptotically.
+    counterexamples:
+      - Nonsmooth dynamics where the required derivatives do not exist.
     source_id: hairer-lubich-wanner-2006
-    source_location: Backward error analysis and modified equations chapters.
-    possible_falsifiers: [Failure to match the numerical one-step map through the claimed order.]
-    alternative_interpretations: [Backward error for linear algebra rather than ODE integration.]
+    source_location: Chapter IX, §§IX.1–IX.3, pp. 337–366.
+    possible_falsifiers:
+      - Failure to match the numerical one-step map through the claimed order.
+    alternative_interpretations:
+      - Backward error for linear algebra rather than ODE integration.
     search_query: Hairer Lubich Wanner backward error analysis modified differential equation
     challenge: Calling the numerical solution exact may hide truncation and divergence.
     response: The claim says nearby truncated modified equation and states the asymptotic limitation.
     recommended_action: Retain with the truncation caveat.
-
+    source_rationale: The modified-equation construction is order-by-order and supports the claim only
+      with finite-truncation or analytic-regime qualifications.
+    source_status: direct-support
   - candidate_id: bayesian-network
-    proposition: A Bayesian network factorizes a joint distribution according to a directed acyclic graph and applies Bayes rule for probabilistic inference.
-    endpoints: { from: bayes-rule, to: $candidate }
-    edge: { type: APPLIED-IN, strength: theorem, context: Directed acyclic graphical models with normalized conditional distributions. }
+    proposition: A Bayesian network factorizes a joint distribution according to a directed acyclic
+      graph and applies Bayes rule for probabilistic inference.
+    endpoints:
+      from: bayes-rule
+      to: $candidate
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Directed acyclic graphical models with normalized conditional distributions.
     mathematical_skeleton: p(x_1,...,x_n) equals the product over nodes of p(x_i given its parents).
     scope: Discrete or continuous Bayesian networks with well-defined conditional densities.
-    assumptions: [directed acyclic graph, local Markov property]
+    assumptions:
+      - directed acyclic graph
+      - local Markov property
     validity_regime: Distributions Markov with respect to the graph.
-    caveats: [The graph alone does not imply causal semantics.]
-    counterexamples: [A directed cyclic model is not a Bayesian network under this definition.]
+    caveats:
+      - The graph alone does not imply causal semantics.
+    counterexamples:
+      - A directed cyclic model is not a Bayesian network under this definition.
     source_id: koller-friedman-2009
-    source_location: Bayesian-network representation chapters.
-    possible_falsifiers: [A claimed factorization that cannot normalize or violates the parent ordering.]
-    alternative_interpretations: [Causal Bayesian network with intervention semantics.]
+    source_location: Chapter 3, §3.2, pp. 51–67.
+    possible_falsifiers:
+      - A claimed factorization that cannot normalize or violates the parent ordering.
+    alternative_interpretations:
+      - Causal Bayesian network with intervention semantics.
     search_query: Koller Friedman Bayesian network DAG factorization
     challenge: Directed edges are often misread as causal claims.
     response: The proposition is purely probabilistic; causality is an additional interpretation.
     recommended_action: Retain as a model node with an explicit noncausal default.
-
+    source_rationale: The section defines Bayesian-network factorization over a directed acyclic graph.
+    source_status: direct-support
   - candidate_id: belief-propagation
-    proposition: Sum-product belief propagation computes exact marginals on tree-structured factor graphs, including chain-structured hidden Markov models.
-    endpoints: { from: hidden-markov-model, to: $candidate }
-    edge: { type: SOLVED-BY, strength: theorem, context: Sum-product messages on a tree; loopy graphs lose the exactness guarantee. }
+    proposition: Sum-product belief propagation computes exact marginals on tree-structured factor
+      graphs, including chain-structured hidden Markov models.
+    endpoints:
+      from: hidden-markov-model
+      to: $candidate
+    edge:
+      type: SOLVED-BY
+      strength: theorem
+      context: Sum-product messages on a tree; loopy graphs lose the exactness guarantee.
     mathematical_skeleton: Local messages eliminate subtrees and combine by products and marginalizing sums or integrals.
     scope: Tree factor graphs and chain HMMs.
-    assumptions: [acyclic factor graph, finite or integrable factors]
+    assumptions:
+      - acyclic factor graph
+      - finite or integrable factors
     validity_regime: Exact on trees; iterative heuristic on loopy graphs.
-    caveats: [Loopy belief propagation may fail to converge or return inexact beliefs.]
-    counterexamples: [A frustrated cycle with nonconvergent message updates.]
+    caveats:
+      - Loopy belief propagation may fail to converge or return inexact beliefs.
+    counterexamples:
+      - A frustrated cycle with nonconvergent message updates.
     source_id: koller-friedman-2009
-    source_location: Exact inference, clique-tree, and message-passing chapters.
-    possible_falsifiers: [A tree example whose returned belief differs from direct marginalization.]
-    alternative_interpretations: [Max-product messages for MAP rather than marginals.]
+    source_location: Chapter 10, §§10.2–10.3, pp. 345–364.
+    possible_falsifiers:
+      - A tree example whose returned belief differs from direct marginalization.
+    alternative_interpretations:
+      - Max-product messages for MAP rather than marginals.
     search_query: Koller Friedman belief propagation exact tree marginals
     challenge: The common loopy algorithm does not inherit tree exactness.
     response: Exactness is explicitly limited to trees, with loopy use marked heuristic.
     recommended_action: Retain and encode tree versus loopy regimes.
-
+    source_rationale: The clique-tree message-passing derivation gives exact marginal inference on
+      tree-structured factorizations.
+    source_status: direct-support
   - candidate_id: bfgs-method
-    proposition: BFGS is a quasi-Newton optimization method that updates an inverse-Hessian approximation using gradient differences while preserving positive definiteness under a curvature condition.
-    endpoints: { from: $candidate, to: optimization }
-    edge: { type: APPLIED-IN, strength: theorem, context: Smooth unconstrained optimization with a line search satisfying the curvature condition. }
-    mathematical_skeleton: A rank-two secant update enforces H_{k+1} y_k = s_k and remains positive definite when s_k^T y_k is positive.
+    proposition: BFGS is a quasi-Newton optimization method that updates an inverse-Hessian
+      approximation using gradient differences while preserving positive definiteness under a
+      curvature condition.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Smooth unconstrained optimization with a line search satisfying the curvature condition.
+    mathematical_skeleton: A rank-two secant update enforces H_{k+1} y_k = s_k and remains positive
+      definite when s_k^T y_k is positive.
     scope: Smooth unconstrained minimization.
-    assumptions: [available gradients, positive curvature pair]
+    assumptions:
+      - available gradients
+      - positive curvature pair
     validity_regime: Local convergence regimes with suitable line search.
-    caveats: [Nonconvex curvature can require damping or skipped updates.]
-    counterexamples: [A step with nonpositive s transpose y destroys the standard positivity guarantee.]
+    caveats:
+      - Nonconvex curvature can require damping or skipped updates.
+    counterexamples:
+      - A step with nonpositive s transpose y destroys the standard positivity guarantee.
     source_id: nocedal-wright-2006
-    source_location: Quasi-Newton methods chapter; BFGS update and convergence sections.
-    possible_falsifiers: [Violation of the secant equation by the stated update.]
-    alternative_interpretations: [Limited-memory BFGS as a storage variant.]
+    source_location: Chapter 6, §6.1, pp. 136–143.
+    possible_falsifiers:
+      - Violation of the secant equation by the stated update.
+    alternative_interpretations:
+      - Limited-memory BFGS as a storage variant.
     search_query: Nocedal Wright BFGS secant positive definite curvature condition
     challenge: BFGS is not simply Newton's method without an exact Hessian.
     response: The claim identifies its distinct secant update and conditional positivity result.
     recommended_action: Retain as an operation distinct from Newton's method.
-
+    source_rationale: The BFGS inverse-Hessian update and its positive-definiteness conditions are stated explicitly.
+    source_status: direct-support
   - candidate_id: channel-capacity
-    proposition: Channel capacity is the supremum of reliably achievable communication rates and governs the asymptotic rate limit for digital communication over a specified channel model.
-    endpoints: { from: $candidate, to: digital-communications }
-    edge: { type: GOVERNS, strength: theorem, context: Asymptotically long codes under the channel model and error criterion of the coding theorem. }
+    proposition: Channel capacity is the supremum of reliably achievable communication rates and governs
+      the asymptotic rate limit for digital communication over a specified channel model.
+    endpoints:
+      from: $candidate
+      to: digital-communications
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Asymptotically long codes under the channel model and error criterion of the coding theorem.
     mathematical_skeleton: For a memoryless channel C equals the maximum over input laws of mutual information I(X;Y).
     scope: Discrete memoryless channels, with model-specific extensions.
-    assumptions: [fixed channel law, arbitrarily long block codes]
+    assumptions:
+      - fixed channel law
+      - arbitrarily long block codes
     validity_regime: Rates below capacity are achievable; rates above are ruled out by a converse.
-    caveats: [Finite-blocklength and mismatch constraints change practical limits.]
-    counterexamples: [A rate above C with vanishing error would contradict the converse.]
+    caveats:
+      - Finite-blocklength and mismatch constraints change practical limits.
+    counterexamples:
+      - A rate above C with vanishing error would contradict the converse.
     source_id: cover-thomas-2006
-    source_location: Channel capacity and channel coding theorem chapters.
-    possible_falsifiers: [A valid coding sequence above capacity with vanishing error under the same model.]
-    alternative_interpretations: [Operational capacity under cost or feedback constraints.]
+    source_location: Chapter 7, §§7.1–7.7, pp. 183–221.
+    possible_falsifiers:
+      - A valid coding sequence above capacity with vanishing error under the same model.
+    alternative_interpretations:
+      - Operational capacity under cost or feedback constraints.
     search_query: Cover Thomas channel capacity coding theorem mutual information
     challenge: Capacity is model-dependent, not a property of hardware alone.
     response: The channel law and asymptotic coding regime are explicit.
     recommended_action: Retain with model and finite-blocklength caveats.
-
+    source_rationale: The chapter defines channel capacity and proves its role as the reliable
+      communication-rate threshold.
+    source_status: direct-support
   - candidate_id: convex-function
-    proposition: Convex optimization assumes a convex objective and convex feasible structure, making every local minimum globally minimizing.
-    endpoints: { from: optimization, to: $candidate }
-    edge: { type: ASSUMES, strength: theorem, context: Convex minimization on a convex feasible set. }
+    proposition: Convex optimization assumes a convex objective and convex feasible structure, making
+      every local minimum globally minimizing.
+    endpoints:
+      from: optimization
+      to: $candidate
+    edge:
+      type: ASSUMES
+      strength: theorem
+      context: Convex minimization on a convex feasible set.
     mathematical_skeleton: f(theta x plus one-minus-theta y) is at most theta f(x) plus one-minus-theta f(y).
     scope: Convex minimization problems.
-    assumptions: [convex domain, convex objective]
+    assumptions:
+      - convex domain
+      - convex objective
     validity_regime: Local minima considered within the convex feasible set.
-    caveats: ["Strict convexity is needed for uniqueness, not for local-to-global optimality."]
-    counterexamples: [A nonconvex double-well has nonglobal local minima.]
+    caveats:
+      - Strict convexity is needed for uniqueness, not for local-to-global optimality.
+    counterexamples:
+      - A nonconvex double-well has nonglobal local minima.
     source_id: boyd-vandenberghe-2004
-    source_location: Convex functions and convex optimization problem chapters.
-    possible_falsifiers: [A convex problem possessing a strict nonglobal local minimum.]
-    alternative_interpretations: [Geodesic convexity on manifolds.]
+    source_location: Chapter 3, §3.1, pp. 67–74.
+    possible_falsifiers:
+      - A convex problem possessing a strict nonglobal local minimum.
+    alternative_interpretations:
+      - Geodesic convexity on manifolds.
     search_query: Boyd Vandenberghe convex function local minimum global
     challenge: The term is sometimes attached to a function while constraints remain nonconvex.
     response: The proposition requires both convex objective and feasible structure.
     recommended_action: Retain with the complete problem assumptions.
-
+    source_rationale: The convex-function definition and its role in convex optimization are explicit.
+    source_status: direct-support
   - candidate_id: convex-set
-    proposition: A convex optimization feasible region assumes closure under line segments between feasible points.
-    endpoints: { from: optimization, to: $candidate }
-    edge: { type: ASSUMES, strength: theorem, context: Feasible sets in convex optimization. }
+    proposition: A convex optimization feasible region assumes closure under line segments between
+      feasible points.
+    endpoints:
+      from: optimization
+      to: $candidate
+    edge:
+      type: ASSUMES
+      strength: theorem
+      context: Feasible sets in convex optimization.
     mathematical_skeleton: For x and y in C and theta in [0,1], theta x plus one-minus-theta y remains in C.
     scope: Euclidean convex optimization.
-    assumptions: [affine ambient space]
+    assumptions:
+      - affine ambient space
     validity_regime: Ordinary linear interpolation in the chosen coordinates.
-    caveats: [A coordinate change need not preserve Euclidean convexity.]
-    counterexamples: [A disconnected feasible set is nonconvex.]
+    caveats:
+      - A coordinate change need not preserve Euclidean convexity.
+    counterexamples:
+      - A disconnected feasible set is nonconvex.
     source_id: boyd-vandenberghe-2004
-    source_location: Convex sets chapter.
-    possible_falsifiers: [Two feasible points whose connecting segment leaves the set.]
-    alternative_interpretations: [Geodesically convex sets.]
+    source_location: Chapter 2, §2.1, pp. 21–24.
+    possible_falsifiers:
+      - Two feasible points whose connecting segment leaves the set.
+    alternative_interpretations:
+      - Geodesically convex sets.
     search_query: Boyd Vandenberghe convex set line segment definition
     challenge: Convexity depends on the affine representation.
     response: The ambient affine coordinates are part of the scope.
     recommended_action: Retain as an object node linked to optimization assumptions.
-
+    source_rationale: The convex-set definition is stated and used as the feasible-set condition for convex programs.
+    source_status: direct-support
   - candidate_id: cotangent-bundle
-    proposition: The cotangent bundle T*Q supplies the canonical phase space for unconstrained Hamiltonian mechanics on a configuration manifold Q.
-    endpoints: { from: $candidate, to: phase-space }
-    edge: { type: SAME-SKELETON, strength: strong-analogy, context: Canonical Hamiltonian systems without constraint reduction. }
+    proposition: The cotangent bundle T*Q supplies the canonical phase space for unconstrained
+      Hamiltonian mechanics on a configuration manifold Q.
+    endpoints:
+      from: $candidate
+      to: phase-space
+    edge:
+      type: SAME-SKELETON
+      strength: strong-analogy
+      context: Canonical Hamiltonian systems without constraint reduction.
     mathematical_skeleton: Points are pairs (q,p) with p a covector at q, carrying the canonical symplectic two-form.
     scope: Finite-dimensional canonical Hamiltonian mechanics.
-    assumptions: [smooth configuration manifold, unconstrained canonical formulation]
+    assumptions:
+      - smooth configuration manifold
+      - unconstrained canonical formulation
     validity_regime: Before constraint reduction or noncanonical coordinate changes.
-    caveats: [General symplectic phase spaces need not be global cotangent bundles.]
-    counterexamples: [A reduced coadjoint orbit can be symplectic without being T*Q globally.]
+    caveats:
+      - General symplectic phase spaces need not be global cotangent bundles.
+    counterexamples:
+      - A reduced coadjoint orbit can be symplectic without being T*Q globally.
     source_id: lee-smooth-manifolds-2012
-    source_location: Cotangent bundle and differential-form chapters.
-    possible_falsifiers: [Failure of covector fibers or the canonical one-form construction.]
-    alternative_interpretations: [Phase space as a general symplectic manifold.]
+    source_location: Chapter 11, pp. 272–303.
+    possible_falsifiers:
+      - Failure of covector fibers or the canonical one-form construction.
+    alternative_interpretations:
+      - Phase space as a general symplectic manifold.
     search_query: Lee smooth manifolds cotangent bundle canonical phase space
     challenge: Equating every phase space with a cotangent bundle is too strong.
     response: The scope is the canonical unconstrained formulation and states the exception.
     recommended_action: Retain with a scoped SAME-SKELETON edge.
-
+    source_rationale: The cotangent bundle and its canonical differential-form structure are constructed explicitly.
+    source_status: direct-support
   - candidate_id: data-processing-inequality
-    proposition: Processing data through a Markov channel cannot increase mutual information, constraining entropy-derived information measures.
-    endpoints: { from: $candidate, to: shannon-entropy }
-    edge: { type: GOVERNS, strength: theorem, context: Markov chain X to Y to Z under Shannon mutual information. }
+    proposition: Processing data through a Markov channel cannot increase mutual information,
+      constraining entropy-derived information measures.
+    endpoints:
+      from: $candidate
+      to: mutual-information
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Markov chain X to Y to Z under Shannon mutual information.
     mathematical_skeleton: If X-Y-Z is Markov, then I(X;Z) is at most I(X;Y).
     scope: Shannon mutual information for random variables forming a Markov chain.
-    assumptions: [Markov conditional independence]
+    assumptions:
+      - Markov conditional independence
     validity_regime: Deterministic or stochastic post-processing represented by the channel Y to Z.
-    caveats: [Equality conditions require additional sufficiency structure.]
-    counterexamples: [Side information not included in the Markov chain can alter the comparison.]
+    caveats:
+      - Equality conditions require additional sufficiency structure.
+    counterexamples:
+      - Side information not included in the Markov chain can alter the comparison.
     source_id: cover-thomas-2006
-    source_location: Entropy, mutual information, and data-processing inequality sections.
-    possible_falsifiers: [A valid Markov chain with I(X;Z) greater than I(X;Y).]
-    alternative_interpretations: [Quantum data-processing inequalities.]
+    source_location: Chapter 2, §2.8, pp. 34–35.
+    possible_falsifiers:
+      - A valid Markov chain with I(X;Z) greater than I(X;Y).
+    alternative_interpretations:
+      - Quantum data-processing inequalities.
     search_query: Cover Thomas data processing inequality Markov chain mutual information
     challenge: The theorem is about mutual information, not entropy monotonically decreasing in every process.
     response: The proposition names mutual information and the Markov condition explicitly.
     recommended_action: Retain as a theorem with no generic entropy-monotonicity claim.
-
+    source_rationale: The data-processing theorem states monotonicity of mutual information along a Markov chain.
+    source_status: direct-support
   - candidate_id: differential-form
-    proposition: Differential forms provide the coordinate-independent representation that unifies gradient, circulation, flux, and integral theorems from vector calculus.
-    endpoints: { from: vector-calculus, to: $candidate }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: "Smooth oriented manifolds, specializing in dimensions two and three." }
-    mathematical_skeleton: The exterior derivative and pullback combine with Stokes theorem integral over boundary equals integral of the derivative.
+    proposition: Differential forms provide the coordinate-independent representation that unifies
+      gradient, circulation, flux, and integral theorems from vector calculus.
+    endpoints:
+      from: vector-calculus
+      to: $candidate
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Smooth oriented manifolds, specializing in dimensions two and three.
+    mathematical_skeleton: The exterior derivative and pullback combine with Stokes theorem integral
+      over boundary equals integral of the derivative.
     scope: Smooth manifolds and classical vector calculus under metric-dependent identifications.
-    assumptions: [smoothness, orientation where integration requires it]
+    assumptions:
+      - smoothness
+      - orientation where integration requires it
     validity_regime: Differential forms of compatible degree on manifolds with boundary.
-    caveats: [Gradient and curl identifications use a metric and orientation in addition to forms.]
-    counterexamples: [Nonorientable manifolds require densities or twisted forms for global integration.]
+    caveats:
+      - Gradient and curl identifications use a metric and orientation in addition to forms.
+    counterexamples:
+      - Nonorientable manifolds require densities or twisted forms for global integration.
     source_id: lee-smooth-manifolds-2012
-    source_location: Differential forms, integration, and Stokes theorem chapters.
-    possible_falsifiers: [A claimed vector-calculus identity incompatible with exterior differentiation.]
-    alternative_interpretations: [Distributional differential forms.]
+    source_location: Chapter 14, pp. 349–376.
+    possible_falsifiers:
+      - A claimed vector-calculus identity incompatible with exterior differentiation.
+    alternative_interpretations:
+      - Distributional differential forms.
     search_query: Lee smooth manifolds differential forms Stokes vector calculus
     challenge: Saying forms are identical to vector calculus hides metric-dependent conversions.
     response: The claim says representation and explicitly separates metric identifications.
     recommended_action: Retain with the metric caveat.
-
+    source_rationale: Differential forms, exterior differentiation, and their relation to classical
+      vector-calculus operators are developed explicitly.
+    source_status: direct-support
   - candidate_id: extended-kalman-filter
-    proposition: When nonlinear dynamics or observations break the linear Kalman assumptions, the extended Kalman filter replaces exact propagation with Jacobian linearization.
-    endpoints: { from: kalman-filter, to: $candidate }
-    edge: { type: REPLACED-BY, strength: strong-analogy, context: Differentiable nonlinear state-space models with approximately Gaussian local uncertainty. }
-    mathematical_skeleton: Propagate mean through nonlinear maps and covariance through their Jacobians, then apply a Kalman-form correction.
+    proposition: When nonlinear dynamics or observations break the linear Kalman assumptions, the
+      extended Kalman filter replaces exact propagation with Jacobian linearization.
+    endpoints:
+      from: kalman-filter
+      to: $candidate
+    edge:
+      type: REPLACED-BY
+      strength: strong-analogy
+      context: Differentiable nonlinear state-space models with approximately Gaussian local uncertainty.
+    mathematical_skeleton: Propagate mean through nonlinear maps and covariance through their Jacobians,
+      then apply a Kalman-form correction.
     scope: Differentiable nonlinear filtering with unimodal local uncertainty.
-    assumptions: [differentiable models, useful first-order approximation]
+    assumptions:
+      - differentiable models
+      - useful first-order approximation
     validity_regime: Small uncertainty and weak local nonlinearity.
-    caveats: [The recursion is approximate and can be inconsistent or diverge.]
-    counterexamples: [Strongly multimodal posteriors not captured by one Gaussian.]
+    caveats:
+      - The recursion is approximate and can be inconsistent or diverge.
+    counterexamples:
+      - Strongly multimodal posteriors not captured by one Gaussian.
     source_id: thrun-burgard-fox-2005
-    source_location: Gaussian filters and extended Kalman filter chapter.
-    possible_falsifiers: [An implementation that does not use local Jacobians or equivalent linearization.]
-    alternative_interpretations: [Iterated EKF measurement updates.]
+    source_location: Chapter 3, §3.3, pp. 54–64.
+    possible_falsifiers:
+      - An implementation that does not use local Jacobians or equivalent linearization.
+    alternative_interpretations:
+      - Iterated EKF measurement updates.
     search_query: Probabilistic Robotics extended Kalman filter Jacobian nonlinear
     challenge: The EKF is often incorrectly described as an exact nonlinear Kalman filter.
     response: Approximation, locality, and failure modes are explicit.
     recommended_action: Retain as a replacement operation, not an exact specialization.
-
+    source_rationale: The EKF is derived by local linearization of nonlinear motion and measurement models.
+    source_status: direct-support
   - candidate_id: factor-graph
-    proposition: A factor graph represents a global function or probability distribution as a bipartite graph of variables and local factors.
-    endpoints: { from: state-space-model, to: $candidate }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: State-space joint distributions factorized into transition and observation factors. }
-    mathematical_skeleton: f(x_1,...,x_n) equals a product of factors f_a over subsets of variables adjacent to each factor node.
+    proposition: A factor graph represents a global function or probability distribution as a bipartite
+      graph of variables and local factors.
+    endpoints:
+      from: state-space-model
+      to: $candidate
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: State-space joint distributions factorized into transition and observation factors.
+    mathematical_skeleton: f(x_1,...,x_n) equals a product of factors f_a over subsets of variables
+      adjacent to each factor node.
     scope: Finite factorization graphs, including temporal state-space models.
-    assumptions: [specified factorization]
+    assumptions:
+      - specified factorization
     validity_regime: Exact representation when the product equals the target function.
-    caveats: [Graph cycles affect inference algorithms but not the validity of the factorization.]
-    counterexamples: [A missing factor that changes the represented joint distribution.]
+    caveats:
+      - Graph cycles affect inference algorithms but not the validity of the factorization.
+    counterexamples:
+      - A missing factor that changes the represented joint distribution.
     source_id: koller-friedman-2009
-    source_location: Factorized representations and message-passing chapters.
-    possible_falsifiers: [The factor product fails to reconstruct the stated joint distribution.]
-    alternative_interpretations: [Forney-style normal factor graphs.]
+    source_location: Chapter 4, §4.4.1, pp. 123–127.
+    possible_falsifiers:
+      - The factor product fails to reconstruct the stated joint distribution.
+    alternative_interpretations:
+      - Forney-style normal factor graphs.
     search_query: Koller Friedman factor graph variables factors product
     challenge: A factor graph is a representation, not an inference algorithm.
     response: The claim confines the node to representation and leaves message passing separate.
     recommended_action: Retain as an object/representation node.
-
+    source_rationale: The factor graph is defined as a bipartite representation of a factorized
+      function, supporting classification as an object/representation.
+    source_status: direct-support
   - candidate_id: graphslam
-    proposition: GraphSLAM formulates simultaneous localization and mapping as sparse graph-based maximum a posteriori optimization over robot poses and landmarks.
-    endpoints: { from: optimization, to: $candidate }
-    edge: { type: APPLIED-IN, strength: theorem, context: SLAM posterior factorized into motion and measurement constraints. }
-    mathematical_skeleton: Negative log factors yield a sparse nonlinear least-squares objective whose graph records variable-constraint incidence.
+    proposition: GraphSLAM formulates simultaneous localization and mapping as sparse graph-based
+      maximum a posteriori optimization over robot poses and landmarks.
+    endpoints:
+      from: optimization
+      to: $candidate
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: SLAM posterior factorized into motion and measurement constraints.
+    mathematical_skeleton: Negative log factors yield a sparse nonlinear least-squares objective whose
+      graph records variable-constraint incidence.
     scope: Offline or smoothing-based SLAM with differentiable residual models.
-    assumptions: [factorized motion and measurement likelihoods, chosen gauge or anchor]
+    assumptions:
+      - factorized motion and measurement likelihoods
+      - chosen gauge or anchor
     validity_regime: MAP estimation under the stated probabilistic model.
-    caveats: ["Nonconvexity, data association, and gauge freedom can dominate practical behavior."]
-    counterexamples: [An unanchored pose graph has gauge nonuniqueness.]
+    caveats:
+      - Nonconvexity, data association, and gauge freedom can dominate practical behavior.
+    counterexamples:
+      - An unanchored pose graph has gauge nonuniqueness.
     source_id: thrun-burgard-fox-2005
-    source_location: GraphSLAM chapter and full-SLAM inference sections.
-    possible_falsifiers: [A claimed GraphSLAM formulation lacking a graph-factorized global objective.]
-    alternative_interpretations: [Pose-graph optimization without explicit landmarks.]
+    source_location: Chapter 11, §§11.2–11.4, pp. 340–361.
+    possible_falsifiers:
+      - A claimed GraphSLAM formulation lacking a graph-factorized global objective.
+    alternative_interpretations:
+      - Pose-graph optimization without explicit landmarks.
     search_query: Probabilistic Robotics GraphSLAM graph optimization poses landmarks
     challenge: GraphSLAM is not merely any SLAM implementation using a graph data structure.
     response: The definition requires a factorized global MAP objective and sparse graph structure.
     recommended_action: Retain as a named optimization operation.
-
+    source_rationale: The GraphSLAM posterior is reduced to a sparse graph-based optimization problem.
+    source_status: direct-support
   - candidate_id: hamiltonian-system
-    proposition: A Hamiltonian system is naturally represented in phase space by first-order equations generated by a Hamiltonian and a symplectic structure.
-    endpoints: { from: $candidate, to: phase-space }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: Canonical or symplectic Hamiltonian mechanics. }
-    mathematical_skeleton: In canonical coordinates q-dot equals partial H by partial p and p-dot equals minus partial H by partial q.
+    proposition: A Hamiltonian system is naturally represented in phase space by first-order equations
+      generated by a Hamiltonian and a symplectic structure.
+    endpoints:
+      from: $candidate
+      to: phase-space
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Canonical or symplectic Hamiltonian mechanics.
+    mathematical_skeleton: In canonical coordinates q-dot equals partial H by partial p and p-dot equals
+      minus partial H by partial q.
     scope: Finite-dimensional smooth Hamiltonian dynamics.
-    assumptions: [smooth Hamiltonian, nondegenerate symplectic form]
+    assumptions:
+      - smooth Hamiltonian
+      - nondegenerate symplectic form
     validity_regime: Canonical coordinates locally, symplectic vector fields globally.
-    caveats: [Dissipative systems are not Hamiltonian without extension or reformulation.]
-    counterexamples: [A generic contracting flow does not preserve symplectic volume.]
+    caveats:
+      - Dissipative systems are not Hamiltonian without extension or reformulation.
+    counterexamples:
+      - A generic contracting flow does not preserve symplectic volume.
     source_id: hairer-lubich-wanner-2006
-    source_location: Hamiltonian systems and symplectic geometry chapters.
-    possible_falsifiers: [Failure of the vector field to satisfy the Hamiltonian contraction equation.]
-    alternative_interpretations: [Time-dependent Hamiltonian in extended phase space.]
+    source_location: Chapter VI, §§VI.1–VI.3, pp. 179–204.
+    possible_falsifiers:
+      - Failure of the vector field to satisfy the Hamiltonian contraction equation.
+    alternative_interpretations:
+      - Time-dependent Hamiltonian in extended phase space.
     search_query: Hairer Lubich Wanner Hamiltonian system phase space symplectic
     challenge: Merely conserving an energy-like scalar does not make a system Hamiltonian.
     response: The definition requires the symplectic generation relation, not conservation alone.
     recommended_action: Retain with the symplectic condition.
-
+    source_rationale: Hamiltonian flows and their symplectic phase-space representation are developed explicitly.
+    source_status: direct-support
   - candidate_id: interior-point-method
-    proposition: Interior-point methods solve constrained convex optimization by following central solutions defined by barrier-perturbed optimality conditions.
-    endpoints: { from: optimization, to: $candidate }
-    edge: { type: SOLVED-BY, strength: theorem, context: Convex programs satisfying the regularity conditions of the chosen primal-dual method. }
-    mathematical_skeleton: Replace inequality constraints by a barrier or perturbed complementarity equations and drive the barrier parameter toward zero.
+    proposition: Interior-point methods solve constrained convex optimization by following central
+      solutions defined by barrier-perturbed optimality conditions.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Convex programs satisfying the regularity conditions of the chosen primal-dual method.
+    mathematical_skeleton: Replace inequality constraints by a barrier or perturbed complementarity
+      equations and drive the barrier parameter toward zero.
     scope: Linear, conic, and smooth convex programming.
-    assumptions: [convexity, feasible interior or suitable homogeneous embedding]
+    assumptions:
+      - convexity
+      - feasible interior or suitable homogeneous embedding
     validity_regime: Iterates remain in the interior and approach primal-dual optimality.
-    caveats: [Nonconvex variants lack the same global guarantees.]
-    counterexamples: [An infeasible problem without an embedding has no central path to an optimum.]
+    caveats:
+      - Nonconvex variants lack the same global guarantees.
+    counterexamples:
+      - An infeasible problem without an embedding has no central path to an optimum.
     source_id: boyd-vandenberghe-2004
-    source_location: Interior-point methods chapter.
-    possible_falsifiers: [Failure of perturbed KKT residuals to approach zero under theorem assumptions.]
-    alternative_interpretations: [Primal versus primal-dual path-following methods.]
+    source_location: Chapter 11, §§11.2–11.7, pp. 563–609.
+    possible_falsifiers:
+      - Failure of perturbed KKT residuals to approach zero under theorem assumptions.
+    alternative_interpretations:
+      - Primal versus primal-dual path-following methods.
     search_query: Boyd Vandenberghe interior point central path barrier KKT
     challenge: Interior-point is a family, not one update rule.
     response: The node is defined by central-path/barrier structure and records variants beneath it.
     recommended_action: Retain as an operation family.
-
+    source_rationale: The chapter develops barrier and primal-dual interior-point methods as algorithms
+      applied to convex optimization.
+    source_status: direct-support
   - candidate_id: jacobi-integral
-    proposition: The Jacobi integral is a conserved quantity of the circular restricted three-body problem in the uniformly rotating frame.
-    endpoints: { from: $candidate, to: conservation-laws }
-    edge: { type: IS-A, strength: special-case, context: Circular restricted three-body dynamics in rotating coordinates. }
+    proposition: The Jacobi integral is a conserved quantity of the circular restricted three-body
+      problem in the uniformly rotating frame.
+    endpoints:
+      from: $candidate
+      to: conservation-laws
+    edge:
+      type: IS-A
+      strength: special-case
+      context: Circular restricted three-body dynamics in rotating coordinates.
     mathematical_skeleton: The rotating-frame equations imply a constant combining effective potential and squared speed.
     scope: Circular restricted three-body problem.
-    assumptions: [circular primaries, uniformly rotating frame, massless third body]
+    assumptions:
+      - circular primaries
+      - uniformly rotating frame
+      - massless third body
     validity_regime: Autonomous rotating-frame equations with no added perturbations.
-    caveats: [It is not the inertial mechanical energy.]
-    counterexamples: [Elliptic primaries generally destroy the time-independent Jacobi constant.]
+    caveats:
+      - It is not the inertial mechanical energy.
+    counterexamples:
+      - Elliptic primaries generally destroy the time-independent Jacobi constant.
     source_id: fitzpatrick-celestial-mechanics-2012
-    source_location: Restricted three-body problem, Jacobi integral, and zero-velocity surface sections.
-    possible_falsifiers: [Nonzero derivative of the stated integral along an unperturbed solution.]
-    alternative_interpretations: [Jacobi constant with opposite sign convention.]
+    source_location: Chapter 8, §8.3, pp. 149–151.
+    possible_falsifiers:
+      - Nonzero derivative of the stated integral along an unperturbed solution.
+    alternative_interpretations:
+      - Jacobi constant with opposite sign convention.
     search_query: Fitzpatrick celestial mechanics Jacobi integral restricted three body rotating
     challenge: Calling it energy can obscure rotating-frame and sign conventions.
     response: The claim uses conserved quantity and identifies the precise model.
     recommended_action: Retain as a special conservation-law object.
-
+    source_rationale: The Jacobi integral is derived as a conserved quantity in the rotating restricted
+      three-body problem.
+    source_status: direct-support
   - candidate_id: kalman-filter
-    proposition: The Kalman update applies Bayes rule as exact Gaussian conditioning inside a linear-Gaussian state-space model.
-    endpoints: { from: bayes-rule, to: linear-gaussian-ssm }
-    edge: { type: APPLIED-IN, strength: theorem, context: Gaussian prediction and measurement conditioning in the exact Kalman recursion. }
+    proposition: The Kalman update applies Bayes rule as exact Gaussian conditioning inside a
+      linear-Gaussian state-space model.
+    endpoints:
+      from: bayes-rule
+      to: linear-gaussian-ssm
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Gaussian prediction and measurement conditioning in the exact Kalman recursion.
     mathematical_skeleton: Gaussian prediction and conditioning close on the mean and covariance recursions.
     scope: Linear-Gaussian filtering.
-    assumptions: [linear transition and observation maps, Gaussian noises with known covariances]
+    assumptions:
+      - linear transition and observation maps
+      - Gaussian noises with known covariances
     validity_regime: Exact finite-dimensional Gaussian posterior recursion.
-    caveats: [Nonlinear or non-Gaussian models require approximations or different representations.]
-    counterexamples: [A multimodal posterior cannot be represented exactly by one mean and covariance.]
+    caveats:
+      - Nonlinear or non-Gaussian models require approximations or different representations.
+    counterexamples:
+      - A multimodal posterior cannot be represented exactly by one mean and covariance.
     source_id: thrun-burgard-fox-2005
-    source_location: Gaussian filters and Kalman filter sections.
-    possible_falsifiers: [A linear-Gaussian example where the recursion differs from direct Gaussian conditioning.]
-    alternative_interpretations: [Information-form Kalman filtering.]
+    source_location: Chapter 3, §3.2, pp. 40–53.
+    possible_falsifiers:
+      - A linear-Gaussian example where the recursion differs from direct Gaussian conditioning.
+    alternative_interpretations:
+      - Information-form Kalman filtering.
     search_query: Probabilistic Robotics Kalman filter exact linear Gaussian
     challenge: The algorithm is often conflated with the state-space model it solves.
     response: The edge direction explicitly separates model from solver.
     recommended_action: Merge the evidence into the existing trusted node.
-
+    source_rationale: The Kalman-filter recursion is derived from the linear-Gaussian Bayes filter.
+    source_status: direct-support
   - candidate_id: karush-kuhn-tucker-conditions
-    proposition: Under a constraint qualification, KKT conditions are necessary for a constrained local optimum and are sufficient for global optimality in a convex problem.
-    endpoints: { from: $candidate, to: optimization }
-    edge: { type: GOVERNS, strength: theorem, context: Differentiable constrained programs; sufficiency additionally uses convexity. }
+    proposition: Under a constraint qualification, KKT conditions are necessary for a constrained local
+      optimum and are sufficient for global optimality in a convex problem.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Differentiable constrained programs; sufficiency additionally uses convexity.
     mathematical_skeleton: Stationarity, primal feasibility, dual feasibility, and complementary slackness.
     scope: Smooth finite-dimensional constrained optimization.
-    assumptions: [constraint qualification for necessity, convexity for sufficiency]
+    assumptions:
+      - constraint qualification for necessity
+      - convexity for sufficiency
     validity_regime: Local necessity generally; global sufficiency in convex programs.
-    caveats: ["Without a qualification, a valid optimum can lack KKT multipliers."]
-    counterexamples: [Degenerate constraints violating all standard qualifications.]
+    caveats:
+      - Without a qualification, a valid optimum can lack KKT multipliers.
+    counterexamples:
+      - Degenerate constraints violating all standard qualifications.
     source_id: nocedal-wright-2006
-    source_location: Optimality conditions and constraint qualifications chapters.
-    possible_falsifiers: [A convex qualified KKT point that is not globally optimal.]
-    alternative_interpretations: [Nonsmooth KKT conditions using subgradients.]
+    source_location: Chapter 12, §§12.2–12.4, pp. 315–329.
+    possible_falsifiers:
+      - A convex qualified KKT point that is not globally optimal.
+    alternative_interpretations:
+      - Nonsmooth KKT conditions using subgradients.
     search_query: Nocedal Wright KKT necessary sufficient constraint qualification convex
     challenge: KKT is routinely stated without the hypotheses separating necessity from sufficiency.
     response: Both constraint qualification and convexity roles are explicit.
     recommended_action: Retain as a theorem node with split regimes.
-
+    source_rationale: The KKT conditions and the constraint qualifications governing their necessity are
+      stated explicitly.
+    source_status: direct-support
   - candidate_id: lagrange-duality
-    proposition: Lagrange duality represents a constrained optimization problem by a dual lower-bound problem obtained from the infimum of its Lagrangian.
-    endpoints: { from: optimization, to: $candidate }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: Minimization problems with equality and inequality constraints. }
-    mathematical_skeleton: The dual function g(lambda,nu) is the infimum over x of the Lagrangian and never exceeds the primal optimum for dual-feasible multipliers.
+    proposition: Lagrange duality represents a constrained optimization problem by a dual lower-bound
+      problem obtained from the infimum of its Lagrangian.
+    endpoints:
+      from: optimization
+      to: $candidate
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Minimization problems with equality and inequality constraints.
+    mathematical_skeleton: The dual function g(lambda,nu) is the infimum over x of the Lagrangian and
+      never exceeds the primal optimum for dual-feasible multipliers.
     scope: Finite-dimensional constrained optimization.
-    assumptions: [well-defined Lagrangian]
-    validity_regime: Weak duality always; strong duality only under added regularity such as Slater conditions in convex problems.
-    caveats: [A duality gap can remain outside strong-duality conditions.]
-    counterexamples: [A nonconvex problem with positive duality gap.]
+    assumptions:
+      - well-defined Lagrangian
+    validity_regime: Weak duality always; strong duality only under added regularity such as Slater
+      conditions in convex problems.
+    caveats:
+      - A duality gap can remain outside strong-duality conditions.
+    counterexamples:
+      - A nonconvex problem with positive duality gap.
     source_id: boyd-vandenberghe-2004
-    source_location: Lagrange duality and optimality conditions chapters.
-    possible_falsifiers: [A dual-feasible value exceeding the primal optimum in a minimization problem.]
-    alternative_interpretations: [Fenchel duality.]
+    source_location: Chapter 5, §§5.1–5.3, pp. 215–244.
+    possible_falsifiers:
+      - A dual-feasible value exceeding the primal optimum in a minimization problem.
+    alternative_interpretations:
+      - Fenchel duality.
     search_query: Boyd Vandenberghe Lagrange dual function weak strong duality
     challenge: Strong duality is not automatic from writing a Lagrangian.
     response: The claim separates unconditional weak duality from qualified strong duality.
     recommended_action: Retain with the duality-gap caveat.
-
+    source_rationale: The Lagrangian, dual function, dual problem, and weak/strong duality are developed explicitly.
+    source_status: direct-support
   - candidate_id: lagrange-points
-    proposition: Lagrange points are equilibrium points of the circular restricted three-body equations in the uniformly rotating frame.
-    endpoints: { from: $candidate, to: phase-space }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: Circular restricted three-body problem in rotating position-velocity phase space. }
+    proposition: Lagrange points are equilibrium points of the circular restricted three-body equations
+      in the uniformly rotating frame.
+    endpoints:
+      from: $candidate
+      to: phase-space
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Circular restricted three-body problem in rotating position-velocity phase space.
     mathematical_skeleton: Set rotating-frame velocity and acceleration to zero so the effective-force gradient vanishes.
     scope: Five classical equilibrium points L1 through L5.
-    assumptions: [circular primaries, massless third body, uniformly rotating frame]
+    assumptions:
+      - circular primaries
+      - massless third body
+      - uniformly rotating frame
     validity_regime: Classical circular restricted model.
-    caveats: [Only the triangular points are linearly stable for sufficiently small mass ratio; collinear points are unstable.]
-    counterexamples: [Adding substantial third-body mass changes the equilibrium problem.]
+    caveats:
+      - Only the triangular points are linearly stable for sufficiently small mass ratio; collinear
+        points are unstable.
+    counterexamples:
+      - Adding substantial third-body mass changes the equilibrium problem.
     source_id: fitzpatrick-celestial-mechanics-2012
-    source_location: Restricted three-body problem and Lagrange points sections.
-    possible_falsifiers: [A listed point where the rotating effective-force gradient is nonzero.]
-    alternative_interpretations: [Quasi-equilibrium regions in perturbed ephemeris models.]
+    source_location: Chapter 8, §8.6, pp. 155–161.
+    possible_falsifiers:
+      - A listed point where the rotating effective-force gradient is nonzero.
+    alternative_interpretations:
+      - Quasi-equilibrium regions in perturbed ephemeris models.
     search_query: Fitzpatrick celestial mechanics Lagrange points rotating equilibrium
     challenge: Popular descriptions call all five points stable parking locations.
     response: The dossier separates equilibrium existence from the mass-ratio-dependent stability result.
     recommended_action: Retain with stability stated per point family.
-
+    source_rationale: The five equilibrium points of the rotating restricted three-body problem are
+      derived and located.
+    source_status: direct-support
   - candidate_id: lie-group
-    proposition: Continuous symmetries are represented by Lie groups whose smooth multiplication supports infinitesimal generators in a Lie algebra.
-    endpoints: { from: symmetry, to: $candidate }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: Finite-dimensional continuous transformation groups. }
-    mathematical_skeleton: A smooth group has a tangent space at the identity with a bracket induced by invariant vector fields.
+    proposition: Continuous symmetries are represented by Lie groups whose smooth multiplication
+      supports infinitesimal generators in a Lie algebra.
+    endpoints:
+      from: symmetry
+      to: $candidate
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Finite-dimensional continuous transformation groups.
+    mathematical_skeleton: A smooth group has a tangent space at the identity with a bracket induced by
+      invariant vector fields.
     scope: Finite-dimensional Lie groups and smooth actions.
-    assumptions: [smooth manifold structure compatible with group operations]
+    assumptions:
+      - smooth manifold structure compatible with group operations
     validity_regime: Continuous symmetries described by smooth group actions.
-    caveats: [Discrete symmetries are groups but not captured by infinitesimal generators.]
-    counterexamples: [A purely finite symmetry group has zero-dimensional local Lie algebra information.]
+    caveats:
+      - Discrete symmetries are groups but not captured by infinitesimal generators.
+    counterexamples:
+      - A purely finite symmetry group has zero-dimensional local Lie algebra information.
     source_id: lee-smooth-manifolds-2012
-    source_location: Lie groups, Lie algebras, and group actions chapters.
-    possible_falsifiers: [Group multiplication or inversion fails to be smooth.]
-    alternative_interpretations: [Infinite-dimensional Lie groups.]
+    source_location: Chapter 7, pp. 150–173.
+    possible_falsifiers:
+      - Group multiplication or inversion fails to be smooth.
+    alternative_interpretations:
+      - Infinite-dimensional Lie groups.
     search_query: Lee smooth manifolds Lie group symmetry Lie algebra
     challenge: Not every symmetry group is a positive-dimensional Lie group.
     response: The claim is explicitly about continuous finite-dimensional symmetries.
     recommended_action: Retain with discrete groups outside the main scope.
-
+    source_rationale: Lie groups are defined as smooth manifolds with smooth group operations and tied
+      to continuous symmetries.
+    source_status: direct-support
   - candidate_id: lyapunov-functions
-    proposition: A Lyapunov function certifies stability by decreasing along trajectories while measuring displacement from an equilibrium or invariant set.
-    endpoints: { from: $candidate, to: stability }
-    edge: { type: GOVERNS, strength: theorem, context: Positive-definite Lyapunov functions with sign-controlled orbital derivative. }
-    mathematical_skeleton: V is positive definite and its derivative along the vector field is nonpositive for stability, negative definite for asymptotic conclusions under standard hypotheses.
+    proposition: A Lyapunov function certifies stability by decreasing along trajectories while
+      measuring displacement from an equilibrium or invariant set.
+    endpoints:
+      from: $candidate
+      to: stability
+    edge:
+      type: GOVERNS
+      strength: theorem
+      context: Positive-definite Lyapunov functions with sign-controlled orbital derivative.
+    mathematical_skeleton: V is positive definite and its derivative along the vector field is
+      nonpositive for stability, negative definite for asymptotic conclusions under standard
+      hypotheses.
     scope: Local nonlinear stability of equilibria and invariant sets.
-    assumptions: [regular candidate function, derivative sign conditions]
+    assumptions:
+      - regular candidate function
+      - derivative sign conditions
     validity_regime: The neighborhood where definiteness and derivative conditions hold.
-    caveats: [Failure to find a Lyapunov function is not proof of instability.]
-    counterexamples: [A positive function increasing along trajectories does not certify stability.]
+    caveats:
+      - Failure to find a Lyapunov function is not proof of instability.
+    counterexamples:
+      - A positive function increasing along trajectories does not certify stability.
     source_id: khalil-nonlinear-systems-2014
-    source_location: Lyapunov stability theorems and invariance-principle chapters.
-    possible_falsifiers: [A trajectory violating the claimed derivative sign in the certified region.]
-    alternative_interpretations: [Stochastic or control Lyapunov functions.]
+    source_location: Chapter 4, §§4.1–4.2, pp. 112–132.
+    possible_falsifiers:
+      - A trajectory violating the claimed derivative sign in the certified region.
+    alternative_interpretations:
+      - Stochastic or control Lyapunov functions.
     search_query: Khalil Nonlinear Systems Lyapunov function stability derivative
     challenge: Negative semidefinite derivative alone may not imply asymptotic stability.
     response: The claim distinguishes stability from stronger conclusions and invokes added hypotheses.
     recommended_action: Retain with derivative-strength distinctions.
-
+    source_rationale: Lyapunov functions and the invariance principle are used to certify stability and convergence.
+    source_status: direct-support
   - candidate_id: markov-localization
-    proposition: Markov localization performs recursive Bayes filtering over robot pose using motion and sensor models.
-    endpoints: { from: hidden-markov-model, to: $candidate }
-    edge: { type: SOLVED-BY, strength: strong-analogy, context: Discrete or continuous pose-state hidden Markov models. }
+    proposition: Markov localization performs recursive Bayes filtering over robot pose using motion and
+      sensor models.
+    endpoints:
+      from: bayes-rule
+      to: $candidate
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Discrete or continuous pose-state Bayes filters with Markov motion and observation models.
     mathematical_skeleton: Alternate prediction by the transition kernel with correction by the observation likelihood.
     scope: Robot localization in a known map.
-    assumptions: [Markov state, conditionally independent current observation given state]
+    assumptions:
+      - Markov state
+      - conditionally independent current observation given state
     validity_regime: Correctly specified motion and measurement models.
-    caveats: ["Representation may be grid, particles, or parametric and changes approximation behavior."]
-    counterexamples: [Long-lived unmodeled state violates the Markov pose model.]
+    caveats:
+      - Representation may be grid, particles, or parametric and changes approximation behavior.
+    counterexamples:
+      - Long-lived unmodeled state violates the Markov pose model.
     source_id: thrun-burgard-fox-2005
-    source_location: Bayes filters and Markov localization chapters.
-    possible_falsifiers: [An update not decomposable into predict and measurement-correction steps.]
-    alternative_interpretations: [Topological localization rather than metric pose estimation.]
+    source_location: Chapter 7, §§7.2–7.3, pp. 197–211.
+    possible_falsifiers:
+      - An update not decomposable into predict and measurement-correction steps.
+    alternative_interpretations:
+      - Topological localization rather than metric pose estimation.
     search_query: Probabilistic Robotics Markov localization Bayes filter pose
     challenge: Markov localization names a problem family and several implementations.
     response: The node is anchored to the common recursive Bayes skeleton; implementations become examples.
     recommended_action: Retain as an operation family.
-
+    source_rationale: Markov localization is presented as recursive Bayes filtering over robot pose.
+    source_status: direct-support
   - candidate_id: mutual-information
-    proposition: Mutual information is an entropy-derived measure of statistical dependence equal to the relative entropy between the joint law and the product of marginals.
-    endpoints: { from: $candidate, to: shannon-entropy }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: "Discrete variables, or continuous variables when the relevant divergences exist." }
+    proposition: Mutual information is an entropy-derived measure of statistical dependence equal to the
+      relative entropy between the joint law and the product of marginals.
+    endpoints:
+      from: $candidate
+      to: shannon-entropy
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Discrete variables, or continuous variables when the relevant divergences exist.
     mathematical_skeleton: I(X;Y) equals H(X) plus H(Y) minus H(X,Y), and equals D(pXY parallel pX pY).
     scope: Shannon information theory.
-    assumptions: [well-defined entropies or relative entropy]
+    assumptions:
+      - well-defined entropies or relative entropy
     validity_regime: Finite discrete alphabets without extra measure-theoretic qualifications.
-    caveats: [Differential-entropy terms may be coordinate-dependent even when mutual information is invariant.]
-    counterexamples: [Zero covariance does not imply zero mutual information outside Gaussian families.]
+    caveats:
+      - Differential-entropy terms may be coordinate-dependent even when mutual information is
+        invariant.
+    counterexamples:
+      - Zero covariance does not imply zero mutual information outside Gaussian families.
     source_id: cover-thomas-2006
-    source_location: Entropy and mutual information chapter.
-    possible_falsifiers: [A dependent finite distribution with zero KL divergence from the product law.]
-    alternative_interpretations: [Conditional mutual information.]
+    source_location: Chapter 2, §2.4, pp. 18–22.
+    possible_falsifiers:
+      - A dependent finite distribution with zero KL divergence from the product law.
+    alternative_interpretations:
+      - Conditional mutual information.
     search_query: Cover Thomas mutual information entropy relative entropy joint product
     challenge: Mutual information is sometimes reduced to linear correlation.
     response: The KL definition captures arbitrary statistical dependence.
     recommended_action: Retain as an information-theoretic object.
-
+    source_rationale: Mutual information is defined through entropy and relative entropy identities.
+    source_status: direct-support
   - candidate_id: newton-method
-    proposition: Newton's optimization method locally solves the stationarity equation by repeatedly minimizing the quadratic Taylor model built from the gradient and Hessian.
-    endpoints: { from: optimization, to: $candidate }
-    edge: { type: SOLVED-BY, strength: theorem, context: Smooth unconstrained optimization near a nondegenerate minimizer with suitable globalization when needed. }
+    proposition: Newton's optimization method locally solves the stationarity equation by repeatedly
+      minimizing the quadratic Taylor model built from the gradient and Hessian.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Smooth unconstrained optimization near a nondegenerate minimizer with suitable
+        globalization when needed.
     mathematical_skeleton: Solve Hessian times step equals minus gradient, then update the iterate.
     scope: Twice-differentiable unconstrained minimization.
-    assumptions: [nonsingular local Hessian, Lipschitz-continuous Hessian for standard local rate]
+    assumptions:
+      - nonsingular local Hessian
+      - Lipschitz-continuous Hessian for standard local rate
     validity_regime: Quadratic local convergence near a solution under standard hypotheses.
-    caveats: [Far from a minimizer the step may not descend; line search or trust region is commonly required.]
-    counterexamples: [An indefinite Hessian can produce an ascent direction.]
+    caveats:
+      - Far from a minimizer the step may not descend; line search or trust region is commonly
+        required.
+    counterexamples:
+      - An indefinite Hessian can produce an ascent direction.
     source_id: nocedal-wright-2006
-    source_location: Fundamentals of unconstrained optimization and Newton-method sections.
-    possible_falsifiers: [Loss of the stated quadratic rate despite all local hypotheses.]
-    alternative_interpretations: [Newton's root-finding method applied directly to F(x)=0.]
+    source_location: Chapter 3, §§3.3–3.4, pp. 44–48.
+    possible_falsifiers:
+      - Loss of the stated quadratic rate despite all local hypotheses.
+    alternative_interpretations:
+      - Newton's root-finding method applied directly to F(x)=0.
     search_query: Nocedal Wright Newton method optimization Hessian quadratic convergence
     challenge: Root finding and optimization versions are often conflated.
-    response: The node records the shared Newton linearization skeleton and scopes this claim to stationarity.
+    response: The node records the shared Newton linearization skeleton and scopes this claim to
+      stationarity.
     recommended_action: Retain with root-finding as a related formulation.
-
+    source_rationale: Newton steps and their local convergence conditions are developed for smooth
+      unconstrained optimization.
+    source_status: direct-support
   - candidate_id: occupancy-grid-mapping
-    proposition: Occupancy-grid mapping applies Bayesian updates to cell occupancy variables using inverse sensor evidence under a simplifying cell-independence approximation.
-    endpoints: { from: bayes-rule, to: $candidate }
-    edge: { type: APPLIED-IN, strength: strong-analogy, context: Static maps with grid cells and an inverse sensor model. }
+    proposition: Occupancy-grid mapping applies Bayesian updates to cell occupancy variables using
+      inverse sensor evidence under a simplifying cell-independence approximation.
+    endpoints:
+      from: bayes-rule
+      to: $candidate
+    edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Static maps with grid cells and an inverse sensor model.
     mathematical_skeleton: Per-cell log odds accumulate prior-adjusted measurement log-likelihood ratios.
     scope: Static two-dimensional or three-dimensional occupancy grids.
-    assumptions: [static environment, approximate conditional independence of cells]
+    assumptions:
+      - static environment
+      - approximate conditional independence of cells
     validity_regime: Mapping with known or separately estimated robot poses.
-    caveats: [Cell independence is computationally useful but generally false in the full posterior.]
-    counterexamples: [Strongly correlated occlusion structure violates independent cell updates.]
+    caveats:
+      - Cell independence is computationally useful but generally false in the full posterior.
+    counterexamples:
+      - Strongly correlated occlusion structure violates independent cell updates.
     source_id: thrun-burgard-fox-2005
-    source_location: Occupancy grid mapping chapter.
-    possible_falsifiers: [An update rule that cannot be derived from odds-form Bayesian evidence accumulation.]
-    alternative_interpretations: [Forward-model occupancy mapping without inverse sensor factorization.]
+    source_location: Chapter 9, §9.2, pp. 284–293.
+    possible_falsifiers:
+      - An update rule that cannot be derived from odds-form Bayesian evidence accumulation.
+    alternative_interpretations:
+      - Forward-model occupancy mapping without inverse sensor factorization.
     search_query: Probabilistic Robotics occupancy grid mapping log odds Bayes
     challenge: The standard update can look exact while relying on a strong independence approximation.
     response: The approximation is stated in the proposition and caveats.
     recommended_action: Retain as a Bayesian mapping operation.
-
+    source_rationale: The occupancy-grid update is derived using cellwise binary Bayes filtering and an
+      inverse sensor model.
+    source_status: direct-support
   - candidate_id: orbital-resonance
-    proposition: Orbital resonance occurs when fundamental orbital frequencies are near a low-integer ratio, producing slow resonant angle dynamics analogous to coupled oscillators.
-    endpoints: { from: $candidate, to: harmonic-oscillator }
-    edge: { type: SAME-SKELETON, strength: strong-analogy, context: "Weakly perturbed, near-integrable motion after resonant averaging." }
-    mathematical_skeleton: A slow integer combination of angles survives averaging and often reduces locally to a pendulum-like libration Hamiltonian.
-    scope: Mean-motion and related resonances in weakly perturbed celestial systems.
-    assumptions: [near commensurability, perturbative separation of fast and slow angles]
+    proposition: After resonant averaging, the local libration dynamics near a stable isolated orbital
+      resonance can be approximated by a pendulum-type Hamiltonian.
+    endpoints:
+      from: $candidate
+      to: harmonic-oscillator
+    edge:
+      type: ANALOGOUS-TO
+      strength: strong-analogy
+      context: Small-amplitude libration about a stable isolated resonance after resonant averaging.
+    mathematical_skeleton: A slow integer combination of angles survives averaging and often reduces
+      locally to a pendulum-like libration Hamiltonian.
+    scope: Weakly perturbed orbit–orbit resonances admitting a one-degree-of-freedom resonant reduction.
+    assumptions:
+      - near commensurability
+      - perturbative separation of fast and slow angles
     validity_regime: Neighborhood of an isolated resonance where averaging is valid.
-    caveats: [Frequency commensurability alone does not guarantee libration or capture.]
-    counterexamples: [A near rational ratio with a circulating resonant angle.]
-    source_id: fitzpatrick-celestial-mechanics-2012
-    source_location: Perturbation theory and orbital resonance sections.
-    possible_falsifiers: [No slow resonant angle emerges under the stated averaging regime.]
-    alternative_interpretations: [Secular resonance between precession frequencies.]
+    caveats:
+      - Frequency commensurability alone does not guarantee libration or capture.
+    counterexamples:
+      - A near rational ratio with a circulating resonant angle.
+    source_id: murray-dermott-1999
+    source_location: Chapter 8, §§8.3 and 8.6–8.8, pp. 326–363.
+    possible_falsifiers:
+      - No slow resonant angle emerges under the stated averaging regime.
+    alternative_interpretations:
+      - Secular resonance between precession frequencies.
     search_query: Fitzpatrick celestial mechanics orbital resonance resonant angle libration
     challenge: A numerical period ratio near integers can be accidental.
     response: The claim requires slow resonant-angle dynamics, not ratio alone.
     recommended_action: Retain with a diagnostic distinction between commensurability and resonance.
-
+    source_rationale: The resonant perturbation chapter derives a pendulum model and Hamiltonian
+      description for libration near isolated orbit–orbit resonances.
+    source_status: direct-support
   - candidate_id: particle-filter
-    proposition: When Gaussian filtering assumptions fail, a particle filter replaces a single Gaussian belief by a weighted empirical sample propagated and reweighted recursively.
-    endpoints: { from: kalman-filter, to: $candidate }
-    edge: { type: REPLACED-BY, strength: strong-analogy, context: Nonlinear or non-Gaussian state-space models where sequential Monte Carlo is computationally feasible. }
-    mathematical_skeleton: Importance-sample the predictive distribution, weight by likelihood, and resample to control weight degeneracy.
+    proposition: When Gaussian filtering assumptions fail, a particle filter replaces a single Gaussian
+      belief by a weighted empirical sample propagated and reweighted recursively.
+    endpoints:
+      from: kalman-filter
+      to: $candidate
+    edge:
+      type: REPLACED-BY
+      strength: strong-analogy
+      context: Nonlinear or non-Gaussian state-space models where sequential Monte Carlo is
+        computationally feasible.
+    mathematical_skeleton: Importance-sample the predictive distribution, weight by likelihood, and
+      resample to control weight degeneracy.
     scope: Sequential Bayesian state estimation.
-    assumptions: [simulable proposal, evaluable importance weights]
+    assumptions:
+      - simulable proposal
+      - evaluable importance weights
     validity_regime: Monte Carlo consistency as particle count grows under regularity conditions.
-    caveats: [Finite samples suffer degeneracy and high-dimensional collapse.]
-    counterexamples: [A proposal with zero support where the posterior has mass.]
+    caveats:
+      - Finite samples suffer degeneracy and high-dimensional collapse.
+    counterexamples:
+      - A proposal with zero support where the posterior has mass.
     source_id: thrun-burgard-fox-2005
-    source_location: Nonparametric filters and particle-filter chapters.
-    possible_falsifiers: [Importance weights do not target the stated posterior even asymptotically.]
-    alternative_interpretations: [Rao-Blackwellized particle filter.]
+    source_location: Chapter 4, §4.3, pp. 96–112.
+    possible_falsifiers:
+      - Importance weights do not target the stated posterior even asymptotically.
+    alternative_interpretations:
+      - Rao-Blackwellized particle filter.
     search_query: Probabilistic Robotics particle filter weighted samples resampling
     challenge: Particle filtering is not automatically accurate for arbitrary nonlinear systems.
     response: The claim is representational and asymptotic; finite-sample failure modes are explicit.
     recommended_action: Retain as a replacement operation with dimensionality caveats.
-
+    source_rationale: The particle filter is presented as sequential Monte Carlo for nonlinear or
+      non-Gaussian Bayes filtering.
+    source_status: direct-support
   - candidate_id: proximal-operator
-    proposition: The proximal operator converts a possibly nonsmooth convex function into a regularized minimization subproblem used by first-order optimization algorithms.
-    endpoints: { from: $candidate, to: optimization }
-    edge: { type: APPLIED-IN, strength: theorem, context: Proper closed convex functions and positive proximal parameter. }
-    mathematical_skeleton: prox of f at v is the argmin over x of f(x) plus one over twice lambda times squared distance to v.
+    proposition: The proximal operator converts a possibly nonsmooth convex function into a regularized
+      minimization subproblem used by first-order optimization algorithms.
+    endpoints:
+      from: $candidate
+      to: optimization
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Proper closed convex functions and positive proximal parameter.
+    mathematical_skeleton: prox of f at v is the argmin over x of f(x) plus one over twice lambda times
+      squared distance to v.
     scope: Convex composite optimization.
-    assumptions: [proper lower-semicontinuous convex function]
+    assumptions:
+      - proper lower-semicontinuous convex function
     validity_regime: Euclidean proximal map; generalized metrics require adjusted statements.
-    caveats: [The proximal subproblem may itself be expensive or set-valued outside standard convex assumptions.]
-    counterexamples: [A nonconvex function with multiple proximal minimizers.]
-    source_id: boyd-vandenberghe-2004
-    source_location: Convex optimization course materials on decomposition and proximal methods.
-    possible_falsifiers: [Failure of the minimization definition to produce the claimed update.]
-    alternative_interpretations: [Resolvent of a maximal monotone operator.]
+    caveats:
+      - The proximal subproblem may itself be expensive or set-valued outside standard convex
+        assumptions.
+    counterexamples:
+      - A nonconvex function with multiple proximal minimizers.
+    source_id: parikh-boyd-2014
+    source_location: Section 1.1, pp. 124–126, equations (1.1)–(1.3).
+    possible_falsifiers:
+      - Failure of the minimization definition to produce the claimed update.
+    alternative_interpretations:
+      - Resolvent of a maximal monotone operator.
     search_query: Boyd convex optimization proximal operator definition
     challenge: The main textbook predates some modern proximal terminology.
-    response: The source supports the convex minimization structure; terminology is cross-checked in the course materials locator.
+    response: The source supports the convex minimization structure; terminology is cross-checked in the
+      course materials locator.
     recommended_action: Retain, but seek a dedicated proximal-algorithms reference before final publication.
-
+    source_rationale: The proximal operator is defined as a strongly convex minimization subproblem and
+      related to projection.
+    source_status: direct-support
   - candidate_id: relative-entropy
-    proposition: Relative entropy measures the discrepancy of a distribution P from a reference Q and can be written as cross-entropy minus Shannon entropy.
-    endpoints: { from: $candidate, to: shannon-entropy }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: P absolutely continuous with respect to Q; finite alphabets for the elementary formula. }
+    proposition: Relative entropy measures the discrepancy of a distribution P from a reference Q and
+      can be written as cross-entropy minus Shannon entropy.
+    endpoints:
+      from: $candidate
+      to: shannon-entropy
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: P absolutely continuous with respect to Q; finite alphabets for the elementary formula.
     mathematical_skeleton: D(P parallel Q) equals the expectation under P of log p over q and is nonnegative.
     scope: Classical probability distributions.
-    assumptions: [P absolutely continuous with respect to Q for finite divergence]
+    assumptions:
+      - P absolutely continuous with respect to Q for finite divergence
     validity_regime: Discrete finite alphabets or measure-theoretic extension with Radon-Nikodym derivative.
-    caveats: [It is asymmetric and is not a metric.]
-    counterexamples: ["If Q assigns zero mass where P is positive, divergence is infinite."]
+    caveats:
+      - It is asymmetric and is not a metric.
+    counterexamples:
+      - If Q assigns zero mass where P is positive, divergence is infinite.
     source_id: cover-thomas-2006
-    source_location: Entropy, relative entropy, and mutual information chapter.
-    possible_falsifiers: [A pair with finite formula yielding negative divergence.]
-    alternative_interpretations: [Quantum relative entropy.]
+    source_location: Chapter 2, §2.3, pp. 18–22.
+    possible_falsifiers:
+      - A pair with finite formula yielding negative divergence.
+    alternative_interpretations:
+      - Quantum relative entropy.
     search_query: Cover Thomas relative entropy cross entropy Shannon entropy
     challenge: The word distance encourages false symmetry and triangle-inequality assumptions.
     response: The claim uses discrepancy and explicitly denies metric status.
     recommended_action: Retain with asymmetry prominent.
-
+    source_rationale: Relative entropy is defined and related to entropy and mutual information.
+    source_status: direct-support
   - candidate_id: restricted-three-body-problem
-    proposition: The circular restricted three-body problem is an autonomous rotating-frame dynamical model for a massless body moving under two circularly orbiting primaries.
-    endpoints: { from: $candidate, to: phase-space }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: Rotating position-velocity phase space after normalization. }
-    mathematical_skeleton: A four-dimensional first-order system combines Coriolis terms with the gradient of an effective potential.
+    proposition: The circular restricted three-body problem is an autonomous rotating-frame dynamical
+      model for a massless body moving under two circularly orbiting primaries.
+    endpoints:
+      from: $candidate
+      to: phase-space
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: Rotating position-velocity phase space after normalization.
+    mathematical_skeleton: A four-dimensional first-order system combines Coriolis terms with the
+      gradient of an effective potential.
     scope: Planar circular restricted problem.
-    assumptions: [massless third body, circular two-body motion of primaries]
+    assumptions:
+      - massless third body
+      - circular two-body motion of primaries
     validity_regime: Newtonian point-mass gravity in the rotating frame.
-    caveats: ["Spatial, elliptic, relativistic, and finite-mass variants change the model."]
-    counterexamples: [A third body with appreciable mass invalidates the restricted assumption.]
+    caveats:
+      - Spatial, elliptic, relativistic, and finite-mass variants change the model.
+    counterexamples:
+      - A third body with appreciable mass invalidates the restricted assumption.
     source_id: fitzpatrick-celestial-mechanics-2012
-    source_location: Restricted three-body problem chapters.
-    possible_falsifiers: [Equations fail to recover the gravitational and rotating-frame accelerations.]
-    alternative_interpretations: [Spatial circular restricted problem.]
+    source_location: Chapter 8, §8.2, pp. 147–149.
+    possible_falsifiers:
+      - Equations fail to recover the gravitational and rotating-frame accelerations.
+    alternative_interpretations:
+      - Spatial circular restricted problem.
     search_query: Fitzpatrick celestial mechanics circular restricted three body rotating frame
     challenge: The familiar five-point picture hides the model's severe restrictions.
     response: Each restriction is named in the proposition and assumptions.
     recommended_action: Retain as a canonical model.
-
+    source_rationale: The circular restricted three-body equations are formulated in a rotating phase-space frame.
+    source_status: direct-support
   - candidate_id: riemannian-metric
-    proposition: A Riemannian metric is a smoothly varying positive-definite inner product on tangent spaces and therefore assumes a smooth manifold structure.
-    endpoints: { from: $candidate, to: smoothness }
-    edge: { type: ASSUMES, strength: theorem, context: Finite-dimensional smooth manifolds. }
+    proposition: A Riemannian metric is a smoothly varying positive-definite inner product on tangent
+      spaces and therefore assumes a smooth manifold structure.
+    endpoints:
+      from: $candidate
+      to: smoothness
+    edge:
+      type: ASSUMES
+      strength: theorem
+      context: Finite-dimensional smooth manifolds.
     mathematical_skeleton: Each point p has an inner product g_p on T_pM whose coordinate components vary smoothly.
     scope: Positive-definite Riemannian geometry.
-    assumptions: [smooth manifold, positive-definite symmetric tensor field]
+    assumptions:
+      - smooth manifold
+      - positive-definite symmetric tensor field
     validity_regime: Smooth coordinate changes preserving tensorial transformation.
-    caveats: [Pseudo-Riemannian metrics relax positive definiteness.]
-    counterexamples: [A discontinuously varying inner product is not a smooth Riemannian metric.]
+    caveats:
+      - Pseudo-Riemannian metrics relax positive definiteness.
+    counterexamples:
+      - A discontinuously varying inner product is not a smooth Riemannian metric.
     source_id: lee-smooth-manifolds-2012
-    source_location: Riemannian metrics and tensor fields chapters.
-    possible_falsifiers: [Failure of positive definiteness or smooth coordinate transformation.]
-    alternative_interpretations: [Pseudo-Riemannian metric.]
+    source_location: Chapter 13, pp. 327–348.
+    possible_falsifiers:
+      - Failure of positive definiteness or smooth coordinate transformation.
+    alternative_interpretations:
+      - Pseudo-Riemannian metric.
     search_query: Lee smooth manifolds Riemannian metric tangent inner product
     challenge: Metric can mean a distance function rather than a tensor field.
     response: The node uses the differential-geometric definition and can cross-link induced distance later.
     recommended_action: Retain with terminology clarified.
-
+    source_rationale: A Riemannian metric is defined as a smooth positive-definite inner product on tangent spaces.
+    source_status: direct-support
   - candidate_id: smooth-manifold
-    proposition: A smooth manifold is a locally Euclidean topological space equipped with smoothly compatible coordinate charts.
-    endpoints: { from: $candidate, to: smoothness }
-    edge: { type: ASSUMES, strength: theorem, context: Finite-dimensional Hausdorff second-countable manifolds. }
-    mathematical_skeleton: Transition maps between overlapping charts are smooth maps between open subsets of Euclidean space.
+    proposition: A smooth manifold is a locally Euclidean topological space equipped with smoothly
+      compatible coordinate charts.
+    endpoints:
+      from: $candidate
+      to: smoothness
+    edge:
+      type: ASSUMES
+      strength: theorem
+      context: Finite-dimensional Hausdorff second-countable manifolds.
+    mathematical_skeleton: Transition maps between overlapping charts are smooth maps between open
+      subsets of Euclidean space.
     scope: Finite-dimensional smooth manifolds without boundary unless stated.
-    assumptions: [Hausdorff topology, second countability, smooth atlas]
+    assumptions:
+      - Hausdorff topology
+      - second countability
+      - smooth atlas
     validity_regime: Coordinate-independent differential calculus.
-    caveats: [Topological manifolds need not admit a unique smooth structure.]
-    counterexamples: [A chart collection with nonsmooth transition maps defines no smooth atlas.]
+    caveats:
+      - Topological manifolds need not admit a unique smooth structure.
+    counterexamples:
+      - A chart collection with nonsmooth transition maps defines no smooth atlas.
     source_id: lee-smooth-manifolds-2012
-    source_location: Smooth manifolds and smooth maps chapters.
-    possible_falsifiers: [An overlap map failing the required differentiability class.]
-    alternative_interpretations: [Manifold with boundary or corners.]
+    source_location: Chapter 1, pp. 1–31.
+    possible_falsifiers:
+      - An overlap map failing the required differentiability class.
+    alternative_interpretations:
+      - Manifold with boundary or corners.
     search_query: Lee Introduction Smooth Manifolds compatible charts definition
     challenge: Local Euclidean structure alone defines only a topological manifold.
     response: Smooth compatibility of the atlas is an explicit part of the claim.
     recommended_action: Retain as a foundational object.
-
+    source_rationale: Smooth manifolds and smooth coordinate changes are defined explicitly.
+    source_status: direct-support
   - candidate_id: symplectic-integrator
-    proposition: A symplectic integrator preserves the discrete symplectic two-form and thereby reproduces the long-time geometric structure of Hamiltonian phase-space flow.
-    endpoints: { from: $candidate, to: phase-space }
-    edge: { type: GOVERNS, strength: theorem, context: Symplectic numerical maps applied to Hamiltonian systems. }
+    proposition: A symplectic integrator preserves the discrete symplectic form; under backward-error
+      hypotheses it nearly conserves a modified Hamiltonian over long time intervals.
+    endpoints:
+      from: $candidate
+      to: hamiltonian-system
+    edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Symplectic numerical maps for sufficiently smooth Hamiltonian systems; modified-energy
+        claims additionally require backward-error hypotheses.
     mathematical_skeleton: The one-step map Phi satisfies pullback of omega equals omega.
     scope: Finite-dimensional Hamiltonian integration.
-    assumptions: [symplectic phase space, symplectic one-step map]
+    assumptions:
+      - symplectic phase space
+      - symplectic one-step map
     validity_regime: Fixed-step methods under the stated construction.
-    caveats: [Symplecticity does not imply exact energy conservation at every step.]
-    counterexamples: [Generic adaptive step-size changes can destroy symplecticity.]
+    caveats:
+      - Symplecticity does not imply exact energy conservation at every step.
+    counterexamples:
+      - Generic adaptive step-size changes can destroy symplecticity.
     source_id: hairer-lubich-wanner-2006
-    source_location: Symplectic integration and long-time energy behavior chapters.
-    possible_falsifiers: [The numerical map fails the pullback symplectic-form identity.]
-    alternative_interpretations: [Poisson integrator on a degenerate manifold.]
+    source_location: Chapter VI, §§VI.3–VI.4, pp. 204–230; Chapter IX, §§IX.1–IX.3, pp. 337–366.
+    possible_falsifiers:
+      - The numerical map fails the pullback symplectic-form identity.
+    alternative_interpretations:
+      - Poisson integrator on a degenerate manifold.
     search_query: Hairer Lubich Wanner symplectic integrator preserves symplectic form
     challenge: Good energy plots alone do not prove a method symplectic.
     response: The definition uses the form-preservation identity, with energy behavior only a consequence.
     recommended_action: Retain as a structure-preserving move.
-
+    source_rationale: The source proves discrete symplectic-form preservation and uses backward error
+      analysis to qualify long-time modified-energy behavior.
+    source_status: direct-support
   - candidate_id: tangent-space
-    proposition: The tangent space is the linear local representation in which first-order linearization of smooth manifold dynamics lives.
-    endpoints: { from: linearization, to: $candidate }
-    edge: { type: REPRESENTED-BY, strength: theorem, context: First derivatives of smooth maps and vector fields at a point. }
+    proposition: The tangent space is the linear local representation in which first-order linearization
+      of smooth manifold dynamics lives.
+    endpoints:
+      from: linearization
+      to: $candidate
+    edge:
+      type: REPRESENTED-BY
+      strength: theorem
+      context: First derivatives of smooth maps and vector fields at a point.
     mathematical_skeleton: The derivative Df_p is a linear map from T_pM to T_f(p)N.
     scope: Smooth finite-dimensional manifolds.
-    assumptions: [differentiable map at the base point]
+    assumptions:
+      - differentiable map at the base point
     validity_regime: First-order local approximation.
-    caveats: [A tangent space is not globally identical to the manifold.]
-    counterexamples: [Singular spaces can lack a constant-dimensional manifold tangent bundle.]
+    caveats:
+      - A tangent space is not globally identical to the manifold.
+    counterexamples:
+      - Singular spaces can lack a constant-dimensional manifold tangent bundle.
     source_id: lee-smooth-manifolds-2012
-    source_location: Tangent vectors, tangent spaces, and differentials chapters.
-    possible_falsifiers: [The derivative fails to define a coordinate-independent linear map.]
-    alternative_interpretations: [Tangent cone at a nonsmooth point.]
+    source_location: Chapter 3, pp. 50–76.
+    possible_falsifiers:
+      - The derivative fails to define a coordinate-independent linear map.
+    alternative_interpretations:
+      - Tangent cone at a nonsmooth point.
     search_query: Lee smooth manifolds tangent space differential linear map
     challenge: Visual tangent planes encourage an embedding-dependent definition.
     response: The claim uses the intrinsic derivative construction.
     recommended_action: Retain as the local linear object behind linearization.
-
+    source_rationale: Tangent vectors, tangent spaces, and differentials are constructed explicitly.
+    source_status: direct-support
   - candidate_id: unscented-kalman-filter
-    proposition: When nonlinear maps break exact Kalman propagation, the unscented Kalman filter replaces linearization by deterministic sigma points chosen to reproduce moments.
-    endpoints: { from: kalman-filter, to: $candidate }
-    edge: { type: REPLACED-BY, strength: strong-analogy, context: Nonlinear state-space models with approximately Gaussian beliefs. }
-    mathematical_skeleton: Transform weighted sigma points through the nonlinear map and reconstruct approximate mean and covariance.
+    proposition: When nonlinear maps break exact Kalman propagation, the unscented Kalman filter
+      replaces linearization by deterministic sigma points chosen to reproduce moments.
+    endpoints:
+      from: kalman-filter
+      to: $candidate
+    edge:
+      type: REPLACED-BY
+      strength: strong-analogy
+      context: Nonlinear state-space models with approximately Gaussian beliefs.
+    mathematical_skeleton: Transform weighted sigma points through the nonlinear map and reconstruct
+      approximate mean and covariance.
     scope: Nonlinear Gaussian filtering.
-    assumptions: [finite moments, useful Gaussian moment approximation]
+    assumptions:
+      - finite moments
+      - useful Gaussian moment approximation
     validity_regime: Unimodal uncertainty where low-order moments summarize the belief adequately.
-    caveats: [The posterior remains approximated as Gaussian and parameter choices affect numerical behavior.]
-    counterexamples: [Strong multimodality not representable by reconstructed mean and covariance.]
+    caveats:
+      - The posterior remains approximated as Gaussian and parameter choices affect numerical
+        behavior.
+    counterexamples:
+      - Strong multimodality not representable by reconstructed mean and covariance.
     source_id: thrun-burgard-fox-2005
-    source_location: Gaussian filters and unscented Kalman filter sections.
-    possible_falsifiers: [Sigma points fail to reproduce the prescribed prior moments.]
-    alternative_interpretations: [Cubature Kalman filters with different point rules.]
+    source_location: Chapter 3, §3.4, pp. 65–70.
+    possible_falsifiers:
+      - Sigma points fail to reproduce the prescribed prior moments.
+    alternative_interpretations:
+      - Cubature Kalman filters with different point rules.
     search_query: Probabilistic Robotics unscented Kalman filter sigma points moments
     challenge: Avoiding Jacobians does not make the UKF exact for arbitrary nonlinear models.
     response: The claim calls it deterministic moment approximation and states Gaussian limitations.
     recommended_action: Retain as a distinct nonlinear replacement operation.
-
+    source_rationale: The unscented transform and resulting Gaussian-filter recursion are developed explicitly.
+    source_status: direct-support
   - candidate_id: variational-integrator
-    proposition: A variational integrator discretizes the action principle and derives the time-step map from discrete Euler-Lagrange equations.
-    endpoints: { from: $candidate, to: variational-principles }
-    edge: { type: ASSUMES, strength: theorem, context: Discrete Lagrangians approximating an action integral. }
-    mathematical_skeleton: Stationarity of the discrete action sum yields a symplectic update and discrete momentum results under symmetry.
+    proposition: A variational integrator discretizes the action principle and derives the time-step map
+      from discrete Euler-Lagrange equations.
+    endpoints:
+      from: $candidate
+      to: variational-principles
+    edge:
+      type: ASSUMES
+      strength: theorem
+      context: Discrete Lagrangians approximating an action integral.
+    mathematical_skeleton: Stationarity of the discrete action sum yields a symplectic update and
+      discrete momentum results under symmetry.
     scope: Lagrangian mechanical systems with a regular discrete Lagrangian.
-    assumptions: [discrete action principle, regularity of the discrete Lagrangian]
+    assumptions:
+      - discrete action principle
+      - regularity of the discrete Lagrangian
     validity_regime: Fixed-step discrete mechanics under the chosen quadrature approximation.
-    caveats: [Not every symplectic integrator is presented or implemented variationally.]
-    counterexamples: [A generic update not derivable from any regular discrete action.]
+    caveats:
+      - Not every symplectic integrator is presented or implemented variationally.
+    counterexamples:
+      - A generic update not derivable from any regular discrete action.
     source_id: hairer-lubich-wanner-2006
-    source_location: Variational integrators and discrete mechanics sections.
-    possible_falsifiers: [The stated update fails the discrete Euler-Lagrange equations.]
-    alternative_interpretations: [Galerkin variational integrators.]
+    source_location: Chapter VI, §VI.6, pp. 231–236.
+    possible_falsifiers:
+      - The stated update fails the discrete Euler-Lagrange equations.
+    alternative_interpretations:
+      - Galerkin variational integrators.
     search_query: Hairer Lubich Wanner variational integrator discrete action Euler Lagrange
-    challenge: Discretizing Euler-Lagrange equations directly need not equal discretizing the variational principle.
+    challenge: Discretizing Euler-Lagrange equations directly need not equal discretizing the
+      variational principle.
     response: The definition requires stationarity of a discrete action.
     recommended_action: Retain with that construction boundary.
+    source_rationale: The variational construction of structure-preserving discrete mechanics is
+      presented in the symplectic-integration chapter.
+    source_status: direct-support

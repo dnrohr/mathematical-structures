@@ -38,7 +38,7 @@ function fixture(count = 30): { files: Record<string, string>; ids: string[]; pa
     caveats: ['test caveat'],
     counterexamples: ['test counterexample'],
     source_id: 'source-a',
-    source_location: 'chapter 1',
+    source_location: 'Chapter 1, §1.2, pp. 10–12',
     possible_falsifiers: ['test falsifier'],
     alternative_interpretations: ['test alternative'],
     search_query: 'test query',
@@ -74,6 +74,7 @@ describe('atlas-evidence', () => {
       selected: 30,
       enriched: 30,
       direct_support_assessments: 30,
+      qualified_support_assessments: 0,
       adversarial_reviews: 30,
     });
     const dossier = parse(

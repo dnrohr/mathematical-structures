@@ -11,7 +11,8 @@ assumptions:
   - Markov state
   - conditionally independent current observation given state
 canonical_examples:
-  - Robot localization in a known map. — Discrete or continuous pose-state hidden Markov models.
+  - Robot localization in a known map. — Discrete or continuous pose-state Bayes filters with Markov
+    motion and observation models.
 sections:
   - campaign-broad-sweep-2026-09#markov-localization
 ---

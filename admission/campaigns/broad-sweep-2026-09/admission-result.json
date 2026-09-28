@@ -14,9 +14,18 @@
     "active_minutes": 0,
     "status": "reported"
   },
+  "independent_model_review": {
+    "human_minutes_added": 0,
+    "pinpoint_assessments": 40,
+    "rejected": 0,
+    "retained_without_substantive_change": 31,
+    "reviewed": 40,
+    "reviewer": "codex-independent-review",
+    "revised_then_retained": 9
+  },
   "promotion": {
     "new_concepts": 39,
-    "reference_additions": 6,
+    "reference_additions": 8,
     "trusted_edges": 40,
     "workflow_acceptances_as_edge": 1,
     "workflow_acceptances_as_node": 39

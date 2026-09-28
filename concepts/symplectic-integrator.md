@@ -2,8 +2,8 @@
 canonical_name: Symplectic integrator
 node_type: move
 status: established
-summary: A symplectic integrator preserves the discrete symplectic two-form and thereby reproduces
-  the long-time geometric structure of Hamiltonian phase-space flow.
+summary: A symplectic integrator preserves the discrete symplectic form; under backward-error
+  hypotheses it nearly conserves a modified Hamiltonian over long time intervals.
 fields:
   - mechanics
   - numerical-analysis
@@ -11,13 +11,13 @@ assumptions:
   - symplectic phase space
   - symplectic one-step map
 canonical_examples:
-  - Finite-dimensional Hamiltonian integration. — Symplectic numerical maps applied to Hamiltonian
-    systems.
+  - Finite-dimensional Hamiltonian integration. — Symplectic numerical maps for sufficiently smooth
+    Hamiltonian systems; modified-energy claims additionally require backward-error hypotheses.
 sections:
   - campaign-broad-sweep-2026-09#symplectic-integrator
 ---
 
-A symplectic integrator preserves the discrete symplectic two-form and thereby reproduces the long-time geometric structure of Hamiltonian phase-space flow.
+A symplectic integrator preserves the discrete symplectic form; under backward-error hypotheses it nearly conserves a modified Hamiltonian over long time intervals.
 
 ## Mathematical skeleton
 

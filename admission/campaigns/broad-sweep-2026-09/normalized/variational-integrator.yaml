@@ -48,9 +48,9 @@ claims:
         proposition: A variational integrator discretizes the action principle and derives the time-step map
           from discrete Euler-Lagrange equations.
         status: direct-support
-        location: Variational integrators and discrete mechanics sections.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter VI, §VI.6, pp. 231–236.
+        rationale: The variational construction of structure-preserving discrete mechanics is presented in
+          the symplectic-integration chapter.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -71,7 +71,7 @@ search:
       source_ids:
         - hairer-lubich-wanner-2006
       executed_by: structure-atlas-evidence-curator
-      notes: Variational integrators and discrete mechanics sections.
+      notes: Chapter VI, §VI.6, pp. 231–236.
 generated_hypotheses:
   - id: variational-integrator-hypothesis
     text: A variational integrator discretizes the action principle and derives the time-step map from
@@ -99,11 +99,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\variational-integrator.yaml#claims.variational-integrator-claim
+  - id: variational-integrator-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: The scoped proposition and typed edge remain defensible.
+    recommended_action: Retain the accepted disposition with the new pinpoint assessment.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\variational-integrator.yaml#claims.variational-integrator-claim
 human_decisions:
   - id: variational-integrator-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -131,7 +142,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

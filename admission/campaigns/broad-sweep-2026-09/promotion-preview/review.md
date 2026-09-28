@@ -12,14 +12,14 @@ This packet contains the 40 dossiers selected for human review. All are recorded
 - Proposed disposition: `propose-node`
 - Proposed node type: `phenomenon`
 - Proposed edge: `stability —GOVERNS→ attractors` (`theorem`)
-- Source: `khalil-nonlinear-systems-2014`, Stability and invariant-set chapters; attractors and limit sets discussion.
-- Proposition: An asymptotically stable invariant set is a local attractor because nearby trajectories converge to it.
+- Source: `khalil-nonlinear-systems-2014`, Chapter 4, §4.1, pp. 112–126; Chapter 8, §8.2, pp. 312–321.
+- Proposition: A locally asymptotically stable equilibrium is a local attractor because trajectories from a neighborhood converge to it.
 - Mathematical skeleton: Distance to the invariant set tends to zero along trajectories begun in its basin.
-- Scope: Local attractors in finite-dimensional autonomous dynamical systems.
+- Scope: Local equilibrium attractors in finite-dimensional autonomous dynamical systems.
 - Validity regime: Initial states in the basin of attraction.
 - Assumptions:
   - forward completeness in the neighborhood
-  - invariant candidate set
+  - locally asymptotically stable equilibrium
 - Caveats:
   - An invariant set need not attract, and an attractor need not be a fixed point.
 - Counterexamples:
@@ -34,7 +34,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `b-series —IS-A→ series-expansion` (`special-case`)
-- Source: `hairer-lubich-wanner-2006`, B-series and order-condition sections.
+- Source: `hairer-lubich-wanner-2006`, Chapter III, §§III.1–III.2, pp. 51–74.
 - Proposition: A B-series is a rooted-tree-indexed formal series expansion used to represent Runge-Kutta flows and their compositions.
 - Mathematical skeleton: Coefficients are indexed by rooted trees whose elementary differentials encode derivative compositions.
 - Scope: Formal local expansions for sufficiently smooth autonomous ODEs.
@@ -55,9 +55,9 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `move`
 - Proposed edge: `backward-error-analysis —ASSUMES→ smoothness` (`theorem`)
-- Source: `hairer-lubich-wanner-2006`, Backward error analysis and modified equations chapters.
-- Proposition: Backward error analysis interprets a numerical trajectory as the exact trajectory of a nearby modified differential equation.
-- Mathematical skeleton: Choose modified vector-field coefficients so its exact flow matches the numerical one step map order by order.
+- Source: `hairer-lubich-wanner-2006`, Chapter IX, §§IX.1–IX.3, pp. 337–366.
+- Proposition: At any fixed truncation order, backward error analysis constructs a nearby modified differential equation whose exact flow matches the numerical one-step map up to a controlled defect.
+- Mathematical skeleton: Choose finitely many modified-vector-field coefficients so the truncated modified flow matches the numerical one-step map through the claimed order.
 - Scope: One-step integrators for smooth ODEs.
 - Validity regime: Finite truncation, or exponentially long regimes under analyticity hypotheses.
 - Assumptions:
@@ -77,7 +77,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `model`
 - Proposed edge: `bayes-rule —APPLIED-IN→ bayesian-network` (`theorem`)
-- Source: `koller-friedman-2009`, Bayesian-network representation chapters.
+- Source: `koller-friedman-2009`, Chapter 3, §3.2, pp. 51–67.
 - Proposition: A Bayesian network factorizes a joint distribution according to a directed acyclic graph and applies Bayes rule for probabilistic inference.
 - Mathematical skeleton: p(x_1,...,x_n) equals the product over nodes of p(x_i given its parents).
 - Scope: Discrete or continuous Bayesian networks with well-defined conditional densities.
@@ -99,7 +99,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
 - Proposed edge: `hidden-markov-model —SOLVED-BY→ belief-propagation` (`theorem`)
-- Source: `koller-friedman-2009`, Exact inference, clique-tree, and message-passing chapters.
+- Source: `koller-friedman-2009`, Chapter 10, §§10.2–10.3, pp. 345–364.
 - Proposition: Sum-product belief propagation computes exact marginals on tree-structured factor graphs, including chain-structured hidden Markov models.
 - Mathematical skeleton: Local messages eliminate subtrees and combine by products and marginalizing sums or integrals.
 - Scope: Tree factor graphs and chain HMMs.
@@ -121,7 +121,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
 - Proposed edge: `bfgs-method —APPLIED-IN→ optimization` (`theorem`)
-- Source: `nocedal-wright-2006`, Quasi-Newton methods chapter; BFGS update and convergence sections.
+- Source: `nocedal-wright-2006`, Chapter 6, §6.1, pp. 136–143.
 - Proposition: BFGS is a quasi-Newton optimization method that updates an inverse-Hessian approximation using gradient differences while preserving positive definiteness under a curvature condition.
 - Mathematical skeleton: A rank-two secant update enforces H_{k+1} y_k = s_k and remains positive definite when s_k^T y_k is positive.
 - Scope: Smooth unconstrained minimization.
@@ -143,7 +143,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `principle`
 - Proposed edge: `channel-capacity —GOVERNS→ digital-communications` (`theorem`)
-- Source: `cover-thomas-2006`, Channel capacity and channel coding theorem chapters.
+- Source: `cover-thomas-2006`, Chapter 7, §§7.1–7.7, pp. 183–221.
 - Proposition: Channel capacity is the supremum of reliably achievable communication rates and governs the asymptotic rate limit for digital communication over a specified channel model.
 - Mathematical skeleton: For a memoryless channel C equals the maximum over input laws of mutual information I(X;Y).
 - Scope: Discrete memoryless channels, with model-specific extensions.
@@ -165,7 +165,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `optimization —ASSUMES→ convex-function` (`theorem`)
-- Source: `boyd-vandenberghe-2004`, Convex functions and convex optimization problem chapters.
+- Source: `boyd-vandenberghe-2004`, Chapter 3, §3.1, pp. 67–74.
 - Proposition: Convex optimization assumes a convex objective and convex feasible structure, making every local minimum globally minimizing.
 - Mathematical skeleton: f(theta x plus one-minus-theta y) is at most theta f(x) plus one-minus-theta f(y).
 - Scope: Convex minimization problems.
@@ -187,7 +187,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `optimization —ASSUMES→ convex-set` (`theorem`)
-- Source: `boyd-vandenberghe-2004`, Convex sets chapter.
+- Source: `boyd-vandenberghe-2004`, Chapter 2, §2.1, pp. 21–24.
 - Proposition: A convex optimization feasible region assumes closure under line segments between feasible points.
 - Mathematical skeleton: For x and y in C and theta in [0,1], theta x plus one-minus-theta y remains in C.
 - Scope: Euclidean convex optimization.
@@ -208,7 +208,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `cotangent-bundle —SAME-SKELETON→ phase-space` (`strong-analogy`)
-- Source: `lee-smooth-manifolds-2012`, Cotangent bundle and differential-form chapters.
+- Source: `lee-smooth-manifolds-2012`, Chapter 11, pp. 272–303.
 - Proposition: The cotangent bundle T*Q supplies the canonical phase space for unconstrained Hamiltonian mechanics on a configuration manifold Q.
 - Mathematical skeleton: Points are pairs (q,p) with p a covector at q, carrying the canonical symplectic two-form.
 - Scope: Finite-dimensional canonical Hamiltonian mechanics.
@@ -229,8 +229,8 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 - Proposed disposition: `propose-node`
 - Proposed node type: `theorem`
-- Proposed edge: `data-processing-inequality —GOVERNS→ shannon-entropy` (`theorem`)
-- Source: `cover-thomas-2006`, Entropy, mutual information, and data-processing inequality sections.
+- Proposed edge: `data-processing-inequality —GOVERNS→ mutual-information` (`theorem`)
+- Source: `cover-thomas-2006`, Chapter 2, §2.8, pp. 34–35.
 - Proposition: Processing data through a Markov channel cannot increase mutual information, constraining entropy-derived information measures.
 - Mathematical skeleton: If X-Y-Z is Markov, then I(X;Z) is at most I(X;Y).
 - Scope: Shannon mutual information for random variables forming a Markov chain.
@@ -251,7 +251,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `vector-calculus —REPRESENTED-BY→ differential-form` (`theorem`)
-- Source: `lee-smooth-manifolds-2012`, Differential forms, integration, and Stokes theorem chapters.
+- Source: `lee-smooth-manifolds-2012`, Chapter 14, pp. 349–376.
 - Proposition: Differential forms provide the coordinate-independent representation that unifies gradient, circulation, flux, and integral theorems from vector calculus.
 - Mathematical skeleton: The exterior derivative and pullback combine with Stokes theorem integral over boundary equals integral of the derivative.
 - Scope: Smooth manifolds and classical vector calculus under metric-dependent identifications.
@@ -273,7 +273,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
 - Proposed edge: `kalman-filter —REPLACED-BY→ extended-kalman-filter` (`strong-analogy`)
-- Source: `thrun-burgard-fox-2005`, Gaussian filters and extended Kalman filter chapter.
+- Source: `thrun-burgard-fox-2005`, Chapter 3, §3.3, pp. 54–64.
 - Proposition: When nonlinear dynamics or observations break the linear Kalman assumptions, the extended Kalman filter replaces exact propagation with Jacobian linearization.
 - Mathematical skeleton: Propagate mean through nonlinear maps and covariance through their Jacobians, then apply a Kalman-form correction.
 - Scope: Differentiable nonlinear filtering with unimodal local uncertainty.
@@ -293,9 +293,9 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 ## Factor graph `factor-graph`
 
 - Proposed disposition: `propose-node`
-- Proposed node type: `model`
+- Proposed node type: `object`
 - Proposed edge: `state-space-model —REPRESENTED-BY→ factor-graph` (`theorem`)
-- Source: `koller-friedman-2009`, Factorized representations and message-passing chapters.
+- Source: `koller-friedman-2009`, Chapter 4, §4.4.1, pp. 123–127.
 - Proposition: A factor graph represents a global function or probability distribution as a bipartite graph of variables and local factors.
 - Mathematical skeleton: f(x_1,...,x_n) equals a product of factors f_a over subsets of variables adjacent to each factor node.
 - Scope: Finite factorization graphs, including temporal state-space models.
@@ -316,7 +316,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
 - Proposed edge: `optimization —APPLIED-IN→ graphslam` (`theorem`)
-- Source: `thrun-burgard-fox-2005`, GraphSLAM chapter and full-SLAM inference sections.
+- Source: `thrun-burgard-fox-2005`, Chapter 11, §§11.2–11.4, pp. 340–361.
 - Proposition: GraphSLAM formulates simultaneous localization and mapping as sparse graph-based maximum a posteriori optimization over robot poses and landmarks.
 - Mathematical skeleton: Negative log factors yield a sparse nonlinear least-squares objective whose graph records variable-constraint incidence.
 - Scope: Offline or smoothing-based SLAM with differentiable residual models.
@@ -338,7 +338,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `model`
 - Proposed edge: `hamiltonian-system —REPRESENTED-BY→ phase-space` (`theorem`)
-- Source: `hairer-lubich-wanner-2006`, Hamiltonian systems and symplectic geometry chapters.
+- Source: `hairer-lubich-wanner-2006`, Chapter VI, §§VI.1–VI.3, pp. 179–204.
 - Proposition: A Hamiltonian system is naturally represented in phase space by first-order equations generated by a Hamiltonian and a symplectic structure.
 - Mathematical skeleton: In canonical coordinates q-dot equals partial H by partial p and p-dot equals minus partial H by partial q.
 - Scope: Finite-dimensional smooth Hamiltonian dynamics.
@@ -359,8 +359,8 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
-- Proposed edge: `optimization —SOLVED-BY→ interior-point-method` (`theorem`)
-- Source: `boyd-vandenberghe-2004`, Interior-point methods chapter.
+- Proposed edge: `interior-point-method —APPLIED-IN→ optimization` (`theorem`)
+- Source: `boyd-vandenberghe-2004`, Chapter 11, §§11.2–11.7, pp. 563–609.
 - Proposition: Interior-point methods solve constrained convex optimization by following central solutions defined by barrier-perturbed optimality conditions.
 - Mathematical skeleton: Replace inequality constraints by a barrier or perturbed complementarity equations and drive the barrier parameter toward zero.
 - Scope: Linear, conic, and smooth convex programming.
@@ -382,7 +382,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `jacobi-integral —IS-A→ conservation-laws` (`special-case`)
-- Source: `fitzpatrick-celestial-mechanics-2012`, Restricted three-body problem, Jacobi integral, and zero-velocity surface sections.
+- Source: `fitzpatrick-celestial-mechanics-2012`, Chapter 8, §8.3, pp. 149–151.
 - Proposition: The Jacobi integral is a conserved quantity of the circular restricted three-body problem in the uniformly rotating frame.
 - Mathematical skeleton: The rotating-frame equations imply a constant combining effective potential and squared speed.
 - Scope: Circular restricted three-body problem.
@@ -405,7 +405,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `merge-or-refine`
 - Proposed node type: `existing-node refinement`
 - Proposed edge: `bayes-rule —APPLIED-IN→ linear-gaussian-ssm` (`theorem`)
-- Source: `thrun-burgard-fox-2005`, Gaussian filters and Kalman filter sections.
+- Source: `thrun-burgard-fox-2005`, Chapter 3, §3.2, pp. 40–53.
 - Proposition: The Kalman update applies Bayes rule as exact Gaussian conditioning inside a linear-Gaussian state-space model.
 - Mathematical skeleton: Gaussian prediction and conditioning close on the mean and covariance recursions.
 - Scope: Linear-Gaussian filtering.
@@ -427,7 +427,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `theorem`
 - Proposed edge: `karush-kuhn-tucker-conditions —GOVERNS→ optimization` (`theorem`)
-- Source: `nocedal-wright-2006`, Optimality conditions and constraint qualifications chapters.
+- Source: `nocedal-wright-2006`, Chapter 12, §§12.2–12.4, pp. 315–329.
 - Proposition: Under a constraint qualification, KKT conditions are necessary for a constrained local optimum and are sufficient for global optimality in a convex problem.
 - Mathematical skeleton: Stationarity, primal feasibility, dual feasibility, and complementary slackness.
 - Scope: Smooth finite-dimensional constrained optimization.
@@ -449,7 +449,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `principle`
 - Proposed edge: `optimization —REPRESENTED-BY→ lagrange-duality` (`theorem`)
-- Source: `boyd-vandenberghe-2004`, Lagrange duality and optimality conditions chapters.
+- Source: `boyd-vandenberghe-2004`, Chapter 5, §§5.1–5.3, pp. 215–244.
 - Proposition: Lagrange duality represents a constrained optimization problem by a dual lower-bound problem obtained from the infimum of its Lagrangian.
 - Mathematical skeleton: The dual function g(lambda,nu) is the infimum over x of the Lagrangian and never exceeds the primal optimum for dual-feasible multipliers.
 - Scope: Finite-dimensional constrained optimization.
@@ -470,7 +470,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `lagrange-points —REPRESENTED-BY→ phase-space` (`theorem`)
-- Source: `fitzpatrick-celestial-mechanics-2012`, Restricted three-body problem and Lagrange points sections.
+- Source: `fitzpatrick-celestial-mechanics-2012`, Chapter 8, §8.6, pp. 155–161.
 - Proposition: Lagrange points are equilibrium points of the circular restricted three-body equations in the uniformly rotating frame.
 - Mathematical skeleton: Set rotating-frame velocity and acceleration to zero so the effective-force gradient vanishes.
 - Scope: Five classical equilibrium points L1 through L5.
@@ -493,7 +493,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `symmetry —REPRESENTED-BY→ lie-group` (`theorem`)
-- Source: `lee-smooth-manifolds-2012`, Lie groups, Lie algebras, and group actions chapters.
+- Source: `lee-smooth-manifolds-2012`, Chapter 7, pp. 150–173.
 - Proposition: Continuous symmetries are represented by Lie groups whose smooth multiplication supports infinitesimal generators in a Lie algebra.
 - Mathematical skeleton: A smooth group has a tangent space at the identity with a bracket induced by invariant vector fields.
 - Scope: Finite-dimensional Lie groups and smooth actions.
@@ -514,7 +514,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `phenomenon`
 - Proposed edge: `limit-cycles —REPRESENTED-BY→ phase-space` (`theorem`)
-- Source: `khalil-nonlinear-systems-2014`, Phase-plane analysis and limit-cycle sections.
+- Source: `khalil-nonlinear-systems-2014`, Chapter 2, §2.4, pp. 54–59.
 - Proposition: A limit cycle is an isolated periodic orbit represented as a closed trajectory in phase space.
 - Mathematical skeleton: A periodic solution traces a closed orbit; isolation distinguishes a limit cycle from a family of periodic orbits.
 - Scope: Finite-dimensional autonomous ODEs.
@@ -535,7 +535,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `principle`
 - Proposed edge: `lyapunov-functions —GOVERNS→ stability` (`theorem`)
-- Source: `khalil-nonlinear-systems-2014`, Lyapunov stability theorems and invariance-principle chapters.
+- Source: `khalil-nonlinear-systems-2014`, Chapter 4, §§4.1–4.2, pp. 112–132.
 - Proposition: A Lyapunov function certifies stability by decreasing along trajectories while measuring displacement from an equilibrium or invariant set.
 - Mathematical skeleton: V is positive definite and its derivative along the vector field is nonpositive for stability, negative definite for asymptotic conclusions under standard hypotheses.
 - Scope: Local nonlinear stability of equilibria and invariant sets.
@@ -556,8 +556,8 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
-- Proposed edge: `hidden-markov-model —SOLVED-BY→ markov-localization` (`strong-analogy`)
-- Source: `thrun-burgard-fox-2005`, Bayes filters and Markov localization chapters.
+- Proposed edge: `bayes-rule —APPLIED-IN→ markov-localization` (`theorem`)
+- Source: `thrun-burgard-fox-2005`, Chapter 7, §§7.2–7.3, pp. 197–211.
 - Proposition: Markov localization performs recursive Bayes filtering over robot pose using motion and sensor models.
 - Mathematical skeleton: Alternate prediction by the transition kernel with correction by the observation likelihood.
 - Scope: Robot localization in a known map.
@@ -579,7 +579,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `mutual-information —REPRESENTED-BY→ shannon-entropy` (`theorem`)
-- Source: `cover-thomas-2006`, Entropy and mutual information chapter.
+- Source: `cover-thomas-2006`, Chapter 2, §2.4, pp. 18–22.
 - Proposition: Mutual information is an entropy-derived measure of statistical dependence equal to the relative entropy between the joint law and the product of marginals.
 - Mathematical skeleton: I(X;Y) equals H(X) plus H(Y) minus H(X,Y), and equals D(pXY parallel pX pY).
 - Scope: Shannon information theory.
@@ -599,8 +599,8 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
-- Proposed edge: `optimization —SOLVED-BY→ newton-method` (`theorem`)
-- Source: `nocedal-wright-2006`, Fundamentals of unconstrained optimization and Newton-method sections.
+- Proposed edge: `newton-method —APPLIED-IN→ optimization` (`theorem`)
+- Source: `nocedal-wright-2006`, Chapter 3, §§3.3–3.4, pp. 44–48.
 - Proposition: Newton's optimization method locally solves the stationarity equation by repeatedly minimizing the quadratic Taylor model built from the gradient and Hessian.
 - Mathematical skeleton: Solve Hessian times step equals minus gradient, then update the iterate.
 - Scope: Twice-differentiable unconstrained minimization.
@@ -622,7 +622,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
 - Proposed edge: `bayes-rule —APPLIED-IN→ occupancy-grid-mapping` (`strong-analogy`)
-- Source: `thrun-burgard-fox-2005`, Occupancy grid mapping chapter.
+- Source: `thrun-burgard-fox-2005`, Chapter 9, §9.2, pp. 284–293.
 - Proposition: Occupancy-grid mapping applies Bayesian updates to cell occupancy variables using inverse sensor evidence under a simplifying cell-independence approximation.
 - Mathematical skeleton: Per-cell log odds accumulate prior-adjusted measurement log-likelihood ratios.
 - Scope: Static two-dimensional or three-dimensional occupancy grids.
@@ -643,11 +643,11 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 - Proposed disposition: `propose-node`
 - Proposed node type: `phenomenon`
-- Proposed edge: `orbital-resonance —SAME-SKELETON→ harmonic-oscillator` (`strong-analogy`)
-- Source: `fitzpatrick-celestial-mechanics-2012`, Perturbation theory and orbital resonance sections.
-- Proposition: Orbital resonance occurs when fundamental orbital frequencies are near a low-integer ratio, producing slow resonant angle dynamics analogous to coupled oscillators.
+- Proposed edge: `orbital-resonance —ANALOGOUS-TO→ harmonic-oscillator` (`strong-analogy`)
+- Source: `murray-dermott-1999`, Chapter 8, §§8.3 and 8.6–8.8, pp. 326–363.
+- Proposition: After resonant averaging, the local libration dynamics near a stable isolated orbital resonance can be approximated by a pendulum-type Hamiltonian.
 - Mathematical skeleton: A slow integer combination of angles survives averaging and often reduces locally to a pendulum-like libration Hamiltonian.
-- Scope: Mean-motion and related resonances in weakly perturbed celestial systems.
+- Scope: Weakly perturbed orbit–orbit resonances admitting a one-degree-of-freedom resonant reduction.
 - Validity regime: Neighborhood of an isolated resonance where averaging is valid.
 - Assumptions:
   - near commensurability
@@ -666,7 +666,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
 - Proposed edge: `kalman-filter —REPLACED-BY→ particle-filter` (`strong-analogy`)
-- Source: `thrun-burgard-fox-2005`, Nonparametric filters and particle-filter chapters.
+- Source: `thrun-burgard-fox-2005`, Chapter 4, §4.3, pp. 96–112.
 - Proposition: When Gaussian filtering assumptions fail, a particle filter replaces a single Gaussian belief by a weighted empirical sample propagated and reweighted recursively.
 - Mathematical skeleton: Importance-sample the predictive distribution, weight by likelihood, and resample to control weight degeneracy.
 - Scope: Sequential Bayesian state estimation.
@@ -688,7 +688,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
 - Proposed edge: `proximal-operator —APPLIED-IN→ optimization` (`theorem`)
-- Source: `boyd-vandenberghe-2004`, Convex optimization course materials on decomposition and proximal methods.
+- Source: `parikh-boyd-2014`, Section 1.1, pp. 124–126, equations (1.1)–(1.3).
 - Proposition: The proximal operator converts a possibly nonsmooth convex function into a regularized minimization subproblem used by first-order optimization algorithms.
 - Mathematical skeleton: prox of f at v is the argmin over x of f(x) plus one over twice lambda times squared distance to v.
 - Scope: Convex composite optimization.
@@ -709,7 +709,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `relative-entropy —REPRESENTED-BY→ shannon-entropy` (`theorem`)
-- Source: `cover-thomas-2006`, Entropy, relative entropy, and mutual information chapter.
+- Source: `cover-thomas-2006`, Chapter 2, §2.3, pp. 18–22.
 - Proposition: Relative entropy measures the discrepancy of a distribution P from a reference Q and can be written as cross-entropy minus Shannon entropy.
 - Mathematical skeleton: D(P parallel Q) equals the expectation under P of log p over q and is nonnegative.
 - Scope: Classical probability distributions.
@@ -730,7 +730,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `model`
 - Proposed edge: `restricted-three-body-problem —REPRESENTED-BY→ phase-space` (`theorem`)
-- Source: `fitzpatrick-celestial-mechanics-2012`, Restricted three-body problem chapters.
+- Source: `fitzpatrick-celestial-mechanics-2012`, Chapter 8, §8.2, pp. 147–149.
 - Proposition: The circular restricted three-body problem is an autonomous rotating-frame dynamical model for a massless body moving under two circularly orbiting primaries.
 - Mathematical skeleton: A four-dimensional first-order system combines Coriolis terms with the gradient of an effective potential.
 - Scope: Planar circular restricted problem.
@@ -752,7 +752,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `riemannian-metric —ASSUMES→ smoothness` (`theorem`)
-- Source: `lee-smooth-manifolds-2012`, Riemannian metrics and tensor fields chapters.
+- Source: `lee-smooth-manifolds-2012`, Chapter 13, pp. 327–348.
 - Proposition: A Riemannian metric is a smoothly varying positive-definite inner product on tangent spaces and therefore assumes a smooth manifold structure.
 - Mathematical skeleton: Each point p has an inner product g_p on T_pM whose coordinate components vary smoothly.
 - Scope: Positive-definite Riemannian geometry.
@@ -774,7 +774,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `smooth-manifold —ASSUMES→ smoothness` (`theorem`)
-- Source: `lee-smooth-manifolds-2012`, Smooth manifolds and smooth maps chapters.
+- Source: `lee-smooth-manifolds-2012`, Chapter 1, pp. 1–31.
 - Proposition: A smooth manifold is a locally Euclidean topological space equipped with smoothly compatible coordinate charts.
 - Mathematical skeleton: Transition maps between overlapping charts are smooth maps between open subsets of Euclidean space.
 - Scope: Finite-dimensional smooth manifolds without boundary unless stated.
@@ -796,9 +796,9 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 - Proposed disposition: `propose-node`
 - Proposed node type: `move`
-- Proposed edge: `symplectic-integrator —GOVERNS→ phase-space` (`theorem`)
-- Source: `hairer-lubich-wanner-2006`, Symplectic integration and long-time energy behavior chapters.
-- Proposition: A symplectic integrator preserves the discrete symplectic two-form and thereby reproduces the long-time geometric structure of Hamiltonian phase-space flow.
+- Proposed edge: `symplectic-integrator —APPLIED-IN→ hamiltonian-system` (`theorem`)
+- Source: `hairer-lubich-wanner-2006`, Chapter VI, §§VI.3–VI.4, pp. 204–230; Chapter IX, §§IX.1–IX.3, pp. 337–366.
+- Proposition: A symplectic integrator preserves the discrete symplectic form; under backward-error hypotheses it nearly conserves a modified Hamiltonian over long time intervals.
 - Mathematical skeleton: The one-step map Phi satisfies pullback of omega equals omega.
 - Scope: Finite-dimensional Hamiltonian integration.
 - Validity regime: Fixed-step methods under the stated construction.
@@ -819,7 +819,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `object`
 - Proposed edge: `linearization —REPRESENTED-BY→ tangent-space` (`theorem`)
-- Source: `lee-smooth-manifolds-2012`, Tangent vectors, tangent spaces, and differentials chapters.
+- Source: `lee-smooth-manifolds-2012`, Chapter 3, pp. 50–76.
 - Proposition: The tangent space is the linear local representation in which first-order linearization of smooth manifold dynamics lives.
 - Mathematical skeleton: The derivative Df_p is a linear map from T_pM to T_f(p)N.
 - Scope: Smooth finite-dimensional manifolds.
@@ -840,7 +840,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `operation`
 - Proposed edge: `kalman-filter —REPLACED-BY→ unscented-kalman-filter` (`strong-analogy`)
-- Source: `thrun-burgard-fox-2005`, Gaussian filters and unscented Kalman filter sections.
+- Source: `thrun-burgard-fox-2005`, Chapter 3, §3.4, pp. 65–70.
 - Proposition: When nonlinear maps break exact Kalman propagation, the unscented Kalman filter replaces linearization by deterministic sigma points chosen to reproduce moments.
 - Mathematical skeleton: Transform weighted sigma points through the nonlinear map and reconstruct approximate mean and covariance.
 - Scope: Nonlinear Gaussian filtering.
@@ -862,7 +862,7 @@ Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 - Proposed disposition: `propose-node`
 - Proposed node type: `move`
 - Proposed edge: `variational-integrator —ASSUMES→ variational-principles` (`theorem`)
-- Source: `hairer-lubich-wanner-2006`, Variational integrators and discrete mechanics sections.
+- Source: `hairer-lubich-wanner-2006`, Chapter VI, §VI.6, pp. 231–236.
 - Proposition: A variational integrator discretizes the action principle and derives the time-step map from discrete Euler-Lagrange equations.
 - Mathematical skeleton: Stationarity of the discrete action sum yields a symplectic update and discrete momentum results under symmetry.
 - Scope: Lagrangian mechanical systems with a regular discrete Lagrangian.

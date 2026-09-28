@@ -2,27 +2,27 @@
 canonical_name: Orbital resonance
 node_type: phenomenon
 status: established
-summary: Orbital resonance occurs when fundamental orbital frequencies are near a low-integer ratio,
-  producing slow resonant angle dynamics analogous to coupled oscillators.
+summary: After resonant averaging, the local libration dynamics near a stable isolated orbital
+  resonance can be approximated by a pendulum-type Hamiltonian.
 fields:
   - mechanics
 assumptions:
   - near commensurability
   - perturbative separation of fast and slow angles
 canonical_examples:
-  - Mean-motion and related resonances in weakly perturbed celestial systems. — Weakly perturbed,
-    near-integrable motion after resonant averaging.
+  - Weakly perturbed orbit–orbit resonances admitting a one-degree-of-freedom resonant reduction. —
+    Small-amplitude libration about a stable isolated resonance after resonant averaging.
 sections:
   - campaign-broad-sweep-2026-09#orbital-resonance
 ---
 
-Orbital resonance occurs when fundamental orbital frequencies are near a low-integer ratio, producing slow resonant angle dynamics analogous to coupled oscillators.
+After resonant averaging, the local libration dynamics near a stable isolated orbital resonance can be approximated by a pendulum-type Hamiltonian.
 
 ## Mathematical skeleton
 
 A slow integer combination of angles survives averaging and often reduces locally to a pendulum-like libration Hamiltonian.
 
-The claim is scoped to Mean-motion and related resonances in weakly perturbed celestial systems. Its stated validity regime is: Neighborhood of an isolated resonance where averaging is valid.
+The claim is scoped to Weakly perturbed orbit–orbit resonances admitting a one-degree-of-freedom resonant reduction. Its stated validity regime is: Neighborhood of an isolated resonance where averaging is valid.
 
 ## Boundaries
 

@@ -553,6 +553,22 @@ function validateReferencesAndEvidence(
         );
       }
       if (
+        ['direct-support', 'qualified-support'].includes(String(assessment.status)) &&
+        nonEmpty(assessment.location) &&
+        !/(?:\b(?:ch(?:apter)?|sec(?:tion)?|pp?|page|theorem|lemma|proposition|definition|eq(?:uation)?)\.?\s*(?:§\s*)?\d|§\s*\d)/i.test(
+          assessment.location,
+        )
+      ) {
+        add(
+          rules,
+          'admission/evidence-pinpoint',
+          'error',
+          subject,
+          'direct or qualified support needs a pinpoint chapter, section, page, theorem, definition, or equation locator',
+          [subject],
+        );
+      }
+      if (
         !isRecord(assessment.assessor) ||
         !nonEmpty(assessment.assessor.kind) ||
         !nonEmpty(assessment.assessor.identity) ||

@@ -2,8 +2,9 @@
 canonical_name: Backward error analysis
 node_type: move
 status: established
-summary: Backward error analysis interprets a numerical trajectory as the exact trajectory of a
-  nearby modified differential equation.
+summary: At any fixed truncation order, backward error analysis constructs a nearby modified
+  differential equation whose exact flow matches the numerical one-step map up to a controlled
+  defect.
 fields:
   - mechanics
   - numerical-analysis
@@ -17,11 +18,11 @@ sections:
   - campaign-broad-sweep-2026-09#backward-error-analysis
 ---
 
-Backward error analysis interprets a numerical trajectory as the exact trajectory of a nearby modified differential equation.
+At any fixed truncation order, backward error analysis constructs a nearby modified differential equation whose exact flow matches the numerical one-step map up to a controlled defect.
 
 ## Mathematical skeleton
 
-Choose modified vector-field coefficients so its exact flow matches the numerical one step map order by order.
+Choose finitely many modified-vector-field coefficients so the truncated modified flow matches the numerical one-step map through the claimed order.
 
 The claim is scoped to One-step integrators for smooth ODEs. Its stated validity regime is: Finite truncation, or exponentially long regimes under analyticity hypotheses.
 

@@ -23,7 +23,7 @@ describe('atlas-promotion-preview', () => {
         proposed_new_concepts: 39,
         proposed_merge_refinements: 1,
         proposed_edges: 40,
-        reference_additions: 6,
+        reference_additions: 8,
         integrated_validation_errors: 0,
         integrated_validation_warnings: 0,
       });
