@@ -1,0 +1,46 @@
+{
+  "report_version": "1.0.0",
+  "campaign_id": "cross-field-sweep-2026-09",
+  "decision": {
+    "scope": "all-50",
+    "approved": 50,
+    "revised": 0,
+    "deferred": 0,
+    "rejected": 0,
+    "reviewer": "repository-owner",
+    "date": "2026-09-28"
+  },
+  "human_review_effort": {
+    "active_minutes": null,
+    "status": "not-reported",
+    "accepted_claims_per_review_hour": null
+  },
+  "independent_model_review": {
+    "reviewer": "codex-independent-review",
+    "reviewed": 50,
+    "retained_without_substantive_change": 44,
+    "revised_then_retained": 6,
+    "rejected": 0,
+    "pinpoint_assessments": 50,
+    "human_minutes_added": 0
+  },
+  "promotion": {
+    "new_concepts": 50,
+    "trusted_edges": 50,
+    "reference_additions": 9,
+    "workflow_acceptances_as_node": 50,
+    "workflow_acceptances_as_edge": 0
+  },
+  "verification": {
+    "campaign_validation_errors": 0,
+    "campaign_validation_warnings": 0,
+    "terminal_dossiers": 50,
+    "verified_promoted_artifacts": 100,
+    "missing_promoted_artifacts": 0
+  },
+  "yield": {
+    "raw_to_enriched_percent": 20,
+    "normalized_to_enriched_percent": 20.1,
+    "human_acceptance_percent": 100
+  }
+}

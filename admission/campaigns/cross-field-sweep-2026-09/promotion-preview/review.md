@@ -1,13 +1,11 @@
 # Broad sweep promotion review
 
-This packet contains the 50 dossiers selected for human review. The generated content and edges have passed the ordinary trusted validator in an isolated combined tree, but no box below is a recorded decision until a human reviewer explicitly supplies it.
+This packet contains the 50 dossiers selected for human review. All are recorded as accepted in their authoritative normalized dossiers and the generated content passes the ordinary trusted validator.
 
-Record actual active review time rather than wall-clock delay:
-
-- Reviewer:
-- Review started:
-- Review completed:
-- Active review minutes:
+- Reviewer: repository-owner
+- Review started: not reported
+- Review completed: 2026-09-28
+- Active review minutes: not reported
 
 ## Aliasing `aliasing`
 
@@ -28,7 +26,7 @@ Record actual active review time rather than wall-clock delay:
 - Adversarial challenge: Boundary test: Antialias filtering changes the input before sampling rather than undoing aliasing afterward.
 - Response: The proposition is restricted to uniform sampling of continuous-time sinusoids, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Bellman equation `bellman-equation`
 
@@ -50,7 +48,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Undiscounted improper problems may have multiple or pathological fixed points.
 - Response: The proposition is restricted to finite-horizon problems and discounted or proper infinite-horizon variants, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Brownian motion `brownian-motion`
 
@@ -72,7 +70,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Physical diffusion models may include drift, boundaries, or anomalous scaling.
 - Response: The proposition is restricted to standard Brownian motion in Euclidean space, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Community detection `community-detection`
 
@@ -93,7 +91,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Different objectives define different communities and can have resolution limits.
 - Response: The proposition is restricted to networks whose chosen objective has meaningful mesoscale structure, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Condition number `condition-number`
 
@@ -115,7 +113,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Conditioning is a property of the problem, not the algorithm.
 - Response: The proposition is restricted to well-posed finite-dimensional numerical problems near a specified input, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Configuration model `configuration-model`
 
@@ -136,7 +134,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: The basic pairing construction permits self-loops and parallel edges.
 - Response: The proposition is restricted to sparse undirected networks under the specified simple-graph or multigraph convention, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Controllability `controllability`
 
@@ -157,7 +155,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Input constraints can obstruct steering despite algebraic controllability.
 - Response: The proposition is restricted to finite-dimensional continuous-time LTI systems, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Convolution `convolution`
 
@@ -178,7 +176,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Distributional signals require a generalized formulation.
 - Response: The proposition is restricted to integrable signals or generalized-signal settings with justified transforms, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Correlated equilibrium `correlated-equilibrium`
 
@@ -199,7 +197,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: A correlated equilibrium is not generally a Nash equilibrium in independent mixed strategies.
 - Response: The proposition is restricted to finite strategic games, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Coupling method `coupling-method`
 
@@ -220,7 +218,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: A poorly chosen coupling can give a vacuous bound.
 - Response: The proposition is restricted to markov chains admitting a jointly constructed coupling, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Detailed balance `detailed-balance`
 
@@ -241,7 +239,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Stationarity does not imply detailed balance for nonreversible chains.
 - Response: The proposition is restricted to finite reversible Markov chains, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Dynamic programming `dynamic-programming`
 
@@ -262,7 +260,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: State dimension can make exact computation infeasible.
 - Response: The proposition is restricted to problems with a sufficient Markov state and separable stage costs, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Galerkin method `galerkin-method`
 
@@ -284,7 +282,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: The edge is approximate: trial-space refinement and stability are needed for convergence.
 - Response: The proposition is restricted to galerkin approximations for coercive boundary-value problems, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## GMRES `gmres`
 
@@ -305,7 +303,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Memory and orthogonalization costs grow unless the method is restarted.
 - Response: The proposition is restricted to nonsymmetric linear systems in exact arithmetic or controlled finite precision, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Ill-posed problem `ill-posed-problem`
 
@@ -326,7 +324,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Finite matrices are formally continuous even when numerically ill-conditioned.
 - Response: The proposition is restricted to linear inverse problems in finite discretizations or compact-operator limits, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Impulse response `impulse-response`
 
@@ -348,7 +346,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Boundary-dependent Green functions need not be translation invariant.
 - Response: The proposition is restricted to linear time-invariant systems with compatible boundary or initial conventions, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Inverse problem `inverse-problem`
 
@@ -369,7 +367,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Nonidentifiability can persist even with noiseless data.
 - Response: The proposition is restricted to linear discrete inverse problems arising from measurement operators, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Ito formula `ito-formula`
 
@@ -390,7 +388,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Ordinary chain-rule intuition misses the second-order term.
 - Response: The proposition is restricted to twice spatially differentiable functions of continuous semimartingales, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Krylov subspace `krylov-subspace`
 
@@ -411,7 +409,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: A deficient start vector may miss invariant subspaces.
 - Response: The proposition is restricted to finite-dimensional iterative linear algebra, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Markov decision process `markov-decision-process`
 
@@ -432,7 +430,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Partial observability requires a belief-state reformulation.
 - Response: The proposition is restricted to finite-state finite-action MDPs under a stated horizon and criterion, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Martingale `martingale`
 
@@ -454,7 +452,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Changing probability measure or numeraire changes the martingale property.
 - Response: The proposition is restricted to integrable discrete-time processes adapted to a filtration, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Maximum principle `maximum-principle`
 
@@ -476,7 +474,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: The principle can fail for the wrong zeroth-order sign or nonelliptic operators.
 - Response: The proposition is restricted to uniformly elliptic or parabolic equations under the stated sign and regularity hypotheses, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Method of characteristics `method-of-characteristics`
 
@@ -498,7 +496,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Characteristics can intersect and destroy classical single-valued solutions.
 - Response: The proposition is restricted to smooth first-order transport and Hamilton-Jacobi equations before characteristic crossing, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Metropolis-Hastings algorithm `metropolis-hastings-algorithm`
 
@@ -520,7 +518,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Stationarity does not guarantee rapid mixing.
 - Response: The proposition is restricted to targets and proposals with compatible support, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Minimax theorem `minimax-theorem`
 
@@ -541,7 +539,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: The equality generally fails outside zero-sum or suitable convex-concave settings.
 - Response: The proposition is restricted to finite two-player zero-sum games, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Mixed strategy `mixed-strategy`
 
@@ -562,7 +560,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Mixing can represent deliberate randomization or population frequencies, which are different interpretations.
 - Response: The proposition is restricted to finite strategic games, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Mixing time `mixing-time`
 
@@ -583,7 +581,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: The numerical value depends on the distance threshold convention.
 - Response: The proposition is restricted to finite irreducible aperiodic chains, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Nash equilibrium `nash-equilibrium`
 
@@ -604,7 +602,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Equilibrium may be nonunique and does not imply efficiency.
 - Response: The proposition is restricted to finite strategic games, allowing mixed strategies when stated, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Network centrality `network-centrality`
 
@@ -625,7 +623,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Centrality is not a single invariant notion of importance.
 - Response: The proposition is restricted to finite networks with a declared centrality definition, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Nyquist stability criterion `nyquist-stability-criterion`
 
@@ -647,7 +645,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Sign and contour conventions change the reported encirclement direction.
 - Response: The proposition is restricted to proper rational feedback loops with a specified contour convention, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Observability `observability`
 
@@ -669,7 +667,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Poor observability can make reconstruction numerically fragile before rank is lost.
 - Response: The proposition is restricted to finite-dimensional continuous-time LTI systems, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Optional stopping theorem `optional-stopping-theorem`
 
@@ -691,7 +689,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: The slogan that fair games remain fair at any stopping time is false without hypotheses.
 - Response: The proposition is restricted to discrete-time martingales under one of the theorem’s standard sufficient conditions, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Percolation on networks `percolation-on-networks`
 
@@ -712,7 +710,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Temporal correlations and reinfection break the simple static percolation equivalence.
 - Response: The proposition is restricted to locally tree-like networks and bond-percolation mappings of final outbreak size, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## PID controller `pid-controller`
 
@@ -733,7 +731,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Derivative action amplifies measurement noise and integral action can wind up.
 - Response: The proposition is restricted to single-loop feedback with implementable filtering and anti-windup provisions, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Poisson process `poisson-process`
 
@@ -755,7 +753,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Overdispersion or history dependence violates the homogeneous Poisson model.
 - Response: The proposition is restricted to homogeneous point processes on the nonnegative time line, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Policy iteration `policy-iteration`
 
@@ -776,7 +774,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Approximate evaluation can break monotone improvement without error control.
 - Response: The proposition is restricted to finite discounted MDPs with exact arithmetic, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## QR factorization `qr-factorization`
 
@@ -797,7 +795,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Normal equations and QR have different numerical conditioning.
 - Response: The proposition is restricted to overdetermined full-column-rank linear least squares, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Random graph `random-graph`
 
@@ -818,7 +816,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Different ensembles with similar mean degree can have different higher-order structure.
 - Response: The proposition is restricted to finite random graph ensembles, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Regularization `regularization`
 
@@ -839,7 +837,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Too much regularization erases real structure and too little amplifies noise.
 - Response: The proposition is restricted to noisy linear discrete inverse problems, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Sampling theorem `sampling-theorem`
 
@@ -861,7 +859,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Real signals are rarely exactly bandlimited and ideal reconstruction is noncausal.
 - Response: The proposition is restricted to exactly bandlimited continuous-time signals with ideal uniform sampling, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Singular value decomposition `singular-value-decomposition`
 
@@ -882,7 +880,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Small singular values amplify inverse-problem noise.
 - Response: The proposition is restricted to finite real or complex matrices, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Sobolev space `sobolev-space`
 
@@ -903,7 +901,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Sobolev regularity does not generally imply pointwise differentiability.
 - Response: The proposition is restricted to integer-order Sobolev spaces on open Euclidean domains, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Stationary distribution `stationary-distribution`
 
@@ -924,7 +922,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Stationarity need not be unique without irreducibility.
 - Response: The proposition is restricted to finite-state Markov chains, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Subgame-perfect equilibrium `subgame-perfect-equilibrium`
 
@@ -945,7 +943,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Games of imperfect information can have few or no proper subgames, requiring stronger refinements.
 - Response: The proposition is restricted to finite extensive games with proper subgames, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Tikhonov regularization `tikhonov-regularization`
 
@@ -966,7 +964,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: The result depends materially on the penalty and parameter choice.
 - Response: The proposition is restricted to linear inverse problems with a chosen penalty operator, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Transfer function `transfer-function`
 
@@ -988,7 +986,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Different state realizations can share the same transfer function.
 - Response: The proposition is restricted to finite-dimensional linear time-invariant systems, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Truncated singular value decomposition `truncated-singular-value-decomposition`
 
@@ -1010,7 +1008,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: A hard cutoff can introduce artifacts and is expensive at large scale.
 - Response: The proposition is restricted to linear inverse problems with an informative spectral ordering, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Value iteration `value-iteration`
 
@@ -1031,7 +1029,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Convergence can be slow when the discount factor is close to one.
 - Response: The proposition is restricted to finite discounted MDPs, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Weak solution `weak-solution`
 
@@ -1053,7 +1051,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: Weak solutions may be nonunique without additional estimates or entropy conditions.
 - Response: The proposition is restricted to weak formulations of PDEs on domains with specified boundary data, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Z-transform `z-transform`
 
@@ -1074,4 +1072,4 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Boundary test: The algebraic expression alone does not determine the sequence without its convergence region.
 - Response: The proposition is restricted to one- or two-sided discrete-time sequences with a stated region of convergence, and the caveat remains explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject

@@ -6,301 +6,301 @@
       "candidate_id": "aliasing",
       "claim_id": "aliasing-claim",
       "source_id": "siebert-signals-1986",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "bellman-equation",
       "claim_id": "bellman-equation-claim",
       "source_id": "bertsekas-dp-2017",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "brownian-motion",
       "claim_id": "brownian-motion-claim",
       "source_id": "durrett-probability-2019",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "community-detection",
       "claim_id": "community-detection-claim",
       "source_id": "newman-networks-2018",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "condition-number",
       "claim_id": "condition-number-claim",
       "source_id": "trefethen-bau-1997",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "configuration-model",
       "claim_id": "configuration-model-claim",
       "source_id": "newman-networks-2018",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "controllability",
       "claim_id": "controllability-claim",
       "source_id": "astrom-murray-2020",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "convolution",
       "claim_id": "convolution-claim",
       "source_id": "siebert-signals-1986",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "correlated-equilibrium",
       "claim_id": "correlated-equilibrium-claim",
       "source_id": "osborne-rubinstein-1994",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "coupling-method",
       "claim_id": "coupling-method-claim",
       "source_id": "levin-peres-2017",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "detailed-balance",
       "claim_id": "detailed-balance-claim",
       "source_id": "levin-peres-2017",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "dynamic-programming",
       "claim_id": "dynamic-programming-claim",
       "source_id": "bertsekas-dp-2017",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "galerkin-method",
       "claim_id": "galerkin-method-claim",
       "source_id": "evans-pde-2010",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "gmres",
       "claim_id": "gmres-claim",
       "source_id": "trefethen-bau-1997",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "ill-posed-problem",
       "claim_id": "ill-posed-problem-claim",
       "source_id": "hansen-inverse-2010",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "impulse-response",
       "claim_id": "impulse-response-claim",
       "source_id": "siebert-signals-1986",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "inverse-problem",
       "claim_id": "inverse-problem-claim",
       "source_id": "hansen-inverse-2010",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "ito-formula",
       "claim_id": "ito-formula-claim",
       "source_id": "durrett-probability-2019",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "krylov-subspace",
       "claim_id": "krylov-subspace-claim",
       "source_id": "trefethen-bau-1997",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "markov-decision-process",
       "claim_id": "markov-decision-process-claim",
       "source_id": "bertsekas-dp-2017",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "martingale",
       "claim_id": "martingale-claim",
       "source_id": "durrett-probability-2019",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "maximum-principle",
       "claim_id": "maximum-principle-claim",
       "source_id": "evans-pde-2010",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "method-of-characteristics",
       "claim_id": "method-of-characteristics-claim",
       "source_id": "evans-pde-2010",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "metropolis-hastings-algorithm",
       "claim_id": "metropolis-hastings-algorithm-claim",
       "source_id": "levin-peres-2017",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "minimax-theorem",
       "claim_id": "minimax-theorem-claim",
       "source_id": "osborne-rubinstein-1994",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "mixed-strategy",
       "claim_id": "mixed-strategy-claim",
       "source_id": "osborne-rubinstein-1994",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "mixing-time",
       "claim_id": "mixing-time-claim",
       "source_id": "levin-peres-2017",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "nash-equilibrium",
       "claim_id": "nash-equilibrium-claim",
       "source_id": "osborne-rubinstein-1994",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "network-centrality",
       "claim_id": "network-centrality-claim",
       "source_id": "newman-networks-2018",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "nyquist-stability-criterion",
       "claim_id": "nyquist-stability-criterion-claim",
       "source_id": "astrom-murray-2020",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "observability",
       "claim_id": "observability-claim",
       "source_id": "astrom-murray-2020",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "optional-stopping-theorem",
       "claim_id": "optional-stopping-theorem-claim",
       "source_id": "durrett-probability-2019",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "percolation-on-networks",
       "claim_id": "percolation-on-networks-claim",
       "source_id": "newman-networks-2018",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "pid-controller",
       "claim_id": "pid-controller-claim",
       "source_id": "astrom-murray-2020",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "poisson-process",
       "claim_id": "poisson-process-claim",
       "source_id": "durrett-probability-2019",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "policy-iteration",
       "claim_id": "policy-iteration-claim",
       "source_id": "bertsekas-dp-2017",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "qr-factorization",
       "claim_id": "qr-factorization-claim",
       "source_id": "trefethen-bau-1997",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "random-graph",
       "claim_id": "random-graph-claim",
       "source_id": "newman-networks-2018",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "regularization",
       "claim_id": "regularization-claim",
       "source_id": "hansen-inverse-2010",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "sampling-theorem",
       "claim_id": "sampling-theorem-claim",
       "source_id": "siebert-signals-1986",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "singular-value-decomposition",
       "claim_id": "singular-value-decomposition-claim",
       "source_id": "trefethen-bau-1997",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "sobolev-space",
       "claim_id": "sobolev-space-claim",
       "source_id": "evans-pde-2010",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "stationary-distribution",
       "claim_id": "stationary-distribution-claim",
       "source_id": "levin-peres-2017",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "subgame-perfect-equilibrium",
       "claim_id": "subgame-perfect-equilibrium-claim",
       "source_id": "osborne-rubinstein-1994",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "tikhonov-regularization",
       "claim_id": "tikhonov-regularization-claim",
       "source_id": "hansen-inverse-2010",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "transfer-function",
       "claim_id": "transfer-function-claim",
       "source_id": "astrom-murray-2020",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "truncated-singular-value-decomposition",
       "claim_id": "truncated-singular-value-decomposition-claim",
       "source_id": "hansen-inverse-2010",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "value-iteration",
       "claim_id": "value-iteration-claim",
       "source_id": "bertsekas-dp-2017",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "weak-solution",
       "claim_id": "weak-solution-claim",
       "source_id": "evans-pde-2010",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     },
     {
       "candidate_id": "z-transform",
       "claim_id": "z-transform-claim",
       "source_id": "siebert-signals-1986",
-      "workflow_state": "automated-review-passed"
+      "workflow_state": "accepted-as-node"
     }
   ],
   "report_version": "1.0.0",

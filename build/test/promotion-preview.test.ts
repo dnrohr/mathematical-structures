@@ -45,7 +45,7 @@ describe('atlas-promotion-preview', () => {
     );
   });
 
-  it('loads campaign-local citation mappings and omits already-trusted bibliography entries', () => {
+  it('rebuilds the accepted campaign from local citation mappings without duplicating trusted references', () => {
     const directory = mkdtempSync(join(tmpdir(), 'atlas-cross-field-promotion-test-'));
     try {
       const report = buildPromotionPreview(ROOT, CROSS_FIELD_CAMPAIGN, directory);
@@ -57,7 +57,7 @@ describe('atlas-promotion-preview', () => {
         integrated_validation_errors: 0,
         integrated_validation_warnings: 0,
       });
-      expect(report.human_approval_required).toBe(true);
+      expect(report.human_approval_required).toBe(false);
       const references = readFileSync(join(directory, 'references.bib'), 'utf8');
       expect(references).not.toContain('@book{evans-2010,');
       expect(references).toContain('@book{newman-2018,');

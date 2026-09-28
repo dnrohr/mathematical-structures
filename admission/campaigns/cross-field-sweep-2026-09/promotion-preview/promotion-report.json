@@ -52,7 +52,7 @@
     "weak-solution",
     "z-transform"
   ],
-  "human_approval_required": true,
+  "human_approval_required": false,
   "merge_refinements": [],
   "report_version": "1.0.0",
   "summary": {

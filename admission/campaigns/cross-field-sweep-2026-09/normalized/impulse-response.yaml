@@ -106,9 +106,14 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\impulse-response.yaml#claims.impulse-response-claim
-human_decisions: []
+human_decisions:
+  - id: impulse-response-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
-  state: automated-review-passed
+  state: accepted-as-node
   history:
     - from: null
       to: harvested
@@ -134,3 +139,11 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner
