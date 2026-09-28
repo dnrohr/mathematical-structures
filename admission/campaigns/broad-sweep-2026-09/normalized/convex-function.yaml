@@ -38,8 +38,7 @@ claims:
       - convex objective
     validity_regime: Local minima considered within the convex feasible set.
     caveats:
-      - Strict convexity is needed for uniqueness
-      - not for local-to-global optimality.
+      - Strict convexity is needed for uniqueness, not for local-to-global optimality.
     counterexamples:
       - A nonconvex double-well has nonglobal local minima.
     source_assessments:

@@ -12,6 +12,7 @@ npm run harvest -- --manifest admission/campaigns/broad-sweep-2026-09/harvest.ya
 npm run triage -- --campaign admission/campaigns/broad-sweep-2026-09 --manifest admission/campaigns/broad-sweep-2026-09/triage.yaml
 npm run evidence -- --campaign admission/campaigns/broad-sweep-2026-09 --pack admission/campaigns/broad-sweep-2026-09/evidence-pack.yaml
 npm run admit -- --format text admission/campaigns/broad-sweep-2026-09/normalized
+npm run promotion-preview -- --campaign admission/campaigns/broad-sweep-2026-09 --out admission/campaigns/broad-sweep-2026-09/promotion-preview
 ```
 
 All generated files stay under `admission/`. None of these commands can write
@@ -33,6 +34,10 @@ trusted atlas content.
 | Deterministic validation errors | 0 |
 | Review-ready new-node dossiers | 39 |
 | Existing-node merge/refinement dossiers | 1 |
+| Promotion-preview concepts | 39 |
+| Promotion-preview typed edges | 40 |
+| Promotion-preview reference additions | 6 |
+| Integrated trusted-validator errors/warnings | 0 / 0 |
 
 Raw-to-enriched yield is 28.4% (40 / 141). Normalized-to-enriched yield is
 29.6% (40 / 135). The campaign records automated execution reproducibly but
@@ -56,3 +61,11 @@ decision. Promotion requires a reviewer to inspect the atomic proposition,
 edge type, strength, assumptions, caveats, counterexamples, and source
 assessment, then record a human disposition before any material enters
 `concepts/` or `graph/`.
+
+`promotion-preview/` makes that decision concrete without crossing the trust
+boundary. It contains the exact concept Markdown, typed edges, and bibliography
+additions that would be proposed. The preview command materializes an isolated
+combined atlas in an operating-system temporary directory, runs the ordinary
+trusted compiler, normalizes temporary paths out of its byte-stable report,
+and deletes the temporary tree. It refuses output paths inside `concepts/`,
+`graph/`, or `paths/`.

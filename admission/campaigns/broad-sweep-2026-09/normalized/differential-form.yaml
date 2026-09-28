@@ -29,7 +29,7 @@ claims:
     proposed_edge:
       type: REPRESENTED-BY
       strength: theorem
-      context: Smooth oriented manifolds
+      context: Smooth oriented manifolds, specializing in dimensions two and three.
     mathematical_skeleton: The exterior derivative and pullback combine with Stokes theorem integral
       over boundary equals integral of the derivative.
     scope: Smooth manifolds and classical vector calculus under metric-dependent identifications.

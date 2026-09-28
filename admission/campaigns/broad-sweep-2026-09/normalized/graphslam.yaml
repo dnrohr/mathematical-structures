@@ -41,9 +41,7 @@ claims:
       - chosen gauge or anchor
     validity_regime: MAP estimation under the stated probabilistic model.
     caveats:
-      - Nonconvexity
-      - data association
-      - and gauge freedom can dominate practical behavior.
+      - Nonconvexity, data association, and gauge freedom can dominate practical behavior.
     counterexamples:
       - An unanchored pose graph has gauge nonuniqueness.
     source_assessments:

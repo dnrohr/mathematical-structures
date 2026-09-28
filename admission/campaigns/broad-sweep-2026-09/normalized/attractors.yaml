@@ -37,8 +37,7 @@ claims:
       - invariant candidate set
     validity_regime: Initial states in the basin of attraction.
     caveats:
-      - An invariant set need not attract
-      - and an attractor need not be a fixed point.
+      - An invariant set need not attract, and an attractor need not be a fixed point.
     counterexamples:
       - A Lyapunov-stable center is not attracting.
     source_assessments:

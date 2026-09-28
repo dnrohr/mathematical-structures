@@ -38,8 +38,7 @@ claims:
     caveats:
       - Closed phase curves in nonautonomous projections need not be limit cycles.
     counterexamples:
-      - Every orbit of a linear center is periodic
-      - so none is an isolated limit cycle.
+      - Every orbit of a linear center is periodic, so none is an isolated limit cycle.
     source_assessments:
       - source_id: khalil-nonlinear-systems-2014
         proposition: A limit cycle is an isolated periodic orbit represented as a closed trajectory in phase

@@ -39,8 +39,7 @@ claims:
       - convexity for sufficiency
     validity_regime: Local necessity generally; global sufficiency in convex programs.
     caveats:
-      - Without a qualification
-      - a valid optimum can lack KKT multipliers.
+      - Without a qualification, a valid optimum can lack KKT multipliers.
     counterexamples:
       - Degenerate constraints violating all standard qualifications.
     source_assessments:

@@ -26,6 +26,23 @@ function requiredString(record: RecordValue, key: string, subject: string): stri
   return value;
 }
 
+function assertKnownKeys(record: RecordValue, allowed: string[], subject: string): void {
+  const unexpected = Object.keys(record)
+    .filter((key) => !allowed.includes(key))
+    .sort();
+  if (unexpected.length > 0)
+    throw new Error(`${subject} has unexpected field(s): ${unexpected.join(', ')}`);
+}
+
+function requiredStringArray(record: RecordValue, key: string, subject: string): string[] {
+  if (
+    !Array.isArray(record[key]) ||
+    !(record[key] as unknown[]).every((item) => typeof item === 'string')
+  )
+    throw new Error(`${subject}.${key} must be an array of strings`);
+  return strings(record[key]);
+}
+
 export interface EvidenceReport {
   report_version: '1.0.0';
   campaign_id: string;
@@ -56,6 +73,7 @@ export function applyEvidencePack(
   const pack = parse(readFileSync(packFile, 'utf8')) as unknown;
   if (!isRecord(pack) || pack.evidence_schema !== '1.0.0')
     throw new Error('evidence pack must be a version 1.0.0 mapping');
+  assertKnownKeys(pack, ['evidence_schema', 'campaign_id', 'assessor', 'entries'], 'evidence pack');
   if (pack.campaign_id !== triage.campaign_id)
     throw new Error(
       `evidence campaign_id must match triage campaign "${String(triage.campaign_id)}"`,
@@ -70,6 +88,42 @@ export function applyEvidencePack(
   const byId = new Map<string, RecordValue>();
   for (const entry of entries) {
     const id = requiredString(entry, 'candidate_id', 'evidence entry');
+    assertKnownKeys(
+      entry,
+      [
+        'candidate_id',
+        'proposition',
+        'endpoints',
+        'edge',
+        'mathematical_skeleton',
+        'scope',
+        'assumptions',
+        'validity_regime',
+        'caveats',
+        'counterexamples',
+        'source_id',
+        'source_location',
+        'possible_falsifiers',
+        'alternative_interpretations',
+        'search_query',
+        'challenge',
+        'response',
+        'recommended_action',
+      ],
+      id,
+    );
+    const endpoints = isRecord(entry.endpoints) ? entry.endpoints : {};
+    const edge = isRecord(entry.edge) ? entry.edge : {};
+    assertKnownKeys(endpoints, ['from', 'to'], `${id}.endpoints`);
+    assertKnownKeys(edge, ['type', 'strength', 'context'], `${id}.edge`);
+    for (const key of [
+      'assumptions',
+      'caveats',
+      'counterexamples',
+      'possible_falsifiers',
+      'alternative_interpretations',
+    ])
+      requiredStringArray(entry, key, id);
     if (!selected.has(id))
       throw new Error(`evidence entry "${id}" is not in the triage review queue`);
     if (byId.has(id)) throw new Error(`evidence entry "${id}" occurs more than once`);
@@ -105,10 +159,10 @@ export function applyEvidencePack(
         },
         mathematical_skeleton: requiredString(entry, 'mathematical_skeleton', id),
         scope: requiredString(entry, 'scope', id),
-        assumptions: strings(entry.assumptions),
+        assumptions: requiredStringArray(entry, 'assumptions', id),
         validity_regime: requiredString(entry, 'validity_regime', id),
-        caveats: strings(entry.caveats),
-        counterexamples: strings(entry.counterexamples),
+        caveats: requiredStringArray(entry, 'caveats', id),
+        counterexamples: requiredStringArray(entry, 'counterexamples', id),
         source_assessments: [
           {
             source_id: sourceId,
@@ -120,8 +174,8 @@ export function applyEvidencePack(
             assessor: { kind: 'model-assisted', identity: assessor, version: '1.0.0' },
           },
         ],
-        possible_falsifiers: strings(entry.possible_falsifiers),
-        alternative_interpretations: strings(entry.alternative_interpretations),
+        possible_falsifiers: requiredStringArray(entry, 'possible_falsifiers', id),
+        alternative_interpretations: requiredStringArray(entry, 'alternative_interpretations', id),
       },
     ];
     dossier.search = {

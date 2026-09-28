@@ -104,7 +104,14 @@ npm run harvest -- --manifest admission/campaigns/<id>/harvest.yaml --out admiss
 npm run triage -- --campaign admission/campaigns/<id> --manifest admission/campaigns/<id>/triage.yaml
 npm run evidence -- --campaign admission/campaigns/<id> --pack admission/campaigns/<id>/evidence-pack.yaml
 npm run admit -- --format text admission/campaigns/<id>/normalized
+npm run promotion-preview -- --campaign admission/campaigns/<id> --out admission/campaigns/<id>/promotion-preview
 ```
+
+`atlas-promotion-preview` renders the exact proposed concept Markdown, typed
+edges, and bibliography additions under `admission/`, then validates them in a
+temporary combined content tree with the ordinary trusted compiler. It refuses
+output paths inside trusted directories and marks its report as requiring
+human approval. It is a review artifact, not a promotion command.
 
 ## Deterministic and heuristic checks
 
