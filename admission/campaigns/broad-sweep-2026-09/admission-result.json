@@ -1,0 +1,38 @@
+{
+  "campaign_id": "broad-sweep-2026-09",
+  "decision": {
+    "approved": 40,
+    "date": "2026-09-28",
+    "deferred": 0,
+    "rejected": 0,
+    "reviewer": "repository-owner",
+    "revised": 0,
+    "scope": "all-40"
+  },
+  "human_review_effort": {
+    "accepted_claims_per_review_hour": null,
+    "active_minutes": null,
+    "status": "not-reported"
+  },
+  "promotion": {
+    "new_concepts": 39,
+    "reference_additions": 6,
+    "trusted_edges": 40,
+    "workflow_acceptances_as_edge": 1,
+    "workflow_acceptances_as_node": 39
+  },
+  "report_version": "1.0.0",
+  "verification": {
+    "campaign_validation_errors": 0,
+    "campaign_validation_warnings": 1,
+    "missing_promoted_artifacts": 0,
+    "terminal_dossiers": 40,
+    "verified_promoted_artifacts": 79,
+    "warning_scope": "non-selected structure-learning application-connectivity warning"
+  },
+  "yield": {
+    "human_acceptance_percent": 100.0,
+    "normalized_to_enriched_percent": 29.6,
+    "raw_to_enriched_percent": 28.4
+  }
+}

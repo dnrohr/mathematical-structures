@@ -41,7 +41,7 @@ export interface AdmissionReport {
     disposition: string;
     rationale: string;
     basis_rule_ids: string[];
-    human_decision_required: true;
+    human_decision_required: boolean;
   };
   summary: { errors: number; warnings: number; signals: number };
   matches: AdmissionMatch[];

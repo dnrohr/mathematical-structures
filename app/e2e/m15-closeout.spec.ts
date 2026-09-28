@@ -148,10 +148,8 @@ test('arrow-hop skips claims folded inside the closed trail and enters the open 
 test('lens: a lens covering most of the graph pins to the atlas constellation and says so', async ({
   page,
 }) => {
-  // type=principle sits in the pin window at the M16 node count (29 of 53
-  // rendered: at least half the graph, under the legibility cap); the model
-  // lens that carried this test through M15 outgrew the cap when the
-  // applications wave connected the models.
+  // type=principle sits in the pin window after the first discovery campaign:
+  // more than two fifths of the graph, under the expanded legibility cap.
   await page.goto('/#/lens?type=principle');
   const note = page.locator('.lens-pinned-note');
   await expect(note).toBeVisible();
@@ -159,7 +157,7 @@ test('lens: a lens covering most of the graph pins to the atlas constellation an
 
   const data = await loadGraph(page);
   const drawn = await drawnPositions(page, '.graph-lens');
-  expect(Object.keys(drawn).length * 2).toBeGreaterThanOrEqual(data.nodes.length);
+  expect(Object.keys(drawn).length * 5).toBeGreaterThan(data.nodes.length * 2);
   expectConstellationArrangement(drawn, data.metrics.layout);
 });
 

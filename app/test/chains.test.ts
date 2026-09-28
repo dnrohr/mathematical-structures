@@ -158,12 +158,12 @@ describe('M5 metrics over the real dataset', () => {
     expect(m.community_count).toBeGreaterThanOrEqual(2);
   });
 
-  it('the spectral hub tops the trusted rankings, as the notebook claims', () => {
+  it('the expanded atlas retains its spectral hub and exposes the optimization bridge', () => {
     const eigen = atlas.nodeMetrics('eigenvalues')!;
-    for (const node of atlas.nodes) {
-      expect(eigen.degree).toBeGreaterThanOrEqual(atlas.nodeMetrics(node.slug)!.degree);
-      expect(eigen.betweenness).toBeGreaterThanOrEqual(atlas.nodeMetrics(node.slug)!.betweenness);
-    }
+    const optimization = atlas.nodeMetrics('optimization')!;
+    const metrics = atlas.nodes.map((node) => atlas.nodeMetrics(node.slug)!);
+    expect(eigen.degree).toBe(Math.max(...metrics.map((metric) => metric.degree)));
+    expect(optimization.betweenness).toBe(Math.max(...metrics.map((metric) => metric.betweenness)));
   });
 
   it('every gap edge is listable with its workflow status (spec §11)', () => {

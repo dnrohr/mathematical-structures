@@ -213,7 +213,11 @@ const AXE_ROUTES: { name: string; path: string }[] = [
 
 for (const theme of ['light', 'dark'] as const) {
   for (const route of AXE_ROUTES) {
-    test(`axe: ${route.name} passes WCAG 2.1 A/AA (${theme})`, async ({ page }) => {
+    test(`axe: ${route.name} passes WCAG 2.1 A/AA (${theme})`, async ({ page }, testInfo) => {
+      // The matrix intentionally renders every concept on both axes. At the
+      // 92-node campaign size, axe traverses more than 8,000 interactive
+      // cells and needs longer than the ordinary smoke-test budget on CI.
+      if (route.name === 'matrix with pair panel and crosshair') testInfo.setTimeout(60_000);
       await page.emulateMedia({ colorScheme: theme });
       await page.goto(route.path);
       await expect(page.locator('main h1').first()).toBeVisible();

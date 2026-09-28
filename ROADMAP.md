@@ -313,7 +313,7 @@ and typed edge sentences, deployed on GitHub Pages.
       wrong translation.
 - [x] [app] Lens view (`#/lens`): filters for edge type / node type / field /
       minimum strength; filter state entirely in URL; empty-state guidance.
-      A lens wider than ~32 nodes falls back to the always-complete claim list
+      A lens wider than ~48 nodes falls back to the always-complete claim list
       (the "no full-graph render" rule); node filters keep edges touching at
       least one matching concept.
 - [x] [app] Path view (`#/path/a/b`): bounded-depth BFS in `data/` over

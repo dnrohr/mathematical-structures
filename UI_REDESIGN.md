@@ -231,7 +231,7 @@ space is visible.
 - **Scale.** Legible to roughly 120–150 nodes with compact cells and sticky
   headers (scrolling is fine; the crosshair keeps position readable). Beyond
   that, the view requires at least one filter before rendering — the same
-  posture as the lens's 32-node fallback, with guidance in the empty state.
+  posture as the lens's 48-node fallback, with guidance in the empty state.
 
 ### 4.4 The migration map — `#/map`
 

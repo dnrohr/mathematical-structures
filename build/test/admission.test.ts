@@ -92,6 +92,30 @@ function ruleIds(dossier: Record<string, unknown>): string[] {
   return validateDossier(ROOT, writeDossier(dossier)).rule_results.map((rule) => rule.rule_id);
 }
 
+function acceptDossier(
+  dossier: Record<string, unknown>,
+  disposition: 'accepted-as-node' | 'accepted-as-edge',
+): void {
+  dossier.human_decisions = [
+    { id: 'decision-one', reviewer: 'tester', disposition, reason: 'Approved for testing.' },
+  ];
+  const workflow = dossier.workflow as {
+    state: string;
+    history: Record<string, unknown>[];
+  };
+  workflow.history.push(
+    { from: 'assessed', to: 'automated-review-passed', reason: 'test', actor: 'tester' },
+    {
+      from: 'automated-review-passed',
+      to: 'human-review',
+      reason: 'test',
+      actor: 'tester',
+    },
+    { from: 'human-review', to: disposition, reason: 'test', actor: 'tester' },
+  );
+  workflow.state = disposition;
+}
+
 describe('candidate dossier validation', () => {
   it('normalizes case, punctuation, whitespace, diacritics, and transparent plurals', () => {
     expect(normalizeName('  Singular-values & Décompositions ')).toBe(
@@ -135,6 +159,43 @@ describe('candidate dossier validation', () => {
           rule.rule_id === 'admission/trusted-rule' && rule.reason.includes('edge/duplicate'),
       ),
     ).toBe(true);
+  });
+
+  it('verifies promoted terminal content instead of re-proposing it as a duplicate', () => {
+    const dossier = baseDossier();
+    const candidate = dossier.candidate as Record<string, unknown>;
+    candidate.id = 'eigenvalues';
+    candidate.canonical_name = 'Eigenvalues and spectral decomposition';
+    candidate.proposed_node_type = 'operation';
+    candidate.proposed_disposition = 'merge-or-refine';
+    const claim = (dossier.claims as Record<string, unknown>[])[0]!;
+    claim.endpoints = { from: 'eigenvalues', to: 'stability' };
+    claim.proposed_edge = {
+      type: 'GOVERNS',
+      strength: 'theorem',
+      context:
+        'Local stability of linear(ized) dynamics is the sign pattern of the eigenvalue real parts; imaginary parts add oscillation.',
+    };
+    acceptDossier(dossier, 'accepted-as-node');
+
+    const report = validateDossier(ROOT, writeDossier(dossier));
+    expect(
+      report.rule_results.filter((rule) => rule.rule_id === 'admission/promotion-present'),
+    ).toHaveLength(2);
+    expect(report.rule_results.some((rule) => rule.reason.includes('edge/duplicate'))).toBe(false);
+    expect(report.recommendation).toMatchObject({
+      disposition: 'accepted-as-node',
+      human_decision_required: false,
+    });
+  });
+
+  it('fails a terminal dossier when approved content is absent from the trusted atlas', () => {
+    const dossier = baseDossier();
+    acceptDossier(dossier, 'accepted-as-node');
+    const report = validateDossier(ROOT, writeDossier(dossier));
+    expect(report.rule_results.some((rule) => rule.rule_id === 'admission/promotion-missing')).toBe(
+      true,
+    );
   });
 
   it('reuses the trusted deliberate non-edge ledger', () => {

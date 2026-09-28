@@ -97,9 +97,13 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\belief-propagation.yaml#claims.belief-propagation-claim
-human_decisions: []
+human_decisions:
+  - id: belief-propagation-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
 workflow:
-  state: automated-review-passed
+  state: accepted-as-node
   history:
     - from: null
       to: harvested
@@ -125,3 +129,12 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
+
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner approved all 40 broad-sweep campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved proposal was admitted to the trusted atlas.
+      actor: repository-owner

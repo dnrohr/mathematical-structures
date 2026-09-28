@@ -189,6 +189,13 @@ Every promoted change is an ordinary reviewed contribution and must pass
 `npm run check`. A passing candidate report is never a substitute for that
 gate.
 
+After a dossier reaches `accepted-as-node` or `accepted-as-edge`, the validator
+switches from pre-admission simulation to post-admission verification. It
+requires the accepted node and every accepted claim edge to exist in trusted
+content with the recorded endpoints, type, strength, and context. A terminal
+report therefore no longer asks for another human decision or mistakes the
+successfully promoted edge for a duplicate proposal.
+
 ## Bounded campaigns
 
 Use a declared sampling frame and a target of 100–200 raw terms for discovery,

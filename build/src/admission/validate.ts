@@ -727,11 +727,57 @@ function adaptTrustedRules(
   schema: AtlasSchema,
   parsed: ReturnType<typeof parseTree>,
   rules: AdmissionRuleResult[],
+  workflowState: string,
 ): void {
   const candidate = isRecord(dossier.candidate) ? dossier.candidate : {};
   const candidateId =
     nonEmpty(candidate.id) && SLUG.test(candidate.id) ? candidate.id : 'invalid-candidate';
   const claims = records(dossier.claims);
+  if (workflowState === 'accepted-as-node' || workflowState === 'accepted-as-edge') {
+    if (workflowState === 'accepted-as-node') {
+      const promoted = parsed.concepts.find((concept) => concept.slug === candidateId);
+      add(
+        rules,
+        promoted ? 'admission/promotion-present' : 'admission/promotion-missing',
+        promoted ? 'info' : 'error',
+        `${file}#candidate`,
+        promoted
+          ? `accepted node is present in trusted content as "${candidateId}"`
+          : `accepted node "${candidateId}" is missing from trusted content`,
+        [file, promoted?.file ?? `concepts/${candidateId}.md`],
+      );
+    }
+    for (const [index, claim] of claims.entries()) {
+      const endpoints = isRecord(claim.endpoints) ? claim.endpoints : {};
+      const proposedEdge = isRecord(claim.proposed_edge) ? claim.proposed_edge : {};
+      const expected = {
+        from: endpoints.from === '$candidate' ? candidateId : endpoints.from,
+        to: endpoints.to === '$candidate' ? candidateId : endpoints.to,
+        type: proposedEdge.type,
+        strength: proposedEdge.strength,
+        context: proposedEdge.context,
+      };
+      const promoted = parsed.edges.find(
+        (edge) =>
+          edge.raw.from === expected.from &&
+          edge.raw.to === expected.to &&
+          edge.raw.type === expected.type &&
+          edge.raw.strength === expected.strength &&
+          edge.raw.context === expected.context,
+      );
+      add(
+        rules,
+        promoted ? 'admission/promotion-present' : 'admission/promotion-missing',
+        promoted ? 'info' : 'error',
+        `${file}#claims[${index}]`,
+        promoted
+          ? `accepted edge is present in trusted content: ${String(expected.from)} -${String(expected.type)}-> ${String(expected.to)}`
+          : `accepted edge is missing from trusted content: ${String(expected.from)} -${String(expected.type)}-> ${String(expected.to)}`,
+        [file, promoted ? `${promoted.file}[${promoted.index}]` : 'graph/edges.yaml'],
+      );
+    }
+    return;
+  }
   const usesCandidate = claims.some((claim) => {
     const endpoints = isRecord(claim.endpoints) ? claim.endpoints : {};
     return (
@@ -896,7 +942,21 @@ function chooseRecommendation(
   supportedClaims: Set<string>,
   qualifiedOnly: Set<string>,
   hasContradiction: boolean,
+  workflowState: string,
 ): AdmissionReport['recommendation'] {
+  if (TERMINAL_STATES.has(workflowState)) {
+    return {
+      disposition: workflowState,
+      rationale:
+        'A human decision is recorded; deterministic validation now verifies the terminal disposition and any promoted trusted content.',
+      basis_rule_ids: [
+        rules.some((rule) => rule.rule_id === 'admission/promotion-missing')
+          ? 'admission/promotion-missing'
+          : 'admission/promotion-present',
+      ],
+      human_decision_required: false,
+    };
+  }
   const candidate = isRecord(dossier.candidate) ? dossier.candidate : {};
   const proposed = nonEmpty(candidate.proposed_disposition)
     ? candidate.proposed_disposition
@@ -1041,7 +1101,7 @@ export function validateDossier(rootInput: string, fileInput: string): Admission
   const evidence = validateReferencesAndEvidence(dossier, file, rules);
   const workflowState = validateWorkflow(dossier, file, rules);
   const parsed = parseTree(root);
-  adaptTrustedRules(dossier, file, pipeline.schema, parsed, rules);
+  adaptTrustedRules(dossier, file, pipeline.schema, parsed, rules, workflowState);
   const matches = findMatches(dossier, pipeline.graph.nodes);
   for (const match of matches) {
     add(
@@ -1135,6 +1195,7 @@ export function validateDossier(rootInput: string, fileInput: string): Admission
     evidence.supportedClaims,
     evidence.qualifiedOnly,
     evidence.hasContradiction,
+    workflowState,
   );
   rules.sort(
     (a, b) =>

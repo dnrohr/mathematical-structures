@@ -38,12 +38,17 @@ trusted atlas content.
 | Promotion-preview typed edges | 40 |
 | Promotion-preview reference additions | 6 |
 | Integrated trusted-validator errors/warnings | 0 / 0 |
+| Human decisions recorded | 40 |
+| Approved dossiers | 40 |
+| Promoted new concepts | 39 |
+| Promoted merge/refinement edges | 1 |
 
 Raw-to-enriched yield is 28.4% (40 / 141). Normalized-to-enriched yield is
-29.6% (40 / 135). The campaign records automated execution reproducibly but
-does not invent human review minutes; elapsed human review time and accepted
-claims per review hour remain blank until an actual reviewer performs the
-promotion gate.
+29.6% (40 / 135), and human-review acceptance yield is 100% (40 / 40). The
+repository owner approved all 40 dossiers on 2026-09-28. Active review minutes
+were not reported, so accepted claims per review hour is explicitly not
+computable rather than fabricated; `admission-result.json` records that missing
+measurement.
 
 ## Triage distribution
 
@@ -69,3 +74,16 @@ combined atlas in an operating-system temporary directory, runs the ordinary
 trusted compiler, normalizes temporary paths out of its byte-stable report,
 and deletes the temporary tree. It refuses output paths inside `concepts/`,
 `graph/`, or `paths/`.
+
+On 2026-09-28 the repository owner explicitly approved all 40 items. The 39
+new-node proposals and the Kalman-filter edge refinement were then admitted as
+ordinary trusted content, with the decision and terminal workflow transition
+recorded in every reviewed dossier.
+
+## UI evidence
+
+- `artifacts/ui/broad-sweep-promotion/graphslam-concept.png` shows a promoted
+  concept with its scoped claim, assumptions, counterexample, adversarial
+  review, citation, and typed neighborhood.
+- `artifacts/ui/broad-sweep-promotion/principle-lens.png` shows the expanded
+  atlas retaining a legible fixed-layout lens after the node-count increase.

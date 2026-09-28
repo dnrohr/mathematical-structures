@@ -9,21 +9,38 @@ import { expect, test } from '@playwright/test';
 
 interface GraphData {
   edges: { type: string; strength: string; status?: string }[];
-  metrics: { community_count: number };
+  nodes: { slug: string; canonical_name: string }[];
+  metrics: {
+    community_count: number;
+    nodes: Record<string, { degree: number; betweenness: number }>;
+  };
+}
+
+function leaderNames(data: GraphData, metric: 'degree' | 'betweenness'): string[] {
+  const maximum = Math.max(...Object.values(data.metrics.nodes).map((value) => value[metric]));
+  const slugs = new Set(
+    Object.entries(data.metrics.nodes)
+      .filter(([, value]) => value[metric] === maximum)
+      .map(([slug]) => slug),
+  );
+  return data.nodes.filter((node) => slugs.has(node.slug)).map((node) => node.canonical_name);
 }
 
 test('metrics: rankings on the trusted subgraph, and it says so', async ({ page }) => {
   await page.goto('/#/metrics');
+  const data = (await (await page.request.get('data/graph.json')).json()) as GraphData;
 
   // The epistemic statement is an exit criterion, not decoration.
   const note = page.locator('.trusted-note');
   await expect(note).toContainText('Computed on the trusted subgraph only');
   await expect(note).toContainText('special case');
 
-  // Default ranking: hubs (degree), descending — the spectral hub leads.
+  // Default ranking: hubs (degree), descending — tied leaders may appear in
+  // either stable secondary order as the atlas expands.
   const rows = page.locator('.metrics-table tbody tr');
   expect(await rows.count()).toBeGreaterThan(30);
-  await expect(rows.first()).toContainText('Eigenvalues and spectral decomposition');
+  const firstHub = (await rows.first().textContent()) ?? '';
+  expect(leaderNames(data, 'degree').some((name) => firstHub.includes(name))).toBe(true);
   await expect(page.locator('th[aria-sort="descending"]')).toContainText('Hub');
 
   // Sorting is shareable: click Bridge → URL carries it → reload restores it.
@@ -32,7 +49,8 @@ test('metrics: rankings on the trusted subgraph, and it says so', async ({ page 
   await expect(page.locator('th[aria-sort="descending"]')).toContainText('Bridge');
   await page.reload();
   await expect(page.locator('th[aria-sort="descending"]')).toContainText('Bridge');
-  await expect(rows.first()).toContainText('Eigenvalues');
+  const firstBridge = (await rows.first().textContent()) ?? '';
+  expect(leaderNames(data, 'betweenness').some((name) => firstBridge.includes(name))).toBe(true);
 
   // Ascending toggle also lives in the URL.
   await page.getByRole('button', { name: 'Bridge' }).click();

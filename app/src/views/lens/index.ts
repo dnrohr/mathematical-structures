@@ -22,7 +22,7 @@ import { downloadViewLine, edgesCsv, saveBlobButton } from '../common/save';
 import type { View } from '../common/view';
 
 /** Above this many nodes a lens is a hairball; the text list carries it. */
-const LENS_GRAPH_NODE_CAP = 32;
+const LENS_GRAPH_NODE_CAP = 48;
 
 const EXAMPLE_LENSES: { label: string; hash: string }[] = [
   { label: 'Only field dialects', hash: '#/lens?edge=FIELD-DIALECT-OF' },
@@ -134,7 +134,7 @@ export function lensView(atlas: Atlas, initial: LensFilters, communitiesInitial 
     }
     const tooWide = sub.nodes.length > LENS_GRAPH_NODE_CAP;
     // Fixed coordinates (UI_REDESIGN.md §4.9, M15): a lens covering at
-    // least half the graph pins to the atlas constellation, so successive
+    // more than two fifths of the graph pins to the atlas constellation, so successive
     // wide lenses stay spatially coherent with each other and with #/atlas.
     const pinned = !tooWide && lensPinsToLayout(atlas, sub);
     results.replaceChildren(

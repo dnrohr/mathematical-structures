@@ -1,13 +1,11 @@
 # Broad sweep promotion review
 
-This packet contains the 40 dossiers selected for human review. The generated content and edges have passed the ordinary trusted validator in an isolated combined tree, but no box below is a recorded decision until a human reviewer explicitly supplies it.
+This packet contains the 40 dossiers selected for human review. All are recorded as accepted in their authoritative normalized dossiers and the generated content passes the ordinary trusted validator.
 
-Record actual active review time rather than wall-clock delay:
-
-- Reviewer:
-- Review started:
-- Review completed:
-- Active review minutes:
+- Reviewer: repository-owner
+- Review started: not reported
+- Review completed: 2026-09-28
+- Active review minutes: not reported
 
 ## Attractors `attractors`
 
@@ -29,7 +27,7 @@ Record actual active review time rather than wall-clock delay:
 - Adversarial challenge: The term attractor has inequivalent topological and measure-theoretic definitions.
 - Response: The claim is restricted to the local asymptotically stable invariant-set definition.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## B-series `b-series`
 
@@ -50,7 +48,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: The label can refer to a formal algebra, a method expansion, or the exact flow.
 - Response: The node encompasses the rooted-tree formalism and distinguishes those uses in scope notes.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Backward error analysis `backward-error-analysis`
 
@@ -72,7 +70,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Calling the numerical solution exact may hide truncation and divergence.
 - Response: The claim says nearby truncated modified equation and states the asymptotic limitation.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Bayesian network `bayesian-network`
 
@@ -94,7 +92,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Directed edges are often misread as causal claims.
 - Response: The proposition is purely probabilistic; causality is an additional interpretation.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Belief propagation `belief-propagation`
 
@@ -116,7 +114,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: The common loopy algorithm does not inherit tree exactness.
 - Response: Exactness is explicitly limited to trees, with loopy use marked heuristic.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## BFGS method `bfgs-method`
 
@@ -138,7 +136,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: BFGS is not simply Newton's method without an exact Hessian.
 - Response: The claim identifies its distinct secant update and conditional positivity result.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Channel capacity `channel-capacity`
 
@@ -160,7 +158,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Capacity is model-dependent, not a property of hardware alone.
 - Response: The channel law and asymptotic coding regime are explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Convex function `convex-function`
 
@@ -182,7 +180,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: The term is sometimes attached to a function while constraints remain nonconvex.
 - Response: The proposition requires both convex objective and feasible structure.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Convex set `convex-set`
 
@@ -203,7 +201,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Convexity depends on the affine representation.
 - Response: The ambient affine coordinates are part of the scope.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Cotangent bundle `cotangent-bundle`
 
@@ -225,7 +223,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Equating every phase space with a cotangent bundle is too strong.
 - Response: The scope is the canonical unconstrained formulation and states the exception.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Data-processing inequality `data-processing-inequality`
 
@@ -246,7 +244,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: The theorem is about mutual information, not entropy monotonically decreasing in every process.
 - Response: The proposition names mutual information and the Markov condition explicitly.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Differential form `differential-form`
 
@@ -268,7 +266,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Saying forms are identical to vector calculus hides metric-dependent conversions.
 - Response: The claim says representation and explicitly separates metric identifications.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Extended Kalman filter `extended-kalman-filter`
 
@@ -290,7 +288,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: The EKF is often incorrectly described as an exact nonlinear Kalman filter.
 - Response: Approximation, locality, and failure modes are explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Factor graph `factor-graph`
 
@@ -311,7 +309,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: A factor graph is a representation, not an inference algorithm.
 - Response: The claim confines the node to representation and leaves message passing separate.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## GraphSLAM `graphslam`
 
@@ -333,7 +331,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: GraphSLAM is not merely any SLAM implementation using a graph data structure.
 - Response: The definition requires a factorized global MAP objective and sparse graph structure.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Hamiltonian system `hamiltonian-system`
 
@@ -355,7 +353,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Merely conserving an energy-like scalar does not make a system Hamiltonian.
 - Response: The definition requires the symplectic generation relation, not conservation alone.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Interior-point method `interior-point-method`
 
@@ -377,7 +375,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Interior-point is a family, not one update rule.
 - Response: The node is defined by central-path/barrier structure and records variants beneath it.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Jacobi integral `jacobi-integral`
 
@@ -400,7 +398,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Calling it energy can obscure rotating-frame and sign conventions.
 - Response: The claim uses conserved quantity and identifies the precise model.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Kalman filter `kalman-filter`
 
@@ -422,7 +420,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: The algorithm is often conflated with the state-space model it solves.
 - Response: The edge direction explicitly separates model from solver.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Karush-Kuhn-Tucker conditions `karush-kuhn-tucker-conditions`
 
@@ -444,7 +442,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: KKT is routinely stated without the hypotheses separating necessity from sufficiency.
 - Response: Both constraint qualification and convexity roles are explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Lagrange duality `lagrange-duality`
 
@@ -465,7 +463,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Strong duality is not automatic from writing a Lagrangian.
 - Response: The claim separates unconditional weak duality from qualified strong duality.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Lagrange points `lagrange-points`
 
@@ -488,7 +486,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Popular descriptions call all five points stable parking locations.
 - Response: The dossier separates equilibrium existence from the mass-ratio-dependent stability result.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Lie group `lie-group`
 
@@ -509,7 +507,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Not every symmetry group is a positive-dimensional Lie group.
 - Response: The claim is explicitly about continuous finite-dimensional symmetries.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Limit cycles `limit-cycles`
 
@@ -530,7 +528,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: A closed curve alone does not establish a limit cycle.
 - Response: Isolation and autonomous-flow assumptions are explicit in the proposition.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Lyapunov functions `lyapunov-functions`
 
@@ -552,7 +550,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Negative semidefinite derivative alone may not imply asymptotic stability.
 - Response: The claim distinguishes stability from stronger conclusions and invokes added hypotheses.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Markov localization `markov-localization`
 
@@ -574,7 +572,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Markov localization names a problem family and several implementations.
 - Response: The node is anchored to the common recursive Bayes skeleton; implementations become examples.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Mutual information `mutual-information`
 
@@ -595,7 +593,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Mutual information is sometimes reduced to linear correlation.
 - Response: The KL definition captures arbitrary statistical dependence.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Newton's method `newton-method`
 
@@ -617,7 +615,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Root finding and optimization versions are often conflated.
 - Response: The node records the shared Newton linearization skeleton and scopes this claim to stationarity.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Occupancy grid mapping `occupancy-grid-mapping`
 
@@ -639,7 +637,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: The standard update can look exact while relying on a strong independence approximation.
 - Response: The approximation is stated in the proposition and caveats.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Orbital resonance `orbital-resonance`
 
@@ -661,7 +659,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: A numerical period ratio near integers can be accidental.
 - Response: The claim requires slow resonant-angle dynamics, not ratio alone.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Particle filter `particle-filter`
 
@@ -683,7 +681,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Particle filtering is not automatically accurate for arbitrary nonlinear systems.
 - Response: The claim is representational and asymptotic; finite-sample failure modes are explicit.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Proximal operator `proximal-operator`
 
@@ -704,7 +702,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: The main textbook predates some modern proximal terminology.
 - Response: The source supports the convex minimization structure; terminology is cross-checked in the course materials locator.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Relative entropy `relative-entropy`
 
@@ -725,7 +723,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: The word distance encourages false symmetry and triangle-inequality assumptions.
 - Response: The claim uses discrepancy and explicitly denies metric status.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Restricted three-body problem `restricted-three-body-problem`
 
@@ -747,7 +745,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: The familiar five-point picture hides the model's severe restrictions.
 - Response: Each restriction is named in the proposition and assumptions.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Riemannian metric `riemannian-metric`
 
@@ -769,7 +767,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Metric can mean a distance function rather than a tensor field.
 - Response: The node uses the differential-geometric definition and can cross-link induced distance later.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Smooth manifold `smooth-manifold`
 
@@ -792,7 +790,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Local Euclidean structure alone defines only a topological manifold.
 - Response: Smooth compatibility of the atlas is an explicit part of the claim.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Symplectic integrator `symplectic-integrator`
 
@@ -814,7 +812,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Good energy plots alone do not prove a method symplectic.
 - Response: The definition uses the form-preservation identity, with energy behavior only a consequence.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Tangent space `tangent-space`
 
@@ -835,7 +833,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Visual tangent planes encourage an embedding-dependent definition.
 - Response: The claim uses the intrinsic derivative construction.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Unscented Kalman filter `unscented-kalman-filter`
 
@@ -857,7 +855,7 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Avoiding Jacobians does not make the UKF exact for arbitrary nonlinear models.
 - Response: The claim calls it deterministic moment approximation and states Gaussian limitations.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
 
 ## Variational integrator `variational-integrator`
 
@@ -879,4 +877,4 @@ Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
 - Adversarial challenge: Discretizing Euler-Lagrange equations directly need not equal discretizing the variational principle.
 - Response: The definition requires stationarity of a discrete action.
 
-Decision: [ ] accept  [ ] revise  [ ] defer  [ ] reject
+Decision: [x] accept  [ ] revise  [ ] defer  [ ] reject
