@@ -39,8 +39,8 @@ test('the per-page Sources list aggregates every work the claims cite', async ({
   await page.goto('/#/c/pagerank');
   const sources = page.locator('.concept-section.sources');
   await expect(sources.getByRole('heading', { name: 'Sources' })).toBeVisible();
-  // Three citing claims, five distinct works, each listed once.
-  await expect(sources.locator('.reference')).toHaveCount(5);
+  // Four citing claims, six distinct works, each listed once.
+  await expect(sources.locator('.reference')).toHaveCount(6);
   await expect(sources).toContainText("Google's PageRank and Beyond");
   await expect(sources).toContainText('Spectral Graph Theory');
 

@@ -148,9 +148,9 @@ test('arrow-hop skips claims folded inside the closed trail and enters the open 
 test('lens: a lens covering most of the graph pins to the atlas constellation and says so', async ({
   page,
 }) => {
-  // type=principle sits in the pin window after the first discovery campaign:
+  // type=model remains in the pin window after the second discovery campaign:
   // more than two fifths of the graph, under the expanded legibility cap.
-  await page.goto('/#/lens?type=principle');
+  await page.goto('/#/lens?type=model');
   const note = page.locator('.lens-pinned-note');
   await expect(note).toBeVisible();
   await expect(note.locator('a[href="#/atlas"]')).toBeVisible();

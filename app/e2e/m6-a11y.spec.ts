@@ -190,7 +190,9 @@ const AXE_ROUTES: { name: string; path: string }[] = [
   { name: 'lens pinned to the constellation', path: '/#/lens?type=model' },
   {
     name: 'matrix with pair panel and crosshair',
-    path: '/#/matrix?focus=eigenvalues&a=eigenvalues&b=markov-chains',
+    // Keep the axe traversal representative and bounded as the full matrix
+    // grows quadratically; both endpoints belong to the networks field.
+    path: '/#/matrix?field=networks&focus=eigenvalues&a=eigenvalues&b=markov-chains',
   },
   { name: 'migration map with highlights', path: '/#/map?field=biology&focus=eigenvalues' },
   {
@@ -214,9 +216,8 @@ const AXE_ROUTES: { name: string; path: string }[] = [
 for (const theme of ['light', 'dark'] as const) {
   for (const route of AXE_ROUTES) {
     test(`axe: ${route.name} passes WCAG 2.1 A/AA (${theme})`, async ({ page }, testInfo) => {
-      // The matrix intentionally renders every concept on both axes. At the
-      // 92-node campaign size, axe traverses more than 8,000 interactive
-      // cells and needs longer than the ordinary smoke-test budget on CI.
+      // The filtered matrix still includes the pair panel and crosshair while
+      // avoiding an O(n²) accessibility scan of every atlas concept.
       if (route.name === 'matrix with pair panel and crosshair') testInfo.setTimeout(60_000);
       await page.emulateMedia({ colorScheme: theme });
       await page.goto(route.path);
