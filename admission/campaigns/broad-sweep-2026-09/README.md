@@ -46,9 +46,10 @@ trusted atlas content.
 Raw-to-enriched yield is 28.4% (40 / 141). Normalized-to-enriched yield is
 29.6% (40 / 135), and human-review acceptance yield is 100% (40 / 40). The
 repository owner approved all 40 dossiers on 2026-09-28. Active review minutes
-were not reported, so accepted claims per review hour is explicitly not
-computable rather than fabricated; `admission-result.json` records that missing
-measurement.
+were reported as 0 because approval was given without per-dossier review.
+Accepted claims per review hour is therefore explicitly not applicable rather
+than represented as an infinite or fabricated rate; `admission-result.json`
+records the measured zero-minute effort and a null derived rate.
 
 ## Triage distribution
 

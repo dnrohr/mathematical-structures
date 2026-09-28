@@ -3,12 +3,16 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { buildPromotionPreview } from '../src/admission/promotion-preview.js';
+import { buildPromotionPreview, normalizeLineEndings } from '../src/admission/promotion-preview.js';
 
 const ROOT = fileURLToPath(new URL('../..', import.meta.url));
 const CAMPAIGN = join(ROOT, 'admission', 'campaigns', 'broad-sweep-2026-09');
 
 describe('atlas-promotion-preview', () => {
+  it('compares generated and trusted text independent of platform line endings', () => {
+    expect(normalizeLineEndings('first\r\nsecond\rthird\n')).toBe('first\nsecond\nthird\n');
+  });
+
   it('rebuilds a deterministic, compiler-clean preview after promotion without duplicating trusted content', () => {
     const directory = mkdtempSync(join(tmpdir(), 'atlas-promotion-test-'));
     try {

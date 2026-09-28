@@ -5,7 +5,7 @@ This packet contains the 40 dossiers selected for human review. All are recorded
 - Reviewer: repository-owner
 - Review started: not reported
 - Review completed: 2026-09-28
-- Active review minutes: not reported
+- Active review minutes: 0
 
 ## Attractors `attractors`
 

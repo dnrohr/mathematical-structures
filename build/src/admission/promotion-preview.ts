@@ -194,7 +194,10 @@ function validateIntegratedPreview(root: string, preview: string): ReturnType<ty
       const source = join(preview, 'concepts', name);
       const target = join(temporary, 'concepts', name);
       if (existsSync(target)) {
-        if (readFileSync(target, 'utf8') !== readFileSync(source, 'utf8'))
+        if (
+          normalizeLineEndings(readFileSync(target, 'utf8')) !==
+          normalizeLineEndings(readFileSync(source, 'utf8'))
+        )
           throw new Error(`trusted concept ${name} differs from the promotion preview`);
       } else cpSync(source, target);
     }
@@ -245,6 +248,10 @@ function validateIntegratedPreview(root: string, preview: string): ReturnType<ty
   } finally {
     rmSync(temporary, { recursive: true, force: true });
   }
+}
+
+export function normalizeLineEndings(value: string): string {
+  return value.replace(/\r\n?/g, '\n');
 }
 
 function reviewSection(dossier: RecordValue, disposition: string, accepted: boolean): string {
