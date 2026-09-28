@@ -21,8 +21,8 @@ source_inventory:
     supplied_by: atlas-campaign-curator
 claims:
   - id: attractors-claim
-    proposition: An asymptotically stable invariant set is a local attractor because nearby trajectories
-      converge to it.
+    proposition: A locally asymptotically stable equilibrium is a local attractor because trajectories
+      from a neighborhood converge to it.
     endpoints:
       from: stability
       to: $candidate
@@ -31,10 +31,10 @@ claims:
       strength: theorem
       context: Local autonomous dynamics with an invariant set and an attracting neighborhood.
     mathematical_skeleton: Distance to the invariant set tends to zero along trajectories begun in its basin.
-    scope: Local attractors in finite-dimensional autonomous dynamical systems.
+    scope: Local equilibrium attractors in finite-dimensional autonomous dynamical systems.
     assumptions:
       - forward completeness in the neighborhood
-      - invariant candidate set
+      - locally asymptotically stable equilibrium
     validity_regime: Initial states in the basin of attraction.
     caveats:
       - An invariant set need not attract, and an attractor need not be a fixed point.
@@ -42,12 +42,12 @@ claims:
       - A Lyapunov-stable center is not attracting.
     source_assessments:
       - source_id: khalil-nonlinear-systems-2014
-        proposition: An asymptotically stable invariant set is a local attractor because nearby trajectories
-          converge to it.
+        proposition: A locally asymptotically stable equilibrium is a local attractor because trajectories
+          from a neighborhood converge to it.
         status: direct-support
-        location: Stability and invariant-set chapters; attractors and limit sets discussion.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter 4, §4.1, pp. 112–126; Chapter 8, §8.2, pp. 312–321.
+        rationale: The stability and region-of-attraction sections directly support convergence of nearby
+          trajectories to a locally asymptotically stable equilibrium.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -68,11 +68,11 @@ search:
       source_ids:
         - khalil-nonlinear-systems-2014
       executed_by: structure-atlas-evidence-curator
-      notes: Stability and invariant-set chapters; attractors and limit sets discussion.
+      notes: Chapter 4, §4.1, pp. 112–126; Chapter 8, §8.2, pp. 312–321.
 generated_hypotheses:
   - id: attractors-hypothesis
-    text: An asymptotically stable invariant set is a local attractor because nearby trajectories
-      converge to it.
+    text: A locally asymptotically stable equilibrium is a local attractor because trajectories from a
+      neighborhood converge to it.
     generator: structure-atlas-evidence-curator
     input_source_ids:
       - khalil-nonlinear-systems-2014
@@ -95,11 +95,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\attractors.yaml#claims.attractors-claim
+  - id: attractors-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: The scoped proposition and typed edge remain defensible.
+    recommended_action: Retain the accepted disposition with the new pinpoint assessment.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\attractors.yaml#claims.attractors-claim
 human_decisions:
   - id: attractors-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -128,7 +139,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

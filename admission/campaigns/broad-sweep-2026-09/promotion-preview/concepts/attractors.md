@@ -2,28 +2,28 @@
 canonical_name: Attractors
 node_type: phenomenon
 status: established
-summary: An asymptotically stable invariant set is a local attractor because nearby trajectories
-  converge to it.
+summary: A locally asymptotically stable equilibrium is a local attractor because trajectories from
+  a neighborhood converge to it.
 fields:
   - control
   - mechanics
 assumptions:
   - forward completeness in the neighborhood
-  - invariant candidate set
+  - locally asymptotically stable equilibrium
 canonical_examples:
-  - Local attractors in finite-dimensional autonomous dynamical systems. — Local autonomous dynamics
-    with an invariant set and an attracting neighborhood.
+  - Local equilibrium attractors in finite-dimensional autonomous dynamical systems. — Local
+    autonomous dynamics with an invariant set and an attracting neighborhood.
 sections:
   - campaign-broad-sweep-2026-09#attractors
 ---
 
-An asymptotically stable invariant set is a local attractor because nearby trajectories converge to it.
+A locally asymptotically stable equilibrium is a local attractor because trajectories from a neighborhood converge to it.
 
 ## Mathematical skeleton
 
 Distance to the invariant set tends to zero along trajectories begun in its basin.
 
-The claim is scoped to Local attractors in finite-dimensional autonomous dynamical systems. Its stated validity regime is: Initial states in the basin of attraction.
+The claim is scoped to Local equilibrium attractors in finite-dimensional autonomous dynamical systems. Its stated validity regime is: Initial states in the basin of attraction.
 
 ## Boundaries
 

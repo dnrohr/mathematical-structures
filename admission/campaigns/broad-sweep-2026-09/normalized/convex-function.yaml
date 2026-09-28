@@ -46,9 +46,8 @@ claims:
         proposition: Convex optimization assumes a convex objective and convex feasible structure, making
           every local minimum globally minimizing.
         status: direct-support
-        location: Convex functions and convex optimization problem chapters.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter 3, §3.1, pp. 67–74.
+        rationale: The convex-function definition and its role in convex optimization are explicit.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -69,7 +68,7 @@ search:
       source_ids:
         - boyd-vandenberghe-2004
       executed_by: structure-atlas-evidence-curator
-      notes: Convex functions and convex optimization problem chapters.
+      notes: Chapter 3, §3.1, pp. 67–74.
 generated_hypotheses:
   - id: convex-function-hypothesis
     text: Convex optimization assumes a convex objective and convex feasible structure, making every
@@ -96,11 +95,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\convex-function.yaml#claims.convex-function-claim
+  - id: convex-function-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: The scoped proposition and typed edge remain defensible.
+    recommended_action: Retain the accepted disposition with the new pinpoint assessment.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\convex-function.yaml#claims.convex-function-claim
 human_decisions:
   - id: convex-function-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -129,7 +139,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

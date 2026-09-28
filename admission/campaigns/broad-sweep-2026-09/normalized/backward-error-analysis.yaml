@@ -23,8 +23,9 @@ source_inventory:
     supplied_by: atlas-campaign-curator
 claims:
   - id: backward-error-analysis-claim
-    proposition: Backward error analysis interprets a numerical trajectory as the exact trajectory of a
-      nearby modified differential equation.
+    proposition: At any fixed truncation order, backward error analysis constructs a nearby modified
+      differential equation whose exact flow matches the numerical one-step map up to a controlled
+      defect.
     endpoints:
       from: $candidate
       to: smoothness
@@ -32,8 +33,8 @@ claims:
       type: ASSUMES
       strength: theorem
       context: Truncated modified equations for sufficiently smooth or analytic dynamics.
-    mathematical_skeleton: Choose modified vector-field coefficients so its exact flow matches the
-      numerical one step map order by order.
+    mathematical_skeleton: Choose finitely many modified-vector-field coefficients so the truncated
+      modified flow matches the numerical one-step map through the claimed order.
     scope: One-step integrators for smooth ODEs.
     assumptions:
       - smooth or analytic vector field
@@ -45,12 +46,13 @@ claims:
       - Nonsmooth dynamics where the required derivatives do not exist.
     source_assessments:
       - source_id: hairer-lubich-wanner-2006
-        proposition: Backward error analysis interprets a numerical trajectory as the exact trajectory of a
-          nearby modified differential equation.
+        proposition: At any fixed truncation order, backward error analysis constructs a nearby modified
+          differential equation whose exact flow matches the numerical one-step map up to a
+          controlled defect.
         status: direct-support
-        location: Backward error analysis and modified equations chapters.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter IX, §§IX.1–IX.3, pp. 337–366.
+        rationale: The modified-equation construction is order-by-order and supports the claim only with
+          finite-truncation or analytic-regime qualifications.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -71,11 +73,12 @@ search:
       source_ids:
         - hairer-lubich-wanner-2006
       executed_by: structure-atlas-evidence-curator
-      notes: Backward error analysis and modified equations chapters.
+      notes: Chapter IX, §§IX.1–IX.3, pp. 337–366.
 generated_hypotheses:
   - id: backward-error-analysis-hypothesis
-    text: Backward error analysis interprets a numerical trajectory as the exact trajectory of a nearby
-      modified differential equation.
+    text: At any fixed truncation order, backward error analysis constructs a nearby modified
+      differential equation whose exact flow matches the numerical one-step map up to a controlled
+      defect.
     generator: structure-atlas-evidence-curator
     input_source_ids:
       - hairer-lubich-wanner-2006
@@ -98,11 +101,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\backward-error-analysis.yaml#claims.backward-error-analysis-claim
+  - id: backward-error-analysis-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: Qualified the exact-trajectory language by finite truncation and controlled defect.
+    recommended_action: Revise as recorded, then retain the accepted disposition.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\backward-error-analysis.yaml#claims.backward-error-analysis-claim
 human_decisions:
   - id: backward-error-analysis-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -130,7 +144,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

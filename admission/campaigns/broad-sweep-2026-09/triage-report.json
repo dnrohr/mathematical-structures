@@ -270,8 +270,8 @@
     {
       "candidate_id": "factor-graph",
       "disposition": "propose-node",
-      "proposed_node_type": "model",
-      "rationale": "Reusable model class with explicit mathematical state, assumptions, or inference semantics.",
+      "proposed_node_type": "object",
+      "rationale": "Stable mathematical object or state-space structure that can support multiple typed connections.",
       "selected_for_review": true
     },
     {

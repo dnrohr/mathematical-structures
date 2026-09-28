@@ -78,6 +78,20 @@ sources:
     year: 2012
     locator: https://www.cambridge.org/core/books/an-introduction-to-celestial-mechanics/0E9275B6D76F141E4F4948BCA112284D
     supplied_by: atlas-campaign-curator
+  - id: murray-dermott-1999
+    kind: textbook
+    title: Solar System Dynamics
+    authors: [Carl D. Murray, Stanley F. Dermott]
+    year: 1999
+    locator: https://www.cambridge.org/core/books/abs/solar-system-dynamics/resonant-perturbations/55275B58F1A2B00FE0DB74E508E0EA68
+    supplied_by: codex-independent-review
+  - id: parikh-boyd-2014
+    kind: primary-literature
+    title: Proximal Algorithms
+    authors: [Neal Parikh, Stephen Boyd]
+    year: 2014
+    locator: https://web.stanford.edu/~boyd/papers/prox_algs.html
+    supplied_by: codex-independent-review
 
 entries:
   # Deliberate source overlaps exercise real duplicate consolidation and retain both provenances.
@@ -259,7 +273,6 @@ inventories:
       - Geometric programming
       - Lagrange duality
       - Fenchel conjugate
-      - Proximal operator
       - Subgradient method
       - Projected gradient method
       - Alternating direction method of multipliers
@@ -284,5 +297,16 @@ inventories:
       - Jacobi integral
       - Zero-velocity surface
       - Secular perturbation theory
-      - Orbital resonance
       - Tidal evolution
+
+  - source_id: murray-dermott-1999
+    originating_fields: [mechanics]
+    harvest_location: Chapter 8, Resonant Perturbations
+    terms:
+      - Orbital resonance
+
+  - source_id: parikh-boyd-2014
+    originating_fields: [optimization, numerical-analysis]
+    harvest_location: Section 1.1, definition of the proximal operator
+    terms:
+      - Proximal operator

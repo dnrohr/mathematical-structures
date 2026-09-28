@@ -34,10 +34,10 @@ claims:
     proposition: Interior-point methods solve constrained convex optimization by following central
       solutions defined by barrier-perturbed optimality conditions.
     endpoints:
-      from: optimization
-      to: $candidate
+      from: $candidate
+      to: optimization
     proposed_edge:
-      type: SOLVED-BY
+      type: APPLIED-IN
       strength: theorem
       context: Convex programs satisfying the regularity conditions of the chosen primal-dual method.
     mathematical_skeleton: Replace inequality constraints by a barrier or perturbed complementarity
@@ -56,9 +56,9 @@ claims:
         proposition: Interior-point methods solve constrained convex optimization by following central
           solutions defined by barrier-perturbed optimality conditions.
         status: direct-support
-        location: Interior-point methods chapter.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter 11, §§11.2–11.7, pp. 563–609.
+        rationale: The chapter develops barrier and primal-dual interior-point methods as algorithms applied
+          to convex optimization.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -79,7 +79,7 @@ search:
       source_ids:
         - boyd-vandenberghe-2004
       executed_by: structure-atlas-evidence-curator
-      notes: Interior-point methods chapter.
+      notes: Chapter 11, §§11.2–11.7, pp. 563–609.
 generated_hypotheses:
   - id: interior-point-method-hypothesis
     text: Interior-point methods solve constrained convex optimization by following central solutions
@@ -106,11 +106,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\interior-point-method.yaml#claims.interior-point-method-claim
+  - id: interior-point-method-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: Replaced SOLVED-BY with method-to-domain APPLIED-IN semantics.
+    recommended_action: Revise as recorded, then retain the accepted disposition.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\interior-point-method.yaml#claims.interior-point-method-claim
 human_decisions:
   - id: interior-point-method-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -139,7 +150,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

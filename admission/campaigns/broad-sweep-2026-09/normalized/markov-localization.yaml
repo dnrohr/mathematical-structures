@@ -26,12 +26,12 @@ claims:
     proposition: Markov localization performs recursive Bayes filtering over robot pose using motion and
       sensor models.
     endpoints:
-      from: hidden-markov-model
+      from: bayes-rule
       to: $candidate
     proposed_edge:
-      type: SOLVED-BY
-      strength: strong-analogy
-      context: Discrete or continuous pose-state hidden Markov models.
+      type: APPLIED-IN
+      strength: theorem
+      context: Discrete or continuous pose-state Bayes filters with Markov motion and observation models.
     mathematical_skeleton: Alternate prediction by the transition kernel with correction by the observation likelihood.
     scope: Robot localization in a known map.
     assumptions:
@@ -47,9 +47,8 @@ claims:
         proposition: Markov localization performs recursive Bayes filtering over robot pose using motion and
           sensor models.
         status: direct-support
-        location: Bayes filters and Markov localization chapters.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter 7, §§7.2–7.3, pp. 197–211.
+        rationale: Markov localization is presented as recursive Bayes filtering over robot pose.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -70,7 +69,7 @@ search:
       source_ids:
         - thrun-burgard-fox-2005
       executed_by: structure-atlas-evidence-curator
-      notes: Bayes filters and Markov localization chapters.
+      notes: Chapter 7, §§7.2–7.3, pp. 197–211.
 generated_hypotheses:
   - id: markov-localization-hypothesis
     text: Markov localization performs recursive Bayes filtering over robot pose using motion and sensor
@@ -97,11 +96,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\markov-localization.yaml#claims.markov-localization-claim
+  - id: markov-localization-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: Replaced a generic hidden-Markov-model SOLVED-BY edge with Bayes-rule APPLIED-IN.
+    recommended_action: Revise as recorded, then retain the accepted disposition.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\markov-localization.yaml#claims.markov-localization-claim
 human_decisions:
   - id: markov-localization-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -130,7 +140,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

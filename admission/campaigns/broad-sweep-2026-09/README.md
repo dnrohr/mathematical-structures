@@ -2,8 +2,9 @@
 
 This is the first source-driven admission campaign. It is deliberately not a
 list of requested terms: nine contrasting textbook inventories define the
-sampling frame, and the user's named concepts serve only as acceptance probes
-inside that broader frame.
+sampling frame, two proposition-specific sources strengthen the final
+evidence, and the user's named concepts serve only as acceptance probes inside
+that broader frame.
 
 ## Reproduce
 
@@ -22,7 +23,7 @@ trusted atlas content.
 
 | Stage | Count |
 | --- | ---: |
-| Authoritative source inventories | 9 |
+| Authoritative sources | 11 |
 | Raw source entries | 141 |
 | Cross-source duplicates consolidated | 6 |
 | Normalized survivors | 135 |
@@ -31,12 +32,14 @@ trusted atlas content.
 | Exhaustively classified survivors | 135 |
 | Proposition-level evidence dossiers | 40 |
 | Separate adversarial reviews | 40 |
+| Independent model-assisted re-reviews | 40 |
+| Substantive revisions after re-review | 9 |
 | Deterministic validation errors | 0 |
 | Review-ready new-node dossiers | 39 |
 | Existing-node merge/refinement dossiers | 1 |
 | Promotion-preview concepts | 39 |
 | Promotion-preview typed edges | 40 |
-| Promotion-preview reference additions | 6 |
+| Promotion-preview reference additions | 8 |
 | Integrated trusted-validator errors/warnings | 0 / 0 |
 | Human decisions recorded | 40 |
 | Approved dossiers | 40 |
@@ -51,6 +54,13 @@ Accepted claims per review hour is therefore explicitly not applicable rather
 than represented as an infinite or fabricated rate; `admission-result.json`
 records the measured zero-minute effort and a null derived rate.
 
+A later model-assisted independent audit reviewed all 40 propositions without
+claiming additional human time. It retained 31 without substantive change,
+revised 9 and retained them, rejected none, and replaced every generic source
+assessment with a chapter/section/page or equation pinpoint. The audit is
+recorded in `independent-review.yaml` and as a second adversarial-review record
+in each selected dossier.
+
 ## Triage distribution
 
 The checked `triage-report.json` records 104 node proposals, 2 edge proposals,
@@ -61,12 +71,11 @@ proposals.
 
 ## Promotion boundary
 
-The enriched dossiers stop at `automated-review-passed`. They contain source
-locations and model-assisted adversarial review, but no fabricated human
-decision. Promotion requires a reviewer to inspect the atomic proposition,
-edge type, strength, assumptions, caveats, counterexamples, and source
-assessment, then record a human disposition before any material enters
-`concepts/` or `graph/`.
+Before approval, enriched dossiers stopped at `automated-review-passed` and
+contained no fabricated human decision. The repository owner's explicit bulk
+approval and the subsequent promotion are now recorded as terminal workflow
+states. The independent model-assisted audit is separate from that human
+decision and records zero added human minutes.
 
 `promotion-preview/` makes that decision concrete without crossing the trust
 boundary. It contains the exact concept Markdown, typed edges, and bibliography

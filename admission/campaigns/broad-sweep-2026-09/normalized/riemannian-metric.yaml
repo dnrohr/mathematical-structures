@@ -45,9 +45,9 @@ claims:
         proposition: A Riemannian metric is a smoothly varying positive-definite inner product on tangent
           spaces and therefore assumes a smooth manifold structure.
         status: direct-support
-        location: Riemannian metrics and tensor fields chapters.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter 13, pp. 327–348.
+        rationale: A Riemannian metric is defined as a smooth positive-definite inner product on tangent
+          spaces.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -68,7 +68,7 @@ search:
       source_ids:
         - lee-smooth-manifolds-2012
       executed_by: structure-atlas-evidence-curator
-      notes: Riemannian metrics and tensor fields chapters.
+      notes: Chapter 13, pp. 327–348.
 generated_hypotheses:
   - id: riemannian-metric-hypothesis
     text: A Riemannian metric is a smoothly varying positive-definite inner product on tangent spaces
@@ -95,11 +95,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\riemannian-metric.yaml#claims.riemannian-metric-claim
+  - id: riemannian-metric-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: The scoped proposition and typed edge remain defensible.
+    recommended_action: Retain the accepted disposition with the new pinpoint assessment.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\riemannian-metric.yaml#claims.riemannian-metric-claim
 human_decisions:
   - id: riemannian-metric-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -127,7 +138,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

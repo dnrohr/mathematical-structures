@@ -23,15 +23,16 @@ source_inventory:
     supplied_by: atlas-campaign-curator
 claims:
   - id: symplectic-integrator-claim
-    proposition: A symplectic integrator preserves the discrete symplectic two-form and thereby
-      reproduces the long-time geometric structure of Hamiltonian phase-space flow.
+    proposition: A symplectic integrator preserves the discrete symplectic form; under backward-error
+      hypotheses it nearly conserves a modified Hamiltonian over long time intervals.
     endpoints:
       from: $candidate
-      to: phase-space
+      to: hamiltonian-system
     proposed_edge:
-      type: GOVERNS
+      type: APPLIED-IN
       strength: theorem
-      context: Symplectic numerical maps applied to Hamiltonian systems.
+      context: Symplectic numerical maps for sufficiently smooth Hamiltonian systems; modified-energy
+        claims additionally require backward-error hypotheses.
     mathematical_skeleton: The one-step map Phi satisfies pullback of omega equals omega.
     scope: Finite-dimensional Hamiltonian integration.
     assumptions:
@@ -44,12 +45,12 @@ claims:
       - Generic adaptive step-size changes can destroy symplecticity.
     source_assessments:
       - source_id: hairer-lubich-wanner-2006
-        proposition: A symplectic integrator preserves the discrete symplectic two-form and thereby
-          reproduces the long-time geometric structure of Hamiltonian phase-space flow.
+        proposition: A symplectic integrator preserves the discrete symplectic form; under backward-error
+          hypotheses it nearly conserves a modified Hamiltonian over long time intervals.
         status: direct-support
-        location: Symplectic integration and long-time energy behavior chapters.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter VI, §§VI.3–VI.4, pp. 204–230; Chapter IX, §§IX.1–IX.3, pp. 337–366.
+        rationale: The source proves discrete symplectic-form preservation and uses backward error analysis
+          to qualify long-time modified-energy behavior.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -70,11 +71,11 @@ search:
       source_ids:
         - hairer-lubich-wanner-2006
       executed_by: structure-atlas-evidence-curator
-      notes: Symplectic integration and long-time energy behavior chapters.
+      notes: Chapter VI, §§VI.3–VI.4, pp. 204–230; Chapter IX, §§IX.1–IX.3, pp. 337–366.
 generated_hypotheses:
   - id: symplectic-integrator-hypothesis
-    text: A symplectic integrator preserves the discrete symplectic two-form and thereby reproduces the
-      long-time geometric structure of Hamiltonian phase-space flow.
+    text: A symplectic integrator preserves the discrete symplectic form; under backward-error
+      hypotheses it nearly conserves a modified Hamiltonian over long time intervals.
     generator: structure-atlas-evidence-curator
     input_source_ids:
       - hairer-lubich-wanner-2006
@@ -97,11 +98,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\symplectic-integrator.yaml#claims.symplectic-integrator-claim
+  - id: symplectic-integrator-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: Narrowed the long-time claim and replaced GOVERNS with APPLIED-IN Hamiltonian systems.
+    recommended_action: Revise as recorded, then retain the accepted disposition.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\symplectic-integrator.yaml#claims.symplectic-integrator-claim
 human_decisions:
   - id: symplectic-integrator-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -129,7 +141,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

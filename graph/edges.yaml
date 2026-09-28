@@ -2032,8 +2032,7 @@
   context: Local autonomous dynamics with an invariant set and an attracting neighborhood.
   evidence:
     - khalil-2002
-  notes: "Campaign evidence location: Stability and invariant-set chapters; attractors and limit sets
-    discussion."
+  notes: "Campaign evidence location: Chapter 4, §4.1, pp. 112–126; Chapter 8, §8.2, pp. 312–321."
 - from: b-series
   to: series-expansion
   type: IS-A
@@ -2041,7 +2040,7 @@
   context: Formal expansions for numerical flows of ODEs.
   evidence:
     - hairer-etal-2006
-  notes: "Campaign evidence location: B-series and order-condition sections."
+  notes: "Campaign evidence location: Chapter III, §§III.1–III.2, pp. 51–74."
 - from: backward-error-analysis
   to: smoothness
   type: ASSUMES
@@ -2049,7 +2048,7 @@
   context: Truncated modified equations for sufficiently smooth or analytic dynamics.
   evidence:
     - hairer-etal-2006
-  notes: "Campaign evidence location: Backward error analysis and modified equations chapters."
+  notes: "Campaign evidence location: Chapter IX, §§IX.1–IX.3, pp. 337–366."
 - from: bayes-rule
   to: bayesian-network
   type: APPLIED-IN
@@ -2057,7 +2056,7 @@
   context: Directed acyclic graphical models with normalized conditional distributions.
   evidence:
     - koller-friedman-2009
-  notes: "Campaign evidence location: Bayesian-network representation chapters."
+  notes: "Campaign evidence location: Chapter 3, §3.2, pp. 51–67."
 - from: hidden-markov-model
   to: belief-propagation
   type: SOLVED-BY
@@ -2065,7 +2064,7 @@
   context: Sum-product messages on a tree; loopy graphs lose the exactness guarantee.
   evidence:
     - koller-friedman-2009
-  notes: "Campaign evidence location: Exact inference, clique-tree, and message-passing chapters."
+  notes: "Campaign evidence location: Chapter 10, §§10.2–10.3, pp. 345–364."
 - from: bfgs-method
   to: optimization
   type: APPLIED-IN
@@ -2073,7 +2072,7 @@
   context: Smooth unconstrained optimization with a line search satisfying the curvature condition.
   evidence:
     - nocedal-wright-2006
-  notes: "Campaign evidence location: Quasi-Newton methods chapter; BFGS update and convergence sections."
+  notes: "Campaign evidence location: Chapter 6, §6.1, pp. 136–143."
 - from: channel-capacity
   to: digital-communications
   type: GOVERNS
@@ -2081,7 +2080,7 @@
   context: Asymptotically long codes under the channel model and error criterion of the coding theorem.
   evidence:
     - cover-thomas-2006
-  notes: "Campaign evidence location: Channel capacity and channel coding theorem chapters."
+  notes: "Campaign evidence location: Chapter 7, §§7.1–7.7, pp. 183–221."
 - from: optimization
   to: convex-function
   type: ASSUMES
@@ -2089,7 +2088,7 @@
   context: Convex minimization on a convex feasible set.
   evidence:
     - boyd-vandenberghe-2004
-  notes: "Campaign evidence location: Convex functions and convex optimization problem chapters."
+  notes: "Campaign evidence location: Chapter 3, §3.1, pp. 67–74."
 - from: optimization
   to: convex-set
   type: ASSUMES
@@ -2097,7 +2096,7 @@
   context: Feasible sets in convex optimization.
   evidence:
     - boyd-vandenberghe-2004
-  notes: "Campaign evidence location: Convex sets chapter."
+  notes: "Campaign evidence location: Chapter 2, §2.1, pp. 21–24."
 - from: cotangent-bundle
   to: phase-space
   type: SAME-SKELETON
@@ -2105,16 +2104,15 @@
   context: Canonical Hamiltonian systems without constraint reduction.
   evidence:
     - lee-2012
-  notes: "Campaign evidence location: Cotangent bundle and differential-form chapters."
+  notes: "Campaign evidence location: Chapter 11, pp. 272–303."
 - from: data-processing-inequality
-  to: shannon-entropy
+  to: mutual-information
   type: GOVERNS
   strength: theorem
   context: Markov chain X to Y to Z under Shannon mutual information.
   evidence:
     - cover-thomas-2006
-  notes: "Campaign evidence location: Entropy, mutual information, and data-processing inequality
-    sections."
+  notes: "Campaign evidence location: Chapter 2, §2.8, pp. 34–35."
 - from: vector-calculus
   to: differential-form
   type: REPRESENTED-BY
@@ -2122,7 +2120,7 @@
   context: Smooth oriented manifolds, specializing in dimensions two and three.
   evidence:
     - lee-2012
-  notes: "Campaign evidence location: Differential forms, integration, and Stokes theorem chapters."
+  notes: "Campaign evidence location: Chapter 14, pp. 349–376."
 - from: kalman-filter
   to: extended-kalman-filter
   type: REPLACED-BY
@@ -2130,7 +2128,7 @@
   context: Differentiable nonlinear state-space models with approximately Gaussian local uncertainty.
   evidence:
     - thrun-etal-2005
-  notes: "Campaign evidence location: Gaussian filters and extended Kalman filter chapter."
+  notes: "Campaign evidence location: Chapter 3, §3.3, pp. 54–64."
 - from: state-space-model
   to: factor-graph
   type: REPRESENTED-BY
@@ -2138,7 +2136,7 @@
   context: State-space joint distributions factorized into transition and observation factors.
   evidence:
     - koller-friedman-2009
-  notes: "Campaign evidence location: Factorized representations and message-passing chapters."
+  notes: "Campaign evidence location: Chapter 4, §4.4.1, pp. 123–127."
 - from: optimization
   to: graphslam
   type: APPLIED-IN
@@ -2146,7 +2144,7 @@
   context: SLAM posterior factorized into motion and measurement constraints.
   evidence:
     - thrun-etal-2005
-  notes: "Campaign evidence location: GraphSLAM chapter and full-SLAM inference sections."
+  notes: "Campaign evidence location: Chapter 11, §§11.2–11.4, pp. 340–361."
 - from: hamiltonian-system
   to: phase-space
   type: REPRESENTED-BY
@@ -2154,15 +2152,15 @@
   context: Canonical or symplectic Hamiltonian mechanics.
   evidence:
     - hairer-etal-2006
-  notes: "Campaign evidence location: Hamiltonian systems and symplectic geometry chapters."
-- from: optimization
-  to: interior-point-method
-  type: SOLVED-BY
+  notes: "Campaign evidence location: Chapter VI, §§VI.1–VI.3, pp. 179–204."
+- from: interior-point-method
+  to: optimization
+  type: APPLIED-IN
   strength: theorem
   context: Convex programs satisfying the regularity conditions of the chosen primal-dual method.
   evidence:
     - boyd-vandenberghe-2004
-  notes: "Campaign evidence location: Interior-point methods chapter."
+  notes: "Campaign evidence location: Chapter 11, §§11.2–11.7, pp. 563–609."
 - from: jacobi-integral
   to: conservation-laws
   type: IS-A
@@ -2170,8 +2168,7 @@
   context: Circular restricted three-body dynamics in rotating coordinates.
   evidence:
     - fitzpatrick-2012
-  notes: "Campaign evidence location: Restricted three-body problem, Jacobi integral, and
-    zero-velocity surface sections."
+  notes: "Campaign evidence location: Chapter 8, §8.3, pp. 149–151."
 - from: bayes-rule
   to: linear-gaussian-ssm
   type: APPLIED-IN
@@ -2179,7 +2176,7 @@
   context: Gaussian prediction and measurement conditioning in the exact Kalman recursion.
   evidence:
     - thrun-etal-2005
-  notes: "Campaign evidence location: Gaussian filters and Kalman filter sections."
+  notes: "Campaign evidence location: Chapter 3, §3.2, pp. 40–53."
 - from: karush-kuhn-tucker-conditions
   to: optimization
   type: GOVERNS
@@ -2187,7 +2184,7 @@
   context: Differentiable constrained programs; sufficiency additionally uses convexity.
   evidence:
     - nocedal-wright-2006
-  notes: "Campaign evidence location: Optimality conditions and constraint qualifications chapters."
+  notes: "Campaign evidence location: Chapter 12, §§12.2–12.4, pp. 315–329."
 - from: optimization
   to: lagrange-duality
   type: REPRESENTED-BY
@@ -2195,7 +2192,7 @@
   context: Minimization problems with equality and inequality constraints.
   evidence:
     - boyd-vandenberghe-2004
-  notes: "Campaign evidence location: Lagrange duality and optimality conditions chapters."
+  notes: "Campaign evidence location: Chapter 5, §§5.1–5.3, pp. 215–244."
 - from: lagrange-points
   to: phase-space
   type: REPRESENTED-BY
@@ -2203,7 +2200,7 @@
   context: Circular restricted three-body problem in rotating position-velocity phase space.
   evidence:
     - fitzpatrick-2012
-  notes: "Campaign evidence location: Restricted three-body problem and Lagrange points sections."
+  notes: "Campaign evidence location: Chapter 8, §8.6, pp. 155–161."
 - from: symmetry
   to: lie-group
   type: REPRESENTED-BY
@@ -2211,7 +2208,7 @@
   context: Finite-dimensional continuous transformation groups.
   evidence:
     - lee-2012
-  notes: "Campaign evidence location: Lie groups, Lie algebras, and group actions chapters."
+  notes: "Campaign evidence location: Chapter 7, pp. 150–173."
 - from: limit-cycles
   to: phase-space
   type: REPRESENTED-BY
@@ -2219,7 +2216,7 @@
   context: Autonomous continuous-time systems.
   evidence:
     - khalil-2002
-  notes: "Campaign evidence location: Phase-plane analysis and limit-cycle sections."
+  notes: "Campaign evidence location: Chapter 2, §2.4, pp. 54–59."
 - from: lyapunov-functions
   to: stability
   type: GOVERNS
@@ -2227,15 +2224,15 @@
   context: Positive-definite Lyapunov functions with sign-controlled orbital derivative.
   evidence:
     - khalil-2002
-  notes: "Campaign evidence location: Lyapunov stability theorems and invariance-principle chapters."
-- from: hidden-markov-model
+  notes: "Campaign evidence location: Chapter 4, §§4.1–4.2, pp. 112–132."
+- from: bayes-rule
   to: markov-localization
-  type: SOLVED-BY
-  strength: strong-analogy
-  context: Discrete or continuous pose-state hidden Markov models.
+  type: APPLIED-IN
+  strength: theorem
+  context: Discrete or continuous pose-state Bayes filters with Markov motion and observation models.
   evidence:
     - thrun-etal-2005
-  notes: "Campaign evidence location: Bayes filters and Markov localization chapters."
+  notes: "Campaign evidence location: Chapter 7, §§7.2–7.3, pp. 197–211."
 - from: mutual-information
   to: shannon-entropy
   type: REPRESENTED-BY
@@ -2243,17 +2240,16 @@
   context: Discrete variables, or continuous variables when the relevant divergences exist.
   evidence:
     - cover-thomas-2006
-  notes: "Campaign evidence location: Entropy and mutual information chapter."
-- from: optimization
-  to: newton-method
-  type: SOLVED-BY
+  notes: "Campaign evidence location: Chapter 2, §2.4, pp. 18–22."
+- from: newton-method
+  to: optimization
+  type: APPLIED-IN
   strength: theorem
   context: Smooth unconstrained optimization near a nondegenerate minimizer with suitable
     globalization when needed.
   evidence:
     - nocedal-wright-2006
-  notes: "Campaign evidence location: Fundamentals of unconstrained optimization and Newton-method
-    sections."
+  notes: "Campaign evidence location: Chapter 3, §§3.3–3.4, pp. 44–48."
 - from: bayes-rule
   to: occupancy-grid-mapping
   type: APPLIED-IN
@@ -2261,15 +2257,15 @@
   context: Static maps with grid cells and an inverse sensor model.
   evidence:
     - thrun-etal-2005
-  notes: "Campaign evidence location: Occupancy grid mapping chapter."
+  notes: "Campaign evidence location: Chapter 9, §9.2, pp. 284–293."
 - from: orbital-resonance
   to: harmonic-oscillator
-  type: SAME-SKELETON
+  type: ANALOGOUS-TO
   strength: strong-analogy
-  context: Weakly perturbed, near-integrable motion after resonant averaging.
+  context: Small-amplitude libration about a stable isolated resonance after resonant averaging.
   evidence:
-    - fitzpatrick-2012
-  notes: "Campaign evidence location: Perturbation theory and orbital resonance sections."
+    - murray-dermott-1999
+  notes: "Campaign evidence location: Chapter 8, §§8.3 and 8.6–8.8, pp. 326–363."
 - from: kalman-filter
   to: particle-filter
   type: REPLACED-BY
@@ -2278,16 +2274,15 @@
     computationally feasible.
   evidence:
     - thrun-etal-2005
-  notes: "Campaign evidence location: Nonparametric filters and particle-filter chapters."
+  notes: "Campaign evidence location: Chapter 4, §4.3, pp. 96–112."
 - from: proximal-operator
   to: optimization
   type: APPLIED-IN
   strength: theorem
   context: Proper closed convex functions and positive proximal parameter.
   evidence:
-    - boyd-vandenberghe-2004
-  notes: "Campaign evidence location: Convex optimization course materials on decomposition and
-    proximal methods."
+    - parikh-boyd-2014
+  notes: "Campaign evidence location: Section 1.1, pp. 124–126, equations (1.1)–(1.3)."
 - from: relative-entropy
   to: shannon-entropy
   type: REPRESENTED-BY
@@ -2295,7 +2290,7 @@
   context: P absolutely continuous with respect to Q; finite alphabets for the elementary formula.
   evidence:
     - cover-thomas-2006
-  notes: "Campaign evidence location: Entropy, relative entropy, and mutual information chapter."
+  notes: "Campaign evidence location: Chapter 2, §2.3, pp. 18–22."
 - from: restricted-three-body-problem
   to: phase-space
   type: REPRESENTED-BY
@@ -2303,7 +2298,7 @@
   context: Rotating position-velocity phase space after normalization.
   evidence:
     - fitzpatrick-2012
-  notes: "Campaign evidence location: Restricted three-body problem chapters."
+  notes: "Campaign evidence location: Chapter 8, §8.2, pp. 147–149."
 - from: riemannian-metric
   to: smoothness
   type: ASSUMES
@@ -2311,7 +2306,7 @@
   context: Finite-dimensional smooth manifolds.
   evidence:
     - lee-2012
-  notes: "Campaign evidence location: Riemannian metrics and tensor fields chapters."
+  notes: "Campaign evidence location: Chapter 13, pp. 327–348."
 - from: smooth-manifold
   to: smoothness
   type: ASSUMES
@@ -2319,15 +2314,17 @@
   context: Finite-dimensional Hausdorff second-countable manifolds.
   evidence:
     - lee-2012
-  notes: "Campaign evidence location: Smooth manifolds and smooth maps chapters."
+  notes: "Campaign evidence location: Chapter 1, pp. 1–31."
 - from: symplectic-integrator
-  to: phase-space
-  type: GOVERNS
+  to: hamiltonian-system
+  type: APPLIED-IN
   strength: theorem
-  context: Symplectic numerical maps applied to Hamiltonian systems.
+  context: Symplectic numerical maps for sufficiently smooth Hamiltonian systems; modified-energy
+    claims additionally require backward-error hypotheses.
   evidence:
     - hairer-etal-2006
-  notes: "Campaign evidence location: Symplectic integration and long-time energy behavior chapters."
+  notes: "Campaign evidence location: Chapter VI, §§VI.3–VI.4, pp. 204–230; Chapter IX, §§IX.1–IX.3,
+    pp. 337–366."
 - from: linearization
   to: tangent-space
   type: REPRESENTED-BY
@@ -2335,7 +2332,7 @@
   context: First derivatives of smooth maps and vector fields at a point.
   evidence:
     - lee-2012
-  notes: "Campaign evidence location: Tangent vectors, tangent spaces, and differentials chapters."
+  notes: "Campaign evidence location: Chapter 3, pp. 50–76."
 - from: kalman-filter
   to: unscented-kalman-filter
   type: REPLACED-BY
@@ -2343,7 +2340,7 @@
   context: Nonlinear state-space models with approximately Gaussian beliefs.
   evidence:
     - thrun-etal-2005
-  notes: "Campaign evidence location: Gaussian filters and unscented Kalman filter sections."
+  notes: "Campaign evidence location: Chapter 3, §3.4, pp. 65–70."
 - from: variational-integrator
   to: variational-principles
   type: ASSUMES
@@ -2351,4 +2348,4 @@
   context: Discrete Lagrangians approximating an action integral.
   evidence:
     - hairer-etal-2006
-  notes: "Campaign evidence location: Variational integrators and discrete mechanics sections."
+  notes: "Campaign evidence location: Chapter VI, §VI.6, pp. 231–236."

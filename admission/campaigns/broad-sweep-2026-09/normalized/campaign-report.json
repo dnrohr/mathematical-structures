@@ -905,7 +905,7 @@
       "id": "orbital-resonance",
       "preliminary_disposition": "defer",
       "raw_terms": ["Orbital resonance"],
-      "source_ids": ["fitzpatrick-celestial-mechanics-2012"]
+      "source_ids": ["murray-dermott-1999"]
     },
     {
       "atlas_matches": [],
@@ -992,7 +992,7 @@
       "id": "proximal-operator",
       "preliminary_disposition": "defer",
       "raw_terms": ["Proximal operator"],
-      "source_ids": ["boyd-vandenberghe-2004"]
+      "source_ids": ["parikh-boyd-2014"]
     },
     {
       "atlas_matches": [],

@@ -1,7 +1,6 @@
 triage_schema: 1.0.0
 campaign_id: broad-sweep-2026-09
 curator: structure-atlas-campaign
-
 groups:
   - disposition: propose-node
     proposed_node_type: operation
@@ -52,10 +51,10 @@ groups:
       - universal-source-coding
       - variable-elimination
       - variational-inference
-
   - disposition: propose-node
     proposed_node_type: object
-    rationale: Stable mathematical object or state-space structure that can support multiple typed connections.
+    rationale: Stable mathematical object or state-space structure that can support multiple typed
+      connections.
     candidate_ids:
       - b-series
       - convex-function
@@ -64,6 +63,7 @@ groups:
       - de-rham-cohomology
       - differential-entropy
       - differential-form
+      - factor-graph
       - fenchel-conjugate
       - foliation
       - jacobi-integral
@@ -80,7 +80,6 @@ groups:
       - tangent-space
       - vector-bundle
       - vector-field
-
   - disposition: propose-node
     proposed_node_type: model
     rationale: Reusable model class with explicit mathematical state, assumptions, or inference semantics.
@@ -88,13 +87,11 @@ groups:
       - bayesian-network
       - conditional-random-field
       - dynamic-bayesian-network
-      - factor-graph
       - hamiltonian-system
       - influence-diagram
       - markov-random-field
       - partially-observable-markov-decision-process
       - restricted-three-body-problem
-
   - disposition: propose-node
     proposed_node_type: principle
     rationale: Cross-cutting structural constraint or quantitative principle rather than a single algorithm.
@@ -107,7 +104,6 @@ groups:
       - passivity
       - rate-distortion-theory
       - robust-optimization
-
   - disposition: propose-node
     proposed_node_type: theorem
     rationale: Named result or criterion whose usefulness depends on explicit hypotheses.
@@ -121,7 +117,6 @@ groups:
       - lasalle-invariance-principle
       - sard-theorem
       - small-gain-theorem
-
   - disposition: propose-node
     proposed_node_type: phenomenon
     rationale: Recurring dynamical behavior that appears across more than one model family.
@@ -132,7 +127,6 @@ groups:
       - secular-perturbation-theory
       - singular-perturbation
       - tidal-evolution
-
   - disposition: propose-node
     proposed_node_type: move
     rationale: Reusable reasoning or discretization move that exposes or preserves mathematical structure.
@@ -141,54 +135,55 @@ groups:
       - semidefinite-relaxation
       - symplectic-integrator
       - variational-integrator
-
   - disposition: merge-or-refine
     target_slug: kalman-filter
-    rationale: Exact canonical-name match; the two-source dossier should refine the trusted Kalman-filter node.
-    candidate_ids: [kalman-filter]
-
+    rationale: Exact canonical-name match; the two-source dossier should refine the trusted
+      Kalman-filter node.
+    candidate_ids:
+      - kalman-filter
   - disposition: add-alias
     target_slug: conservation-laws
-    rationale: In dynamics, a first integral is the conserved-quantity formulation of a conservation law; review scope before alias admission.
-    candidate_ids: [first-integral]
-
+    rationale: In dynamics, a first integral is the conserved-quantity formulation of a conservation
+      law; review scope before alias admission.
+    candidate_ids:
+      - first-integral
   - disposition: propose-edge
-    rationale: The harvested term primarily names a relation, so review it as graph structure rather than forcing a standalone node.
+    rationale: The harvested term primarily names a relation, so review it as graph structure rather
+      than forcing a standalone node.
     candidate_ids:
       - conditional-independence
       - spin-orbit-coupling
-
   - disposition: retain-example
-    rationale: Concrete model or regime useful as an example under a broader node, but too narrow for the first promotion wave.
+    rationale: Concrete model or regime useful as an example under a broader node, but too narrow for
+      the first promotion wave.
     candidate_ids:
       - central-force-motion
       - gaussian-channel
       - highly-oscillatory-system
       - keplerian-orbit
       - zero-velocity-surface
-
   - disposition: propose-application
     proposed_node_type: application
     rationale: Domain workflow whose value is showing where structural methods are materially used.
     candidate_ids:
       - structure-learning
-
   - disposition: deliberate-non-edge
-    rationale: Lexical proximity invites a misleading graph connection that should be explicitly tested and refused.
+    rationale: Lexical proximity invites a misleading graph connection that should be explicitly tested
+      and refused.
     candidate_ids:
       - causal-graph
       - geometric-programming
-
   - disposition: reject
-    rationale: The harvested label is too polysemous or generic to identify a reviewable atlas entity without a narrower source-local definition.
+    rationale: The harvested label is too polysemous or generic to identify a reviewable atlas entity
+      without a narrower source-local definition.
     candidate_ids:
       - composition-method
       - embedding
       - flow
       - sensor-model
-
   - disposition: defer
-    rationale: Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first evidence budget.
+    rationale: Legitimate topic, but lower cross-field leverage or insufficiently scoped for the first
+      evidence budget.
     candidate_ids:
       - conic-programming
       - eccentric-anomaly
@@ -205,7 +200,6 @@ groups:
       - reversible-integrator
       - rotating-reference-frame
       - submersion
-
 review_queue:
   - attractors
   - limit-cycles

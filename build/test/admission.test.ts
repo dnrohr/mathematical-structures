@@ -254,6 +254,17 @@ describe('candidate dossier validation', () => {
     expect(ruleIds(dossier)).toContain('admission/evidence-status');
   });
 
+  it('requires a pinpoint locator for supporting evidence', () => {
+    const dossier = baseDossier();
+    const claim = (dossier.claims as Record<string, unknown>[])[0]!;
+    const assessment = (claim.source_assessments as Record<string, unknown>[])[0]!;
+    assessment.location = 'the relevant stability chapter';
+    expect(ruleIds(dossier)).toContain('admission/evidence-pinpoint');
+
+    assessment.location = 'Chapter 4, §4.2, pp. 126–132';
+    expect(ruleIds(dossier)).not.toContain('admission/evidence-pinpoint');
+  });
+
   it('reports failed retrieval only as bounded search history', () => {
     const dossier = baseDossier();
     const search = dossier.search as Record<string, unknown>;

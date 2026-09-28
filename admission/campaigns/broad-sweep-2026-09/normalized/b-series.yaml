@@ -47,9 +47,9 @@ claims:
         proposition: A B-series is a rooted-tree-indexed formal series expansion used to represent
           Runge-Kutta flows and their compositions.
         status: direct-support
-        location: B-series and order-condition sections.
-        rationale: The cited textbook location states or develops this proposition; no inference is made
-          from topical co-mention alone.
+        location: Chapter III, §§III.1–III.2, pp. 51–74.
+        rationale: The rooted-tree construction and B-series representation of Runge–Kutta expansions are
+          developed explicitly.
         assessor:
           kind: model-assisted
           identity: structure-atlas-evidence-curator
@@ -70,7 +70,7 @@ search:
       source_ids:
         - hairer-lubich-wanner-2006
       executed_by: structure-atlas-evidence-curator
-      notes: B-series and order-condition sections.
+      notes: Chapter III, §§III.1–III.2, pp. 51–74.
 generated_hypotheses:
   - id: b-series-hypothesis
     text: A B-series is a rooted-tree-indexed formal series expansion used to represent Runge-Kutta
@@ -97,11 +97,22 @@ adversarial_reviews:
     provenance:
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\evidence-pack.yaml
       - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\b-series.yaml#claims.b-series-claim
+  - id: b-series-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently re-check the proposition, edge semantics, scope, and source pinpoint after
+      bulk approval.
+    response: The scoped proposition and typed edge remain defensible.
+    recommended_action: Retain the accepted disposition with the new pinpoint assessment.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\broad-sweep-2026-09\normalized\b-series.yaml#claims.b-series-claim
 human_decisions:
   - id: b-series-human-approval-2026-09-28
     reviewer: repository-owner
     disposition: accepted-as-node
-    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on 2026-09-28.
+    reason: The repository owner explicitly approved all 40 campaign dossiers in the Codex task on
+      2026-09-28.
 workflow:
   state: accepted-as-node
   history:
@@ -129,7 +140,6 @@ workflow:
       to: automated-review-passed
       reason: Deterministic validation and a separate adversarial review are ready for human review.
       actor: structure-atlas-evidence-curator
-
     - from: automated-review-passed
       to: human-review
       reason: The repository owner approved all 40 broad-sweep campaign dossiers.

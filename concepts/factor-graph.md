@@ -1,6 +1,6 @@
 ---
 canonical_name: Factor graph
-node_type: model
+node_type: object
 status: established
 summary: A factor graph represents a global function or probability distribution as a bipartite
   graph of variables and local factors.
