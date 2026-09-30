@@ -9,6 +9,8 @@ summary: >
   carefully, not by word-match with information entropy.
 fields: [thermodynamics, probability, biology]
 aliases:
+  - name: entropy of a probability law / Gibbs-Shannon entropy
+    field: probability
   - name: Gibbs / Boltzmann entropy, S = k log W
     field: thermodynamics
   - name: entropy production / dissipation accounting

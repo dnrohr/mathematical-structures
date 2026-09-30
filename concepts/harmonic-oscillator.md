@@ -8,6 +8,8 @@ summary: >
   restoring force is approximately linear and the motion is harmonic.
 fields: [mechanics, quantum, pde, signal-processing]
 aliases:
+  - name: second-order resonator / sinusoidal mode
+    field: signal-processing
   - name: mass-spring-damper / LC and RLC circuit
     field: mechanics
   - name: normal mode (one decoupled degree of freedom)

@@ -8,6 +8,8 @@ summary: >
   attractors organize what the system can do.
 fields: [mechanics, control, biology, pde]
 aliases:
+  - name: dynamical-systems formulation / solution semiflow
+    field: pde
   - name: state portrait / phase portrait
     field: mechanics
   - name: state trajectory / state-plane analysis

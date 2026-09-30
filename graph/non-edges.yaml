@@ -262,6 +262,1550 @@
     orientation, and no direct claim is being made.
   see: linearization
 
+
+# ---------------------------------------------------------------------------
+# 2026-09 full work-queue review (source snapshot 27bea89).
+#
+# Every remaining shared-neighbor suggestion below was reviewed after the
+# direct claims were promoted to graph/edges.yaml. Shared neighbors establish
+# graph proximity, not transitivity: each entry records that the existing
+# scoped paths do not entail another Atlas relation between their endpoints.
+# A future edge requires a new, sourced proposition and removal of the
+# corresponding ledger entry.
+# ---------------------------------------------------------------------------
+
+- between: [eigenvalues, large-number-limits]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, digital-communications, epidemic-modeling, fourier-analysis, linearization, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [eigenvalues, optimization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors antenna-design, feedback-control, image-registration, linearization, process-control, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: antenna-design
+
+- between: [diffusion, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, epidemic-modeling, image-registration, large-number-limits, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [eigenvalues, stability-margins]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, linearization, process-control, stability, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [fourier-analysis, markov-chains]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, digital-communications, eigenvalues, large-number-limits, option-pricing explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [harmonic-oscillator, stability]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, phase-space, power-grid, structural-vibration, variational-principles explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [process-control, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, feedback-control, linearization, stability-margins, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [stability-margins, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, integral-transforms, linearization, process-control, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [antenna-design, computational-imaging]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, fourier-analysis, greens-function, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [bayes-rule, eigenvalues]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors digital-communications, markov-chains, state-space-model, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: digital-communications
+
+- between: [bifurcation, eigenvalues]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors epidemic-modeling, linearization, stability, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: epidemic-modeling
+
+- between: [complex-analysis, optimization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors antenna-design, computational-imaging, feedback-control, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: antenna-design
+
+- between: [computational-imaging, integral-transforms]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, fourier-analysis, greens-function, radon-transform explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [conservation-laws, eigenvalues]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, harmonic-oscillator, power-grid, symmetry explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [diffusion, digital-communications]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis, large-number-limits, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [eigenvalues, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, image-registration, linearization, variational-principles explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [feedback-control, phase-space]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, power-grid, stability, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [feedback-control, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization, optimization, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [fourier-analysis, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, image-registration, large-number-limits, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [fourier-analysis, optimization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors antenna-design, computational-imaging, image-registration, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: antenna-design
+
+- between: [graph-laplacian, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, feedback-control, markov-chains, power-grid explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [image-registration, large-number-limits]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, fourier-analysis, linearization, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [image-registration, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis, linearization, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [integral-transforms, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, process-control, stability-margins, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [linearization, markov-chains]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, epidemic-modeling, large-number-limits, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [linearization, power-grid]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, feedback-control, phase-space, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [linearization, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, phase-space, smoothness, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [optimization, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, linearization, process-control, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [power-grid, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, harmonic-oscillator, phase-space, stability explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [process-control, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization, optimization, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [stability, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, feedback-control, power-grid, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [antenna-design, diffusion]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis, greens-function explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [antenna-design, feedback-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, eigenvalues, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [antenna-design, image-registration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [antenna-design, integral-transforms]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, fourier-analysis, greens-function explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [antenna-design, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [bayes-rule, conditional-independence]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bayesian-network, markov-chains, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bayesian-network
+
+- between: [bayes-rule, fourier-analysis]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors computational-imaging, digital-communications, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: computational-imaging
+
+- between: [bifurcation, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors phase-space, stability, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: phase-space
+
+- between: [complex-analysis, stability-margins]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, integral-transforms, stability explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [computational-imaging, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bayes-rule, fourier-analysis, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bayes-rule
+
+- between: [diffusion, power-grid]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors conservation-laws, eigenvalues, graph-laplacian explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: conservation-laws
+
+- between: [diffusion, symmetry]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors conservation-laws, eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: conservation-laws
+
+- between: [digital-communications, epidemic-modeling]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, large-number-limits, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [digital-communications, option-pricing]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors fourier-analysis, large-number-limits, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: fourier-analysis
+
+- between: [digital-communications, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bayes-rule, eigenvalues, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bayes-rule
+
+- between: [digital-communications, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bayes-rule, eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bayes-rule
+
+- between: [eigenvalues, option-pricing]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, fourier-analysis, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [epidemic-modeling, fourier-analysis]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, eigenvalues, large-number-limits explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [epidemic-modeling, graph-laplacian]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, eigenvalues, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [epidemic-modeling, image-registration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, eigenvalues, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [epidemic-modeling, option-pricing]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, large-number-limits, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [epidemic-modeling, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, large-number-limits, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [epidemic-modeling, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [epidemic-modeling, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bifurcation, eigenvalues, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bifurcation
+
+- between: [feedback-control, harmonic-oscillator]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, power-grid, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [feedback-control, image-registration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [feedback-control, markov-chains]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, graph-laplacian, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [feedback-control, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, linearization, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [feedback-control, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, stability, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [fourier-analysis, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, image-registration, large-number-limits explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [fourier-analysis, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, integral-transforms, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [graph-laplacian, stability]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, feedback-control, power-grid explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [greens-function, image-registration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [greens-function, radon-transform]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors computational-imaging, fourier-analysis, integral-transforms explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: computational-imaging
+
+- between: [harmonic-oscillator, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, phase-space, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [harmonic-oscillator, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, power-grid, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [image-registration, process-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [integral-transforms, stability]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, feedback-control, stability-margins explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [integral-transforms, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, stability-margins, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [linear-gaussian-ssm, markov-chains]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bayes-rule, hidden-markov-model, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bayes-rule
+
+- between: [markov-chains, power-grid]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, graph-laplacian, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [markov-chains, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bayes-rule, eigenvalues, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bayes-rule
+
+- between: [optimization, stability-margins]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, linearization, process-control explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [phase-space, stability-margins]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, stability, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [phase-space, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, power-grid, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [power-grid, process-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, feedback-control, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [process-control, stability]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, feedback-control, stability-margins explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [structural-vibration, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [antenna-design, linearity]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, greens-function explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [antenna-design, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [antenna-design, process-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [antenna-design, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [antenna-design, stability]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [antenna-design, symmetry]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [bayes-rule, large-number-limits]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors digital-communications, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: digital-communications
+
+- between: [bayes-rule, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors state-space-model, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: state-space-model
+
+- between: [bayesian-network, markov-chains]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bayes-rule, conditional-independence explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bayes-rule
+
+- between: [bayesian-network, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bayes-rule, conditional-independence explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bayes-rule
+
+- between: [bifurcation, harmonic-oscillator]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors phase-space, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: phase-space
+
+- between: [bifurcation, large-number-limits]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors epidemic-modeling, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: epidemic-modeling
+
+- between: [bifurcation, power-grid]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors phase-space, stability explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: phase-space
+
+- between: [bifurcation, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [change-of-representation, conservation-laws]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors phase-space, symmetry explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: phase-space
+
+- between: [change-of-representation, dimensional-analysis]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors nondimensionalization, symmetry explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: nondimensionalization
+
+- between: [change-of-representation, greens-function]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, integral-transforms explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [change-of-representation, harmonic-oscillator]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, phase-space explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [change-of-representation, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, phase-space explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [change-of-representation, power-grid]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, phase-space explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [change-of-representation, process-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, integral-transforms explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [change-of-representation, stability]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, phase-space explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [change-of-representation, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, phase-space explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [change-of-representation, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, phase-space explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [chaos, epidemic-modeling]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors large-number-limits, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: large-number-limits
+
+- between: [chaos, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors large-number-limits, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: large-number-limits
+
+- between: [chaos, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, phase-space explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [complex-analysis, diffusion]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors greens-function, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: greens-function
+
+- between: [complex-analysis, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [complex-analysis, power-grid]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, stability explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [complex-analysis, process-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, integral-transforms explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [complex-analysis, radon-transform]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors computational-imaging, integral-transforms explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: computational-imaging
+
+- between: [complex-analysis, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, integral-transforms explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [complex-analysis, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, stability explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [complex-analysis, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors smoothness, stability explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: smoothness
+
+- between: [computational-imaging, diffusion]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors fourier-analysis, greens-function explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: fourier-analysis
+
+- between: [computational-imaging, digital-communications]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bayes-rule, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bayes-rule
+
+- between: [computational-imaging, eigenvalues]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors fourier-analysis, greens-function explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: fourier-analysis
+
+- between: [computational-imaging, feedback-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [computational-imaging, kalman-filter]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bayes-rule, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bayes-rule
+
+- between: [computational-imaging, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [conditional-independence, eigenvalues]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors markov-chains, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: markov-chains
+
+- between: [conditional-independence, linear-gaussian-ssm]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors hidden-markov-model, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: hidden-markov-model
+
+- between: [conservation-laws, feedback-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors motor-efficiency, power-grid explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: motor-efficiency
+
+- between: [conservation-laws, fourier-analysis]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, symmetry explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [conservation-laws, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, vector-calculus explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [conservation-laws, stability]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors phase-space, power-grid explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: phase-space
+
+- between: [conservation-laws, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors harmonic-oscillator, phase-space explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: harmonic-oscillator
+
+- between: [diffusion, feedback-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, graph-laplacian explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [diffusion, harmonic-oscillator]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors conservation-laws, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: conservation-laws
+
+- between: [diffusion, integral-transforms]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors fourier-analysis, greens-function explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: fourier-analysis
+
+- between: [diffusion, linearity]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, greens-function explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [diffusion, optimization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors image-registration, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: image-registration
+
+- between: [diffusion, pagerank]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [diffusion, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [diffusion, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [digital-communications, graph-laplacian]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [digital-communications, greens-function]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [digital-communications, image-registration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [digital-communications, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, large-number-limits explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [digital-communications, pagerank]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [digital-communications, symmetry]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [eigenvalues, impulse-response]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors greens-function, linearity explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: greens-function
+
+- between: [eigenvalues, noethers-theorem]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors symmetry, variational-principles explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: symmetry
+
+- between: [eigenvalues, shannon-entropy]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors digital-communications, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: digital-communications
+
+- between: [epidemic-modeling, feedback-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [epidemic-modeling, greens-function]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [epidemic-modeling, pagerank]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [epidemic-modeling, phase-space]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bifurcation, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bifurcation
+
+- between: [epidemic-modeling, process-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [epidemic-modeling, stability]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors bifurcation, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: bifurcation
+
+- between: [epidemic-modeling, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [factor-graph, markov-chains]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors conditional-independence, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: conditional-independence
+
+- between: [feedback-control, fourier-analysis]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, integral-transforms explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [fourier-analysis, linearity]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, greens-function explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [fourier-analysis, process-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, integral-transforms explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [graph-laplacian, greens-function]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [graph-laplacian, harmonic-oscillator]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, power-grid explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [graph-laplacian, image-registration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [graph-laplacian, large-number-limits]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [graph-laplacian, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, feedback-control explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [graph-laplacian, option-pricing]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [graph-laplacian, process-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, feedback-control explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [graph-laplacian, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, feedback-control explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [greens-function, large-number-limits]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [greens-function, markov-chains]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [greens-function, optimization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors antenna-design, computational-imaging explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: antenna-design
+
+- between: [greens-function, option-pricing]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [greens-function, process-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, integral-transforms explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [greens-function, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, diffusion explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [greens-function, stability]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [greens-function, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, integral-transforms explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [greens-function, symmetry]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [greens-function, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [harmonic-oscillator, symmetry]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors conservation-laws, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: conservation-laws
+
+- between: [image-registration, markov-chains]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [image-registration, option-pricing]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [image-registration, series-expansion]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [image-registration, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [image-registration, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [image-registration, symmetry]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [image-registration, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [image-registration, vector-calculus]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors optimization, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: optimization
+
+- between: [integral-transforms, optimization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, process-control explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [integral-transforms, power-grid]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [integral-transforms, symmetry]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors change-of-representation, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: change-of-representation
+
+- between: [integral-transforms, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors fourier-analysis, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: fourier-analysis
+
+- between: [kalman-filter, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors optimization, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: optimization
+
+- between: [large-number-limits, optimization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [large-number-limits, phase-space]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors chaos, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: chaos
+
+- between: [large-number-limits, series-expansion]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [large-number-limits, shannon-entropy]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors digital-communications, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: digital-communications
+
+- between: [large-number-limits, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [large-number-limits, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors fourier-analysis, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: fourier-analysis
+
+- between: [linear-gaussian-ssm, linearization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors state-space-model, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: state-space-model
+
+- between: [linear-gaussian-ssm, optimization]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors kalman-filter, weather-prediction explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: kalman-filter
+
+- between: [linearization, vector-calculus]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors optimization, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: optimization
+
+- between: [markov-chains, process-control]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [markov-chains, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, large-number-limits explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [markov-chains, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [nondimensionalization, symmetry]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors change-of-representation, dimensional-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: change-of-representation
+
+- between: [optimization, series-expansion]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, smoothness explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [optimization, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, linearization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [option-pricing, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors diffusion, large-number-limits explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: diffusion
+
+- between: [pagerank, state-space-model]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, markov-chains explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [phase-space, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, variational-principles explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [phase-space, symmetry]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors change-of-representation, conservation-laws explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: change-of-representation
+
+- between: [power-grid, stability-margins]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors feedback-control, stability explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: feedback-control
+
+- between: [power-grid, symmetry]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors conservation-laws, eigenvalues explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: conservation-laws
+
+- between: [power-grid, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, state-space-model explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [process-control, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [resource-allocation, smoothness]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors optimization, vector-calculus explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: optimization
+
+- between: [smoothness, stability]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors complex-analysis, variational-principles explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: complex-analysis
+
+- between: [smoothness, structural-vibration]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, variational-principles explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [smoothness, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors linearization, optimization explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: linearization
+
+- between: [stability-margins, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors stability, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: stability
+
+- between: [state-space-model, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, structural-vibration explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [symmetry, variational-principles]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, noethers-theorem explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [symmetry, weather-prediction]
+  reason: >-
+    Reviewed from the 27bea89 queue. Shared neighbors eigenvalues, fourier-analysis explain
+    the proximity signal, but their existing edges are separate scoped claims
+    and do not entail a direct Atlas relation between these endpoints.
+  see: eigenvalues
+
+- between: [linearity, linearization]
+  reason: >-
+    Linearization constructs a local linear surrogate, while linearity is a property of the surrogate. The existing expansion, smoothness, and approximation edges carry the scoped claim without conflating a move with its output property.
+  see: series-expansion
+
+
 - between: [thermodynamic-entropy, optimization]
   reason: >-
     Typed through variational-principles: equilibrium extremization enters

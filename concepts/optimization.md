@@ -8,6 +8,10 @@ summary: >
   objective landscape, with multipliers pricing the constraints.
 fields: [optimization, statistics, ml, control, economics, mechanics]
 aliases:
+  - name: energy minimization / equilibrium
+    field: mechanics
+  - name: mathematical programming
+    field: optimization
   - name: least squares / maximum likelihood fitting
     field: statistics
   - name: loss / risk minimization, gradient descent

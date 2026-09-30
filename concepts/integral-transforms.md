@@ -8,6 +8,8 @@ summary: >
   or projections become explicit and the governing operation becomes simpler.
 fields: [signal-processing, control, pde, mechanics]
 aliases:
+  - name: Laplace / Fourier transform methods
+    field: mechanics
   - name: transfer functions / poles and zeros / Bode and Nyquist plots (Laplace domain)
     field: control
   - name: frequency-domain / spectral methods

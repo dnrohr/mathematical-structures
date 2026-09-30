@@ -8,6 +8,8 @@ summary: >
   variational statements and local differential laws.
 fields: [mechanics, pde, quantum, optimization]
 aliases:
+  - name: stationarity conditions / variational optimization
+    field: optimization
   - name: least / stationary action, Lagrangian and Hamiltonian formulation
     field: mechanics
   - name: energy methods / weak formulations

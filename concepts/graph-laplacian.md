@@ -9,6 +9,8 @@ summary: >
   synchronization on the network.
 fields: [networks, probability, ml, biology]
 aliases:
+  - name: network diffusion / connectome Laplacian
+    field: biology
   - name: algebraic connectivity / Fiedler value and vector
     field: networks
   - name: spectral clustering / graph embeddings

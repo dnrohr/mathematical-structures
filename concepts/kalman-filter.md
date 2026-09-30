@@ -8,6 +8,12 @@ summary: >
   measurement, propagating only a mean and covariance.
 fields: [control, signal-processing, statistics, economics, neuroscience]
 aliases:
+  - name: Kalman estimator / recursive state estimator
+    field: signal-processing
+  - name: state-space filtering / signal extraction
+    field: economics
+  - name: neural state-space filter / latent-state decoder
+    field: neuroscience
   - name: linear-quadratic estimator / observer with optimal gain
     field: control
   - name: recursive least squares with a state model

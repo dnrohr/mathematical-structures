@@ -9,6 +9,10 @@ summary: >
   fundamental than any particular inference algorithm.
 fields: [control, statistics, ml, signal-processing, economics, neuroscience]
 aliases:
+  - name: state-space realization / hidden-state model
+    field: signal-processing
+  - name: latent dynamical system / neural state-space model
+    field: neuroscience
   - name: state-space model / A,B,C,D realization
     field: control
   - name: latent dynamical model / dynamic latent-variable model
@@ -19,7 +23,7 @@ aliases:
     field: ml
 assumptions:
   - the Markov property of the hidden state (given the present, the future is independent of the past)
-  - observations conditionally independent given the current state
+  - conditional-independence
 canonical_examples:
   - Tracking a vehicle from noisy radar returns
   - Structural time-series decomposition (trend + seasonal + noise) in econometrics

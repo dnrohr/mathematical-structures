@@ -8,6 +8,10 @@ summary: >
   recursive inference is available in closed form.
 fields: [control, statistics, signal-processing, economics]
 aliases:
+  - name: linear stochastic state-space model
+    field: control
+  - name: linear-Gaussian state-space model
+    field: signal-processing
   - name: linear dynamical system (LDS)
     field: ml
   - name: local level / structural time-series form

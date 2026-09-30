@@ -8,6 +8,8 @@ summary: >
   but it buys this by introducing dynamical stability constraints of its own.
 fields: [control, biology, mechanics, economics]
 aliases:
+  - name: feedback rule / dynamic adjustment
+    field: economics
   - name: closed-loop control / regulation / loop shaping
     field: control
   - name: homeostasis / perfect adaptation / regulatory feedback

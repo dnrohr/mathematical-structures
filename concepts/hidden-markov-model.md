@@ -8,6 +8,10 @@ summary: >
   spaces allowed) the same skeleton covers general state-space models.
 fields: [probability, statistics, ml, signal-processing, biology]
 aliases:
+  - name: hidden Markov chain / emission model
+    field: probability
+  - name: sequence model / HMM
+    field: ml
   - name: HMM / forward-backward / Viterbi decoding
     field: signal-processing
   - name: latent Markov model / regime-switching model
@@ -16,7 +20,7 @@ aliases:
     field: biology
 assumptions:
   - Markov transitions of the hidden state
-  - observations conditionally independent given the current state
+  - conditional-independence
 canonical_examples:
   - Speech recognition with discrete phoneme states
   - Profile HMMs aligning biological sequences

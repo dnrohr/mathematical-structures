@@ -8,6 +8,10 @@ summary: >
   which parameter is small, and which regimes are dynamically similar.
 fields: [fluids, heat-transfer, mechanics, biology]
 aliases:
+  - name: dimensionless heat- and mass-transfer correlations
+    field: heat-transfer
+  - name: dimensionless scaling / nondimensional model
+    field: biology
   - name: scaling the equations / characteristic scales
     field: fluids
   - name: reduced / dimensionless variables

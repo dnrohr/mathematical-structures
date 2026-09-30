@@ -9,6 +9,10 @@ summary: >
   skeleton of heat flow, Brownian motion, and network smoothing.
 fields: [pde, probability, thermodynamics, networks, biology]
 aliases:
+  - name: reaction-diffusion / morphogen diffusion
+    field: biology
+  - name: heat conduction / Fourier diffusion
+    field: thermodynamics
   - name: heat equation / heat kernel
     field: pde
   - name: Brownian motion / Wiener process (its stochastic counterpart)

@@ -9,6 +9,8 @@ summary: >
   perturbation theory, and asymptotics are one family.
 fields: [mechanics, pde, numerical-analysis, fluids]
 aliases:
+  - name: asymptotic / perturbation expansion
+    field: pde
   - name: Taylor / power-series expansion
     field: numerical-analysis
   - name: perturbation theory / small-parameter expansion

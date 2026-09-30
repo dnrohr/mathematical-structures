@@ -9,6 +9,8 @@ summary: >
   research-gap questions about what has not yet transferred.
 fields: [biology, control, networks]
 aliases:
+  - name: regulated plant / biological feedback system
+    field: control
   - name: homeostasis / adaptation / robustness of regulation
     field: biology
   - name: regulatory networks / network motifs

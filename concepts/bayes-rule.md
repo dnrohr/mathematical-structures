@@ -9,6 +9,8 @@ summary: >
   learning.
 fields: [statistics, probability, control, ml]
 aliases:
+  - name: Bayes' theorem / conditional probability
+    field: probability
   - name: measurement update / correction step / innovation
     field: control
   - name: posterior updating / conditioning on evidence

@@ -8,6 +8,8 @@ summary: >
   problems that begin with entirely real quantities.
 fields: [control, pde, quantum, signal-processing]
 aliases:
+  - name: z-plane / poles and zeros / analytic-signal methods
+    field: signal-processing
   - name: poles and zeros / root locus / Nyquist contour
     field: control
   - name: resonances / bound states / dispersion relations

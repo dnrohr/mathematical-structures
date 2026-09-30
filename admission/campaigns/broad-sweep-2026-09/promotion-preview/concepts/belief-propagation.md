@@ -9,6 +9,8 @@ fields:
   - probability
   - statistics
 aliases:
+  - name: sum-product / belief propagation
+    field: statistics
   - name: sum-product algorithm
     field: ml
   - name: message passing

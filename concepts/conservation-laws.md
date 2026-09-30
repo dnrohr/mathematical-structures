@@ -9,6 +9,8 @@ summary: >
   source.
 fields: [mechanics, pde, fluids, probability]
 aliases:
+  - name: first integrals / conserved energy and momentum
+    field: mechanics
   - name: continuity equation / conserved currents
     field: pde
   - name: mass / momentum / energy budgets

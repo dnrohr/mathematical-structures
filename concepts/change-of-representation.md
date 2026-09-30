@@ -8,6 +8,10 @@ summary: >
   domains, phase space, generating functions, dimensionless groups.
 fields: [control, pde, signal-processing, statistics, ml]
 aliases:
+  - name: reparameterization / whitening / transformed coordinates
+    field: statistics
+  - name: change of variables / coordinate transform
+    field: pde
   - name: change of basis / change of coordinates
     field: control
   - name: transform methods / working in the transformed domain

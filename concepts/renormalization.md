@@ -9,6 +9,8 @@ summary: >
   critical phenomena, and universality.
 fields: [thermodynamics, pde, biology, networks]
 aliases:
+  - name: network coarse-graining / graph renormalization
+    field: networks
   - name: renormalization group / block-spin transformation
     field: thermodynamics
   - name: coarse-graining / effective (mean-field) description

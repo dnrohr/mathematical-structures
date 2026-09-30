@@ -10,6 +10,10 @@ fields:
   - probability
   - statistics
 aliases:
+  - name: factor graph / sparse estimation graph
+    field: control
+  - name: factorization graph
+    field: probability
   - name: bipartite factorization graph
     field: ml
   - name: factorized graphical model

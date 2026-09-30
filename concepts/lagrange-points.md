@@ -7,9 +7,7 @@ summary: Lagrange points are equilibrium points of the circular restricted three
 fields:
   - mechanics
 assumptions:
-  - circular primaries
-  - massless third body
-  - uniformly rotating frame
+  - restricted-three-body-problem
 canonical_examples:
   - Five classical equilibrium points L1 through L5. — Circular restricted three-body problem in
     rotating position-velocity phase space.

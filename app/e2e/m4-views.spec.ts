@@ -31,7 +31,7 @@ test('Problem-Solver journey: symptom → ranked moves → Buckingham Π with Re
 test('ego-network on the concept page: renders, expands to 2 hops, caps with overflow', async ({
   page,
 }) => {
-  await page.goto('/#/c/eigenvalues');
+  await page.goto('/#/c/phase-space');
   const ego = page.locator('.concept-ego');
   await expect(ego.locator('.graph-svg')).toBeVisible();
   const oneHop = await ego.locator('.graph-node').count();

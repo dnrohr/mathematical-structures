@@ -7,9 +7,7 @@ summary: The Jacobi integral is a conserved quantity of the circular restricted 
 fields:
   - mechanics
 assumptions:
-  - circular primaries
-  - uniformly rotating frame
-  - massless third body
+  - restricted-three-body-problem
 canonical_examples:
   - Circular restricted three-body problem. — Circular restricted three-body dynamics in rotating
     coordinates.
