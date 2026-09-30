@@ -53,14 +53,22 @@ test('every signal class renders with its count, evidence, and an action (spec Â
   // actions are offered (propose / record a non-edge).
   const suggestions = page.locator('.suggestion-list li');
   await expect(suggestions).toHaveCount(q.link_suggestions.length);
-  const first = q.link_suggestions[0]!;
-  await expect(suggestions.first()).toContainText(
-    `${String(first.witnesses.length)} shared trusted neighbors`,
-  );
-  await expect(
-    suggestions.first().getByRole('link', { name: 'propose', exact: true }),
-  ).toBeVisible();
-  await expect(suggestions.first().getByRole('link', { name: 'record a non-edge' })).toBeVisible();
+  if (q.link_suggestions.length > 0) {
+    const first = q.link_suggestions[0]!;
+    await expect(suggestions.first()).toContainText(
+      `${String(first.witnesses.length)} shared trusted neighbors`,
+    );
+    await expect(
+      suggestions.first().getByRole('link', { name: 'propose', exact: true }),
+    ).toBeVisible();
+    await expect(
+      suggestions.first().getByRole('link', { name: 'record a non-edge' }),
+    ).toBeVisible();
+  } else {
+    await expect(
+      page.locator('.queue-signal:has(h2:text("Link suggestions")) .empty-state'),
+    ).toContainText('No unconnected pair shares two trusted neighbors');
+  }
 
   // Bridge deficits: community chips plus the â‰¤ 1 bridging claim, and the
   // zero-bridge case says so in words.
@@ -82,11 +90,13 @@ test('every signal class renders with its count, evidence, and an action (spec Â
   // Recurring assumptions: the normalized string, the nodes, the action.
   const recurring = page.locator('.queue-signal:has(h2:text("Recurring assumptions")) li');
   await expect(recurring).toHaveCount(q.recurring_assumptions.length);
-  await expect(recurring.first()).toContainText(q.recurring_assumptions[0]!.assumption);
-  await expect(recurring.first().getByRole('link', { name: 'propose a node' })).toHaveAttribute(
-    'href',
-    /issues\/new\?.*node-proposal/,
-  );
+  if (q.recurring_assumptions.length > 0) {
+    await expect(recurring.first()).toContainText(q.recurring_assumptions[0]!.assumption);
+    await expect(recurring.first().getByRole('link', { name: 'propose a node' })).toHaveAttribute(
+      'href',
+      /issues\/new\?.*node-proposal/,
+    );
+  }
 
   // Dialect gaps are grouped by node; every (node, field) item is a link
   // to a prefilled alias-wanted issue.
@@ -95,7 +105,7 @@ test('every signal class renders with its count, evidence, and an action (spec Â
   ).toHaveCount(q.dialect_gaps.length);
 
   // Empty signal classes still render, honestly.
-  await expect(page.locator('.empty-state')).toHaveCount(3); // thin symptoms + underconnected + unused
+  await expect(page.locator('.empty-state')).toHaveCount(7); // four drained queue classes + three health classes
   await expect(
     page.locator('.queue-signal:has(h2:text("Thin symptoms")) .empty-state'),
   ).toContainText('at least two moves and a worked example');
@@ -125,34 +135,18 @@ test('the reject ledger renders and provably suppresses its queue items', async 
   expect(rejected.has('kalman-filter|state-space-model')).toBe(true);
 });
 
-test('the propose action deep-links the composer with the pair prefilled', async ({ page }) => {
+test('a bridge-deficit propose action deep-links the composer with the pair prefilled', async ({
+  page,
+}) => {
   await page.goto('/#/queue');
-  const data = await loadGraph(page);
-  const first = data.metrics.queue.link_suggestions[0]!;
-
   await page
-    .locator('.suggestion-list li')
+    .locator('.deficit-list > li')
     .first()
-    .getByRole('link', { name: 'propose', exact: true })
+    .getByRole('link', { name: 'propose an edge' })
     .click();
-  await expect(page).toHaveURL(new RegExp(`#/propose\\?from=${first.a}&to=${first.b}$`));
-  await expect(page.locator('.propose-from')).toHaveValue(first.a);
-  await expect(page.locator('.propose-to')).toHaveValue(first.b);
-
-  // The record-a-non-edge action is the M10 mechanism one artifact smaller:
-  // a prefilled issue carrying the ready-to-paste ledger entry.
-  await page.goBack();
-  const recordHref = await page
-    .locator('.suggestion-list li')
-    .first()
-    .getByRole('link', { name: 'record a non-edge' })
-    .getAttribute('href');
-  expect(recordHref).toContain('/issues/new?');
-  expect(recordHref).toContain('non-edge');
-  // URLSearchParams encodes spaces as '+'; undo both layers to read the body.
-  expect(decodeURIComponent((recordHref ?? '').replace(/\+/g, ' '))).toContain(
-    `between: [${first.a}, ${first.b}]`,
-  );
+  await expect(page).toHaveURL(/#\/propose\?from=.+&to=.+$/);
+  await expect(page.locator('.propose-from')).not.toHaveValue('');
+  await expect(page.locator('.propose-to')).not.toHaveValue('');
 });
 
 test('questions and queue are nav siblings; candidates moved to the queue', async ({ page }) => {

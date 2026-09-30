@@ -9,6 +9,8 @@ summary: >
   representations, and the ways symmetry can break.
 fields: [mechanics, quantum, pde, statistics, networks]
 aliases:
+  - name: invariance group / symmetry reduction
+    field: pde
   - name: invariance / covariance of laws
     field: mechanics
   - name: symmetry groups / selection rules

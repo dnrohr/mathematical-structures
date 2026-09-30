@@ -9,6 +9,8 @@ summary: >
   where they break.
 fields: [pde, optimization, control, mechanics]
 aliases:
+  - name: regularity / differentiability of motion
+    field: mechanics
   - name: regularity / weak vs. classical solutions
     field: pde
   - name: nonsmooth analysis / subgradients

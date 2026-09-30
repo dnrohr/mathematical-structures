@@ -8,6 +8,8 @@ summary: >
   quantity — the structural link between symmetry and conservation.
 fields: [mechanics, quantum, pde]
 aliases:
+  - name: Noether identity / conservation law
+    field: pde
   - name: conserved currents / Noether charges
     field: quantum
   - name: first integrals from symmetries

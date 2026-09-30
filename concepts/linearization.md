@@ -8,6 +8,8 @@ summary: >
   eigenvalues then classify local growth, decay, and oscillation.
 fields: [control, mechanics, biology, numerical-analysis]
 aliases:
+  - name: small-oscillation / tangent-stiffness model
+    field: mechanics
   - name: small-signal analysis / operating-point analysis
     field: control
   - name: linear (local) stability analysis

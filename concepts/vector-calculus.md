@@ -8,6 +8,8 @@ summary: >
   fundamental theorems — the local/global duality of mathematical physics.
 fields: [pde, fluids, mechanics]
 aliases:
+  - name: grad-div-curl / flux balance
+    field: mechanics
   - name: vorticity / flux / circulation language
     field: fluids
   - name: field operators (grad, div, curl) of E&M and potential theory

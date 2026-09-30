@@ -55,17 +55,29 @@ const SOURCE_KEYS: Record<string, string> = {
 
 const PROMOTION_ALIASES: Record<string, { name: string; field: string }[]> = {
   'bayesian-network': [
+    { name: 'Bayesian network / directed acyclic graph model', field: 'statistics' },
     { name: 'belief network', field: 'probability' },
     { name: 'directed graphical model', field: 'ml' },
   ],
   'belief-propagation': [
+    { name: 'sum-product / belief propagation', field: 'statistics' },
     { name: 'sum-product algorithm', field: 'ml' },
     { name: 'message passing', field: 'probability' },
   ],
   'factor-graph': [
+    { name: 'factor graph / sparse estimation graph', field: 'control' },
+    { name: 'factorization graph', field: 'probability' },
     { name: 'bipartite factorization graph', field: 'ml' },
     { name: 'factorized graphical model', field: 'statistics' },
   ],
+};
+
+// Accepted campaign concepts continue to participate in ordinary curation.
+// Keep deterministic preview regeneration aligned when review replaces several
+// repeated literal assumptions with the existing model node that owns them.
+const PROMOTION_ASSUMPTIONS: Record<string, string[]> = {
+  'jacobi-integral': ['restricted-three-body-problem'],
+  'lagrange-points': ['restricted-three-body-problem'],
 };
 
 const REFERENCE_ADDITIONS = `
@@ -194,7 +206,7 @@ function conceptMarkdown(
     summary: requiredString(claim, 'proposition', canonical),
     fields,
     ...(aliases.length > 0 ? { aliases } : {}),
-    assumptions: strings(claim.assumptions),
+    assumptions: PROMOTION_ASSUMPTIONS[String(candidate.id)] ?? strings(claim.assumptions),
     canonical_examples: [
       `${requiredString(claim, 'scope', canonical)} — ${requiredString(edge, 'context', canonical)}`,
     ],

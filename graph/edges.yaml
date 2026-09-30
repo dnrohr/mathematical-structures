@@ -2753,3 +2753,438 @@
   evidence:
     - siebert-1986
   notes: "Campaign evidence location: Chapter 5, unilateral Z-transform and its applications."
+
+# ---------------------------------------------------------------------------
+# 2026-09 queue curation: direct claims retained after reviewing every pair
+# in the 27bea89 work-queue snapshot. Indirect compositions and false-friend
+# proximity signals are recorded in graph/non-edges.yaml instead.
+# ---------------------------------------------------------------------------
+
+- from: eigenvalues
+  to: linearity
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    Spectral decomposition is defined for linear operators; nonlinear maps
+    enter only through a declared linearization or a different spectral
+    construction.
+  evidence: [trefethen-bau-1997]
+
+- from: impulse-response
+  to: linearity
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    An impulse response determines arbitrary responses by convolution only
+    when superposition holds; time invariance supplies the shifted copies.
+  evidence: [siebert-1986]
+
+- from: hidden-markov-model
+  to: conditional-independence
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    The standard emission factorization makes observations independent over
+    time conditional on the hidden-state path.
+  evidence: [koller-friedman-2009]
+
+- from: state-space-model
+  to: conditional-independence
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    The usual hidden-state factorization conditions each observation on the
+    current state; correlated observation noise must be put into the state or
+    modeled explicitly.
+  evidence: [koller-friedman-2009]
+
+- from: greens-function
+  to: fourier-analysis
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    For translation-invariant constant-coefficient operators, Fourier modes
+    diagonalize the operator and the Green kernel is the inverse multiplier;
+    zeros require boundary or generalized-inverse care.
+  evidence: [evans-2010]
+
+- from: diffusion
+  to: epidemic-modeling
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Spatial compartment models add diffusion or mobility operators to local
+    infection and recovery kinetics, producing reaction-diffusion epidemic
+    systems.
+  evidence: [hethcote-2000]
+
+- from: linearization
+  to: optimization
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Newton, Gauss-Newton, and sequential quadratic programming replace a
+    nonlinear objective or constraint map by local linear and quadratic
+    models before solving the step subproblem.
+  evidence: [nocedal-wright-2006]
+
+- from: power-grid
+  to: structural-vibration
+  type: SAME-SKELETON
+  strength: strong-analogy
+  context: >-
+    Linearized swing dynamics and linear structural dynamics are damped
+    second-order network systems whose generalized eigenmodes localize and
+    grade oscillations.
+  notes: >-
+    The matrices and forcing have different physical meanings, so this is a
+    shared modal skeleton rather than an identity between applications.
+  evidence: [kundur-1994, chopra-2012]
+
+- from: complex-analysis
+  to: feedback-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Nyquist's argument-principle count and contour deformation turn the pole
+    geometry of the loop transfer function into a closed-loop stability test.
+  evidence: [astrom-murray-2008]
+
+- from: conservation-laws
+  to: harmonic-oscillator
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    In the undriven, undamped oscillator, conserved energy confines motion to
+    closed phase-space level sets and fixes amplitude from the initial state.
+  evidence: [strogatz-1994]
+
+- from: linearization
+  to: epidemic-modeling
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Linearizing infection dynamics about the disease-free equilibrium yields
+    the invasion threshold and early exponential growth modes.
+  evidence: [diekmann-etal-1990, hethcote-2000]
+
+- from: graph-laplacian
+  to: feedback-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Consensus and synchronization controllers couple agent states through a
+    graph Laplacian; its nonzero spectrum sets disagreement decay rates.
+  evidence: [dorfler-bullo-2013]
+
+- from: feedback-control
+  to: structural-vibration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Active structural control feeds measured motion back through actuators to
+    add damping, reject disturbances, or reshape selected modes.
+  evidence: [chopra-2012]
+
+- from: fourier-analysis
+  to: image-registration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Phase correlation converts translation into a linear Fourier phase ramp;
+    the inverse normalized cross-power spectrum peaks at the displacement.
+
+- from: fourier-analysis
+  to: option-pricing
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Characteristic-function pricing evaluates families of European-option
+    strikes by Fourier inversion, with damping or contour choices controlling
+    integrability.
+  evidence: [glasserman-2004]
+
+- from: variational-principles
+  to: harmonic-oscillator
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Stationary action for a quadratic kinetic-minus-potential Lagrangian gives
+    the oscillator equation through the Euler-Lagrange condition.
+  evidence: [hamermesh-1962]
+
+- from: linearization
+  to: large-number-limits
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    The delta method linearizes a smooth statistic around its probability
+    limit to transfer a central-limit theorem through that statistic.
+  evidence: [billingsley-1999]
+
+- from: linearization
+  to: structural-vibration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Small-displacement and tangent-stiffness linearization produces the modal
+    mass, damping, and stiffness system used for vibration and local buckling
+    analysis.
+  evidence: [chopra-2012, bazant-cedolin-1991]
+
+- from: state-space-model
+  to: power-grid
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Small-signal grid models collect machine, exciter, governor, and network
+    perturbations into a state matrix for modal stability and controller
+    design.
+  evidence: [kundur-1994]
+
+- from: stability-margins
+  to: process-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Industrial loop tuning uses gain and phase margins to quantify tolerated
+    plant-gain error and delay before a nominal SISO loop becomes unstable.
+  evidence: [seborg-etal-2011]
+
+- from: variational-principles
+  to: stability
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    In conservative systems, a strict constrained energy minimum supplies a
+    Lyapunov function; loss of definiteness in the second variation marks the
+    energetic stability boundary.
+  evidence: [khalil-2002]
+
+- from: bayesian-network
+  to: conditional-independence
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    A directed acyclic graph asserts the local Markov property; d-separation
+    reads the conditional independences entailed by that factorization.
+  evidence: [koller-friedman-2009]
+
+- from: conditional-independence
+  to: factor-graph
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    A factor graph makes a joint distribution's local factorization explicit;
+    graph separation exposes the corresponding conditional independences under
+    the model's stated positivity and factorization conditions.
+  evidence: [koller-friedman-2009]
+
+- from: phase-space
+  to: structural-vibration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Structural response is a trajectory in displacement-velocity state space;
+    phase portraits and Poincare sections separate periodic, quasiperiodic,
+    and nonlinear resonant regimes.
+  evidence: [chopra-2012]
+
+- from: eigenvalues
+  to: process-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Linearized plant poles determine time scales, oscillatory modes, and local
+    stability, while pole placement and model reduction act directly on that
+    spectrum.
+  evidence: [seborg-etal-2011]
+
+- from: eigenvalues
+  to: weather-prediction
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Normal-mode and singular-vector analyses identify growing perturbations
+    and balanced modes of a linearized forecast operator.
+  evidence: [kalnay-2003]
+
+- from: linearization
+  to: feedback-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Small-signal feedback design replaces a nonlinear plant by its Jacobian
+    state-space model about an operating trajectory or equilibrium.
+  evidence: [astrom-murray-2008]
+
+- from: linearization
+  to: state-space-model
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    A nonlinear state and observation map yields local A, B, C, and D Jacobian
+    matrices for small-signal analysis and extended filtering.
+  evidence: [astrom-murray-2008]
+
+- from: phase-space
+  to: power-grid
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Transient-stability studies follow rotor-angle and speed trajectories in
+    state space and classify whether they remain inside the stable region.
+  evidence: [kundur-1994]
+
+- from: greens-function
+  to: eigenvalues
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    For a self-adjoint operator with discrete spectrum away from zero, the
+    Green kernel is the eigenfunction sum weighted by reciprocal eigenvalues.
+  evidence: [evans-2010]
+
+- from: linear-gaussian-ssm
+  to: weather-prediction
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Linear-Gaussian forecast and observation models are the exact reference
+    case behind Kalman data assimilation; operational variants approximate
+    nonlinear, very high-dimensional dynamics.
+  evidence: [kalnay-2003, evensen-2003]
+
+- from: integral-transforms
+  to: process-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Laplace-domain transfer functions turn linear process dynamics and delays
+    into algebraic loop relations used for identification, tuning, and
+    frequency-response analysis.
+  evidence: [seborg-etal-2011]
+
+- from: stability-margins
+  to: structural-vibration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Aeroelastic and actively controlled structures use damping, gain, and
+    phase reserves to quantify distance to flutter or feedback-induced modal
+    instability.
+  evidence: [chopra-2012]
+
+- from: image-registration
+  to: smoothness
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    Gradient-based registration assumes differentiable image interpolation
+    and a locally smooth warp; discontinuous correspondences require different
+    matching machinery.
+  evidence: [lucas-kanade-1981]
+
+- from: state-space-model
+  to: structural-vibration
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    First-order state-space form packages structural displacement and velocity
+    modes for simulation, estimation, and active-control design.
+  evidence: [chopra-2012]
+
+- from: diffusion
+  to: smoothness
+  type: GOVERNS
+  strength: theorem
+  context: >-
+    The heat semigroup smooths rough initial data instantly for positive time;
+    derivative bounds worsen again as time approaches zero.
+  evidence: [evans-2010]
+
+- from: markov-chains
+  to: conditional-independence
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    Given the present state, the next state is independent of the earlier
+    history; higher-order memory must be included in an enlarged state.
+  evidence: [levin-peres-2017]
+
+- from: greens-function
+  to: linearity
+  type: ASSUMES
+  strength: theorem
+  context: >-
+    A Green kernel superposes point-source responses to invert a linear
+    operator; nonlinear equations require linearization or nonlinear integral
+    formulations rather than a single Green function.
+  evidence: [evans-2010]
+
+- from: stability-margins
+  to: integral-transforms
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    Gain and phase margins are read from the Laplace/Fourier frequency response
+    of a linearized loop, with the loop-breaking convention stated.
+  evidence: [astrom-murray-2008]
+
+- from: graph-laplacian
+  to: fourier-analysis
+  type: REPRESENTED-BY
+  strength: strong-analogy
+  context: >-
+    Graph Fourier coordinates are Laplacian eigenvectors; on cycles and other
+    translation-symmetric graphs they reduce to ordinary Fourier modes.
+  notes: >-
+    The analogy is exact for the chosen graph operator but lacks the global
+    translation group and canonical frequencies of Euclidean Fourier analysis.
+  evidence: [chung-1997]
+
+- from: optimization
+  to: feedback-control
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    LQR and model-predictive control choose feedback actions by minimizing a
+    trajectory cost subject to the system dynamics and constraints.
+  evidence: [rawlings-etal-2017]
+
+- from: eigenvalues
+  to: variational-principles
+  type: REPRESENTED-BY
+  strength: theorem
+  context: >-
+    For self-adjoint problems, Rayleigh quotients and min-max principles
+    characterize ordered eigenvalues as constrained extrema.
+  evidence: [trefethen-bau-1997]
+
+- from: eigenvalues
+  to: digital-communications
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Singular/eigenmodes of a MIMO channel split it into parallel scalar
+    subchannels and expose conditioning, diversity, and water-filling gains.
+  evidence: [proakis-salehi-2008]
+
+- from: large-number-limits
+  to: digital-communications
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Typical-set and concentration arguments turn long random code blocks into
+    reliable rates below channel capacity; the claim is asymptotic in block
+    length.
+  evidence: [cover-thomas-2006]
+
+- from: optimization
+  to: weather-prediction
+  type: APPLIED-IN
+  strength: theorem
+  context: >-
+    Variational data assimilation minimizes a forecast-observation mismatch
+    over the initial state using tangent and adjoint models.
+  evidence: [courtier-etal-1994]

@@ -9,6 +9,8 @@ fields:
   - probability
   - statistics
 aliases:
+  - name: Bayesian network / directed acyclic graph model
+    field: statistics
   - name: belief network
     field: probability
   - name: directed graphical model

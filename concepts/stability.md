@@ -8,6 +8,8 @@ summary: >
   robustness question every field asks in its own dialect.
 fields: [control, mechanics, biology, pde, economics]
 aliases:
+  - name: linear / nonlinear PDE stability
+    field: pde
   - name: asymptotic / Lyapunov stability, stability margins
     field: control
   - name: buckling threshold / structural stability

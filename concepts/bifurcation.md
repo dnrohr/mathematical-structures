@@ -9,6 +9,8 @@ summary: >
   changed".
 fields: [mechanics, control, biology, fluids]
 aliases:
+  - name: bifurcation / loss-of-stability point
+    field: control
   - name: tipping point / critical transition
     field: biology
   - name: onset of instability / flutter boundary

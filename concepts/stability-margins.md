@@ -8,6 +8,8 @@ summary: >
   oscillation sets in — one field's answer to a question every field asks.
 fields: [control, mechanics, biology]
 aliases:
+  - name: robustness margin / distance to instability
+    field: biology
   - name: gain margin / phase margin / vector (modulus) margin
     field: control
   - name: distance to flutter / stability reserve

@@ -9,6 +9,8 @@ summary: >
   predictable when many contributions combine?"
 fields: [probability, statistics, thermodynamics, ml]
 aliases:
+  - name: asymptotics / law of large numbers / central limit theorem
+    field: statistics
   - name: LLN / CLT / concentration inequalities
     field: probability
   - name: thermodynamic limit / self-averaging

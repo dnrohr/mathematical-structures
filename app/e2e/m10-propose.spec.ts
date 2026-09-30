@@ -61,33 +61,35 @@ test('concept page → composer → prefilled issue URL (the M10 exit criterion)
   );
 });
 
-test('candidate-queue pair → composer with the pair filled in; state round-trips', async ({
+test('queue bridge proposal → composer with the pair filled in; state round-trips', async ({
   page,
 }) => {
-  // The candidate-edge list moved from #/questions to its M11 sibling,
-  // #/queue (UI_REDESIGN.md §4.6); the propose entry point moved with it.
-  // The M16 triage drained the queue to its two recorded defers; the
-  // radon-transform ↔ greens-function pair is the composer fixture now
-  // (bayes-rule ↔ computational-imaging, the old fixture, became an edge).
+  // Pair-level curation can legitimately drain to zero. Community bridge
+  // deficits remain honest queue entry points without inventing a claim.
   await page.goto('/#/queue');
-  const candidate = page.locator('.candidate-list li', { hasText: 'Radon' }).first();
-  await expect(candidate).toContainText("Green's functions");
-  await candidate.getByRole('link', { name: 'propose' }).click();
-  await expect(page).toHaveURL(/#\/propose\?from=greens-function&to=radon-transform$/);
-  await expect(page.locator('.propose-from')).toHaveValue('greens-function');
-  await expect(page.locator('.propose-to')).toHaveValue('radon-transform');
+  await page
+    .locator('.deficit-list > li')
+    .first()
+    .getByRole('link', { name: 'propose an edge' })
+    .click();
+  await expect(page).toHaveURL(/#\/propose\?from=.+&to=.+$/);
+  const from = await page.locator('.propose-from').inputValue();
+  const to = await page.locator('.propose-to').inputValue();
+  expect(from).not.toBe('');
+  expect(to).not.toBe('');
 
   // Swap flips the direction and writes it to the URL.
   await page.locator('.propose-swap').click();
-  await expect(page).toHaveURL(/#\/propose\?from=radon-transform&to=greens-function$/);
+  await expect(page.locator('.propose-from')).toHaveValue(to);
+  await expect(page.locator('.propose-to')).toHaveValue(from);
   await page.locator('.propose-swap').click();
-  await expect(page.locator('.propose-from')).toHaveValue('greens-function');
+  await expect(page.locator('.propose-from')).toHaveValue(from);
 
   // Completing the draft keeps the whole state in the URL (§5.2)…
   await page.locator('.propose-type').selectOption('APPLIED-IN');
   await page.locator('.propose-strength').selectOption('strong-analogy');
   await expect(page).toHaveURL(
-    /#\/propose\?from=greens-function&to=radon-transform&type=APPLIED-IN&strength=strong-analogy$/,
+    new RegExp(`#\\/propose\\?from=${from}&to=${to}&type=APPLIED-IN&strength=strong-analogy$`),
   );
   // …and the chosen strength surfaces its schema description.
   await expect(page.locator('.strength-hint')).toContainText('Established correspondence');

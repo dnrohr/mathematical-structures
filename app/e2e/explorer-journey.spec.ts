@@ -53,13 +53,12 @@ test('reverse-dialect lookup: an alias hit is framed as a translation', async ({
   await input.fill('poles');
   // Several nodes carry "poles" dialects; every such hit is framed as a
   // translation, whatever the ranking.
-  const hit = page.locator('.search-hit').first();
+  const hit = page
+    .locator('.search-hit')
+    .filter({ hasText: 'Eigenvalues and spectral decomposition' });
   await expect(hit).toContainText('aka');
   await expect(hit).toContainText('in Control theory');
-  await page
-    .locator('.search-hit')
-    .filter({ hasText: 'Eigenvalues and spectral decomposition' })
-    .click();
+  await hit.click();
   await expect(page).toHaveURL(/#\/c\/eigenvalues$/);
 });
 

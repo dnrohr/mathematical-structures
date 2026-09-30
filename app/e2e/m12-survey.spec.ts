@@ -162,10 +162,9 @@ test('matrix: the pair panel lists every claim for a connected pair, and prefill
   // Connected pairs offer no propose action — no implied duplicates.
   await expect(panel.getByRole('link', { name: 'propose an edge' })).toHaveCount(0);
 
-  // An unconnected pair (a live link suggestion is unconnected by
-  // construction) says so and routes to the composer, both endpoints set.
-  const data = await loadGraph(page);
-  const pair = data.metrics.queue.link_suggestions[0]!;
+  // An unconnected pair says so and routes to the composer, both endpoints
+  // set. Do not depend on live curation debt: that queue may be fully drained.
+  const pair = { a: 'aliasing', b: 'b-series' };
   await page.goto(`/#/matrix?a=${pair.a}&b=${pair.b}`);
   await expect(page.locator('.matrix-pair-panel')).toContainText('No claim connects these two');
   await page.locator('.matrix-pair-panel').getByRole('link', { name: 'propose an edge' }).click();

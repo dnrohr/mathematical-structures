@@ -8,6 +8,8 @@ summary: >
   entropy rate, and maximum-entropy inference.
 fields: [information-theory, statistics, ml, probability]
 aliases:
+  - name: entropy of a distribution / entropy rate
+    field: probability
   - name: expected surprisal / source entropy / entropy rate
     field: information-theory
   - name: cross-entropy loss / KL regularization

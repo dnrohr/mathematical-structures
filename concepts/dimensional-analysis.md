@@ -8,6 +8,8 @@ summary: >
   that no physical prediction can depend on an arbitrary choice of units.
 fields: [fluids, heat-transfer, mechanics, biology]
 aliases:
+  - name: similitude / nondimensional groups
+    field: mechanics
   - name: similarity analysis / dynamic similarity / similitude
     field: fluids
   - name: dimensionless groups (Re, Pé, Pr, Da, St)

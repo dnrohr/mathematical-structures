@@ -8,6 +8,8 @@ summary: >
   bounding long-horizon prediction no matter how good the model.
 fields: [mechanics, fluids, biology, pde]
 aliases:
+  - name: spatiotemporal chaos / chaotic PDE dynamics
+    field: pde
   - name: sensitive dependence / positive Lyapunov exponent
     field: mechanics
   - name: strange attractor dynamics

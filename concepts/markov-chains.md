@@ -9,6 +9,10 @@ summary: >
   behavior and mixing.
 fields: [probability, statistics, networks, thermodynamics, ml]
 aliases:
+  - name: master equation / kinetic Monte Carlo
+    field: thermodynamics
+  - name: Markov model / random-walk kernel
+    field: ml
   - name: random walk / stochastic matrix dynamics
     field: probability
   - name: MCMC (Markov chain Monte Carlo)
