@@ -1,8 +1,37 @@
 # Atlas Visualization Roadmap
 
 > Updated 2026-09-30. The graph workspace/focus slice, deterministic Bridge
-> Atlas overview, scale-aware camera foundation, and connection-legibility
-> hierarchy are implemented. Broader semantic level-of-detail remains below.
+> Atlas overview, scale-aware camera foundation, connection-legibility
+> hierarchy, and first Structure to Use layered slice are implemented. Broader
+> semantic level-of-detail remains below.
+
+## Structure to Use delivery status
+
+The third Atlas layout is implemented at `#/atlas?layout=flow` as a client-side
+presentation transform over the existing trusted graph:
+
+- `object`/`principle`, `model`/`operation`/`dialect`, `move`/`theorem`,
+  `phenomenon`, and `application` map to Foundation, Form, Method, Behavior,
+  and Application respectively; emitted node types remain untouched;
+- fixed median sweeps over primary-flow neighbors, canonical-name seeding, and
+  slug tie-breaking make row order deterministic without force physics or a
+  runtime dependency;
+- directed, symmetric, long, same-layer, parallel, and backward claims keep
+  their stored endpoints, type, strength, marker semantics, and readable
+  shared-claim equivalent;
+- Application grouping uses only the first declared field by default, with all
+  fields disclosed on the node, and URL-backed `field`, `community`, and
+  `none` modes;
+- focus and depth reuse the Atlas contract, change attention/visible claims
+  without recomputing the complete ordering, and expose concept, path,
+  comparison, matrix, and constellation actions; and
+- the graph surface owns narrow horizontal overflow while controls, inspector,
+  and page width remain usable.
+
+Product naming (`Flow` versus `Structure to Use`), moving ordering into an
+additive build metric, curated field families, inspectable aggregate bundles,
+and full-chain highlighting remain explicit follow-up decisions. None is
+silently inferred by this slice.
 
 ## Bridge Atlas delivery status
 
@@ -405,13 +434,14 @@ Reuse the existing Lens filter vocabulary rather than creating Atlas-specific
 filters. Place the full controls in a drawer and show active filters as compact,
 removable toolbar controls.
 
-Add alternative layouts one at a time, in this order:
+Add alternative layouts one at a time. The first Structure to Use projection
+is now delivered; the remaining candidates are:
 
 1. **Community islands** — exposes local structure and bridges.
 2. **Node-kind bands** — exposes relationships among models, principles,
    operations, moves, applications, and other node kinds.
-3. **Dependency flow** — emphasizes directed assumption, governance, and
-   tractability relationships.
+3. **Deeper dependency analysis** — if user review calls for it, build on the
+   delivered five-role view without normalizing claim direction.
 
 Every layout must answer a distinct question, preserve focus and filters, and
 remain deterministic. Any new layout computation belongs in the build layer
@@ -506,8 +536,7 @@ The redesign succeeds when:
 
 ## Next implementation slice
 
-Add semantic detail bands on top of the delivered camera foundation. Keep
-focused and keyboard-focused marks legible, choose additional labels
-deterministically, disclose visual suppression, and preserve the inspector's
-complete readable claims. Optional minimap viewport controls and pinch input
-remain later follow-ups.
+Review the delivered Structure to Use evidence to settle its product label and
+whether chain highlighting belongs in this layout or a separate path-oriented
+mode. Semantic detail bands for the concept constellation, optional minimap
+viewport controls, and pinch input remain independent follow-ups.

@@ -434,6 +434,10 @@ matching the "can never rot" deployment goal.
 #/map?order=…&field=…&focus=…   structures × fields migration map (M12, UI_REDESIGN §4.4)
 #/atlas?communities=…&focus=…   the fixed constellation over metrics.layout; focus rings
                         one concept — the situating/minimap deep link (M14, UI_REDESIGN §4.7)
+#/atlas?layout=bridges  deterministic community territories and exact bridge claims
+#/atlas?layout=flow&focus=…&depth=…&group=field|community|none
+                        Structure to Use: five renderer-owned presentation columns over
+                        the trusted graph; stored claim direction and ontology are unchanged
 #/compare/<slugA>/<slugB>       two concepts side by side: merged dialect table, direct
                         claims, shared ground (M14, UI_REDESIGN §4.5)
 #/path/<slugA>/<slugB>  translation-chain finder
@@ -467,6 +471,12 @@ shell ──► views ──► graph-render
 - **`views/`**: one directory per route; each renders DOM from `data/` accessors.
   Views never import each other; shared fragments (edge-sentence renderer, dialect
   table, strength badge) live in `views/common/`.
+- **`views/atlas/flow-layout.ts`**: the dependency-free Structure to Use
+  projection. It maps existing node types to five presentation roles, runs a
+  fixed-count median sweep with slug tie-breaking over trusted primary-flow
+  neighbors, and classifies edge routing without reading or mutating
+  `metrics.layout`. The complete trusted graph is ordered before focus changes
+  visibility, so focus and depth never move surviving marks.
 - **`graph-render/`**: exactly one force-layout SVG component with three presets
   (ego, lens, path). It receives pre-filtered nodes/edges and emits navigation
   events; it never queries data itself.

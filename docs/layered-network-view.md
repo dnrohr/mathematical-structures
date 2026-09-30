@@ -1,5 +1,14 @@
 # Layered Network View: Structure to Use
 
+> Implemented 2026-09-30 at `#/atlas?layout=flow`. The shipped slice keeps
+> deterministic ordering in the client, uses `Structure to Use` as the visible
+> product label, and leaves field families, aggregate bundles, and complete
+> chain highlighting for separate reviewed work. Current UI evidence is stored
+> under `artifacts/ui/layered-network-view/`: `overview-light.png`,
+> `application-field-groups-light.png`, `focused-dark.png`, and
+> `narrow-layout.png`, plus the 4.8-second `focus-group-depth.webm` interaction
+> recording.
+
 ## Purpose
 
 Add a complementary Atlas layout that reveals how mathematical structure

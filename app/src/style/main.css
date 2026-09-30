@@ -2857,6 +2857,158 @@ th[aria-sort='ascending'] .sort-button::after {
   }
 }
 
+/* Structure to Use: deterministic, renderer-owned layered projection. */
+.flow-workspace {
+  min-height: 0;
+}
+
+.flow-workspace.has-inspector {
+  align-items: start;
+}
+
+.flow-figure {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.flow-scroll {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  max-height: min(72vh, 52rem);
+  overflow: auto;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--bg-raised);
+  contain: inline-size;
+  overscroll-behavior: contain;
+}
+
+.flow-scroll:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.flow-svg {
+  display: block;
+  min-width: 96rem;
+  background: var(--bg-raised);
+}
+
+.flow-guides line {
+  stroke: var(--rule);
+  stroke-width: 1;
+  stroke-dasharray: 3 7;
+}
+
+.flow-layer-heading {
+  fill: var(--ink);
+  font: 750 15px/1 var(--font-ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.flow-group-region {
+  fill: color-mix(in srgb, var(--link) 6%, var(--bg-raised));
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+.flow-group-label {
+  fill: var(--ink-muted);
+  font: 700 10px/1 var(--font-ui);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.flow-node-label {
+  fill: var(--ink);
+  font: 11px/1 var(--font-ui);
+  paint-order: stroke;
+  stroke: var(--bg-raised);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.flow-node.context-node {
+  opacity: 0.2;
+}
+
+.flow-node.context-node:hover,
+.flow-node.context-node:focus-visible {
+  opacity: 0.9;
+}
+
+.flow-edge.band-primary.attention-overview {
+  opacity: 0.38;
+}
+
+.flow-edge.band-structural,
+.flow-edge.band-cross-link {
+  opacity: 0.3;
+}
+
+.flow-edge.route-backward .edge-line {
+  stroke: var(--warn);
+}
+
+.flow-edge.route-same-layer .edge-line {
+  stroke-opacity: 0.76;
+}
+
+.flow-edge:hover,
+.flow-edge:focus,
+.flow-edge.is-interacting,
+.flow-edge.attention-outgoing-focus,
+.flow-edge.attention-incoming-focus,
+.flow-edge.attention-focus-adjacent {
+  opacity: 1;
+}
+
+.flow-edge .edge-line,
+.flow-svg .atlas-ring {
+  vector-effect: non-scaling-stroke;
+}
+
+.flow-caption {
+  margin-top: 0.4rem;
+}
+
+.flow-group-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--ink-muted);
+}
+
+.flow-group-select {
+  min-height: 2rem;
+}
+
+.flow-readable {
+  max-width: 76rem;
+  margin: 1.5rem auto 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.flow-readable h2 {
+  margin-bottom: 0.2rem;
+}
+
+@media (max-width: 52rem) {
+  .flow-workspace.has-inspector .flow-inspector {
+    order: -1;
+  }
+
+  .flow-scroll {
+    max-height: 58vh;
+  }
+}
+
 /* ---- the concept-page minimap ("you are here") ---- */
 
 .concept-minimap {
