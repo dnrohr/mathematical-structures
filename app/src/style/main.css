@@ -1309,7 +1309,8 @@ details.cite[open] .disclosure {
 }
 
 .graph-edge:hover .edge-line,
-.graph-edge:focus .edge-line {
+.graph-edge:focus .edge-line,
+.graph-edge.is-interacting .edge-line {
   stroke: var(--focus);
 }
 
@@ -2156,6 +2157,10 @@ th[aria-sort='ascending'] .sort-button::after {
 
 .graph-arrow path {
   fill: var(--ink-muted);
+  stroke: var(--bg-raised);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
 }
 
 .arrow-strong path {
@@ -2191,8 +2196,58 @@ th[aria-sort='ascending'] .sort-button::after {
 }
 
 .graph-edge:hover .edge-line.directed,
-.graph-edge:focus .edge-line.directed {
+.graph-edge:focus .edge-line.directed,
+.graph-edge.is-interacting .edge-line.directed {
   marker-end: url(#arrow-focus);
+}
+
+/* The Atlas has an explicit attention hierarchy in addition to the strength
+   grammar. Focus changes contrast only: dash pattern, edge membership,
+   direction, and the fixed layout all remain semantic authorities. */
+.atlas-svg .graph-edge.attention-overview {
+  opacity: 0.52;
+}
+
+.atlas-svg .graph-edge.attention-context {
+  opacity: 0.2;
+}
+
+.atlas-svg .graph-edge.attention-outgoing-focus .edge-line,
+.atlas-svg .graph-edge.attention-incoming-focus .edge-line,
+.atlas-svg .graph-edge.attention-focus-adjacent .edge-line {
+  stroke: var(--focus);
+}
+
+.atlas-svg .graph-edge.attention-outgoing-focus .edge-line.directed,
+.atlas-svg .graph-edge.attention-incoming-focus .edge-line.directed {
+  marker-end: url(#arrow-focus);
+}
+
+.atlas-svg .graph-edge.attention-outgoing-focus.emph-strong .edge-line,
+.atlas-svg .graph-edge.attention-incoming-focus.emph-strong .edge-line,
+.atlas-svg .graph-edge.attention-focus-adjacent.emph-strong .edge-line {
+  stroke-width: 2.8;
+}
+
+.atlas-svg .graph-edge.attention-outgoing-focus.emph-medium .edge-line,
+.atlas-svg .graph-edge.attention-incoming-focus.emph-medium .edge-line,
+.atlas-svg .graph-edge.attention-focus-adjacent.emph-medium .edge-line {
+  stroke-width: 2.4;
+}
+
+.atlas-svg .graph-edge.attention-outgoing-focus.emph-light .edge-line,
+.atlas-svg .graph-edge.attention-incoming-focus.emph-light .edge-line,
+.atlas-svg .graph-edge.attention-focus-adjacent.emph-light .edge-line {
+  stroke-width: 2.1;
+}
+
+.atlas-svg .graph-edge.attention-overview:hover,
+.atlas-svg .graph-edge.attention-overview:focus,
+.atlas-svg .graph-edge.attention-overview.is-interacting,
+.atlas-svg .graph-edge.attention-context:hover,
+.atlas-svg .graph-edge.attention-context:focus,
+.atlas-svg .graph-edge.attention-context.is-interacting {
+  opacity: 1;
 }
 
 /* ======================================================================

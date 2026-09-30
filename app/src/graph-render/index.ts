@@ -272,15 +272,18 @@ export function arrowDefs(): SVGDefsElement {
     const marker = s('marker', {
       id: `arrow-${kind}`,
       class: `graph-arrow arrow-${kind}`,
-      viewBox: '0 0 8 8',
-      refX: '8',
+      viewBox: '0 0 10 8',
+      refX: '9.25',
       refY: '4',
-      markerWidth: '8',
+      markerWidth: '10',
       markerHeight: '8',
       markerUnits: 'userSpaceOnUse',
       orient: 'auto',
+      overflow: 'visible',
+      'data-base-width': '10',
+      'data-base-height': '8',
     });
-    marker.appendChild(s('path', { d: 'M 0 0 L 8 4 L 0 8 Z' }));
+    marker.appendChild(s('path', { d: 'M 0.75 0.75 L 9.25 4 L 0.75 7.25 Z' }));
     defs.appendChild(marker);
   }
   return defs;
