@@ -1,8 +1,7 @@
 /**
- * Atlas workspace (visualization roadmap stages 0–1). The fixed build-time
- * constellation remains geographic context; URL-backed focus selects a
- * bounded trusted reading layer and opens the readable inspection panel.
- * There is no client-side layout, camera, or aggregation in this stage.
+ * Atlas workspace. The fixed build-time constellation remains geographic
+ * context; URL-backed focus selects a bounded trusted reading layer, while a
+ * transient uniform camera provides bounded pan and zoom without relayout.
  */
 import type { Atlas } from '../../data/atlas';
 import { EGO_NODE_CAP, trustedEgoNetwork } from '../../data/subgraph';
@@ -17,6 +16,18 @@ import { bridgeAtlasView, type BridgeAtlasState } from './bridges';
 import { compareHash } from '../compare';
 import { lensHash } from '../lens';
 import { pathHash } from '../path';
+import {
+  CAMERA_ZOOM_STEP,
+  clampCamera,
+  fitCamera,
+  panBy,
+  zoomAt,
+  type Camera,
+  type Point,
+  type Rect,
+} from './camera';
+
+let preservedCamera: Camera | undefined;
 
 export type AtlasDepth = 1 | 2 | 'all';
 
@@ -188,7 +199,52 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
   const pad = 28;
   const [minX, minY] = [Math.min(...xs, 0) - pad, Math.min(...ys, 0) - pad];
   const [width, height] = [Math.max(...xs, 1) + pad - minX, Math.max(...ys, 1) + pad - minY];
+  const cameraRect: Rect = { x: minX, y: minY, width, height };
+  const fittedCamera = fitCamera(cameraRect, cameraRect);
+  let camera = clampCamera(preservedCamera ?? fittedCamera, cameraRect, cameraRect);
+  let cameraLayer: SVGGElement | null = null;
+  let cameraSvg: SVGSVGElement | null = null;
   const figureHost = h('div', { class: 'atlas-figure' });
+  const cameraStatus = h('span', {
+    class: 'atlas-camera-status',
+    role: 'status',
+    'aria-live': 'polite',
+    'aria-atomic': 'true',
+  });
+
+  const cameraDescription = (): string =>
+    `${String(Math.round(camera.scale * 100))}% zoom${
+      focus ? `, focused on ${atlas.node(focus)!.canonical_name}` : ''
+    }`;
+
+  const applyCamera = (next: Camera): void => {
+    camera = clampCamera(next, cameraRect, cameraRect);
+    preservedCamera = { ...camera };
+    cameraLayer?.setAttribute(
+      'transform',
+      `translate(${camera.x.toFixed(3)} ${camera.y.toFixed(3)}) scale(${camera.scale.toFixed(4)})`,
+    );
+    cameraSvg?.setAttribute('data-camera-x', camera.x.toFixed(3));
+    cameraSvg?.setAttribute('data-camera-y', camera.y.toFixed(3));
+    cameraSvg?.setAttribute('data-camera-scale', camera.scale.toFixed(4));
+    cameraStatus.textContent = cameraDescription();
+  };
+
+  const zoomFromCenter = (factor: number): void => {
+    applyCamera(
+      zoomAt(
+        camera,
+        camera.scale * factor,
+        { x: minX + width / 2, y: minY + height / 2 },
+        cameraRect,
+        cameraRect,
+      ),
+    );
+  };
+
+  const fit = (): void => {
+    applyCamera(fittedCamera);
+  };
 
   const colorToken = (node: GraphNode): string => {
     if (!communities) return atlas.nodeType(node.node_type)?.color_token ?? 'ink-muted';
@@ -229,7 +285,118 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
         ? `Atlas focused on ${atlas.node(focus)!.canonical_name}, ${String(depth)} hop view`
         : 'The atlas constellation: every trusted-strength concept and claim',
       class: 'graph-svg atlas-svg',
+      tabindex: '0',
     });
+    cameraSvg = svg;
+    cameraLayer = svgEl('g', { class: 'atlas-camera' });
+
+    const svgPoint = (clientX: number, clientY: number): Point => {
+      const matrix = svg.getScreenCTM();
+      if (!matrix) return { x: minX + width / 2, y: minY + height / 2 };
+      const point = svg.createSVGPoint();
+      point.x = clientX;
+      point.y = clientY;
+      const transformed = point.matrixTransform(matrix.inverse());
+      return { x: transformed.x, y: transformed.y };
+    };
+
+    svg.addEventListener(
+      'wheel',
+      (event) => {
+        event.preventDefault();
+        const factor = Math.exp(-event.deltaY * 0.002);
+        applyCamera(
+          zoomAt(
+            camera,
+            camera.scale * factor,
+            svgPoint(event.clientX, event.clientY),
+            cameraRect,
+            cameraRect,
+          ),
+        );
+      },
+      { passive: false },
+    );
+
+    let gesture:
+      | {
+          pointerId: number;
+          clientX: number;
+          clientY: number;
+          point: Point;
+          camera: Camera;
+          pan: boolean;
+          moved: boolean;
+        }
+      | undefined;
+    let suppressClick = false;
+    const endGesture = (cancel: boolean): void => {
+      if (!gesture) return;
+      if (cancel && gesture.pan && gesture.moved) applyCamera(gesture.camera);
+      if (svg.hasPointerCapture(gesture.pointerId)) svg.releasePointerCapture(gesture.pointerId);
+      svg.classList.remove('is-panning');
+      gesture = undefined;
+    };
+    svg.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0 || !event.isPrimary) return;
+      const pan = event.target === svg;
+      gesture = {
+        pointerId: event.pointerId,
+        clientX: event.clientX,
+        clientY: event.clientY,
+        point: svgPoint(event.clientX, event.clientY),
+        camera: { ...camera },
+        pan,
+        moved: false,
+      };
+      if (pan) {
+        svg.setPointerCapture(event.pointerId);
+        svg.focus({ preventScroll: true });
+        event.preventDefault();
+      }
+    });
+    svg.addEventListener('pointermove', (event) => {
+      if (!gesture || event.pointerId !== gesture.pointerId) return;
+      const distance = Math.hypot(event.clientX - gesture.clientX, event.clientY - gesture.clientY);
+      gesture.moved ||= distance >= 4;
+      if (!gesture.pan || !gesture.moved) return;
+      const point = svgPoint(event.clientX, event.clientY);
+      svg.classList.add('is-panning');
+      applyCamera(
+        panBy(
+          gesture.camera,
+          { x: point.x - gesture.point.x, y: point.y - gesture.point.y },
+          cameraRect,
+          cameraRect,
+        ),
+      );
+      event.preventDefault();
+    });
+    svg.addEventListener('pointerup', (event) => {
+      if (!gesture || event.pointerId !== gesture.pointerId) return;
+      suppressClick = gesture.moved;
+      endGesture(false);
+      window.setTimeout(() => {
+        suppressClick = false;
+      }, 0);
+    });
+    svg.addEventListener('pointercancel', () => endGesture(true));
+    svg.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && gesture) {
+        event.preventDefault();
+        endGesture(true);
+      }
+    });
+    svg.addEventListener(
+      'click',
+      (event) => {
+        if (!suppressClick) return;
+        suppressClick = false;
+        event.preventDefault();
+        event.stopPropagation();
+      },
+      { capture: true },
+    );
 
     const caption = h('figcaption', { class: 'graph-caption', 'aria-live': 'polite' });
     const idleCaption = focus
@@ -299,7 +466,7 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
       wire(group, sentence);
       edgeLayer.appendChild(group);
     }
-    svg.appendChild(edgeLayer);
+    cameraLayer.appendChild(edgeLayer);
 
     const nodeLayer = svgEl('g', { class: 'graph-nodes' });
     for (const point of placed) {
@@ -328,7 +495,9 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
       wire(anchor, `${point.node.canonical_name} — ${point.node.summary.trim()}`);
       nodeLayer.appendChild(anchor);
     }
-    svg.appendChild(nodeLayer);
+    cameraLayer.appendChild(nodeLayer);
+    svg.appendChild(cameraLayer);
+    applyCamera(camera);
     figureHost.replaceChildren(
       h('figure', { class: 'graph-view graph-atlas' }, svg, caption),
       legend(),
@@ -356,6 +525,18 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
       },
       label,
     );
+
+  const cameraButton = (label: string, text: string, action: () => void): HTMLElement => {
+    const button = h('button', {
+      class: 'atlas-camera-button',
+      type: 'button',
+      'aria-label': label,
+      title: label,
+    });
+    button.textContent = text;
+    button.addEventListener('click', action);
+    return button;
+  };
 
   render();
   const floor = atlas.schema.analysis.trusted_min_strength;
@@ -414,6 +595,14 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
       depthLink(2, '2 hop'),
       depthLink('all', 'All'),
     ),
+    h(
+      'span',
+      { class: 'atlas-camera-controls', role: 'group', 'aria-label': 'Camera controls' },
+      cameraButton('Zoom out', '−', () => zoomFromCenter(1 / CAMERA_ZOOM_STEP)),
+      cameraButton('Zoom in', '+', () => zoomFromCenter(CAMERA_ZOOM_STEP)),
+      cameraButton('Fit constellation', 'Fit', fit),
+    ),
+    cameraStatus,
     h('label', { class: 'atlas-color-mode' }, h('span', {}, 'Color by community'), communityToggle),
     h(
       'a',
