@@ -15,7 +15,16 @@ export type Route =
   | { name: 'atoz'; type?: string; field?: string; status?: string }
   | { name: 'dialects'; query: string }
   | { name: 'lens'; filters: LensFilters; communities: boolean }
-  | { name: 'atlas'; communities: boolean; focus?: string }
+  | {
+      name: 'atlas';
+      communities: boolean;
+      focus?: string;
+      depth?: 1 | 2 | 'all';
+      layout?: 'bridges';
+      mode?: 'bridges' | 'frontiers';
+      bridge?: string;
+      filters?: LensFilters;
+    }
   | { name: 'compare'; a?: string; b?: string }
   | { name: 'matrix'; filters: LensFilters; order?: string; focus?: string; a?: string; b?: string }
   | { name: 'map'; order?: string; field?: string; focus?: string }
@@ -76,10 +85,30 @@ export function parseHash(hash: string): Route {
   }
   if (segs[0] === 'atlas' && segs.length === 1) {
     const focus = params.get('focus');
+    const rawDepth = params.get('depth');
+    const depth =
+      rawDepth === '1' ? 1 : rawDepth === '2' ? 2 : rawDepth === 'all' ? 'all' : undefined;
+    const layout = params.get('layout') === 'bridges' ? 'bridges' : undefined;
+    const mode = params.get('mode') === 'frontiers' ? 'frontiers' : undefined;
+    const bridge = /^\d+-\d+$/.test(params.get('bridge') ?? '') ? params.get('bridge')! : undefined;
+    const filters: LensFilters = {};
+    const edge = params.get('edge');
+    const type = params.get('type');
+    const field = params.get('field');
+    const strength = params.get('strength');
+    if (edge) filters.edge = edge;
+    if (type) filters.type = type;
+    if (field) filters.field = field;
+    if (strength) filters.strength = strength;
     return {
       name: 'atlas',
       communities: params.get('communities') === '1',
       ...(focus ? { focus } : {}),
+      ...(depth ? { depth } : {}),
+      ...(layout ? { layout } : {}),
+      ...(mode ? { mode } : {}),
+      ...(bridge ? { bridge } : {}),
+      ...(layout ? { filters } : {}),
     };
   }
   if (segs[0] === 'compare' && segs.length <= 3) {

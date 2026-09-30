@@ -2432,8 +2432,131 @@ th[aria-sort='ascending'] .sort-button::after {
 
 /* ---- the atlas constellation (#/atlas) ---- */
 
+.atlas-overview.content.wide {
+  max-width: none;
+  padding-inline: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.atlas-titlebar {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.65rem;
+}
+
+.atlas-titlebar h1,
+.atlas-titlebar p {
+  margin: 0;
+}
+
+.atlas-titlebar p {
+  color: var(--ink-muted);
+  font: 0.9rem var(--font-ui);
+}
+
+.atlas-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.75rem;
+  padding: 0.45rem 0.6rem;
+  margin-bottom: 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--bg-raised);
+  font: 0.78rem var(--font-ui);
+}
+
+.atlas-toolbar-context {
+  min-width: 12rem;
+  margin-right: auto;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.atlas-depths {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+}
+
+.atlas-depth,
+.atlas-tool-link {
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.atlas-depth {
+  padding: 0.28rem 0.48rem;
+  border-right: 1px solid var(--rule);
+}
+
+.atlas-depth:last-child {
+  border-right: 0;
+}
+
+.atlas-depth[aria-current='page'] {
+  color: var(--bg-raised);
+  background: var(--ink);
+}
+
+.atlas-depth[aria-disabled='true'] {
+  opacity: 0.5;
+}
+
+.atlas-tool-link {
+  padding: 0.28rem 0.1rem;
+  text-decoration: underline;
+}
+
+.atlas-depth:hover:not([aria-disabled='true']),
+.atlas-depth:focus-visible,
+.atlas-tool-link:hover,
+.atlas-tool-link:focus-visible {
+  color: var(--link);
+}
+
+.atlas-color-mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.atlas-workspace {
+  min-height: min(44rem, calc(100vh - 11rem));
+}
+
+.atlas-workspace.has-inspector {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(19rem, 25rem);
+  gap: 0.7rem;
+}
+
+.atlas-figure,
+.graph-atlas {
+  min-width: 0;
+  height: 100%;
+}
+
+.graph-atlas {
+  display: flex;
+  flex-direction: column;
+}
+
 .atlas-svg {
-  max-height: 78vh;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: min(37rem, calc(100vh - 16rem));
+  max-height: calc(100vh - 12.5rem);
+}
+
+.atlas-figure > .community-legend {
+  margin: 0.35rem 0 0;
+  white-space: nowrap;
+  overflow-x: auto;
 }
 
 /* Labels appear on hover/focus (and stay on the ringed focus node): 40+
@@ -2450,16 +2573,185 @@ th[aria-sort='ascending'] .sort-button::after {
   opacity: 1;
 }
 
+.atlas-svg .atlas-node.context-node {
+  opacity: 0.16;
+}
+
+.atlas-svg .atlas-node.context-node:hover,
+.atlas-svg .atlas-node.context-node:focus-visible {
+  opacity: 0.82;
+}
+
 .atlas-svg .atlas-ring {
   fill: none;
   stroke: var(--focus);
   stroke-width: 2.5;
 }
 
-.atlas-focus-note {
-  align-self: center;
-  font-size: 0.85rem;
+.atlas-inspector {
+  position: relative;
+  max-height: calc(100vh - 11rem);
+  overflow-y: auto;
+  padding: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--bg-raised);
+  box-shadow: 0 0.35rem 1.2rem var(--shadow);
+  font-family: var(--font-ui);
+}
+
+.atlas-inspector-head .eyebrow,
+.atlas-inspector-head h2,
+.atlas-inspector-summary,
+.atlas-inspector-fields {
+  margin-top: 0;
+}
+
+.atlas-inspector-head .eyebrow {
+  margin-bottom: 0.25rem;
+  color: var(--ink-faint);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.atlas-inspector-head h2 {
+  padding-right: 2rem;
+  margin-bottom: 0.55rem;
+  font-size: 1.35rem;
+}
+
+.atlas-inspector-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
   color: var(--ink-muted);
+  border-radius: 4px;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.atlas-inspector-close:hover,
+.atlas-inspector-close:focus-visible {
+  color: var(--ink);
+  background: var(--code-bg);
+}
+
+.atlas-inspector-summary {
+  font: 1rem/1.45 var(--font-prose);
+}
+
+.atlas-inspector-fields {
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+}
+
+.atlas-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.9rem 0 1.1rem;
+}
+
+.atlas-action {
+  padding: 0.35rem 0.55rem;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.78rem;
+}
+
+.atlas-action.primary {
+  color: var(--bg-raised);
+  border-color: var(--ink);
+  background: var(--ink);
+}
+
+.atlas-action:hover,
+.atlas-action:focus-visible {
+  border-color: var(--focus);
+}
+
+.atlas-claims {
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--rule);
+}
+
+.atlas-claims-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.atlas-claim-group h3 {
+  margin: 1rem 0 0.25rem;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.atlas-claim-group .connection-list {
+  margin-top: 0;
+  padding-left: 1.1rem;
+}
+
+.atlas-info {
+  max-width: 62rem;
+  margin: 0.7rem auto 0;
+  font: 0.85rem/1.55 var(--font-ui);
+}
+
+.atlas-info > summary {
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+@media (max-width: 52rem) {
+  .atlas-titlebar {
+    display: block;
+  }
+
+  .atlas-titlebar p {
+    margin-top: 0.2rem;
+  }
+
+  .atlas-workspace,
+  .atlas-workspace.has-inspector {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .atlas-workspace.has-inspector .atlas-inspector {
+    order: -1;
+  }
+
+  .atlas-inspector {
+    max-height: min(24rem, 48vh);
+    border-radius: 10px 10px 5px 5px;
+  }
+
+  .atlas-svg {
+    min-height: 28rem;
+    max-height: 60vh;
+  }
+}
+
+@media (max-width: 28rem) {
+  .atlas-toolbar-context {
+    flex-basis: 100%;
+  }
+
+  .atlas-svg {
+    min-height: 22rem;
+  }
 }
 
 /* ---- the concept-page minimap ("you are here") ---- */
@@ -2642,4 +2934,227 @@ a.facet-chip.facet-zero {
 
 .action-list dd {
   font-size: 0.85rem;
+}
+
+/* Bridge Atlas: deterministic community geography with complete text equivalents. */
+.bridge-atlas-view {
+  max-width: 92rem;
+}
+
+.bridge-toolbar,
+.bridge-filters,
+.bridge-mode-switch,
+.bridge-layout-switch,
+.bridge-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3, 0.75rem);
+  align-items: end;
+}
+
+.bridge-layout-switch {
+  padding-right: 0.75rem;
+  border-right: 1px solid var(--rule);
+  font: 0.82rem var(--font-ui);
+}
+
+.bridge-layout-switch [aria-current='page'] {
+  font-weight: 750;
+}
+
+.bridge-toolbar {
+  justify-content: space-between;
+  margin-block: 1rem;
+  padding: 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius, 0.5rem);
+  background: var(--bg-raised);
+}
+
+.bridge-mode-switch a {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.bridge-mode-switch a[aria-current='page'] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.bridge-filters label {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.bridge-filters select {
+  max-width: 12rem;
+}
+
+.bridge-frontier-caption,
+.bridge-frontier-note {
+  padding: 0.8rem 1rem;
+  border-left: 4px solid var(--ink-muted);
+  background: var(--bg-raised);
+}
+
+.bridge-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.bridge-workspace.has-inspector {
+  grid-template-columns: minmax(0, 1.5fr) minmax(20rem, 0.75fr);
+}
+
+.bridge-map {
+  display: block;
+  width: 100%;
+  min-height: 28rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius, 0.5rem);
+  background: var(--bg-raised);
+}
+
+.bridge-line {
+  stroke: var(--ink);
+  stroke-opacity: 0.58;
+  vector-effect: non-scaling-stroke;
+}
+
+.bridge-line.selected {
+  stroke: var(--focus);
+  stroke-opacity: 1;
+}
+
+.bridge-territory {
+  fill: color-mix(in srgb, var(--community-color, var(--link)) 16%, var(--bg-raised));
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.bridge-territory-label {
+  fill: var(--ink);
+  font-size: 10px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: var(--bg-raised);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.bridge-territory-label tspan + tspan {
+  font-size: 8px;
+  font-weight: 500;
+}
+
+.bridge-territory.community-0 {
+  --community-color: var(--community-0);
+}
+.bridge-territory.community-1 {
+  --community-color: var(--community-1);
+}
+.bridge-territory.community-2 {
+  --community-color: var(--community-2);
+}
+.bridge-territory.community-3 {
+  --community-color: var(--community-3);
+}
+.bridge-territory.community-4 {
+  --community-color: var(--community-4);
+}
+.bridge-territory.community-5 {
+  --community-color: var(--community-5);
+}
+.bridge-territory.community-6 {
+  --community-color: var(--community-6);
+}
+.bridge-territory.community-7 {
+  --community-color: var(--community-7);
+}
+
+.bridge-legend {
+  margin-block: 0.5rem 1rem;
+  color: var(--ink-muted);
+  font-size: 0.84rem;
+}
+
+.bridge-community-list {
+  columns: 2 20rem;
+}
+
+.bridge-pair-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bridge-pair-table th,
+.bridge-pair-table td {
+  padding: 0.55rem;
+  border-block-end: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.bridge-pair-button {
+  min-width: 7.5rem;
+  min-height: 2.75rem;
+}
+
+.bridge-pair-button[aria-pressed='true'] {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.bridge-inspector {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  padding: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius, 0.5rem);
+  background: var(--bg-raised);
+}
+
+.bridge-exact-count {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+@media (max-width: 780px) {
+  .bridge-workspace.has-inspector {
+    grid-template-columns: 1fr;
+  }
+
+  .bridge-map {
+    min-height: 20rem;
+  }
+
+  .bridge-inspector {
+    position: static;
+    max-height: none;
+    grid-row: 1;
+  }
+
+  .bridge-pair-table,
+  .bridge-pair-table thead,
+  .bridge-pair-table tbody,
+  .bridge-pair-table tr,
+  .bridge-pair-table th,
+  .bridge-pair-table td {
+    display: block;
+  }
+
+  .bridge-pair-table thead {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
 }

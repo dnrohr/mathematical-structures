@@ -1,0 +1,39 @@
+dossier_schema: 1.0.0
+candidate:
+  id: elliptic-regularity
+  canonical_name: Elliptic regularity
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - pde
+  proposed_disposition: defer
+  possible_matches: []
+source_inventory:
+  - id: evans-pde-2010
+    kind: textbook
+    title: Partial Differential Equations, second edition
+    authors:
+      - Lawrence C. Evans
+    year: 2010
+    locator: https://bookstore.ams.org/gsm-19-r/
+    supplied_by: atlas-cross-field-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from evans-pde-2010 at Book table of contents, Chapters 1–7.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

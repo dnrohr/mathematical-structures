@@ -1,0 +1,151 @@
+dossier_schema: 1.0.0
+candidate:
+  id: percolation-on-networks
+  canonical_name: Percolation on networks
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - networks
+    - probability
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: phenomenon
+source_inventory:
+  - id: newman-networks-2018
+    kind: textbook
+    title: Networks, second edition
+    authors:
+      - Mark Newman
+    year: 2018
+    locator: https://academic.oup.com/book/27884
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: percolation-on-networks-claim
+    proposition: Network percolation and epidemic models share threshold behavior governed by connectivity and
+      transmissibility.
+    endpoints:
+      from: $candidate
+      to: epidemic-modeling
+    proposed_edge:
+      type: SAME-SKELETON
+      strength: strong-analogy
+      context: Locally tree-like networks and bond-percolation mappings of final outbreak size.
+    mathematical_skeleton: Occupied edges or successful transmissions generate connected clusters through the same
+      branching structure in suitable SIR limits.
+    scope: Locally tree-like networks and bond-percolation mappings of final outbreak size.
+    assumptions:
+      - independent transmission or occupation in the mapping
+    validity_regime: The stated claim is limited to locally tree-like networks and bond-percolation mappings of
+      final outbreak size.
+    caveats:
+      - Temporal correlations and reinfection break the simple static percolation equivalence.
+    counterexamples:
+      - SIS dynamics can persist without corresponding to a one-shot occupied cluster.
+    source_assessments:
+      - source_id: newman-networks-2018
+        proposition: Network percolation and epidemic models share threshold behavior governed by connectivity and
+          transmissibility.
+        status: direct-support
+        location: Chapter 15, percolation and network resilience.
+        rationale: The pinpointed section defines or develops Percolation on networks and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Network percolation and epidemic models share
+        threshold behavior governed by connectivity and transmissibility."
+    alternative_interpretations:
+      - A broader use of “Percolation on networks” outside the recorded scope.
+search:
+  queries:
+    - id: percolation-on-networks-query
+      query: Percolation on networks Networks, second edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: percolation-on-networks-query
+      result: located
+      source_ids:
+        - newman-networks-2018
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 15, percolation and network resilience.
+generated_hypotheses:
+  - id: percolation-on-networks-hypothesis
+    text: Network percolation and epidemic models share threshold behavior governed by connectivity and
+      transmissibility.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - newman-networks-2018
+automated_judgments:
+  - id: percolation-on-networks-judgment
+    method: model-assisted
+    subject: percolation-on-networks-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\percolation-on-networks.yaml#source_inventory
+adversarial_reviews:
+  - id: percolation-on-networks-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Temporal correlations and reinfection break the simple static percolation equivalence."
+    response: The proposition is restricted to locally tree-like networks and bond-percolation mappings of final
+      outbreak size, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\percolation-on-networks.yaml#claims.percolation-on-networks-claim
+  - id: percolation-on-networks-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of SAME-SKELETON.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Temporal correlations and
+      reinfection break the simple static percolation equivalence."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\percolation-on-networks.yaml#claims.percolation-on-networks-claim
+human_decisions:
+  - id: percolation-on-networks-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
+workflow:
+  state: accepted-as-node
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from newman-networks-2018 at Oxford Academic contents, Chapters 6–18.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner

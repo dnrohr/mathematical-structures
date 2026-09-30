@@ -242,6 +242,21 @@ function makeGraph(version = '1.0.0'): GraphJson {
         eigenvalues: [120.5, 80],
         'markov-chains': [340, 210.5],
       },
+      bridge_atlas: {
+        communities: [
+          {
+            id: 0,
+            member_slugs: ['eigenvalues', 'markov-chains'],
+            member_count: 2,
+            landmark_slugs: ['eigenvalues', 'markov-chains'],
+            internal_trusted_edge_count: 1,
+            center: [230.3, 145.3],
+            territory_path: 'M 100 145 A 130 130 0 1 0 360 145 A 130 130 0 1 0 100 145 Z',
+          },
+        ],
+        bridges: [],
+        frontiers: [],
+      },
     },
   };
 }

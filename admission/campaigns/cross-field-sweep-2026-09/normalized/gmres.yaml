@@ -1,0 +1,147 @@
+dossier_schema: 1.0.0
+candidate:
+  id: gmres
+  canonical_name: GMRES
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: trefethen-bau-1997
+    kind: textbook
+    title: Numerical Linear Algebra
+    authors:
+      - Lloyd N. Trefethen
+      - David Bau III
+    year: 1997
+    locator: https://people.maths.ox.ac.uk/trefethen/text.html
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: gmres-claim
+    proposition: GMRES chooses from a Krylov affine space the iterate with minimum Euclidean residual.
+    endpoints:
+      from: $candidate
+      to: optimization
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Nonsymmetric linear systems in exact arithmetic or controlled finite precision.
+    mathematical_skeleton: Arnoldi orthogonalization converts residual minimization to a small Hessenberg least-squares problem.
+    scope: Nonsymmetric linear systems in exact arithmetic or controlled finite precision.
+    assumptions:
+      - nonzero initial residual
+    validity_regime: The stated claim is limited to nonsymmetric linear systems in exact arithmetic or controlled
+      finite precision.
+    caveats:
+      - Memory and orthogonalization costs grow unless the method is restarted.
+    counterexamples:
+      - Restarted GMRES can stagnate even when unrestarted GMRES converges.
+    source_assessments:
+      - source_id: trefethen-bau-1997
+        proposition: GMRES chooses from a Krylov affine space the iterate with minimum Euclidean residual.
+        status: direct-support
+        location: Lecture 35, pp. 266–275.
+        rationale: The pinpointed section defines or develops GMRES and the scoped structural claim recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: GMRES chooses from a Krylov affine space the
+        iterate with minimum Euclidean residual."
+    alternative_interpretations:
+      - A broader use of “GMRES” outside the recorded scope.
+search:
+  queries:
+    - id: gmres-query
+      query: GMRES Numerical Linear Algebra definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: gmres-query
+      result: located
+      source_ids:
+        - trefethen-bau-1997
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Lecture 35, pp. 266–275.
+generated_hypotheses:
+  - id: gmres-hypothesis
+    text: GMRES chooses from a Krylov affine space the iterate with minimum Euclidean residual.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - trefethen-bau-1997
+automated_judgments:
+  - id: gmres-judgment
+    method: model-assisted
+    subject: gmres-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\gmres.yaml#source_inventory
+adversarial_reviews:
+  - id: gmres-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Memory and orthogonalization costs grow unless the method is restarted."
+    response: The proposition is restricted to nonsymmetric linear systems in exact arithmetic or controlled
+      finite precision, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\gmres.yaml#claims.gmres-claim
+  - id: gmres-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Memory and orthogonalization
+      costs grow unless the method is restarted."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\gmres.yaml#claims.gmres-claim
+human_decisions:
+  - id: gmres-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
+workflow:
+  state: accepted-as-node
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from trefethen-bau-1997 at Author table of contents, Lectures 1–40.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner

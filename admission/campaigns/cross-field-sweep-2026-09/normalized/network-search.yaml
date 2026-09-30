@@ -1,0 +1,39 @@
+dossier_schema: 1.0.0
+candidate:
+  id: network-search
+  canonical_name: Network search
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - networks
+    - probability
+  proposed_disposition: defer
+  possible_matches: []
+source_inventory:
+  - id: newman-networks-2018
+    kind: textbook
+    title: Networks, second edition
+    authors:
+      - Mark Newman
+    year: 2018
+    locator: https://academic.oup.com/book/27884
+    supplied_by: atlas-cross-field-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from newman-networks-2018 at Oxford Academic contents, Chapters 6–18.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

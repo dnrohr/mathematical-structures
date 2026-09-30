@@ -1,0 +1,146 @@
+dossier_schema: 1.0.0
+candidate:
+  id: inverse-problem
+  canonical_name: Inverse problem
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: model
+source_inventory:
+  - id: hansen-inverse-2010
+    kind: textbook
+    title: "Discrete Inverse Problems: Insight and Algorithms"
+    authors:
+      - Per Christian Hansen
+    year: 2010
+    locator: https://epubs.siam.org/doi/book/10.1137/1.9780898718836
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: inverse-problem-claim
+    proposition: An inverse problem infers latent causes or parameters from indirect observed effects.
+    endpoints:
+      from: $candidate
+      to: computational-imaging
+    proposed_edge:
+      type: APPLIED-IN
+      strength: strong-analogy
+      context: Linear discrete inverse problems arising from measurement operators.
+    mathematical_skeleton: A forward operator maps an unknown x to data b, and inversion seeks x from noisy b.
+    scope: Linear discrete inverse problems arising from measurement operators.
+    assumptions:
+      - specified forward model
+    validity_regime: The stated claim is limited to linear discrete inverse problems arising from measurement operators.
+    caveats:
+      - Nonidentifiability can persist even with noiseless data.
+    counterexamples:
+      - A forward operator with a nontrivial nullspace maps different unknowns to the same data.
+    source_assessments:
+      - source_id: hansen-inverse-2010
+        proposition: An inverse problem infers latent causes or parameters from indirect observed effects.
+        status: direct-support
+        location: Chapter 1, §§1.1–1.4, pp. 1–12.
+        rationale: The pinpointed section defines or develops Inverse problem and the scoped structural claim recorded
+          here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: An inverse problem infers latent causes or
+        parameters from indirect observed effects."
+    alternative_interpretations:
+      - A broader use of “Inverse problem” outside the recorded scope.
+search:
+  queries:
+    - id: inverse-problem-query
+      query: "Inverse problem Discrete Inverse Problems: Insight and Algorithms definition theorem"
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: inverse-problem-query
+      result: located
+      source_ids:
+        - hansen-inverse-2010
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 1, §§1.1–1.4, pp. 1–12.
+generated_hypotheses:
+  - id: inverse-problem-hypothesis
+    text: An inverse problem infers latent causes or parameters from indirect observed effects.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - hansen-inverse-2010
+automated_judgments:
+  - id: inverse-problem-judgment
+    method: model-assisted
+    subject: inverse-problem-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\inverse-problem.yaml#source_inventory
+adversarial_reviews:
+  - id: inverse-problem-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Nonidentifiability can persist even with noiseless data."
+    response: The proposition is restricted to linear discrete inverse problems arising from measurement
+      operators, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\inverse-problem.yaml#claims.inverse-problem-claim
+  - id: inverse-problem-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Nonidentifiability can persist
+      even with noiseless data."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\inverse-problem.yaml#claims.inverse-problem-claim
+human_decisions:
+  - id: inverse-problem-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
+workflow:
+  state: accepted-as-node
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from hansen-inverse-2010 at SIAM book, Chapters 1–8.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner

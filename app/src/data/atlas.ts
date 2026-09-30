@@ -145,6 +145,9 @@ export class Atlas {
   get layout(): Record<string, [number, number]> {
     return this.data.metrics.layout;
   }
+  get bridgeAtlas(): GraphMetrics['bridge_atlas'] {
+    return this.data.metrics.bridge_atlas;
+  }
   /** Strength rank of the trusted floor (metrics/layout run at or above it). */
   get trustedRank(): number {
     return this.strengthsById.get(this.data.schema.analysis.trusted_min_strength)?.rank ?? 0;
@@ -357,6 +360,8 @@ export function assembleAtlas(graphRaw: unknown, searchRaw: unknown): LoadResult
     return fail('corrupt', 'graph.json: missing non_edges/queue blocks (needs data version ≥ 1.4)');
   if (typeof graph.metrics.layout !== 'object' || graph.metrics.layout === null)
     return fail('corrupt', 'graph.json: missing metrics.layout (needs data version ≥ 1.5)');
+  if (typeof graph.metrics.bridge_atlas !== 'object' || graph.metrics.bridge_atlas === null)
+    return fail('corrupt', 'graph.json: missing metrics.bridge_atlas (needs data version ≥ 1.6)');
   if (typeof search.options !== 'object' || search.options === null || search.index === undefined)
     return fail('corrupt', 'search-index.json: missing options/index');
   try {

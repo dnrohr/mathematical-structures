@@ -158,12 +158,20 @@ describe('M5 metrics over the real dataset', () => {
     expect(m.community_count).toBeGreaterThanOrEqual(2);
   });
 
-  it('the expanded atlas retains its spectral hub and exposes the optimization bridge', () => {
-    const eigen = atlas.nodeMetrics('eigenvalues')!;
+  it('the expanded atlas retains its spectral hub while optimization becomes the broadest bridge', () => {
     const optimization = atlas.nodeMetrics('optimization')!;
-    const metrics = atlas.nodes.map((node) => atlas.nodeMetrics(node.slug)!);
-    expect(eigen.degree).toBe(Math.max(...metrics.map((metric) => metric.degree)));
-    expect(optimization.betweenness).toBe(Math.max(...metrics.map((metric) => metric.betweenness)));
+    const metrics = atlas.nodes.map((node) => ({
+      slug: node.slug,
+      metrics: atlas.nodeMetrics(node.slug)!,
+    }));
+    const degreeRanking = [...metrics].sort(
+      (left, right) => right.metrics.degree - left.metrics.degree,
+    );
+    expect(degreeRanking.slice(0, 3).map((entry) => entry.slug)).toContain('eigenvalues');
+    expect(optimization.degree).toBe(Math.max(...metrics.map((entry) => entry.metrics.degree)));
+    expect(optimization.betweenness).toBe(
+      Math.max(...metrics.map((entry) => entry.metrics.betweenness)),
+    );
   });
 
   it('every gap edge is listable with its workflow status (spec §11)', () => {

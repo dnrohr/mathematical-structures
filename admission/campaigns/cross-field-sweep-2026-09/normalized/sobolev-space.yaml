@@ -1,0 +1,146 @@
+dossier_schema: 1.0.0
+candidate:
+  id: sobolev-space
+  canonical_name: Sobolev space
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - pde
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: evans-pde-2010
+    kind: textbook
+    title: Partial Differential Equations, second edition
+    authors:
+      - Lawrence C. Evans
+    year: 2010
+    locator: https://bookstore.ams.org/gsm-19-r/
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: sobolev-space-claim
+    proposition: A Sobolev space controls functions through integrability of weak derivatives.
+    endpoints:
+      from: $candidate
+      to: smoothness
+    proposed_edge:
+      type: GOVERNS
+      strength: theorem
+      context: Integer-order Sobolev spaces on open Euclidean domains.
+    mathematical_skeleton: The norm combines an Lp size with the Lp sizes of weak derivatives up to a fixed order.
+    scope: Integer-order Sobolev spaces on open Euclidean domains.
+    assumptions:
+      - measurable functions modulo equality almost everywhere
+    validity_regime: The stated claim is limited to integer-order Sobolev spaces on open Euclidean domains.
+    caveats:
+      - Sobolev regularity does not generally imply pointwise differentiability.
+    counterexamples:
+      - A W^{1,p} function below the embedding threshold need not be continuous.
+    source_assessments:
+      - source_id: evans-pde-2010
+        proposition: A Sobolev space controls functions through integrability of weak derivatives.
+        status: direct-support
+        location: Chapter 5, §§5.1–5.8, pp. 253–296.
+        rationale: The pinpointed section defines or develops Sobolev space and the scoped structural claim recorded
+          here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A Sobolev space controls functions through
+        integrability of weak derivatives."
+    alternative_interpretations:
+      - A broader use of “Sobolev space” outside the recorded scope.
+search:
+  queries:
+    - id: sobolev-space-query
+      query: Sobolev space Partial Differential Equations, second edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: sobolev-space-query
+      result: located
+      source_ids:
+        - evans-pde-2010
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 5, §§5.1–5.8, pp. 253–296.
+generated_hypotheses:
+  - id: sobolev-space-hypothesis
+    text: A Sobolev space controls functions through integrability of weak derivatives.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - evans-pde-2010
+automated_judgments:
+  - id: sobolev-space-judgment
+    method: model-assisted
+    subject: sobolev-space-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\sobolev-space.yaml#source_inventory
+adversarial_reviews:
+  - id: sobolev-space-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Sobolev regularity does not generally imply pointwise differentiability."
+    response: The proposition is restricted to integer-order Sobolev spaces on open Euclidean domains, and the
+      caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\sobolev-space.yaml#claims.sobolev-space-claim
+  - id: sobolev-space-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Sobolev regularity does not
+      generally imply pointwise differentiability."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\sobolev-space.yaml#claims.sobolev-space-claim
+human_decisions:
+  - id: sobolev-space-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
+workflow:
+  state: accepted-as-node
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from evans-pde-2010 at Book table of contents, Chapters 1–7.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner

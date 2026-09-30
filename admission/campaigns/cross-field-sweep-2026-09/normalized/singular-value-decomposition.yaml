@@ -1,0 +1,149 @@
+dossier_schema: 1.0.0
+candidate:
+  id: singular-value-decomposition
+  canonical_name: Singular value decomposition
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: object
+source_inventory:
+  - id: trefethen-bau-1997
+    kind: textbook
+    title: Numerical Linear Algebra
+    authors:
+      - Lloyd N. Trefethen
+      - David Bau III
+    year: 1997
+    locator: https://people.maths.ox.ac.uk/trefethen/text.html
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: singular-value-decomposition-claim
+    proposition: The singular value decomposition expresses a matrix as orthogonal input and output directions
+      linked by nonnegative gains.
+    endpoints:
+      from: $candidate
+      to: computational-imaging
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Finite real or complex matrices.
+    mathematical_skeleton: A = UΣV* separates domain directions, amplification factors, and range directions.
+    scope: Finite real or complex matrices.
+    assumptions:
+      - finite-dimensional inner-product spaces
+    validity_regime: The stated claim is limited to finite real or complex matrices.
+    caveats:
+      - Small singular values amplify inverse-problem noise.
+    counterexamples:
+      - A rank-deficient matrix has no ordinary inverse despite having an SVD.
+    source_assessments:
+      - source_id: trefethen-bau-1997
+        proposition: The singular value decomposition expresses a matrix as orthogonal input and output directions
+          linked by nonnegative gains.
+        status: direct-support
+        location: Lectures 4–5, pp. 25–38.
+        rationale: The pinpointed section defines or develops Singular value decomposition and the scoped structural
+          claim recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The singular value decomposition expresses a
+        matrix as orthogonal input and output directions linked by nonnegative gains."
+    alternative_interpretations:
+      - A broader use of “Singular value decomposition” outside the recorded scope.
+search:
+  queries:
+    - id: singular-value-decomposition-query
+      query: Singular value decomposition Numerical Linear Algebra definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: singular-value-decomposition-query
+      result: located
+      source_ids:
+        - trefethen-bau-1997
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Lectures 4–5, pp. 25–38.
+generated_hypotheses:
+  - id: singular-value-decomposition-hypothesis
+    text: The singular value decomposition expresses a matrix as orthogonal input and output directions linked by
+      nonnegative gains.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - trefethen-bau-1997
+automated_judgments:
+  - id: singular-value-decomposition-judgment
+    method: model-assisted
+    subject: singular-value-decomposition-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\singular-value-decomposition.yaml#source_inventory
+adversarial_reviews:
+  - id: singular-value-decomposition-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Small singular values amplify inverse-problem noise."
+    response: The proposition is restricted to finite real or complex matrices, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\singular-value-decomposition.yaml#claims.singular-value-decomposition-claim
+  - id: singular-value-decomposition-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Small singular values amplify
+      inverse-problem noise."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\singular-value-decomposition.yaml#claims.singular-value-decomposition-claim
+human_decisions:
+  - id: singular-value-decomposition-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
+workflow:
+  state: accepted-as-node
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from trefethen-bau-1997 at Author table of contents, Lectures 1–40.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner

@@ -31,6 +31,7 @@ import {
   type ThinSymptom,
 } from './model.js';
 import { layoutTrustedSubgraph } from './layout.js';
+import { buildBridgeAtlas } from './bridge-atlas.js';
 import type { AtlasSchema } from './schema.js';
 
 function round(x: number, places: number): number {
@@ -374,6 +375,10 @@ export function analyzeGraph(
   const rank = new Map(schema.strengths.map((s) => [s.id, s.rank]));
   const trustedRank = rank.get(schema.analysis.trusted_min_strength)!;
   const trusted = edges.filter((e) => (rank.get(e.strength) ?? Infinity) <= trustedRank);
+  const trustedEdgeIndexes = edges
+    .map((edge, index) => ({ edge, index }))
+    .filter(({ edge }) => (rank.get(edge.strength) ?? Infinity) <= trustedRank)
+    .map(({ index }) => index);
 
   const slugs = nodes.map((n) => n.slug); // already sorted by the link stage
   const graph = simpleGraph(slugs, trusted);
@@ -409,6 +414,7 @@ export function analyzeGraph(
       status: e.status!,
     }));
 
+  const layout = layoutTrustedSubgraph(slugs, trusted);
   return {
     trusted: {
       min_strength: schema.analysis.trusted_min_strength,
@@ -421,6 +427,7 @@ export function analyzeGraph(
     gaps,
     candidate_edges: candidates,
     queue: computeQueue(schema, nodes, edges, graph, community, symptoms, nonEdges),
-    layout: layoutTrustedSubgraph(slugs, trusted),
+    layout,
+    bridge_atlas: buildBridgeAtlas(perNode, layout, edges, trustedEdgeIndexes),
   };
 }

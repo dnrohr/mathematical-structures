@@ -1,0 +1,401 @@
+- from: digital-communications
+  to: aliasing
+  type: FAILS-WHEN
+  strength: theorem
+  context: Uniform sampling of continuous-time sinusoids.
+  evidence:
+    - siebert-1986
+  notes: "Campaign evidence location: Chapter 12, sampling in time and frequency."
+- from: optimization
+  to: bellman-equation
+  type: REPRESENTED-BY
+  strength: theorem
+  context: Finite-horizon problems and discounted or proper infinite-horizon variants.
+  evidence:
+    - bertsekas-2017
+  notes: "Campaign evidence location: Volume I, Chapter 1, §§1.2–1.4."
+- from: brownian-motion
+  to: diffusion
+  type: SAME-SKELETON
+  strength: theorem
+  context: Standard Brownian motion in Euclidean space.
+  evidence:
+    - durrett-2019
+  notes: "Campaign evidence location: Chapter 7, Brownian motion, §§7.1–7.8."
+- from: community-detection
+  to: graph-laplacian
+  type: SOLVED-BY
+  strength: strong-analogy
+  context: Networks whose chosen objective has meaningful mesoscale structure.
+  evidence:
+    - newman-2018
+  notes: "Campaign evidence location: Chapter 14, community structure."
+- from: condition-number
+  to: backward-error-analysis
+  type: GOVERNS
+  strength: theorem
+  context: Well-posed finite-dimensional numerical problems near a specified input.
+  evidence:
+    - trefethen-bau-1997
+  notes: "Campaign evidence location: Lecture 12, pp. 89–97."
+- from: configuration-model
+  to: epidemic-modeling
+  type: APPLIED-IN
+  strength: special-case
+  context: Sparse undirected networks under the specified simple-graph or multigraph convention.
+  evidence:
+    - newman-2018
+  notes: "Campaign evidence location: Chapter 12, the configuration model."
+- from: controllability
+  to: state-space-model
+  type: GOVERNS
+  strength: theorem
+  context: Finite-dimensional continuous-time LTI systems.
+  evidence:
+    - astrom-murray-2020
+  notes: "Campaign evidence location: Chapter 6, §§6.1–6.3."
+- from: convolution
+  to: fourier-analysis
+  type: TRANSFORM-DUAL
+  strength: theorem
+  context: Integrable signals or generalized-signal settings with justified transforms.
+  evidence:
+    - siebert-1986
+  notes: "Campaign evidence location: Chapter 6, convolutional representations of continuous- and
+    discrete-time systems."
+- from: correlated-equilibrium
+  to: optimization
+  type: REPRESENTED-BY
+  strength: strong-analogy
+  context: Finite strategic games.
+  evidence:
+    - osborne-rubinstein-1994
+  notes: "Campaign evidence location: Part I, Chapter 3, correlated strategic recommendations."
+- from: coupling-method
+  to: markov-chains
+  type: APPLIED-IN
+  strength: theorem
+  context: Markov chains admitting a jointly constructed coupling.
+  evidence:
+    - levin-peres-2017
+  notes: "Campaign evidence location: Chapter 5, §§5.1–5.4, pp. 66–78."
+- from: detailed-balance
+  to: markov-chains
+  type: GOVERNS
+  strength: theorem
+  context: Finite reversible Markov chains.
+  evidence:
+    - levin-peres-2017
+  notes: "Campaign evidence location: Chapter 1, §1.6, pp. 11–13."
+- from: dynamic-programming
+  to: optimization
+  type: IS-A
+  strength: special-case
+  context: Problems with a sufficient Markov state and separable stage costs.
+  evidence:
+    - bertsekas-2017
+  notes: "Campaign evidence location: Volume I, Chapter 1, §1.3; Chapter 2, §§2.1–2.6."
+- from: galerkin-method
+  to: computational-imaging
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: Galerkin approximations for coercive boundary-value problems.
+  evidence:
+    - evans-2010
+  notes: "Campaign evidence location: Chapter 6, §6.2, pp. 310–324."
+- from: gmres
+  to: optimization
+  type: APPLIED-IN
+  strength: theorem
+  context: Nonsymmetric linear systems in exact arithmetic or controlled finite precision.
+  evidence:
+    - trefethen-bau-1997
+  notes: "Campaign evidence location: Lecture 35, pp. 266–275."
+- from: stability
+  to: ill-posed-problem
+  type: FAILS-WHEN
+  strength: special-case
+  context: Linear inverse problems in finite discretizations or compact-operator limits.
+  evidence:
+    - hansen-2010
+  notes: "Campaign evidence location: Chapter 2, §§2.1–2.6, pp. 13–34."
+- from: impulse-response
+  to: greens-function
+  type: FIELD-DIALECT-OF
+  strength: identity
+  context: Linear time-invariant systems with compatible boundary or initial conventions.
+  evidence:
+    - siebert-1986
+  notes: "Campaign evidence location: Chapter 6, unit-sample response and discrete-time convolution."
+- from: inverse-problem
+  to: computational-imaging
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: Linear discrete inverse problems arising from measurement operators.
+  evidence:
+    - hansen-2010
+  notes: "Campaign evidence location: Chapter 1, §§1.1–1.4, pp. 1–12."
+- from: ito-formula
+  to: option-pricing
+  type: APPLIED-IN
+  strength: theorem
+  context: Twice spatially differentiable functions of continuous semimartingales.
+  evidence:
+    - durrett-2019
+  notes: "Campaign evidence location: Chapter 7, §7.6, Ito formula."
+- from: krylov-subspace
+  to: eigenvalues
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: Finite-dimensional iterative linear algebra.
+  evidence:
+    - trefethen-bau-1997
+  notes: "Campaign evidence location: Lectures 32–35, pp. 243–275."
+- from: markov-decision-process
+  to: state-space-model
+  type: IS-A
+  strength: theorem
+  context: Finite-state finite-action MDPs under a stated horizon and criterion.
+  evidence:
+    - bertsekas-2017
+  notes: "Campaign evidence location: Volume I, Chapter 1, §§1.1–1.3; Chapter 2."
+- from: martingale
+  to: option-pricing
+  type: APPLIED-IN
+  strength: theorem
+  context: Integrable discrete-time processes adapted to a filtration.
+  evidence:
+    - durrett-2019
+  notes: "Campaign evidence location: Chapter 5, martingales."
+- from: maximum-principle
+  to: stability
+  type: GOVERNS
+  strength: theorem
+  context: Uniformly elliptic or parabolic equations under the stated sign and regularity hypotheses.
+  evidence:
+    - evans-2010
+  notes: "Campaign evidence location: Chapter 2, §2.2.3, pp. 27–35; Chapter 6, §6.4, pp. 333–347."
+- from: method-of-characteristics
+  to: phase-space
+  type: REPRESENTED-BY
+  strength: theorem
+  context: Smooth first-order transport and Hamilton-Jacobi equations before characteristic crossing.
+  evidence:
+    - evans-2010
+  notes: "Campaign evidence location: Chapter 2, §2.1, pp. 18–20; Chapter 3, §3.2, pp. 101–115."
+- from: metropolis-hastings-algorithm
+  to: markov-chains
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: Targets and proposals with compatible support.
+  evidence:
+    - levin-peres-2017
+  notes: "Campaign evidence location: Chapter 3, §3.2, pp. 44–46."
+- from: minimax-theorem
+  to: optimization
+  type: GOVERNS
+  strength: theorem
+  context: Finite two-player zero-sum games.
+  evidence:
+    - osborne-rubinstein-1994
+  notes: "Campaign evidence location: Part I, Chapter 3, §§3.2–3.3."
+- from: mixed-strategy
+  to: optimization
+  type: REPRESENTED-BY
+  strength: theorem
+  context: Finite strategic games.
+  evidence:
+    - osborne-rubinstein-1994
+  notes: "Campaign evidence location: Part I, Chapter 3, pp. 43–78."
+- from: mixing-time
+  to: markov-chains
+  type: MEASURES-DISTANCE-TO
+  strength: theorem
+  context: Finite irreducible aperiodic chains.
+  evidence:
+    - levin-peres-2017
+  notes: "Campaign evidence location: Chapter 4, §§4.1–4.5, pp. 47–65."
+- from: nash-equilibrium
+  to: optimization
+  type: REPRESENTED-BY
+  strength: strong-analogy
+  context: Finite strategic games, allowing mixed strategies when stated.
+  evidence:
+    - osborne-rubinstein-1994
+  notes: "Campaign evidence location: Part I, Chapter 2, pp. 11–42."
+- from: pagerank
+  to: network-centrality
+  type: IS-A
+  strength: strong-analogy
+  context: Finite networks with a declared centrality definition.
+  evidence:
+    - newman-2018
+  notes: "Campaign evidence location: Chapter 7, measures and metrics."
+- from: nyquist-stability-criterion
+  to: stability
+  type: GOVERNS
+  strength: theorem
+  context: Proper rational feedback loops with a specified contour convention.
+  evidence:
+    - astrom-murray-2020
+  notes: "Campaign evidence location: Chapter 10, §§10.2–10.4."
+- from: observability
+  to: state-space-model
+  type: GOVERNS
+  strength: theorem
+  context: Finite-dimensional continuous-time LTI systems.
+  evidence:
+    - astrom-murray-2020
+  notes: "Campaign evidence location: Chapter 6, §§6.4–6.5."
+- from: optional-stopping-theorem
+  to: option-pricing
+  type: APPLIED-IN
+  strength: theorem
+  context: Discrete-time martingales under one of the theorem’s standard sufficient conditions.
+  evidence:
+    - durrett-2019
+  notes: "Campaign evidence location: Chapter 5, §5.7, optional stopping."
+- from: percolation-on-networks
+  to: epidemic-modeling
+  type: SAME-SKELETON
+  strength: strong-analogy
+  context: Locally tree-like networks and bond-percolation mappings of final outbreak size.
+  evidence:
+    - newman-2018
+  notes: "Campaign evidence location: Chapter 15, percolation and network resilience."
+- from: pid-controller
+  to: process-control
+  type: APPLIED-IN
+  strength: strong-analogy
+  context: Single-loop feedback with implementable filtering and anti-windup provisions.
+  evidence:
+    - astrom-murray-2020
+  notes: "Campaign evidence location: Chapter 11, §§11.1–11.5."
+- from: poisson-process
+  to: epidemic-modeling
+  type: APPLIED-IN
+  strength: theorem
+  context: Homogeneous point processes on the nonnegative time line.
+  evidence:
+    - durrett-2019
+  notes: "Campaign evidence location: Chapter 2, Poisson processes, §§2.5–2.7."
+- from: policy-iteration
+  to: markov-chains
+  type: APPLIED-IN
+  strength: theorem
+  context: Finite discounted MDPs with exact arithmetic.
+  evidence:
+    - bertsekas-2017
+  notes: "Campaign evidence location: Volume I, Chapter 2, §§2.5–2.6."
+- from: qr-factorization
+  to: optimization
+  type: APPLIED-IN
+  strength: theorem
+  context: Overdetermined full-column-rank linear least squares.
+  evidence:
+    - trefethen-bau-1997
+  notes: "Campaign evidence location: Lectures 7–11, pp. 48–88."
+- from: random-graph
+  to: graph-laplacian
+  type: REPRESENTED-BY
+  strength: special-case
+  context: Finite random graph ensembles.
+  evidence:
+    - newman-2018
+  notes: "Campaign evidence location: Chapter 11, random graphs."
+- from: regularization
+  to: stability
+  type: GOVERNS
+  strength: strong-analogy
+  context: Noisy linear discrete inverse problems.
+  evidence:
+    - hansen-2010
+  notes: "Campaign evidence location: Chapter 4, §§4.1–4.7, pp. 53–83."
+- from: sampling-theorem
+  to: digital-communications
+  type: APPLIED-IN
+  strength: theorem
+  context: Exactly bandlimited continuous-time signals with ideal uniform sampling.
+  evidence:
+    - siebert-1986
+  notes: "Campaign evidence location: Chapter 12, sampling in time and frequency."
+- from: singular-value-decomposition
+  to: computational-imaging
+  type: APPLIED-IN
+  strength: theorem
+  context: Finite real or complex matrices.
+  evidence:
+    - trefethen-bau-1997
+  notes: "Campaign evidence location: Lectures 4–5, pp. 25–38."
+- from: sobolev-space
+  to: smoothness
+  type: GOVERNS
+  strength: theorem
+  context: Integer-order Sobolev spaces on open Euclidean domains.
+  evidence:
+    - evans-2010
+  notes: "Campaign evidence location: Chapter 5, §§5.1–5.8, pp. 253–296."
+- from: stationary-distribution
+  to: markov-chains
+  type: GOVERNS
+  strength: theorem
+  context: Finite-state Markov chains.
+  evidence:
+    - levin-peres-2017
+  notes: "Campaign evidence location: Chapter 1, §§1.3–1.7, pp. 4–15."
+- from: subgame-perfect-equilibrium
+  to: optimization
+  type: REPRESENTED-BY
+  strength: special-case
+  context: Finite extensive games with proper subgames.
+  evidence:
+    - osborne-rubinstein-1994
+  notes: "Campaign evidence location: Part II, Chapter 6, pp. 97–124."
+- from: tikhonov-regularization
+  to: optimization
+  type: IS-A
+  strength: special-case
+  context: Linear inverse problems with a chosen penalty operator.
+  evidence:
+    - hansen-2010
+  notes: "Campaign evidence location: Chapter 4, §4.4, pp. 65–70."
+- from: transfer-function
+  to: state-space-model
+  type: FIELD-DIALECT-OF
+  strength: strong-analogy
+  context: Finite-dimensional linear time-invariant systems.
+  evidence:
+    - astrom-murray-2020
+  notes: "Campaign evidence location: Chapter 9, §§9.1–9.3."
+- from: truncated-singular-value-decomposition
+  to: optimization
+  type: IS-A
+  strength: special-case
+  context: Linear inverse problems with an informative spectral ordering.
+  evidence:
+    - hansen-2010
+  notes: "Campaign evidence location: Chapter 4, §4.2, pp. 56–61."
+- from: value-iteration
+  to: markov-chains
+  type: APPLIED-IN
+  strength: theorem
+  context: Finite discounted MDPs.
+  evidence:
+    - bertsekas-2017
+  notes: "Campaign evidence location: Volume I, Chapter 2, §§2.2–2.4."
+- from: weak-solution
+  to: vector-calculus
+  type: REPRESENTED-BY
+  strength: strong-analogy
+  context: Weak formulations of PDEs on domains with specified boundary data.
+  evidence:
+    - evans-2010
+  notes: "Campaign evidence location: Chapter 1, §1.3.2, pp. 7–9; Chapter 6, §6.1, pp. 297–310."
+- from: z-transform
+  to: integral-transforms
+  type: IS-A
+  strength: special-case
+  context: One- or two-sided discrete-time sequences with a stated region of convergence.
+  evidence:
+    - siebert-1986
+  notes: "Campaign evidence location: Chapter 5, unilateral Z-transform and its applications."

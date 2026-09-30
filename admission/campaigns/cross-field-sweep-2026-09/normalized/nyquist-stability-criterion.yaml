@@ -1,0 +1,152 @@
+dossier_schema: 1.0.0
+candidate:
+  id: nyquist-stability-criterion
+  canonical_name: Nyquist stability criterion
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - mechanics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: theorem
+source_inventory:
+  - id: astrom-murray-2020
+    kind: textbook
+    title: Feedback Systems, second edition
+    authors:
+      - Karl J. Astrom
+      - Richard M. Murray
+    year: 2020
+    locator: https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: nyquist-stability-criterion-claim
+    proposition: The Nyquist criterion determines closed-loop stability from encirclements of the critical point
+      by the open-loop frequency response.
+    endpoints:
+      from: $candidate
+      to: stability
+    proposed_edge:
+      type: GOVERNS
+      strength: theorem
+      context: Proper rational feedback loops with a specified contour convention.
+    mathematical_skeleton: The argument principle relates winding number to right-half-plane zeros of the
+      closed-loop characteristic function.
+    scope: Proper rational feedback loops with a specified contour convention.
+    assumptions:
+      - known open-loop unstable poles
+      - no unhandled contour singularities
+    validity_regime: The stated claim is limited to proper rational feedback loops with a specified contour convention.
+    caveats:
+      - Sign and contour conventions change the reported encirclement direction.
+    counterexamples:
+      - Ignoring an imaginary-axis pole invalidates the ordinary contour count.
+    source_assessments:
+      - source_id: astrom-murray-2020
+        proposition: The Nyquist criterion determines closed-loop stability from encirclements of the critical point
+          by the open-loop frequency response.
+        status: direct-support
+        location: Chapter 10, §§10.2–10.4.
+        rationale: The pinpointed section defines or develops Nyquist stability criterion and the scoped structural
+          claim recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: The Nyquist criterion determines closed-loop
+        stability from encirclements of the critical point by the open-loop frequency response."
+    alternative_interpretations:
+      - A broader use of “Nyquist stability criterion” outside the recorded scope.
+search:
+  queries:
+    - id: nyquist-stability-criterion-query
+      query: Nyquist stability criterion Feedback Systems, second edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: nyquist-stability-criterion-query
+      result: located
+      source_ids:
+        - astrom-murray-2020
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 10, §§10.2–10.4.
+generated_hypotheses:
+  - id: nyquist-stability-criterion-hypothesis
+    text: The Nyquist criterion determines closed-loop stability from encirclements of the critical point by the
+      open-loop frequency response.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - astrom-murray-2020
+automated_judgments:
+  - id: nyquist-stability-criterion-judgment
+    method: model-assisted
+    subject: nyquist-stability-criterion-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\nyquist-stability-criterion.yaml#source_inventory
+adversarial_reviews:
+  - id: nyquist-stability-criterion-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Sign and contour conventions change the reported encirclement direction."
+    response: The proposition is restricted to proper rational feedback loops with a specified contour convention,
+      and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\nyquist-stability-criterion.yaml#claims.nyquist-stability-criterion-claim
+  - id: nyquist-stability-criterion-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Sign and contour conventions
+      change the reported encirclement direction."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\nyquist-stability-criterion.yaml#claims.nyquist-stability-criterion-claim
+human_decisions:
+  - id: nyquist-stability-criterion-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
+workflow:
+  state: accepted-as-node
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from astrom-murray-2020 at Author-hosted second edition, Chapters 1–15.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner

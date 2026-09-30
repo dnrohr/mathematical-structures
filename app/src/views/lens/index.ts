@@ -22,7 +22,11 @@ import { downloadViewLine, edgesCsv, saveBlobButton } from '../common/save';
 import type { View } from '../common/view';
 
 /** Above this many nodes a lens is a hairball; the text list carries it. */
-const LENS_GRAPH_NODE_CAP = 48;
+// Keep enough headroom for a genuinely atlas-wide lens as the corpus grows.
+// The current 142-node atlas needs at least 57 rendered nodes to cross the
+// two-fifths pinning threshold, so the original 48-node cap made the pinned
+// state unreachable.
+const LENS_GRAPH_NODE_CAP = 72;
 
 const EXAMPLE_LENSES: { label: string; hash: string }[] = [
   { label: 'Only field dialects', hash: '#/lens?edge=FIELD-DIALECT-OF' },

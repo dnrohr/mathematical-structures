@@ -1,0 +1,412 @@
+harvest_schema: 1.0.0
+campaign:
+  id: cross-field-sweep-2026-09
+  title: Second cross-field source-inventory sweep
+  sampling_frame:
+    - Partial Differential Equations, second edition
+    - Numerical Linear Algebra
+    - Markov Chains and Mixing Times, second edition
+    - Feedback Systems, second edition
+    - Circuits, Signals, and Systems
+    - "Discrete Inverse Problems: Insight and Algorithms"
+    - Dynamic Programming and Optimal Control, fourth edition
+    - A Course in Game Theory
+    - Networks, second edition
+    - "Probability: Theory and Examples, fifth edition"
+  target_raw_candidates: 250
+sources:
+  - id: evans-pde-2010
+    kind: textbook
+    title: Partial Differential Equations, second edition
+    authors:
+      - Lawrence C. Evans
+    year: 2010
+    locator: https://bookstore.ams.org/gsm-19-r/
+    supplied_by: atlas-cross-field-curator
+  - id: trefethen-bau-1997
+    kind: textbook
+    title: Numerical Linear Algebra
+    authors:
+      - Lloyd N. Trefethen
+      - David Bau III
+    year: 1997
+    locator: https://people.maths.ox.ac.uk/trefethen/text.html
+    supplied_by: atlas-cross-field-curator
+  - id: levin-peres-2017
+    kind: textbook
+    title: Markov Chains and Mixing Times, second edition
+    authors:
+      - David A. Levin
+      - Yuval Peres
+    year: 2017
+    locator: https://pages.uoregon.edu/dlevin/MARKOV/
+    supplied_by: atlas-cross-field-curator
+  - id: astrom-murray-2020
+    kind: textbook
+    title: Feedback Systems, second edition
+    authors:
+      - Karl J. Astrom
+      - Richard M. Murray
+    year: 2020
+    locator: https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html
+    supplied_by: atlas-cross-field-curator
+  - id: siebert-signals-1986
+    kind: textbook
+    title: Circuits, Signals, and Systems
+    authors:
+      - William McC. Siebert
+    year: 1986
+    locator: https://mitpress.mit.edu/9780262690959/circuits-signals-and-systems/
+    supplied_by: atlas-cross-field-curator
+  - id: hansen-inverse-2010
+    kind: textbook
+    title: "Discrete Inverse Problems: Insight and Algorithms"
+    authors:
+      - Per Christian Hansen
+    year: 2010
+    locator: https://epubs.siam.org/doi/book/10.1137/1.9780898718836
+    supplied_by: atlas-cross-field-curator
+  - id: bertsekas-dp-2017
+    kind: textbook
+    title: Dynamic Programming and Optimal Control, fourth edition
+    authors:
+      - Dimitri P. Bertsekas
+    year: 2017
+    locator: https://athenasc.com/dpbook.html
+    supplied_by: atlas-cross-field-curator
+  - id: osborne-rubinstein-1994
+    kind: textbook
+    title: A Course in Game Theory
+    authors:
+      - Martin J. Osborne
+      - Ariel Rubinstein
+    year: 1994
+    locator: https://mitpress.mit.edu/9780262650403/a-course-in-game-theory/
+    supplied_by: atlas-cross-field-curator
+  - id: newman-networks-2018
+    kind: textbook
+    title: Networks, second edition
+    authors:
+      - Mark Newman
+    year: 2018
+    locator: https://academic.oup.com/book/27884
+    supplied_by: atlas-cross-field-curator
+  - id: durrett-probability-2019
+    kind: textbook
+    title: "Probability: Theory and Examples, fifth edition"
+    authors:
+      - Rick Durrett
+    year: 2019
+    locator: https://www.cambridge.org/core/books/probability/DD9A1907F810BB14CCFF022CDFC5677A
+    supplied_by: atlas-cross-field-curator
+inventories:
+  - source_id: evans-pde-2010
+    originating_fields:
+      - pde
+      - numerical-analysis
+    harvest_location: Book table of contents, Chapters 1–7
+    terms:
+      - Weak solution
+      - Sobolev space
+      - Finite element method
+      - Maximum principle
+      - Method of characteristics
+      - Transport equation
+      - Laplace equation
+      - Heat equation
+      - Wave equation
+      - Fundamental solution
+      - Harmonic function
+      - Mean-value property
+      - Energy method
+      - Duhamel principle
+      - Hamilton-Jacobi equation
+      - Viscosity solution
+      - Distribution
+      - Weak derivative
+      - Poincare inequality
+      - Trace theorem
+      - Elliptic regularity
+      - Galerkin method
+      - Calculus of variations
+      - Euler-Lagrange equation
+      - Hyperbolic conservation law
+  - source_id: trefethen-bau-1997
+    originating_fields:
+      - numerical-analysis
+      - optimization
+    harvest_location: Author table of contents, Lectures 1–40
+    terms:
+      - Singular value decomposition
+      - QR factorization
+      - Krylov subspace
+      - GMRES
+      - Condition number
+      - Orthogonal projector
+      - Gram-Schmidt orthogonalization
+      - Householder transformation
+      - Least-squares problem
+      - Floating-point arithmetic
+      - Gaussian elimination
+      - Partial pivoting
+      - Cholesky factorization
+      - Schur factorization
+      - Rayleigh quotient
+      - Power iteration
+      - Inverse iteration
+      - QR algorithm
+      - Arnoldi iteration
+      - Ritz value
+      - Lanczos iteration
+      - Conjugate-gradient method
+      - Biorthogonalization
+      - Preconditioning
+      - Pseudospectrum
+  - source_id: levin-peres-2017
+    originating_fields:
+      - probability
+      - statistics
+    harvest_location: Author-hosted book, Chapters 1–20
+    terms:
+      - Stationary distribution
+      - Detailed balance
+      - Mixing time
+      - Coupling method
+      - Metropolis-Hastings algorithm
+      - Irreducible chain
+      - Aperiodic chain
+      - Reversible chain
+      - Total variation distance
+      - Hitting time
+      - Cover time
+      - Commute time
+      - Gambler ruin
+      - Random walk on a graph
+      - Coupon collector
+      - Path coupling
+      - Coupling from the past
+      - Strong stationary time
+      - Conductance bound
+      - Cheeger inequality
+      - Spectral gap
+      - Cutoff phenomenon
+      - Glauber dynamics
+      - Evolving set
+      - Continuous-time Markov chain
+  - source_id: astrom-murray-2020
+    originating_fields:
+      - control
+      - mechanics
+    harvest_location: Author-hosted second edition, Chapters 1–15
+    terms:
+      - Transfer function
+      - Controllability
+      - Observability
+      - PID controller
+      - Nyquist stability criterion
+      - Frequency response
+      - Bode plot
+      - Loop shaping
+      - Gain margin
+      - Phase margin
+      - Reachability
+      - State feedback
+      - Pole placement
+      - Observer design
+      - Integral feedback
+      - Feedforward control
+      - Disturbance attenuation
+      - Reference tracking
+      - Robust stability
+      - Sensitivity function
+      - Complementary sensitivity
+      - Root locus
+      - Describing function
+      - Model predictive control
+      - Internal model principle
+  - source_id: siebert-signals-1986
+    originating_fields:
+      - signal-processing
+      - control
+    harvest_location: MIT Press contents and lecture sequence
+    terms:
+      - Convolution
+      - Impulse response
+      - Sampling theorem
+      - Z-transform
+      - Aliasing
+      - Laplace transform
+      - System function
+      - Poles and zeros
+      - Linear time-invariant system
+      - Difference equation
+      - Unit-sample response
+      - Superposition integral
+      - Fourier series
+      - Discrete Fourier transform
+      - Frequency response
+      - Ideal filter
+      - Finite impulse response filter
+      - Infinite impulse response filter
+      - Bandpass signal
+      - Amplitude modulation
+      - Power spectral density
+      - Autocorrelation
+      - Parseval theorem
+      - Time-frequency uncertainty
+      - Random signal
+  - source_id: hansen-inverse-2010
+    originating_fields:
+      - numerical-analysis
+      - optimization
+    harvest_location: SIAM book, Chapters 1–8
+    terms:
+      - Inverse problem
+      - Ill-posed problem
+      - Regularization
+      - Tikhonov regularization
+      - Truncated singular value decomposition
+      - Fredholm integral equation
+      - Picard condition
+      - Spectral filtering
+      - Filter factor
+      - Regularization parameter
+      - Discrepancy principle
+      - L-curve criterion
+      - Generalized cross-validation
+      - Generalized singular value decomposition
+      - Standard-form transformation
+      - Iterative regularization
+      - Landweber iteration
+      - Semi-convergence
+      - Bidiagonalization
+      - Hybrid Krylov method
+      - Image deblurring
+      - Tomographic reconstruction
+      - Noise propagation
+      - Source condition
+      - Regularization by discretization
+  - source_id: bertsekas-dp-2017
+    originating_fields:
+      - control
+      - optimization
+    harvest_location: Publisher contents, Volume I, Chapters 1–7
+    terms:
+      - Bellman equation
+      - Dynamic programming
+      - Markov decision process
+      - Value iteration
+      - Policy iteration
+      - Cost-to-go function
+      - Principle of optimality
+      - Finite-horizon control
+      - Infinite-horizon control
+      - Discounted-cost problem
+      - Average-cost problem
+      - Stochastic shortest path
+      - Optimal policy
+      - Stationary policy
+      - Rollout algorithm
+      - Approximate dynamic programming
+      - Neuro-dynamic programming
+      - Q-learning
+      - Policy gradient
+      - Linear quadratic regulator
+      - Riccati equation
+      - Hamilton-Jacobi-Bellman equation
+      - Pontryagin maximum principle
+      - Receding-horizon control
+      - Certainty-equivalence control
+  - source_id: osborne-rubinstein-1994
+    originating_fields:
+      - economics
+      - optimization
+    harvest_location: MIT Press contents, Parts I–IV
+    terms:
+      - Nash equilibrium
+      - Mixed strategy
+      - Minimax theorem
+      - Correlated equilibrium
+      - Subgame-perfect equilibrium
+      - Strategic game
+      - Dominant strategy
+      - Best response
+      - Strictly dominated strategy
+      - Rationalizability
+      - Extensive-form game
+      - Perfect-information game
+      - Imperfect-information game
+      - Sequential equilibrium
+      - Perfect Bayesian equilibrium
+      - Backward induction
+      - Repeated game
+      - Folk theorem
+      - Bayesian game
+      - Mechanism design
+      - Social choice function
+      - Coalitional game
+      - Core allocation
+      - Shapley value
+      - Bargaining solution
+  - source_id: newman-networks-2018
+    originating_fields:
+      - networks
+      - probability
+    harvest_location: Oxford Academic contents, Chapters 6–18
+    terms:
+      - Random graph
+      - Configuration model
+      - Community detection
+      - Network centrality
+      - Percolation on networks
+      - Adjacency matrix
+      - Degree distribution
+      - Clustering coefficient
+      - Assortative mixing
+      - Betweenness centrality
+      - Eigenvector centrality
+      - Modularity
+      - Stochastic block model
+      - Preferential attachment
+      - Small-world model
+      - Scale-free network
+      - Giant component
+      - Network resilience
+      - Epidemic threshold
+      - Dynamical process on a network
+      - Network search
+      - Degree correlation
+      - Motif census
+      - Core-periphery structure
+      - Link prediction
+  - source_id: durrett-probability-2019
+    originating_fields:
+      - probability
+      - statistics
+    harvest_location: Cambridge Core contents, Chapters 1–8
+    terms:
+      - Martingale
+      - Brownian motion
+      - Poisson process
+      - Ito formula
+      - Optional stopping theorem
+      - Sigma algebra
+      - Conditional expectation
+      - Borel-Cantelli lemma
+      - Strong law of large numbers
+      - Central limit theorem
+      - Uniform integrability
+      - Convergence in probability
+      - Almost sure convergence
+      - Weak convergence
+      - Characteristic function
+      - Large deviation principle
+      - Exponential martingale
+      - Doob decomposition
+      - Martingale convergence theorem
+      - Quadratic variation
+      - Stopping time
+      - Donsker theorem
+      - Levy process
+      - Stochastic integral
+      - Multidimensional Brownian motion

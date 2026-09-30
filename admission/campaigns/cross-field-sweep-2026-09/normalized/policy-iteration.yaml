@@ -1,0 +1,146 @@
+dossier_schema: 1.0.0
+candidate:
+  id: policy-iteration
+  canonical_name: Policy iteration
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: bertsekas-dp-2017
+    kind: textbook
+    title: Dynamic Programming and Optimal Control, fourth edition
+    authors:
+      - Dimitri P. Bertsekas
+    year: 2017
+    locator: https://athenasc.com/dpbook.html
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: policy-iteration-claim
+    proposition: Policy iteration alternates exact policy evaluation with greedy policy improvement.
+    endpoints:
+      from: $candidate
+      to: markov-chains
+    proposed_edge:
+      type: APPLIED-IN
+      strength: theorem
+      context: Finite discounted MDPs with exact arithmetic.
+    mathematical_skeleton: Each improvement weakly lowers cost until a policy is Bellman optimal.
+    scope: Finite discounted MDPs with exact arithmetic.
+    assumptions:
+      - finite policy set
+    validity_regime: The stated claim is limited to finite discounted MDPs with exact arithmetic.
+    caveats:
+      - Approximate evaluation can break monotone improvement without error control.
+    counterexamples:
+      - A noisy value estimate can choose a worse greedy action.
+    source_assessments:
+      - source_id: bertsekas-dp-2017
+        proposition: Policy iteration alternates exact policy evaluation with greedy policy improvement.
+        status: direct-support
+        location: Volume I, Chapter 2, §§2.5–2.6.
+        rationale: The pinpointed section defines or develops Policy iteration and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Policy iteration alternates exact policy
+        evaluation with greedy policy improvement."
+    alternative_interpretations:
+      - A broader use of “Policy iteration” outside the recorded scope.
+search:
+  queries:
+    - id: policy-iteration-query
+      query: Policy iteration Dynamic Programming and Optimal Control, fourth edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: policy-iteration-query
+      result: located
+      source_ids:
+        - bertsekas-dp-2017
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Volume I, Chapter 2, §§2.5–2.6.
+generated_hypotheses:
+  - id: policy-iteration-hypothesis
+    text: Policy iteration alternates exact policy evaluation with greedy policy improvement.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - bertsekas-dp-2017
+automated_judgments:
+  - id: policy-iteration-judgment
+    method: model-assisted
+    subject: policy-iteration-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\policy-iteration.yaml#source_inventory
+adversarial_reviews:
+  - id: policy-iteration-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Approximate evaluation can break monotone improvement without error control."
+    response: The proposition is restricted to finite discounted MDPs with exact arithmetic, and the caveat
+      remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\policy-iteration.yaml#claims.policy-iteration-claim
+  - id: policy-iteration-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of APPLIED-IN.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Approximate evaluation can break
+      monotone improvement without error control."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\policy-iteration.yaml#claims.policy-iteration-claim
+human_decisions:
+  - id: policy-iteration-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
+workflow:
+  state: accepted-as-node
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from bertsekas-dp-2017 at Publisher contents, Volume I, Chapters 1–7.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner

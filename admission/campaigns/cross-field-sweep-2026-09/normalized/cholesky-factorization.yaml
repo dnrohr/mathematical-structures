@@ -1,0 +1,40 @@
+dossier_schema: 1.0.0
+candidate:
+  id: cholesky-factorization
+  canonical_name: Cholesky factorization
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: defer
+  possible_matches: []
+source_inventory:
+  - id: trefethen-bau-1997
+    kind: textbook
+    title: Numerical Linear Algebra
+    authors:
+      - Lloyd N. Trefethen
+      - David Bau III
+    year: 1997
+    locator: https://people.maths.ox.ac.uk/trefethen/text.html
+    supplied_by: atlas-cross-field-curator
+claims: []
+search:
+  queries: []
+  history: []
+generated_hypotheses: []
+automated_judgments: []
+adversarial_reviews: []
+human_decisions: []
+workflow:
+  state: normalized
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from trefethen-bau-1997 at Author table of contents, Lectures 1–40.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest

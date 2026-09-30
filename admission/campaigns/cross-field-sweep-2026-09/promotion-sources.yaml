@@ -1,0 +1,94 @@
+promotion_sources_schema: 1.0.0
+sources:
+  - source_id: evans-pde-2010
+    citation_key: evans-2010
+  - source_id: trefethen-bau-1997
+    citation_key: trefethen-bau-1997
+    bibtex: |-
+      @book{trefethen-bau-1997,
+        author = {Trefethen, Lloyd N. and Bau, David},
+        title = {Numerical Linear Algebra},
+        publisher = {SIAM},
+        year = {1997},
+        doi = {10.1137/1.9780898719574},
+      }
+  - source_id: levin-peres-2017
+    citation_key: levin-peres-2017
+    bibtex: |-
+      @book{levin-peres-2017,
+        author = {Levin, David A. and Peres, Yuval},
+        title = {Markov Chains and Mixing Times},
+        edition = {2nd},
+        publisher = {American Mathematical Society},
+        year = {2017},
+      }
+  - source_id: astrom-murray-2020
+    citation_key: astrom-murray-2020
+    bibtex: |-
+      @book{astrom-murray-2020,
+        author = {Astrom, Karl J. and Murray, Richard M.},
+        title = {Feedback Systems},
+        edition = {2nd},
+        publisher = {Princeton University Press},
+        year = {2020},
+      }
+  - source_id: siebert-signals-1986
+    citation_key: siebert-1986
+    bibtex: |-
+      @book{siebert-1986,
+        author = {Siebert, William McC.},
+        title = {Circuits, Signals, and Systems},
+        publisher = {MIT Press},
+        year = {1986},
+      }
+  - source_id: hansen-inverse-2010
+    citation_key: hansen-2010
+    bibtex: |-
+      @book{hansen-2010,
+        author = {Hansen, Per Christian},
+        title = {Discrete Inverse Problems: Insight and Algorithms},
+        publisher = {SIAM},
+        year = {2010},
+        doi = {10.1137/1.9780898718836},
+      }
+  - source_id: bertsekas-dp-2017
+    citation_key: bertsekas-2017
+    bibtex: |-
+      @book{bertsekas-2017,
+        author = {Bertsekas, Dimitri P.},
+        title = {Dynamic Programming and Optimal Control},
+        edition = {4th},
+        publisher = {Athena Scientific},
+        year = {2017},
+      }
+  - source_id: osborne-rubinstein-1994
+    citation_key: osborne-rubinstein-1994
+    bibtex: |-
+      @book{osborne-rubinstein-1994,
+        author = {Osborne, Martin J. and Rubinstein, Ariel},
+        title = {A Course in Game Theory},
+        publisher = {MIT Press},
+        year = {1994},
+      }
+  - source_id: newman-networks-2018
+    citation_key: newman-2018
+    bibtex: |-
+      @book{newman-2018,
+        author = {Newman, Mark},
+        title = {Networks},
+        edition = {2nd},
+        publisher = {Oxford University Press},
+        year = {2018},
+        doi = {10.1093/oso/9780198805090.001.0001},
+      }
+  - source_id: durrett-probability-2019
+    citation_key: durrett-2019
+    bibtex: |-
+      @book{durrett-2019,
+        author = {Durrett, Rick},
+        title = {Probability: Theory and Examples},
+        edition = {5th},
+        publisher = {Cambridge University Press},
+        year = {2019},
+        doi = {10.1017/9781108591034},
+      }

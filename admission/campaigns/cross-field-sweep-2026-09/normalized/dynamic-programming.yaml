@@ -1,0 +1,146 @@
+dossier_schema: 1.0.0
+candidate:
+  id: dynamic-programming
+  canonical_name: Dynamic programming
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: operation
+source_inventory:
+  - id: bertsekas-dp-2017
+    kind: textbook
+    title: Dynamic Programming and Optimal Control, fourth edition
+    authors:
+      - Dimitri P. Bertsekas
+    year: 2017
+    locator: https://athenasc.com/dpbook.html
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: dynamic-programming-claim
+    proposition: Dynamic programming solves sequential optimization by decomposing it into state-indexed subproblems.
+    endpoints:
+      from: $candidate
+      to: optimization
+    proposed_edge:
+      type: IS-A
+      strength: special-case
+      context: Problems with a sufficient Markov state and separable stage costs.
+    mathematical_skeleton: The principle of optimality yields recursive value functions and policies.
+    scope: Problems with a sufficient Markov state and separable stage costs.
+    assumptions:
+      - state summarizes relevant history
+    validity_regime: The stated claim is limited to problems with a sufficient Markov state and separable stage costs.
+    caveats:
+      - State dimension can make exact computation infeasible.
+    counterexamples:
+      - A continuous high-dimensional state space produces the curse of dimensionality.
+    source_assessments:
+      - source_id: bertsekas-dp-2017
+        proposition: Dynamic programming solves sequential optimization by decomposing it into state-indexed subproblems.
+        status: direct-support
+        location: Volume I, Chapter 1, §1.3; Chapter 2, §§2.1–2.6.
+        rationale: The pinpointed section defines or develops Dynamic programming and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: Dynamic programming solves sequential
+        optimization by decomposing it into state-indexed subproblems."
+    alternative_interpretations:
+      - A broader use of “Dynamic programming” outside the recorded scope.
+search:
+  queries:
+    - id: dynamic-programming-query
+      query: Dynamic programming Dynamic Programming and Optimal Control, fourth edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: dynamic-programming-query
+      result: located
+      source_ids:
+        - bertsekas-dp-2017
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Volume I, Chapter 1, §1.3; Chapter 2, §§2.1–2.6.
+generated_hypotheses:
+  - id: dynamic-programming-hypothesis
+    text: Dynamic programming solves sequential optimization by decomposing it into state-indexed subproblems.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - bertsekas-dp-2017
+automated_judgments:
+  - id: dynamic-programming-judgment
+    method: model-assisted
+    subject: dynamic-programming-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\dynamic-programming.yaml#source_inventory
+adversarial_reviews:
+  - id: dynamic-programming-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: State dimension can make exact computation infeasible."
+    response: The proposition is restricted to problems with a sufficient Markov state and separable stage costs,
+      and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\dynamic-programming.yaml#claims.dynamic-programming-claim
+  - id: dynamic-programming-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of IS-A.
+    response: "The claim remains bounded by its recorded assumptions and caveat: State dimension can make exact
+      computation infeasible."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\dynamic-programming.yaml#claims.dynamic-programming-claim
+human_decisions:
+  - id: dynamic-programming-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
+workflow:
+  state: accepted-as-node
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from bertsekas-dp-2017 at Publisher contents, Volume I, Chapters 1–7.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner

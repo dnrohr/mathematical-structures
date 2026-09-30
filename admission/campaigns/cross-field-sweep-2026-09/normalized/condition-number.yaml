@@ -1,0 +1,148 @@
+dossier_schema: 1.0.0
+candidate:
+  id: condition-number
+  canonical_name: Condition number
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - numerical-analysis
+    - optimization
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: principle
+source_inventory:
+  - id: trefethen-bau-1997
+    kind: textbook
+    title: Numerical Linear Algebra
+    authors:
+      - Lloyd N. Trefethen
+      - David Bau III
+    year: 1997
+    locator: https://people.maths.ox.ac.uk/trefethen/text.html
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: condition-number-claim
+    proposition: A condition number governs first-order amplification of input perturbations into solution changes.
+    endpoints:
+      from: $candidate
+      to: backward-error-analysis
+    proposed_edge:
+      type: GOVERNS
+      strength: theorem
+      context: Well-posed finite-dimensional numerical problems near a specified input.
+    mathematical_skeleton: It is a local Lipschitz ratio, often expressed through operator norms or singular values.
+    scope: Well-posed finite-dimensional numerical problems near a specified input.
+    assumptions:
+      - specified norms
+      - small perturbations
+    validity_regime: The stated claim is limited to well-posed finite-dimensional numerical problems near a specified input.
+    caveats:
+      - Conditioning is a property of the problem, not the algorithm.
+    counterexamples:
+      - A backward-stable algorithm can still give a poor forward answer on an ill-conditioned problem.
+    source_assessments:
+      - source_id: trefethen-bau-1997
+        proposition: A condition number governs first-order amplification of input perturbations into solution changes.
+        status: direct-support
+        location: Lecture 12, pp. 89–97.
+        rationale: The pinpointed section defines or develops Condition number and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A condition number governs first-order
+        amplification of input perturbations into solution changes."
+    alternative_interpretations:
+      - A broader use of “Condition number” outside the recorded scope.
+search:
+  queries:
+    - id: condition-number-query
+      query: Condition number Numerical Linear Algebra definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: condition-number-query
+      result: located
+      source_ids:
+        - trefethen-bau-1997
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Lecture 12, pp. 89–97.
+generated_hypotheses:
+  - id: condition-number-hypothesis
+    text: A condition number governs first-order amplification of input perturbations into solution changes.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - trefethen-bau-1997
+automated_judgments:
+  - id: condition-number-judgment
+    method: model-assisted
+    subject: condition-number-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\condition-number.yaml#source_inventory
+adversarial_reviews:
+  - id: condition-number-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Conditioning is a property of the problem, not the algorithm."
+    response: The proposition is restricted to well-posed finite-dimensional numerical problems near a specified
+      input, and the caveat remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\condition-number.yaml#claims.condition-number-claim
+  - id: condition-number-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of GOVERNS.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Conditioning is a property of the
+      problem, not the algorithm."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\condition-number.yaml#claims.condition-number-claim
+human_decisions:
+  - id: condition-number-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
+workflow:
+  state: accepted-as-node
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from trefethen-bau-1997 at Author table of contents, Lectures 1–40.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner

@@ -22,6 +22,10 @@ import type {
 } from '../../../build/src/schema.js';
 
 export type {
+  BridgeAtlasBridge,
+  BridgeAtlasCommunity,
+  BridgeAtlasFrontier,
+  BridgeAtlasMetrics,
   BridgeDeficit,
   CandidatePair,
   DialectGap,

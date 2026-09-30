@@ -1,0 +1,151 @@
+dossier_schema: 1.0.0
+candidate:
+  id: transfer-function
+  canonical_name: Transfer function
+  local_names: []
+  acronyms: []
+  originating_fields:
+    - control
+    - mechanics
+  proposed_disposition: propose-node
+  possible_matches: []
+  proposed_node_type: dialect
+source_inventory:
+  - id: astrom-murray-2020
+    kind: textbook
+    title: Feedback Systems, second edition
+    authors:
+      - Karl J. Astrom
+      - Richard M. Murray
+    year: 2020
+    locator: https://www.cds.caltech.edu/~murray/FBS/Second_Edition.html
+    supplied_by: atlas-cross-field-curator
+claims:
+  - id: transfer-function-claim
+    proposition: A transfer function is the frequency-domain input-output representation of an LTI state-space
+      model under zero initial conditions.
+    endpoints:
+      from: $candidate
+      to: state-space-model
+    proposed_edge:
+      type: FIELD-DIALECT-OF
+      strength: strong-analogy
+      context: Finite-dimensional linear time-invariant systems.
+    mathematical_skeleton: G(s)=C(sI-A)^{-1}B+D maps transformed inputs to outputs.
+    scope: Finite-dimensional linear time-invariant systems.
+    assumptions:
+      - zero initial condition
+      - Laplace transform exists
+    validity_regime: The stated claim is limited to finite-dimensional linear time-invariant systems.
+    caveats:
+      - Different state realizations can share the same transfer function.
+    counterexamples:
+      - Unobservable internal modes do not appear in the transfer function.
+    source_assessments:
+      - source_id: astrom-murray-2020
+        proposition: A transfer function is the frequency-domain input-output representation of an LTI state-space
+          model under zero initial conditions.
+        status: direct-support
+        location: Chapter 9, §§9.1–9.3.
+        rationale: The pinpointed section defines or develops Transfer function and the scoped structural claim
+          recorded here.
+        assessor:
+          kind: model-assisted
+          identity: atlas-cross-field-evidence-curator
+          version: 1.0.0
+    possible_falsifiers:
+      - "A valid example within the stated scope that violates: A transfer function is the frequency-domain
+        input-output representation of an LTI state-space model under zero initial conditions."
+    alternative_interpretations:
+      - A broader use of “Transfer function” outside the recorded scope.
+search:
+  queries:
+    - id: transfer-function-query
+      query: Transfer function Feedback Systems, second edition definition theorem
+      dialects: []
+      designed_by: atlas-cross-field-evidence-curator
+  history:
+    - query_id: transfer-function-query
+      result: located
+      source_ids:
+        - astrom-murray-2020
+      executed_by: atlas-cross-field-evidence-curator
+      notes: Chapter 9, §§9.1–9.3.
+generated_hypotheses:
+  - id: transfer-function-hypothesis
+    text: A transfer function is the frequency-domain input-output representation of an LTI state-space model
+      under zero initial conditions.
+    generator: atlas-cross-field-evidence-curator
+    input_source_ids:
+      - astrom-murray-2020
+automated_judgments:
+  - id: transfer-function-judgment
+    method: model-assisted
+    subject: transfer-function-claim
+    recommendation: retain
+    rationale: Retain for adversarial review because the proposition is atomic, scoped, and source-located.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\transfer-function.yaml#source_inventory
+adversarial_reviews:
+  - id: transfer-function-adversarial
+    method: model-assisted
+    reviewer: atlas-cross-field-evidence-curator-adversarial
+    challenge: "Boundary test: Different state realizations can share the same transfer function."
+    response: The proposition is restricted to finite-dimensional linear time-invariant systems, and the caveat
+      remains explicit.
+    recommended_action: Retain for human review with the stated scope and caveat.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\evidence-pack.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\transfer-function.yaml#claims.transfer-function-claim
+  - id: transfer-function-independent-review-2026-09-28
+    method: model-assisted
+    reviewer: codex-independent-review
+    challenge: Independently test the claim against its counterexample and the semantics of FIELD-DIALECT-OF.
+    response: "The claim remains bounded by its recorded assumptions and caveat: Different state realizations can
+      share the same transfer function."
+    recommended_action: Retain for human review.
+    provenance:
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\independent-review.yaml
+      - C:\Users\dnroh\Documents\mathematical-structures\admission\campaigns\cross-field-sweep-2026-09\normalized\transfer-function.yaml#claims.transfer-function-claim
+human_decisions:
+  - id: transfer-function-human-approval-2026-09-28
+    reviewer: repository-owner
+    disposition: accepted-as-node
+    reason: The repository owner explicitly approved all 50 cross-field campaign dossiers in the Codex task on
+      2026-09-28.
+workflow:
+  state: accepted-as-node
+  history:
+    - from: null
+      to: harvested
+      reason: Harvested from astrom-murray-2020 at Author-hosted second edition, Chapters 1–15.
+      actor: atlas-harvest
+    - from: harvested
+      to: normalized
+      reason: Consolidated 1 raw entry and compared names with the trusted atlas.
+      actor: atlas-harvest
+    - from: normalized
+      to: dossier-ready
+      reason: Triage selected this candidate for the bounded evidence queue.
+      actor: atlas-cross-field-evidence-curator
+    - from: dossier-ready
+      to: evidence-collected
+      reason: An atomic proposition was assessed at a source-specific location.
+      actor: atlas-cross-field-evidence-curator
+    - from: evidence-collected
+      to: assessed
+      reason: Scope, assumptions, caveats, falsifiers, and alternatives were recorded.
+      actor: atlas-cross-field-evidence-curator
+    - from: assessed
+      to: automated-review-passed
+      reason: Deterministic validation and a separate adversarial review are ready for human review.
+      actor: atlas-cross-field-evidence-curator
+    - from: automated-review-passed
+      to: human-review
+      reason: The repository owner explicitly approved all 50 cross-field campaign dossiers.
+      actor: repository-owner
+    - from: human-review
+      to: accepted-as-node
+      reason: The approved node and its reviewed edge were promoted to the trusted atlas.
+      actor: repository-owner
