@@ -20,7 +20,8 @@ export type Route =
       communities: boolean;
       focus?: string;
       depth?: 1 | 2 | 'all';
-      layout?: 'bridges';
+      layout?: 'bridges' | 'flow';
+      group?: 'field' | 'community' | 'none';
       mode?: 'bridges' | 'frontiers';
       bridge?: string;
       filters?: LensFilters;
@@ -88,7 +89,13 @@ export function parseHash(hash: string): Route {
     const rawDepth = params.get('depth');
     const depth =
       rawDepth === '1' ? 1 : rawDepth === '2' ? 2 : rawDepth === 'all' ? 'all' : undefined;
-    const layout = params.get('layout') === 'bridges' ? 'bridges' : undefined;
+    const rawLayout = params.get('layout');
+    const layout = rawLayout === 'bridges' || rawLayout === 'flow' ? rawLayout : undefined;
+    const rawGroup = params.get('group');
+    const group =
+      rawGroup === 'field' || rawGroup === 'community' || rawGroup === 'none'
+        ? rawGroup
+        : undefined;
     const mode = params.get('mode') === 'frontiers' ? 'frontiers' : undefined;
     const bridge = /^\d+-\d+$/.test(params.get('bridge') ?? '') ? params.get('bridge')! : undefined;
     const filters: LensFilters = {};
@@ -106,9 +113,10 @@ export function parseHash(hash: string): Route {
       ...(focus ? { focus } : {}),
       ...(depth ? { depth } : {}),
       ...(layout ? { layout } : {}),
+      ...(layout === 'flow' && group ? { group } : {}),
       ...(mode ? { mode } : {}),
       ...(bridge ? { bridge } : {}),
-      ...(layout ? { filters } : {}),
+      ...(layout === 'bridges' ? { filters } : {}),
     };
   }
   if (segs[0] === 'compare' && segs.length <= 3) {

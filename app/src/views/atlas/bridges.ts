@@ -410,6 +410,7 @@ export function bridgeAtlasView(atlas: Atlas, initial: BridgeAtlasState): View {
         { class: 'bridge-layout-switch', 'aria-label': 'Atlas layout' },
         h('a', { href: '#/atlas' }, 'Concept map'),
         h('span', { 'aria-current': 'page' }, 'Bridge map'),
+        h('a', { href: '#/atlas?layout=flow' }, 'Structure to Use'),
       ),
       h(
         'nav',

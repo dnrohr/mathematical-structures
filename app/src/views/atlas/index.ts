@@ -13,6 +13,7 @@ import { h, joinChildren, type Child } from '../common/dom';
 import { edgeClaim, edgeSentenceText } from '../common/edge-claim';
 import type { View } from '../common/view';
 import { bridgeAtlasView, type BridgeAtlasState } from './bridges';
+import { flowAtlasView, type FlowAtlasState } from './flow';
 import { compareHash } from '../compare';
 import { lensHash } from '../lens';
 import { pathHash } from '../path';
@@ -37,7 +38,8 @@ export interface AtlasState {
   communities?: boolean;
   focus?: string;
   depth?: AtlasDepth;
-  layout?: 'bridges';
+  layout?: 'bridges' | 'flow';
+  group?: FlowAtlasState['group'];
   mode?: BridgeAtlasState['mode'];
   bridge?: string;
   filters?: BridgeAtlasState['filters'];
@@ -168,6 +170,14 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
       mode: initial.mode,
       bridge: initial.bridge,
       filters: initial.filters,
+    });
+  }
+  if (initial.layout === 'flow') {
+    return flowAtlasView(atlas, {
+      layout: 'flow',
+      focus: initial.focus,
+      depth: initial.depth,
+      group: initial.group,
     });
   }
   const layout = atlas.layout;
@@ -622,6 +632,11 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
       'a',
       { class: 'atlas-tool-link atlas-layout-link', href: '#/atlas?layout=bridges' },
       'Bridge overview',
+    ),
+    h(
+      'a',
+      { class: 'atlas-tool-link atlas-layout-link', href: '#/atlas?layout=flow' },
+      'Structure to Use',
     ),
     h('a', { class: 'atlas-tool-link', href: '#/lens' }, 'Filters'),
     h('a', { class: 'atlas-tool-link', href: '#/atlas' }, 'Reset'),
