@@ -1,5 +1,9 @@
 # Atlas Visualization Roadmap
 
+> Updated 2026-09-30. The graph workspace/focus slice, deterministic Bridge
+> Atlas overview, and scale-aware camera foundation are implemented. Semantic
+> level-of-detail is the next implementation slice described below.
+
 ## Bridge Atlas delivery status
 
 The deterministic Bridge Atlas slice is implemented at
@@ -16,6 +20,11 @@ The deterministic Bridge Atlas slice is implemented at
   absence and never pre-fills a proposed edge;
 - territory expansion, zoom/camera controls, decorative coastline refinement,
   and animation remain later work.
+
+At the time of this update the built atlas contains 144 concepts, 312 claims,
+123 positioned concepts, 247 trusted claims, and 7 communities. The project is
+therefore already at the documented community-aggregation transition rather
+than merely approaching it.
 
 ## Purpose
 
@@ -38,12 +47,13 @@ large change.
 
 ## Current condition
 
-The Atlas currently draws every positioned concept and every trusted claim in
-one fixed constellation. At the present dataset size this means roughly 120
-concepts and 200 claims. Although the coordinates are deterministic and node
-labels are hidden until focus or hover, the dense center still reads as a
-hairball. The explanatory material also pushes much of the graph below the
-initial viewport.
+The concept-map mode currently draws all 123 positioned concepts and all 247
+trusted claims in one fixed constellation. The camera now provides bounded
+wheel zoom, empty-canvas pointer pan, fit controls, and transient preservation
+without changing those deterministic coordinates. Node labels are hidden
+until focus or hover, but the dense center can still read as a hairball because
+the constellation does not yet vary its visual density with scale. The
+separate Bridge Atlas provides the community-level overview.
 
 The existing implementation nevertheless provides a strong foundation:
 
@@ -56,6 +66,64 @@ The existing implementation nevertheless provides a strong foundation:
   graph relationships.
 - The existing Atlas end-to-end suite verifies layout fidelity, focus state,
   URL round-tripping, themes, and the concept minimap.
+
+## Architecture assessment
+
+The current architecture supports this work cleanly. `metrics.layout` is
+already the sole spatial authority, and the Atlas is hand-written SVG with
+separate edge and node layers. Pan and zoom can therefore be implemented as a
+uniform transform on one inner SVG group. This is a camera operation only: it
+does not run force physics, recompute positions, mutate `metrics.layout`, or
+change any mathematical claim.
+
+No rendering-framework or WebGL migration is warranted at the present scale.
+The repository also has an explicit no-new-runtime-dependency posture, so the
+first camera implementation should use native wheel and pointer events rather
+than add `d3-zoom`.
+
+Hash navigation reconstructs a view, and the `View` interface has no teardown
+callback. The implemented camera therefore keeps its listeners on the
+discarded SVG, where garbage collection is sufficient, and uses a small
+module-level cache to retain presentation state across Atlas focus, depth, and
+color route changes. It does not install window-level listeners or a
+`ResizeObserver`. If a later slice requires either, add an optional view
+disposal hook and invoke it before the shell replaces the current view.
+
+## Scale strategy
+
+There are two independent forms of scale and both need an explicit response:
+
+1. **Dataset scale.** As the graph grows, the default survey surface must move
+   from individual concepts to communities. The implemented Bridge Atlas is
+   the correct default overview at the current 144-node size. The complete
+   concept constellation remains an explicit exploration mode, and focused
+   concept URLs continue to open directly into that mode.
+2. **Camera scale.** Within the concept constellation, zoom must reveal detail
+   instead of merely enlarging clutter. Marks, labels, and edges should use
+   deterministic levels of detail while coordinates remain fixed.
+
+The recommended attention bands are:
+
+| Band | Presentation |
+| --- | --- |
+| Survey | Community territories, landmark names, and aggregate bridge counts in the Bridge Atlas. |
+| Concept fit | All positioned concept dots; a subdued structural edge field; landmark, hovered, focused, and keyboard-focused labels only. |
+| Close concept view | Stronger local edges and additional deterministic labels chosen by focus, community-landmark status, then centrality and slug. |
+| Focused concept | The existing capped one- or two-hop trusted neighborhood takes precedence; unrelated context remains faint. |
+
+Do not silently morph the Bridge Atlas into the concept constellation during a
+wheel gesture. They answer different questions and have different visual
+semantics, so the transition should be an explicit `Overview` / `Explore
+concepts` control. Within the concept view, visual suppression must be
+disclosed (for example, “labels and non-local edges are reduced at this
+scale”), and all claims remain available through the inspector, live caption,
+or existing textual views.
+
+The preferred route migration is to make the community overview the Atlas
+navigation destination while retaining a canonical explicit concept layout.
+Bare and previously shared focused URLs must remain valid. Final query names
+should be settled with the router tests; camera position remains transient and
+must not enter the URL.
 
 ## Product model
 
@@ -199,35 +267,110 @@ connections must be derived exclusively from actual trusted claims.
 - Every positioned concept can be reached within two selections.
 - The complete constellation remains available but is no longer the default.
 
-## Stage 3: Camera and minimap
+## Stage 3: Scale-aware camera and concept detail
 
-Add camera navigation only after Overview and focus states are stable.
+Overview and focus states are now stable enough for camera navigation. Deliver
+the camera before optional minimap work so the smallest useful interaction
+slice stays reviewable.
 
-### Work
+### Camera foundation delivery status
 
-- Apply one uniform camera transform to an inner SVG graph group.
-- Support bounded wheel zoom, drag pan, reset, and visible zoom-in and zoom-out
-  controls.
+The first camera slice is implemented in
+`app/src/views/atlas/camera.ts` and `app/src/views/atlas/index.ts`:
+
+- one inner `atlas-camera` group applies a bounded uniform transform while
+  every node retains its exact build-time `metrics.layout` translation;
+- wheel/trackpad input zooms around the pointer from `0.5x` through `6x`, and
+  empty-canvas pointer drags pan within a modest overscroll boundary;
+- a movement threshold separates click from drag, dragged nodes do not
+  navigate accidentally, pointer capture stabilizes canvas drags, and Escape
+  cancels the active pan;
+- visible `Zoom in`, `Zoom out`, and `Fit constellation` buttons plus a live
+  zoom/focus status provide the keyboard and assistive-technology path;
+- a module-memory camera cache survives focus, depth, and color-mode route
+  rebuilds; `Fit` and full reload return to the deterministic fitted view; and
+- camera math has unit coverage, while Playwright covers wheel zoom, pan,
+  click-versus-drag, controls, accessibility, preservation, reload, and fixed
+  node coordinates.
+
+No runtime dependency was added. Semantic detail remains the next item in this
+stage.
+
+Current UI evidence is stored at
+`artifacts/ui/atlas-camera/scale-aware-camera-desktop.png`; the companion
+`zoom-pan-fit.webm` records the zoom, empty-canvas pan, and deterministic fit
+interaction at 1440 × 900.
+
+### Camera work
+
+- Wrap the existing edge and node layers in one inner
+  `<g class="atlas-camera">` and apply a uniform translate/scale transform to
+  that group only.
+- Support mouse-wheel and trackpad zoom centered on the pointer.
+- Pan by dragging empty canvas space. Use pointer capture so the gesture
+  remains stable when the pointer leaves the SVG.
+- Use a short movement threshold to distinguish a drag from a click. Dragging
+  must not accidentally activate a concept or claim link, and node clicks must
+  retain their existing behavior.
+- Bound zoom to a practical range (begin with approximately `0.5x` to `6x`)
+  and constrain extreme panning while allowing modest overscroll.
+- Add visible `Zoom in`, `Zoom out`, and `Fit` controls. These are the keyboard
+  and assistive-technology path; mouse gestures are an enhancement.
+- Show an accessible camera status such as `150%, focused on Eigenvalues`.
+- Use grab/grabbing cursor feedback and allow `Escape` to cancel an active
+  drag.
+- Preserve the camera in session memory while focus, depth, or color mode
+  changes rebuild the Atlas view. A reload returns to deterministic fit.
 - Ensure camera input never starts force simulation or changes build-time
   coordinates.
-- Add a minimap drawn from the same fixed coordinates.
-- Display the current viewport rectangle in the minimap.
-- Allow minimap selection to recenter the main camera.
-- Fit or reset the camera when the user changes community or focus context.
-- Respect `prefers-reduced-motion` for animated camera transitions.
+- Keep the inspection panel and toolbar outside the transformed SVG.
+- Respect `prefers-reduced-motion`; the first slice may use immediate
+  transforms and does not require animation.
 
-A small dedicated camera module is preferable to introducing a broad graphing
-framework. A focused dependency such as `d3-zoom` is acceptable only if it
-materially reduces accessibility and input-handling risk.
+### Semantic detail work
+
+- Derive a deterministic attention band from the camera scale.
+- Keep focused, hovered, and keyboard-focused marks fully legible in every
+  band.
+- At fit scale, reduce the visual dominance of the complete edge field and
+  keep only prioritized labels visible.
+- At closer scales, strengthen local edges and admit additional labels in a
+  deterministic order. If collision suppression is needed, use a stable
+  screen-space grid rather than layout physics.
+- Keep SVG strokes readable with `vector-effect="non-scaling-stroke"` where
+  appropriate. Avoid allowing labels or hit targets to become unusably small.
+- State when edges or labels are visually suppressed. Suppression changes
+  attention only; it must not change the inspector's claims or imply that a
+  hidden claim is absent.
+
+### Optional follow-up: minimap and touch
+
+- Add a minimap drawn from the same fixed coordinates only after the camera
+  interaction is proven useful.
+- Display the current viewport rectangle and allow minimap selection to
+  recenter the main camera.
+- Add two-pointer pinch support through the same camera model. Do not block the
+  requested mouse interaction on this follow-up.
+
+A small dependency-free camera module with pure transform/clamping helpers is
+preferable to embedding camera math in the view or introducing another runtime
+package.
 
 ### Acceptance criteria
 
 - Zoom is bounded and uniform; spatial relationships are never distorted.
 - Reset yields the same camera state every time.
-- Pointer, touch, and keyboard controls all work.
-- The minimap viewport accurately represents the main camera.
+- Mouse/trackpad, pointer-drag, and visible keyboard-operable controls work.
+- Zoom keeps the graph coordinate under the pointer stationary within normal
+  floating-point tolerance.
+- Dragging empty space changes the camera; dragging or clicking a node does not
+  corrupt node navigation.
+- Focus and depth changes preserve the in-memory camera; reload and `Fit`
+  produce a deterministic fitted camera.
 - Controls do not obscure the graph at supported viewport widths.
 - Reduced-motion users do not receive animated camera transitions.
+- Existing `metrics.layout` coordinates and concept minimaps remain unchanged.
+- Every visually suppressed claim is still recoverable as readable text.
 
 ## Stage 4: Filters and alternative layouts
 
@@ -264,8 +407,13 @@ Use one reviewable pull request per stage after Stage 0:
    panel, URL state, accessibility.
 2. **Community overview** — build artifact additions, aggregation renderer,
    community drill-down.
-3. **Camera and minimap** — zoom, pan, fit/reset, responsive minimap.
-4. **Filters and first alternate layout** — shared filter grammar and community
+3. **Camera foundation** — wheel/trackpad zoom, pointer pan, controls,
+   bounds, session preservation, accessibility, and tests.
+4. **Semantic detail** — scale bands, deterministic labels, edge emphasis,
+   and disclosure of suppressed detail.
+5. **Optional minimap and touch** — viewport rectangle, recentering, and pinch
+   gestures after the mouse camera is stable.
+6. **Filters and first alternate layout** — shared filter grammar and community
    islands. Add later layouts in separate follow-up changes.
 
 Each pull request must leave `#/atlas` complete and usable. Avoid long-lived
@@ -279,15 +427,21 @@ Extend the existing Atlas tests rather than creating an unrelated suite.
 Every stage should include, as applicable:
 
 - Unit tests for URL state parsing and serialization.
+- Unit tests for camera transforms, pointer-centered zoom, fit calculations,
+  and clamping.
 - Unit tests for trusted neighborhood selection and caps.
 - Build tests for deterministic community metrics and layouts.
 - End-to-end tests for focus, depth, community, filters, layouts, and reloads.
+- End-to-end tests for wheel zoom, pointer pan, click-versus-drag behavior,
+  visible camera controls, fit/reset, and camera preservation across Atlas
+  route changes.
 - Exact node and edge counts checked against `graph.json`.
 - Keyboard navigation and focus-management tests.
 - Axe checks in light and dark themes.
 - Visual evidence at desktop, tablet, and narrow mobile widths.
 - Confirmation that every visible claim is available in readable text.
 - `npm run check` and the full Playwright suite.
+- The existing JavaScript bundle-budget check.
 
 Recommended visual QA sizes are approximately 1440×900, 768×1024, and
 390×844.
@@ -322,3 +476,11 @@ The redesign succeeds when:
   filters, and three layouts in the first implementation change.
 - **Regression of the concept minimap.** Continue drawing it from the canonical
   fixed concept coordinates, not the current Atlas camera or aggregate view.
+
+## Next implementation slice
+
+Add semantic detail bands on top of the delivered camera foundation. Keep
+focused and keyboard-focused marks legible, choose additional labels
+deterministically, disclose visual suppression, and preserve the inspector's
+complete readable claims. Optional minimap viewport controls and pinch input
+remain later follow-ups.

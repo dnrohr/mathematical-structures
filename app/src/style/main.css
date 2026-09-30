@@ -2481,6 +2481,42 @@ th[aria-sort='ascending'] .sort-button::after {
   border-radius: 5px;
 }
 
+.atlas-camera-controls {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+}
+
+.atlas-camera-button {
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0.2rem 0.45rem;
+  color: var(--ink-muted);
+  border: 0;
+  border-right: 1px solid var(--rule);
+  background: var(--bg-raised);
+  font: 700 0.78rem var(--font-ui);
+  cursor: pointer;
+}
+
+.atlas-camera-button:last-child {
+  border-right: 0;
+}
+
+.atlas-camera-button:hover,
+.atlas-camera-button:focus-visible {
+  color: var(--link);
+  background: var(--code-bg);
+}
+
+.atlas-camera-status {
+  min-width: 5rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 .atlas-depth,
 .atlas-tool-link {
   color: var(--ink-muted);
@@ -2551,6 +2587,18 @@ th[aria-sort='ascending'] .sort-button::after {
   width: 100%;
   min-height: min(37rem, calc(100vh - 16rem));
   max-height: calc(100vh - 12.5rem);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.atlas-svg.is-panning {
+  cursor: grabbing;
+}
+
+.atlas-camera .edge-line,
+.atlas-camera .atlas-ring {
+  vector-effect: non-scaling-stroke;
 }
 
 .atlas-figure > .community-legend {
