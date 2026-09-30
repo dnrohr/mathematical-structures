@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   MAX_CAMERA_SCALE,
   MIN_CAMERA_SCALE,
+  cameraMarkerDimensions,
   clampCamera,
   fitCamera,
   panBy,
@@ -59,5 +60,14 @@ describe('Atlas camera math', () => {
       y: 28,
       scale: 2,
     });
+  });
+
+  it('keeps arrow markers at a bounded screen-space size across camera zoom', () => {
+    expect(cameraMarkerDimensions(0.5)).toEqual({ width: 20, height: 16 });
+    expect(cameraMarkerDimensions(1)).toEqual({ width: 10, height: 8 });
+    expect(cameraMarkerDimensions(2.5)).toEqual({ width: 4, height: 3.2 });
+    expect(cameraMarkerDimensions(6)).toEqual({ width: 10 / 6, height: 8 / 6 });
+    expect(cameraMarkerDimensions(0.01)).toEqual(cameraMarkerDimensions(MIN_CAMERA_SCALE));
+    expect(cameraMarkerDimensions(99)).toEqual(cameraMarkerDimensions(MAX_CAMERA_SCALE));
   });
 });

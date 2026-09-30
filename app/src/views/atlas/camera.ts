@@ -30,6 +30,23 @@ export function clampScale(scale: number): number {
   return Math.min(MAX_CAMERA_SCALE, Math.max(MIN_CAMERA_SCALE, finite(scale, 1)));
 }
 
+export interface MarkerDimensions {
+  width: number;
+  height: number;
+}
+
+/**
+ * Inverse camera compensation keeps an SVG marker's apparent dimensions
+ * constant while its owning edge remains inside the uniformly scaled layer.
+ */
+export function cameraMarkerDimensions(
+  scale: number,
+  base: Readonly<MarkerDimensions> = { width: 10, height: 8 },
+): MarkerDimensions {
+  const boundedScale = clampScale(scale);
+  return { width: base.width / boundedScale, height: base.height / boundedScale };
+}
+
 /** Keep the transformed content inside a modest overscroll boundary. */
 export function clampCamera(
   camera: Camera,

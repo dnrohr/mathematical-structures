@@ -18,6 +18,7 @@ import { lensHash } from '../lens';
 import { pathHash } from '../path';
 import {
   CAMERA_ZOOM_STEP,
+  cameraMarkerDimensions,
   clampCamera,
   fitCamera,
   panBy,
@@ -26,6 +27,7 @@ import {
   type Point,
   type Rect,
 } from './camera';
+import { connectionAttention } from './connections';
 
 let preservedCamera: Camera | undefined;
 
@@ -227,6 +229,14 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
     cameraSvg?.setAttribute('data-camera-x', camera.x.toFixed(3));
     cameraSvg?.setAttribute('data-camera-y', camera.y.toFixed(3));
     cameraSvg?.setAttribute('data-camera-scale', camera.scale.toFixed(4));
+    cameraSvg?.querySelectorAll<SVGMarkerElement>('.graph-arrow').forEach((marker) => {
+      const markerSize = cameraMarkerDimensions(camera.scale, {
+        width: Number(marker.getAttribute('data-base-width')) || 10,
+        height: Number(marker.getAttribute('data-base-height')) || 8,
+      });
+      marker.setAttribute('markerWidth', markerSize.width.toFixed(4));
+      marker.setAttribute('markerHeight', markerSize.height.toFixed(4));
+    });
     cameraStatus.textContent = cameraDescription();
   };
 
@@ -405,9 +415,11 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
     caption.textContent = idleCaption;
     const wire = (element: SVGElement, text: string): void => {
       const show = (): void => {
+        element.classList.add('is-interacting');
         caption.textContent = text;
       };
       const hide = (): void => {
+        element.classList.remove('is-interacting');
         caption.textContent = idleCaption;
       };
       element.addEventListener('mouseenter', show);
@@ -452,12 +464,14 @@ export function atlasView(atlas: Atlas, initial: AtlasState): View {
           : `M ${x1.toFixed(1)} ${y1.toFixed(1)} Q ${controlX.toFixed(1)} ${controlY.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
       const strength = atlas.strength(edge.strength);
       const sentence = edgeSentenceText(atlas, edge);
+      const attention = connectionAttention(edge, focus);
       const group = svgEl('g', {
-        class: `graph-edge line-${strength?.line ?? 'solid'} emph-${strength?.emphasis ?? 'medium'}`,
+        class: `graph-edge line-${strength?.line ?? 'solid'} emph-${strength?.emphasis ?? 'medium'} attention-${attention}`,
         tabindex: '0',
         role: 'img',
         'aria-label': sentence,
         'data-edge': `${edge.from}|${edge.to}|${edge.type}`,
+        'data-attention': attention,
       });
       group.appendChild(svgEl('path', { class: 'edge-hit', d: path }));
       group.appendChild(

@@ -1,8 +1,8 @@
 # Atlas Visualization Roadmap
 
 > Updated 2026-09-30. The graph workspace/focus slice, deterministic Bridge
-> Atlas overview, and scale-aware camera foundation are implemented. Semantic
-> level-of-detail is the next implementation slice described below.
+> Atlas overview, scale-aware camera foundation, and connection-legibility
+> hierarchy are implemented. Broader semantic level-of-detail remains below.
 
 ## Bridge Atlas delivery status
 
@@ -300,6 +300,33 @@ Current UI evidence is stored at
 `artifacts/ui/atlas-camera/scale-aware-camera-desktop.png`; the companion
 `zoom-pan-fit.webm` records the zoom, empty-canvas pan, and deterministic fit
 interaction at 1440 × 900.
+
+### Connection legibility delivery status
+
+The Atlas now derives an explicit attention state for every visible claim:
+unfocused overview, directed outgoing focus, directed incoming focus,
+symmetric focus adjacency, or between-neighbor context. Focused incident
+claims use a common high-contrast treatment while context claims recede;
+hover and keyboard focus promote either tier and continue to announce the full
+claim in the live caption. Direction is still carried by the target arrowhead
+and by the inspector's Incoming/Outgoing text, not by a color code.
+
+Directed claims use a longer, narrower filled triangle with a raised-background
+halo. The tip remains on the trimmed target-rim path endpoint and follows the
+final tangent of straight and bowed paths. Symmetric claims remain markerless,
+and solid/dashed/dotted plus strong/medium/light strength styling remains
+intact. Marker width and height are inversely compensated within the existing
+`0.5x`–`6x` camera bounds, so the head stays approximately `10 × 8` screen
+pixels without rewriting the camera transform, path coordinates, or any
+`metrics.layout` node translation.
+
+Unit tests cover all attention states and marker compensation at minimum,
+normal, intermediate, and maximum zoom. The focused Playwright suite covers
+incident/context rendering, directed versus symmetric semantics, hover and
+keyboard parity, readable captions, light/dark accessibility, camera/depth
+preservation, and byte-stable node translations. Current evidence lives in
+`artifacts/ui/atlas-connection-legibility/` at focused fit, focused close zoom,
+and narrow viewport sizes. No runtime dependency was added.
 
 ### Camera work
 
