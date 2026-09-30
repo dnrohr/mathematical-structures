@@ -330,12 +330,27 @@ touches the full-graph rule, so the reconciliation is explicit:
   deterministic, identical for every visitor, stable across sessions, and
   citable like every other artifact. It is linked from the survey strip and
   nav, never the homepage.
-- **Form.** A fixed constellation: dots colored by node type, sized subtly by
-  trusted degree, labeled on hover/focus with name + summary line; edges drawn
-  only at the strength floor and above, with the standard line grammar; a
-  communities toggle reusing the lens's `communities=1` param and palette.
-  Click navigates. No zoom, no pan, no physics — legibility comes from the
-  build-time layout being tuned once, not from camera controls.
+- **Form and attention model.** The Atlas is a graph-first workspace, not a
+  long document page. Its default is a community-aggregated overview; until
+  that aggregation slice lands, the fixed concept constellation remains the
+  honest compatibility overview. Selecting a concept focuses it *inside the
+  Atlas* and reveals its bounded trusted one- or two-hop neighborhood while
+  de-emphasizing the rest of the constellation. Opening the full concept page
+  is an explicit secondary action in the inspection panel, alongside path and
+  comparison actions.
+- **Spatial and URL contract.** `metrics.layout` remains the sole spatial
+  authority: focus, filtering, and camera operations never rewrite or
+  recompute coordinates. Meaningful attention state (`community`, `focus`,
+  `depth`, filters, and layout choice as those stages land) belongs in the
+  URL. Zoom and pan are permitted future camera operations, but they never
+  alter the stored layout and are not required before the overview and focus
+  states are complete.
+- **Relationship contract.** Every visible line resolves to the shared
+  edge-claim sentence and its citations in an inspection panel or live text
+  caption. Community aggregation may summarize only actual trusted claims;
+  every aggregate connection must expose the exact claims behind it. No
+  aggregate, layout, proximity, or visual treatment may imply an edge absent
+  from the data.
 - **The minimap.** Concept pages gain an optional small rendering of the same
   coordinates with the current node ringed and its neighbors emphasized — the
   "you are here" that hop-mode reading lacks today. Same data, zero extra
@@ -428,14 +443,49 @@ already is — same library, fixed input order, fixed tick count.
   this scale (≤ a few hundred nodes), wrong for the dependency-longevity
   posture, and the matrix answers the "big picture" need those libraries are
   usually reached for.
-- **Zoom/pan/camera controls and 3D.** The v1 decision stands: legibility by
-  curation of what's rendered. The matrix scrolls; the atlas aggregates.
+- **3D or client-side layout physics.** The Atlas may later gain bounded zoom
+  and pan as camera operations, but never a client-side full-graph layout or a
+  camera transform that mutates `metrics.layout`. Legibility still comes first
+  from semantic selection and community aggregation; camera controls begin
+  only after those states are complete and verified.
+
 - **In-app free-text matching or any LLM feature.** The app stays a static
   reader; assisted authoring stays outside the app and enters as validated PRs
   (spec §8.4). The queue exists precisely so growth needs no oracle.
 - **A "new UI" for its own sake.** Every v1 view keeps its route, URL grammar,
   and tests; this document adds projections and actions around a reading core
   that already works.
+
+### Bridge Atlas interpretation contract
+
+The community overview at `#/atlas?layout=bridges` follows a deliberately
+small, auditable visual grammar:
+
+- `metrics.nodes[*].community` is the sole membership authority. Communities
+  are normalized by their smallest member slug and are descriptions, not
+  mathematical fields or an ontology.
+- Territory geometry and positions are deterministic build outputs derived
+  from `metrics.layout`. Territory area represents member count only; it does
+  not represent importance, confidence, or centrality.
+- A bridge is an aggregate of actual trusted cross-community edge records.
+  Width uses `1 + 2 × log2(1 + visible trusted claim count)` and never means
+  proof quality. The neutral overview line does not acquire an arrow or a
+  single aggregate strength.
+- Selecting a bridge discloses its exact underlying claims, grouped by stored
+  direction and rendered with the shared edge-claim component and citations.
+  Filters run on claim records before aggregation, so displayed counts always
+  equal the claims a reader can inspect.
+- A frontier means “no trusted edge recorded in this dataset.” When filters
+  hide a populated crossing, the UI instead says “no visible trusted edge
+  under these filters.” Neither wording proposes a missing relationship.
+- Layout, mode, selected pair, and claim filters live in the URL. A future
+  camera position would be presentation state and would not alter graph state.
+- Every spatial fact has a table or list equivalent. The HTML controls, not
+  SVG geometry, define keyboard order and selection behavior.
+
+The first contract uses raw trusted-edge count for width, deterministic
+landmark bundles rather than editorial community names, zero-count pairs only
+for frontier mode, and the existing Atlas route rather than a second route.
 
 ## 8. Scale thresholds under the applications wave
 

@@ -66,14 +66,15 @@ function sortRing(atlas: Atlas, attachRank: Map<string, number>, ring: string[])
  * neighbor↔neighbor relationships are visible; second-hop nodes are only
  * reached through kept first-hop nodes, so nothing renders stranded.
  */
-export function egoNetwork(
+function boundedNeighborhood(
   atlas: Atlas,
   center: string,
   hops: 1 | 2,
+  edges: GraphEdge[],
   cap: number = EGO_NODE_CAP,
 ): EgoNetwork | null {
   if (!atlas.node(center)) return null;
-  const adj = adjacency(atlas.data.edges);
+  const adj = adjacency(edges);
 
   const attachRank = new Map<string, number>();
   const ring = (of: string[], inside: Set<string>): string[] => {
@@ -109,7 +110,7 @@ export function egoNetwork(
     .map((slug) => atlas.node(slug))
     .filter((n): n is GraphNode => n !== undefined)
     .sort((a, b) => a.slug.localeCompare(b.slug));
-  const edges = atlas.data.edges.filter((e) => kept.has(e.from) && kept.has(e.to));
+  const selectedEdges = edges.filter((e) => kept.has(e.from) && kept.has(e.to));
   const overflow = [...seen]
     .filter((slug) => !kept.has(slug))
     .map((slug) => atlas.node(slug))
@@ -119,7 +120,34 @@ export function egoNetwork(
   const expandable =
     hops === 1 && keptRing1.some((slug) => ring([slug], new Set([center, ...ring1])).length > 0);
 
-  return { center, nodes, edges, overflow, expandable };
+  return { center, nodes, edges: selectedEdges, overflow, expandable };
+}
+
+export function egoNetwork(
+  atlas: Atlas,
+  center: string,
+  hops: 1 | 2,
+  cap: number = EGO_NODE_CAP,
+): EgoNetwork | null {
+  return boundedNeighborhood(atlas, center, hops, atlas.data.edges, cap);
+}
+
+/**
+ * Atlas focus neighborhood: the same bounded, deterministic selection as an
+ * ego graph, restricted to the build's trusted strength floor. This keeps a
+ * speculative claim from becoming part of the Atlas reading layer merely
+ * because it touches the focused concept.
+ */
+export function trustedEgoNetwork(
+  atlas: Atlas,
+  center: string,
+  hops: 1 | 2,
+  cap: number = EGO_NODE_CAP,
+): EgoNetwork | null {
+  const trusted = atlas.data.edges.filter(
+    (edge) => (atlas.strength(edge.strength)?.rank ?? 99) <= atlas.trustedRank,
+  );
+  return boundedNeighborhood(atlas, center, hops, trusted, cap);
 }
 
 // ---------------------------------------------------------------------------

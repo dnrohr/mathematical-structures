@@ -290,6 +290,28 @@ overview and concept-page minimaps render exactly this map.
 }
 ```
 
+#### `metrics.bridge_atlas` (added in 1.6.0)
+
+`bridge_atlas` is a deterministic, additive survey artifact derived from the
+trusted graph. The browser performs display joins and filter-before-aggregate
+counting; it does not detect communities or invent geometry.
+
+- `communities[]` contains a stable numeric `id`, the complete sorted
+  `member_slugs`, exact `member_count`, two or three degree/betweenness/slug
+  ordered `landmark_slugs`, `internal_trusted_edge_count`, a build-computed
+  `center`, and an SVG `territory_path`.
+- `bridges[]` contains one canonical low/high community pair, its exact
+  `trusted_edge_count`, stable indexes into the top-level `edges[]` array, and
+  exact type and strength distributions. The indexed edge records retain
+  their original directions and evidence.
+- `frontiers[]` is the exact complement of bridge pairs over communities with
+  trusted members. Every record has `trusted_edge_count: 0`; it is absence in
+  this dataset, not an inferred mathematical relationship.
+
+Community ids are normalized by smallest member slug. Arrays and edge indexes
+use explicit slug-based tie breaks, coordinates are rounded to one decimal,
+and repeated builds from the same tree produce byte-identical data.
+
 ## Exports: GraphML and CSV (added in 1.1.0)
 
 `atlas-build` writes three more artifacts next to `graph.json`, for

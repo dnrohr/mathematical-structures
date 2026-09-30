@@ -272,6 +272,38 @@ export interface QueueMetrics {
   thin_symptoms: ThinSymptom[];
 }
 
+export interface BridgeAtlasCommunity {
+  id: number;
+  member_slugs: string[];
+  member_count: number;
+  landmark_slugs: string[];
+  internal_trusted_edge_count: number;
+  center: [number, number];
+  territory_path: string;
+}
+
+export interface BridgeAtlasBridge {
+  source_community: number;
+  target_community: number;
+  trusted_edge_count: number;
+  edge_indexes: number[];
+  strength_counts: Record<string, number>;
+  type_counts: Record<string, number>;
+}
+
+export interface BridgeAtlasFrontier {
+  source_community: number;
+  target_community: number;
+  trusted_edge_count: 0;
+}
+
+/** Deterministic community geography and exact cross-community claim joins. */
+export interface BridgeAtlasMetrics {
+  communities: BridgeAtlasCommunity[];
+  bridges: BridgeAtlasBridge[];
+  frontiers: BridgeAtlasFrontier[];
+}
+
 export interface GraphMetrics {
   trusted: {
     /** Strength floor (schema `analysis.trusted_min_strength`); metrics use only edges at or above it. */
@@ -295,6 +327,8 @@ export interface GraphMetrics {
    * (UI_REDESIGN.md §4.7; the atlas overview and minimaps render these).
    */
   layout: Record<string, [number, number]>;
+  /** Community overview derived only from trusted nodes, edges, and layout. */
+  bridge_atlas: BridgeAtlasMetrics;
 }
 
 export function countErrors(issues: Issue[]): number {

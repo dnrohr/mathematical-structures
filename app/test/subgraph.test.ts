@@ -15,6 +15,7 @@ import {
   lensSubgraph,
   matrixSelection,
   pathsBetween,
+  trustedEgoNetwork,
   trailUnfolds,
 } from '../src/data/subgraph';
 import type {
@@ -137,6 +138,7 @@ function makeAtlas(
         thin_symptoms: [],
       },
       layout,
+      bridge_atlas: { communities: [], bridges: [], frontiers: [] },
     },
   };
   const options = {
@@ -225,6 +227,37 @@ describe('egoNetwork', () => {
 
   it('returns null for an unknown center', () => {
     expect(egoNetwork(pathAtlas, 'nope', 1)).toBeNull();
+  });
+});
+
+describe('trustedEgoNetwork', () => {
+  it('uses the build trusted floor for both rings and induced edges', () => {
+    const one = trustedEgoNetwork(pathAtlas, 'a', 1);
+    expect(one!.nodes.map((node) => node.slug)).toEqual(['a', 'b', 'e']);
+    expect(one!.edges.map((item) => `${item.from}-${item.to}:${item.strength}`)).toEqual([
+      'a-b:theorem',
+      'a-e:theorem',
+    ]);
+
+    // b–c and e–d are below the trusted floor, so a two-hop request cannot
+    // manufacture a second ring from them.
+    const two = trustedEgoNetwork(pathAtlas, 'a', 2);
+    expect(two!.nodes.map((node) => node.slug)).toEqual(['a', 'b', 'e']);
+    expect(two!.expandable).toBe(false);
+  });
+
+  it('retains the shared readability cap', () => {
+    const spokes = Array.from({ length: 30 }, (_, index) =>
+      makeNode(`t${String(index).padStart(2, '0')}`),
+    );
+    const atlas = makeAtlas(
+      [makeNode('hub'), ...spokes],
+      spokes.map((node) => edge('hub', node.slug, 'GOVERNS', 'theorem')),
+    );
+    const selected = trustedEgoNetwork(atlas, 'hub', 1);
+    expect(selected!.nodes).toHaveLength(EGO_NODE_CAP);
+    expect(selected!.edges).toHaveLength(EGO_NODE_CAP - 1);
+    expect(selected!.overflow).toHaveLength(6);
   });
 });
 

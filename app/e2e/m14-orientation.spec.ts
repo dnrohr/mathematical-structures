@@ -21,7 +21,7 @@ interface GraphData {
     aliases: { field: string }[];
     connections: { evidence: string[] }[];
   }[];
-  edges: { from: string; to: string; strength: string }[];
+  edges: { from: string; to: string; type: string; strength: string; symmetric: boolean }[];
   schema: {
     strengths: { id: string; rank: number }[];
     fields: { id: string }[];
@@ -73,19 +73,21 @@ test('atlas: the fixed constellation renders every positioned concept and truste
   // The degradation plan is documented next to the view (ROADMAP M14).
   await expect(page.locator('.atlas-degradation')).toContainText('community aggregation');
 
-  // Reachable from the nav; a dot is a real link and navigates on click.
-  // (Click the painted circle: the anchor's box also spans its hover label.)
+  // Reachable from the nav; a dot is a real Atlas focus link and selection
+  // keeps the reader in this workspace.
   await expect(page.locator('.site-nav a[href="#/atlas"]')).toHaveText('Atlas');
-  await page.locator('.atlas-node[href="#/c/eigenvalues"] circle').click();
-  await expect(page).toHaveURL(/#\/c\/eigenvalues$/);
+  await page.locator('.atlas-node[data-slug="eigenvalues"] circle').click();
+  await expect(page).toHaveURL(/#\/atlas\?focus=eigenvalues&depth=1$/);
+  await expect(page.locator('.atlas-inspector')).toBeVisible();
 });
 
 test('atlas: focus ring, communities toggle, and URL round-trip', async ({ page }) => {
   await page.goto('/#/atlas?focus=eigenvalues');
   const data = await loadGraph(page);
+  await expect(page).toHaveURL(/#\/atlas\?focus=eigenvalues&depth=1$/);
   await expect(page.locator('.atlas-node.focus-node')).toHaveCount(1);
   await expect(page.locator('.atlas-ring')).toHaveCount(1);
-  await expect(page.locator('.atlas-focus-note')).toContainText('Ringed');
+  await expect(page.locator('.atlas-toolbar-context')).toContainText('Focused: Eigenvalues');
 
   // A dot reads name + summary into the live caption on focus.
   await page.locator('.atlas-node.focus-node').focus();
@@ -94,7 +96,7 @@ test('atlas: focus ring, communities toggle, and URL round-trip', async ({ page 
   // Toggle communities: the legend appears with every community chip, and
   // the state lands in the URL (replaceHash) so a reload restores it.
   await page.locator('.lens-communities').check();
-  await expect(page).toHaveURL(/#\/atlas\?communities=1&focus=eigenvalues$/);
+  await expect(page).toHaveURL(/#\/atlas\?communities=1&focus=eigenvalues&depth=1$/);
   await expect(page.locator('.community-legend .community-chip')).toHaveCount(
     data.metrics.community_count,
   );
@@ -103,22 +105,109 @@ test('atlas: focus ring, communities toggle, and URL round-trip', async ({ page 
   await expect(page.locator('.atlas-node.focus-node')).toHaveCount(1);
 });
 
+test('atlas: trusted depth, context de-emphasis, readable claims, and explicit actions', async ({
+  page,
+}) => {
+  await page.goto('/#/atlas?focus=eigenvalues&depth=1');
+  await expect(page.locator('.atlas-inspector')).toBeVisible();
+  const oneHopNodes = page.locator('.atlas-node:not(.context-node)');
+  const oneHopCount = await oneHopNodes.count();
+  expect(oneHopCount).toBeLessThanOrEqual(25);
+  expect(await page.locator('.atlas-node.context-node').count()).toBeGreaterThan(0);
+
+  const drawnOne = await page.locator('.atlas-svg .graph-edge').count();
+  await expect(page.locator('.atlas-claims li.connection')).toHaveCount(drawnOne);
+  await expect(page.getByRole('heading', { name: 'Visible relationships' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Open concept' })).toHaveAttribute(
+    'href',
+    '#/c/eigenvalues',
+  );
+  await expect(page.getByRole('link', { name: 'Find path' })).toHaveAttribute(
+    'href',
+    '#/path/eigenvalues',
+  );
+  await expect(page.getByRole('link', { name: 'Compare' })).toHaveAttribute(
+    'href',
+    '#/compare/eigenvalues',
+  );
+
+  await page.getByRole('link', { name: '2 hop' }).click();
+  await expect(page).toHaveURL(/depth=2$/);
+  expect(await page.locator('.atlas-node:not(.context-node)').count()).toBeGreaterThanOrEqual(
+    oneHopCount,
+  );
+  expect(await page.locator('.atlas-node:not(.context-node)').count()).toBeLessThanOrEqual(25);
+  await page.reload();
+  await expect(page.getByRole('link', { name: '2 hop' })).toHaveAttribute('aria-current', 'page');
+
+  await page.getByRole('link', { name: 'All', exact: true }).click();
+  await expect(page).toHaveURL(/depth=all$/);
+  await expect(page.locator('.atlas-node.context-node')).toHaveCount(0);
+  const data = await loadGraph(page);
+  await expect(page.locator('.atlas-svg .graph-edge')).toHaveCount(trustedEdges(data).length);
+});
+
+test('atlas: keyboard selection, depth change, inspection close, and fixed coordinates', async ({
+  page,
+}) => {
+  await page.goto('/#/atlas');
+  const node = page.locator('.atlas-node[data-slug="eigenvalues"]');
+  const before = await node.getAttribute('transform');
+  await node.focus();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/focus=eigenvalues&depth=1$/);
+  await expect(page.locator('.atlas-inspector')).toBeVisible();
+  expect(await page.locator('.atlas-node[data-slug="eigenvalues"]').getAttribute('transform')).toBe(
+    before,
+  );
+
+  await page.getByRole('link', { name: '2 hop' }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/depth=2$/);
+  await page.getByRole('link', { name: 'Close concept inspection' }).focus();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/#\/atlas$/);
+  await expect(page.locator('.atlas-inspector')).toHaveCount(0);
+});
+
+test('atlas: graph is above the fold and the narrow inspector becomes a sheet below the toolbar', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/#/atlas');
+  const graph = await page.locator('.graph-atlas').boundingBox();
+  expect(graph).not.toBeNull();
+  expect(graph!.y).toBeLessThan(300);
+  expect(graph!.height).toBeGreaterThan(450);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/#/atlas?focus=eigenvalues&depth=1');
+  const toolbar = await page.locator('.atlas-toolbar').boundingBox();
+  const sheet = await page.locator('.atlas-inspector').boundingBox();
+  const narrowGraph = await page.locator('.graph-atlas').boundingBox();
+  expect(toolbar).not.toBeNull();
+  expect(sheet).not.toBeNull();
+  expect(narrowGraph).not.toBeNull();
+  expect(sheet!.y).toBeGreaterThanOrEqual(toolbar!.y + toolbar!.height);
+  expect(sheet!.y).toBeLessThan(narrowGraph!.y);
+});
+
 test('minimap: concept pages show "you are here"; nodes outside the constellation honestly do not', async ({
   page,
 }) => {
   await page.goto('/#/c/eigenvalues');
   const data = await loadGraph(page);
   const minimap = page.locator('a.concept-minimap');
-  await expect(minimap).toHaveAttribute('href', '#/atlas?focus=eigenvalues');
+  await expect(minimap).toHaveAttribute('href', '#/atlas?focus=eigenvalues&depth=1');
   await expect(minimap.locator('.mini-here')).toHaveCount(1);
   // Every other positioned concept is a context dot (neighbor or not).
   const placed = Object.keys(data.metrics.layout).length;
   await expect(minimap.locator('.mini-dot, .mini-neighbor')).toHaveCount(placed - 1);
-  await expect(page.locator('.situate a[href="#/atlas?focus=eigenvalues"]')).toHaveText(
+  await expect(page.locator('.situate a[href="#/atlas?focus=eigenvalues&depth=1"]')).toHaveText(
     'the atlas',
   );
   await minimap.click();
-  await expect(page).toHaveURL(/#\/atlas\?focus=eigenvalues$/);
+  await expect(page).toHaveURL(/#\/atlas\?focus=eigenvalues&depth=1$/);
 
   // A concept with no trusted-strength claim has no position — no minimap,
   // no atlas situating link (absence is information, not an error).

@@ -88,7 +88,7 @@ describe('graph.json shape', () => {
   );
 
   it('carries version, provenance, schema, and sorted content', () => {
-    expect(graphJson.schema_version).toBe('1.5.0');
+    expect(graphJson.schema_version).toBe('1.6.0');
     expect(graphJson.generated_from).toBe('test-sha');
     const nodes = graphJson.nodes as { slug: string }[];
     expect(nodes.map((n) => n.slug)).toEqual(['eigenvalues', 'kalman-filter', 'markov-chains']);
@@ -131,6 +131,19 @@ describe('graph.json shape', () => {
       expect(Math.round(x * 10)).toBeCloseTo(x * 10, 6);
       expect(Math.round(y * 10)).toBeCloseTo(y * 10, 6);
     }
+  });
+
+  it('carries deterministic Bridge Atlas geography and exact joins (added in 1.6.0)', () => {
+    const m = graphJson.metrics as GraphMetrics;
+    expect(m.bridge_atlas.communities).toHaveLength(1);
+    expect(m.bridge_atlas.communities[0]).toMatchObject({
+      id: 0,
+      member_slugs: ['kalman-filter', 'markov-chains'],
+      member_count: 2,
+      internal_trusted_edge_count: 1,
+    });
+    expect(m.bridge_atlas.bridges).toEqual([]);
+    expect(m.bridge_atlas.frontiers).toEqual([]);
   });
 
   it('packages the metrics block: trusted floor, gaps, per-node entries', () => {
