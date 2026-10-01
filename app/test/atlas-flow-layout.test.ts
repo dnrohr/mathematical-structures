@@ -5,6 +5,7 @@ import {
   flowBand,
   flowLayer,
   flowRoute,
+  flowRoutePath,
   type FlowOrderOptions,
 } from '../src/views/atlas/flow-layout';
 
@@ -82,5 +83,20 @@ describe('Structure to Use projection', () => {
       );
     expect(JSON.stringify(slugs(first))).toBe(JSON.stringify(slugs(second)));
     expect(first.layers.application.map((n) => n.slug)).toEqual(['alpha-use', 'beta-use']);
+  });
+
+  it('keeps backward bows local and separates parallel lanes', () => {
+    const high = { x: 150, y: 550 };
+    const low = { x: 455, y: 800 };
+    const paths = [-0.5, 0.5].map((lane) => flowRoutePath(low, high, 'backward', lane));
+    expect(paths).toEqual([
+      'M 448 800 C 448 495, 159 495, 159 550',
+      'M 448 800 C 448 488, 159 488, 159 550',
+    ]);
+    expect(new Set(paths).size).toBe(2);
+
+    expect(flowRoutePath({ x: 455, y: 112 }, { x: 150, y: 146 }, 'backward', 0)).toBe(
+      'M 448 112 C 448 194, 159 194, 159 146',
+    );
   });
 });

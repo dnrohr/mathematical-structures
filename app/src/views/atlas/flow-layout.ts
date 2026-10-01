@@ -6,6 +6,11 @@ export type FlowGroup = 'field' | 'community' | 'none';
 export type FlowBand = 'primary' | 'structural' | 'cross-link';
 export type FlowRoute = 'forward' | 'long' | 'same-layer' | 'backward';
 
+export interface FlowRoutePoint {
+  x: number;
+  y: number;
+}
+
 const LAYER_BY_TYPE: Record<string, FlowLayer> = {
   object: 'foundation',
   principle: 'foundation',
@@ -57,6 +62,41 @@ export function flowRoute(
   if (from === to) return 'same-layer';
   if (to < from) return 'backward';
   return to - from > 1 ? 'long' : 'forward';
+}
+
+/**
+ * Route one claim without using a global canvas channel. Backward claims bow
+ * just outside their endpoints' vertical span, so a low pair cannot create a
+ * page-tall arch. When the upper channel would collide with column headings,
+ * the bow moves below the pair instead. Parallel lanes remain distinct.
+ */
+export function flowRoutePath(
+  a: FlowRoutePoint,
+  b: FlowRoutePoint,
+  route: FlowRoute,
+  lane: number,
+): string {
+  const startX = a.x + (b.x >= a.x ? 7 : -7);
+  const endX = b.x + (b.x >= a.x ? -9 : 9);
+  if (route === 'same-layer') {
+    const side = lane <= 0 ? -1 : 1;
+    const bowX = a.x + side * (76 + Math.abs(lane) * 18);
+    return `M ${startX} ${a.y} C ${bowX} ${a.y}, ${bowX} ${b.y}, ${endX} ${b.y}`;
+  }
+  if (route === 'backward') {
+    const clearance = 48 + Math.abs(lane) * 14 + (lane > 0 ? 7 : 0);
+    const upper = Math.min(a.y, b.y) - clearance;
+    const channel = upper >= 78 ? upper : Math.max(a.y, b.y) + clearance;
+    return `M ${startX} ${a.y} C ${startX} ${channel}, ${endX} ${channel}, ${endX} ${b.y}`;
+  }
+  if (route === 'long') {
+    const offset = lane * 12;
+    const mid = (startX + endX) / 2;
+    return `M ${startX} ${a.y} C ${mid} ${a.y + offset}, ${mid} ${b.y + offset}, ${endX} ${b.y}`;
+  }
+  const mid = (startX + endX) / 2;
+  const offset = lane * 14;
+  return `M ${startX} ${a.y} C ${mid} ${a.y + offset}, ${mid} ${b.y + offset}, ${endX} ${b.y}`;
 }
 
 export interface FlowOrderOptions {

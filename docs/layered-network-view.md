@@ -6,8 +6,9 @@
 > chain highlighting for separate reviewed work. Current UI evidence is stored
 > under `artifacts/ui/layered-network-view/`: `overview-light.png`,
 > `application-field-groups-light.png`, `focused-dark.png`, and
-> `narrow-layout.png`, plus the 4.8-second `focus-group-depth.webm` interaction
-> recording.
+> `narrow-layout.png`; `focused-local-backward-routing-light.png` records the
+> bounded local backward-edge routing refinement. The 4.8-second
+> `focus-group-depth.webm` records the interaction sequence.
 
 ## Purpose
 

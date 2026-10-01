@@ -56,6 +56,18 @@ test('flow overview preserves exact directed claims, routes long and backward ed
   expect(await page.locator('.flow-edge.route-long').count()).toBeGreaterThan(0);
   expect(await page.locator('.flow-edge.route-backward').count()).toBeGreaterThan(0);
   expect(await page.locator('.flow-edge.route-same-layer').count()).toBeGreaterThan(0);
+  const backwardGeometry = await page
+    .locator('.flow-edge.route-backward .edge-line')
+    .evaluateAll((paths) =>
+      paths.map((path) =>
+        [...path.getAttribute('d')!.matchAll(/-?\d+(?:\.\d+)?/g)].map((match) => Number(match[0])),
+      ),
+    );
+  for (const [, startY, , controlY1, , controlY2, , endY] of backwardGeometry) {
+    expect(controlY1).toBe(controlY2);
+    expect(controlY1).toBeGreaterThanOrEqual(Math.min(startY!, endY!) - 100);
+    expect(controlY1).toBeLessThanOrEqual(Math.max(startY!, endY!) + 100);
+  }
   const parallelRoutes = await page.locator('.flow-edge').evaluateAll((groups) => {
     const pairs = new Map<string, string[]>();
     for (const group of groups) {
