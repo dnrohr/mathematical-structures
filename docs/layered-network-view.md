@@ -9,6 +9,10 @@
 > `narrow-layout.png`; `focused-local-backward-routing-light.png` records the
 > bounded local backward-edge routing refinement. The 4.8-second
 > `focus-group-depth.webm` records the interaction sequence.
+> `uniform-column-spacing-light.png` records the shared-height column spacing.
+> Every column shares one vertical extent and distributes its entries evenly
+> within that span, while deterministic order and Application grouping remain
+> unchanged.
 
 ## Purpose
 
