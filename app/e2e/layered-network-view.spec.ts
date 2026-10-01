@@ -56,6 +56,24 @@ test('flow overview preserves exact directed claims, routes long and backward ed
   expect(await page.locator('.flow-edge.route-long').count()).toBeGreaterThan(0);
   expect(await page.locator('.flow-edge.route-backward').count()).toBeGreaterThan(0);
   expect(await page.locator('.flow-edge.route-same-layer').count()).toBeGreaterThan(0);
+  const columnRows = await page.locator('.flow-node').evaluateAll((nodes) => {
+    const byLayer = new Map<string, number[]>();
+    for (const node of nodes) {
+      const layer = node.getAttribute('data-layer')!;
+      const y = Number(node.getAttribute('transform')!.match(/translate\([^ ]+ ([^)]+)\)/)![1]);
+      const rows = byLayer.get(layer) ?? [];
+      rows.push(y);
+      byLayer.set(layer, rows);
+    }
+    return Object.fromEntries(byLayer);
+  });
+  const extents = Object.values(columnRows).map((rows) => [rows[0], rows.at(-1)]);
+  expect(new Set(extents.map(([first]) => first)).size).toBe(1);
+  expect(new Set(extents.map(([, last]) => last)).size).toBe(1);
+  for (const rows of Object.values(columnRows)) {
+    const gaps = rows.slice(1).map((row, index) => row - rows[index]!);
+    expect(Math.max(...gaps) - Math.min(...gaps)).toBeLessThan(0.001);
+  }
   const backwardGeometry = await page
     .locator('.flow-edge.route-backward .edge-line')
     .evaluateAll((paths) =>

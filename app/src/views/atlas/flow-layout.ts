@@ -99,6 +99,14 @@ export function flowRoutePath(
   return `M ${startX} ${a.y} C ${mid} ${a.y + offset}, ${mid} ${b.y + offset}, ${endX} ${b.y}`;
 }
 
+/** Evenly distribute one layer across the shared vertical extent. */
+export function uniformLayerPositions(count: number, top: number, bottom: number): number[] {
+  if (count <= 0) return [];
+  if (count === 1) return [(top + bottom) / 2];
+  const step = (bottom - top) / (count - 1);
+  return Array.from({ length: count }, (_, index) => top + index * step);
+}
+
 export interface FlowOrderOptions {
   group: FlowGroup;
   fieldLabel: (id: string) => string;

@@ -6,6 +6,7 @@ import {
   flowLayer,
   flowRoute,
   flowRoutePath,
+  uniformLayerPositions,
   type FlowOrderOptions,
 } from '../src/views/atlas/flow-layout';
 
@@ -98,5 +99,12 @@ describe('Structure to Use projection', () => {
     expect(flowRoutePath({ x: 455, y: 112 }, { x: 150, y: 146 }, 'backward', 0)).toBe(
       'M 448 112 C 448 194, 159 194, 159 146',
     );
+  });
+
+  it('distributes every column uniformly across the same vertical extent', () => {
+    expect(uniformLayerPositions(5, 100, 500)).toEqual([100, 200, 300, 400, 500]);
+    expect(uniformLayerPositions(3, 100, 500)).toEqual([100, 300, 500]);
+    expect(uniformLayerPositions(1, 100, 500)).toEqual([300]);
+    expect(uniformLayerPositions(0, 100, 500)).toEqual([]);
   });
 });

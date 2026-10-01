@@ -20,6 +20,7 @@ import {
   flowRoute,
   flowRoutePath,
   FLOW_LAYERS,
+  uniformLayerPositions,
   type FlowGroup,
   type FlowLayer,
   type FlowOrderOptions,
@@ -48,7 +49,6 @@ const X: Record<FlowLayer, number> = {
 };
 const TOP = 112;
 const ROW = 34;
-const GROUP_GAP = 28;
 
 export function flowAtlasHash(state: Omit<FlowAtlasState, 'layout'> = {}): string {
   const params = new URLSearchParams([['layout', 'flow']]);
@@ -188,22 +188,18 @@ export function flowAtlasView(atlas: Atlas, initial: FlowAtlasState): View {
   };
   const order = deterministicFlowOrder(nodes, trusted, options);
   const points: Point[] = [];
-  let maxY = TOP;
+  const maxRows = Math.max(...FLOW_LAYERS.map((layer) => order.layers[layer].length));
+  const bottom = TOP + Math.max(0, maxRows - 1) * ROW;
   for (const layer of FLOW_LAYERS) {
-    let y = TOP;
-    let previousGroup = '';
-    for (const node of order.layers[layer]) {
+    const positions = uniformLayerPositions(order.layers[layer].length, TOP, bottom);
+    order.layers[layer].forEach((node, index) => {
       const nodeGroup = layer === 'application' ? flowGroupLabel(node, options) : '';
-      if (previousGroup && nodeGroup !== previousGroup) y += GROUP_GAP;
-      points.push({ node, layer, x: X[layer], y, group: nodeGroup });
-      previousGroup = nodeGroup;
-      y += ROW;
-    }
-    maxY = Math.max(maxY, y);
+      points.push({ node, layer, x: X[layer], y: positions[index]!, group: nodeGroup });
+    });
   }
   const bySlug = new Map(points.map((point) => [point.node.slug, point]));
   const width = 1540;
-  const height = maxY + 45;
+  const height = bottom + ROW + 45;
   const svg = svgEl('svg', {
     class: 'flow-svg',
     viewBox: `0 0 ${String(width)} ${String(height)}`,
