@@ -18,11 +18,11 @@ import {
   flowGroupLabel,
   flowLayer,
   flowRoute,
+  flowRoutePath,
   FLOW_LAYERS,
   type FlowGroup,
   type FlowLayer,
   type FlowOrderOptions,
-  type FlowRoute,
 } from './flow-layout';
 
 export interface FlowAtlasState {
@@ -66,28 +66,6 @@ interface Point {
   x: number;
   y: number;
   group: string;
-}
-
-function routePath(a: Point, b: Point, route: FlowRoute, lane: number): string {
-  const startX = a.x + (b.x >= a.x ? 7 : -7);
-  const endX = b.x + (b.x >= a.x ? -9 : 9);
-  if (route === 'same-layer') {
-    const side = lane <= 0 ? -1 : 1;
-    const bowX = a.x + side * (76 + Math.abs(lane) * 18);
-    return `M ${startX} ${a.y} C ${bowX} ${a.y}, ${bowX} ${b.y}, ${endX} ${b.y}`;
-  }
-  if (route === 'backward') {
-    const channel = 64 + lane * 12;
-    return `M ${startX} ${a.y} C ${startX} ${channel}, ${endX} ${channel}, ${endX} ${b.y}`;
-  }
-  if (route === 'long') {
-    const offset = lane * 12;
-    const mid = (startX + endX) / 2;
-    return `M ${startX} ${a.y} C ${mid} ${a.y + offset}, ${mid} ${b.y + offset}, ${endX} ${b.y}`;
-  }
-  const mid = (startX + endX) / 2;
-  const offset = lane * 14;
-  return `M ${startX} ${a.y} C ${mid} ${a.y + offset}, ${mid} ${b.y + offset}, ${endX} ${b.y}`;
 }
 
 function claimGroups(atlas: Atlas, node: GraphNode, edges: GraphEdge[]): HTMLElement {
@@ -332,7 +310,7 @@ export function flowAtlasView(atlas: Atlas, initial: FlowAtlasState): View {
     const sequence = pairSeen.get(key) ?? 0;
     pairSeen.set(key, sequence + 1);
     const lane = sequence - ((pairCounts.get(key) ?? 1) - 1) / 2;
-    const d = routePath(a, b, route, lane);
+    const d = flowRoutePath(a, b, route, lane);
     groupEl.append(svgEl('path', { class: 'edge-hit', d }));
     groupEl.append(svgEl('path', { class: `edge-line${edge.symmetric ? '' : ' directed'}`, d }));
     wire(groupEl, sentence);
