@@ -263,14 +263,24 @@ export function flowAtlasView(atlas: Atlas, initial: FlowAtlasState): View {
     ? 'Focused claims are emphasized without changing the complete graph ordering.'
     : 'Point at or tab to a concept or claim for its full readable description.';
   caption.textContent = idleCaption;
-  const wire = (element: SVGElement, text: string): void => {
+  const clearInteraction = (): void => {
+    svg.classList.remove('has-interaction');
+    svg
+      .querySelectorAll('.is-connected, .is-interacting')
+      .forEach((element) => element.classList.remove('is-connected', 'is-interacting'));
+    caption.textContent = idleCaption;
+  };
+  const wire = (element: SVGElement, text: string, connected: () => SVGElement[]): void => {
     const show = (): void => {
+      clearInteraction();
+      svg.classList.add('has-interaction');
       element.classList.add('is-interacting');
+      connected().forEach((related) => related.classList.add('is-connected'));
       caption.textContent = text;
     };
     const hide = (): void => {
-      element.classList.remove('is-interacting');
-      caption.textContent = idleCaption;
+      if (element.matches(':hover') || document.activeElement === element) return;
+      clearInteraction();
     };
     element.addEventListener('mouseenter', show);
     element.addEventListener('mouseleave', hide);
@@ -298,6 +308,8 @@ export function flowAtlasView(atlas: Atlas, initial: FlowAtlasState): View {
       role: 'img',
       'aria-label': sentence,
       'data-edge': `${edge.from}|${edge.to}|${edge.type}`,
+      'data-from': edge.from,
+      'data-to': edge.to,
       'data-route': route,
       'data-symmetric': String(edge.symmetric),
       'data-strength': edge.strength,
@@ -309,7 +321,12 @@ export function flowAtlasView(atlas: Atlas, initial: FlowAtlasState): View {
     const d = flowRoutePath(a, b, route, lane);
     groupEl.append(svgEl('path', { class: 'edge-hit', d }));
     groupEl.append(svgEl('path', { class: `edge-line${edge.symmetric ? '' : ' directed'}`, d }));
-    wire(groupEl, sentence);
+    wire(groupEl, sentence, () => [
+      groupEl,
+      ...svg.querySelectorAll<SVGElement>(
+        `.flow-node[data-slug="${edge.from}"], .flow-node[data-slug="${edge.to}"]`,
+      ),
+    ]);
     edgeLayer.appendChild(groupEl);
   });
   svg.appendChild(edgeLayer);
@@ -331,7 +348,24 @@ export function flowAtlasView(atlas: Atlas, initial: FlowAtlasState): View {
     const label = svgEl('text', { class: 'graph-label flow-node-label', x: '11', y: '4' });
     label.textContent = point.node.canonical_name;
     anchor.append(label);
-    wire(anchor, `${point.node.canonical_name}. ${point.node.summary}`);
+    wire(anchor, `${point.node.canonical_name}. ${point.node.summary}`, () => {
+      const incident = [
+        ...svg.querySelectorAll<SVGElement>(
+          `.flow-edge[data-from="${point.node.slug}"], .flow-edge[data-to="${point.node.slug}"]`,
+        ),
+      ];
+      const connectedSlugs = new Set([point.node.slug]);
+      incident.forEach((edge) => {
+        connectedSlugs.add(edge.dataset.from!);
+        connectedSlugs.add(edge.dataset.to!);
+      });
+      return [
+        ...incident,
+        ...[...connectedSlugs].flatMap((slug) => [
+          ...svg.querySelectorAll<SVGElement>(`.flow-node[data-slug="${slug}"]`),
+        ]),
+      ];
+    });
     nodeLayer.appendChild(anchor);
   }
   svg.appendChild(nodeLayer);

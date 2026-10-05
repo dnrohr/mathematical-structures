@@ -2942,6 +2942,32 @@ th[aria-sort='ascending'] .sort-button::after {
   opacity: 0.9;
 }
 
+.flow-svg.has-interaction .flow-node {
+  opacity: 0.1;
+}
+
+.flow-svg.has-interaction .flow-edge {
+  opacity: 0.025;
+}
+
+.flow-svg.has-interaction .flow-node.is-connected,
+.flow-svg.has-interaction .flow-edge.is-connected {
+  opacity: 1;
+}
+
+.flow-svg.has-interaction .flow-edge.is-connected .edge-line {
+  stroke-width: 3.2;
+}
+
+.flow-node.is-connected .flow-node-label {
+  font-weight: 650;
+}
+
+.flow-node.is-interacting circle {
+  stroke: var(--focus);
+  stroke-width: 3;
+}
+
 .flow-edge.band-primary.attention-overview {
   opacity: 0.38;
 }

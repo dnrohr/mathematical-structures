@@ -10,9 +10,14 @@
 > bounded local backward-edge routing refinement. The 4.8-second
 > `focus-group-depth.webm` records the interaction sequence.
 > `uniform-column-spacing-light.png` records the shared-height column spacing.
+> `connected-node-highlight-light.png` and `connected-highlight-parity.webm`
+> record pointer and keyboard connection highlighting.
 > Every column shares one vertical extent and distributes its entries evenly
 > within that span, while deterministic order and Application grouping remain
 > unchanged.
+> Hovering or keyboard-focusing a concept reveals its visible incident claims
+> and neighboring concepts; interacting with a claim reveals both endpoints.
+> This transient emphasis does not filter, reorder, or reinterpret the graph.
 
 ## Purpose
 

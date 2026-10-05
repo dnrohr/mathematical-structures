@@ -168,15 +168,30 @@ test('flow node and edge hover/keyboard paths produce the same readable caption'
   const node = page.locator('.flow-node[data-slug="brownian-motion"]');
   await node.hover();
   const hoverNodeCaption = await page.locator('.flow-caption').textContent();
+  const incidentEdges = page.locator(
+    '.flow-edge[data-from="brownian-motion"], .flow-edge[data-to="brownian-motion"]',
+  );
+  const connectedNodeSlugs = await incidentEdges.evaluateAll((edges) => [
+    ...new Set(
+      edges.flatMap((edge) => [edge.getAttribute('data-from')!, edge.getAttribute('data-to')!]),
+    ),
+  ]);
+  await expect(page.locator('.flow-edge.is-connected')).toHaveCount(await incidentEdges.count());
+  await expect(page.locator('.flow-node.is-connected')).toHaveCount(connectedNodeSlugs.length);
+  await expect(page.locator('.flow-node:not(.is-connected)').first()).toHaveCSS('opacity', '0.1');
   await node.focus();
   await expect(page.locator('.flow-caption')).toHaveText(hoverNodeCaption!);
+  await expect(page.locator('.flow-edge.is-connected')).toHaveCount(await incidentEdges.count());
 
   const edge = page.locator('.flow-edge').first();
   await edge.dispatchEvent('mouseenter');
   const hoverEdgeCaption = await page.locator('.flow-caption').textContent();
   expect(hoverEdgeCaption).toBe(await edge.getAttribute('aria-label'));
+  await expect(page.locator('.flow-edge.is-connected')).toHaveCount(1);
+  await expect(page.locator('.flow-node.is-connected')).toHaveCount(2);
   await edge.focus();
   await expect(page.locator('.flow-caption')).toHaveText(hoverEdgeCaption!);
+  await expect(page.locator('.flow-node.is-connected')).toHaveCount(2);
 });
 
 test('flow stays page-width safe on narrow screens and is axe-clean in light and dark themes', async ({
